@@ -1,6 +1,6 @@
 LICENSE
 --------------------------------------------------------------
-librdkafka - Apache Kafka C driver library
+librdkafka - Apache Kafka C driver library...
 
 Copyright (c) 2012-2020, Magnus Edenhill
 All rights reserved.
