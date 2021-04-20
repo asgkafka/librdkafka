@@ -1,8 +1,9 @@
-# librdkafka NEXT
+# librdkafka v1.7.0
 
 librdkafka v1.7.0 is feature release:
 
  * [KIP-360](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=89068820) - Improve reliability of transactional producer.
+   Requires Apache Kafka 2.5 or later.
  * OpenSSL Engine support (`ssl.engine.location`) by @adinigam and @ajbarb.
 
 ## Enhancements
@@ -64,6 +65,8 @@ librdkafka v1.7.0 is feature release:
    accumulated messages for revoked partitions were not purged, which would
    pass messages to the application for partitions that were no longer owned
    by the consumer. Fixed by @jliunyu. #3340.
+ * Fix balancing and reassignment issues with the cooperative-sticky assignor.
+   #3306.
  * The consumer group deemed cached metadata up to date by checking
    `topic.metadata.refresh.interval.ms`: if this property was set too low
    it would cause cached metadata to be unusable and new metadata to be fetched,
