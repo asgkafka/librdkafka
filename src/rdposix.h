@@ -26,6 +26,15 @@
 * POSSIBILITY OF SUCH DAMAGE.
 */
 
+/*
+ * ASG_LK: MODIFICATION HISTORY
+ * ==================================================================================
+ * TAG          |   DATE (DD/MM/YYYY)    |   JIRA    |   DESCRIPTION
+ * ==================================================================================
+ * ASG_LK01         22/04/2021              -           SYSTEM-C
+ * ==================================================================================
+*/
+
 /**
  * POSIX system support
  */
@@ -60,14 +69,20 @@
 #define RD_WARN_UNUSED_RESULT __attribute__((warn_unused_result))
 #define RD_NORETURN __attribute__((noreturn))
 #define RD_IS_CONSTANT(p)  __builtin_constant_p((p))
+#ifdef SYSC     /* ASG_LK01: SYSTEM-C */
+#define RD_TLS  /* ASG_LK01: SYSTEM-C */
+#else           /* ASG_LK01: SYSTEM-C */
 #define RD_TLS      __thread
+#endif          /* ASG_LK01: SYSTEM-C */
 
 /**
 * Allocation
 */
 #if !defined(__FreeBSD__) && !defined(__OpenBSD__)
+#if !defined(SYSC) /* ASG_LK01: SYSTEM-C */
 /* alloca(3) is in stdlib on FreeBSD */
 #include <alloca.h>
+#endif             /* ASG_LK01: SYSTEM-C */
 #endif
 
 #define rd_alloca(N)  alloca(N)

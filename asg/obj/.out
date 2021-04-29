@@ -1,0 +1,2845 @@
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@P3RWL
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@P3R@U
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@P3RRL
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@P3R@I
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@P3R@D
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT8GS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT@EQ
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3D
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3C
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3CW
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3CT
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3CS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3CI
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3CD
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3CB
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SCHD@Y
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3SS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT@S
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@CLKGET
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3MT
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3MD
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3TS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3XS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3XI
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3KC
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3J
+ AUTOCALL C:\dignus\lib\objs_rent_z\longjmp
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@@2LOWR
+ AUTOCALL C:\dignus\lib\objs_rent_z\regfree
+ AUTOCALL C:\dignus\lib\objs_rent_z\regexec
+ AUTOCALL C:\dignus\lib\objs_rent_z\regerror
+ AUTOCALL C:\dignus\lib\objs_rent_z\regcomp
+ AUTOCALL C:\dignus\lib\objs_rent_z\connect
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@STSOC
+ AUTOCALL C:\dignus\lib\objs_rent_z\send
+ AUTOCALL C:\dignus\lib\objs_rent_z\recv
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@GSKOP
+ AUTOCALL C:\dignus\lib\objs_rent_z\open
+ AUTOCALL C:\dignus\lib\objs_rent_z\strtoull
+ AUTOCALL C:\dignus\lib\objs_rent_z\llabs
+ AUTOCALL C:\dignus\lib\objs_rent_z\fileno
+ AUTOCALL C:\dignus\lib\objs_rent_z\fdopen
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@FTRUNC
+ AUTOCALL C:\dignus\lib\objs_rent_z\fwrite
+ AUTOCALL C:\dignus\lib\objs_rent_z\fseek
+ AUTOCALL C:\dignus\lib\objs_rent_z\fread
+ AUTOCALL C:\dignus\lib\objs_rent_z\fsync
+ AUTOCALL C:\dignus\lib\objs_rent_z\fflush
+ AUTOCALL C:\dignus\lib\objs_rent_z\fclose
+ AUTOCALL C:\dignus\lib\objs_rent_z\printf
+ AUTOCALL C:\dignus\lib\objs_rent_z\bind
+ AUTOCALL C:\dignus\lib\objs_rent_z\accept
+ AUTOCALL C:\dignus\lib\objs_rent_z\read
+ AUTOCALL C:\dignus\lib\objs_rent_z\poll
+ AUTOCALL C:\dignus\lib\objs_rent_z\listen
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@GSKNA
+ AUTOCALL C:\dignus\lib\objs_rent_z\strcmp
+ AUTOCALL C:\dignus\lib\objs_rent_z\qsort
+ AUTOCALL C:\dignus\lib\objs_rent_z\strtod
+ AUTOCALL C:\dignus\lib\objs_rent_z\STRNC@CM
+ AUTOCALL C:\dignus\lib\objs_rent_z\socket
+ AUTOCALL C:\dignus\lib\objs_rent_z\pipe
+ AUTOCALL C:\dignus\lib\objs_rent_z\fcntl
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@@2UPPR
+ AUTOCALL C:\dignus\lib\objs_rent_z\strstr
+ AUTOCALL C:\dignus\lib\objs_rent_z\close
+ AUTOCALL C:\dignus\lib\objs_rent_z\bsearch
+ AUTOCALL C:\dignus\lib\objs_rent_z\atoi
+ AUTOCALL C:\dignus\lib\objs_rent_z\STRC@CMP
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SIGDST
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@CRNTLC
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@@RNTYP
+ AUTOCALL C:\dignus\lib\objs_rent_z\getenv
+ AUTOCALL C:\dignus\lib\objs_rent_z\strtol
+ AUTOCALL C:\dignus\lib\objs_rent_z\abort
+ AUTOCALL C:\dignus\lib\objs_rent_z\VSNPRNT@
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SIGACT
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT@SM
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3KIL
+ AUTOCALL C:\dignus\lib\objs_rent_z\GETTFD@Y
+ AUTOCALL C:\dignus\lib\objs_rent_z\syslog
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3O
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3MU
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@NNOSLP
+ AUTOCALL C:\dignus\lib\objs_rent_z\closedir
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3ML
+ AUTOCALL C:\dignus\lib\objs_rent_z\srand
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT3MI
+ AUTOCALL C:\dignus\lib\objs_rent_z\time
+ AUTOCALL C:\dignus\lib\objs_rent_z\readdir
+ AUTOCALL C:\dignus\lib\objs_rent_z\opendir
+ AUTOCALL C:\dignus\lib\objs_rent_z\stat
+ AUTOCALL C:\dignus\lib\objs_rent_z\write
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@DLG2@H
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@FLOOR@
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@CEIL@H
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@WSQT@H
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@DXPD@H
+ AUTOCALL C:\dignus\lib\objs_rent_z\dlsym
+ AUTOCALL C:\dignus\lib\objs_rent_z\dlopen
+ AUTOCALL C:\dignus\lib\objs_rent_z\dlerror
+ AUTOCALL C:\dignus\lib\objs_rent_z\dlclose
+ AUTOCALL C:\dignus\lib\objs_rent_z\strdup
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@GAISRR
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@GTNINF
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@GTAINF
+ AUTOCALL C:\dignus\lib\objs_rent_z\##ERROR
+ AUTOCALL C:\dignus\lib\objs_rent_z\strerror
+ AUTOCALL C:\dignus\lib\objs_rent_z\snprintf
+ AUTOCALL C:\dignus\lib\objs_rent_z\calloc
+ AUTOCALL C:\dignus\lib\objs_rent_z\memmove
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@ASSERT
+ AUTOCALL C:\dignus\lib\objs_rent_z\fprintf
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@FREEMZ
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@GETMZ
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@serrls
+ AUTOCALL C:\dignus\lib\objs_rent_z\strlcat
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@INETAN
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@RESHNO
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@INETPN
+ AUTOCALL C:\dignus\lib\objs_rent_z\fgets
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@RESTAT
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@RESHEN
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@GSBNA
+ AUTOCALL C:\dignus\lib\objs_rent_z\strtoul
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@FTCPFI
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@RESNPT
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@RESNSD
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@RESHTA
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@RESNIT
+ AUTOCALL C:\dignus\lib\objs_rent_z\rewind
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IBMGAI
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@RESPTP
+ AUTOCALL C:\dignus\lib\objs_rent_z\strlcpy
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@INETNP
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IBMGNI
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@GSBPO
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@GTIPAD
+ AUTOCALL C:\dignus\lib\objs_rent_z\#@NSDPCH
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SLXP@H
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SFXP@H
+ AUTOCALL C:\dignus\lib\objs_rent_z\##PT3MTM
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@BPXCTW
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT@CPU
+ AUTOCALL C:\dignus\lib\objs_rent_z\getpid
+ AUTOCALL C:\dignus\lib\objs_rent_z\funopen
+ AUTOCALL C:\dignus\lib\objs_rent_z\@#GPRGNM
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@CTME@R
+ AUTOCALL C:\dignus\lib\objs_rent_z\#WRITEV
+ AUTOCALL C:\dignus\lib\objs_rent_z\fputc
+ AUTOCALL C:\dignus\lib\objs_rent_z\fputs
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@EXIT
+ AUTOCALL C:\dignus\lib\objs_rent_z\#SETCNT
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@GETSIR
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@MVSSGS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SESTAE
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@trcbck
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@VFPRNF
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@CLEANU
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@ABEND
+ AUTOCALL C:\dignus\lib\objs_rent_z\raise
+ AUTOCALL C:\dignus\lib\objs_rent_z\environ
+ AUTOCALL C:\dignus\lib\objs_rent_z\##FCNTL
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IBMENO
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@FUTHFS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@FPCHFS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@FTCHFS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@FCMHFS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@FCOHFS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@FCDHFS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@FSCHFS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@FSTHFS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@D2HFS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@LSHFS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IBMSOC
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@STRTDX
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IBMGNA
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IBMLSN
+ AUTOCALL C:\dignus\lib\objs_rent_z\select
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@ILHFS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@CTLHFS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@TYHFS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@CLHFS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@WRHFS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@FCSOCK
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@RDHFS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@D2SOCK
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@TYSOCK
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@ILSOCK
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@FLSOCK
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@CLSOCK
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@NEXTFD
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@WRSOCK
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@LSSOCK
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@RDSOCK
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IBMACC
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IBMBND
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@ISBFP
+ AUTOCALL C:\dignus\lib\objs_rent_z\@FWALK
+ AUTOCALL C:\dignus\lib\objs_rent_z\##FSYNC
+ AUTOCALL C:\dignus\lib\objs_rent_z\@FTELLO
+ AUTOCALL C:\dignus\lib\objs_rent_z\#FSTAT
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SMKBUF
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SREFIL
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@sfvwrt
+ AUTOCALL C:\dignus\lib\objs_rent_z\#FCNTL
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SFLAGS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@GDTBLSZ
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SCLOSE
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SSEEK
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SWRITE
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SREAD
+ AUTOCALL C:\dignus\lib\objs_rent_z\@FLOCKFL
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@OPBSAM
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PARSFN
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@OPNHFS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SPNLCK
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IBMGSO
+ AUTOCALL C:\dignus\lib\objs_rent_z\#RECVFRM
+ AUTOCALL C:\dignus\lib\objs_rent_z\#SENDTO
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IBMSTO
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PT@TC
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IBMCNN
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@INITIO
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@COLERR
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@COLCMP
+ AUTOCALL C:\dignus\lib\objs_rent_z\wctype
+ AUTOCALL C:\dignus\lib\objs_rent_z\wcrtomb
+ AUTOCALL C:\dignus\lib\objs_rent_z\sprintf
+ AUTOCALL C:\dignus\lib\objs_rent_z\mbrtowc
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@GETDVT
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SIGPRM
+ AUTOCALL C:\dignus\lib\objs_rent_z\##CLDISP
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@TIMDWC
+ AUTOCALL C:\dignus\lib\objs_rent_z\##PT@SCS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@P3TRES
+ AUTOCALL C:\dignus\lib\objs_rent_z\##PTW@IT
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PTVMLK
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@CLONE
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PTLOCK
+ AUTOCALL C:\dignus\lib\objs_rent_z\exit
+ AUTOCALL C:\dignus\lib\objs_rent_z\##P3RTRL
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@FUTEX
+ AUTOCALL C:\dignus\lib\objs_rent_z\##P3RTWL
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@P3RTW
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@P3RTR
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@CXAFIN
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@EXPAND
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@BPXPTC
+ AUTOCALL C:\dignus\lib\objs_rent_z\sysconf
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@WCR2MB
+ AUTOCALL C:\dignus\lib\objs_rent_z\strcoll
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IBMSNT
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IBMRCF
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@DDNDEF
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@DSFIND
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@LDYNAL
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@CTLBSM
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@D2BSAM
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@TYBSAM
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@CLBSAM
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@WRBSAM
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@LSBSAM
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@RDBSAM
+ AUTOCALL C:\dignus\lib\objs_rent_z\lseek
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SWHTBF
+ AUTOCALL C:\dignus\lib\objs_rent_z\isatty
+ AUTOCALL C:\dignus\lib\objs_rent_z\##FSTAT
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SGLUE
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IBMSRD
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IBMSWR
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IBMSCL
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IBMSFL
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IBMSIL
+ AUTOCALL C:\dignus\lib\objs_rent_z\selectex
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@STRAFP
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@INISOC
+ AUTOCALL C:\dignus\lib\objs_rent_z\kill
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@DTOA@D
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SWSTUP
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@FDTOA
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@LDTOA
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@HDTOA
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@DTOA
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@W@MBS
+ AUTOCALL C:\dignus\lib\objs_rent_z\LC@LCONV
+ AUTOCALL C:\dignus\lib\objs_rent_z\reallocf
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@FPLEVL
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@LCLT@R
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@ASCT@R
+ AUTOCALL C:\dignus\lib\objs_rent_z\dlfunc
+ AUTOCALL C:\dignus\lib\objs_rent_z\bcopy
+ AUTOCALL C:\dignus\lib\objs_rent_z\putc
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SWBUF
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@NSFTTL
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@NSSRR
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@NSIPRS
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@MTXRES
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IN6ADA
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@GHNAM
+ AUTOCALL C:\dignus\lib\objs_rent_z\ISSETUGI
+ AUTOCALL C:\dignus\lib\objs_rent_z\setbuf
+ AUTOCALL C:\dignus\lib\objs_rent_z\pselect
+ AUTOCALL C:\dignus\lib\objs_rent_z\@#GPEER
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@NSSMNM
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@RESOPC
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@NSPUT3
+ AUTOCALL C:\dignus\lib\objs_rent_z\fopen
+ AUTOCALL C:\dignus\lib\objs_rent_z\fgetc
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@JNME
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@GSVNP
+ AUTOCALL C:\dignus\lib\objs_rent_z\H#ERRNO
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@NSNSKP
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@NSA2ET
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SRGET
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@RESNPD
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@RESNMK
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IBMGPR
+ AUTOCALL C:\dignus\lib\objs_rent_z\setvbuf
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@B64N2P
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@INET@N
+ AUTOCALL C:\dignus\lib\objs_rent_z\strftime
+ AUTOCALL C:\dignus\lib\objs_rent_z\#ONCE
+ AUTOCALL C:\dignus\lib\objs_rent_z\access
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@GT#LCL
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@GT$LCL
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@GDTOA
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@D2AALC
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@BPXKLL
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PFSCTL
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@IBMSCT
+ AUTOCALL C:\dignus\lib\objs_rent_z\bzero
+ AUTOCALL C:\dignus\lib\objs_rent_z\fldata
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@LVSNPT
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@WTO
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@R@BSAM
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@FLBSAM
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@MPDYNE
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@DYNAL@
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@SVC99
+ AUTOCALL C:\dignus\lib\objs_rent_z\strcspn
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@OSDDNF
+ AUTOCALL C:\dignus\lib\objs_rent_z\fstat
+ AUTOCALL C:\dignus\lib\objs_rent_z\ddnfind
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@D2ARST
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@FXLCLG
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@LDPART
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@GCTLCL
+ AUTOCALL C:\dignus\lib\objs_rent_z\@@PTHLCL
+
+                 L O N G   N A M E   M A P
+
+  rd_unittest_assert_on_failure -> @ST00001
+  crc32c_global_init -> @ST00002
+  unittest_crc32c -> @ST00003
+  rd_kafka_mem_malloc -> @ST00004
+  rd_kafka_mem_calloc -> @ST00005
+  rd_kafka_mem_free -> @ST00006
+  LZ4_versionNumber -> @ST00007
+  LZ4_versionString -> @ST00008
+  LZ4_compressBound -> @ST00009
+  LZ4_sizeofState -> @ST00010
+  LZ4_compress_fast_extState -> @ST00011
+  LZ4_compress_fast_extState_fastReset -> @ST00012
+  LZ4_compress_fast -> @ST00013
+  LZ4_compress_default -> @ST00014
+  LZ4_compress_destSize -> @ST00015
+  LZ4_createStream -> @ST00016
+  LZ4_initStream -> @ST00017
+  LZ4_resetStream -> @ST00018
+  LZ4_resetStream_fast -> @ST00019
+  LZ4_freeStream -> @ST00020
+  LZ4_loadDict -> @ST00021
+  LZ4_attach_dictionary -> @ST00022
+  LZ4_compress_fast_continue -> @ST00023
+  LZ4_compress_forceExtDict -> @ST00024
+  LZ4_saveDict -> @ST00025
+  LZ4_decompress_safe -> @ST00026
+  LZ4_decompress_safe_partial -> @ST00027
+  LZ4_decompress_fast -> @ST00028
+  LZ4_decompress_safe_withPrefix64k -> @ST00029
+  LZ4_decompress_fast_withPrefix64k -> @ST00030
+  LZ4_decompress_safe_forceExtDict -> @ST00031
+  LZ4_createStreamDecode -> @ST00032
+  LZ4_freeStreamDecode -> @ST00033
+  LZ4_setStreamDecode -> @ST00034
+  LZ4_decoderRingBufferSize -> @ST00035
+  LZ4_decompress_safe_continue -> @ST00036
+  LZ4_decompress_fast_continue -> @ST00037
+  LZ4_decompress_safe_usingDict -> @ST00038
+  LZ4_decompress_fast_usingDict -> @ST00039
+  LZ4_compress_limitedOutput -> @ST00040
+  LZ4_compress -> @ST00041
+  LZ4_compress_limitedOutput_withState -> @ST00042
+  LZ4_compress_withState -> @ST00043
+  LZ4_compress_limitedOutput_continue -> @ST00044
+  LZ4_compress_continue -> @ST00045
+  LZ4_uncompress -> @ST00046
+  LZ4_uncompress_unknownOutputSize -> @ST00047
+  LZ4_sizeofStreamState -> @ST00048
+  LZ4_resetStreamState -> @ST00049
+  LZ4_create -> @ST00050
+  LZ4_slideInputBuffer -> @ST00051
+  @LZ4FRAME -> @ST00052
+  LZ4_favorDecompressionSpeed -> @ST00053
+  LZ4_compress_HC_extStateHC_fastReset -> @ST00054
+  LZ4_attach_HC_dictionary -> @ST00055
+  XXH32_reset -> @ST00056
+  XXH32_update -> @ST00057
+  XXH32_digest -> @ST00058
+  LZ4_createStreamHC -> @ST00059
+  LZ4_freeStreamHC -> @ST00060
+  LZ4_resetStreamHC_fast -> @ST00061
+  LZ4_loadDictHC -> @ST00062
+  LZ4_compress_HC_continue -> @ST00063
+  LZ4_saveDictHC -> @ST00064
+  LZ4_initStreamHC -> @ST00065
+  LZ4_setCompressionLevel -> @ST00066
+  @lz4frame& -> @ST00067
+  @lz4frame -> @ST00068
+  lz4frame: -> @ST00069
+  LZ4F_isError -> @ST00070
+  LZ4F_getErrorName -> @ST00071
+  LZ4F_getErrorCode -> @ST00072
+  LZ4F_getVersion -> @ST00073
+  LZ4F_compressionLevel_max -> @ST00074
+  LZ4F_getBlockSize -> @ST00075
+  LZ4F_compressFrameBound -> @ST00076
+  LZ4F_compressFrame_usingCDict -> @ST00077
+  LZ4F_compressFrame -> @ST00078
+  LZ4F_createCDict -> @ST00079
+  LZ4F_freeCDict -> @ST00080
+  LZ4F_createCompressionContext -> @ST00081
+  LZ4F_freeCompressionContext -> @ST00082
+  LZ4F_compressBegin_usingCDict -> @ST00083
+  LZ4F_compressBegin -> @ST00084
+  LZ4F_compressBound -> @ST00085
+  LZ4F_compressUpdate -> @ST00086
+  LZ4F_flush -> @ST00087
+  LZ4F_compressEnd -> @ST00088
+  LZ4F_createDecompressionContext -> @ST00089
+  LZ4F_freeDecompressionContext -> @ST00090
+  LZ4F_resetDecompressionContext -> @ST00091
+  LZ4F_headerSize -> @ST00092
+  LZ4F_getFrameInfo -> @ST00093
+  LZ4F_decompress -> @ST00094
+  LZ4F_decompress_usingDict -> @ST00095
+  LZ4_sizeofStateHC -> @ST00096
+  LZ4_compress_HC_extStateHC -> @ST00097
+  LZ4_compress_HC -> @ST00098
+  LZ4_compress_HC_destSize -> @ST00099
+  LZ4_resetStreamHC -> @ST00100
+  LZ4_compress_HC_continue_destSize -> @ST00101
+  LZ4_compressHC -> @ST00102
+  LZ4_compressHC_limitedOutput -> @ST00103
+  LZ4_compressHC2 -> @ST00104
+  LZ4_compressHC2_limitedOutput -> @ST00105
+  LZ4_compressHC_withStateHC -> @ST00106
+  LZ4_compressHC_limitedOutput_withStateHC -> @ST00107
+  LZ4_compressHC2_withStateHC -> @ST00108
+  LZ4_compressHC2_limitedOutput_withStateHC -> @ST00109
+  LZ4_compressHC_continue -> @ST00110
+  LZ4_compressHC_limitedOutput_continue -> @ST00111
+  LZ4_sizeofStreamStateHC -> @ST00112
+  LZ4_resetStreamStateHC -> @ST00113
+  LZ4_createHC -> @ST00114
+  LZ4_freeHC -> @ST00115
+  LZ4_compressHC2_continue -> @ST00116
+  LZ4_compressHC2_limitedOutput_continue -> @ST00117
+  LZ4_slideInputBufferHC -> @ST00118
+  rd_array_shuffle -> @ST00119
+  freeaddrinfo -> @ST00120
+  rd_sockaddr2str -> @ST00121
+  rd_addrinfo_prepare -> @ST00122
+  rd_getaddrinfo -> @ST00123
+  rd_sockaddr_list_destroy -> @ST00124
+  rwlock_init -> @ST00125
+  rwlock_destroy -> @ST00126
+  rd_avl_insert_node -> @ST00127
+  rd_avl_remove_elm0 -> @ST00128
+  rd_avl_find_node -> @ST00129
+  rd_avl_destroy -> @ST00130
+  rd_avl_init -> @ST00131
+  rd_hexdump -> @ST00132
+  crc_table -> @ST00133
+  rd_buf_write_ensure_contig -> @ST00134
+  rd_buf_write_ensure -> @ST00135
+  rd_buf_get_segment_at_offset -> @ST00136
+  rd_buf_destroy -> @ST00137
+  rd_buf_init -> @ST00138
+  rd_buf_get_writable -> @ST00139
+  rd_buf_write -> @ST00140
+  rd_buf_write_slice -> @ST00141
+  rd_buf_write_update -> @ST00142
+  rd_buf_push0 -> @ST00143
+  rd_buf_erase -> @ST00144
+  rd_buf_write_seek -> @ST00145
+  rd_buf_get_write_iov -> @ST00146
+  rd_slice_init_seg -> @ST00147
+  rd_slice_init -> @ST00148
+  rd_slice_init_full -> @ST00149
+  rd_slice_reader0 -> @ST00150
+  rd_slice_reader -> @ST00151
+  rd_slice_peeker -> @ST00152
+  rd_slice_read -> @ST00153
+  rd_slice_peek -> @ST00154
+  rd_slice_read_uvarint -> @ST00155
+  rd_slice_ensure_contig -> @ST00156
+  rd_slice_seek -> @ST00157
+  rd_slice_narrow -> @ST00158
+  rd_slice_narrow_relative -> @ST00159
+  rd_slice_widen -> @ST00160
+  rd_slice_narrow_copy -> @ST00161
+  rd_slice_narrow_copy_relative -> @ST00162
+  rd_slice_get_iov -> @ST00163
+  rd_slice_crc32 -> @ST00164
+  rd_slice_crc32c -> @ST00165
+  rd_buf_dump -> @ST00166
+  rd_slice_dump -> @ST00167
+  unittest_rdbuf -> @ST00168
+  @rdcrc32& -> @ST00169
+  rd_crc32_reflect -> @ST00170
+  rd_dl_open -> @ST00171
+  rd_dl_close -> @ST00172
+  rd_dl_sym -> @ST00173
+  @rdfnv1a& -> @ST00174
+  unittest_fnv1a -> @ST00175
+  @RDHDRHISTOGRAM -> @ST00176
+  @rdhdrhistogram& -> @ST00177
+  @rdhdrhistogram -> @ST00178
+  rdhdrhistogram: -> @ST00179
+  rd_hdr_histogram_destroy -> @ST00180
+  rd_hdr_histogram_new -> @ST00181
+  rd_hdr_histogram_reset -> @ST00182
+  rd_hdr_histogram_stddev -> @ST00183
+  rd_hdr_histogram_max -> @ST00184
+  rd_hdr_histogram_min -> @ST00185
+  rd_hdr_histogram_mean -> @ST00186
+  rd_hdr_histogram_record -> @ST00187
+  rd_hdr_histogram_quantile -> @ST00188
+  unittest_rdhdrhistogram -> @ST00189
+  rd_kafka_mock_cluster_destroy -> @ST00190
+  rd_kafka_conf_warn -> @ST00191
+  rd_unittest -> @ST00192
+  rd_kafka_toppar_op_fetch_start -> @ST00193
+  rd_kafka_toppar_op_fetch_stop -> @ST00194
+  rd_kafka_q_purge0 -> @ST00195
+  rd_kafka_anyconf_dump_dbg -> @ST00196
+  rd_kafka_assignment_partition_stopped -> @ST00197
+  rd_kafka_conf_new -> @ST00198
+  rd_kafka_toppar_op_seek -> @ST00199
+  rd_kafka_mock_cluster_bootstraps -> @ST00200
+  rd_list_init -> @ST00201
+  rd_kafka_conf_destroy -> @ST00202
+  rd_kafka_assignment_destroy -> @ST00203
+  rd_kafka_conf_set -> @ST00204
+  rd_kafka_ListGroupsRequest -> @ST00205
+  rd_kafka_assign -> @ST00206
+  rd_kafka_assignment_init -> @ST00207
+  rd_kafka_toppar_purge_queues -> @ST00208
+  rd_kafka_coord_cache_expire -> @ST00209
+  rd_kafka_DescribeGroupsRequest -> @ST00210
+  rd_list_add -> @ST00211
+  rd_kafka_coord_cache_destroy -> @ST00212
+  rd_kafka_q_fwd_set0 -> @ST00213
+  rd_kafka_coord_cache_init -> @ST00214
+  rd_kafka_q_pop_serve -> @ST00215
+  rd_kafka_q_pop -> @ST00216
+  rd_kafka_message_get -> @ST00217
+  rd_kafka_message_get_from_rkm -> @ST00218
+  rd_kafka_q_serve -> @ST00219
+  rd_kafka_coord_reqs_term -> @ST00220
+  rd_kafka_coord_reqs_init -> @ST00221
+  rd_kafka_message_new -> @ST00222
+  rd_kafka_q_serve_rkmessages -> @ST00223
+  rd_kafka_transport_init -> @ST00224
+  rd_kafka_topic_state_names -> @ST00225
+  rd_kafka_q_wait_result -> @ST00226
+  rd_list_destroy -> @ST00227
+  rd_list_elem -> @ST00228
+  rd_kafka_timer_stop -> @ST00229
+  rd_kafka_brokers_add0 -> @ST00230
+  rd_kafka_timer_start0 -> @ST00231
+  rd_kafka_broker_destroy_final -> @ST00232
+  rd_kafka_assignors_init -> @ST00233
+  rd_kafka_assignors_term -> @ST00234
+  rd_kafka_yield_thread -> @ST00235
+  rd_kafka_broker_add -> @ST00236
+  rd_kafka_timers_interrupt -> @ST00237
+  rd_kafka_metadata_destroy -> @ST00238
+  rd_kafka_conf_get -> @ST00239
+  rd_kafka_timers_next -> @ST00240
+  rd_kafka_timers_run -> @ST00241
+  rd_kafka_timers_destroy -> @ST00242
+  rd_kafka_topic_proper -> @ST00243
+  rd_kafka_timers_init -> @ST00244
+  rd_kafka_topic_partition_list_reset_offsets -> @ST00245
+  rd_kafka_topic_partitions_remove -> @ST00246
+  rd_kafka_buf_retry -> @ST00247
+  rd_kafka_topic_partition_list_query_leaders -> @ST00248
+  rd_kafka_msg_destroy -> @ST00249
+  rd_kafka_broker_name -> @ST00250
+  rd_kafka_topic_partition_list_update -> @ST00251
+  rd_kafka_topic_scan_all -> @ST00252
+  rd_kafka_connect_any -> @ST00253
+  rd_kafka_broker_purge_queues -> @ST00254
+  rd_kafka_enq_once_trigger_destroy -> @ST00255
+  rd_flags2str -> @ST00256
+  rd_kafka_brokers_get_state_version -> @ST00257
+  rd_kafka_brokers_wait_state_change -> @ST00258
+  rd_kafka_brokers_broadcast_state_change -> @ST00259
+  rd_kafka_interceptors_on_new -> @ST00260
+  rd_kafka_interceptors_on_destroy -> @ST00261
+  rd_kafka_cgrp_join_state_names -> @ST00262
+  rd_kafka_op_destroy -> @ST00263
+  rd_kafka_cgrp_state_names -> @ST00264
+  _tthread_timespec_get -> @ST00265
+  rd_kafka_cgrp_destroy_final -> @ST00266
+  rd_kafka_op_new0 -> @ST00267
+  rd_kafka_topic_name -> @ST00268
+  rd_kafka_cgrp_new -> @ST00269
+  mtx_destroy -> @ST00270
+  rd_kafka_cgrp_serve -> @ST00271
+  rd_kafka_interceptors_on_thread_start -> @ST00272
+  rd_kafka_op_reply -> @ST00273
+  rd_kafka_interceptors_on_thread_exit -> @ST00274
+  rd_kafka_fetch_states -> @ST00275
+  rd_kafka_q_op_err -> @ST00276
+  rd_kafka_cgrp_terminate -> @ST00277
+  mtx_unlock -> @ST00278
+  rd_kafka_consumer_err -> @ST00279
+  rd_kafka_metadata_refresh_known_topics -> @ST00280
+  cnd_destroy -> @ST00281
+  rd_kafka_interceptors_destroy -> @ST00282
+  rd_kafka_error_new -> @ST00283
+  rd_kafka_metadata_refresh_consumer_topics -> @ST00284
+  cnd_signal -> @ST00285
+  rd_kafka_op_req2 -> @ST00286
+  rd_kafka_metadata_refresh_brokers -> @ST00287
+  cnd_broadcast -> @ST00288
+  rd_kafka_toppar_destroy_final -> @ST00289
+  rd_kafka_topic_partition_list_new -> @ST00290
+  rd_kafka_topic_partition_list_destroy -> @ST00291
+  rd_kafka_op_call -> @ST00292
+  rd_kafka_topic_partition_list_add -> @ST00293
+  thrd_create -> @ST00294
+  rd_kafka_background_thread_main -> @ST00295
+  rd_kafka_topic_partition_list_copy -> @ST00296
+  thrd_join -> @ST00297
+  rd_kafka_topic_partition_list_find -> @ST00298
+  rd_kafka_op_offset_store -> @ST00299
+  rd_kafka_q_new0 -> @ST00300
+  rd_kafka_ApiVersion_is_queryable -> @ST00301
+  rd_kafka_idemp_init -> @ST00302
+  rd_kafka_q_destroy_final -> @ST00303
+  thrd_setname -> @ST00304
+  rd_kafka_toppar_get0 -> @ST00305
+  rd_kafka_idemp_term -> @ST00306
+  thrd_is_current -> @ST00307
+  rd_kafka_toppar_get2 -> @ST00308
+  rd_kafka_metadata_cache_init -> @ST00309
+  rd_kafka_broker_state_names -> @ST00310
+  rd_kafka_toppar_desired_get -> @ST00311
+  cnd_timedwait_abs -> @ST00312
+  rd_kafka_metadata_cache_destroy -> @ST00313
+  rd_kafka_metadata_cache_purge -> @ST00314
+  rd_kafka_anyconf_destroy -> @ST00315
+  rd_kafka_purge_ua_toppar_queues -> @ST00316
+  rd_kafka_toppar_desired_add -> @ST00317
+  rd_kafka_metadata_cache_wait_change -> @ST00318
+  rd_kafka_metadata_cache_dump -> @ST00319
+  rwlock_rdlock -> @ST00320
+  rd_kafka_handle_Offset -> @ST00321
+  rwlock_wrlock -> @ST00322
+  rd_kafka_OffsetRequest -> @ST00323
+  rd_kafka_toppar_desired_del -> @ST00324
+  rwlock_rdunlock -> @ST00325
+  rwlock_wrunlock -> @ST00326
+  rd_kafka_mock_cluster_new -> @ST00327
+  rd_kafka_conf_finalize -> @ST00328
+  rd_kafka_thread_name -> @ST00329
+  rd_kafka_thread_cnt_curr -> @ST00330
+  rd_kafka_last_error_code -> @ST00331
+  rd_kafka_global_cnt -> @ST00332
+  rd_kafka_global_lock -> @ST00333
+  @rdkafka& -> @ST00334
+  rd_kafka_thread_cnt -> @ST00335
+  rd_kafka_set_thread_name -> @ST00336
+  rd_kafka_set_thread_sysname -> @ST00337
+  rd_kafka_global_init -> @ST00338
+  rd_kafka_wait_destroyed -> @ST00339
+  rd_kafka_log0 -> @ST00340
+  rd_kafka_oauthbearer_set_token -> @ST00341
+  rd_kafka_oauthbearer_set_token_failure -> @ST00342
+  rd_kafka_log_print -> @ST00343
+  rd_kafka_log_syslog -> @ST00344
+  rd_kafka_set_logger -> @ST00345
+  rd_kafka_set_log_level -> @ST00346
+  rd_kafka_get_err_descs -> @ST00347
+  rd_kafka_err2str -> @ST00348
+  rd_kafka_err2name -> @ST00349
+  rd_kafka_last_error -> @ST00350
+  rd_kafka_errno2err -> @ST00351
+  rd_kafka_fatal_error -> @ST00352
+  rd_kafka_set_fatal_error0 -> @ST00353
+  rd_kafka_test_fatal_error -> @ST00354
+  rd_kafka_destroy_final -> @ST00355
+  rd_kafka_destroy -> @ST00356
+  rd_kafka_destroy_flags -> @ST00357
+  rd_kafka_new -> @ST00358
+  rd_kafka_simple_consumer_add -> @ST00359
+  rd_kafka_consume_start -> @ST00360
+  rd_kafka_consume_start_queue -> @ST00361
+  rd_kafka_consume_stop -> @ST00362
+  rd_kafka_seek -> @ST00363
+  rd_kafka_seek_partitions -> @ST00364
+  rd_kafka_consume_batch -> @ST00365
+  rd_kafka_consume_batch_queue -> @ST00366
+  rd_kafka_consume_callback -> @ST00367
+  rd_kafka_consume_callback_queue -> @ST00368
+  rd_kafka_consume -> @ST00369
+  rd_kafka_consume_queue -> @ST00370
+  rd_kafka_poll_set_consumer -> @ST00371
+  rd_kafka_consumer_poll -> @ST00372
+  rd_kafka_consumer_close -> @ST00373
+  rd_kafka_committed -> @ST00374
+  rd_kafka_position -> @ST00375
+  rd_kafka_query_watermark_offsets -> @ST00376
+  rd_kafka_get_watermark_offsets -> @ST00377
+  rd_kafka_offsets_for_times -> @ST00378
+  rd_kafka_poll_cb -> @ST00379
+  rd_kafka_poll -> @ST00380
+  rd_kafka_queue_poll -> @ST00381
+  rd_kafka_queue_poll_callback -> @ST00382
+  rd_kafka_dump -> @ST00383
+  rd_kafka_name -> @ST00384
+  rd_kafka_type -> @ST00385
+  rd_kafka_memberid -> @ST00386
+  rd_kafka_clusterid -> @ST00387
+  rd_kafka_controllerid -> @ST00388
+  rd_kafka_opaque -> @ST00389
+  rd_kafka_outq_len -> @ST00390
+  rd_kafka_flush -> @ST00391
+  rd_kafka_purge -> @ST00392
+  rd_kafka_purge_flags2str -> @ST00393
+  rd_kafka_version -> @ST00394
+  rd_kafka_version_str -> @ST00395
+  rd_kafka_crash -> @ST00396
+  rd_kafka_list_groups -> @ST00397
+  rd_kafka_group_list_destroy -> @ST00398
+  rd_kafka_get_debug_contexts -> @ST00399
+  rd_kafka_path_is_dir -> @ST00400
+  rd_kafka_dir_is_empty -> @ST00401
+  rd_kafka_errno -> @ST00402
+  rd_kafka_unittest -> @ST00403
+  @RDKAFKA_ADMIN -> @ST00404
+  rd_kafka_confval_disable -> @ST00405
+  rd_kafka_confval_set_type -> @ST00406
+  rd_kafka_topic_partition_list_has_duplicates -> @ST00407
+  rd_kafka_topic_partition_list_set_err -> @ST00408
+  rd_kafka_confval_get_int -> @ST00409
+  rd_kafka_confval_get_ptr -> @ST00410
+  rd_kafka_op2str -> @ST00411
+  rd_kafka_topic_partition_list_copy_opaque -> @ST00412
+  rd_kafka_op_new_cb -> @ST00413
+  rd_kafka_op_throttle_time -> @ST00414
+  rd_kafka_buf_read_topic_partitions -> @ST00415
+  rd_kafka_OffsetDeleteRequest -> @ST00416
+  rd_list_init_copy -> @ST00417
+  rd_list_new -> @ST00418
+  rd_list_grow -> @ST00419
+  rd_kafka_CreateTopicsRequest -> @ST00420
+  rd_list_prealloc_elems -> @ST00421
+  rd_kafka_DeleteTopicsRequest -> @ST00422
+  rd_kafka_CreatePartitionsRequest -> @ST00423
+  rd_kafka_AlterConfigsRequest -> @ST00424
+  rd_list_set -> @ST00425
+  rd_kafka_DescribeConfigsRequest -> @ST00426
+  rd_kafka_DeleteGroupsRequest -> @ST00427
+  rd_kafka_coord_req -> @ST00428
+  rd_list_sort -> @ST00429
+  rd_kafka_DeleteRecordsRequest -> @ST00430
+  rd_kafka_broker_get_async -> @ST00431
+  rd_list_destroy_free -> @ST00432
+  rd_kafka_topic_result_destroy -> @ST00433
+  rd_kafka_topic_result_free -> @ST00434
+  rd_kafka_topic_result_new -> @ST00435
+  rd_kafka_topic_partition_list_destroy_free -> @ST00436
+  rd_kafka_broker_controller_async -> @ST00437
+  rd_kafka_group_result_free -> @ST00438
+  rd_list_index -> @ST00439
+  rd_kafka_group_result_new -> @ST00440
+  rd_kafka_group_result_copy -> @ST00441
+  rd_kafka_group_result_copy_opaque -> @ST00442
+  rd_list_find_duplicate -> @ST00443
+  rd_kafka_topic_partition_list_sort_by_topic -> @ST00444
+  rd_list_copy_to -> @ST00445
+  rd_list_copy_preallocated -> @ST00446
+  rd_list_init_int32 -> @ST00447
+  rd_list_set_int32 -> @ST00448
+  rd_kafka_topic_partition_list_query_leaders_async -> @ST00449
+  rd_strtup_destroy -> @ST00450
+  rd_strtup_new0 -> @ST00451
+  rd_strtup_new -> @ST00452
+  rd_kafka_confval_init_int -> @ST00453
+  rd_kafka_confval_init_ptr -> @ST00454
+  @rdkafka_admin& -> @ST00455
+  @rdkafka_admin -> @ST00456
+  rdkafka_admin: -> @ST00457
+  rd_kafka_AdminOptions_set_request_timeout -> @ST00458
+  rd_kafka_AdminOptions_set_operation_timeout -> @ST00459
+  rd_kafka_AdminOptions_set_validate_only -> @ST00460
+  rd_kafka_AdminOptions_set_incremental -> @ST00461
+  rd_kafka_AdminOptions_set_broker -> @ST00462
+  rd_kafka_AdminOptions_set_opaque -> @ST00463
+  rd_kafka_AdminOptions_new -> @ST00464
+  rd_kafka_AdminOptions_destroy -> @ST00465
+  rd_kafka_NewTopic_new -> @ST00466
+  rd_kafka_NewTopic_destroy -> @ST00467
+  rd_kafka_NewTopic_destroy_array -> @ST00468
+  rd_kafka_NewTopic_set_replica_assignment -> @ST00469
+  rd_kafka_NewTopic_set_config -> @ST00470
+  rd_kafka_CreateTopics -> @ST00471
+  rd_kafka_CreateTopics_result_topics -> @ST00472
+  rd_kafka_DeleteTopic_new -> @ST00473
+  rd_kafka_DeleteTopic_destroy -> @ST00474
+  rd_kafka_DeleteTopic_destroy_array -> @ST00475
+  rd_kafka_DeleteTopics -> @ST00476
+  rd_kafka_DeleteTopics_result_topics -> @ST00477
+  rd_kafka_NewPartitions_new -> @ST00478
+  rd_kafka_NewPartitions_destroy -> @ST00479
+  rd_kafka_NewPartitions_destroy_array -> @ST00480
+  rd_kafka_NewPartitions_set_replica_assignment -> @ST00481
+  rd_kafka_CreatePartitions -> @ST00482
+  rd_kafka_CreatePartitions_result_topics -> @ST00483
+  rd_kafka_ConfigEntry_name -> @ST00484
+  rd_kafka_ConfigEntry_value -> @ST00485
+  rd_kafka_ConfigEntry_source -> @ST00486
+  rd_kafka_ConfigEntry_is_read_only -> @ST00487
+  rd_kafka_ConfigEntry_is_default -> @ST00488
+  rd_kafka_ConfigEntry_is_sensitive -> @ST00489
+  rd_kafka_ConfigEntry_is_synonym -> @ST00490
+  rd_kafka_ConfigEntry_synonyms -> @ST00491
+  rd_kafka_ConfigSource_name -> @ST00492
+  rd_kafka_ResourceType_name -> @ST00493
+  rd_kafka_ConfigResource_new -> @ST00494
+  rd_kafka_ConfigResource_destroy -> @ST00495
+  rd_kafka_ConfigResource_destroy_array -> @ST00496
+  rd_kafka_ConfigResource_add_config -> @ST00497
+  rd_kafka_ConfigResource_set_config -> @ST00498
+  rd_kafka_ConfigResource_delete_config -> @ST00499
+  rd_kafka_ConfigResource_configs -> @ST00500
+  rd_kafka_ConfigResource_type -> @ST00501
+  rd_kafka_ConfigResource_name -> @ST00502
+  rd_kafka_ConfigResource_error -> @ST00503
+  rd_kafka_ConfigResource_error_string -> @ST00504
+  rd_kafka_AlterConfigs -> @ST00505
+  rd_kafka_AlterConfigs_result_resources -> @ST00506
+  rd_kafka_DescribeConfigs -> @ST00507
+  rd_kafka_DescribeConfigs_result_resources -> @ST00508
+  rd_kafka_DeleteRecords_new -> @ST00509
+  rd_kafka_DeleteRecords_destroy -> @ST00510
+  rd_kafka_DeleteRecords_destroy_array -> @ST00511
+  rd_kafka_DeleteRecords -> @ST00512
+  rd_kafka_DeleteRecords_result_offsets -> @ST00513
+  rd_kafka_DeleteGroup_new -> @ST00514
+  rd_kafka_DeleteGroup_destroy -> @ST00515
+  rd_kafka_DeleteGroup_destroy_array -> @ST00516
+  rd_kafka_DeleteGroups_response_merge -> @ST00517
+  rd_kafka_DeleteGroups -> @ST00518
+  rd_kafka_DeleteGroups_result_groups -> @ST00519
+  rd_kafka_DeleteConsumerGroupOffsets_new -> @ST00520
+  rd_kafka_DeleteConsumerGroupOffsets_destroy -> @ST00521
+  rd_kafka_DeleteConsumerGroupOffsets_destroy_array -> @ST00522
+  rd_kafka_DeleteConsumerGroupOffsets -> @ST00523
+  rd_kafka_DeleteConsumerGroupOffsets_result_groups -> @ST00524
+  @RDKAFKA_ASSIGNMENT -> @ST00525
+  rd_kafka_cgrp_get_coord -> @ST00526
+  rd_kafka_offset2str -> @ST00527
+  rd_kafka_cgrp_assigned_offsets_commit -> @ST00528
+  rd_kafka_cgrp_assignment_done -> @ST00529
+  rd_kafka_handle_OffsetFetch -> @ST00530
+  rd_kafka_OffsetFetchRequest -> @ST00531
+  rd_kafka_topic_partition_list_del -> @ST00532
+  rd_kafka_topic_partition_list_del_by_idx -> @ST00533
+  rd_kafka_topic_partition_list_sort -> @ST00534
+  rd_kafka_toppar_op_pause_resume -> @ST00535
+  rd_kafka_toppars_pause_resume -> @ST00536
+  rd_kafka_topic_partition_list_clear -> @ST00537
+  rd_kafka_topic_partition_list_add_copy -> @ST00538
+  rd_kafka_topic_partition_list_add_list -> @ST00539
+  rd_kafka_topic_partition_cmp -> @ST00540
+  rd_kafka_topic_partition_ensure_toppar -> @ST00541
+  rd_kafka_broker_id -> @ST00542
+  rd_kafka_topic_partition_list_log -> @ST00543
+  @rdkafka_assignment& -> @ST00544
+  @rdkafka_assignment -> @ST00545
+  rdkafka_assignment: -> @ST00546
+  rd_kafka_assignment_serve -> @ST00547
+  rd_kafka_assignment_in_progress -> @ST00548
+  rd_kafka_assignment_clear -> @ST00549
+  rd_kafka_assignment_add -> @ST00550
+  rd_kafka_assignment_subtract -> @ST00551
+  rd_kafka_assignment_pause -> @ST00552
+  rd_kafka_assignment_resume -> @ST00553
+  @RDKAFKA_ASSIGNOR -> @ST00554
+  rd_kafka_pattern_match -> @ST00555
+  rd_kafka_buf_write_topic_partitions -> @ST00556
+  rd_list_find -> @ST00557
+  rd_kafka_topic_partition_match -> @ST00558
+  rd_kafka_buf_destroy_final -> @ST00559
+  rd_kafka_range_assignor_init -> @ST00560
+  rd_kafka_buf_new0 -> @ST00561
+  rd_kafka_roundrobin_assignor_init -> @ST00562
+  rd_kafka_sticky_assignor_init -> @ST00563
+  @rdkafka_assignor& -> @ST00564
+  @rdkafka_assignor -> @ST00565
+  rdkafka_assignor: -> @ST00566
+  rd_kafka_group_member_clear -> @ST00567
+  rd_kafka_group_member_cmp -> @ST00568
+  rd_kafka_group_member_find_subscription -> @ST00569
+  rd_kafka_consumer_protocol_member_metadata_new -> @ST00570
+  rd_kafka_assignor_get_metadata_with_empty_userdata -> @ST00571
+  rd_kafka_assignor_topic_cmp -> @ST00572
+  rd_kafka_assignor_run -> @ST00573
+  rd_kafka_assignor_find -> @ST00574
+  rd_kafka_assignor_rebalance_protocol_check -> @ST00575
+  rd_kafka_assignor_add -> @ST00576
+  unittest_assignors -> @ST00577
+  @RDKAFKA_AUX -> @ST00578
+  rd_kafka_error_copy -> @ST00579
+  rd_kafka_error_destroy -> @ST00580
+  @rdkafka_aux& -> @ST00581
+  @rdkafka_aux -> @ST00582
+  rdkafka_aux: -> @ST00583
+  rd_kafka_topic_result_error -> @ST00584
+  rd_kafka_topic_result_error_string -> @ST00585
+  rd_kafka_topic_result_name -> @ST00586
+  rd_kafka_group_result_error -> @ST00587
+  rd_kafka_group_result_name -> @ST00588
+  rd_kafka_group_result_partitions -> @ST00589
+  rd_kafka_group_result_destroy -> @ST00590
+  @RDKAFKA_BACKGROUND -> @ST00591
+  @rdkafka_background& -> @ST00592
+  @rdkafka_background -> @ST00593
+  rdkafka_background: -> @ST00594
+  @RDKAFKA_BROKER -> @ST00595
+  rd_kafka_op_err_destroy -> @ST00596
+  rd_kafka_aborted_txns_new -> @ST00597
+  rd_kafka_idemp_drain_epoch_bump -> @ST00598
+  rd_kafka_aborted_txns_destroy -> @ST00599
+  rd_kafka_idemp_drain_toppar -> @ST00600
+  rd_kafka_aborted_txns_sort -> @ST00601
+  rd_kafka_aborted_txns_add -> @ST00602
+  rd_kafka_msgq_insert_msgq -> @ST00603
+  rd_kafka_msgset_parse -> @ST00604
+  rd_kafka_get_legacy_ApiVersions -> @ST00605
+  rd_kafka_ApiVersions_copy -> @ST00606
+  rd_kafka_features_check -> @ST00607
+  rd_kafka_features2str -> @ST00608
+  rd_kafka_toppar_pid_change -> @ST00609
+  rd_kafka_offset_reset -> @ST00610
+  rd_kafka_transport_io_serve -> @ST00611
+  rd_kafka_toppar_fetch_decide -> @ST00612
+  rd_kafka_transport_send -> @ST00613
+  rd_kafka_broker_consumer_toppar_serve -> @ST00614
+  rd_kafka_transport_recv -> @ST00615
+  rd_kafka_transport_request_sent -> @ST00616
+  rd_kafka_msgq_age_scan -> @ST00617
+  rd_kafka_transport_connect -> @ST00618
+  rd_kafka_toppar_leader_unavailable -> @ST00619
+  rd_list_remove -> @ST00620
+  rd_kafka_msgq_move_acked -> @ST00621
+  rd_kafka_transport_close -> @ST00622
+  rd_kafka_coord_rkb_monitor_cb -> @ST00623
+  rd_jitter -> @ST00624
+  rd_kafka_transport_poll_set -> @ST00625
+  rd_kafka_handle_ApiVersion -> @ST00626
+  rd_kafka_ApiVersionRequest -> @ST00627
+  rd_kafka_SaslHandshakeRequest -> @ST00628
+  rd_kafka_buf_calc_timeout -> @ST00629
+  rd_kafka_lwtopic_destroy -> @ST00630
+  rd_kafka_ProduceRequest -> @ST00631
+  rd_kafka_q_io_event_enable -> @ST00632
+  rd_kafka_topic_destroy_final -> @ST00633
+  rd_kafka_buf_new_request0 -> @ST00634
+  rd_list_apply -> @ST00635
+  rd_kafka_bufq_enq -> @ST00636
+  rd_kafka_bufq_deq -> @ST00637
+  rd_kafka_bufq_init -> @ST00638
+  rd_kafka_bufq_concat -> @ST00639
+  rd_kafka_bufq_purge -> @ST00640
+  rd_kafka_topic_find0_fl -> @ST00641
+  cnd_timedwait_ms -> @ST00642
+  rd_kafka_bufq_connection_reset -> @ST00643
+  rd_kafka_bufq_dump -> @ST00644
+  rd_kafka_buf_callback -> @ST00645
+  rd_kafka_toppar_broker_update -> @ST00646
+  rd_kafka_toppar_delegate_to_leader -> @ST00647
+  rd_kafka_interceptors_on_acknowledgement_queue -> @ST00648
+  rd_kafka_interceptors_on_response_received -> @ST00649
+  rd_kafka_op_req -> @ST00650
+  rd_kafka_secproto_names -> @ST00651
+  @rdkafka_broker& -> @ST00652
+  @rdkafka_broker -> @ST00653
+  rdkafka_broker: -> @ST00654
+  rd_kafka_broker_ApiVersion_supported -> @ST00655
+  rd_kafka_broker_set_state -> @ST00656
+  rd_kafka_broker_fail -> @ST00657
+  rd_kafka_broker_conn_closed -> @ST00658
+  rd_kafka_broker_buf_enq1 -> @ST00659
+  rd_kafka_broker_buf_enq_replyq -> @ST00660
+  rd_kafka_brokers_wait_state_change_async -> @ST00661
+  rd_kafka_broker_any -> @ST00662
+  rd_kafka_broker_any_up -> @ST00663
+  rd_kafka_broker_any_usable -> @ST00664
+  rd_kafka_broker_controller -> @ST00665
+  rd_kafka_recv -> @ST00666
+  rd_kafka_socket_cb_linux -> @ST00667
+  rd_kafka_socket_cb_generic -> @ST00668
+  rd_kafka_broker_connect_up -> @ST00669
+  rd_kafka_broker_connect_done -> @ST00670
+  rd_kafka_send -> @ST00671
+  rd_kafka_broker_buf_retry -> @ST00672
+  rd_kafka_dr_msgq -> @ST00673
+  rd_kafka_dr_implicit_ack -> @ST00674
+  rd_kafka_broker_internal -> @ST00675
+  rd_kafka_broker_add_logical -> @ST00676
+  rd_kafka_broker_set_nodename -> @ST00677
+  rd_kafka_broker_find_by_nodeid0_fl -> @ST00678
+  rd_kafka_brokers_add -> @ST00679
+  rd_kafka_broker_update -> @ST00680
+  rd_kafka_broker_wakeup -> @ST00681
+  rd_kafka_all_brokers_wakeup -> @ST00682
+  rd_kafka_broker_active_toppar_add -> @ST00683
+  rd_kafka_broker_active_toppar_del -> @ST00684
+  rd_kafka_broker_schedule_connection -> @ST00685
+  rd_kafka_broker_persistent_connection_add -> @ST00686
+  rd_kafka_broker_persistent_connection_del -> @ST00687
+  rd_kafka_broker_monitor_add -> @ST00688
+  rd_kafka_broker_monitor_del -> @ST00689
+  unittest_broker -> @ST00690
+  @RDKAFKA_BUF -> @ST00691
+  rd_kafka_msgbatch_destroy -> @ST00692
+  @rdkafka_buf& -> @ST00693
+  @rdkafka_buf -> @ST00694
+  rdkafka_buf: -> @ST00695
+  rd_kafka_buf_push0 -> @ST00696
+  rd_kafka_buf_new_shadow -> @ST00697
+  rd_kafka_buf_handle_op -> @ST00698
+  @RDKAFKA_CERT -> @ST00699
+  @rdkafka_cert& -> @ST00700
+  @rdkafka_cert -> @ST00701
+  rdkafka_cert: -> @ST00702
+  rd_kafka_conf_set_ssl_cert -> @ST00703
+  rd_kafka_conf_cert_dtor -> @ST00704
+  rd_kafka_conf_cert_copy -> @ST00705
+  @RDKAFKA_CGRP -> @ST00706
+  rd_kafka_topic_partition_list_sum -> @ST00707
+  rd_map_iter_begin -> @ST00708
+  rd_kafka_topic_partition_list_regex_cnt -> @ST00709
+  rd_map_init -> @ST00710
+  rd_map_alloc_buckets -> @ST00711
+  rd_kafka_op_new_reply -> @ST00712
+  rd_map_destroy -> @ST00713
+  rd_kafka_metadata_topic_match -> @ST00714
+  rd_kafka_op_error_reply -> @ST00715
+  rd_kafka_metadata_topic_filter -> @ST00716
+  rd_kafka_metadata_request -> @ST00717
+  rd_kafka_err_action -> @ST00718
+  rd_kafka_FindCoordinatorRequest -> @ST00719
+  rd_kafka_metadata_cache_hint_rktparlist -> @ST00720
+  rd_kafka_op_handle_OffsetFetch -> @ST00721
+  rd_kafka_handle_OffsetCommit -> @ST00722
+  rd_kafka_metadata_cache_topics_count_exists -> @ST00723
+  rd_kafka_OffsetCommitRequest -> @ST00724
+  rd_kafka_JoinGroupRequest -> @ST00725
+  rd_kafka_error_string -> @ST00726
+  rd_kafka_LeaveGroupRequest -> @ST00727
+  rd_kafka_SyncGroupRequest -> @ST00728
+  rd_kafka_handle_SyncGroup -> @ST00729
+  rd_kafka_topic_partition_destroy -> @ST00730
+  rd_kafka_HeartbeatRequest -> @ST00731
+  rd_kafka_MetadataRequest -> @ST00732
+  rd_kafka_topic_partition_new -> @ST00733
+  rd_kafka_topic_partition_destroy_free -> @ST00734
+  rd_kafka_topic_partition_copy -> @ST00735
+  rd_kafka_q_apply -> @ST00736
+  rd_kafka_topic_partition_list_add0 -> @ST00737
+  rd_list_cmp -> @ST00738
+  rd_kafka_topic_partition_hash -> @ST00739
+  rd_kafka_topic_partition_list_find_idx -> @ST00740
+  rd_kafka_topic_partition_list_set_offsets -> @ST00741
+  rd_kafka_topic_partition_get_toppar -> @ST00742
+  rd_kafka_interceptors_on_commit -> @ST00743
+  rd_kafka_topic_partition_list_get_topic_names -> @ST00744
+  rd_kafka_topic_partition_list_str -> @ST00745
+  rd_kafka_topic_info_topic_cmp -> @ST00746
+  rd_kafka_topic_info_cmp -> @ST00747
+  rd_map_set -> @ST00748
+  rd_map_get -> @ST00749
+  rd_kafka_topic_info_destroy -> @ST00750
+  rd_kafka_topic_match -> @ST00751
+  rd_map_cnt -> @ST00752
+  @rdkafka_cgrp& -> @ST00753
+  @rdkafka_cgrp -> @ST00754
+  rdkafka_cgrp: -> @ST00755
+  rd_kafka_cgrp_assignment_is_lost -> @ST00756
+  rd_kafka_cgrp_set_join_state -> @ST00757
+  rd_kafka_cgrp_coord_query -> @ST00758
+  rd_kafka_cgrp_coord_dead -> @ST00759
+  rd_kafka_rebalance_op_incr -> @ST00760
+  rd_kafka_cgrp_rebalance_protocol -> @ST00761
+  rd_kafka_cgrp_handle_Heartbeat -> @ST00762
+  rd_kafka_cgrp_terminate0 -> @ST00763
+  rd_kafka_cgrp_op -> @ST00764
+  rd_kafka_cgrp_set_member_id -> @ST00765
+  rd_kafka_cgrp_metadata_update_check -> @ST00766
+  rd_kafka_cgrp_handle_SyncGroup -> @ST00767
+  rd_kafka_consumer_group_metadata_new -> @ST00768
+  rd_kafka_consumer_group_metadata_new_with_genid -> @ST00769
+  rd_kafka_consumer_group_metadata -> @ST00770
+  rd_kafka_consumer_group_metadata_destroy -> @ST00771
+  rd_kafka_consumer_group_metadata_dup -> @ST00772
+  rd_kafka_consumer_group_metadata_write -> @ST00773
+  rd_kafka_consumer_group_metadata_read -> @ST00774
+  unittest_cgrp -> @ST00775
+  @RDKAFKA_CONF -> @ST00776
+  rd_kafka_pattern_list_destroy -> @ST00777
+  rd_kafka_pattern_list_new -> @ST00778
+  rd_kafka_plugins_conf_set -> @ST00779
+  rd_kafka_open_cb_generic -> @ST00780
+  rd_kafka_interceptors_on_conf_set -> @ST00781
+  rd_kafka_interceptors_on_conf_dup -> @ST00782
+  rd_kafka_interceptors_on_conf_destroy -> @ST00783
+  rd_kafka_conf_interceptor_ctor -> @ST00784
+  rd_kafka_conf_interceptor_dtor -> @ST00785
+  _rd_strcasestr -> @ST00786
+  rd_kafka_conf_interceptor_copy -> @ST00787
+  @rdkafka_conf& -> @ST00788
+  @rdkafka_conf -> @ST00789
+  rdkafka_conf: -> @ST00790
+  rd_kafka_conf_prop_find -> @ST00791
+  rd_kafka_conf_is_modified -> @ST00792
+  rd_kafka_topic_conf_new -> @ST00793
+  rd_kafka_topic_conf_set -> @ST00794
+  rd_kafka_desensitize_str -> @ST00795
+  rd_kafka_conf_desensitize -> @ST00796
+  rd_kafka_topic_conf_desensitize -> @ST00797
+  rd_kafka_topic_conf_destroy -> @ST00798
+  rd_kafka_conf_dup -> @ST00799
+  rd_kafka_conf_dup_filter -> @ST00800
+  rd_kafka_topic_conf_dup -> @ST00801
+  rd_kafka_default_topic_conf_dup -> @ST00802
+  rd_kafka_conf_set_events -> @ST00803
+  rd_kafka_conf_set_background_event_cb -> @ST00804
+  rd_kafka_conf_set_dr_cb -> @ST00805
+  rd_kafka_conf_set_dr_msg_cb -> @ST00806
+  rd_kafka_conf_set_consume_cb -> @ST00807
+  rd_kafka_conf_set_rebalance_cb -> @ST00808
+  rd_kafka_conf_set_offset_commit_cb -> @ST00809
+  rd_kafka_conf_set_error_cb -> @ST00810
+  rd_kafka_conf_set_throttle_cb -> @ST00811
+  rd_kafka_conf_set_log_cb -> @ST00812
+  rd_kafka_conf_set_stats_cb -> @ST00813
+  rd_kafka_conf_set_oauthbearer_token_refresh_cb -> @ST00814
+  rd_kafka_conf_set_socket_cb -> @ST00815
+  rd_kafka_conf_set_connect_cb -> @ST00816
+  rd_kafka_conf_set_closesocket_cb -> @ST00817
+  rd_kafka_conf_set_open_cb -> @ST00818
+  rd_kafka_conf_set_ssl_cert_verify_cb -> @ST00819
+  rd_kafka_conf_set_opaque -> @ST00820
+  rd_kafka_conf_set_engine_callback_data -> @ST00821
+  rd_kafka_conf_set_default_topic_conf -> @ST00822
+  rd_kafka_conf_get_default_topic_conf -> @ST00823
+  rd_kafka_topic_conf_set_partitioner_cb -> @ST00824
+  rd_kafka_topic_conf_set_msg_order_cmp -> @ST00825
+  rd_kafka_topic_conf_set_opaque -> @ST00826
+  rd_kafka_topic_conf_get -> @ST00827
+  rd_kafka_conf_dump -> @ST00828
+  rd_kafka_topic_conf_dump -> @ST00829
+  rd_kafka_conf_dump_free -> @ST00830
+  rd_kafka_conf_properties_show -> @ST00831
+  rd_kafka_confval_get_str -> @ST00832
+  rd_kafka_topic_conf_finalize -> @ST00833
+  rd_kafka_conf -> @ST00834
+  unittest_conf -> @ST00835
+  @RDKAFKA_COORD -> @ST00836
+  @rdkafka_coord& -> @ST00837
+  @rdkafka_coord -> @ST00838
+  rdkafka_coord: -> @ST00839
+  rd_kafka_coord_cache_entry_destroy -> @ST00840
+  rd_kafka_coord_cache_get -> @ST00841
+  rd_kafka_coord_cache_evict -> @ST00842
+  @RDKAFKA_ERROR -> @ST00843
+  @rdkafka_error& -> @ST00844
+  @rdkafka_error -> @ST00845
+  rdkafka_error: -> @ST00846
+  rd_kafka_error_new_v -> @ST00847
+  rd_kafka_error_new_fatal -> @ST00848
+  rd_kafka_error_new_retriable -> @ST00849
+  rd_kafka_error_new_txn_requires_abort -> @ST00850
+  rd_kafka_error_code -> @ST00851
+  rd_kafka_error_name -> @ST00852
+  rd_kafka_error_is_fatal -> @ST00853
+  rd_kafka_error_is_retriable -> @ST00854
+  rd_kafka_error_txn_requires_abort -> @ST00855
+  rd_kafka_error_set_fatal -> @ST00856
+  rd_kafka_error_set_retriable -> @ST00857
+  rd_kafka_error_set_txn_requires_abort -> @ST00858
+  rd_kafka_error_to_legacy -> @ST00859
+  @RDKAFKA_EVENT -> @ST00860
+  rd_kafka_topic_partition_new_from_rktp -> @ST00861
+  @rdkafka_event& -> @ST00862
+  @rdkafka_event -> @ST00863
+  rdkafka_event: -> @ST00864
+  rd_kafka_event_type -> @ST00865
+  rd_kafka_event_name -> @ST00866
+  rd_kafka_event_destroy -> @ST00867
+  rd_kafka_event_message_next -> @ST00868
+  rd_kafka_event_message_array -> @ST00869
+  rd_kafka_event_message_count -> @ST00870
+  rd_kafka_event_config_string -> @ST00871
+  rd_kafka_event_error -> @ST00872
+  rd_kafka_event_error_string -> @ST00873
+  rd_kafka_event_error_is_fatal -> @ST00874
+  rd_kafka_event_opaque -> @ST00875
+  rd_kafka_event_log -> @ST00876
+  rd_kafka_event_debug_contexts -> @ST00877
+  rd_kafka_event_stats -> @ST00878
+  rd_kafka_event_topic_partition_list -> @ST00879
+  rd_kafka_event_topic_partition -> @ST00880
+  rd_kafka_event_CreateTopics_result -> @ST00881
+  rd_kafka_event_DeleteTopics_result -> @ST00882
+  rd_kafka_event_CreatePartitions_result -> @ST00883
+  rd_kafka_event_AlterConfigs_result -> @ST00884
+  rd_kafka_event_DescribeConfigs_result -> @ST00885
+  rd_kafka_event_DeleteRecords_result -> @ST00886
+  rd_kafka_event_DeleteGroups_result -> @ST00887
+  rd_kafka_event_DeleteConsumerGroupOffsets_result -> @ST00888
+  @RDKAFKA_FEATURE -> @ST00889
+  @rdkafka_feature& -> @ST00890
+  @rdkafka_feature -> @ST00891
+  rdkafka_feature: -> @ST00892
+  @RDKAFKA_HEADER -> @ST00893
+  rd_list_remove_elem -> @ST00894
+  @rdkafka_header& -> @ST00895
+  @rdkafka_header -> @ST00896
+  rdkafka_header: -> @ST00897
+  rd_kafka_headers_destroy -> @ST00898
+  rd_kafka_headers_new -> @ST00899
+  rd_kafka_headers_copy -> @ST00900
+  rd_kafka_header_add -> @ST00901
+  rd_kafka_header_remove -> @ST00902
+  rd_kafka_header_get_last -> @ST00903
+  rd_kafka_header_get -> @ST00904
+  rd_kafka_header_get_all -> @ST00905
+  rd_kafka_header_cnt -> @ST00906
+  @RDKAFKA_IDEMPOTENCE -> @ST00907
+  rd_kafka_handle_InitProducerId -> @ST00908
+  rd_kafka_InitProducerIdRequest -> @ST00909
+  rd_kafka_txn_idemp_state_change -> @ST00910
+  rd_kafka_txn_set_fatal_error -> @ST00911
+  rd_kafka_txn_coord_query -> @ST00912
+  rd_kafka_txn_coord_set -> @ST00913
+  rd_kafka_txns_term -> @ST00914
+  rd_kafka_txns_init -> @ST00915
+  @rdkafka_idempotence& -> @ST00916
+  @rdkafka_idempotence -> @ST00917
+  rdkafka_idempotence: -> @ST00918
+  rd_kafka_idemp_set_state -> @ST00919
+  rd_kafka_idemp_broker_any -> @ST00920
+  rd_kafka_idemp_check_error -> @ST00921
+  rd_kafka_idemp_pid_fsm -> @ST00922
+  rd_kafka_idemp_request_pid_failed -> @ST00923
+  rd_kafka_idemp_pid_update -> @ST00924
+  rd_kafka_idemp_drain_reset -> @ST00925
+  rd_kafka_idemp_inflight_toppar_sub -> @ST00926
+  rd_kafka_idemp_inflight_toppar_add -> @ST00927
+  rd_kafka_idemp_start -> @ST00928
+  @RDKAFKA_INTERCEPTOR -> @ST00929
+  @rdkafka_interceptor& -> @ST00930
+  @rdkafka_interceptor -> @ST00931
+  rdkafka_interceptor: -> @ST00932
+  rd_kafka_interceptors_on_send -> @ST00933
+  rd_kafka_interceptors_on_acknowledgement -> @ST00934
+  rd_kafka_interceptors_on_consume -> @ST00935
+  rd_kafka_interceptors_on_request_sent -> @ST00936
+  rd_kafka_conf_interceptor_add_on_conf_set -> @ST00937
+  rd_kafka_conf_interceptor_add_on_conf_dup -> @ST00938
+  rd_kafka_conf_interceptor_add_on_conf_destroy -> @ST00939
+  rd_kafka_conf_interceptor_add_on_new -> @ST00940
+  rd_kafka_interceptor_add_on_destroy -> @ST00941
+  rd_kafka_interceptor_add_on_send -> @ST00942
+  rd_kafka_interceptor_add_on_acknowledgement -> @ST00943
+  rd_kafka_interceptor_add_on_consume -> @ST00944
+  rd_kafka_interceptor_add_on_commit -> @ST00945
+  rd_kafka_interceptor_add_on_request_sent -> @ST00946
+  rd_kafka_interceptor_add_on_response_received -> @ST00947
+  rd_kafka_interceptor_add_on_thread_start -> @ST00948
+  rd_kafka_interceptor_add_on_thread_exit -> @ST00949
+  @RDKAFKA_LZ4 -> @ST00950
+  @rdkafka_lz4& -> @ST00951
+  @rdkafka_lz4 -> @ST00952
+  rdkafka_lz4: -> @ST00953
+  rd_kafka_lz4_decompress -> @ST00954
+  rd_kafka_lz4_compress -> @ST00955
+  @RDKAFKA_METADATA -> @ST00956
+  rd_kafka_local_topics_to_list -> @ST00957
+  rd_kafka_metadata_partition_id_cmp -> @ST00958
+  rd_kafka_metadata_cache_expiry_start -> @ST00959
+  rd_kafka_metadata_cache_topic_update -> @ST00960
+  rd_kafka_metadata_cache_update -> @ST00961
+  rd_kafka_metadata_cache_propagate_changes -> @ST00962
+  rd_kafka_metadata_cache_purge_hints -> @ST00963
+  rd_kafka_metadata_cache_hint -> @ST00964
+  rd_kafka_metadata_cache_topic_get -> @ST00965
+  rd_list_free_cb -> @ST00966
+  rd_list_remove_cmp -> @ST00967
+  rd_kafka_timer_exp_backoff -> @ST00968
+  rd_kafka_timer_next -> @ST00969
+  rd_list_copy -> @ST00970
+  rd_kafka_topic_find_fl -> @ST00971
+  rd_kafka_topic_set_notexists -> @ST00972
+  rd_kafka_topic_metadata_update2 -> @ST00973
+  rd_kafka_topic_info_new -> @ST00974
+  @rdkafka_metadata& -> @ST00975
+  @rdkafka_metadata -> @ST00976
+  rdkafka_metadata: -> @ST00977
+  rd_kafka_metadata -> @ST00978
+  rd_kafka_metadata_copy -> @ST00979
+  rd_kafka_parse_Metadata -> @ST00980
+  rd_kafka_metadata_log -> @ST00981
+  rd_kafka_metadata_refresh_topics -> @ST00982
+  rd_kafka_metadata_refresh_all -> @ST00983
+  rd_kafka_metadata_fast_leader_query -> @ST00984
+  rd_kafka_metadata_new_topic_mock -> @ST00985
+  rd_kafka_metadata_new_topic_mockv -> @ST00986
+  @RDKAFKA_METADATA_CACHE -> @ST00987
+  rd_list_clear -> @ST00988
+  rd_list_cmp_str -> @ST00989
+  @rdkafka_metadata_cache& -> @ST00990
+  @rdkafka_metadata_cache -> @ST00991
+  rdkafka_metadata_cache: -> @ST00992
+  rd_kafka_metadata_cache_find -> @ST00993
+  rd_kafka_metadata_cache_wait_state_change_async -> @ST00994
+  rd_kafka_metadata_cache_topic_partition_get -> @ST00995
+  rd_kafka_metadata_cache_topics_to_list -> @ST00996
+  @RDKAFKA_MOCK -> @ST00997
+  rd_kafka_mock_api_handlers -> @ST00998
+  rd_kafka_transport_new -> @ST00999
+  rd_kafka_transport_post_connect_setup -> @ST01000
+  rd_kafka_mock_cgrp_destroy -> @ST01001
+  rd_kafka_mock_cgrps_connection_closed -> @ST01002
+  @rdkafka_mock& -> @ST01003
+  @rdkafka_mock -> @ST01004
+  rdkafka_mock: -> @ST01005
+  rd_kafka_mock_msgset_find -> @ST01006
+  rd_kafka_mock_partition_log_append -> @ST01007
+  rd_kafka_mock_committed_offset_find -> @ST01008
+  rd_kafka_mock_commit_offset -> @ST01009
+  rd_kafka_mock_partition_find -> @ST01010
+  rd_kafka_mock_topic_find -> @ST01011
+  rd_kafka_mock_topic_find_by_kstr -> @ST01012
+  rd_kafka_mock_topic_auto_create -> @ST01013
+  rd_kafka_mock_topic_get -> @ST01014
+  rd_kafka_mock_connection_send_response -> @ST01015
+  rd_kafka_mock_buf_new_response -> @ST01016
+  rd_kafka_mock_connection_set_blocking -> @ST01017
+  rd_kafka_mock_cluster_get_coord -> @ST01018
+  rd_kafka_mock_next_request_error -> @ST01019
+  rd_kafka_mock_clear_request_errors -> @ST01020
+  rd_kafka_mock_push_request_errors_array -> @ST01021
+  rd_kafka_mock_push_request_errors -> @ST01022
+  rd_kafka_mock_broker_push_request_error_rtts -> @ST01023
+  rd_kafka_mock_topic_set_error -> @ST01024
+  rd_kafka_mock_topic_create -> @ST01025
+  rd_kafka_mock_partition_set_leader -> @ST01026
+  rd_kafka_mock_partition_set_follower -> @ST01027
+  rd_kafka_mock_partition_set_follower_wmarks -> @ST01028
+  rd_kafka_mock_broker_set_down -> @ST01029
+  rd_kafka_mock_broker_set_up -> @ST01030
+  rd_kafka_mock_broker_set_rtt -> @ST01031
+  rd_kafka_mock_broker_set_rack -> @ST01032
+  rd_kafka_mock_coordinator_set -> @ST01033
+  rd_kafka_mock_set_apiversion -> @ST01034
+  rd_kafka_mock_cluster_handle -> @ST01035
+  rd_kafka_handle_mock_cluster -> @ST01036
+  @RDKAFKA_MOCK_CGRP -> @ST01037
+  @rdkafka_mock_cgrp& -> @ST01038
+  @rdkafka_mock_cgrp -> @ST01039
+  rdkafka_mock_cgrp: -> @ST01040
+  rd_kafka_mock_cgrp_member_active -> @ST01041
+  rd_kafka_mock_cgrp_check_state -> @ST01042
+  rd_kafka_mock_cgrp_member_assignment_set -> @ST01043
+  rd_kafka_mock_cgrp_member_sync_set -> @ST01044
+  rd_kafka_mock_cgrp_member_leave -> @ST01045
+  rd_kafka_mock_cgrp_protos_destroy -> @ST01046
+  rd_kafka_mock_cgrp_member_find -> @ST01047
+  rd_kafka_mock_cgrp_member_add -> @ST01048
+  rd_kafka_mock_cgrp_find -> @ST01049
+  rd_kafka_mock_cgrp_get -> @ST01050
+  @RDKAFKA_MOCK_HANDLERS -> @ST01051
+  @rdkafka_mock_handlers& -> @ST01052
+  @rdkafka_mock_handlers -> @ST01053
+  rdkafka_mock_handlers: -> @ST01054
+  @RDKAFKA_MSG -> @ST01055
+  rd_unittest_slow -> @ST01056
+  rd_kafka_topic_partition_available -> @ST01057
+  rd_kafka_toppar_enq_msg -> @ST01058
+  rd_kafka_retry_msgq -> @ST01059
+  rd_kafka_toppar_get_avail -> @ST01060
+  rd_kafka_txn_schedule_register_partitions -> @ST01061
+  rd_kafka_topic_new0 -> @ST01062
+  rd_murmur2 -> @ST01063
+  @rdkafka_msg& -> @ST01064
+  @rdkafka_msg -> @ST01065
+  rdkafka_msg: -> @ST01066
+  rd_kafka_message_errstr -> @ST01067
+  rd_kafka_msg_new -> @ST01068
+  rd_kafka_produceva -> @ST01069
+  rd_kafka_producev -> @ST01070
+  rd_kafka_produce -> @ST01071
+  rd_kafka_produce_batch -> @ST01072
+  rd_kafka_msgq_enq_sorted0 -> @ST01073
+  rd_kafka_msgq_enq_sorted -> @ST01074
+  rd_kafka_msgq_find_pos -> @ST01075
+  rd_kafka_msgq_split -> @ST01076
+  rd_kafka_msgq_set_metadata -> @ST01077
+  rd_kafka_msg_partitioner_random -> @ST01078
+  rd_kafka_msg_partitioner_consistent -> @ST01079
+  rd_kafka_msg_partitioner_consistent_random -> @ST01080
+  rd_kafka_msg_partitioner_murmur2 -> @ST01081
+  rd_kafka_msg_partitioner_murmur2_random -> @ST01082
+  rd_kafka_msg_partitioner_fnv1a -> @ST01083
+  rd_kafka_msg_partitioner_fnv1a_random -> @ST01084
+  rd_kafka_msg_sticky_partition -> @ST01085
+  rd_kafka_msg_partitioner -> @ST01086
+  rd_kafka_message_destroy -> @ST01087
+  rd_kafka_message_timestamp -> @ST01088
+  rd_kafka_message_latency -> @ST01089
+  rd_kafka_message_broker_id -> @ST01090
+  rd_kafka_message_headers -> @ST01091
+  rd_kafka_message_detach_headers -> @ST01092
+  rd_kafka_message_set_headers -> @ST01093
+  rd_kafka_message_status -> @ST01094
+  rd_kafka_msgq_dump -> @ST01095
+  rd_kafka_msgbatch_init -> @ST01096
+  rd_kafka_msgbatch_set_first_msg -> @ST01097
+  rd_kafka_msgbatch_ready_produce -> @ST01098
+  rd_kafka_msgq_verify_order0 -> @ST01099
+  ut_rd_kafka_msg_new -> @ST01100
+  ut_rd_kafka_msgq_purge -> @ST01101
+  unittest_msg -> @ST01102
+  @RDKAFKA_MSGSET_READER -> @ST01103
+  rd_kafka_snappy_uncompress -> @ST01104
+  rd_kafka_snappy_java_uncompress -> @ST01105
+  rd_kafka_snappy_uncompressed_length -> @ST01106
+  rd_kafka_op_new_fetch_msg -> @ST01107
+  rd_kafka_op_new_ctrl_msg -> @ST01108
+  rd_kafka_q_init0 -> @ST01109
+  rd_kafka_q_fix_offsets -> @ST01110
+  @rdkafka_msgset_reader& -> @ST01111
+  @rdkafka_msgset_reader -> @ST01112
+  rdkafka_msgset_reader: -> @ST01113
+  unittest_aborted_txns -> @ST01114
+  @RDKAFKA_MSGSET_WRITER -> @ST01115
+  rd_kafka_snappy_init_env_sg -> @ST01116
+  rd_kafka_snappy_free_env -> @ST01117
+  rd_kafka_snappy_compress_iov -> @ST01118
+  rd_kafka_snappy_max_compressed_length -> @ST01119
+  @rdkafka_msgset_writer& -> @ST01120
+  @rdkafka_msgset_writer -> @ST01121
+  rdkafka_msgset_writer: -> @ST01122
+  rd_kafka_msgset_create_ProduceRequest -> @ST01123
+  @RDKAFKA_OFFSET -> @ST01124
+  rd_kafka_toppar_offset_commit_result -> @ST01125
+  rd_kafka_toppar_set_fetch_state -> @ST01126
+  rd_kafka_toppar_next_offset_handle -> @ST01127
+  rd_kafka_toppar_fetch_stopped -> @ST01128
+  rd_kafka_toppar_offset_request -> @ST01129
+  __isthreaded -> @ST01130
+  @rdkafka_offset& -> @ST01131
+  @rdkafka_offset -> @ST01132
+  rdkafka_offset: -> @ST01133
+  rd_kafka_open_cb_linux -> @ST01134
+  rd_kafka_commit -> @ST01135
+  rd_kafka_commit_message -> @ST01136
+  rd_kafka_commit_queue -> @ST01137
+  rd_kafka_offset_sync -> @ST01138
+  rd_kafka_offset_store -> @ST01139
+  rd_kafka_offsets_store -> @ST01140
+  rd_kafka_offset_store_term -> @ST01141
+  rd_kafka_offset_store_stop -> @ST01142
+  rd_kafka_offset_query_tmr_cb -> @ST01143
+  rd_kafka_offset_store_init -> @ST01144
+  @RDKAFKA_OP -> @ST01145
+  rd_kafka_lwtopic_new -> @ST01146
+  rd_kafka_op_cnt -> @ST01147
+  @rdkafka_op& -> @ST01148
+  @rdkafka_op -> @ST01149
+  rdkafka_op: -> @ST01150
+  rd_kafka_op_print -> @ST01151
+  rd_kafka_op_req0 -> @ST01152
+  rd_kafka_op_error_destroy -> @ST01153
+  rd_kafka_op_handle_std -> @ST01154
+  rd_kafka_op_handle -> @ST01155
+  @RDKAFKA_PARTITION -> @ST01156
+  rd_regex_match -> @ST01157
+  rd_kafka_q_purge_toppar_version -> @ST01158
+  rd_kafka_timer_is_started -> @ST01159
+  rd_qsort_r -> @ST01160
+  rd_kafka_topic_cmp_rkt -> @ST01161
+  rd_string_hash -> @ST01162
+  @rdkafka_partition& -> @ST01163
+  @rdkafka_partition -> @ST01164
+  rdkafka_partition: -> @ST01165
+  rd_kafka_toppar_op_version_bump -> @ST01166
+  rd_kafka_toppar_new0 -> @ST01167
+  rd_kafka_toppar_desired_link -> @ST01168
+  rd_kafka_toppar_desired_unlink -> @ST01169
+  rd_kafka_toppar_desired_add0 -> @ST01170
+  rd_kafka_toppar_retry_msgq -> @ST01171
+  rd_kafka_toppar_insert_msgq -> @ST01172
+  rd_kafka_toppar_purge_and_disable_queues -> @ST01173
+  rd_kafka_toppar_broker_leave_for_remove -> @ST01174
+  rd_kafka_toppar_broker_delegate -> @ST01175
+  rd_kafka_toppar_offset_fetch -> @ST01176
+  rd_kafka_toppar_fetch_stop -> @ST01177
+  rd_kafka_toppar_seek -> @ST01178
+  rd_kafka_toppar_pause -> @ST01179
+  rd_kafka_toppar_resume -> @ST01180
+  rd_kafka_toppar_enq_error -> @ST01181
+  rd_kafka_toppar_broker -> @ST01182
+  rd_kafka_topic_partition_topic -> @ST01183
+  rd_kafka_topic_partition_partition -> @ST01184
+  rd_kafka_topic_partition_get -> @ST01185
+  rd_kafka_topic_partition_list_init -> @ST01186
+  rd_kafka_topic_partition_copy_void -> @ST01187
+  rd_kafka_topic_partition_list_add_range -> @ST01188
+  rd_kafka_topic_partition_list_upsert -> @ST01189
+  rd_kafka_topic_partition_update -> @ST01190
+  rd_kafka_topic_partition_list_cmp -> @ST01191
+  rd_kafka_topic_partition_cmp_topic -> @ST01192
+  rd_kafka_topic_partition_list_find_topic -> @ST01193
+  rd_kafka_topic_partition_list_set_offset -> @ST01194
+  rd_kafka_topic_partition_list_count_abs_offsets -> @ST01195
+  rd_kafka_topic_partition_list_update_toppars -> @ST01196
+  rd_kafka_topic_partition_list_get_topics -> @ST01197
+  rd_kafka_topic_partition_list_match -> @ST01198
+  rd_kafka_topic_partition_list_get_err -> @ST01199
+  rd_kafka_partition_leader_destroy_free -> @ST01200
+  @RDKAFKA_PATTERN -> @ST01201
+  rd_regex_destroy -> @ST01202
+  rd_regex_comp -> @ST01203
+  rd_regex_exec -> @ST01204
+  @rdkafka_pattern& -> @ST01205
+  @rdkafka_pattern -> @ST01206
+  rdkafka_pattern: -> @ST01207
+  rd_kafka_pattern_destroy -> @ST01208
+  rd_kafka_pattern_add -> @ST01209
+  rd_kafka_pattern_new -> @ST01210
+  rd_kafka_pattern_list_append -> @ST01211
+  rd_kafka_pattern_list_remove -> @ST01212
+  rd_kafka_pattern_list_clear -> @ST01213
+  rd_kafka_pattern_list_init -> @ST01214
+  rd_kafka_pattern_list_copy -> @ST01215
+  @RDKAFKA_PLUGIN -> @ST01216
+  @rdkafka_plugin& -> @ST01217
+  @rdkafka_plugin -> @ST01218
+  rdkafka_plugin: -> @ST01219
+  @RDKAFKA_QUEUE -> @ST01220
+  @rdkafka_queue& -> @ST01221
+  @rdkafka_queue -> @ST01222
+  rdkafka_queue: -> @ST01223
+  rd_kafka_yield -> @ST01224
+  rd_kafka_q_move_cnt -> @ST01225
+  rd_kafka_queue_destroy -> @ST01226
+  rd_kafka_queue_new0 -> @ST01227
+  rd_kafka_queue_new -> @ST01228
+  rd_kafka_queue_get_main -> @ST01229
+  rd_kafka_queue_get_consumer -> @ST01230
+  rd_kafka_queue_get_partition -> @ST01231
+  rd_kafka_queue_get_background -> @ST01232
+  rd_kafka_set_log_queue -> @ST01233
+  rd_kafka_queue_forward -> @ST01234
+  rd_kafka_queue_length -> @ST01235
+  rd_kafka_queue_io_event_enable -> @ST01236
+  rd_kafka_queue_yield -> @ST01237
+  rd_kafka_q_cb_event_enable -> @ST01238
+  rd_kafka_queue_cb_event_enable -> @ST01239
+  rd_kafka_q_dump -> @ST01240
+  @RDKAFKA_RANGE_ASSIGNOR -> @ST01241
+  @rdkafka_range_assignor& -> @ST01242
+  @rdkafka_range_assignor -> @ST01243
+  rdkafka_range_assignor: -> @ST01244
+  rd_kafka_range_assignor_assign_cb -> @ST01245
+  @RDKAFKA_REQUEST -> @ST01246
+  rd_ut_kafka_topic_set_topic_exists -> @ST01247
+  rd_kafka_txn_set_abortable_error0 -> @ST01248
+  rd_list_get_int32 -> @ST01249
+  rd_kafka_topic_set_error -> @ST01250
+  @rdkafka_request& -> @ST01251
+  @rdkafka_request -> @ST01252
+  rdkafka_request: -> @ST01253
+  rd_kafka_handle_LeaveGroup -> @ST01254
+  rd_kafka_handle_SaslAuthenticate -> @ST01255
+  rd_kafka_SaslAuthenticateRequest -> @ST01256
+  rd_kafka_AddPartitionsToTxnRequest -> @ST01257
+  rd_kafka_AddOffsetsToTxnRequest -> @ST01258
+  rd_kafka_EndTxnRequest -> @ST01259
+  unittest_request -> @ST01260
+  @RDKAFKA_ROUNDROBIN_ASSIGNOR -> @ST01261
+  @rdkafka_roundrobin_assignor& -> @ST01262
+  @rdkafka_roundrobin_assignor -> @ST01263
+  rdkafka_roundrobin_assignor: -> @ST01264
+  rd_kafka_roundrobin_assignor_assign_cb -> @ST01265
+  @RDKAFKA_STICKY_ASSIGNOR -> @ST01266
+  rd_map_delete -> @ST01267
+  rd_map_copy -> @ST01268
+  rd_map_is_empty -> @ST01269
+  rd_list_first -> @ST01270
+  rd_list_last -> @ST01271
+  rd_map_clear -> @ST01272
+  rd_map_str_cmp -> @ST01273
+  rd_map_str_hash -> @ST01274
+  rd_strcmp -> @ST01275
+  @rdkafka_sticky_assignor& -> @ST01276
+  @rdkafka_sticky_assignor -> @ST01277
+  rdkafka_sticky_assignor: -> @ST01278
+  rd_kafka_sticky_assignor_assign_cb -> @ST01279
+  @RDKAFKA_SUBSCRIPTION -> @ST01280
+  @rdkafka_subscription& -> @ST01281
+  @rdkafka_subscription -> @ST01282
+  rdkafka_subscription: -> @ST01283
+  rd_kafka_unsubscribe -> @ST01284
+  rd_kafka_subscribe -> @ST01285
+  rd_kafka_assign0 -> @ST01286
+  rd_kafka_incremental_assign -> @ST01287
+  rd_kafka_incremental_unassign -> @ST01288
+  rd_kafka_assignment_lost -> @ST01289
+  rd_kafka_rebalance_protocol -> @ST01290
+  rd_kafka_assignment -> @ST01291
+  rd_kafka_subscription -> @ST01292
+  rd_kafka_pause_partitions -> @ST01293
+  rd_kafka_resume_partitions -> @ST01294
+  @RDKAFKA_TIMER -> @ST01295
+  @rdkafka_timer& -> @ST01296
+  @rdkafka_timer -> @ST01297
+  rdkafka_timer: -> @ST01298
+  rd_kafka_timer_override_once -> @ST01299
+  @RDKAFKA_TOPIC -> @ST01300
+  @rdkafka_topic& -> @ST01301
+  @rdkafka_topic -> @ST01302
+  rdkafka_topic: -> @ST01303
+  rd_kafka_topic_destroy -> @ST01304
+  rd_kafka_topic_new -> @ST01305
+  rd_kafka_topic_opaque -> @ST01306
+  rd_kafka_topic_leader_query0 -> @ST01307
+  @RDKAFKA_TRANSPORT -> @ST01308
+  rd_kafka_curr_transport -> @ST01309
+  @rdkafka_transport& -> @ST01310
+  @rdkafka_transport -> @ST01311
+  rdkafka_transport: -> @ST01312
+  rd_kafka_transport_connect_done -> @ST01313
+  rd_kafka_transport_framed_recv -> @ST01314
+  rd_kafka_transport_poll_clear -> @ST01315
+  rd_kafka_transport_poll -> @ST01316
+  @RDKAFKA_TXNMGR -> @ST01317
+  @rdkafka_txnmgr& -> @ST01318
+  @rdkafka_txnmgr -> @ST01319
+  rdkafka_txnmgr: -> @ST01320
+  rd_kafka_init_transactions -> @ST01321
+  rd_kafka_begin_transaction -> @ST01322
+  rd_kafka_send_offsets_to_transaction -> @ST01323
+  rd_kafka_commit_transaction -> @ST01324
+  rd_kafka_abort_transaction -> @ST01325
+  rd_kafka_txn_coord_monitor_cb -> @ST01326
+  rd_list_dump -> @ST01327
+  rd_list_set_cnt -> @ST01328
+  rd_list_remove_multi_cmp -> @ST01329
+  rd_list_pop -> @ST01330
+  rd_list_cmp_ptr -> @ST01331
+  rd_iov_print -> @ST01332
+  rd_msghdr_print -> @ST01333
+  unittest_map -> @ST01334
+  @RDMURMUR2 -> @ST01335
+  @rdmurmur2& -> @ST01336
+  @rdmurmur2 -> @ST01337
+  rdmurmur2: -> @ST01338
+  unittest_murmur2 -> @ST01339
+  @rdports& -> @ST01340
+  thrd_current -> @ST01341
+  @rdregex& -> @ST01342
+  @RDSTRING -> @ST01343
+  @rdstring& -> @ST01344
+  @rdstring -> @ST01345
+  rdstring: -> @ST01346
+  rd_string_render -> @ST01347
+  rd_strtup_free -> @ST01348
+  rd_strtup_dup -> @ST01349
+  rd_strtup_list_copy -> @ST01350
+  unittest_string -> @ST01351
+  @RDUNITTEST -> @ST01352
+  unittest_rdvarint -> @ST01353
+  rd_unittest_on_ci -> @ST01354
+  @rdunittest& -> @ST01355
+  @rdunittest -> @ST01356
+  rdunittest: -> @ST01357
+  @RDVARINT -> @ST01358
+  @rdvarint& -> @ST01359
+  @rdvarint -> @ST01360
+  rdvarint: -> @ST01361
+  @RDXXHASH -> @ST01362
+  @rdxxhash& -> @ST01363
+  @rdxxhash -> @ST01364
+  rdxxhash: -> @ST01365
+  XXH_versionNumber -> @ST01366
+  XXH32_createState -> @ST01367
+  XXH32_freeState -> @ST01368
+  XXH32_copyState -> @ST01369
+  XXH32_canonicalFromHash -> @ST01370
+  XXH32_hashFromCanonical -> @ST01371
+  XXH64_createState -> @ST01372
+  XXH64_freeState -> @ST01373
+  XXH64_copyState -> @ST01374
+  XXH64_reset -> @ST01375
+  XXH64_update -> @ST01376
+  XXH64_digest -> @ST01377
+  XXH64_canonicalFromHash -> @ST01378
+  XXH64_hashFromCanonical -> @ST01379
+  re_regcomp -> @ST01380
+  re_regfree -> @ST01381
+  re_regexec -> @ST01382
+  rd_kafka_snappy_compress -> @ST01383
+  rd_kafka_snappy_uncompress_iov -> @ST01384
+  rd_kafka_snappy_init_env -> @ST01385
+  @TINYCTHREAD -> @ST01386
+  @tinycthread& -> @ST01387
+  @tinycthread -> @ST01388
+  tinycthread: -> @ST01389
+  mtx_timedlock -> @ST01390
+  mtx_trylock -> @ST01391
+  cnd_timedwait -> @ST01392
+  thrd_detach -> @ST01393
+  thrd_equal -> @ST01394
+  thrd_exit -> @ST01395
+  thrd_sleep -> @ST01396
+  thrd_yield -> @ST01397
+  tss_create -> @ST01398
+  tss_delete -> @ST01399
+  @TINYCTHREAD_EXTRA -> @ST01400
+  @tinycthread_extra& -> @ST01401
+  @tinycthread_extra -> @ST01402
+  tinycthread_extra: -> @ST01403
+  cnd_timedwait_msp -> @ST01404
+  @$PTHREAD_RWLOCK_WRLOCK_RENT64 -> @ST01405
+  @$pthread_rwlock_wrlock_rent64 -> @ST01406
+  @$PTHREAD_RWLOCK_UNLOCK_RENT64 -> @ST01407
+  @$pthread_rwlock_unlock_rent64 -> @ST01408
+  @$PTHREAD_RWLOCK_RDLOCK_RENT64 -> @ST01409
+  @$pthread_rwlock_rdlock_rent64 -> @ST01410
+  @$PTHREAD_RWLOCK_INIT_RENT64 -> @ST01411
+  @$pthread_rwlock_init_rent64 -> @ST01412
+  @$PTHREAD_RWLOCK_DESTROY_RENT64 -> @ST01413
+  @$pthread_rwlock_destroy_rent64 -> @ST01414
+  @$PTHREAD_GETSPECIFIC_RENT64 -> @ST01415
+  _clone_get_user_data -> @ST01416
+  @$pthread_getspecific_rent64 -> @ST01417
+  __pthread_getspecific -> @ST01418
+  @$PTHREAD_EQUAL_RENT64 -> @ST01419
+  @$pthread_equal_rent64 -> @ST01420
+  __pthread_equal -> @ST01421
+  @$PTHREAD_DETACH_RENT64 -> @ST01422
+  @$pthread_detach_rent64 -> @ST01423
+  @$PTHREAD_CREATE_RENT64 -> @ST01424
+  __thread_list_lock -> @ST01425
+  __default_stacksize -> @ST01426
+  __default_guardsize -> @ST01427
+  __threads_minus_1 -> @ST01428
+  _clone_exit -> @ST01429
+  _clone_set_robust_list -> @ST01430
+  __copy_tls -> @ST01431
+  __membarrier_init -> @ST01432
+  _clone_unmapself -> @ST01433
+  __vm_wait -> @ST01434
+  __pthread_tsd_run_dtors -> @ST01435
+  __vm_unlock -> @ST01436
+  __pthread_tsd_size -> @ST01437
+  __pthread_tsd_main -> @ST01438
+  __release_ptc -> @ST01439
+  @$pthread_create_rent64& -> @ST01440
+  @$pthread_create_rent64 -> @ST01441
+  __dl_thread_cleanup -> @ST01442
+  __do_orphaned_stdio_locks -> @ST01443
+  __tl_lock -> @ST01444
+  __tl_unlock -> @ST01445
+  __tl_sync -> @ST01446
+  __pthread_unalloc -> @ST01447
+  __pthread_exit -> @ST01448
+  __do_cleanup_push -> @ST01449
+  __do_cleanup_pop -> @ST01450
+  @$PTHREAD_COND_WAIT_RENT64 -> @ST01451
+  @$pthread_cond_wait_rent64 -> @ST01452
+  @$PTHREAD_COND_TIMEDWAIT_RENT64 -> @ST01453
+  @$pthread_cond_timedwait_rent64 -> @ST01454
+  @$PTHREAD_COND_SIGNAL_RENT64 -> @ST01455
+  @$pthread_cond_signal_rent64 -> @ST01456
+  @$PTHREAD_COND_INIT_RENT64 -> @ST01457
+  @$pthread_cond_init_rent64 -> @ST01458
+  @$PTHREAD_COND_DESTROY_RENT64 -> @ST01459
+  @$pthread_cond_destroy_rent64 -> @ST01460
+  @$PTHREAD_COND_BROADCAST_RENT64 -> @ST01461
+  @$pthread_cond_broadcast_rent64 -> @ST01462
+  @$#SCHD#Y -> @ST01463
+  @$#schd#y -> @ST01464
+  @$PTHREAD_SETSPECIFIC_RENT64 -> @ST01465
+  @$pthread_setspecific_rent64 -> @ST01466
+  @$PTHREAD_SELF_RENT64 -> @ST01467
+  @$pthread_self_rent64& -> @ST01468
+  @$pthread_self_rent64 -> @ST01469
+  $pthread_self_rent64: -> @ST01470
+  __pthread_self_internal -> @ST01471
+  @$#CLKGET -> @ST01472
+  @$#clkget -> @ST01473
+  @$PTHREAD_MUTEX_TRYLOCK_RENT64 -> @ST01474
+  @$pthread_mutex_trylock_rent64 -> @ST01475
+  __pthread_mutex_trylock_owner -> @ST01476
+  @$PTHREAD_MUTEX_DESTROY_RENT64 -> @ST01477
+  @$pthread_mutex_destroy_rent64 -> @ST01478
+  @$PTHREAD_MUTEXATTR_SETTYPE_RENT64 -> @ST01479
+  @$pthread_mutexattr_settype_rent64 -> @ST01480
+  @$PTHREAD_MUTEXATTR_DESTROY_RENT64 -> @ST01481
+  @$pthread_mutexattr_destroy_rent64 -> @ST01482
+  @$PTHREAD_MUTEXATTR_INIT_RENT64 -> @ST01483
+  @$pthread_mutexattr_init_rent64 -> @ST01484
+  @$PTHREAD_KEY_CREATE_RENT64 -> @ST01485
+  @$pthread_key_create_rent64& -> @ST01486
+  @$pthread_key_create_rent64 -> @ST01487
+  @$PTHREAD_JOIN_RENT64 -> @ST01488
+  @$pthread_join_rent64& -> @ST01489
+  @$pthread_join_rent64 -> @ST01490
+  $pthread_join_rent64: -> @ST01491
+  __pthread_timedjoin_np -> @ST01492
+  __pthread_tryjoin_np -> @ST01493
+  pthread_tryjoin_np -> @ST01494
+  pthread_timedjoin_np -> @ST01495
+  @$SETJMP_RENT64 -> @ST01496
+  @$setjmp_rent64 -> @ST01497
+  @$___TOLOWER_RENT64 -> @ST01498
+  @$___tolower_rent64 -> @ST01499
+  @$REGFREE_RENT64 -> @ST01500
+  @$regfree_rent64 -> @ST01501
+  @$REGEXEC_RENT64 -> @ST01502
+  __mb_cur_max -> @ST01503
+  @$regexec_rent64& -> @ST01504
+  @$regexec_rent64 -> @ST01505
+  @$REGERROR_RENT64 -> @ST01506
+  @$regerror_rent64& -> @ST01507
+  @$regerror_rent64 -> @ST01508
+  $regerror_rent64: -> @ST01509
+  @$REGCOMP_RENT64 -> @ST01510
+  @$regcomp_rent64& -> @ST01511
+  @$regcomp_rent64 -> @ST01512
+  $regcomp_rent64: -> @ST01513
+  __lock_fcb -> @ST01514
+  __unlock_fcb -> @ST01515
+  @$SEND_RENT64 -> @ST01516
+  @$send_rent64 -> @ST01517
+  @$RECV_RENT64 -> @ST01518
+  @$recv_rent64 -> @ST01519
+  @$_OPEN_RENT64 -> @ST01520
+  __parse_attrs -> @ST01521
+  @$_open_rent64& -> @ST01522
+  @$_open_rent64 -> @ST01523
+  @$LLABS_RENT64 -> @ST01524
+  @$llabs_rent64 -> @ST01525
+  @$FILENO_RENT64 -> @ST01526
+  _funlockfile -> @ST01527
+  @$fileno_rent64 -> @ST01528
+  @$FDOPEN_RENT64 -> @ST01529
+  @$fdopen_rent64& -> @ST01530
+  @$fdopen_rent64 -> @ST01531
+  @$FTRUNCATE_RENT64 -> @ST01532
+  @$ftruncate_rent64 -> @ST01533
+  @$FWRITE_RENT64 -> @ST01534
+  @$fwrite_rent64 -> @ST01535
+  @$FSEEK_RENT64 -> @ST01536
+  __sdidinit -> @ST01537
+  @$fseek_rent64 -> @ST01538
+  @$FREAD_RENT64 -> @ST01539
+  @$fread_rent64 -> @ST01540
+  @$FFLUSH_RENT64 -> @ST01541
+  @$fflush_rent64 -> @ST01542
+  @$FCLOSE_RENT64 -> @ST01543
+  @$fclose_rent64 -> @ST01544
+  @$PRINTF_RENT64 -> @ST01545
+  @$printf_rent64 -> @ST01546
+  __use_bpx_sockets -> @ST01547
+  __ibm_hfs_info_giveme -> @ST01548
+  __ibm_hfs_info_takeit -> @ST01549
+  @$_READ_RENT64 -> @ST01550
+  @$_read_rent64 -> @ST01551
+  @$STRCMP_RENT64 -> @ST01552
+  @$strcmp_rent64 -> @ST01553
+  @$QSORT_RENT64 -> @ST01554
+  @$qsort_rent64 -> @ST01555
+  @$STRTOD_RENT64 -> @ST01556
+  @$strtod_rent64 -> @ST01557
+  @$PIPE_RENT64 -> @ST01558
+  @$pipe_rent64 -> @ST01559
+  @$___TOUPPER_RENT64 -> @ST01560
+  @$___toupper_rent64 -> @ST01561
+  @$_CLOSE_RENT64 -> @ST01562
+  @$_close_rent64 -> @ST01563
+  __close_empty -> @ST01564
+  @$BSEARCH_RENT64 -> @ST01565
+  @$bsearch_rent64 -> @ST01566
+  @$ATOI_RENT64 -> @ST01567
+  @$atoi_rent64 -> @ST01568
+  @$STRCASECMP_RENT64 -> @ST01569
+  @$strcasecmp_rent64 -> @ST01570
+  @$SIGSETOPS_RENT64 -> @ST01571
+  @$sigsetops_rent64 -> @ST01572
+  @$table_rent64 -> @ST01573
+  $table_rent64: -> @ST01574
+  @$RUNETYPE_RENT64 -> @ST01575
+  @$runetype_rent64 -> @ST01576
+  @$GETENV_RENT64 -> @ST01577
+  @$getenv_rent64 -> @ST01578
+  @$ABORT_RENT64 -> @ST01579
+  @$abort_rent64 -> @ST01580
+  @$VSNPRINTF_RENT64 -> @ST01581
+  @$vsnprintf_rent64 -> @ST01582
+  @$@SIGACT -> @ST01583
+  __bpx_exit -> @ST01584
+  __use_bpx_signals -> @ST01585
+  __mapDIGsignal -> @ST01586
+  __mapIBMsigset -> @ST01587
+  __mapDIGsigset -> @ST01588
+  __sir_current_cancel_sigaction -> @ST01589
+  __startup_estae_set -> @ST01590
+  @$@sigact& -> @ST01591
+  @$@sigact -> @ST01592
+  _sigcancelaction -> @ST01593
+  __handle_sigabrt -> @ST01594
+  @$PTHREAD_SIGMASK_RENT64 -> @ST01595
+  @$pthread_sigmask_rent64 -> @ST01596
+  @$PTHREAD_KILL_RENT64 -> @ST01597
+  _clone_cancel -> @ST01598
+  _clone_kill -> @ST01599
+  _clone_reserve_id -> @ST01600
+  _clone_release_id -> @ST01601
+  @$pthread_kill_rent64 -> @ST01602
+  @$@GETTFD -> @ST01603
+  @$@gettfd -> @ST01604
+  @$SYSLOG_RENT64 -> @ST01605
+  @$syslog_rent64& -> @ST01606
+  @$syslog_rent64 -> @ST01607
+  $syslog_rent64: -> @ST01608
+  setlogmask -> @ST01609
+  @$PTHREAD_ONCE_RENT64 -> @ST01610
+  @$pthread_once_rent64 -> @ST01611
+  @$PTHREAD_MUTEX_UNLOCK_RENT64 -> @ST01612
+  @$pthread_mutex_unlock_rent64& -> @ST01613
+  @$pthread_mutex_unlock_rent64 -> @ST01614
+  $pthread_mutex_unlock_rent64: -> @ST01615
+  @$@NNOSLP -> @ST01616
+  @$@nnoslp -> @ST01617
+  @$CLOSEDIR_RENT64 -> @ST01618
+  @$closedir_rent64 -> @ST01619
+  @$PTHREAD_MUTEX_LOCK_RENT64 -> @ST01620
+  @$pthread_mutex_lock_rent64 -> @ST01621
+  @$RAND_RENT64 -> @ST01622
+  @$rand_rent64& -> @ST01623
+  @$rand_rent64 -> @ST01624
+  $rand_rent64: -> @ST01625
+  @$PTHREAD_MUTEX_INIT_RENT64 -> @ST01626
+  @$pthread_mutex_init_rent64 -> @ST01627
+  @$TIME_RENT64 -> @ST01628
+  @$time_rent64 -> @ST01629
+  @$READDIR_RENT64 -> @ST01630
+  @$readdir_rent64& -> @ST01631
+  @$readdir_rent64 -> @ST01632
+  @$OPENDIR_RENT64 -> @ST01633
+  @$opendir_rent64 -> @ST01634
+  @$STAT_RENT64 -> @ST01635
+  @$stat_rent64 -> @ST01636
+  @$_WRITE_RENT64 -> @ST01637
+  @$_write_rent64 -> @ST01638
+  @$DLSYM_RENT64 -> @ST01639
+  @$dlsym_rent64 -> @ST01640
+  @$DLOPEN_RENT64 -> @ST01641
+  @$dlopen_rent64 -> @ST01642
+  @$DLERROR_RENT64 -> @ST01643
+  __dlerror -> @ST01644
+  @$dlerror_rent64 -> @ST01645
+  @$DLCLOSE_RENT64 -> @ST01646
+  __dlclose -> @ST01647
+  @$dlclose_rent64 -> @ST01648
+  @$STRDUP_RENT64 -> @ST01649
+  @$strdup_rent64 -> @ST01650
+  @$gaisrr& -> @ST01651
+  @$gnminf& -> @ST01652
+  _getshort -> @ST01653
+  __res_nmkquery -> @ST01654
+  @$gaddri& -> @ST01655
+  @$__ERROR_RENT64 -> @ST01656
+  @$__error_rent64 -> @ST01657
+  @$STRERROR_RENT64 -> @ST01658
+  @$strerror_rent64& -> @ST01659
+  @$strerror_rent64 -> @ST01660
+  @$SNPRINTF_RENT64 -> @ST01661
+  @$snprintf_rent64 -> @ST01662
+  @$MALLOC_RENT64 -> @ST01663
+  @$malloc_rent64& -> @ST01664
+  @$malloc_rent64 -> @ST01665
+  $malloc_rent64: -> @ST01666
+  realloc_in_place -> @ST01667
+  posix_memalign -> @ST01668
+  independent_calloc -> @ST01669
+  independent_comalloc -> @ST01670
+  bulk_free -> @ST01671
+  malloc_trim -> @ST01672
+  malloc_footprint -> @ST01673
+  malloc_max_footprint -> @ST01674
+  malloc_footprint_limit -> @ST01675
+  malloc_set_footprint_limit -> @ST01676
+  malloc_stats -> @ST01677
+  malloc_usable_size -> @ST01678
+  @$MEMMOVE_RENT64 -> @ST01679
+  @$memmove_rent64 -> @ST01680
+  @$ASSERT_RENT64 -> @ST01681
+  @$assert_rent64 -> @ST01682
+  @$FPRINTF_RENT64 -> @ST01683
+  @$fprintf_rent64 -> @ST01684
+  @$errlst_rent64 -> @ST01685
+  $errlst_rent64: -> @ST01686
+  @$STRLCAT_RENT64 -> @ST01687
+  @$strlcat_rent64 -> @ST01688
+  inet_addr -> @ST01689
+  inet_aton -> @ST01690
+  @$FGETS_RENT64 -> @ST01691
+  @$fgets_rent64 -> @ST01692
+  @$resste& -> @ST01693
+  ___res_ext -> @ST01694
+  @$H_ERRNO_RENT64 -> @ST01695
+  @$h_errno_rent64 -> @ST01696
+  __servdata_init -> @ST01697
+  __servent_data_init -> @ST01698
+  __copy_servent -> @ST01699
+  __endservent_p -> @ST01700
+  __setservent_p -> @ST01701
+  __tcpip_data_file_name -> @ST01702
+  __tcpip_data_list -> @ST01703
+  @$itcpda& -> @ST01704
+  __find_tcpip_data -> @ST01705
+  __res_pquery -> @ST01706
+  __res_nclose -> @ST01707
+  __res_ourserver_p -> @ST01708
+  __res_nameinquery -> @ST01709
+  __res_queriesmatch -> @ST01710
+  __p_rcode -> @ST01711
+  __res_nquery -> @ST01712
+  __res_nsearch -> @ST01713
+  __res_nquerydomain -> @ST01714
+  __res_vinit -> @ST01715
+  __res_randomid -> @ST01716
+  __res_ndestroy -> @ST01717
+  __res_setservers -> @ST01718
+  __res_getservers -> @ST01719
+  @$REWIND_RENT64 -> @ST01720
+  @$rewind_rent64 -> @ST01721
+  __ns_msg_getflag -> @ST01722
+  __ns_parserr -> @ST01723
+  __p_type_syms -> @ST01724
+  __p_cert_syms -> @ST01725
+  __p_key_syms -> @ST01726
+  __p_class_syms -> @ST01727
+  @$resdbg& -> @ST01728
+  __fp_resstat -> @ST01729
+  __p_cdnname -> @ST01730
+  __p_cdname -> @ST01731
+  __p_fqnname -> @ST01732
+  __p_fqname -> @ST01733
+  __sym_ston -> @ST01734
+  __sym_ntos -> @ST01735
+  __sym_ntop -> @ST01736
+  __p_section -> @ST01737
+  __p_sockun -> @ST01738
+  __loc_aton -> @ST01739
+  __loc_ntoa -> @ST01740
+  __dn_count_labels -> @ST01741
+  __p_secstodate -> @ST01742
+  __res_nametoclass -> @ST01743
+  __res_nametotype -> @ST01744
+  @$STRLCPY_RENT64 -> @ST01745
+  @$strlcpy_rent64 -> @ST01746
+  getservbyport_r -> @ST01747
+  @$NAME6_RENT64 -> @ST01748
+  @$name6_rent64& -> @ST01749
+  @$name6_rent64 -> @ST01750
+  $name6_rent64: -> @ST01751
+  @$NSDISPATCH_RENT64 -> @ST01752
+  __nsdefaultsrc -> @ST01753
+  @$nsdispatch_rent64& -> @ST01754
+  @$nsdispatch_rent64 -> @ST01755
+  $nsdispatch_rent64: -> @ST01756
+  _nsdbtaddsrc -> @ST01757
+  _nsdbtput -> @ST01758
+  @$PTHREAD_MUTEX_TIMEDLOCK_RENT64 -> @ST01759
+  @$pthread_mutex_timedlock_rent64 -> @ST01760
+  @$@BPXCTW -> @ST01761
+  @$@bpxctw -> @ST01762
+  @$PTHREAD_CLEANUP_PUSH_RENT64 -> @ST01763
+  @$pthread_cleanup_push_rent64 -> @ST01764
+  @$GETPID_RENT64 -> @ST01765
+  @$getpid_rent64 -> @ST01766
+  @$FUNOPEN_RENT64 -> @ST01767
+  @$funopen_rent64 -> @ST01768
+  __progname -> @ST01769
+  @$CTIME_RENT64 -> @ST01770
+  @$ctime_rent64& -> @ST01771
+  @$ctime_rent64 -> @ST01772
+  $ctime_rent64: -> @ST01773
+  @$_WRITEV_RENT64 -> @ST01774
+  @$_writev_rent64 -> @ST01775
+  @$FPUTC_RENT64 -> @ST01776
+  @$fputc_rent64 -> @ST01777
+  @$FPUTS_RENT64 -> @ST01778
+  @$fputs_rent64 -> @ST01779
+  @$_EXIT_RENT64 -> @ST01780
+  __termsock -> @ST01781
+  __unset_estae -> @ST01782
+  @$_exit_rent64 -> @ST01783
+  @$@GETCNT -> @ST01784
+  @$@getcnt -> @ST01785
+  @$@GETSIR -> @ST01786
+  __mapIBMsignal -> @ST01787
+  @$@getsir& -> @ST01788
+  @$@getsir -> @ST01789
+  @$@MVSSGS -> @ST01790
+  @$@mvssgs -> @ST01791
+  @$@SESTAE -> @ST01792
+  @$@sestae& -> @ST01793
+  @$@sestae -> @ST01794
+  __abendcode -> @ST01795
+  __rsncode -> @ST01796
+  @$TRACEBACK_RENT64 -> @ST01797
+  @$traceback_rent64 -> @ST01798
+  @$VFPRINTF_RENT64 -> @ST01799
+  @$vfprintf_rent64& -> @ST01800
+  @$vfprintf_rent64 -> @ST01801
+  $vfprintf_rent64: -> @ST01802
+  @$cleanup_rent64 -> @ST01803
+  @$ABEND_RENT64 -> @ST01804
+  @$abend_rent64 -> @ST01805
+  @$RAISE_RENT64 -> @ST01806
+  @$raise_rent64 -> @ST01807
+  @$environ_rent64 -> @ST01808
+  $environ_rent64: -> @ST01809
+  @$__FCNTL_RENT64 -> @ST01810
+  @$__fcntl_rent64 -> @ST01811
+  __IBM_signal -> @ST01812
+  __IBM_errno -> @ST01813
+  __unlock_tip31 -> @ST01814
+  __socket_initialized -> @ST01815
+  __ibm_tcpip_errno -> @ST01816
+  __socket_global_area -> @ST01817
+  __socket_task_area -> @ST01818
+  __lock_tip31 -> @ST01819
+  @$STRTODX_RENT64 -> @ST01820
+  __afp_lshift -> @ST01821
+  __afp_rshift -> @ST01822
+  __afp_roundat -> @ST01823
+  @$strtodx_rent64 -> @ST01824
+  @$IOCTL_HFS_RENT64 -> @ST01825
+  @$ioctl_hfs_rent64 -> @ST01826
+  __close_bpx -> @ST01827
+  __write_bpx -> @ST01828
+  __read_bpx -> @ST01829
+  @$NEXTFD_RENT64 -> @ST01830
+  @$nextfd_rent64& -> @ST01831
+  @$nextfd_rent64 -> @ST01832
+  __hfp_ldbl_max -> @ST01833
+  __hfp_ldbl_min -> @ST01834
+  __hfp_ldbl_epsilon -> @ST01835
+  __hfp_huge_vall -> @ST01836
+  __hfp_dbl_max -> @ST01837
+  __hfp_dbl_min -> @ST01838
+  __hfp_dbl_epsilon -> @ST01839
+  __hfp_huge_val -> @ST01840
+  __hfp_flt_max -> @ST01841
+  __hfp_flt_min -> @ST01842
+  __hfp_flt_epsilon -> @ST01843
+  __hfp_huge_valf -> @ST01844
+  __bfp_ldbl_max -> @ST01845
+  __bfp_ldbl_min -> @ST01846
+  __bfp_ldbl_epsilon -> @ST01847
+  __bfp_huge_vall -> @ST01848
+  __bfp_dbl_max -> @ST01849
+  __bfp_dbl_min -> @ST01850
+  __bfp_dbl_epsilon -> @ST01851
+  __bfp_huge_val -> @ST01852
+  __bfp_flt_max -> @ST01853
+  __bfp_flt_min -> @ST01854
+  __bfp_flt_epsilon -> @ST01855
+  __bfp_huge_valf -> @ST01856
+  @$FWALK_RENT64 -> @ST01857
+  @$fwalk_rent64 -> @ST01858
+  @$__FSYNC_RENT64 -> @ST01859
+  @$__fsync_rent64 -> @ST01860
+  @$FTELL_RENT64 -> @ST01861
+  @$ftell_rent64 -> @ST01862
+  @$MAKEBUF_RENT64 -> @ST01863
+  @$makebuf_rent64 -> @ST01864
+  @$REFILL_RENT64 -> @ST01865
+  @$refill_rent64 -> @ST01866
+  @$FVWRITE_RENT64 -> @ST01867
+  @$fvwrite_rent64 -> @ST01868
+  @$FLAGS_RENT64 -> @ST01869
+  @$flags_rent64 -> @ST01870
+  @$GETDTABLESIZE_RENT64 -> @ST01871
+  @$getdtablesize_rent64 -> @ST01872
+  @$SCLOSE_RENT64 -> @ST01873
+  @$sclose_rent64 -> @ST01874
+  @$SSEEK_RENT64 -> @ST01875
+  @$sseek_rent64 -> @ST01876
+  @$SWRITE_RENT64 -> @ST01877
+  @$swrite_rent64 -> @ST01878
+  @$SREAD_RENT64 -> @ST01879
+  @$sread_rent64 -> @ST01880
+  @$_FLOCK_STUB_RENT64 -> @ST01881
+  @$_flock_stub_rent64 -> @ST01882
+  _flockfile_debug_stub -> @ST01883
+  _ftrylockfile -> @ST01884
+  ftrylockfile -> @ST01885
+  funlockfile -> @ST01886
+  __init_bsam_buffers -> @ST01887
+  __dfsms_open -> @ST01888
+  __lib_dynfre -> @ST01889
+  __dfsms_close -> @ST01890
+  __IO_init_done -> @ST01891
+  __dfsms_note -> @ST01892
+  @$opbsam& -> @ST01893
+  __bsam_info_giveme -> @ST01894
+  __bsam_info_takeit -> @ST01895
+  @$PARSEFN_RENT64 -> @ST01896
+  @$parsefn_rent64& -> @ST01897
+  @$parsefn_rent64 -> @ST01898
+  $parsefn_rent64: -> @ST01899
+  @$opnhfs& -> @ST01900
+  @$_SPINLOCK_STUB_RENT64 -> @ST01901
+  @$_spinlock_stub_rent64 -> @ST01902
+  _spinlock_stub -> @ST01903
+  _spinlock_debug_stub -> @ST01904
+  _spinunlock_stub -> @ST01905
+  _spinunlock_stub_debug -> @ST01906
+  @$PTHREAD_TESTCANCEL_RENT64 -> @ST01907
+  __testcancel -> @ST01908
+  @$pthread_testcancel_rent64 -> @ST01909
+  __pthread_testcancel_dummy -> @ST01910
+  @$INITIO_RENT64 -> @ST01911
+  @$initio_rent64& -> @ST01912
+  @$initio_rent64 -> @ST01913
+  @$COLLATE_RENT64 -> @ST01914
+  __collate_chain_pri_table -> @ST01915
+  __collate_char_pri_table_ptr -> @ST01916
+  __collate_substitute_table_ptr -> @ST01917
+  __collate_substitute_nontrivial -> @ST01918
+  @$collate_rent64 -> @ST01919
+  $collate_rent64: -> @ST01920
+  __collate_substitute -> @ST01921
+  __collate_lookup -> @ST01922
+  __collate_strdup -> @ST01923
+  __collate_err -> @ST01924
+  @$COLLCMP_RENT64 -> @ST01925
+  @$collcmp_rent64& -> @ST01926
+  @$collcmp_rent64 -> @ST01927
+  @$WCTYPE_RENT64 -> @ST01928
+  @$wctype_rent64 -> @ST01929
+  @$WCRTOMB_RENT64 -> @ST01930
+  @$wcrtomb_rent64& -> @ST01931
+  @$wcrtomb_rent64 -> @ST01932
+  @$SPRINTF_RENT64 -> @ST01933
+  @$sprintf_rent64 -> @ST01934
+  @$MBRTOWC_RENT64 -> @ST01935
+  __mbrtowc -> @ST01936
+  @$mbrtowc_rent64& -> @ST01937
+  @$mbrtowc_rent64 -> @ST01938
+  @$@SIGPRM -> @ST01939
+  @$@sigprm -> @ST01940
+  @$@CLDISP -> @ST01941
+  @$@cldisp -> @ST01942
+  @$__TIMEDWAIT_RENT64 -> @ST01943
+  @$__timedwait_rent64 -> @ST01944
+  @$PTHREAD_SETCANCELSTATE_RENT64 -> @ST01945
+  __bpx_pthread_setintr -> @ST01946
+  @$pthread_setcancelstate_rent64 -> @ST01947
+  @$SIGS_RENT64 -> @ST01948
+  @$sigs_rent64& -> @ST01949
+  @$sigs_rent64 -> @ST01950
+  $sigs_rent64: -> @ST01951
+  @$VMLOCK_RENT64 -> @ST01952
+  @$vmlock_rent64& -> @ST01953
+  @$vmlock_rent64 -> @ST01954
+  __clean_futexes -> @ST01955
+  __bpx_pthread_cancel -> @ST01956
+  __bpx_pthread_detach -> @ST01957
+  __bpx_pthread_kill -> @ST01958
+  __bpx_pthread_self -> @ST01959
+  @$@clone& -> @ST01960
+  _spinulock_debug -> @ST01961
+  _clone_get_robust_list -> @ST01962
+  @$__LOCK_RENT64 -> @ST01963
+  @$__lock_rent64 -> @ST01964
+  @$EXIT_RENT64 -> @ST01965
+  @$exit_rent64 -> @ST01966
+  @$PTHREAD_RWLOCK_TIMEDRDLOCK_RENT64 -> @ST01967
+  @$pthread_rwlock_timedrdlock_rent64 -> @ST01968
+  __bpx_cond_post -> @ST01969
+  __bpx_cond_setup -> @ST01970
+  __bpx_cond_wait -> @ST01971
+  @$@futex& -> @ST01972
+  @$PTHREAD_RWLOCK_TIMEDWRLOCK_RENT64 -> @ST01973
+  @$pthread_rwlock_timedwrlock_rent64 -> @ST01974
+  @$PTHREAD_RWLOCK_TRYWRLOCK_RENT64 -> @ST01975
+  @$pthread_rwlock_trywrlock_rent64 -> @ST01976
+  @$PTHREAD_RWLOCK_TRYRDLOCK_RENT64 -> @ST01977
+  @$pthread_rwlock_tryrdlock_rent64 -> @ST01978
+  @$ATEXIT_RENT64 -> @ST01979
+  @$atexit_rent64& -> @ST01980
+  @$atexit_rent64 -> @ST01981
+  __cxa_atexit -> @ST01982
+  @$@BPXPTC -> @ST01983
+  @$@bpxptc -> @ST01984
+  __bpx_pthread_exit_and_get -> @ST01985
+  __bpx_pthread_join -> @ST01986
+  __bpx_pthread_quiesce -> @ST01987
+  __bpx_pthread_security_np -> @ST01988
+  __bpx_pthread_setintr_type -> @ST01989
+  __bpx_pthread_tag_np -> @ST01990
+  __bpx_pthread_testintr -> @ST01991
+  __bpx_cond_cancel -> @ST01992
+  __bpx_shmem_mutex_condvar -> @ST01993
+  @$@SYSCNF -> @ST01994
+  @$@syscnf -> @ST01995
+  @$NUNINIT -> @ST01996
+  __wcsnrtombs -> @ST01997
+  __mbsnrtowcs -> @ST01998
+  __mbsinit -> @ST01999
+  @$nuninit -> @ST02000
+  $nuninit: -> @ST02001
+  @$STRCOLL_RENT64 -> @ST02002
+  @$strcoll_rent64 -> @ST02003
+  @$@dfsms& -> @ST02004
+  __os_tput -> @ST02005
+  __os_tget -> @ST02006
+  __dfsms_get -> @ST02007
+  __dfsms_put -> @ST02008
+  __dfsms_read -> @ST02009
+  __dfsms_write -> @ST02010
+  __dfsms_check -> @ST02011
+  __dfsms_stow -> @ST02012
+  __dfsms_point -> @ST02013
+  __dfsms_devtype -> @ST02014
+  __dfsms_locate -> @ST02015
+  __dfsms_catalog -> @ST02016
+  __dfsms_rename -> @ST02017
+  __dfsms_rdjfcb -> @ST02018
+  __free_bsam_bytes -> @ST02019
+  @$rdbsam& -> @ST02020
+  @$LSEEK_RENT64 -> @ST02021
+  @$lseek_rent64 -> @ST02022
+  @$WHATBUF_RENT64 -> @ST02023
+  @$whatbuf_rent64 -> @ST02024
+  @$ISATTY_RENT64 -> @ST02025
+  @$isatty_rent64 -> @ST02026
+  @$__FSTAT_RENT64 -> @ST02027
+  @$__fstat_rent64 -> @ST02028
+  @$FINDFP_RENT64 -> @ST02029
+  @$findfp_rent64& -> @ST02030
+  @$findfp_rent64 -> @ST02031
+  $findfp_rent64: -> @ST02032
+  f_prealloc -> @ST02033
+  @$STRTOAFP_RENT64 -> @ST02034
+  @$strtoafp_rent64 -> @ST02035
+  __socket_subtask -> @ST02036
+  __socket_adsname -> @ST02037
+  __socket_tcpname -> @ST02038
+  __socket_maxsno -> @ST02039
+  @$inisoc& -> @ST02040
+  @$KILL_RENT64 -> @ST02041
+  @$kill_rent64 -> @ST02042
+  @$@DTOA@D -> @ST02043
+  @$@dtoa@d& -> @ST02044
+  @$@dtoa@d -> @ST02045
+  @$WSETUP_RENT64 -> @ST02046
+  @$wsetup_rent64 -> @ST02047
+  @$DMISC_RENT64 -> @ST02048
+  __Bfree_D2A -> @ST02049
+  __cmp_D2A -> @ST02050
+  @$dmisc_rent64 -> @ST02051
+  __rv_alloc_D2A -> @ST02052
+  __nrv_alloc_D2A -> @ST02053
+  __quorem_D2A -> @ST02054
+  @$_LDTOA_RENT64 -> @ST02055
+  @$_ldtoa_rent64& -> @ST02056
+  @$_ldtoa_rent64 -> @ST02057
+  $_ldtoa_rent64: -> @ST02058
+  @$_HDTOA_RENT64 -> @ST02059
+  @$_hdtoa_rent64 -> @ST02060
+  @$_DTOA_RENT64 -> @ST02061
+  @$_dtoa_rent64& -> @ST02062
+  @$_dtoa_rent64 -> @ST02063
+  $_dtoa_rent64: -> @ST02064
+  @$WCSRTOMBS_RENT64 -> @ST02065
+  @$wcsrtombs_rent64& -> @ST02066
+  @$wcsrtombs_rent64 -> @ST02067
+  @$LOCALECONV_RENT64 -> @ST02068
+  __nlocale_changed -> @ST02069
+  __mlocale_changed -> @ST02070
+  @$localeconv_rent64& -> @ST02071
+  @$localeconv_rent64 -> @ST02072
+  $localeconv_rent64: -> @ST02073
+  @$REALLOCF_RENT64 -> @ST02074
+  @$reallocf_rent64 -> @ST02075
+  @$@@FPLEVL -> @ST02076
+  @$@@fplevl -> @ST02077
+  @$LOCALTIME_RENT64 -> @ST02078
+  @$localtime_rent64& -> @ST02079
+  @$localtime_rent64 -> @ST02080
+  $localtime_rent64: -> @ST02081
+  tzsetwall -> @ST02082
+  time2posix -> @ST02083
+  posix2time -> @ST02084
+  @$ASCTIME_RENT64 -> @ST02085
+  @$asctime_rent64& -> @ST02086
+  @$asctime_rent64 -> @ST02087
+  $asctime_rent64: -> @ST02088
+  @$DLFUNC_RENT64 -> @ST02089
+  @$dlfunc_rent64 -> @ST02090
+  @$BCOPY_RENT64 -> @ST02091
+  @$bcopy_rent64 -> @ST02092
+  @$PUTC_RENT64 -> @ST02093
+  @$putc_rent64 -> @ST02094
+  @$WBUF_RENT64 -> @ST02095
+  @$wbuf_rent64 -> @ST02096
+  _ns_flagdata -> @ST02097
+  __ns_skiprr -> @ST02098
+  @$mtxres& -> @ST02099
+  in6addr_linklocal_allnodes -> @ST02100
+  in6addr_nodelocal_allnodes -> @ST02101
+  @$ISSETUGID_RENT64 -> @ST02102
+  @$issetugid_rent64 -> @ST02103
+  @$SETBUF_RENT64 -> @ST02104
+  @$setbuf_rent64 -> @ST02105
+  @$PSELECT_RENT64 -> @ST02106
+  @$pselect_rent64 -> @ST02107
+  __pselect -> @ST02108
+  @$NS_SAMEDOMAIN_RENT64 -> @ST02109
+  @$ns_samedomain_rent64 -> @ST02110
+  @$RES_DATA_RENT64 -> @ST02111
+  @$res_data_rent64& -> @ST02112
+  @$res_data_rent64 -> @ST02113
+  $res_data_rent64: -> @ST02114
+  __p_query -> @ST02115
+  __res_isourserver -> @ST02116
+  __res_querydomain -> @ST02117
+  __hostalias -> @ST02118
+  _res_hostalias -> @ST02119
+  @$FOPEN_RENT64 -> @ST02120
+  @$fopen_rent64 -> @ST02121
+  @$FGETC_RENT64 -> @ST02122
+  @$fgetc_rent64 -> @ST02123
+  @$getsve& -> @ST02124
+  getservent_r -> @ST02125
+  @$HERROR_RENT64 -> @ST02126
+  h_errlist -> @ST02127
+  @$herror_rent64 -> @ST02128
+  $herror_rent64: -> @ST02129
+  @$NS_NAME_RENT64 -> @ST02130
+  @$ns_name_rent64 -> @ST02131
+  __ns_name_ntol -> @ST02132
+  __ns_stretoa -> @ST02133
+  __ns_stratoe -> @ST02134
+  __ns_strnetoa -> @ST02135
+  __ns_strnatoe -> @ST02136
+  @$RGET_RENT64 -> @ST02137
+  @$rget_rent64 -> @ST02138
+  __res_freeupdrec -> @ST02139
+  @$SETVBUF_RENT64 -> @ST02140
+  @$setvbuf_rent64 -> @ST02141
+  inet_nsap_addr -> @ST02142
+  inet_nsap_ntoa -> @ST02143
+  @$STRFTIME_RENT64 -> @ST02144
+  @$strftime_rent64& -> @ST02145
+  @$strftime_rent64 -> @ST02146
+  $strftime_rent64: -> @ST02147
+  @$_ONCE_STUB_RENT64 -> @ST02148
+  @$_once_stub_rent64 -> @ST02149
+  @$ACCESS_RENT64 -> @ST02150
+  @$access_rent64 -> @ST02151
+  @$LNUMERIC_RENT64 -> @ST02152
+  @$lnumeric_rent64& -> @ST02153
+  @$lnumeric_rent64 -> @ST02154
+  $lnumeric_rent64: -> @ST02155
+  __numeric_load_locale -> @ST02156
+  @$LMONETARY_RENT64 -> @ST02157
+  @$lmonetary_rent64& -> @ST02158
+  @$lmonetary_rent64 -> @ST02159
+  $lmonetary_rent64: -> @ST02160
+  __monetary_load_locale -> @ST02161
+  @$GDTOA_RENT64 -> @ST02162
+  __pow5mult_D2A -> @ST02163
+  __trailz_D2A -> @ST02164
+  __bigtens_D2A -> @ST02165
+  __tens_D2A -> @ST02166
+  __b2d_D2A -> @ST02167
+  __diff_D2A -> @ST02168
+  __hi0bits_D2A -> @ST02169
+  __i2b_D2A -> @ST02170
+  __lshift_D2A -> @ST02171
+  __mult_D2A -> @ST02172
+  __multadd_D2A -> @ST02173
+  @$gdtoa_rent64 -> @ST02174
+  @$MISC_RENT64 -> @ST02175
+  __tinytens_D2A -> @ST02176
+  @$misc_rent64& -> @ST02177
+  @$misc_rent64 -> @ST02178
+  $misc_rent64: -> @ST02179
+  __lo0bits_D2A -> @ST02180
+  __d2b_D2A -> @ST02181
+  strcp_D2A -> @ST02182
+  @$@BPXKLL -> @ST02183
+  @$@bpxkll -> @ST02184
+  @$@PFSCTL -> @ST02185
+  @$@pfsctl -> @ST02186
+  @$ibmsct& -> @ST02187
+  bpx_selectex -> @ST02188
+  EZASMI_selectex -> @ST02189
+  @$BZERO_RENT64 -> @ST02190
+  @$bzero_rent64 -> @ST02191
+  @$FLDATA_RENT64 -> @ST02192
+  @$fldata_rent64& -> @ST02193
+  @$fldata_rent64 -> @ST02194
+  @$LIBPRINTF_RENT64 -> @ST02195
+  @$libprintf_rent64 -> @ST02196
+  @$WTO_RENT64 -> @ST02197
+  @$wto_rent64& -> @ST02198
+  @$wto_rent64 -> @ST02199
+  @$DYNALL_RENT64 -> @ST02200
+  @$dynall_rent64 -> @ST02201
+  @$##SVC99 -> @ST02202
+  @$##svc99 -> @ST02203
+  @$STRCSPN_RENT64 -> @ST02204
+  @$strcspn_rent64 -> @ST02205
+  @$OSDDINFO_RENT64 -> @ST02206
+  @$osddinfo_rent64& -> @ST02207
+  @$osddinfo_rent64 -> @ST02208
+  @$DDNFIND_RENT64 -> @ST02209
+  @$ddnfind_rent64& -> @ST02210
+  @$ddnfind_rent64 -> @ST02211
+  @$GMISC_RENT64 -> @ST02212
+  @$gmisc_rent64 -> @ST02213
+  @$FIX_GROUPING_RENT64 -> @ST02214
+  @$fix_grouping_rent64 -> @ST02215
+  @$LDPART_RENT64 -> @ST02216
+  @$ldpart_rent64 -> @ST02217
+  @$TIMELOCAL_RENT64 -> @ST02218
+  @$timelocal_rent64& -> @ST02219
+  @$timelocal_rent64 -> @ST02220
+  @$PATHLOCALE_RENT64 -> @ST02221
+  @$pathlocale_rent64 -> @ST02222
+  __detect_path_locale -> @ST02223
+
+                 P S E U D O   R E G I S T E R   M A P
+
+            CLASS
+           OFFSET  NAME                TYPE    LENGTH   SECTION
+                0             @@STDERP PART       8
+                8             @ST00001 PART       1
+               10             @crc32c& PART    2200
+             2210                @lz4& PART     200
+             2410             @ST00067 PART     2B0
+             26C0              @lz4hc& PART     200
+             28C0             @rdaddr& PART    2348
+             4C08              @rdavl& PART     6D8
+             52E0             @ST00133 PART     400
+             56E0              @rdbuf& PART     200
+             58E0             @ST00169 PART     200
+             5AE0               @rddl& PART     200
+             5CE0             @ST00174 PART     200
+             5EE0             @ST00177 PART     200
+             60E0             @ST00225 PART      20
+             6100             @ST00235 PART       4
+             6108             @ST00262 PART      48
+             6150             @ST00264 PART      38
+             6188             @ST00275 PART      30
+             61B8             @ST00310 PART      58
+             6210             @ST00329 PART      40
+             6250             @ST00330 PART      30
+             6280             @ST00331 PART       4
+             6284             @ST00332 PART       4
+             6288             @ST00333 PART      28
+             62B0             @ST00334 PART     970
+             6C20             @ST00455 PART     800
+             7420             @ST00544 PART     6D8
+             7AF8             @@CRNTLC PART       8
+             7B00             @ST00564 PART     6D8
+             81D8             @ST00581 PART     6D8
+             88B0             @ST00592 PART     6D8
+             8F88             @ST00651 PART      28
+             8FB0             @ST00652 PART     AE0
+             9A90             @ST00693 PART     6D8
+             A168             @ST00700 PART     6D8
+             A840             @ST00753 PART     6D8
+             AF18             @ST00788 PART   19D80
+            24C98             @ST00837 PART     6D8
+            25370             @ST00844 PART     6D8
+            25A48             @ST00862 PART     768
+            261B0             @ST00890 PART     CD8
+            26E88             @ST00895 PART     6D8
+            27560             @ST00916 PART     6D8
+            27C38             @ST00930 PART     6D8
+            28310             @ST00951 PART     6D8
+            289E8             @ST00975 PART     6D8
+            290C0             @ST00990 PART     6D8
+            29798             @ST00998 PART     3B0
+            29B48             @ST01003 PART     6D8
+            2A220             @ST01038 PART     700
+            2A920             @ST01052 PART     6D8
+            2AFF8             @ST01056 PART       1
+            2B000             @ST01064 PART     6D8
+            2B6D8             @ST01111 PART     6D8
+            2BDB0             @ST01120 PART     6D8
+            2C488             @ST01130 PART       4
+            2C490             @ST01131 PART     8F8
+            2CD88             @ST01147 PART      30
+            2CDB8             @ST01148 PART     870
+            2D628             @ST01163 PART     6D8
+            2DD00             @ST01205 PART     6D8
+            2E3D8             @ST01217 PART     6D8
+            2EAB0             @ST01221 PART     6D8
+            2F188             @ST01242 PART     6D8
+            2F860             @ST01251 PART     7A8
+            30008             @ST01262 PART     6D8
+            306E0             @ST01276 PART     798
+            30E78             @ST01281 PART     6D8
+            31550             @ST01296 PART     6D8
+            31C28             @ST01301 PART     6D8
+            32300             @ST01309 PART       8
+            32308             @ST01310 PART     6D8
+            329E0             @ST01318 PART     6D8
+            330B8             @rdlist& PART     208
+            332C0             @@STDOUP PART       8
+            332C8              @rdlog& PART     6D8
+            339A0              @rdmap& PART     220
+            33BC0             @ST01336 PART     200
+            33DC0             @ST01340 PART     210
+            33FD0             @rdrand& PART     220
+            341F0             @ST01342 PART     200
+            343F0             @ST01344 PART     200
+            345F0             @ST01354 PART       1
+            345F8             @ST01355 PART     6D8
+            34CD0             @ST01359 PART     200
+            34ED0             @ST01363 PART     200
+            350D0             @regexp& PART     200
+            352D0             @snappy& PART     6D8
+            359A8             @ST01387 PART     208
+            35BB0             @ST01401 PART     220
+            35DD0             @ST01425 PART       0
+            35DD0             @ST01426 PART       0
+            35DD0             @ST01427 PART       0
+            35DD0             @ST01428 PART       4
+            35DD8             @ST01437 PART       8
+            35DE0             @ST01438 PART     800
+            365E0             @ST01440 PART       8
+            365E8             @ST01468 PART       8
+            365F0             @ST01486 PART     840
+            36E30             @ST01489 PART       8
+            36E38             @ST01503 PART       4
+            36E40             @ST01504 PART       8
+            36E48             @ST01507 PART     1B0
+            36FF8             @@DFRNLC PART    1080
+            38078             @@COLERR PART       4
+            38080             @ST01511 PART     610
+            38690             @ST01522 PART     470
+            38B00             @ST01530 PART       8
+            38B08             @ST01537 PART       4
+            38B0C             @ST01547 PART       4
+            38B10                __VSE PART       4
+            38B14                __CMS PART       4
+            38B18              __MVS38 PART       4
+            38B1C              __NOBPX PART       4
+            38B20              environ PART       8
+            38B28             @@CLEANU PART       8
+            38B30                 __OE PART       4
+            38B34             @ST01585 PART       4
+            38B38             @ST01590 PART       4
+            38B40             @ST01591 PART    1448
+            39F88             @ST01606 PART      40
+            39FC8             @ST01613 PART       8
+            39FD0             @ST01623 PART       8
+            39FD8             @ST01631 PART     108
+            3A0E0             @ST01651 PART      78
+            3A158             @ST01652 PART      78
+            3A1D0             @ST01655 PART     138
+            3A308             sys_nerr PART       4
+            3A310             @@serrls PART     310
+            3A620             @ST01659 PART     800
+            3AE20             @ST01664 PART     4B0
+            3B2D0                errno PART       4
+            3B2D8                 _res PART     228
+            3B500             @ST01693 PART      10
+            3B510              H#ERRNO PART       4
+            3B518             @ST01702 PART    1000
+            3C518             @ST01703 PART       8
+            3C520             @ST01704 PART      18
+            3C538             @@RESOPC PART      80
+            3C5B8             @@IN6ADA PART      10
+            3C5C8             @ST01724 PART     4B0
+            3CA78             @ST01725 PART      90
+            3CB08             @ST01726 PART      90
+            3CB98             @ST01727 PART      C0
+            3CC58             @ST01728 PART      B8
+            3CD10             @ST01749 PART    2188
+            3EE98             @ST01753 PART      20
+            3EEB8             @ST01754 PART      98
+            3EF50             @ST01769 PART       8
+            3EF58             @ST01771 PART      18
+            3EF70             @ST01788 PART      28
+            3EF98             @ST01793 PART       8
+            3EFA0             @ST01800 PART      20
+            3EFC0               __CICS PART       4
+            3EFC4                __MVS PART       4
+            3EFC8             @ST01812 PART       4
+            3EFCC             @ST01813 PART       4
+            3EFD0              __tip31 PART       4
+            3EFD4             @ST01815 PART       4
+            3EFD8             @ST01816 PART       4
+            3EFE0             @ST01817 PART       8
+            3EFE8             @ST01818 PART       8
+            3EFF0             @ST01831 PART     7F8
+            3F7E8             @ST01833 PART      10
+            3F7F8             @ST01834 PART      10
+            3F808             @ST01835 PART      10
+            3F818             @ST01836 PART      10
+            3F828             @ST01837 PART       8
+            3F830             @ST01838 PART       8
+            3F838             @ST01839 PART       8
+            3F840             @ST01840 PART       8
+            3F848             @ST01841 PART       4
+            3F84C             @ST01842 PART       4
+            3F850             @ST01843 PART       4
+            3F854             @ST01844 PART       4
+            3F858             @ST01845 PART      10
+            3F868             @ST01846 PART      10
+            3F878             @ST01847 PART      10
+            3F888             @ST01848 PART      10
+            3F898             @ST01849 PART       8
+            3F8A0             @ST01850 PART       8
+            3F8A8             @ST01851 PART       8
+            3F8B0             @ST01852 PART       8
+            3F8B8             @ST01853 PART       4
+            3F8BC             @ST01854 PART       4
+            3F8C0             @ST01855 PART       4
+            3F8C4             @ST01856 PART       4
+            3F8C8              @@SGLUE PART      18
+            3F8E0             @ST01891 PART       4
+            3F8E8             @ST01893 PART      58
+            3F940               _style PART       8
+            3F948             @ST01897 PART     C00
+            40548             @ST01900 PART      28
+            40570              __fd0nm PART       0
+            40570              __fd1nm PART       0
+            40570              __fd2nm PART       0
+            40570             __fd0atr PART       0
+            40570             __fd1atr PART       0
+            40570             __fd2atr PART       0
+            40570              __iocvt PART       8
+            40578             @ST01912 PART       8
+            40580             @ST01915 PART       8
+            40588             @ST01916 PART       8
+            40590             @ST01917 PART       8
+            40598             @ST01918 PART       4
+            405A0             @ST01926 PART       8
+            405A8             @@WCR2MB PART       8
+            405B0             @ST01931 PART      80
+            40630             @ST01936 PART       8
+            40638             @ST01937 PART      80
+            406B8             @ST01949 PART     800
+            40EB8             @ST01953 PART       8
+            40EC0             @ST01960 PART      50
+            40F10             @ST01972 PART      70
+            40F80             @ST01980 PART     438
+            413B8             @ST01997 PART       8
+            413C0             @ST01998 PART       8
+            413C8             @ST01999 PART       8
+            413D0             @ST02004 PART     1C8
+            41598             @ST02020 PART      F0
+            41688             @@STDINP PART       8
+            41690                 __sF PART     1C8
+            41858             @ST02030 PART    1AB0
+            43308             @ST02036 PART       9
+            43311             @ST02037 PART       9
+            4331A             @ST02038 PART       9
+            43324             @ST02039 PART       4
+            43328             @ST02040 PART      28
+            43350             @ST02044 PART      58
+            433A8             @ST02056 PART      30
+            433D8             @ST02062 PART      18
+            433F0             @ST02066 PART      80
+            43470             @ST02069 PART       4
+            43474             @ST02070 PART       4
+            43478             @ST02071 PART      60
+            434D8               tzname PART      10
+            434E8             @ST02079 PART    90E0
+            4C5C8             @ST02086 PART      98
+            4C660             @ST02097 PART      80
+            4C6E0             @ST02099 PART     3F8
+            4CAD8             @ST02100 PART      10
+            4CAE8             @ST02101 PART      10
+            4CAF8             @@IN6ADL PART      10
+            4CB08             @ST02112 PART     408
+            4CF10              @$jnme& PART      10
+            4CF20             @ST02124 PART     A80
+            4D9A0               h_nerr PART       4
+            4D9A8             @ST02127 PART      28
+            4D9D0             @@NSA2ET PART     400
+            4DDD0             @@NSE2AT PART     400
+            4E1D0             @ST02145 PART      80
+            4E250             @ST02153 PART      48
+            4E298             @ST02158 PART     168
+            4E400             @ST02165 PART      18
+            4E418             @ST02166 PART      B8
+            4E4D0             @ST02176 PART      18
+            4E4E8             @ST02177 PART     9B0
+            4EE98             @ST02187 PART      10
+            4EEA8             @ST02193 PART     408
+            4F2B0             @ST02198 PART      28
+            4F2D8             @ST02207 PART      78
+            4F350             @ST02210 PART      28
+            4F378             @@PTHLCL PART       8
+            4F380             @ST02219 PART     1E0

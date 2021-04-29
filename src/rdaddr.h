@@ -26,6 +26,15 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+ /*
+  * ASG_LK: MODIFICATION HISTORY
+  * ==================================================================================
+  * TAG          |   DATE (DD/MM/YYYY)    |   JIRA    |   DESCRIPTION
+  * ==================================================================================
+  * ASG_LK01         22/04/2021              -           SYSTEM-C Include
+  * ==================================================================================
+ */
+
 #ifndef _RDADDR_H_
 #define _RDADDR_H_
 
@@ -42,6 +51,10 @@
 #if defined(__FreeBSD__) || defined(_AIX) || defined(__OpenBSD__)
 #include <sys/socket.h>
 #endif
+
+#ifdef SYSC                 /* ASG_LK01: SYSTEM-C Include */
+#include <sys/socket.h>     
+#endif                      /* ASG_LK01: SYSTEM-C Include */
 
 /**
  * rd_sockaddr_inx_t is a union for either ipv4 or ipv6 sockaddrs.

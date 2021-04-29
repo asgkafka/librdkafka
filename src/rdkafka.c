@@ -26,6 +26,14 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+/*
+ * ASG_LK: MODIFICATION HISTORY
+ * ==================================================================================
+ * TAG          |   DATE (DD/MM/YYYY)    |   JIRA    |   DESCRIPTION
+ * ==================================================================================
+ * ASG_LK01         22/04/2021              -           Disable SSL/SASL for STAGE#1
+ * ==================================================================================
+*/
 
 #define _GNU_SOURCE
 #include <errno.h>
@@ -186,7 +194,9 @@ static void rd_kafka_global_cnt_incr (void) {
 #if WITH_SSL
                 rd_kafka_ssl_init();
 #endif
+#if !defined(SYSC) || (defined(SYSC) && WITHSEC)    /* ASG_LK01: ZNOSEC */
                 rd_kafka_sasl_global_init();
+#endif                                              /* ASG_LK01: ZNOSEC */
 	}
 	mtx_unlock(&rd_kafka_global_lock);
 }
@@ -199,12 +209,14 @@ static void rd_kafka_global_cnt_decr (void) {
 	mtx_lock(&rd_kafka_global_lock);
 	rd_kafka_assert(NULL, rd_kafka_global_cnt > 0);
 	rd_kafka_global_cnt--;
+#if !defined(SYSC) || (defined(SYSC) && WITHSEC)    /* ASG_LK01: ZNOSEC */
 	if (rd_kafka_global_cnt == 0) {
                 rd_kafka_sasl_global_term();
 #if WITH_SSL
                 rd_kafka_ssl_term();
 #endif
 	}
+#endif                                              /* ASG_LK01: ZNOSEC */
 	mtx_unlock(&rd_kafka_global_lock);
 }
 
@@ -930,10 +942,12 @@ void rd_kafka_destroy_final (rd_kafka_t *rk) {
         rd_kafka_wrlock(rk);
         rd_kafka_wrunlock(rk);
 
+#if !defined(SYSC) || (defined(SYSC) && WITHSEC)    /* ASG_LK01: ZNOSEC */
         /* Terminate SASL provider */
         if (rk->rk_conf.sasl.provider)
                 rd_kafka_sasl_term(rk);
 
+#endif                                              /* ASG_LK01: ZNOSEC */
         rd_kafka_timers_destroy(&rk->rk_timers);
 
         rd_kafka_dbg(rk, GENERIC, "TERMINATE", "Destroying op queues");
@@ -2302,6 +2316,7 @@ rd_kafka_t *rd_kafka_new (rd_kafka_type_t type, rd_kafka_conf_t *app_conf,
         }
 
 
+#if !defined(SYSC) || (defined(SYSC) && WITHSEC)    /* ASG_LK01: ZNOSEC */
         if (rk->rk_conf.security_protocol == RD_KAFKA_PROTO_SASL_SSL ||
             rk->rk_conf.security_protocol == RD_KAFKA_PROTO_SASL_PLAINTEXT) {
                 /* Select SASL provider */
@@ -2333,6 +2348,7 @@ rd_kafka_t *rd_kafka_new (rd_kafka_type_t type, rd_kafka_conf_t *app_conf,
         }
 #endif
 
+#endif                                              /* ASG_LK01: ZNOSEC */
         if (type == RD_KAFKA_CONSUMER) {
                 rd_kafka_assignment_init(rk);
 
@@ -2536,10 +2552,12 @@ fail:
          */
         rd_atomic32_set(&rk->rk_terminate, RD_KAFKA_DESTROY_F_TERMINATE);
 
+#if !defined(SYSC) || (defined(SYSC) && WITHSEC)    /* ASG_LK01: ZNOSEC */
         /* Terminate SASL provider */
         if (rk->rk_conf.sasl.provider)
                 rd_kafka_sasl_term(rk);
 
+#endif                                              /* ASG_LK01: ZNOSEC */
         if (rk->rk_background.thread) {
                 int res;
                 thrd_join(rk->rk_background.thread, &res);

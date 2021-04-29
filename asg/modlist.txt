@@ -1,0 +1,37 @@
+*****************************************
+MODIFICATION LIST
+*****************************************
+rdkafka.c
+rdkafka_broker.c  (..)
+rdkafka_request.c
+rdkafka_transport.c
+queue.h
+rdaddr.h
+rdatomic.h
+rdendian.h
+rdkafka_buf.h
+rdposix.h
+
+../confih.h
+
+NOT-CHANGED
+----------
+rddl.c
+rdkafka_buf.c - u2a to be moved
+
+
+
+
+MODIFICATION TEMPLATE:
+======================
+
+/*
+ * ASG_LK: MODIFICATION HISTORY
+ * ==================================================================================
+ * TAG          |   DATE (DD/MM/YYYY)    |   JIRA    |   DESCRIPTION
+ * ==================================================================================
+ * ASG_LK01         22/04/2021              -           SYSTEM-C
+ * ==================================================================================
+*/
+#if !defined(SYSC) || (defined(SYSC) && WITHSEC)    /* ASG_LK01: SYSTEM-C */
+#endif                                              /* ASG_LK01: ZNOSEC */

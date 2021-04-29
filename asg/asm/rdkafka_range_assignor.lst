@@ -1,0 +1,2279 @@
+                                            Dignus Assembler Option Summary                                                Page    1 
+                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+
+Overriding Parameters- -LC:\DIGNUS\MACLIB\&m -oc:../asg/obj/rdkafka_range_assignor.obj ../asg/asm/rdkafka_range_assignor.asm
+  Process Statements-       DUPALIAS
+
+Options for this Assembly             Source
+-------------------------             -------------------------
+   NOADATA                            {Default}
+     ALIGN                            {Default}
+     BATCH                            {Default}
+   NOCOMPATCASE                       {Default}
+   NOCOMPATMACROCASE                  {Default}
+   NOCOMPATSYSLIST                    {Default}
+   NOCOMPATLITTYPE                    {Default}
+   NOCOMPATSYSPATH                    {Default}
+     DXREF                            {Default}
+   NOMAPAT                            {Default}
+     DUPALIAS                         {*PROCESS}
+   NOVSELIBR                          {Default}
+     ESD                              {Default}
+     ERRFMT(microsoft)                {Default}
+     FLAG(0,ALIGN,CONT,NOEXLITW,NOPAGE0,PUSH,RECORD,NOSUBSTR,NOIMPLEN,USING0)
+                                      {Default}
+   NOFOLD                             {Default}
+   NOGOFF                             {Default}
+     LANGUAGE(EN)                     {Default}
+     LINECOUNT(55)                    {Default}
+     LIST(&d&p&f.lst)                 {Default}
+     MACCPYEXT(mac)                   {Default}
+     MXREF                            {Default}
+     OBJECT(c:..\asg\obj\rdkafka_range_assignor.obj)
+                                      CMDLINE
+     OPTABLE(UNI,NOLIST)              {Default}
+     OPTIONSUMMARY                    {Default}
+   NOPCONTROL                         {Default}
+   NOPESTOP                           {Default}
+   NOPROFILE                          {Default}
+   NORA2                              {Default}
+     RLD                              {Default}
+     RENT                             {Default}
+   NORXREF                            {Default}
+     SECTALGN(8)                      {Default}
+     SIZE(MAX)                        {Default}
+   NOSUPRWARN                         {Default}
+     SYSPARM()                        {Default}
+     TERM(WIDE)                       {Default}
+     THREAD                           {Default}
+   NOTRANSLATE                        {Default}
+     TYPECHECK(MAGNITUDE,REGISTER)    {Default}
+     USING(NOLIMIT,MAP,WARN(15))      {Default}
+   NONXREF                            {Default}
+   NOXREF                             {Default}
+     XSD                              {Default}
+
+                                            Dignus Assembler Option Summary                                                Page    2 
+                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+Libraries in Search Order:
+       CMDLINE      C:\DIGNUS\MACLIB\&m
+                                              External Symbol Dictionary                                                   Page    3 
+Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                                      DASM V1.95.14 2021/04/29 12:43 
+@@ZARCH#  WX 00000001                              00
+@RDKAFKA_RANGE_ASSIGNOR
+          SD 00000002 00000000 000005C0            07  @CODE
+rd_kafka_topic_partition_list_add_range
+          ER 00000003                                  RD_KAFKA_TOPIC_PARTITION_LIST_ADD_RANGE
+rd_list_sort
+          ER 00000004                                  RD_LIST_SORT
+rd_kafka_group_member_cmp
+          ER 00000005                                  RD_KAFKA_GROUP_MEMBER_CMP
+rd_list_elem
+          ER 00000006                                  RD_LIST_ELEM
+rd_kafka_assignor_add
+          ER 00000007                                  RD_KAFKA_ASSIGNOR_ADD
+rd_kafka_assignor_get_metadata_with_empty_userdata
+          ER 00000008                                  RD_KAFKA_ASSIGNOR_GET_METADATA_WITH_EMPTY_USERDATA
+rd_kafka_log0
+          ER 00000009                                  RD_KAFKA_LOG0
+@rdkafka_range_assignor&
+          XD 0000000A 00000007 000006D8                @@STATIC
+@rdkafka_range_assignor
+          SD 0000000B 000005C0 00000772            07  @DATA
+rdkafka_range_assignor:
+          SD 0000000C 00000D38 00001040            07  @@INIT@
+rd_kafka_range_assignor_assign_cb
+          LD          000000E8          00000002   00  RD_KAFKA_RANGE_ASSIGNOR_ASSIGN_CB
+rd_kafka_range_assignor_init
+          LD          000004B8          00000002   00  RD_KAFKA_RANGE_ASSIGNOR_INIT
+                                                                                                                           Page    4 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+                                               1 *PROCESS DUPALIAS
+                                               2 *
+                                               3 *  Compiled by DCC Version 2.25.07 Mar  6 2021 08:51:07
+                                               4 *           on Thu Apr 29 12:43:20 2021
+                                               5 *
+
+                                               7          WXTRN @@ZARCH#
+                                               8 *
+                                               9 *
+                                              10 *
+                                              11 *    Code Section
+                                              12 *
+                                              13 @CODE    ALIAS X'7CD9C4D2C1C6D2C16DD9C1D5C7C56DC1E2E2C9C7D5D6D9'
+00000000                00000000 000005C0     14 @CODE    CSECT
+                                              15 @CODE    AMODE ANY
+                                              16 @CODE    RMODE ANY
+                                              17 @DATA    ALIAS X'7C998492818692816D99819587856D81A2A28987959699'
+                                              18 rd_kafka_topic_partition_list_add_range ALIAS X'99846D92818692816DA3969*
+                                                                789836D978199A389A38996956D9389A2A36D8184846D9981958785'
+                                              19          EXTRN rd_kafka_topic_partition_list_add_range
+                                              20 rd_list_sort ALIAS X'99846D9389A2A36DA29699A3'
+                                              21          EXTRN rd_list_sort
+                                              22 rd_kafka_group_member_cmp ALIAS X'99846D92818692816D879996A4976D9485948*
+                                                                285996D839497'
+                                              23          EXTRN rd_kafka_group_member_cmp
+                                              24 rd_list_elem ALIAS X'99846D9389A2A36D85938594'
+                                              25          EXTRN rd_list_elem
+                                              26 rd_kafka_assignor_add ALIAS X'99846D92818692816D81A2A289879596996D81848*
+                                                                4'
+                                              27          EXTRN rd_kafka_assignor_add
+                                              28 rd_kafka_assignor_get_metadata_with_empty_userdata ALIAS X'99846D928186*
+                                                                92816D81A2A289879596996D8785A36D9485A3818481A3816DA689A3*
+                                                                886D859497A3A86DA4A285998481A381'
+                                              29          EXTRN rd_kafka_assignor_get_metadata_with_empty_userdata
+                                              30 rd_kafka_log0 ALIAS X'99846D92818692816D939687F0'
+                                              31          EXTRN rd_kafka_log0
+                                              32 *
+                                              33 *
+                                              34 *
+                                              35 * ....... start of rd_list_cnt
+00000000                                      36 @LNAME1247 DS  0H
+00000000 0000000B                             37          DC    X'0000000B'
+00000004 99846D9389A2A36D                     38          DC    C'rd_list_cnt'
+0000000F 00                                   39          DC    X'00'
+                                              40 rd_list_cnt DCCPRLG CINDEX=1247,BASER=0,FRAME=168,SAVEAREA=NO,ENTRY=NO,*
+                                                                ARCH=ZARCH,LNAMEADDR=@LNAME1247
+                                              41          macro
+                                              42          dccextrn &m
+                                              43          gblc    &$dccext(1000)
+                                              44          gbla    &$dccexti
+                                              45          lcla    &i
+                                              46 &$dccext(&$dccexti+1) setc    '&m'
+                                                                                                                           Page    5 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+                                              47 &i       seta    1
+                                              48 .loop    aif    (&i gt &$dccexti).around
+                                              49          aif    ('&$dccext(&i)' eq '&m').getout
+                                              50 &i       seta    &i+1
+                                              51          ago     .loop
+                                              52 .around  anop
+                                              53 &$dccexti seta &$dccexti+1
+                                              54          extrn  &m
+                                              55 .getout  anop
+                                              56          mend
+00000010                                      57+$eye0002    ds    0d                                                    02-DCCCA
+00000010 C4C3C3                               58+         dc cl3'DCC'                                                    02-DCCCA
+00000013 01                                   59+         dc xl1'01' format one                                          02-DCCCA
+00000014 00000000                             60+         dc a(0)                                                        02-DCCCA
+00000018 0000000000000000                     61+         dc ad(0)                                                       02-DCCCA
+00000020 00000000000000A8                     62+         dc ad(168)                                                     02-DCCCA
+00000028 0000000000000000                     63+         dc ad(0)                                                       02-DCCCA
+00000030 0000000000001000                     64+         dc ad(4096)                                                    02-DCCCA
+00000038 20                                   65+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+00000039 03                                   66+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+0000003A 03                                   67+         dc al1(3)                                                      02-DCCCA
+0000003B 08                                   68+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+0000003C 00                                   69+         dc bl.8'00000000'                                              02-DCCCA
+0000003D 000000                               70+         dc al3(0)                                                      02-DCCCA
+00000040 0000000000000000                     71+         dc ad(@LNAME1247)                                              02-DCCCA
+00000048                                      72+         ds 0d                                                          02-DCCCA
+00000048 0000000000000010                     73+         dc ad($eye0002)                                                02-DCCCA
+00000050 0000000000000000                     74+         dc ad(0)                                                       02-DCCCA
+00000058                                      75+         ds    0d                                                       01-DCCPR
+00000058                                      76+rd_list_cnt ds 0d                                                       01-DCCPR
+00000058                                      77+@REGION_1247_1 ds 0h                                                    01-DCCPR
+00000058 EBEC D008 0024          00000008     78+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+                                              79 * ******* End of Prologue
+                                              80 * *
+                                              81 * ***           return rl->rl_cnt;
+0000005E E3F0 1000 0004          00000000     82          LG    15,0(0,1)   ; rl
+00000064 E3F0 F004 0014          00000004     83          LGF   15,4(0,15)
+                                              84 * ***   }
+                                              85 * * **** Start of Epilogue
+                                              86          DCCEPIL
+0000006A                                      87+         ds 0h                                                          01-DCCEP
+                                              88+* Epilog
+                                              89+* Epilog
+0000006A E3E0 D008 0004          00000008     90+         lg    14,8(,13) restore the reg                                01-DCCEP
+00000070 EB1C D020 0004          00000020     91+         lmg   1,12,32(13)                                              01-DCCEP
+00000076 07FE                                 92+         br   14                                                        01-DCCEP
+                                              93+* End of Epilog
+                                              94 * * **** End of Epilogue
+                                              95 *
+                                              96 *   DSECT for automatic variables in "rd_list_cnt"
+                                              97 *      (FUNCTION #1247)
+                                              98 *
+                                                                                                                           Page    6 
+  Active Usings: None
+D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000000                00000000 000000A8     99 @AUTO#rd_list_cnt DSECT
+00000000                                     100          DS    XL168
+                                             101 *
+00000078                00000000 000005C0    102 @CODE    CSECT
+                                             103 *
+                                             104 *
+                                             105 *
+                                             106 * ....... start of rd_kafka_range_assignor_assign_cb
+                                             107 rd_kafka_range_assignor_assign_cb ALIAS X'99846D92818692816D99819587856*
+                                                                D81A2A289879596996D81A2A28987956D8382'
+00000078                                     108 @LNAME1917 DS  0H
+00000078 00000021                            109          DC    X'00000021'
+0000007C 99846D9281869281                    110          DC    C'rd_kafka_range_assignor_assign_c'
+0000009C 82                                  111          DC    C'b'
+0000009D 00                                  112          DC    X'00'
+                                             113 rd_kafka_range_assignor_assign_cb DCCPRLG CINDEX=1917,BASER=12,FRAME=26*
+                                                                4,ENTRY=YES,ARCH=ZARCH,LNAMEADDR=@LNAME1917
+                                             114          macro
+                                             115          dccextrn &m
+                                             116          gblc    &$dccext(1000)
+                                             117          gbla    &$dccexti
+                                             118          lcla    &i
+                                             119 &$dccext(&$dccexti+1) setc    '&m'
+                                             120 &i       seta    1
+                                             121 .loop    aif    (&i gt &$dccexti).around
+                                             122          aif    ('&$dccext(&i)' eq '&m').getout
+                                             123 &i       seta    &i+1
+                                             124          ago     .loop
+                                             125 .around  anop
+                                             126 &$dccexti seta &$dccexti+1
+                                             127          extrn  &m
+                                             128 .getout  anop
+                                             129          mend
+000000A0                                     130+$eye0005    ds    0d                                                    02-DCCCA
+000000A0 C4C3C3                              131+         dc cl3'DCC'                                                    02-DCCCA
+000000A3 01                                  132+         dc xl1'01' format one                                          02-DCCCA
+000000A4 00000000                            133+         dc a(0)                                                        02-DCCCA
+000000A8 0000000000000112                    134+         dc ad(@PER_1917)                                               02-DCCCA
+000000B0 0000000000000108                    135+         dc ad(264)                                                     02-DCCCA
+000000B8 0000000000000000                    136+         dc ad(0)                                                       02-DCCCA
+000000C0 0000000000001000                    137+         dc ad(4096)                                                    02-DCCCA
+000000C8 20                                  138+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+000000C9 03                                  139+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+000000CA 03                                  140+         dc al1(3)                                                      02-DCCCA
+000000CB 08                                  141+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+000000CC 00                                  142+         dc bl.8'00000000'                                              02-DCCCA
+000000CD 000000                              143+         dc al3(0)                                                      02-DCCCA
+000000D0 0000000000000078                    144+         dc ad(@LNAME1917)                                              02-DCCCA
+000000D8                                     145+         ds 0d                                                          02-DCCCA
+000000D8 00000000000000A0                    146+         dc ad($eye0005)                                                02-DCCCA
+000000E0 0000000000000000                    147+         dc ad(0)                                                       02-DCCCA
+000000E8                                     148+         ds    0d                                                       01-DCCPR
+                                                                                                                           Page    7 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+                                             149+         entry rd_kafka_range_assignor_assign_cb                        01-DCCPR
+000000E8                                     150+rd_kafka_range_assignor_assign_cb ds 0d                                 01-DCCPR
+000000E8                                     151+@REGION_1917_1 ds 0h                                                    01-DCCPR
+000000E8 EBEC D008 0024          00000008    152+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+000000EE E3E0 D088 0004          00000088    153+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
+000000F4 E3C0 D090 0004          00000090    154+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
+000000FA B904 002E                           155+         lgr   2,14                copy addr of our savearea            01-DCCPR
+000000FE E3B0 C018 0004          00000018    156+         lg    11,24(0,12)         get dvt address                      01-DCCPR
+00000104 A7EB 0108               00000108    157+         aghi  14,264              increase by frame size               01-DCCPR
+00000108 E3E0 C020 0021          00000020    158+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
+0000010E 4720 B020               00000020    159+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
+00000112                                     160+@PER_1917 ds   0h                                                       01-DCCPR
+00000112 EBDE 2080 0024          00000080    161+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
+00000118 E3C0 2090 0024          00000090    162+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
+0000011E B904 00D2                           163+         lgr   13,2                set real frame pointer               01-DCCPR
+00000122 B904 00CF                           164+         lgr   12,15               set base reg                         01-DCCPR
+                        000000E8             165+         using @REGION_1917_1,12                                        01-DCCPR
+00000126 B904 00B1                           166          LGR   11,1        ; ptr to parm area
+                                             167 * ******* End of Prologue
+                                             168 * *
+0000012A E3A0 B000 0004          00000000    169          LG    10,0(0,11)  ; rk
+                                             170 * ***           unsigned int ti;
+                                             171 * ***           int i;
+                                             172 * ***
+                                             173 * ***
+                                             174 * ***           for (ti = 0 ; ti < eligible_topic_cnt ; ti++) {
+00000130 A738 0000               00000000    175          LHI   3,0         ; 0
+00000134 47F0 C308               000003F0    176          B     @L631
+00000138                                     177          DS    0D
+00000138 00000108                            178 @FRAMESIZE_1917 DC F'264'
+0000013C 00000000
+00000140 0000000000000000                    179 @lit_1917_2 DC AD(rd_list_sort)
+00000148 0000000000000000                    180 @lit_1917_1 DC AD(rd_kafka_group_member_cmp)
+00000150 0000000000000058                    181 @lit_1917_3 DC AD(rd_list_cnt)
+00000158 0000000000000000                    182 @lit_1917_7 DC AD(rd_kafka_log0)
+00000160 0000000000000766                    183 @lit_1917_6 DC AD(@strings@)
+00000168 0000000000000000                    184 @lit_1917_9 DC AD(rd_list_elem)
+00000170 0000000000000000                    185 @lit_1917_14 DC AD(rd_kafka_topic_partition_list_add_range)
+00000178                                     186 @L630    DS    0H
+                                             187 * ***                   rd_kafka_assignor_topic_t *eligible_topic = el\
+                                             188 * igible_topics[ti];
+00000178 B916 00F3                           189          LLGFR 15,3
+0000017C E310 B030 0004          00000030    190          LG    1,48(0,11)  ; eligible_topics
+00000182 EBFF 0003 000D          00000003    191          SLLG  15,15,3(0)  ; *0x8
+00000188 E34F 1000 0004          00000000    192          LG    4,0(15,1)
+                                             193 * ***                   int numPartitionsPerConsumer;
+                                             194 * ***                   int consumersWithExtraPartition;
+                                             195 * ***
+                                             196 * ***
+                                             197 * ***
+                                             198 * ***                   rd_list_sort(&eligible_topic->members,
+                                             199 * ***                 rd_kafka_group_member_cmp);
+                                                                                                                           Page    8 
+  Active Usings: @REGION_1917_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+0000018E 41F0 4008               00000008    200          LA    15,8(0,4)
+00000192 E3F0 D0B0 0024          000000B0    201          STG   15,176(0,13)
+00000198 E3F0 C060 0004          00000148    202          LG    15,@lit_1917_1 ; rd_kafka_group_member_cmp
+0000019E E3F0 D0B8 0024          000000B8    203          STG   15,184(0,13)
+000001A4 4110 D0B0               000000B0    204          LA    1,176(0,13)
+000001A8 E3F0 C058 0004          00000140    205          LG    15,@lit_1917_2 ; rd_list_sort
+000001AE                                     206 @@gen_label0 DS    0H
+000001AE 05EF                                207          BALR  14,15
+000001B0                                     208 @@gen_label1 DS    0H
+                                             209 * ***
+                                             210 * ***
+                                             211 * ***
+                                             212 * ***
+                                             213 * ***                   numPartitionsPerConsumer =
+                                             214 * ***                           eligible_topic->metadata->partition_cn\
+                                             215 * t /
+000001B0 E3F0 4000 0004          00000000    216          LG    15,0(0,4)   ; eligible_topic
+000001B6 5820 F008               00000008    217          L     2,8(0,15)   ; offset of partition_cnt in rd_kafka_metada*
+                                                                ta_topic
+                                             218 * ***                           rd_list_cnt(&eligible_topic->members);
+000001BA 41F0 4008               00000008    219          LA    15,8(0,4)
+000001BE E3F0 D0B0 0024          000000B0    220          STG   15,176(0,13)
+000001C4 4110 D0B0               000000B0    221          LA    1,176(0,13)
+000001C8 E360 C068 0004          00000150    222          LG    6,@lit_1917_3 ; rd_list_cnt
+000001CE B904 00F6                           223          LGR   15,6
+000001D2                                     224 @@gen_label2 DS    0H
+000001D2 05EF                                225          BALR  14,15
+000001D4                                     226 @@gen_label3 DS    0H
+000001D4 1882                                227          LR    8,2
+000001D6 8E80 0020               00000020    228          SRDA  8,32(0)
+000001DA 1D8F                                229          DR    8,15
+000001DC 1859                                230          LR    5,9         ; numPartitionsPerConsumer
+                                             231 * ***
+                                             232 * ***
+                                             233 * ***
+                                             234 * ***                    consumersWithExtraPartition =
+                                             235 * ***                            eligible_topic->metadata->partition_c\
+                                             236 * nt %
+000001DE E3F0 4000 0004          00000000    237          LG    15,0(0,4)   ; eligible_topic
+000001E4 5820 F008               00000008    238          L     2,8(0,15)   ; offset of partition_cnt in rd_kafka_metada*
+                                                                ta_topic
+                                             239 * ***                            rd_list_cnt(&eligible_topic->members)\
+                                             240 * ;
+000001E8 41F0 4008               00000008    241          LA    15,8(0,4)
+000001EC E3F0 D0B0 0024          000000B0    242          STG   15,176(0,13)
+000001F2 4110 D0B0               000000B0    243          LA    1,176(0,13)
+000001F6 B904 00F6                           244          LGR   15,6
+000001FA                                     245 @@gen_label4 DS    0H
+000001FA 05EF                                246          BALR  14,15
+000001FC                                     247 @@gen_label5 DS    0H
+000001FC 1862                                248          LR    6,2
+000001FE 8E60 0020               00000020    249          SRDA  6,32(0)
+                                                                                                                           Page    9 
+  Active Usings: @REGION_1917_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000202 1D6F                                250          DR    6,15
+                                             251 * ***
+                                             252 * ***                    do { if ((((rk)->rk_conf.debug & (0x100)))) r\
+                                             253 * d_kafka_log0(&rk->rk_conf,rk,((void *)0), 7,(0x100), "ASSIGN","range\
+                                             254 * : Topic %s with %d partition(s) and " "%d subscribing member(s)", el\
+                                             255 * igible_topic->metadata->topic, eligible_topic->metadata->partition_c\
+                                             256 * nt, rd_list_cnt(&eligible_topic->members)); } while (0);
+00000204                                     257 @L634    DS    0H
+00000204 9101 A322      00000322 00000001    258          TM    802(10),1
+00000208 4780 C1AC               00000294    259          BZ    @L637
+0000020C 41F0 4008               00000008    260          LA    15,8(0,4)
+00000210 E3F0 D0B0 0024          000000B0    261          STG   15,176(0,13)
+00000216 4110 D0B0               000000B0    262          LA    1,176(0,13)
+0000021A E3F0 C068 0004          00000150    263          LG    15,@lit_1917_3 ; rd_list_cnt
+00000220                                     264 @@gen_label7 DS    0H
+00000220 05EF                                265          BALR  14,15
+00000222                                     266 @@gen_label8 DS    0H
+00000222 4110 A210               00000210    267          LA    1,528(0,10)
+00000226 E310 D0B0 0024          000000B0    268          STG   1,176(0,13)
+0000022C E3A0 D0B8 0024          000000B8    269          STG   10,184(0,13)
+00000232 D707 D0C0 D0C0 000000C0 000000C0    270          XC    192(8,13),192(13)
+00000238 E548 D0C8 0007          000000C8    271          MVGHI 200(13),7
+0000023E E548 D0D0 0100          000000D0    272          MVGHI 208(13),256
+00000244 E310 C078 0004          00000160    273          LG    1,@lit_1917_6
+0000024A E310 D0D8 0024          000000D8    274          STG   1,216(0,13)
+00000250 4110 1008               00000008    275          LA    1,8(0,1)
+00000254 E310 D0E0 0024          000000E0    276          STG   1,224(0,13)
+0000025A E310 4000 0004          00000000    277          LG    1,0(0,4)    ; eligible_topic
+00000260 E310 1000 0004          00000000    278          LG    1,0(0,1)
+00000266 E310 D0E8 0024          000000E8    279          STG   1,232(0,13)
+0000026C E310 4000 0004          00000000    280          LG    1,0(0,4)    ; eligible_topic
+00000272 E310 1008 0014          00000008    281          LGF   1,8(0,1)
+00000278 E310 D0F0 0024          000000F0    282          STG   1,240(0,13)
+0000027E B914 00FF                           283          LGFR  15,15
+00000282 E3F0 D0F8 0024          000000F8    284          STG   15,248(0,13)
+00000288 4110 D0B0               000000B0    285          LA    1,176(0,13)
+0000028C E3F0 C070 0004          00000158    286          LG    15,@lit_1917_7 ; rd_kafka_log0
+00000292                                     287 @@gen_label9 DS    0H
+00000292 05EF                                288          BALR  14,15
+00000294                                     289 @@gen_label10 DS    0H
+00000294                                     290 @L637    DS    0H
+                                             291 * ***
+                                             292 * ***   # 97 "C:\asgkafka\librdkafka\src\rdkafka_range_assignor.c"
+                                             293 * ***                    for (i = 0 ; i < rd_list_cnt(&eligible_topic-\
+                                             294 * >members) ; i++) {
+00000294 A728 0000               00000000    295          LHI   2,0         ; 0
+00000298 47F0 C2E8               000003D0    296          B     @L639
+0000029C                                     297 @L638    DS    0H
+                                             298 * ***                            rd_kafka_group_member_t *rkgm =
+                                             299 * ***                                    rd_list_elem(&eligible_topic-\
+                                             300 * >members, i);
+0000029C 41F0 4008               00000008    301          LA    15,8(0,4)
+                                                                                                                           Page   10 
+  Active Usings: @REGION_1917_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+000002A0 E3F0 D0B0 0024          000000B0    302          STG   15,176(0,13)
+000002A6 B914 00F2                           303          LGFR  15,2
+000002AA E3F0 D0B8 0024          000000B8    304          STG   15,184(0,13)
+000002B0 4110 D0B0               000000B0    305          LA    1,176(0,13)
+000002B4 E3F0 C080 0004          00000168    306          LG    15,@lit_1917_9 ; rd_list_elem
+000002BA                                     307 @@gen_label11 DS    0H
+000002BA 05EF                                308          BALR  14,15
+000002BC                                     309 @@gen_label12 DS    0H
+000002BC B904 007F                           310          LGR   7,15
+                                             311 * ***                            int start = numPartitionsPerConsumer \
+                                             312 * * i +
+000002C0 1885                                313          LR    8,5
+000002C2 B252 0082                           314          MSR   8,2
+                                             315 * ***                                    ((i) < (consumersWithExtraPar\
+                                             316 * tition) ? (i) : (consumersWithExtraPartition));
+000002C6 1926                                317          CR    2,6
+000002C8 47B0 C1EA               000002D2    318          BNL   @L642
+000002CC 18F2                                319          LR    15,2
+000002CE 47F0 C1EC               000002D4    320          B     @L643
+000002D2                                     321 @L642    DS    0H
+000002D2 18F6                                322          LR    15,6
+000002D4                                     323 @L643    DS    0H
+000002D4 1A8F                                324          AR    8,15
+                                             325 * ***                            int length = numPartitionsPerConsumer\
+                                             326 *  +
+                                             327 * ***                                    (i + 1 > consumersWithExtraPa\
+                                             328 * rtition ? 0 : 1);
+000002D6 18F2                                329          LR    15,2
+000002D8 A7FA 0001               00000001    330          AHI   15,1
+000002DC 19F6                                331          CR    15,6
+000002DE 47D0 C202               000002EA    332          BNH   @L644
+000002E2 A7F8 0000               00000000    333          LHI   15,0        ; 0
+000002E6 47F0 C206               000002EE    334          B     @L645
+000002EA                                     335 @L644    DS    0H
+000002EA A7F8 0001               00000001    336          LHI   15,1        ; 1
+000002EE                                     337 @L645    DS    0H
+000002EE 1895                                338          LR    9,5
+000002F0 1A9F                                339          AR    9,15
+                                             340 * ***
+                                             341 * ***             if (length == 0)
+000002F2 1299                                342          LTR   9,9
+000002F4 4770 C214               000002FC    343          BNE   @L647
+                                             344 * ***                continue;
+000002F8 47F0 C2E4               000003CC    345          B     @L641
+                                             346 * ***
+                                             347 * ***                            do { if ((((rk)->rk_conf.debug & (0x1\
+                                             348 * 00)))) rd_kafka_log0(&rk->rk_conf,rk,((void *)0), 7,(0x100), "ASSIGN\
+                                             349 * ","range: Member \"%s\": " "assigned topic %s partitions %d..%d", rk\
+                                             350 * gm->rkgm_member_id->str, eligible_topic->metadata->topic, start, sta\
+                                             351 * rt+length-1); } while (0);
+000002FC                                     352 @L647    DS    0H
+000002FC 9101 A322      00000322 00000001    353          TM    802(10),1
+                                                                                                                           Page   11 
+  Active Usings: @REGION_1917_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000300 4780 C2A0               00000388    354          BZ    @L650
+00000304 41F0 A210               00000210    355          LA    15,528(0,10)
+00000308 E3F0 D0B0 0024          000000B0    356          STG   15,176(0,13)
+0000030E E3A0 D0B8 0024          000000B8    357          STG   10,184(0,13)
+00000314 D707 D0C0 D0C0 000000C0 000000C0    358          XC    192(8,13),192(13)
+0000031A E548 D0C8 0007          000000C8    359          MVGHI 200(13),7
+00000320 E548 D0D0 0100          000000D0    360          MVGHI 208(13),256
+00000326 E3F0 C078 0004          00000160    361          LG    15,@lit_1917_6
+0000032C E3F0 D0D8 0024          000000D8    362          STG   15,216(0,13)
+00000332 41F0 F04A               0000004A    363          LA    15,74(0,15)
+00000336 E3F0 D0E0 0024          000000E0    364          STG   15,224(0,13)
+0000033C E3F0 7040 0004          00000040    365          LG    15,64(0,7)  ; offset of rkgm_member_id in rd_kafka_group*
+                                                                _member_s
+00000342 E3F0 F008 0004          00000008    366          LG    15,8(0,15)
+00000348 E3F0 D0E8 0024          000000E8    367          STG   15,232(0,13)
+0000034E E3F0 4000 0004          00000000    368          LG    15,0(0,4)   ; eligible_topic
+00000354 E3F0 F000 0004          00000000    369          LG    15,0(0,15)
+0000035A E3F0 D0F0 0024          000000F0    370          STG   15,240(0,13)
+00000360 B914 00F8                           371          LGFR  15,8
+00000364 E3F0 D0F8 0024          000000F8    372          STG   15,248(0,13)
+0000036A 18F8                                373          LR    15,8
+0000036C 1AF9                                374          AR    15,9
+0000036E A7FA FFFF               0000FFFF    375          AHI   15,-1
+00000372 B914 00FF                           376          LGFR  15,15
+00000376 E3F0 D100 0024          00000100    377          STG   15,256(0,13)
+0000037C 4110 D0B0               000000B0    378          LA    1,176(0,13)
+00000380 E3F0 C070 0004          00000158    379          LG    15,@lit_1917_7 ; rd_kafka_log0
+00000386                                     380 @@gen_label17 DS    0H
+00000386 05EF                                381          BALR  14,15
+00000388                                     382 @@gen_label18 DS    0H
+00000388                                     383 @L650    DS    0H
+                                             384 * ***   # 114 "C:\asgkafka\librdkafka\src\rdkafka_range_assignor.c"
+                                             385 * ***                            rd_kafka_topic_partition_list_add_ran\
+                                             386 * ge(
+                                             387 * ***                                    rkgm->rkgm_assignment,
+                                             388 * ***                                    eligible_topic->metadata->top\
+                                             389 * ic,
+                                             390 * ***                                    start, start+length-1);
+00000388 E3F0 7008 0004          00000008    391          LG    15,8(0,7)
+0000038E E3F0 D0B0 0024          000000B0    392          STG   15,176(0,13)
+00000394 E3F0 4000 0004          00000000    393          LG    15,0(0,4)   ; eligible_topic
+0000039A E3F0 F000 0004          00000000    394          LG    15,0(0,15)
+000003A0 E3F0 D0B8 0024          000000B8    395          STG   15,184(0,13)
+000003A6 B914 00F8                           396          LGFR  15,8
+000003AA E3F0 D0C0 0024          000000C0    397          STG   15,192(0,13)
+000003B0 1A89                                398          AR    8,9
+000003B2 A78A FFFF               0000FFFF    399          AHI   8,-1
+000003B6 B914 00F8                           400          LGFR  15,8
+000003BA E3F0 D0C8 0024          000000C8    401          STG   15,200(0,13)
+000003C0 4110 D0B0               000000B0    402          LA    1,176(0,13)
+000003C4 E3F0 C088 0004          00000170    403          LG    15,@lit_1917_14 ; rd_kafka_topic_partition_list_add_rang*
+                                                                e
+                                                                                                                           Page   12 
+  Active Usings: @REGION_1917_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+000003CA                                     404 @@gen_label19 DS    0H
+000003CA 05EF                                405          BALR  14,15
+000003CC                                     406 @@gen_label20 DS    0H
+                                             407 * ***                    }
+000003CC                                     408 @L641    DS    0H
+000003CC A72A 0001               00000001    409          AHI   2,1
+000003D0                                     410 @L639    DS    0H
+000003D0 41F0 4008               00000008    411          LA    15,8(0,4)
+000003D4 E3F0 D0B0 0024          000000B0    412          STG   15,176(0,13)
+000003DA 4110 D0B0               000000B0    413          LA    1,176(0,13)
+000003DE E3F0 C068 0004          00000150    414          LG    15,@lit_1917_3 ; rd_list_cnt
+000003E4                                     415 @@gen_label21 DS    0H
+000003E4 05EF                                416          BALR  14,15
+000003E6                                     417 @@gen_label22 DS    0H
+000003E6 192F                                418          CR    2,15
+000003E8 4740 C1B4               0000029C    419          BL    @L638
+                                             420 * ***           }
+000003EC A73A 0001               00000001    421          AHI   3,1
+000003F0                                     422 @L631    DS    0H
+000003F0 B916 00F3                           423          LLGFR 15,3
+000003F4 E3F0 B038 0021          00000038    424          CLG   15,56(0,11)
+000003FA 4740 C090               00000178    425          BL    @L630
+                                             426 * ***
+                                             427 * ***           return 0;
+000003FE A7F9 0000               00000000    428          LGHI  15,0        ; 0
+                                             429 * ***   }
+                                             430 * * **** Start of Epilogue
+                                             431          DCCEPIL
+00000402                                     432+         ds 0h                                                          01-DCCEP
+                                             433+* Epilog
+00000402 D707 D088 D088 00000088 00000088    434+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
+00000408 E3D0 D080 0004          00000080    435+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
+0000040E E3C0 D090 0004          00000090    436+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
+00000414 E3B0 C018 0004          00000018    437+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
+0000041A E3C0 B010 0021          00000010    438+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
+00000420 E3E0 D008 0004          00000008    439+         lg  14,8(0,13)          load up return address                 01-DCCEP
+00000426 EB1C D020 0004          00000020    440+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
+0000042C 078E                                441+         bcr 8,14                if same dsab, just return              01-DCCEP
+0000042E E3F0 D010 0024          00000010    442+         stg 15,16(0,13)         save return code                       01-DCCEP
+00000434 E300 D018 0024          00000018    443+         stg 0,24(0,13)          save more return code                  01-DCCEP
+0000043A E3F0 D090 0004          00000090    444+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
+00000440 E3F0 F018 0004          00000018    445+         lg  15,24(0,15)         load dvt address                       01-DCCEP
+00000446 47F0 F040               00000040    446+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
+                                             447+* End of Epilog
+                                             448 * * **** End of Epilogue
+                                             449          DROP  12
+                                             450 *
+                                             451 *   DSECT for automatic variables in "rd_kafka_range_assignor_assign_c
+                                             452 *           b"
+                                             453 *      (FUNCTION #1917)
+                                             454 *
+00000000                00000000 000000AC    455 @AUTO#rd_kafka_range_assignor_assign_cb DSECT
+                                                                                                                           Page   13 
+  Active Usings: None
+D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000000                                     456          DS    XL168
+000000A8                                     457 rd_kafka_range_assignor_assign_cb#length#3 DS 1F ; length
+000000AC                000000AC 000000A8    458          ORG   @AUTO#rd_kafka_range_assignor_assign_cb+168
+000000A8                                     459 rd_kafka_range_assignor_assign_cb#start#3 DS 1F ; start
+000000AC                000000AC 000000A8    460          ORG   @AUTO#rd_kafka_range_assignor_assign_cb+168
+000000A8                                     461 F#1917#consumers$With$Extra$Partition#1 DS 1F ; consumersWithExtraParti*
+                                                                tion
+000000AC                000000AC 000000A8    462          ORG   @AUTO#rd_kafka_range_assignor_assign_cb+168
+000000A8                                     463 rd_kafka_range_assignor_assign_cb#num$Partitions$Per$Consumer#1 DS 1F ;*
+                                                                 numPartitionsPerConsumer
+000000AC                000000AC 000000A8    464          ORG   @AUTO#rd_kafka_range_assignor_assign_cb+168
+000000A8                                     465 rd_kafka_range_assignor_assign_cb#i#0 DS 1F ; i
+000000AC                000000AC 000000A8    466          ORG   @AUTO#rd_kafka_range_assignor_assign_cb+168
+000000A8                                     467 rd_kafka_range_assignor_assign_cb#ti#0 DS 1F ; ti
+                                             468 *
+0000044A                00000000 000005C0    469 @CODE    CSECT
+                                             470 *
+                                             471 *
+                                             472 *
+                                             473 * ....... start of rd_kafka_range_assignor_init
+                                             474 rd_kafka_range_assignor_init ALIAS X'99846D92818692816D99819587856D81A2*
+                                                                A289879596996D899589A3'
+0000044A                                     475 @LNAME1602 DS  0H
+0000044A 0000001C                            476          DC    X'0000001C'
+0000044E 99846D9281869281                    477          DC    C'rd_kafka_range_assignor_init'
+0000046A 00                                  478          DC    X'00'
+                                             479 rd_kafka_range_assignor_init DCCPRLG CINDEX=1602,BASER=12,FRAME=248,ENT*
+                                                                RY=YES,ARCH=ZARCH,LNAMEADDR=@LNAME1602
+                                             480          macro
+                                             481          dccextrn &m
+                                             482          gblc    &$dccext(1000)
+                                             483          gbla    &$dccexti
+                                             484          lcla    &i
+                                             485 &$dccext(&$dccexti+1) setc    '&m'
+                                             486 &i       seta    1
+                                             487 .loop    aif    (&i gt &$dccexti).around
+                                             488          aif    ('&$dccext(&i)' eq '&m').getout
+                                             489 &i       seta    &i+1
+                                             490          ago     .loop
+                                             491 .around  anop
+                                             492 &$dccexti seta &$dccexti+1
+                                             493          extrn  &m
+                                             494 .getout  anop
+                                             495          mend
+00000470                                     496+$eye0008    ds    0d                                                    02-DCCCA
+00000470 C4C3C3                              497+         dc cl3'DCC'                                                    02-DCCCA
+00000473 01                                  498+         dc xl1'01' format one                                          02-DCCCA
+00000474 00000000                            499+         dc a(0)                                                        02-DCCCA
+00000478 00000000000004E2                    500+         dc ad(@PER_1602)                                               02-DCCCA
+00000480 00000000000000F8                    501+         dc ad(248)                                                     02-DCCCA
+00000488 0000000000000000                    502+         dc ad(0)                                                       02-DCCCA
+00000490 0000000000001000                    503+         dc ad(4096)                                                    02-DCCCA
+                                                                                                                           Page   14 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000498 20                                  504+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+00000499 03                                  505+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+0000049A 03                                  506+         dc al1(3)                                                      02-DCCCA
+0000049B 08                                  507+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+0000049C 00                                  508+         dc bl.8'00000000'                                              02-DCCCA
+0000049D 000000                              509+         dc al3(0)                                                      02-DCCCA
+000004A0 000000000000044A                    510+         dc ad(@LNAME1602)                                              02-DCCCA
+000004A8                                     511+         ds 0d                                                          02-DCCCA
+000004A8 0000000000000470                    512+         dc ad($eye0008)                                                02-DCCCA
+000004B0 0000000000000000                    513+         dc ad(0)                                                       02-DCCCA
+000004B8                                     514+         ds    0d                                                       01-DCCPR
+                                             515+         entry rd_kafka_range_assignor_init                             01-DCCPR
+000004B8                                     516+rd_kafka_range_assignor_init ds 0d                                      01-DCCPR
+000004B8                                     517+@REGION_1602_1 ds 0h                                                    01-DCCPR
+000004B8 EBEC D008 0024          00000008    518+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+000004BE E3E0 D088 0004          00000088    519+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
+000004C4 E3C0 D090 0004          00000090    520+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
+000004CA B904 002E                           521+         lgr   2,14                copy addr of our savearea            01-DCCPR
+000004CE E3B0 C018 0004          00000018    522+         lg    11,24(0,12)         get dvt address                      01-DCCPR
+000004D4 A7EB 00F8               000000F8    523+         aghi  14,248              increase by frame size               01-DCCPR
+000004D8 E3E0 C020 0021          00000020    524+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
+000004DE 4720 B020               00000020    525+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
+000004E2                                     526+@PER_1602 ds   0h                                                       01-DCCPR
+000004E2 EBDE 2080 0024          00000080    527+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
+000004E8 E3C0 2090 0024          00000090    528+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
+000004EE B904 00D2                           529+         lgr   13,2                set real frame pointer               01-DCCPR
+000004F2 B904 00CF                           530+         lgr   12,15               set base reg                         01-DCCPR
+                        000004B8             531+         using @REGION_1602_1,12                                        01-DCCPR
+                                             532 * ******* End of Prologue
+                                             533 * *
+                                             534 * ***           return rd_kafka_assignor_add(
+                                             535 * ***                   rk, "consumer", "range",
+                                             536 * ***                   RD_KAFKA_REBALANCE_PROTOCOL_EAGER,
+                                             537 * ***                   rd_kafka_range_assignor_assign_cb,
+                                             538 * ***                   rd_kafka_assignor_get_metadata_with_empty_user\
+                                             539 * data,
+                                             540 * ***                   ((void *)0), ((void *)0), ((void *)0), ((void \
+                                             541 * *)0));
+000004F6 E3F0 1000 0004          00000000    542          LG    15,0(0,1)   ; rk
+000004FC E3F0 D0A8 0024          000000A8    543          STG   15,168(0,13)
+00000502 E3F0 C100 0004          000005B8    544          LG    15,@lit_1602_18
+00000508 4110 F082               00000082    545          LA    1,130(0,15)
+0000050C E310 D0B0 0024          000000B0    546          STG   1,176(0,13)
+00000512 41F0 F08C               0000008C    547          LA    15,140(0,15)
+00000516 E3F0 D0B8 0024          000000B8    548          STG   15,184(0,13)
+0000051C E548 D0C0 0001          000000C0    549          MVGHI 192(13),1
+00000522 E3F0 C0F8 0004          000005B0    550          LG    15,@lit_1602_19 ; rd_kafka_range_assignor_assign_cb
+00000528 E3F0 D0C8 0024          000000C8    551          STG   15,200(0,13)
+0000052E E3F0 C0F0 0004          000005A8    552          LG    15,@lit_1602_20 ; rd_kafka_assignor_get_metadata_with_em*
+                                                                pty_userdata
+00000534 E3F0 D0D0 0024          000000D0    553          STG   15,208(0,13)
+0000053A D71F D0D8 D0D8 000000D8 000000D8    554          XC    216(32,13),216(13)
+                                                                                                                           Page   15 
+  Active Usings: @REGION_1602_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000540 4110 D0A8               000000A8    555          LA    1,168(0,13)
+00000544 E3F0 C0E8 0004          000005A0    556          LG    15,@lit_1602_21 ; rd_kafka_assignor_add
+0000054A                                     557 @@gen_label25 DS    0H
+0000054A 05EF                                558          BALR  14,15
+0000054C                                     559 @@gen_label26 DS    0H
+0000054C B914 00FF                           560          LGFR  15,15
+                                             561 * ***   }
+                                             562 * * **** Start of Epilogue
+                                             563          DCCEPIL
+00000550                                     564+         ds 0h                                                          01-DCCEP
+                                             565+* Epilog
+00000550 D707 D088 D088 00000088 00000088    566+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
+00000556 E3D0 D080 0004          00000080    567+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
+0000055C E3C0 D090 0004          00000090    568+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
+00000562 E3B0 C018 0004          00000018    569+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
+00000568 E3C0 B010 0021          00000010    570+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
+0000056E E3E0 D008 0004          00000008    571+         lg  14,8(0,13)          load up return address                 01-DCCEP
+00000574 EB1C D020 0004          00000020    572+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
+0000057A 078E                                573+         bcr 8,14                if same dsab, just return              01-DCCEP
+0000057C E3F0 D010 0024          00000010    574+         stg 15,16(0,13)         save return code                       01-DCCEP
+00000582 E300 D018 0024          00000018    575+         stg 0,24(0,13)          save more return code                  01-DCCEP
+00000588 E3F0 D090 0004          00000090    576+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
+0000058E E3F0 F018 0004          00000018    577+         lg  15,24(0,15)         load dvt address                       01-DCCEP
+00000594 47F0 F040               00000040    578+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
+                                             579+* End of Epilog
+                                             580 * * **** End of Epilogue
+00000598                                     581          DS    0D
+00000598 000000F8                            582 @FRAMESIZE_1602 DC F'248'
+0000059C 00000000
+000005A0 0000000000000000                    583 @lit_1602_21 DC AD(rd_kafka_assignor_add)
+000005A8 0000000000000000                    584 @lit_1602_20 DC AD(rd_kafka_assignor_get_metadata_with_empty_userdata)
+000005B0 00000000000000E8                    585 @lit_1602_19 DC AD(rd_kafka_range_assignor_assign_cb)
+000005B8 0000000000000766                    586 @lit_1602_18 DC AD(@strings@)
+                                             587          DROP  12
+                                             588 *
+                                             589 *   DSECT for automatic variables in "rd_kafka_range_assignor_init"
+                                             590 *      (FUNCTION #1602)
+                                             591 *
+00000000                00000000 000000A8    592 @AUTO#rd_kafka_range_assignor_init DSECT
+00000000                                     593          DS    XL168
+                                             594 *
+000005C0                00000000 000005C0    595 @CODE    CSECT
+                                             596 @@STATIC ALIAS X'7C998492818692816D99819587856D81A2A2898795969950'
+                                             597 @@STATIC DXD   219D
+                                             598 *
+                                             599 *  Non-Re-Entrant Data Section
+                                             600 *
+000005C0                000005C0 00000772    601 @DATA    CSECT
+                                             602 @DATA    RMODE ANY
+                                             603 @DATA    AMODE ANY
+000005C0 99846D8381939396                    604 @@T48F   DC    X'99846D838193939683'               rd.calloc
+000005C9 00                                  605          DC    1X'00'
+                                                                                                                           Page   16 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+000005CA 99846D9481939396                    606 @@T493   DC    X'99846D948193939683'               rd.malloc
+000005D3 00                                  607          DC    1X'00'
+000005D4 99846D9985819393                    608 @@T498   DC    X'99846D99858193939683'             rd.realloc
+000005DE 0000                                609          DC    2X'00'
+000005E0 99846DA2A39984A4                    610 @@T49E   DC    X'99846DA2A39984A497'               rd.strdup
+000005E9 00                                  611          DC    1X'00'
+000005EA 99846DA2A3999584                    612 @@T4A3   DC    X'99846DA2A3999584A497'             rd.strndup
+000005F4 0000                                613          DC    2X'00'
+000005F6 99846D9985868395                    614 @@T4AB   DC    X'99846D9985868395A36DA2A482F0'     rd.refcnt.sub0
+00000604 00000000                            615          DC    4X'00'
+00000608 00000000                            616 @@T65A   DC    4X'00'
+0000060C 0000001A00000000                    617          DC    X'0000001A000000000000002200000000' ................
+0000061C 00000024                            618          DC    X'00000024'                         ....
+00000620 99846D9281869281                    619 @@T67D   DC    X'99846D92818692816D94A287986D8485' rd.kafka.msgq.de
+00000630 98                                  620          DC    X'98'                               q
+00000631 00                                  621          DC    1X'00'
+00000632 99846D9281869281                    622 @@T704   DC    X'99846D92818692816D986D8485A2A399' rd.kafka.q.destr
+00000642 96A8F0                              623          DC    X'96A8F0'                           oy0
+00000645 00                                  624          DC    1X'00'
+00000646 99846D9281869281                    625 @@T785   DC    X'99846D92818692816D8595986D969583' rd.kafka.enq.onc
+00000656 856D8485A2A39996                    626          DC    X'856D8485A2A39996A8F0'             e.destroy0
+00000660 0000                                627          DC    2X'00'
+00000662 99846D9281869281                    628 @@T78D   DC    X'99846D92818692816D8595986D969583' rd.kafka.enq.onc
+00000672 856D8485936DA296                    629          DC    X'856D8485936DA296A4998385'         e.del.source
+0000067E 0000                                630          DC    2X'00'
+00000680 99846D9281869281                    631 @@T794   DC    X'99846D92818692816D8595986D969583' rd.kafka.enq.onc
+00000690 856D8485936DA296                    632          DC    X'856D8485936DA296A49983856D9985A3' e.del.source.ret
+000006A0 A49995                              633          DC    X'A49995'                           urn
+000006A3 00                                  634          DC    1X'00'
+000006A4 99846D9281869281                    635 @@T79C   DC    X'99846D92818692816D8595986D969583' rd.kafka.enq.onc
+000006B4 856DA39989878785                    636          DC    X'856DA3998987878599'               e.trigger
+000006BD 00                                  637          DC    1X'00'
+000006BE 99846D9281869281                    638 @@T7A0   DC    X'99846D92818692816D8595986D969583' rd.kafka.enq.onc
+000006CE 856D8485A2A39996                    639          DC    X'856D8485A2A39996A8'               e.destroy
+000006D7 00                                  640          DC    1X'00'
+000006D8 99846D9281869281                    641 @@T7A5   DC    X'99846D92818692816D8595986D969583' rd.kafka.enq.onc
+000006E8 856D8489A2818293                    642          DC    X'856D8489A281829385'               e.disable
+000006F1 00                                  643          DC    1X'00'
+000006F2 99846DA394978182                    644 @@T7C5   DC    X'99846DA394978182A4866D8193939683' rd.tmpabuf.alloc
+00000702 F0                                  645          DC    X'F0'                               0
+00000703 00                                  646          DC    1X'00'
+00000704 99846D9281869281                    647 @@T7F9   DC    X'99846D92818692816D82A4866DA49784' rd.kafka.buf.upd
+00000714 81A385                              648          DC    X'81A385'                           ate
+00000717 00                                  649          DC    1X'00'
+00000718 99846D9281869281                    650 @@T81A   DC    X'99846D92818692816D82A4866D868995' rd.kafka.buf.fin
+00000728 819389A9856D8199                    651          DC    X'819389A9856D81999981A88395A3'     alize.arraycnt
+00000736 0000                                652          DC    2X'00'
+00000738 99846D9281869281                    653 @@T857   DC    X'99846D92818692816D82A4866D839983' rd.kafka.buf.crc
+00000748 6D899589A3                          654          DC    X'6D899589A3'                       .init
+0000074D 00                                  655          DC    1X'00'
+0000074E 99846D9281869281                    656 @@TA27   DC    X'99846D92818692816D83A499996D94A2' rd.kafka.curr.ms
+0000075E 87A26DA2A482                        657          DC    X'87A26DA2A482'                     gs.sub
+                                                                                                                           Page   17 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000764 00                                  658          DC    1X'00'
+00000766                                     659 @strings@ DS   0H
+00000766 C1E2E2C9C7D50000                    660          DC    X'C1E2E2C9C7D5000099819587857A40E3' ASSIGN..range..T
+00000776 96978983406CA240                    661          DC    X'96978983406CA240A689A388406C8440' opic..s.with..d.
+00000786 978199A389A38996                    662          DC    X'978199A389A38996954DA25D40819584' partition.s..and
+00000796 406C8440A2A482A2                    663          DC    X'406C8440A2A482A28399898289958740' ..d.subscribing.
+000007A6 9485948285994DA2                    664          DC    X'9485948285994DA25D0099819587857A' member.s..range.
+000007B6 40D4859482859940                    665          DC    X'40D48594828599407F6CA27F7A4081A2' .Member...s...as
+000007C6 A2898795858440A3                    666          DC    X'A2898795858440A396978983406CA240' signed.topic..s.
+000007D6 978199A389A38996                    667          DC    X'978199A389A3899695A2406C844B4B6C' partitions..d...
+000007E6 8400839695A2A494                    668          DC    X'8400839695A2A4948599000099819587' d.consumer..rang
+000007F6 8500D7999684A483                    669          DC    X'8500D7999684A4838500C685A3838800' e.Produce.Fetch.
+00000806 D68686A285A30000                    670          DC    X'D68686A285A30000D485A3818481A381' Offset..Metadata
+00000816 0000D38581848599                    671          DC    X'0000D38581848599C19584C9A2990000' ..LeaderAndIsr..
+00000826 E2A39697D9859793                    672          DC    X'E2A39697D985979389838100E4978481' StopReplica.Upda
+00000836 A385D485A3818481                    673          DC    X'A385D485A3818481A3810000C39695A3' teMetadata..Cont
+00000846 999693938584E288                    674          DC    X'999693938584E288A4A38496A6950000' rolledShutdown..
+00000856 D68686A285A3C396                    675          DC    X'D68686A285A3C396949489A30000D686' OffsetCommit..Of
+00000866 86A285A3C685A383                    676          DC    X'86A285A3C685A3838800C6899584C396' fsetFetch.FindCo
+00000876 969984899581A396                    677          DC    X'969984899581A3969900D1968995C799' ordinator.JoinGr
+00000886 96A49700C8858199                    678          DC    X'96A49700C8858199A3828581A300D385' oup.Heartbeat.Le
+00000896 81A585C79996A497                    679          DC    X'81A585C79996A4970000E2A89583C799' aveGroup..SyncGr
+000008A6 96A49700C485A283                    680          DC    X'96A49700C485A28399898285C79996A4' oup.DescribeGrou
+000008B6 97A20000D389A2A3                    681          DC    X'97A20000D389A2A3C79996A497A20000' ps..ListGroups..
+000008C6 E281A293C8819584                    682          DC    X'E281A293C8819584A28881928500C197' SaslHandshake.Ap
+000008D6 89E58599A2899695                    683          DC    X'89E58599A28996950000C3998581A385' iVersion..Create
+000008E6 E396978983A20000                    684          DC    X'E396978983A20000C4859385A385E396' Topics..DeleteTo
+000008F6 978983A20000C485                    685          DC    X'978983A20000C4859385A385D9858396' pics..DeleteReco
+00000906 9984A200C99589A3                    686          DC    X'9984A200C99589A3D7999684A4838599' rds.InitProducer
+00000916 C9840000D68686A2                    687          DC    X'C9840000D68686A285A3C69699D38581' Id..OffsetForLea
+00000926 848599C597968388                    688          DC    X'848599C5979683880000C18484D78199' derEpoch..AddPar
+00000936 A389A3899695A2E3                    689          DC    X'A389A3899695A2E396E3A7950000C184' titionsToTxn..Ad
+00000946 84D68686A285A3A2                    690          DC    X'84D68686A285A3A2E396E3A79500C595' dOffsetsToTxn.En
+00000956 84E3A7950000E699                    691          DC    X'84E3A7950000E69989A385E3A795D481' dTxn..WriteTxnMa
+00000966 99928599A200E3A7                    692          DC    X'99928599A200E3A795D68686A285A3C3' rkers.TxnOffsetC
+00000976 96949489A300C485                    693          DC    X'96949489A300C485A28399898285C183' ommit.DescribeAc
+00000986 93A20000C3998581                    694          DC    X'93A20000C3998581A385C18393A20000' ls..CreateAcls..
+00000996 C4859385A385C183                    695          DC    X'C4859385A385C18393A20000C485A283' DeleteAcls..Desc
+000009A6 99898285C3969586                    696          DC    X'99898285C39695868987A200C193A385' ribeConfigs.Alte
+000009B6 99C39695868987A2                    697          DC    X'99C39695868987A20000C193A38599D9' rConfigs..AlterR
+000009C6 859793898381D396                    698          DC    X'859793898381D39687C48999A200C485' eplicaLogDirs.De
+000009D6 A28399898285D396                    699          DC    X'A28399898285D39687C48999A200E281' scribeLogDirs.Sa
+000009E6 A293C1A4A3888595                    700          DC    X'A293C1A4A3888595A3898381A3850000' slAuthenticate..
+000009F6 C3998581A385D781                    701          DC    X'C3998581A385D78199A389A3899695A2' CreatePartitions
+00000A06 0000C3998581A385                    702          DC    X'0000C3998581A385C48593858781A389' ..CreateDelegati
+00000A16 9695E39692859500                    703          DC    X'9695E39692859500D9859585A6C48593' onToken.RenewDel
+00000A26 858781A3899695E3                    704          DC    X'858781A3899695E3969285950000C5A7' egationToken..Ex
+00000A36 97899985C4859385                    705          DC    X'97899985C48593858781A3899695E396' pireDelegationTo
+00000A46 92859500C485A283                    706          DC    X'92859500C485A28399898285C4859385' ken.DescribeDele
+00000A56 8781A3899695E396                    707          DC    X'8781A3899695E39692859500C4859385' gationToken.Dele
+00000A66 A385C79996A497A2                    708          DC    X'A385C79996A497A20000C5938583A3D3' teGroups..ElectL
+00000A76 8581848599A2D985                    709          DC    X'8581848599A2D98598A485A2A300C995' eadersRequest.In
+                                                                                                                           Page   18 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000A86 839985948595A381                    710          DC    X'839985948595A38193C193A38599C396' crementalAlterCo
+00000A96 95868987A2D98598                    711          DC    X'95868987A2D98598A485A2A30000C193' nfigsRequest..Al
+00000AA6 A38599D78199A389                    712          DC    X'A38599D78199A389A3899695D98581A2' terPartitionReas
+00000AB6 A2898795948595A3                    713          DC    X'A2898795948595A3A2D98598A485A2A3' signmentsRequest
+00000AC6 0000D389A2A3D781                    714          DC    X'0000D389A2A3D78199A389A3899695D9' ..ListPartitionR
+00000AD6 8581A2A289879594                    715          DC    X'8581A2A2898795948595A3A2D98598A4' eassignmentsRequ
+00000AE6 85A2A300D68686A2                    716          DC    X'85A2A300D68686A285A3C4859385A385' est.OffsetDelete
+00000AF6 D98598A485A2A300                    717          DC    X'D98598A485A2A300C485A28399898285' Request.Describe
+00000B06 C393898595A3D8A4                    718          DC    X'C393898595A3D8A496A381A2D98598A4' ClientQuotasRequ
+00000B16 85A2A300C193A385                    719          DC    X'85A2A300C193A38599C393898595A3D8' est.AlterClientQ
+00000B26 A496A381A2D98598                    720          DC    X'A496A381A2D98598A485A2A30000C485' uotasRequest..De
+00000B36 A28399898285E4A2                    721          DC    X'A28399898285E4A28599E283998194C3' scribeUserScramC
+00000B46 9985848595A38981                    722          DC    X'9985848595A3898193A2D98598A485A2' redentialsReques
+00000B56 A300C193A38599E4                    723          DC    X'A300C193A38599E4A28599E283998194' t.AlterUserScram
+00000B66 C39985848595A389                    724          DC    X'C39985848595A3898193A2D98598A485' CredentialsReque
+00000B76 A2A30000E596A385                    725          DC    X'A2A30000E596A385D98598A485A2A300' st..VoteRequest.
+00000B86 C285878995D8A496                    726          DC    X'C285878995D8A49699A494C597968388' BeginQuorumEpoch
+00000B96 D98598A485A2A300                    727          DC    X'D98598A485A2A300C59584D8A49699A4' Request.EndQuoru
+00000BA6 94C597968388D985                    728          DC    X'94C597968388D98598A485A2A300C485' mEpochRequest.De
+00000BB6 A28399898285D8A4                    729          DC    X'A28399898285D8A49699A494D98598A4' scribeQuorumRequ
+00000BC6 85A2A300C193A385                    730          DC    X'85A2A300C193A38599C9A299D98598A4' est.AlterIsrRequ
+00000BD6 85A2A300E4978481                    731          DC    X'85A2A300E4978481A385C68581A3A499' est.UpdateFeatur
+00000BE6 85A2D98598A485A2                    732          DC    X'85A2D98598A485A2A300C595A5859396' esRequest.Envelo
+00000BF6 9785D98598A485A2                    733          DC    X'9785D98598A485A2A300959695850000' peRequest.none..
+00000C06 87A989970000A295                    734          DC    X'87A989970000A295819797A8000093A9' gzip..snappy..lz
+00000C16 F400A9A2A3840000                    735          DC    X'F400A9A2A3840000899588859989A300' 4.zstd..inherit.
+00000C26 839695868987A499                    736          DC    X'839695868987A4998584000093858199' configured..lear
+00000C36 958584008995A385                    737          DC    X'958584008995A3859995819300009396' ned.internal..lo
+00000C46 878983819300C995                    738          DC    X'878983819300C99589A30000E3859994' gical.Init..Term
+00000C56 899581A38500C681                    739          DC    X'899581A38500C681A38193C599999699' inate.FatalError
+00000C66 0000D98598A485A2                    740          DC    X'0000D98598A485A2A3D7C9C40000E681' ..RequestPID..Wa
+00000C76 89A3E3998195A297                    741          DC    X'89A3E3998195A2979699A300E68189A3' itTransport.Wait
+00000C86 D7C9C400C1A2A289                    742          DC    X'D7C9C400C1A2A289879585840000C499' PID.Assigned..Dr
+00000C96 818995D985A285A3                    743          DC    X'818995D985A285A30000C499818995C2' ainReset..DrainB
+00000CA6 A4949700D9858184                    744          DC    X'A4949700D9858184A8D596A3C1839285' ump.ReadyNotAcke
+00000CB6 8400D9858184A800                    745          DC    X'8400D9858184A800C995E3998195A281' d.Ready.InTransa
+00000CC6 83A389969500C285                    746          DC    X'83A389969500C285878995C396949489' ction.BeginCommi
+00000CD6 A300C396949489A3                    747          DC    X'A300C396949489A3A3899587E3998195' t.CommittingTran
+00000CE6 A28183A389969500                    748          DC    X'A28183A389969500C396949489A3D596' saction.CommitNo
+00000CF6 A3C1839285840000                    749          DC    X'A3C1839285840000C1829699A3899587' tAcked..Aborting
+00000D06 E3998195A28183A3                    750          DC    X'E3998195A28183A389969500C1829699' Transaction.Abor
+00000D16 A38584D596A3C183                    751          DC    X'A38584D596A3C18392858400C1829699' tedNotAcked.Abor
+00000D26 A381829385C59999                    752          DC    X'A381829385C5999996990000'         tableError..
+                                             753 *
+                                             754 *
+                                             755 *   Re-entrant Data Initialization Section
+                                             756 *
+                                             757 @@INIT@  ALIAS C'rdkafka_range_assignor:'
+00000D38                00000D38 00001040    758 @@INIT@  CSECT
+                                             759 @@INIT@  AMODE ANY
+                                             760 @@INIT@  RMODE ANY
+00000D38 05                                  761          DC    XL1'5'
+                                                                                                                           Page   19 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000D39 000000                              762          DC    AL3(0)
+00000D3C 00000120                            763          DC    AL4(288)
+00000D40 00000000                            764          DC    4X'00'
+00000D44 00000000                            765          DC    Q(@@STATIC)
+00000D48 00000000                            766          DC    X'00000000'
+00000D4C 00000001                            767          DC    X'00000001'
+00000D50 00000000                            768          DC    X'00000000'
+00000D54 000000FF                            769          DC    X'000000FF'
+00000D58 0102039C09867F97                    770          DC    X'0102039C09867F978D8E0B0C0D0E0F10' .....f.p........
+00000D68 1112139D85088718                    771          DC    X'1112139D8508871819928F1C1D1E1F80' ....e.g..k......
+00000D78 818283840A171B88                    772          DC    X'818283840A171B88898A8B8C05060790' abcd...hi.......
+00000D88 9116939495960498                    773          DC    X'9116939495960498999A9B14159E1A20' j.lmno.qr.......
+00000D98 A0E2E4E0E1E3E5E7                    774          DC    X'A0E2E4E0E1E3E5E7F1A22E3C282B7C26' .SU..TVX1s......
+00000DA8 E9EAEBE8EDEEEFEC                    775          DC    X'E9EAEBE8EDEEEFECDF21242A293B5E2D' Z..Y............
+00000DB8 2FC2C4C0C1C3C5C7                    776          DC    X'2FC2C4C0C1C3C5C7D1A62C255F3E3FF8' .BD.ACEGJw.....8
+00000DC8 C9CACBC8CDCECFCC                    777          DC    X'C9CACBC8CDCECFCC603A2340273D22D8' I..H...........Q
+00000DD8 6162636465666768                    778          DC    X'616263646566676869ABBBF0FDFEB1B0' ...........0....
+00000DE8 6A6B6C6D6E6F7071                    779          DC    X'6A6B6C6D6E6F707172AABAE6B8C6A4B5' ...........W.Fu.
+00000DF8 7E73747576777879                    780          DC    X'7E737475767778797AA1BFD05BDEAEAC' ................
+00000E08 A3A5B7A9A7B6BCBD                    781          DC    X'A3A5B7A9A7B6BCBDBEDDA8AF5DB4D77B' tv.zx.....y...P.
+00000E18 4142434445464748                    782          DC    X'414243444546474849ADF4F6F2F3F57D' ..........46235.
+00000E28 4A4B4C4D4E4F5051                    783          DC    X'4A4B4C4D4E4F505152B9FBFCF9FAFF5C' ............9...
+00000E38 F753545556575859                    784          DC    X'F7535455565758595AB2D4D6D2D3D530' 7.........MOKLN.
+00000E48 3132333435363738                    785          DC    X'313233343536373839B3DBDCD9DA9F40' ............R...
+                                             786 *
+00000E58 05                                  787          DC    XL1'5'
+00000E59 000000                              788          DC    AL3(0)
+00000E5C 000001E0                            789          DC    AL4(480)
+00000E60 00000000                            790          DC    4X'00'
+00000E64 00000000                            791          DC    Q(@@STATIC)
+00000E68 00000000                            792          DC    X'00000000'
+00000E6C 00000101                            793          DC    X'00000101'
+00000E70 00000000                            794          DC    X'00000000'
+00000E74 000000A0                            795          DC    X'000000A0'
+00000E78 010203372D2E2F16                    796          DC    X'010203372D2E2F1605150B0C0D0E0F10' ................
+00000E88 1112133C3D322618                    797          DC    X'1112133C3D322618193F271C1D1E1F40' ................
+00000E98 5A7F7B5B6C507D4D                    798          DC    X'5A7F7B5B6C507D4D5D5C4E6B604B61F0' ...............0
+00000EA8 F1F2F3F4F5F6F7F8                    799          DC    X'F1F2F3F4F5F6F7F8F97A5E4C7E6E6F7C' 123456789.......
+00000EB8 C1C2C3C4C5C6C7C8                    800          DC    X'C1C2C3C4C5C6C7C8C9D1D2D3D4D5D6D7' ABCDEFGHIJKLMNOP
+00000EC8 D8D9E2E3E4E5E6E7                    801          DC    X'D8D9E2E3E4E5E6E7E8E9ADE0BD5F6D79' QRSTUVWXYZ......
+00000ED8 8182838485868788                    802          DC    X'81828384858687888991929394959697' abcdefghijklmnop
+00000EE8 9899A2A3A4A5A6A7                    803          DC    X'9899A2A3A4A5A6A7A8A9C04FD0A10720' qrstuvwxyz......
+00000EF8 2122232425061728                    804          DC    X'2122232425061728292A2B2C090A1B30' ................
+00000F08 311A333435360838                    805          DC    X'311A333435360838393A3B04143EFF80' ................
+                                             806 *
+00000F18 05                                  807          DC    XL1'5'
+00000F19 000000                              808          DC    AL3(0)
+00000F1C 00000208                            809          DC    AL4(520)
+00000F20 00000000                            810          DC    4X'00'
+00000F24 00000000                            811          DC    Q(@@STATIC)
+00000F28 00000000                            812          DC    X'00000000'
+00000F2C 000001C0                            813          DC    X'000001C0'
+                                                                                                                           Page   20 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000F30 00000000                            814          DC    X'00000000'
+00000F34 00000001                            815          DC    X'00000001'
+00000F38 8A40404040404040                    816          DC    X'8A40404040404040'                 ........
+                                             817 *
+00000F40 05                                  818          DC    XL1'5'
+00000F41 000000                              819          DC    AL3(0)
+00000F44 00000230                            820          DC    AL4(560)
+00000F48 00000000                            821          DC    4X'00'
+00000F4C 00000000                            822          DC    Q(@@STATIC)
+00000F50 00000000                            823          DC    X'00000000'
+00000F54 000001E0                            824          DC    X'000001E0'
+00000F58 00000000                            825          DC    X'00000000'
+00000F5C 00000001                            826          DC    X'00000001'
+00000F60 8B40404040404040                    827          DC    X'8B40404040404040'                 ........
+                                             828 *
+00000F68 0D                                  829          DC    XL1'D'
+00000F69 000000                              830          DC    AL3(0)
+00000F6C 00000258                            831          DC    AL4(600)
+00000F70 00000000                            832          DC    4X'00'
+00000F74 00000000                            833          DC    Q(@@STATIC)
+00000F78 00000000                            834          DC    X'00000000'
+00000F7C 00000220                            835          DC    X'00000220'
+00000F80 00000000000005C0                    836          DC    ADL8(@DATA)
+00000F88 00000000                            837          DC    X'00000000'
+00000F8C 00000238                            838          DC    X'00000238'
+                                             839 *
+00000F90 0D                                  840          DC    XL1'D'
+00000F91 000000                              841          DC    AL3(0)
+00000F94 00000280                            842          DC    AL4(640)
+00000F98 00000000                            843          DC    4X'00'
+00000F9C 00000000                            844          DC    Q(@@STATIC)
+00000FA0 00000000                            845          DC    X'00000000'
+00000FA4 00000228                            846          DC    X'00000228'
+00000FA8 00000000000005C0                    847          DC    ADL8(@DATA)
+00000FB0 00000000                            848          DC    X'00000000'
+00000FB4 00000240                            849          DC    X'00000240'
+                                             850 *
+00000FB8 0D                                  851          DC    XL1'D'
+00000FB9 000000                              852          DC    AL3(0)
+00000FBC 000002A8                            853          DC    AL4(680)
+00000FC0 00000000                            854          DC    4X'00'
+00000FC4 00000000                            855          DC    Q(@@STATIC)
+00000FC8 00000000                            856          DC    X'00000000'
+00000FCC 00000230                            857          DC    X'00000230'
+00000FD0 00000000000005C0                    858          DC    ADL8(@DATA)
+00000FD8 00000000                            859          DC    X'00000000'
+00000FDC 00000246                            860          DC    X'00000246'
+                                             861 *
+00000FE0 0D                                  862          DC    XL1'D'
+00000FE1 000000                              863          DC    AL3(0)
+00000FE4 000002D0                            864          DC    AL4(720)
+00000FE8 00000000                            865          DC    4X'00'
+                                                                                                                           Page   21 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000FEC 00000000                            866          DC    Q(@@STATIC)
+00000FF0 00000000                            867          DC    X'00000000'
+00000FF4 00000238                            868          DC    X'00000238'
+00000FF8 00000000000005C0                    869          DC    ADL8(@DATA)
+00001000 00000000                            870          DC    X'00000000'
+00001004 0000024E                            871          DC    X'0000024E'
+                                             872 *
+00001008 0D                                  873          DC    XL1'D'
+00001009 000000                              874          DC    AL3(0)
+0000100C 000002F8                            875          DC    AL4(760)
+00001010 00000000                            876          DC    4X'00'
+00001014 00000000                            877          DC    Q(@@STATIC)
+00001018 00000000                            878          DC    X'00000000'
+0000101C 00000240                            879          DC    X'00000240'
+00001020 00000000000005C0                    880          DC    ADL8(@DATA)
+00001028 00000000                            881          DC    X'00000000'
+0000102C 00000258                            882          DC    X'00000258'
+                                             883 *
+00001030 0D                                  884          DC    XL1'D'
+00001031 000000                              885          DC    AL3(0)
+00001034 00000320                            886          DC    AL4(800)
+00001038 00000000                            887          DC    4X'00'
+0000103C 00000000                            888          DC    Q(@@STATIC)
+00001040 00000000                            889          DC    X'00000000'
+00001044 00000248                            890          DC    X'00000248'
+00001048 00000000000005C0                    891          DC    ADL8(@DATA)
+00001050 00000000                            892          DC    X'00000000'
+00001054 00000266                            893          DC    X'00000266'
+                                             894 *
+00001058 0D                                  895          DC    XL1'D'
+00001059 000000                              896          DC    AL3(0)
+0000105C 00000348                            897          DC    AL4(840)
+00001060 00000000                            898          DC    4X'00'
+00001064 00000000                            899          DC    Q(@@STATIC)
+00001068 00000000                            900          DC    X'00000000'
+0000106C 00000250                            901          DC    X'00000250'
+00001070 00000000000005C0                    902          DC    ADL8(@DATA)
+00001078 00000000                            903          DC    X'00000000'
+0000107C 00000272                            904          DC    X'00000272'
+                                             905 *
+00001080 0D                                  906          DC    XL1'D'
+00001081 000000                              907          DC    AL3(0)
+00001084 00000370                            908          DC    AL4(880)
+00001088 00000000                            909          DC    4X'00'
+0000108C 00000000                            910          DC    Q(@@STATIC)
+00001090 00000000                            911          DC    X'00000000'
+00001094 00000258                            912          DC    X'00000258'
+00001098 00000000000005C0                    913          DC    ADL8(@DATA)
+000010A0 00000000                            914          DC    X'00000000'
+000010A4 00000282                            915          DC    X'00000282'
+                                             916 *
+000010A8 0D                                  917          DC    XL1'D'
+                                                                                                                           Page   22 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+000010A9 000000                              918          DC    AL3(0)
+000010AC 00000398                            919          DC    AL4(920)
+000010B0 00000000                            920          DC    4X'00'
+000010B4 00000000                            921          DC    Q(@@STATIC)
+000010B8 00000000                            922          DC    X'00000000'
+000010BC 00000260                            923          DC    X'00000260'
+000010C0 00000000000005C0                    924          DC    ADL8(@DATA)
+000010C8 00000000                            925          DC    X'00000000'
+000010CC 00000296                            926          DC    X'00000296'
+                                             927 *
+000010D0 0D                                  928          DC    XL1'D'
+000010D1 000000                              929          DC    AL3(0)
+000010D4 000003C0                            930          DC    AL4(960)
+000010D8 00000000                            931          DC    4X'00'
+000010DC 00000000                            932          DC    Q(@@STATIC)
+000010E0 00000000                            933          DC    X'00000000'
+000010E4 00000268                            934          DC    X'00000268'
+000010E8 00000000000005C0                    935          DC    ADL8(@DATA)
+000010F0 00000000                            936          DC    X'00000000'
+000010F4 000002A4                            937          DC    X'000002A4'
+                                             938 *
+000010F8 0D                                  939          DC    XL1'D'
+000010F9 000000                              940          DC    AL3(0)
+000010FC 000003E8                            941          DC    AL4(1000)
+00001100 00000000                            942          DC    4X'00'
+00001104 00000000                            943          DC    Q(@@STATIC)
+00001108 00000000                            944          DC    X'00000000'
+0000110C 00000270                            945          DC    X'00000270'
+00001110 00000000000005C0                    946          DC    ADL8(@DATA)
+00001118 00000000                            947          DC    X'00000000'
+0000111C 000002B0                            948          DC    X'000002B0'
+                                             949 *
+00001120 0D                                  950          DC    XL1'D'
+00001121 000000                              951          DC    AL3(0)
+00001124 00000410                            952          DC    AL4(1040)
+00001128 00000000                            953          DC    4X'00'
+0000112C 00000000                            954          DC    Q(@@STATIC)
+00001130 00000000                            955          DC    X'00000000'
+00001134 00000278                            956          DC    X'00000278'
+00001138 00000000000005C0                    957          DC    ADL8(@DATA)
+00001140 00000000                            958          DC    X'00000000'
+00001144 000002C0                            959          DC    X'000002C0'
+                                             960 *
+00001148 0D                                  961          DC    XL1'D'
+00001149 000000                              962          DC    AL3(0)
+0000114C 00000438                            963          DC    AL4(1080)
+00001150 00000000                            964          DC    4X'00'
+00001154 00000000                            965          DC    Q(@@STATIC)
+00001158 00000000                            966          DC    X'00000000'
+0000115C 00000280                            967          DC    X'00000280'
+00001160 00000000000005C0                    968          DC    ADL8(@DATA)
+00001168 00000000                            969          DC    X'00000000'
+                                                                                                                           Page   23 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+0000116C 000002CA                            970          DC    X'000002CA'
+                                             971 *
+00001170 0D                                  972          DC    XL1'D'
+00001171 000000                              973          DC    AL3(0)
+00001174 00000460                            974          DC    AL4(1120)
+00001178 00000000                            975          DC    4X'00'
+0000117C 00000000                            976          DC    Q(@@STATIC)
+00001180 00000000                            977          DC    X'00000000'
+00001184 00000288                            978          DC    X'00000288'
+00001188 00000000000005C0                    979          DC    ADL8(@DATA)
+00001190 00000000                            980          DC    X'00000000'
+00001194 000002D4                            981          DC    X'000002D4'
+                                             982 *
+00001198 0D                                  983          DC    XL1'D'
+00001199 000000                              984          DC    AL3(0)
+0000119C 00000488                            985          DC    AL4(1160)
+000011A0 00000000                            986          DC    4X'00'
+000011A4 00000000                            987          DC    Q(@@STATIC)
+000011A8 00000000                            988          DC    X'00000000'
+000011AC 00000290                            989          DC    X'00000290'
+000011B0 00000000000005C0                    990          DC    ADL8(@DATA)
+000011B8 00000000                            991          DC    X'00000000'
+000011BC 000002E0                            992          DC    X'000002E0'
+                                             993 *
+000011C0 0D                                  994          DC    XL1'D'
+000011C1 000000                              995          DC    AL3(0)
+000011C4 000004B0                            996          DC    AL4(1200)
+000011C8 00000000                            997          DC    4X'00'
+000011CC 00000000                            998          DC    Q(@@STATIC)
+000011D0 00000000                            999          DC    X'00000000'
+000011D4 00000298                           1000          DC    X'00000298'
+000011D8 00000000000005C0                   1001          DC    ADL8(@DATA)
+000011E0 00000000                           1002          DC    X'00000000'
+000011E4 000002EA                           1003          DC    X'000002EA'
+                                            1004 *
+000011E8 0D                                 1005          DC    XL1'D'
+000011E9 000000                             1006          DC    AL3(0)
+000011EC 000004D8                           1007          DC    AL4(1240)
+000011F0 00000000                           1008          DC    4X'00'
+000011F4 00000000                           1009          DC    Q(@@STATIC)
+000011F8 00000000                           1010          DC    X'00000000'
+000011FC 000002A0                           1011          DC    X'000002A0'
+00001200 00000000000005C0                   1012          DC    ADL8(@DATA)
+00001208 00000000                           1013          DC    X'00000000'
+0000120C 000002FA                           1014          DC    X'000002FA'
+                                            1015 *
+00001210 0D                                 1016          DC    XL1'D'
+00001211 000000                             1017          DC    AL3(0)
+00001214 00000500                           1018          DC    AL4(1280)
+00001218 00000000                           1019          DC    4X'00'
+0000121C 00000000                           1020          DC    Q(@@STATIC)
+00001220 00000000                           1021          DC    X'00000000'
+                                                                                                                           Page   24 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00001224 000002A8                           1022          DC    X'000002A8'
+00001228 00000000000005C0                   1023          DC    ADL8(@DATA)
+00001230 00000000                           1024          DC    X'00000000'
+00001234 00000306                           1025          DC    X'00000306'
+                                            1026 *
+00001238 0D                                 1027          DC    XL1'D'
+00001239 000000                             1028          DC    AL3(0)
+0000123C 00000528                           1029          DC    AL4(1320)
+00001240 00000000                           1030          DC    4X'00'
+00001244 00000000                           1031          DC    Q(@@STATIC)
+00001248 00000000                           1032          DC    X'00000000'
+0000124C 000002B0                           1033          DC    X'000002B0'
+00001250 00000000000005C0                   1034          DC    ADL8(@DATA)
+00001258 00000000                           1035          DC    X'00000000'
+0000125C 00000314                           1036          DC    X'00000314'
+                                            1037 *
+00001260 0D                                 1038          DC    XL1'D'
+00001261 000000                             1039          DC    AL3(0)
+00001264 00000550                           1040          DC    AL4(1360)
+00001268 00000000                           1041          DC    4X'00'
+0000126C 00000000                           1042          DC    Q(@@STATIC)
+00001270 00000000                           1043          DC    X'00000000'
+00001274 000002B8                           1044          DC    X'000002B8'
+00001278 00000000000005C0                   1045          DC    ADL8(@DATA)
+00001280 00000000                           1046          DC    X'00000000'
+00001284 00000320                           1047          DC    X'00000320'
+                                            1048 *
+00001288 0D                                 1049          DC    XL1'D'
+00001289 000000                             1050          DC    AL3(0)
+0000128C 00000578                           1051          DC    AL4(1400)
+00001290 00000000                           1052          DC    4X'00'
+00001294 00000000                           1053          DC    Q(@@STATIC)
+00001298 00000000                           1054          DC    X'00000000'
+0000129C 000002C0                           1055          DC    X'000002C0'
+000012A0 00000000000005C0                   1056          DC    ADL8(@DATA)
+000012A8 00000000                           1057          DC    X'00000000'
+000012AC 0000032E                           1058          DC    X'0000032E'
+                                            1059 *
+000012B0 0D                                 1060          DC    XL1'D'
+000012B1 000000                             1061          DC    AL3(0)
+000012B4 000005A0                           1062          DC    AL4(1440)
+000012B8 00000000                           1063          DC    4X'00'
+000012BC 00000000                           1064          DC    Q(@@STATIC)
+000012C0 00000000                           1065          DC    X'00000000'
+000012C4 000002C8                           1066          DC    X'000002C8'
+000012C8 00000000000005C0                   1067          DC    ADL8(@DATA)
+000012D0 00000000                           1068          DC    X'00000000'
+000012D4 0000033C                           1069          DC    X'0000033C'
+                                            1070 *
+000012D8 0D                                 1071          DC    XL1'D'
+000012D9 000000                             1072          DC    AL3(0)
+000012DC 000005C8                           1073          DC    AL4(1480)
+                                                                                                                           Page   25 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+000012E0 00000000                           1074          DC    4X'00'
+000012E4 00000000                           1075          DC    Q(@@STATIC)
+000012E8 00000000                           1076          DC    X'00000000'
+000012EC 000002D0                           1077          DC    X'000002D0'
+000012F0 00000000000005C0                   1078          DC    ADL8(@DATA)
+000012F8 00000000                           1079          DC    X'00000000'
+000012FC 0000034A                           1080          DC    X'0000034A'
+                                            1081 *
+00001300 0D                                 1082          DC    XL1'D'
+00001301 000000                             1083          DC    AL3(0)
+00001304 000005F0                           1084          DC    AL4(1520)
+00001308 00000000                           1085          DC    4X'00'
+0000130C 00000000                           1086          DC    Q(@@STATIC)
+00001310 00000000                           1087          DC    X'00000000'
+00001314 000002D8                           1088          DC    X'000002D8'
+00001318 00000000000005C0                   1089          DC    ADL8(@DATA)
+00001320 00000000                           1090          DC    X'00000000'
+00001324 0000035A                           1091          DC    X'0000035A'
+                                            1092 *
+00001328 0D                                 1093          DC    XL1'D'
+00001329 000000                             1094          DC    AL3(0)
+0000132C 00000618                           1095          DC    AL4(1560)
+00001330 00000000                           1096          DC    4X'00'
+00001334 00000000                           1097          DC    Q(@@STATIC)
+00001338 00000000                           1098          DC    X'00000000'
+0000133C 000002E0                           1099          DC    X'000002E0'
+00001340 00000000000005C0                   1100          DC    ADL8(@DATA)
+00001348 00000000                           1101          DC    X'00000000'
+0000134C 00000370                           1102          DC    X'00000370'
+                                            1103 *
+00001350 0D                                 1104          DC    XL1'D'
+00001351 000000                             1105          DC    AL3(0)
+00001354 00000640                           1106          DC    AL4(1600)
+00001358 00000000                           1107          DC    4X'00'
+0000135C 00000000                           1108          DC    Q(@@STATIC)
+00001360 00000000                           1109          DC    X'00000000'
+00001364 000002E8                           1110          DC    X'000002E8'
+00001368 00000000000005C0                   1111          DC    ADL8(@DATA)
+00001370 00000000                           1112          DC    X'00000000'
+00001374 00000384                           1113          DC    X'00000384'
+                                            1114 *
+00001378 0D                                 1115          DC    XL1'D'
+00001379 000000                             1116          DC    AL3(0)
+0000137C 00000668                           1117          DC    AL4(1640)
+00001380 00000000                           1118          DC    4X'00'
+00001384 00000000                           1119          DC    Q(@@STATIC)
+00001388 00000000                           1120          DC    X'00000000'
+0000138C 000002F0                           1121          DC    X'000002F0'
+00001390 00000000000005C0                   1122          DC    ADL8(@DATA)
+00001398 00000000                           1123          DC    X'00000000'
+0000139C 00000394                           1124          DC    X'00000394'
+                                            1125 *
+                                                                                                                           Page   26 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+000013A0 0D                                 1126          DC    XL1'D'
+000013A1 000000                             1127          DC    AL3(0)
+000013A4 00000690                           1128          DC    AL4(1680)
+000013A8 00000000                           1129          DC    4X'00'
+000013AC 00000000                           1130          DC    Q(@@STATIC)
+000013B0 00000000                           1131          DC    X'00000000'
+000013B4 000002F8                           1132          DC    X'000002F8'
+000013B8 00000000000005C0                   1133          DC    ADL8(@DATA)
+000013C0 00000000                           1134          DC    X'00000000'
+000013C4 0000039C                           1135          DC    X'0000039C'
+                                            1136 *
+000013C8 0D                                 1137          DC    XL1'D'
+000013C9 000000                             1138          DC    AL3(0)
+000013CC 000006B8                           1139          DC    AL4(1720)
+000013D0 00000000                           1140          DC    4X'00'
+000013D4 00000000                           1141          DC    Q(@@STATIC)
+000013D8 00000000                           1142          DC    X'00000000'
+000013DC 00000300                           1143          DC    X'00000300'
+000013E0 00000000000005C0                   1144          DC    ADL8(@DATA)
+000013E8 00000000                           1145          DC    X'00000000'
+000013EC 000003AC                           1146          DC    X'000003AC'
+                                            1147 *
+000013F0 0D                                 1148          DC    XL1'D'
+000013F1 000000                             1149          DC    AL3(0)
+000013F4 000006E0                           1150          DC    AL4(1760)
+000013F8 00000000                           1151          DC    4X'00'
+000013FC 00000000                           1152          DC    Q(@@STATIC)
+00001400 00000000                           1153          DC    X'00000000'
+00001404 00000308                           1154          DC    X'00000308'
+00001408 00000000000005C0                   1155          DC    ADL8(@DATA)
+00001410 00000000                           1156          DC    X'00000000'
+00001414 000003BC                           1157          DC    X'000003BC'
+                                            1158 *
+00001418 0D                                 1159          DC    XL1'D'
+00001419 000000                             1160          DC    AL3(0)
+0000141C 00000708                           1161          DC    AL4(1800)
+00001420 00000000                           1162          DC    4X'00'
+00001424 00000000                           1163          DC    Q(@@STATIC)
+00001428 00000000                           1164          DC    X'00000000'
+0000142C 00000310                           1165          DC    X'00000310'
+00001430 00000000000005C0                   1166          DC    ADL8(@DATA)
+00001438 00000000                           1167          DC    X'00000000'
+0000143C 000003CA                           1168          DC    X'000003CA'
+                                            1169 *
+00001440 0D                                 1170          DC    XL1'D'
+00001441 000000                             1171          DC    AL3(0)
+00001444 00000730                           1172          DC    AL4(1840)
+00001448 00000000                           1173          DC    4X'00'
+0000144C 00000000                           1174          DC    Q(@@STATIC)
+00001450 00000000                           1175          DC    X'00000000'
+00001454 00000318                           1176          DC    X'00000318'
+00001458 00000000000005C0                   1177          DC    ADL8(@DATA)
+                                                                                                                           Page   27 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00001460 00000000                           1178          DC    X'00000000'
+00001464 000003D6                           1179          DC    X'000003D6'
+                                            1180 *
+00001468 0D                                 1181          DC    XL1'D'
+00001469 000000                             1182          DC    AL3(0)
+0000146C 00000758                           1183          DC    AL4(1880)
+00001470 00000000                           1184          DC    4X'00'
+00001474 00000000                           1185          DC    Q(@@STATIC)
+00001478 00000000                           1186          DC    X'00000000'
+0000147C 00000320                           1187          DC    X'00000320'
+00001480 00000000000005C0                   1188          DC    ADL8(@DATA)
+00001488 00000000                           1189          DC    X'00000000'
+0000148C 000003E2                           1190          DC    X'000003E2'
+                                            1191 *
+00001490 0D                                 1192          DC    XL1'D'
+00001491 000000                             1193          DC    AL3(0)
+00001494 00000780                           1194          DC    AL4(1920)
+00001498 00000000                           1195          DC    4X'00'
+0000149C 00000000                           1196          DC    Q(@@STATIC)
+000014A0 00000000                           1197          DC    X'00000000'
+000014A4 00000328                           1198          DC    X'00000328'
+000014A8 00000000000005C0                   1199          DC    ADL8(@DATA)
+000014B0 00000000                           1200          DC    X'00000000'
+000014B4 000003F2                           1201          DC    X'000003F2'
+                                            1202 *
+000014B8 0D                                 1203          DC    XL1'D'
+000014B9 000000                             1204          DC    AL3(0)
+000014BC 000007A8                           1205          DC    AL4(1960)
+000014C0 00000000                           1206          DC    4X'00'
+000014C4 00000000                           1207          DC    Q(@@STATIC)
+000014C8 00000000                           1208          DC    X'00000000'
+000014CC 00000330                           1209          DC    X'00000330'
+000014D0 00000000000005C0                   1210          DC    ADL8(@DATA)
+000014D8 00000000                           1211          DC    X'00000000'
+000014DC 00000400                           1212          DC    X'00000400'
+                                            1213 *
+000014E0 0D                                 1214          DC    XL1'D'
+000014E1 000000                             1215          DC    AL3(0)
+000014E4 000007D0                           1216          DC    AL4(2000)
+000014E8 00000000                           1217          DC    4X'00'
+000014EC 00000000                           1218          DC    Q(@@STATIC)
+000014F0 00000000                           1219          DC    X'00000000'
+000014F4 00000338                           1220          DC    X'00000338'
+000014F8 00000000000005C0                   1221          DC    ADL8(@DATA)
+00001500 00000000                           1222          DC    X'00000000'
+00001504 00000414                           1223          DC    X'00000414'
+                                            1224 *
+00001508 0D                                 1225          DC    XL1'D'
+00001509 000000                             1226          DC    AL3(0)
+0000150C 000007F8                           1227          DC    AL4(2040)
+00001510 00000000                           1228          DC    4X'00'
+00001514 00000000                           1229          DC    Q(@@STATIC)
+                                                                                                                           Page   28 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00001518 00000000                           1230          DC    X'00000000'
+0000151C 00000340                           1231          DC    X'00000340'
+00001520 00000000000005C0                   1232          DC    ADL8(@DATA)
+00001528 00000000                           1233          DC    X'00000000'
+0000152C 00000424                           1234          DC    X'00000424'
+                                            1235 *
+00001530 0D                                 1236          DC    XL1'D'
+00001531 000000                             1237          DC    AL3(0)
+00001534 00000820                           1238          DC    AL4(2080)
+00001538 00000000                           1239          DC    4X'00'
+0000153C 00000000                           1240          DC    Q(@@STATIC)
+00001540 00000000                           1241          DC    X'00000000'
+00001544 00000348                           1242          DC    X'00000348'
+00001548 00000000000005C0                   1243          DC    ADL8(@DATA)
+00001550 00000000                           1244          DC    X'00000000'
+00001554 00000436                           1245          DC    X'00000436'
+                                            1246 *
+00001558 0D                                 1247          DC    XL1'D'
+00001559 000000                             1248          DC    AL3(0)
+0000155C 00000848                           1249          DC    AL4(2120)
+00001560 00000000                           1250          DC    4X'00'
+00001564 00000000                           1251          DC    Q(@@STATIC)
+00001568 00000000                           1252          DC    X'00000000'
+0000156C 00000350                           1253          DC    X'00000350'
+00001570 00000000000005C0                   1254          DC    ADL8(@DATA)
+00001578 00000000                           1255          DC    X'00000000'
+0000157C 00000448                           1256          DC    X'00000448'
+                                            1257 *
+00001580 0D                                 1258          DC    XL1'D'
+00001581 000000                             1259          DC    AL3(0)
+00001584 00000870                           1260          DC    AL4(2160)
+00001588 00000000                           1261          DC    4X'00'
+0000158C 00000000                           1262          DC    Q(@@STATIC)
+00001590 00000000                           1263          DC    X'00000000'
+00001594 00000358                           1264          DC    X'00000358'
+00001598 00000000000005C0                   1265          DC    ADL8(@DATA)
+000015A0 00000000                           1266          DC    X'00000000'
+000015A4 0000045E                           1267          DC    X'0000045E'
+                                            1268 *
+000015A8 0D                                 1269          DC    XL1'D'
+000015A9 000000                             1270          DC    AL3(0)
+000015AC 00000898                           1271          DC    AL4(2200)
+000015B0 00000000                           1272          DC    4X'00'
+000015B4 00000000                           1273          DC    Q(@@STATIC)
+000015B8 00000000                           1274          DC    X'00000000'
+000015BC 00000360                           1275          DC    X'00000360'
+000015C0 00000000000005C0                   1276          DC    ADL8(@DATA)
+000015C8 00000000                           1277          DC    X'00000000'
+000015CC 00000474                           1278          DC    X'00000474'
+                                            1279 *
+000015D0 0D                                 1280          DC    XL1'D'
+000015D1 000000                             1281          DC    AL3(0)
+                                                                                                                           Page   29 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+000015D4 000008C0                           1282          DC    AL4(2240)
+000015D8 00000000                           1283          DC    4X'00'
+000015DC 00000000                           1284          DC    Q(@@STATIC)
+000015E0 00000000                           1285          DC    X'00000000'
+000015E4 00000368                           1286          DC    X'00000368'
+000015E8 00000000000005C0                   1287          DC    ADL8(@DATA)
+000015F0 00000000                           1288          DC    X'00000000'
+000015F4 0000048A                           1289          DC    X'0000048A'
+                                            1290 *
+000015F8 0D                                 1291          DC    XL1'D'
+000015F9 000000                             1292          DC    AL3(0)
+000015FC 000008E8                           1293          DC    AL4(2280)
+00001600 00000000                           1294          DC    4X'00'
+00001604 00000000                           1295          DC    Q(@@STATIC)
+00001608 00000000                           1296          DC    X'00000000'
+0000160C 00000370                           1297          DC    X'00000370'
+00001610 00000000000005C0                   1298          DC    ADL8(@DATA)
+00001618 00000000                           1299          DC    X'00000000'
+0000161C 000004A2                           1300          DC    X'000004A2'
+                                            1301 *
+00001620 0D                                 1302          DC    XL1'D'
+00001621 000000                             1303          DC    AL3(0)
+00001624 00000910                           1304          DC    AL4(2320)
+00001628 00000000                           1305          DC    4X'00'
+0000162C 00000000                           1306          DC    Q(@@STATIC)
+00001630 00000000                           1307          DC    X'00000000'
+00001634 00000378                           1308          DC    X'00000378'
+00001638 00000000000005C0                   1309          DC    ADL8(@DATA)
+00001640 00000000                           1310          DC    X'00000000'
+00001644 000004B0                           1311          DC    X'000004B0'
+                                            1312 *
+00001648 0D                                 1313          DC    XL1'D'
+00001649 000000                             1314          DC    AL3(0)
+0000164C 00000938                           1315          DC    AL4(2360)
+00001650 00000000                           1316          DC    4X'00'
+00001654 00000000                           1317          DC    Q(@@STATIC)
+00001658 00000000                           1318          DC    X'00000000'
+0000165C 00000380                           1319          DC    X'00000380'
+00001660 00000000000005C0                   1320          DC    ADL8(@DATA)
+00001668 00000000                           1321          DC    X'00000000'
+0000166C 000004C4                           1322          DC    X'000004C4'
+                                            1323 *
+00001670 0D                                 1324          DC    XL1'D'
+00001671 000000                             1325          DC    AL3(0)
+00001674 00000960                           1326          DC    AL4(2400)
+00001678 00000000                           1327          DC    4X'00'
+0000167C 00000000                           1328          DC    Q(@@STATIC)
+00001680 00000000                           1329          DC    X'00000000'
+00001684 00000388                           1330          DC    X'00000388'
+00001688 00000000000005C0                   1331          DC    ADL8(@DATA)
+00001690 00000000                           1332          DC    X'00000000'
+00001694 000004E4                           1333          DC    X'000004E4'
+                                                                                                                           Page   30 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+                                            1334 *
+00001698 0D                                 1335          DC    XL1'D'
+00001699 000000                             1336          DC    AL3(0)
+0000169C 00000988                           1337          DC    AL4(2440)
+000016A0 00000000                           1338          DC    4X'00'
+000016A4 00000000                           1339          DC    Q(@@STATIC)
+000016A8 00000000                           1340          DC    X'00000000'
+000016AC 00000390                           1341          DC    X'00000390'
+000016B0 00000000000005C0                   1342          DC    ADL8(@DATA)
+000016B8 00000000                           1343          DC    X'00000000'
+000016BC 00000508                           1344          DC    X'00000508'
+                                            1345 *
+000016C0 0D                                 1346          DC    XL1'D'
+000016C1 000000                             1347          DC    AL3(0)
+000016C4 000009B0                           1348          DC    AL4(2480)
+000016C8 00000000                           1349          DC    4X'00'
+000016CC 00000000                           1350          DC    Q(@@STATIC)
+000016D0 00000000                           1351          DC    X'00000000'
+000016D4 00000398                           1352          DC    X'00000398'
+000016D8 00000000000005C0                   1353          DC    ADL8(@DATA)
+000016E0 00000000                           1354          DC    X'00000000'
+000016E4 0000052A                           1355          DC    X'0000052A'
+                                            1356 *
+000016E8 0D                                 1357          DC    XL1'D'
+000016E9 000000                             1358          DC    AL3(0)
+000016EC 000009D8                           1359          DC    AL4(2520)
+000016F0 00000000                           1360          DC    4X'00'
+000016F4 00000000                           1361          DC    Q(@@STATIC)
+000016F8 00000000                           1362          DC    X'00000000'
+000016FC 000003A0                           1363          DC    X'000003A0'
+00001700 00000000000005C0                   1364          DC    ADL8(@DATA)
+00001708 00000000                           1365          DC    X'00000000'
+0000170C 0000053E                           1366          DC    X'0000053E'
+                                            1367 *
+00001710 0D                                 1368          DC    XL1'D'
+00001711 000000                             1369          DC    AL3(0)
+00001714 00000A00                           1370          DC    AL4(2560)
+00001718 00000000                           1371          DC    4X'00'
+0000171C 00000000                           1372          DC    Q(@@STATIC)
+00001720 00000000                           1373          DC    X'00000000'
+00001724 000003A8                           1374          DC    X'000003A8'
+00001728 00000000000005C0                   1375          DC    ADL8(@DATA)
+00001730 00000000                           1376          DC    X'00000000'
+00001734 0000055A                           1377          DC    X'0000055A'
+                                            1378 *
+00001738 0D                                 1379          DC    XL1'D'
+00001739 000000                             1380          DC    AL3(0)
+0000173C 00000A28                           1381          DC    AL4(2600)
+00001740 00000000                           1382          DC    4X'00'
+00001744 00000000                           1383          DC    Q(@@STATIC)
+00001748 00000000                           1384          DC    X'00000000'
+0000174C 000003B0                           1385          DC    X'000003B0'
+                                                                                                                           Page   31 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00001750 00000000000005C0                   1386          DC    ADL8(@DATA)
+00001758 00000000                           1387          DC    X'00000000'
+0000175C 00000574                           1388          DC    X'00000574'
+                                            1389 *
+00001760 0D                                 1390          DC    XL1'D'
+00001761 000000                             1391          DC    AL3(0)
+00001764 00000A50                           1392          DC    AL4(2640)
+00001768 00000000                           1393          DC    4X'00'
+0000176C 00000000                           1394          DC    Q(@@STATIC)
+00001770 00000000                           1395          DC    X'00000000'
+00001774 000003B8                           1396          DC    X'000003B8'
+00001778 00000000000005C0                   1397          DC    ADL8(@DATA)
+00001780 00000000                           1398          DC    X'00000000'
+00001784 00000598                           1399          DC    X'00000598'
+                                            1400 *
+00001788 0D                                 1401          DC    XL1'D'
+00001789 000000                             1402          DC    AL3(0)
+0000178C 00000A78                           1403          DC    AL4(2680)
+00001790 00000000                           1404          DC    4X'00'
+00001794 00000000                           1405          DC    Q(@@STATIC)
+00001798 00000000                           1406          DC    X'00000000'
+0000179C 000003C0                           1407          DC    X'000003C0'
+000017A0 00000000000005C0                   1408          DC    ADL8(@DATA)
+000017A8 00000000                           1409          DC    X'00000000'
+000017AC 000005BA                           1410          DC    X'000005BA'
+                                            1411 *
+000017B0 0D                                 1412          DC    XL1'D'
+000017B1 000000                             1413          DC    AL3(0)
+000017B4 00000AA0                           1414          DC    AL4(2720)
+000017B8 00000000                           1415          DC    4X'00'
+000017BC 00000000                           1416          DC    Q(@@STATIC)
+000017C0 00000000                           1417          DC    X'00000000'
+000017C4 000003C8                           1418          DC    X'000003C8'
+000017C8 00000000000005C0                   1419          DC    ADL8(@DATA)
+000017D0 00000000                           1420          DC    X'00000000'
+000017D4 000005C6                           1421          DC    X'000005C6'
+                                            1422 *
+000017D8 0D                                 1423          DC    XL1'D'
+000017D9 000000                             1424          DC    AL3(0)
+000017DC 00000AC8                           1425          DC    AL4(2760)
+000017E0 00000000                           1426          DC    4X'00'
+000017E4 00000000                           1427          DC    Q(@@STATIC)
+000017E8 00000000                           1428          DC    X'00000000'
+000017EC 000003D0                           1429          DC    X'000003D0'
+000017F0 00000000000005C0                   1430          DC    ADL8(@DATA)
+000017F8 00000000                           1431          DC    X'00000000'
+000017FC 000005DE                           1432          DC    X'000005DE'
+                                            1433 *
+00001800 0D                                 1434          DC    XL1'D'
+00001801 000000                             1435          DC    AL3(0)
+00001804 00000AF0                           1436          DC    AL4(2800)
+00001808 00000000                           1437          DC    4X'00'
+                                                                                                                           Page   32 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+0000180C 00000000                           1438          DC    Q(@@STATIC)
+00001810 00000000                           1439          DC    X'00000000'
+00001814 000003D8                           1440          DC    X'000003D8'
+00001818 00000000000005C0                   1441          DC    ADL8(@DATA)
+00001820 00000000                           1442          DC    X'00000000'
+00001824 000005F4                           1443          DC    X'000005F4'
+                                            1444 *
+00001828 0D                                 1445          DC    XL1'D'
+00001829 000000                             1446          DC    AL3(0)
+0000182C 00000B18                           1447          DC    AL4(2840)
+00001830 00000000                           1448          DC    4X'00'
+00001834 00000000                           1449          DC    Q(@@STATIC)
+00001838 00000000                           1450          DC    X'00000000'
+0000183C 000003E0                           1451          DC    X'000003E0'
+00001840 00000000000005C0                   1452          DC    ADL8(@DATA)
+00001848 00000000                           1453          DC    X'00000000'
+0000184C 0000060A                           1454          DC    X'0000060A'
+                                            1455 *
+00001850 0D                                 1456          DC    XL1'D'
+00001851 000000                             1457          DC    AL3(0)
+00001854 00000B40                           1458          DC    AL4(2880)
+00001858 00000000                           1459          DC    4X'00'
+0000185C 00000000                           1460          DC    Q(@@STATIC)
+00001860 00000000                           1461          DC    X'00000000'
+00001864 000003E8                           1462          DC    X'000003E8'
+00001868 00000000000005C0                   1463          DC    ADL8(@DATA)
+00001870 00000000                           1464          DC    X'00000000'
+00001874 0000061A                           1465          DC    X'0000061A'
+                                            1466 *
+00001878 0D                                 1467          DC    XL1'D'
+00001879 000000                             1468          DC    AL3(0)
+0000187C 00000B68                           1469          DC    AL4(2920)
+00001880 00000000                           1470          DC    4X'00'
+00001884 00000000                           1471          DC    Q(@@STATIC)
+00001888 00000000                           1472          DC    X'00000000'
+0000188C 000003F0                           1473          DC    X'000003F0'
+00001890 00000000000005C0                   1474          DC    ADL8(@DATA)
+00001898 00000000                           1475          DC    X'00000000'
+0000189C 00000630                           1476          DC    X'00000630'
+                                            1477 *
+000018A0 0D                                 1478          DC    XL1'D'
+000018A1 000000                             1479          DC    AL3(0)
+000018A4 00000B90                           1480          DC    AL4(2960)
+000018A8 00000000                           1481          DC    4X'00'
+000018AC 00000000                           1482          DC    Q(@@STATIC)
+000018B0 00000000                           1483          DC    X'00000000'
+000018B4 000004C0                           1484          DC    X'000004C0'
+000018B8 00000000000005C0                   1485          DC    ADL8(@DATA)
+000018C0 00000000                           1486          DC    X'00000000'
+000018C4 00000640                           1487          DC    X'00000640'
+                                            1488 *
+000018C8 0D                                 1489          DC    XL1'D'
+                                                                                                                           Page   33 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+000018C9 000000                             1490          DC    AL3(0)
+000018CC 00000BB8                           1491          DC    AL4(3000)
+000018D0 00000000                           1492          DC    4X'00'
+000018D4 00000000                           1493          DC    Q(@@STATIC)
+000018D8 00000000                           1494          DC    X'00000000'
+000018DC 000004C8                           1495          DC    X'000004C8'
+000018E0 00000000000005C0                   1496          DC    ADL8(@DATA)
+000018E8 00000000                           1497          DC    X'00000000'
+000018EC 00000646                           1498          DC    X'00000646'
+                                            1499 *
+000018F0 0D                                 1500          DC    XL1'D'
+000018F1 000000                             1501          DC    AL3(0)
+000018F4 00000BE0                           1502          DC    AL4(3040)
+000018F8 00000000                           1503          DC    4X'00'
+000018FC 00000000                           1504          DC    Q(@@STATIC)
+00001900 00000000                           1505          DC    X'00000000'
+00001904 000004D0                           1506          DC    X'000004D0'
+00001908 00000000000005C0                   1507          DC    ADL8(@DATA)
+00001910 00000000                           1508          DC    X'00000000'
+00001914 0000064C                           1509          DC    X'0000064C'
+                                            1510 *
+00001918 0D                                 1511          DC    XL1'D'
+00001919 000000                             1512          DC    AL3(0)
+0000191C 00000C08                           1513          DC    AL4(3080)
+00001920 00000000                           1514          DC    4X'00'
+00001924 00000000                           1515          DC    Q(@@STATIC)
+00001928 00000000                           1516          DC    X'00000000'
+0000192C 000004D8                           1517          DC    X'000004D8'
+00001930 00000000000005C0                   1518          DC    ADL8(@DATA)
+00001938 00000000                           1519          DC    X'00000000'
+0000193C 00000654                           1520          DC    X'00000654'
+                                            1521 *
+00001940 0D                                 1522          DC    XL1'D'
+00001941 000000                             1523          DC    AL3(0)
+00001944 00000C30                           1524          DC    AL4(3120)
+00001948 00000000                           1525          DC    4X'00'
+0000194C 00000000                           1526          DC    Q(@@STATIC)
+00001950 00000000                           1527          DC    X'00000000'
+00001954 000004E0                           1528          DC    X'000004E0'
+00001958 00000000000005C0                   1529          DC    ADL8(@DATA)
+00001960 00000000                           1530          DC    X'00000000'
+00001964 00000658                           1531          DC    X'00000658'
+                                            1532 *
+00001968 0D                                 1533          DC    XL1'D'
+00001969 000000                             1534          DC    AL3(0)
+0000196C 00000C58                           1535          DC    AL4(3160)
+00001970 00000000                           1536          DC    4X'00'
+00001974 00000000                           1537          DC    Q(@@STATIC)
+00001978 00000000                           1538          DC    X'00000000'
+0000197C 000004E8                           1539          DC    X'000004E8'
+00001980 00000000000005C0                   1540          DC    ADL8(@DATA)
+00001988 00000000                           1541          DC    X'00000000'
+                                                                                                                           Page   34 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+0000198C 0000065E                           1542          DC    X'0000065E'
+                                            1543 *
+00001990 0D                                 1544          DC    XL1'D'
+00001991 000000                             1545          DC    AL3(0)
+00001994 00000C80                           1546          DC    AL4(3200)
+00001998 00000000                           1547          DC    4X'00'
+0000199C 00000000                           1548          DC    Q(@@STATIC)
+000019A0 00000000                           1549          DC    X'00000000'
+000019A4 00000510                           1550          DC    X'00000510'
+000019A8 00000000000005C0                   1551          DC    ADL8(@DATA)
+000019B0 00000000                           1552          DC    X'00000000'
+000019B4 00000666                           1553          DC    X'00000666'
+                                            1554 *
+000019B8 0D                                 1555          DC    XL1'D'
+000019B9 000000                             1556          DC    AL3(0)
+000019BC 00000CA8                           1557          DC    AL4(3240)
+000019C0 00000000                           1558          DC    4X'00'
+000019C4 00000000                           1559          DC    Q(@@STATIC)
+000019C8 00000000                           1560          DC    X'00000000'
+000019CC 00000518                           1561          DC    X'00000518'
+000019D0 00000000000005C0                   1562          DC    ADL8(@DATA)
+000019D8 00000000                           1563          DC    X'00000000'
+000019DC 00000672                           1564          DC    X'00000672'
+                                            1565 *
+000019E0 0D                                 1566          DC    XL1'D'
+000019E1 000000                             1567          DC    AL3(0)
+000019E4 00000CD0                           1568          DC    AL4(3280)
+000019E8 00000000                           1569          DC    4X'00'
+000019EC 00000000                           1570          DC    Q(@@STATIC)
+000019F0 00000000                           1571          DC    X'00000000'
+000019F4 00000520                           1572          DC    X'00000520'
+000019F8 00000000000005C0                   1573          DC    ADL8(@DATA)
+00001A00 00000000                           1574          DC    X'00000000'
+00001A04 0000067A                           1575          DC    X'0000067A'
+                                            1576 *
+00001A08 0D                                 1577          DC    XL1'D'
+00001A09 000000                             1578          DC    AL3(0)
+00001A0C 00000CF8                           1579          DC    AL4(3320)
+00001A10 00000000                           1580          DC    4X'00'
+00001A14 00000000                           1581          DC    Q(@@STATIC)
+00001A18 00000000                           1582          DC    X'00000000'
+00001A1C 00000528                           1583          DC    X'00000528'
+00001A20 00000000000005C0                   1584          DC    ADL8(@DATA)
+00001A28 00000000                           1585          DC    X'00000000'
+00001A2C 00000684                           1586          DC    X'00000684'
+                                            1587 *
+00001A30 0D                                 1588          DC    XL1'D'
+00001A31 000000                             1589          DC    AL3(0)
+00001A34 00000D20                           1590          DC    AL4(3360)
+00001A38 00000000                           1591          DC    4X'00'
+00001A3C 00000000                           1592          DC    Q(@@STATIC)
+00001A40 00000000                           1593          DC    X'00000000'
+                                                                                                                           Page   35 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00001A44 00000630                           1594          DC    X'00000630'
+00001A48 00000000000005C0                   1595          DC    ADL8(@DATA)
+00001A50 00000000                           1596          DC    X'00000000'
+00001A54 0000068C                           1597          DC    X'0000068C'
+                                            1598 *
+00001A58 0D                                 1599          DC    XL1'D'
+00001A59 000000                             1600          DC    AL3(0)
+00001A5C 00000D48                           1601          DC    AL4(3400)
+00001A60 00000000                           1602          DC    4X'00'
+00001A64 00000000                           1603          DC    Q(@@STATIC)
+00001A68 00000000                           1604          DC    X'00000000'
+00001A6C 00000638                           1605          DC    X'00000638'
+00001A70 00000000000005C0                   1606          DC    ADL8(@DATA)
+00001A78 00000000                           1607          DC    X'00000000'
+00001A7C 00000692                           1608          DC    X'00000692'
+                                            1609 *
+00001A80 0D                                 1610          DC    XL1'D'
+00001A81 000000                             1611          DC    AL3(0)
+00001A84 00000D70                           1612          DC    AL4(3440)
+00001A88 00000000                           1613          DC    4X'00'
+00001A8C 00000000                           1614          DC    Q(@@STATIC)
+00001A90 00000000                           1615          DC    X'00000000'
+00001A94 00000640                           1616          DC    X'00000640'
+00001A98 00000000000005C0                   1617          DC    ADL8(@DATA)
+00001AA0 00000000                           1618          DC    X'00000000'
+00001AA4 0000069C                           1619          DC    X'0000069C'
+                                            1620 *
+00001AA8 0D                                 1621          DC    XL1'D'
+00001AA9 000000                             1622          DC    AL3(0)
+00001AAC 00000D98                           1623          DC    AL4(3480)
+00001AB0 00000000                           1624          DC    4X'00'
+00001AB4 00000000                           1625          DC    Q(@@STATIC)
+00001AB8 00000000                           1626          DC    X'00000000'
+00001ABC 00000648                           1627          DC    X'00000648'
+00001AC0 00000000000005C0                   1628          DC    ADL8(@DATA)
+00001AC8 00000000                           1629          DC    X'00000000'
+00001ACC 000006A8                           1630          DC    X'000006A8'
+                                            1631 *
+00001AD0 0D                                 1632          DC    XL1'D'
+00001AD1 000000                             1633          DC    AL3(0)
+00001AD4 00000DC0                           1634          DC    AL4(3520)
+00001AD8 00000000                           1635          DC    4X'00'
+00001ADC 00000000                           1636          DC    Q(@@STATIC)
+00001AE0 00000000                           1637          DC    X'00000000'
+00001AE4 00000650                           1638          DC    X'00000650'
+00001AE8 00000000000005C0                   1639          DC    ADL8(@DATA)
+00001AF0 00000000                           1640          DC    X'00000000'
+00001AF4 000006B4                           1641          DC    X'000006B4'
+                                            1642 *
+00001AF8 0D                                 1643          DC    XL1'D'
+00001AF9 000000                             1644          DC    AL3(0)
+00001AFC 00000DE8                           1645          DC    AL4(3560)
+                                                                                                                           Page   36 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00001B00 00000000                           1646          DC    4X'00'
+00001B04 00000000                           1647          DC    Q(@@STATIC)
+00001B08 00000000                           1648          DC    X'00000000'
+00001B0C 00000658                           1649          DC    X'00000658'
+00001B10 00000000000005C0                   1650          DC    ADL8(@DATA)
+00001B18 00000000                           1651          DC    X'00000000'
+00001B1C 000006C2                           1652          DC    X'000006C2'
+                                            1653 *
+00001B20 0D                                 1654          DC    XL1'D'
+00001B21 000000                             1655          DC    AL3(0)
+00001B24 00000E10                           1656          DC    AL4(3600)
+00001B28 00000000                           1657          DC    4X'00'
+00001B2C 00000000                           1658          DC    Q(@@STATIC)
+00001B30 00000000                           1659          DC    X'00000000'
+00001B34 00000660                           1660          DC    X'00000660'
+00001B38 00000000000005C0                   1661          DC    ADL8(@DATA)
+00001B40 00000000                           1662          DC    X'00000000'
+00001B44 000006CA                           1663          DC    X'000006CA'
+                                            1664 *
+00001B48 0D                                 1665          DC    XL1'D'
+00001B49 000000                             1666          DC    AL3(0)
+00001B4C 00000E38                           1667          DC    AL4(3640)
+00001B50 00000000                           1668          DC    4X'00'
+00001B54 00000000                           1669          DC    Q(@@STATIC)
+00001B58 00000000                           1670          DC    X'00000000'
+00001B5C 00000668                           1671          DC    X'00000668'
+00001B60 00000000000005C0                   1672          DC    ADL8(@DATA)
+00001B68 00000000                           1673          DC    X'00000000'
+00001B6C 000006D4                           1674          DC    X'000006D4'
+                                            1675 *
+00001B70 0D                                 1676          DC    XL1'D'
+00001B71 000000                             1677          DC    AL3(0)
+00001B74 00000E60                           1678          DC    AL4(3680)
+00001B78 00000000                           1679          DC    4X'00'
+00001B7C 00000000                           1680          DC    Q(@@STATIC)
+00001B80 00000000                           1681          DC    X'00000000'
+00001B84 00000670                           1682          DC    X'00000670'
+00001B88 00000000000005C0                   1683          DC    ADL8(@DATA)
+00001B90 00000000                           1684          DC    X'00000000'
+00001B94 000006E0                           1685          DC    X'000006E0'
+                                            1686 *
+00001B98 0D                                 1687          DC    XL1'D'
+00001B99 000000                             1688          DC    AL3(0)
+00001B9C 00000E88                           1689          DC    AL4(3720)
+00001BA0 00000000                           1690          DC    4X'00'
+00001BA4 00000000                           1691          DC    Q(@@STATIC)
+00001BA8 00000000                           1692          DC    X'00000000'
+00001BAC 00000678                           1693          DC    X'00000678'
+00001BB0 00000000000005C0                   1694          DC    ADL8(@DATA)
+00001BB8 00000000                           1695          DC    X'00000000'
+00001BBC 0000068C                           1696          DC    X'0000068C'
+                                            1697 *
+                                                                                                                           Page   37 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00001BC0 0D                                 1698          DC    XL1'D'
+00001BC1 000000                             1699          DC    AL3(0)
+00001BC4 00000EB0                           1700          DC    AL4(3760)
+00001BC8 00000000                           1701          DC    4X'00'
+00001BCC 00000000                           1702          DC    Q(@@STATIC)
+00001BD0 00000000                           1703          DC    X'00000000'
+00001BD4 00000680                           1704          DC    X'00000680'
+00001BD8 00000000000005C0                   1705          DC    ADL8(@DATA)
+00001BE0 00000000                           1706          DC    X'00000000'
+00001BE4 000006C2                           1707          DC    X'000006C2'
+                                            1708 *
+00001BE8 0D                                 1709          DC    XL1'D'
+00001BE9 000000                             1710          DC    AL3(0)
+00001BEC 00000ED8                           1711          DC    AL4(3800)
+00001BF0 00000000                           1712          DC    4X'00'
+00001BF4 00000000                           1713          DC    Q(@@STATIC)
+00001BF8 00000000                           1714          DC    X'00000000'
+00001BFC 00000688                           1715          DC    X'00000688'
+00001C00 00000000000005C0                   1716          DC    ADL8(@DATA)
+00001C08 00000000                           1717          DC    X'00000000'
+00001C0C 000006EA                           1718          DC    X'000006EA'
+                                            1719 *
+00001C10 0D                                 1720          DC    XL1'D'
+00001C11 000000                             1721          DC    AL3(0)
+00001C14 00000F00                           1722          DC    AL4(3840)
+00001C18 00000000                           1723          DC    4X'00'
+00001C1C 00000000                           1724          DC    Q(@@STATIC)
+00001C20 00000000                           1725          DC    X'00000000'
+00001C24 00000690                           1726          DC    X'00000690'
+00001C28 00000000000005C0                   1727          DC    ADL8(@DATA)
+00001C30 00000000                           1728          DC    X'00000000'
+00001C34 000006F8                           1729          DC    X'000006F8'
+                                            1730 *
+00001C38 0D                                 1731          DC    XL1'D'
+00001C39 000000                             1732          DC    AL3(0)
+00001C3C 00000F28                           1733          DC    AL4(3880)
+00001C40 00000000                           1734          DC    4X'00'
+00001C44 00000000                           1735          DC    Q(@@STATIC)
+00001C48 00000000                           1736          DC    X'00000000'
+00001C4C 00000698                           1737          DC    X'00000698'
+00001C50 00000000000005C0                   1738          DC    ADL8(@DATA)
+00001C58 00000000                           1739          DC    X'00000000'
+00001C5C 000006FE                           1740          DC    X'000006FE'
+                                            1741 *
+00001C60 0D                                 1742          DC    XL1'D'
+00001C61 000000                             1743          DC    AL3(0)
+00001C64 00000F50                           1744          DC    AL4(3920)
+00001C68 00000000                           1745          DC    4X'00'
+00001C6C 00000000                           1746          DC    Q(@@STATIC)
+00001C70 00000000                           1747          DC    X'00000000'
+00001C74 000006A0                           1748          DC    X'000006A0'
+00001C78 00000000000005C0                   1749          DC    ADL8(@DATA)
+                                                                                                                           Page   38 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00001C80 00000000                           1750          DC    X'00000000'
+00001C84 0000070C                           1751          DC    X'0000070C'
+                                            1752 *
+00001C88 0D                                 1753          DC    XL1'D'
+00001C89 000000                             1754          DC    AL3(0)
+00001C8C 00000F78                           1755          DC    AL4(3960)
+00001C90 00000000                           1756          DC    4X'00'
+00001C94 00000000                           1757          DC    Q(@@STATIC)
+00001C98 00000000                           1758          DC    X'00000000'
+00001C9C 000006A8                           1759          DC    X'000006A8'
+00001CA0 00000000000005C0                   1760          DC    ADL8(@DATA)
+00001CA8 00000000                           1761          DC    X'00000000'
+00001CAC 00000718                           1762          DC    X'00000718'
+                                            1763 *
+00001CB0 0D                                 1764          DC    XL1'D'
+00001CB1 000000                             1765          DC    AL3(0)
+00001CB4 00000FA0                           1766          DC    AL4(4000)
+00001CB8 00000000                           1767          DC    4X'00'
+00001CBC 00000000                           1768          DC    Q(@@STATIC)
+00001CC0 00000000                           1769          DC    X'00000000'
+00001CC4 000006B0                           1770          DC    X'000006B0'
+00001CC8 00000000000005C0                   1771          DC    ADL8(@DATA)
+00001CD0 00000000                           1772          DC    X'00000000'
+00001CD4 0000072E                           1773          DC    X'0000072E'
+                                            1774 *
+00001CD8 0D                                 1775          DC    XL1'D'
+00001CD9 000000                             1776          DC    AL3(0)
+00001CDC 00000FC8                           1777          DC    AL4(4040)
+00001CE0 00000000                           1778          DC    4X'00'
+00001CE4 00000000                           1779          DC    Q(@@STATIC)
+00001CE8 00000000                           1780          DC    X'00000000'
+00001CEC 000006B8                           1781          DC    X'000006B8'
+00001CF0 00000000000005C0                   1782          DC    ADL8(@DATA)
+00001CF8 00000000                           1783          DC    X'00000000'
+00001CFC 0000073E                           1784          DC    X'0000073E'
+                                            1785 *
+00001D00 0D                                 1786          DC    XL1'D'
+00001D01 000000                             1787          DC    AL3(0)
+00001D04 00000FF0                           1788          DC    AL4(4080)
+00001D08 00000000                           1789          DC    4X'00'
+00001D0C 00000000                           1790          DC    Q(@@STATIC)
+00001D10 00000000                           1791          DC    X'00000000'
+00001D14 000006C0                           1792          DC    X'000006C0'
+00001D18 00000000000005C0                   1793          DC    ADL8(@DATA)
+00001D20 00000000                           1794          DC    X'00000000'
+00001D24 00000752                           1795          DC    X'00000752'
+                                            1796 *
+00001D28 0D                                 1797          DC    XL1'D'
+00001D29 000000                             1798          DC    AL3(0)
+00001D2C 00001018                           1799          DC    AL4(4120)
+00001D30 00000000                           1800          DC    4X'00'
+00001D34 00000000                           1801          DC    Q(@@STATIC)
+                                                                                                                           Page   39 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00001D38 00000000                           1802          DC    X'00000000'
+00001D3C 000006C8                           1803          DC    X'000006C8'
+00001D40 00000000000005C0                   1804          DC    ADL8(@DATA)
+00001D48 00000000                           1805          DC    X'00000000'
+00001D4C 00000762                           1806          DC    X'00000762'
+                                            1807 *
+00001D50 0D                                 1808          DC    XL1'D'
+00001D51 000000                             1809          DC    AL3(0)
+00001D54 00000000                           1810          DC    AL4(0)
+00001D58 00000000                           1811          DC    4X'00'
+00001D5C 00000000                           1812          DC    Q(@@STATIC)
+00001D60 00000000                           1813          DC    X'00000000'
+00001D64 000006D0                           1814          DC    X'000006D0'
+00001D68 00000000000005C0                   1815          DC    ADL8(@DATA)
+00001D70 00000000                           1816          DC    X'00000000'
+00001D74 0000069C                           1817          DC    X'0000069C'
+                                            1818 *
+                                            1819          END
+                                                 Relocation Dictionary                                                     Page   40 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+ 00000002 00000002 00000040   A 4      +
+ 00000002 00000002 00000048   A 4      +
+ 00000002 00000002 000000A8   A 4      +
+ 00000002 00000002 000000D0   A 4      +
+ 00000002 00000002 000000D8   A 4      +
+ 00000002 00000004 00000140   A 4      +
+ 00000002 00000005 00000148   A 4      +
+ 00000002 00000002 00000150   A 4      +
+ 00000002 00000009 00000158   A 4      +
+ 00000002 0000000B 00000160   A 4      +
+ 00000002 00000006 00000168   A 4      +
+ 00000002 00000003 00000170   A 4      +
+ 00000002 00000002 00000478   A 4      +
+ 00000002 00000002 000004A0   A 4      +
+ 00000002 00000002 000004A8   A 4      +
+ 00000002 00000007 000005A0   A 4      +
+ 00000002 00000008 000005A8   A 4      +
+ 00000002 00000002 000005B0   A 4      +
+ 00000002 0000000B 000005B8   A 4      +
+ 0000000C 0000000A 00000D44   Q 4      +
+ 0000000C 0000000A 00000E64   Q 4      +
+ 0000000C 0000000A 00000F24   Q 4      +
+ 0000000C 0000000A 00000F4C   Q 4      +
+ 0000000C 0000000A 00000F74   Q 4      +
+ 0000000C 0000000B 00000F80   A 4      +
+ 0000000C 0000000A 00000F9C   Q 4      +
+ 0000000C 0000000B 00000FA8   A 4      +
+ 0000000C 0000000A 00000FC4   Q 4      +
+ 0000000C 0000000B 00000FD0   A 4      +
+ 0000000C 0000000A 00000FEC   Q 4      +
+ 0000000C 0000000B 00000FF8   A 4      +
+ 0000000C 0000000A 00001014   Q 4      +
+ 0000000C 0000000B 00001020   A 4      +
+ 0000000C 0000000A 0000103C   Q 4      +
+ 0000000C 0000000B 00001048   A 4      +
+ 0000000C 0000000A 00001064   Q 4      +
+ 0000000C 0000000B 00001070   A 4      +
+ 0000000C 0000000A 0000108C   Q 4      +
+ 0000000C 0000000B 00001098   A 4      +
+ 0000000C 0000000A 000010B4   Q 4      +
+ 0000000C 0000000B 000010C0   A 4      +
+ 0000000C 0000000A 000010DC   Q 4      +
+ 0000000C 0000000B 000010E8   A 4      +
+ 0000000C 0000000A 00001104   Q 4      +
+ 0000000C 0000000B 00001110   A 4      +
+ 0000000C 0000000A 0000112C   Q 4      +
+ 0000000C 0000000B 00001138   A 4      +
+ 0000000C 0000000A 00001154   Q 4      +
+ 0000000C 0000000B 00001160   A 4      +
+ 0000000C 0000000A 0000117C   Q 4      +
+ 0000000C 0000000B 00001188   A 4      +
+ 0000000C 0000000A 000011A4   Q 4      +
+ 0000000C 0000000B 000011B0   A 4      +
+                                                 Relocation Dictionary                                                     Page   41 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+ 0000000C 0000000A 000011CC   Q 4      +
+ 0000000C 0000000B 000011D8   A 4      +
+ 0000000C 0000000A 000011F4   Q 4      +
+ 0000000C 0000000B 00001200   A 4      +
+ 0000000C 0000000A 0000121C   Q 4      +
+ 0000000C 0000000B 00001228   A 4      +
+ 0000000C 0000000A 00001244   Q 4      +
+ 0000000C 0000000B 00001250   A 4      +
+ 0000000C 0000000A 0000126C   Q 4      +
+ 0000000C 0000000B 00001278   A 4      +
+ 0000000C 0000000A 00001294   Q 4      +
+ 0000000C 0000000B 000012A0   A 4      +
+ 0000000C 0000000A 000012BC   Q 4      +
+ 0000000C 0000000B 000012C8   A 4      +
+ 0000000C 0000000A 000012E4   Q 4      +
+ 0000000C 0000000B 000012F0   A 4      +
+ 0000000C 0000000A 0000130C   Q 4      +
+ 0000000C 0000000B 00001318   A 4      +
+ 0000000C 0000000A 00001334   Q 4      +
+ 0000000C 0000000B 00001340   A 4      +
+ 0000000C 0000000A 0000135C   Q 4      +
+ 0000000C 0000000B 00001368   A 4      +
+ 0000000C 0000000A 00001384   Q 4      +
+ 0000000C 0000000B 00001390   A 4      +
+ 0000000C 0000000A 000013AC   Q 4      +
+ 0000000C 0000000B 000013B8   A 4      +
+ 0000000C 0000000A 000013D4   Q 4      +
+ 0000000C 0000000B 000013E0   A 4      +
+ 0000000C 0000000A 000013FC   Q 4      +
+ 0000000C 0000000B 00001408   A 4      +
+ 0000000C 0000000A 00001424   Q 4      +
+ 0000000C 0000000B 00001430   A 4      +
+ 0000000C 0000000A 0000144C   Q 4      +
+ 0000000C 0000000B 00001458   A 4      +
+ 0000000C 0000000A 00001474   Q 4      +
+ 0000000C 0000000B 00001480   A 4      +
+ 0000000C 0000000A 0000149C   Q 4      +
+ 0000000C 0000000B 000014A8   A 4      +
+ 0000000C 0000000A 000014C4   Q 4      +
+ 0000000C 0000000B 000014D0   A 4      +
+ 0000000C 0000000A 000014EC   Q 4      +
+ 0000000C 0000000B 000014F8   A 4      +
+ 0000000C 0000000A 00001514   Q 4      +
+ 0000000C 0000000B 00001520   A 4      +
+ 0000000C 0000000A 0000153C   Q 4      +
+ 0000000C 0000000B 00001548   A 4      +
+ 0000000C 0000000A 00001564   Q 4      +
+ 0000000C 0000000B 00001570   A 4      +
+ 0000000C 0000000A 0000158C   Q 4      +
+ 0000000C 0000000B 00001598   A 4      +
+ 0000000C 0000000A 000015B4   Q 4      +
+ 0000000C 0000000B 000015C0   A 4      +
+ 0000000C 0000000A 000015DC   Q 4      +
+                                                 Relocation Dictionary                                                     Page   42 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+ 0000000C 0000000B 000015E8   A 4      +
+ 0000000C 0000000A 00001604   Q 4      +
+ 0000000C 0000000B 00001610   A 4      +
+ 0000000C 0000000A 0000162C   Q 4      +
+ 0000000C 0000000B 00001638   A 4      +
+ 0000000C 0000000A 00001654   Q 4      +
+ 0000000C 0000000B 00001660   A 4      +
+ 0000000C 0000000A 0000167C   Q 4      +
+ 0000000C 0000000B 00001688   A 4      +
+ 0000000C 0000000A 000016A4   Q 4      +
+ 0000000C 0000000B 000016B0   A 4      +
+ 0000000C 0000000A 000016CC   Q 4      +
+ 0000000C 0000000B 000016D8   A 4      +
+ 0000000C 0000000A 000016F4   Q 4      +
+ 0000000C 0000000B 00001700   A 4      +
+ 0000000C 0000000A 0000171C   Q 4      +
+ 0000000C 0000000B 00001728   A 4      +
+ 0000000C 0000000A 00001744   Q 4      +
+ 0000000C 0000000B 00001750   A 4      +
+ 0000000C 0000000A 0000176C   Q 4      +
+ 0000000C 0000000B 00001778   A 4      +
+ 0000000C 0000000A 00001794   Q 4      +
+ 0000000C 0000000B 000017A0   A 4      +
+ 0000000C 0000000A 000017BC   Q 4      +
+ 0000000C 0000000B 000017C8   A 4      +
+ 0000000C 0000000A 000017E4   Q 4      +
+ 0000000C 0000000B 000017F0   A 4      +
+ 0000000C 0000000A 0000180C   Q 4      +
+ 0000000C 0000000B 00001818   A 4      +
+ 0000000C 0000000A 00001834   Q 4      +
+ 0000000C 0000000B 00001840   A 4      +
+ 0000000C 0000000A 0000185C   Q 4      +
+ 0000000C 0000000B 00001868   A 4      +
+ 0000000C 0000000A 00001884   Q 4      +
+ 0000000C 0000000B 00001890   A 4      +
+ 0000000C 0000000A 000018AC   Q 4      +
+ 0000000C 0000000B 000018B8   A 4      +
+ 0000000C 0000000A 000018D4   Q 4      +
+ 0000000C 0000000B 000018E0   A 4      +
+ 0000000C 0000000A 000018FC   Q 4      +
+ 0000000C 0000000B 00001908   A 4      +
+ 0000000C 0000000A 00001924   Q 4      +
+ 0000000C 0000000B 00001930   A 4      +
+ 0000000C 0000000A 0000194C   Q 4      +
+ 0000000C 0000000B 00001958   A 4      +
+ 0000000C 0000000A 00001974   Q 4      +
+ 0000000C 0000000B 00001980   A 4      +
+ 0000000C 0000000A 0000199C   Q 4      +
+ 0000000C 0000000B 000019A8   A 4      +
+ 0000000C 0000000A 000019C4   Q 4      +
+ 0000000C 0000000B 000019D0   A 4      +
+ 0000000C 0000000A 000019EC   Q 4      +
+ 0000000C 0000000B 000019F8   A 4      +
+                                                 Relocation Dictionary                                                     Page   43 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+ 0000000C 0000000A 00001A14   Q 4      +
+ 0000000C 0000000B 00001A20   A 4      +
+ 0000000C 0000000A 00001A3C   Q 4      +
+ 0000000C 0000000B 00001A48   A 4      +
+ 0000000C 0000000A 00001A64   Q 4      +
+ 0000000C 0000000B 00001A70   A 4      +
+ 0000000C 0000000A 00001A8C   Q 4      +
+ 0000000C 0000000B 00001A98   A 4      +
+ 0000000C 0000000A 00001AB4   Q 4      +
+ 0000000C 0000000B 00001AC0   A 4      +
+ 0000000C 0000000A 00001ADC   Q 4      +
+ 0000000C 0000000B 00001AE8   A 4      +
+ 0000000C 0000000A 00001B04   Q 4      +
+ 0000000C 0000000B 00001B10   A 4      +
+ 0000000C 0000000A 00001B2C   Q 4      +
+ 0000000C 0000000B 00001B38   A 4      +
+ 0000000C 0000000A 00001B54   Q 4      +
+ 0000000C 0000000B 00001B60   A 4      +
+ 0000000C 0000000A 00001B7C   Q 4      +
+ 0000000C 0000000B 00001B88   A 4      +
+ 0000000C 0000000A 00001BA4   Q 4      +
+ 0000000C 0000000B 00001BB0   A 4      +
+ 0000000C 0000000A 00001BCC   Q 4      +
+ 0000000C 0000000B 00001BD8   A 4      +
+ 0000000C 0000000A 00001BF4   Q 4      +
+ 0000000C 0000000B 00001C00   A 4      +
+ 0000000C 0000000A 00001C1C   Q 4      +
+ 0000000C 0000000B 00001C28   A 4      +
+ 0000000C 0000000A 00001C44   Q 4      +
+ 0000000C 0000000B 00001C50   A 4      +
+ 0000000C 0000000A 00001C6C   Q 4      +
+ 0000000C 0000000B 00001C78   A 4      +
+ 0000000C 0000000A 00001C94   Q 4      +
+ 0000000C 0000000B 00001CA0   A 4      +
+ 0000000C 0000000A 00001CBC   Q 4      +
+ 0000000C 0000000B 00001CC8   A 4      +
+ 0000000C 0000000A 00001CE4   Q 4      +
+ 0000000C 0000000B 00001CF0   A 4      +
+ 0000000C 0000000A 00001D0C   Q 4      +
+ 0000000C 0000000B 00001D18   A 4      +
+ 0000000C 0000000A 00001D34   Q 4      +
+ 0000000C 0000000B 00001D40   A 4      +
+ 0000000C 0000000A 00001D5C   Q 4      +
+ 0000000C 0000000B 00001D68   A 4      +
+                                                 DSECT Cross Reference                                                     Page   44 
+DSECT     LENGTH    ID   DEFN                                                                         DASM V1.95.14 2021/04/29 12:43 
+@AUTO#rd_kafka_range_assignor_assign_cb
+         000000AC  FFFFFFFE  00455
+@AUTO#rd_kafka_range_assignor_init
+         000000A8  FFFFFFFD  00592
+@AUTO#rd_list_cnt
+         000000A8  FFFFFFFF  00099
+                                          Macro and Copy Code Source Summary                                               Page   45 
+Source                                                    Members                                     DASM V1.95.14 2021/04/29 12:43 
+
+C:\DIGNUS\MACLIB                                          DCCCATR  DCCEPIL  DCCPRLG  dccextrn
+                                                      Using Map                                                            Page   46 
+                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+  Stmt  -----Location----- Action ----------------Using----------------- Reg Max     Last Label and Using Text
+          Count      Id           Type          Value    Range     Id        Disp    Stmt
+   165  00000126  00000002 USING  ORDINARY    000000E8 00001000 00000002  12 00308    425 @REGION_1917_1,12
+   449  0000044A  00000002 DROP                                           12              12
+   531  000004F6  00000002 USING  ORDINARY    000004B8 00001000 00000002  12 00100    556 @REGION_1602_1,12
+   587  000005C0  00000002 DROP                                           12              12
+                                   Diagnostic Cross Reference and Assembler Summary                                        Page   47 
+                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+      No Statements Flagged in this Assembly
+DASM Dignus Systems/ASM, VERSION 1.95.14
+SYSTEM: Windows 6.2                JOBNAME: (NOJOB)     STEPNAME: (NOSTEP)   PROCSTEP: (NOPROC)
+Datasets Used for this Assembly
+ Con  DDname   Dataset Name
+  P1  RDKAFKA_RANGE_ASSIGNOR ..\asg\asm\rdkafka_range_assignor.asm
+  L2  DCCPRLG  C:\DIGNUS\MACLIB\dccprlg
+  L3  DCCCATR  C:\DIGNUS\MACLIB\dcccatr
+  L4  DCCEPIL  C:\DIGNUS\MACLIB\dccepil
+
+Assembly Start Time: 12.43.21 Stop Time: 12.43.21 Processor Time: 00.00.00.0130
+Return Code 000

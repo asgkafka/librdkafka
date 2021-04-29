@@ -25,6 +25,17 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+
+ /*
+  * ASG_LK: MODIFICATION HISTORY
+  * ==================================================================================
+  * TAG          |   DATE (DD/MM/YYYY)    |   JIRA    |   DESCRIPTION
+  * ==================================================================================
+  * ASG_LK01         22/04/2021              -           Disable SSL/SASL for STAGE#1
+  * ASG_LK02         22/04/2021              -           USS Equivalent
+  * ==================================================================================
+ */
+
 #ifdef _WIN32
 #pragma comment(lib, "ws2_32.lib")
 #endif
@@ -79,11 +90,15 @@ static void rd_kafka_transport_close0 (rd_kafka_t *rk, rd_socket_t s) {
 void rd_kafka_transport_close (rd_kafka_transport_t *rktrans) {
 #if WITH_SSL
         rd_kafka_curr_transport = rktrans;
+    #if !defined(SYSC) || (defined(SYSC) && WITHSEC)    /* ASG_LK01: ZNOSEC */
         if (rktrans->rktrans_ssl)
                 rd_kafka_transport_ssl_close(rktrans);
+    #endif                                              /* ASG_LK01: ZNOSEC */
 #endif
 
+#if !defined(SYSC) || (defined(SYSC) && WITHSEC)    /* ASG_LK01: ZNOSEC */
         rd_kafka_sasl_close(rktrans);
+#endif                                              /* ASG_LK01: ZNOSEC */
 
 	if (rktrans->rktrans_recv_buf)
 		rd_kafka_buf_destroy(rktrans->rktrans_recv_buf);
@@ -210,11 +225,13 @@ rd_kafka_transport_socket_send (rd_kafka_transport_t *rktrans,
                                 rd_slice_t *slice,
                                 char *errstr, size_t errstr_size) {
 #ifndef _WIN32
+    #ifndef SYSC                /* ASG_LK02: USS EQUIVALENT */
         /* FIXME: Use sendmsg() with iovecs if there's more than one segment
          * remaining, otherwise (or if platform does not have sendmsg)
          * use plain send(). */
         return rd_kafka_transport_socket_sendmsg(rktrans, slice,
                                                  errstr, errstr_size);
+    #endif                      /* ASG_LK02: USS EQUIVALENT */
 #endif
         return rd_kafka_transport_socket_send0(rktrans, slice,
                                                errstr, errstr_size);
@@ -331,8 +348,10 @@ rd_kafka_transport_socket_recv (rd_kafka_transport_t *rktrans,
                                 rd_buf_t *buf,
                                 char *errstr, size_t errstr_size) {
 #ifndef _WIN32
+    #ifndef SYSC                /* ASG_LK02: USS EQUIVALENT */
         return rd_kafka_transport_socket_recvmsg(rktrans, buf,
                                                  errstr, errstr_size);
+    #endif                      /* ASG_LK02: USS EQUIVALENT */
 #endif
         return rd_kafka_transport_socket_recv0(rktrans, buf,
                                                errstr, errstr_size);
@@ -366,11 +385,13 @@ rd_kafka_transport_send (rd_kafka_transport_t *rktrans,
                          rd_slice_t *slice, char *errstr, size_t errstr_size) {
         ssize_t r;
 #if WITH_SSL
+    #if !defined(SYSC) || (defined(SYSC) && WITHSEC)    /* ASG_LK01: ZNOSEC */
         if (rktrans->rktrans_ssl) {
                 rd_kafka_curr_transport = rktrans;
                 r = rd_kafka_transport_ssl_send(rktrans, slice,
                                                 errstr, errstr_size);
         } else
+    #endif                                              /* ASG_LK01: ZNOSEC */
 #endif
                 r = rd_kafka_transport_socket_send(rktrans, slice,
                                                    errstr, errstr_size);
@@ -385,11 +406,13 @@ rd_kafka_transport_recv (rd_kafka_transport_t *rktrans, rd_buf_t *rbuf,
         ssize_t r;
 
 #if WITH_SSL
+    #if !defined(SYSC) || (defined(SYSC) && WITHSEC)    /* ASG_LK01: ZNOSEC */
         if (rktrans->rktrans_ssl) {
                 rd_kafka_curr_transport = rktrans;
                 r = rd_kafka_transport_ssl_recv(rktrans, rbuf,
                                                 errstr, errstr_size);
         } else
+    #endif                                              /* ASG_LK01: ZNOSEC */
 #endif
                 r = rd_kafka_transport_socket_recv(rktrans, rbuf,
                                                    errstr, errstr_size);
@@ -702,6 +725,7 @@ static void rd_kafka_transport_io_event (rd_kafka_transport_t *rktrans,
 		break;
 
         case RD_KAFKA_BROKER_STATE_SSL_HANDSHAKE:
+#if !defined(SYSC) || (defined(SYSC) && WITHSEC)    /* ASG_LK01: ZNOSEC */
 #if WITH_SSL
                 rd_assert(rktrans->rktrans_ssl);
 
@@ -720,9 +744,11 @@ static void rd_kafka_transport_io_event (rd_kafka_transport_t *rktrans,
 #else
                 RD_NOTREACHED();
 #endif
+#endif                                              /* ASG_LK01: ZNOSEC */
                 break;
 
         case RD_KAFKA_BROKER_STATE_AUTH_LEGACY:
+#if !defined(SYSC) || (defined(SYSC) && WITHSEC)    /* ASG_LK01: ZNOSEC */
                 /* SASL authentication.
                  * Prior to broker version v1.0.0 this is performed
                  * directly on the socket without Kafka framing. */
@@ -746,6 +772,7 @@ static void rd_kafka_transport_io_event (rd_kafka_transport_t *rktrans,
                         return;
                 }
 
+#endif                                              /* ASG_LK01: ZNOSEC */
                 break;
 
 	case RD_KAFKA_BROKER_STATE_APIVERSION_QUERY:

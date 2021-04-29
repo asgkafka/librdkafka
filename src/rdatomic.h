@@ -25,35 +25,69 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+
+ /*
+  * ASG_LK: MODIFICATION HISTORY
+  * ==================================================================================
+  * TAG          |   DATE (DD/MM/YYYY)    |   JIRA    |   DESCRIPTION
+  * ==================================================================================
+  * ASG_LK01         22/04/2021              -           SYSTEM-C
+  * ==================================================================================
+ */
+
 #ifndef _RDATOMIC_H_
 #define _RDATOMIC_H_
 
 #include "tinycthread.h"
 
+#ifdef SYSC				/* ASG_LK01: SYSTEM-C */
+#include <pthread.h>
+#endif					/* ASG_LK01: SYSTEM-C */
+
 typedef struct {
 	int32_t val;
+#ifdef SYSC				/* ASG_LK01: SYSTEM-C */
+	mtx_t lock;			/* ASG_LK01: SYSTEM-C */
+#else					/* ASG_LK01: SYSTEM-C */
 #if !defined(_WIN32) && !HAVE_ATOMICS_32
 	mtx_t lock;
 #endif
+#endif					/* ASG_LK01: SYSTEM-C */
 } rd_atomic32_t;
 
 typedef struct {
 	int64_t val;
+#ifdef SYSC				/* ASG_LK01: SYSTEM-C */
+	mtx_t lock;			/* ASG_LK01: SYSTEM-C */
+#else					/* ASG_LK01: SYSTEM-C */
 #if !defined(_WIN32) && !HAVE_ATOMICS_64
 	mtx_t lock;
 #endif
+#endif					/* ASG_LK01: SYSTEM-C */
 } rd_atomic64_t;
 
 
 static RD_INLINE RD_UNUSED void rd_atomic32_init (rd_atomic32_t *ra, int32_t v) {
 	ra->val = v;
+#ifdef SYSC				/* ASG_LK01: SYSTEM-C */
+	pthread_mutex_init(&ra->lock, mtx_plain);		/* ASG_LK01: SYSTEM-C */
+#else					/* ASG_LK01: SYSTEM-C */
 #if !defined(_WIN32) && !HAVE_ATOMICS_32
 	mtx_init(&ra->lock, mtx_plain);
 #endif
+#endif					/* ASG_LK01: SYSTEM-C */
 }
 
 
 static RD_INLINE int32_t RD_UNUSED rd_atomic32_add (rd_atomic32_t *ra, int32_t v) {
+#ifdef SYSC								/* ASG_LK01: SYSTEM-C */
+	int32_t r;							/* ASG_LK01: SYSTEM-C */
+	pthread_mutex_lock(&ra->lock);		/* ASG_LK01: SYSTEM-C */
+	ra->val += v;						/* ASG_LK01: SYSTEM-C */
+	r = ra->val;						/* ASG_LK01: SYSTEM-C */
+	pthread_mutex_unlock(&ra->lock);	/* ASG_LK01: SYSTEM-C */
+	return r;							/* ASG_LK01: SYSTEM-C */
+#endif									/* ASG_LK01: SYSTEM-C */
 #ifdef __SUNPRO_C
 	return atomic_add_32_nv(&ra->val, v);
 #elif defined(_WIN32)
@@ -71,6 +105,14 @@ static RD_INLINE int32_t RD_UNUSED rd_atomic32_add (rd_atomic32_t *ra, int32_t v
 }
 
 static RD_INLINE int32_t RD_UNUSED rd_atomic32_sub(rd_atomic32_t *ra, int32_t v) {
+#ifdef SYSC							   /* ASG_LK01: SYSTEM-C */
+	int32_t r;						   /* ASG_LK01: SYSTEM-C */
+	pthread_mutex_lock(&ra->lock);	   /* ASG_LK01: SYSTEM-C */
+	ra->val -= v;					   /* ASG_LK01: SYSTEM-C */
+	r = ra->val;					   /* ASG_LK01: SYSTEM-C */
+	pthread_mutex_unlock(&ra->lock);   /* ASG_LK01: SYSTEM-C */
+	return r;						   /* ASG_LK01: SYSTEM-C */
+#endif								   /* ASG_LK01: SYSTEM-C */
 #ifdef __SUNPRO_C
 	return atomic_add_32_nv(&ra->val, -v);
 #elif defined(_WIN32)
@@ -96,6 +138,13 @@ static RD_INLINE int32_t RD_UNUSED rd_atomic32_sub(rd_atomic32_t *ra, int32_t v)
  *          common synchronization and can't be relied on.
  */
 static RD_INLINE int32_t RD_UNUSED rd_atomic32_get(rd_atomic32_t *ra) {
+#ifdef SYSC							   /* ASG_LK01: SYSTEM-C */
+	int32_t r;						   /* ASG_LK01: SYSTEM-C */
+	pthread_mutex_lock(&ra->lock);	   /* ASG_LK01: SYSTEM-C */
+	r = ra->val;					   /* ASG_LK01: SYSTEM-C */
+	pthread_mutex_unlock(&ra->lock);   /* ASG_LK01: SYSTEM-C */
+	return r;						   /* ASG_LK01: SYSTEM-C */
+#endif								   /* ASG_LK01: SYSTEM-C */
 #if defined(_WIN32) || defined(__SUNPRO_C)
 	return ra->val;
 #elif !HAVE_ATOMICS_32
@@ -110,6 +159,13 @@ static RD_INLINE int32_t RD_UNUSED rd_atomic32_get(rd_atomic32_t *ra) {
 }
 
 static RD_INLINE int32_t RD_UNUSED rd_atomic32_set(rd_atomic32_t *ra, int32_t v) {
+#ifdef SYSC							   /* ASG_LK01: SYSTEM-C */
+	int32_t r;						   /* ASG_LK01: SYSTEM-C */
+	pthread_mutex_lock(&ra->lock);	   /* ASG_LK01: SYSTEM-C */
+	r = ra->val = v;				   /* ASG_LK01: SYSTEM-C */
+	pthread_mutex_unlock(&ra->lock);   /* ASG_LK01: SYSTEM-C */
+	return r;						   /* ASG_LK01: SYSTEM-C */
+#endif								   /* ASG_LK01: SYSTEM-C */
 #ifdef _WIN32
 	return InterlockedExchange((LONG *)&ra->val, v);
 #elif !HAVE_ATOMICS_32
@@ -133,12 +189,24 @@ static RD_INLINE int32_t RD_UNUSED rd_atomic32_set(rd_atomic32_t *ra, int32_t v)
 
 static RD_INLINE RD_UNUSED void rd_atomic64_init (rd_atomic64_t *ra, int64_t v) {
 	ra->val = v;
+#ifdef SYSC										/* ASG_LK01: SYSTEM-C */
+	pthread_mutex_init(&ra->lock, mtx_plain);	/* ASG_LK01: SYSTEM-C */
+#else											/* ASG_LK01: SYSTEM-C */
 #if !defined(_WIN32) && !HAVE_ATOMICS_64
 	mtx_init(&ra->lock, mtx_plain);
 #endif
+#endif											/* ASG_LK01: SYSTEM-C */
 }
 
 static RD_INLINE int64_t RD_UNUSED rd_atomic64_add (rd_atomic64_t *ra, int64_t v) {
+#ifdef SYSC								  /* ASG_LK01: SYSTEM-C */
+	int64_t r;							  /* ASG_LK01: SYSTEM-C */
+	pthread_mutex_lock(&ra->lock);		  /* ASG_LK01: SYSTEM-C */
+	ra->val += v;						  /* ASG_LK01: SYSTEM-C */
+	r = ra->val;						  /* ASG_LK01: SYSTEM-C */
+	pthread_mutex_unlock(&ra->lock);	  /* ASG_LK01: SYSTEM-C */
+	return r;							  /* ASG_LK01: SYSTEM-C */
+#endif									  /* ASG_LK01: SYSTEM-C */
 #ifdef __SUNPRO_C
 	return atomic_add_64_nv(&ra->val, v);
 #elif defined(_WIN32)
@@ -156,6 +224,14 @@ static RD_INLINE int64_t RD_UNUSED rd_atomic64_add (rd_atomic64_t *ra, int64_t v
 }
 
 static RD_INLINE int64_t RD_UNUSED rd_atomic64_sub(rd_atomic64_t *ra, int64_t v) {
+#ifdef SYSC							      /* ASG_LK01: SYSTEM-C */
+	int64_t r;						      /* ASG_LK01: SYSTEM-C */
+	pthread_mutex_lock(&ra->lock);	      /* ASG_LK01: SYSTEM-C */
+	ra->val -= v;					      /* ASG_LK01: SYSTEM-C */
+	r = ra->val;					      /* ASG_LK01: SYSTEM-C */
+	pthread_mutex_unlock(&ra->lock);      /* ASG_LK01: SYSTEM-C */
+	return r;						      /* ASG_LK01: SYSTEM-C */
+#endif								      /* ASG_LK01: SYSTEM-C */
 #ifdef __SUNPRO_C
 	return atomic_add_64_nv(&ra->val, -v);
 #elif defined(_WIN32)
@@ -182,6 +258,13 @@ static RD_INLINE int64_t RD_UNUSED rd_atomic64_sub(rd_atomic64_t *ra, int64_t v)
  *          Use with care.
  */
 static RD_INLINE int64_t RD_UNUSED rd_atomic64_get(rd_atomic64_t *ra) {
+#ifdef SYSC							    /* ASG_LK01: SYSTEM-C */
+	int64_t r;						    /* ASG_LK01: SYSTEM-C */
+	pthread_mutex_lock(&ra->lock);	    /* ASG_LK01: SYSTEM-C */
+	r = ra->val;					    /* ASG_LK01: SYSTEM-C */
+	pthread_mutex_unlock(&ra->lock);    /* ASG_LK01: SYSTEM-C */
+	return r;						    /* ASG_LK01: SYSTEM-C */
+#endif								    /* ASG_LK01: SYSTEM-C */
 #if defined(_WIN32) || defined(__SUNPRO_C)
 	return ra->val;
 #elif !HAVE_ATOMICS_64
@@ -197,6 +280,14 @@ static RD_INLINE int64_t RD_UNUSED rd_atomic64_get(rd_atomic64_t *ra) {
 
 
 static RD_INLINE int64_t RD_UNUSED rd_atomic64_set(rd_atomic64_t *ra, int64_t v) {
+#ifdef SYSC								 /* ASG_LK01: SYSTEM-C */
+	int64_t r;							 /* ASG_LK01: SYSTEM-C */
+	pthread_mutex_lock(&ra->lock);		 /* ASG_LK01: SYSTEM-C */
+	ra->val = v;						 /* ASG_LK01: SYSTEM-C */
+	r = ra->val;						 /* ASG_LK01: SYSTEM-C */
+	pthread_mutex_unlock(&ra->lock);	 /* ASG_LK01: SYSTEM-C */
+	return r;							 /* ASG_LK01: SYSTEM-C */
+#endif									 /* ASG_LK01: SYSTEM-C */
 #ifdef _WIN32
 	return InterlockedExchange64(&ra->val, v);
 #elif !HAVE_ATOMICS_64

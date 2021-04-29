@@ -26,6 +26,15 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+ /*
+  * ASG_LK: MODIFICATION HISTORY
+  * ==================================================================================
+  * TAG          |   DATE (DD/MM/YYYY)    |   JIRA    |   DESCRIPTION
+  * ==================================================================================
+  * ASG_LK01         22/04/2021              -           Disable SSL/SASL for STAGE#1
+  * ==================================================================================
+ */
+
 #include <stdarg.h>
 
 #include "rdkafka_int.h"
@@ -2340,6 +2349,7 @@ rd_kafka_handle_SaslAuthenticate (rd_kafka_t *rk,
 
         rd_kafka_buf_read_bytes(rkbuf, &auth_data);
 
+#if !defined(SYSC) || (defined(SYSC) && WITHSEC)    /* ASG_LK01: ZNOSEC */
         /* Pass SASL auth frame to SASL handler */
         if (rd_kafka_sasl_recv(rkb->rkb_transport,
                                auth_data.data,
@@ -2349,6 +2359,7 @@ rd_kafka_handle_SaslAuthenticate (rd_kafka_t *rk,
                 goto err;
         }
 
+#endif                                              /* ASG_LK01: ZNOSEC */
         return;
 
 

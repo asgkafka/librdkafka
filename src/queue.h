@@ -31,6 +31,15 @@
  *	@(#)queue.h	8.5 (Berkeley) 8/20/94
  */
 
+ /*
+  * ASG_LK: MODIFICATION HISTORY
+  * ==================================================================================
+  * TAG          |   DATE (DD/MM/YYYY)    |   JIRA    |   DESCRIPTION
+  * ==================================================================================
+  * ASG_LK01         22/04/2021              -           SYSTEM-C Equivalent
+  * ==================================================================================
+ */
+
 #ifndef	_SYS_QUEUE_H_
 #define	_SYS_QUEUE_H_
 
@@ -685,7 +694,11 @@ static inline const void * __launder_type(const void *);
 static inline const void *
 __launder_type(const void *__x)
 {
+#ifdef SYSC							/* ASG_LK01: SYSTEM-C Equivalent */
+	__asm ("" : "+r" (__x));
+#else								/* ASG_LK01: SYSTEM-C Equivalent */
 	__asm __volatile("" : "+r" (__x));
+#endif								/* ASG_LK01: SYSTEM-C Equivalent */
 	return __x;
 }
 #endif

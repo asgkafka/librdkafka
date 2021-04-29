@@ -25,6 +25,16 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+
+ /*
+  * ASG_LK: MODIFICATION HISTORY
+  * ==================================================================================
+  * TAG          |   DATE (DD/MM/YYYY)    |   JIRA    |   DESCRIPTION
+  * ==================================================================================
+  * ASG_LK01         22/04/2021              -           SYSTEM-C
+  * ==================================================================================
+ */
+
 #ifndef _RDENDIAN_H_
 #define _RDENDIAN_H_
 
@@ -138,6 +148,14 @@
          (((x) & 0x0000ff0000000000L) >> 24) |   \
          (((x) & 0x00ff000000000000L) >> 40) |   \
          (((x) & 0xff00000000000000L) >> 56))
+#elif defined(SYSC)                                   /* ASG_LK01: SYSTEM-C */
+#define __BYTE_ORDER __BIG_ENDIAN                     /* ASG_LK01: SYSTEM-C */
+#define be64toh(x) (x)                                /* ASG_LK01: SYSTEM-C */
+#define be32toh(x) (x)                                /* ASG_LK01: SYSTEM-C */
+#define be16toh(x) (x)                                /* ASG_LK01: SYSTEM-C */
+#define le16toh(x) ((uint16_t)__builtin_bswap16(x))   /* ASG_LK01: SYSTEM-C */
+#define le32toh(x) __builtin_bswap32(x)               /* ASG_LK01: SYSTEM-C */
+#define le64toh(x) __builtin_bswap64(x)               /* ASG_LK01: SYSTEM-C */
 #else
  #include <endian.h>
 #endif

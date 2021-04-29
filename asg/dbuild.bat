@@ -1,0 +1,2 @@
+C:\dignus\bin\DCC -DHOST_MVS -I. -fwarn_disable=2356,2357,2405,2610,2011,2282,2284,1130 -fc11 -fextended_variadic_macros -fanonstruct -march=z7 -mlp64  -DSYSC=1 -frent  -IC:\dignus\include -fpreinclude=sysc.h -flisting=../asg/clst/%2.clst -o../asg/asm/%2.asm %3
+C:\dignus\bin\DASM "-LC:\DIGNUS\MACLIB\&m" -oc:../asg/obj/%2.obj ../asg/asm/%2.asm

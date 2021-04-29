@@ -1,0 +1,1586 @@
+                                            Dignus Assembler Option Summary                                                Page    1 
+                                                                                                      DASM V1.95.14 2021/04/29 12:42 
+
+Overriding Parameters- -LC:\DIGNUS\MACLIB\&m -oc:../asg/obj/crc32c.obj ../asg/asm/crc32c.asm
+  Process Statements-       DUPALIAS
+
+Options for this Assembly             Source
+-------------------------             -------------------------
+   NOADATA                            {Default}
+     ALIGN                            {Default}
+     BATCH                            {Default}
+   NOCOMPATCASE                       {Default}
+   NOCOMPATMACROCASE                  {Default}
+   NOCOMPATSYSLIST                    {Default}
+   NOCOMPATLITTYPE                    {Default}
+   NOCOMPATSYSPATH                    {Default}
+     DXREF                            {Default}
+   NOMAPAT                            {Default}
+     DUPALIAS                         {*PROCESS}
+   NOVSELIBR                          {Default}
+     ESD                              {Default}
+     ERRFMT(microsoft)                {Default}
+     FLAG(0,ALIGN,CONT,NOEXLITW,NOPAGE0,PUSH,RECORD,NOSUBSTR,NOIMPLEN,USING0)
+                                      {Default}
+   NOFOLD                             {Default}
+   NOGOFF                             {Default}
+     LANGUAGE(EN)                     {Default}
+     LINECOUNT(55)                    {Default}
+     LIST(&d&p&f.lst)                 {Default}
+     MACCPYEXT(mac)                   {Default}
+     MXREF                            {Default}
+     OBJECT(c:..\asg\obj\crc32c.obj)  CMDLINE
+     OPTABLE(UNI,NOLIST)              {Default}
+     OPTIONSUMMARY                    {Default}
+   NOPCONTROL                         {Default}
+   NOPESTOP                           {Default}
+   NOPROFILE                          {Default}
+   NORA2                              {Default}
+     RLD                              {Default}
+     RENT                             {Default}
+   NORXREF                            {Default}
+     SECTALGN(8)                      {Default}
+     SIZE(MAX)                        {Default}
+   NOSUPRWARN                         {Default}
+     SYSPARM()                        {Default}
+     TERM(WIDE)                       {Default}
+     THREAD                           {Default}
+   NOTRANSLATE                        {Default}
+     TYPECHECK(MAGNITUDE,REGISTER)    {Default}
+     USING(NOLIMIT,MAP,WARN(15))      {Default}
+   NONXREF                            {Default}
+   NOXREF                             {Default}
+     XSD                              {Default}
+
+Libraries in Search Order:
+                                            Dignus Assembler Option Summary                                                Page    2 
+                                                                                                      DASM V1.95.14 2021/04/29 12:42 
+       CMDLINE      C:\DIGNUS\MACLIB\&m
+                                              External Symbol Dictionary                                                   Page    3 
+Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                                      DASM V1.95.14 2021/04/29 12:42 
+@@ZARCH#  WX 00000001                              00
+@CRC32C   SD 00000002 00000000 00000CCC            07  @CODE
+fprintf   ER 00000003                                  FPRINTF
+@@ASSERT  ER 00000004                                  __ASSERT
+@@STDERP  XD 00000005 00000003 00000000                __STDERRP
+rd_unittest_assert_on_failure
+          XD 00000006 00000003 00000000                RD_UNITTEST_ASSERT_ON_FAILURE
+@crc32c&  XD 00000007 00000007 00002200                @@STATIC
+@crc32c   SD 00000008 00000CD0 00000516            07  @DATA
+rd_unittest_assert_on_failure
+          ER 00000009                                  @ERD_UNITTEST_ASSERT_ON_FAILURE
+@@STDERP  ER 0000000A                                  @E__STDERRP
+@crc32c:  SD 0000000B 000011E8 00000230            07  @@INIT@
+crc32c    LD          000005C0          00000002   00  CRC32C
+crc32c_global_init
+          LD          000006F0          00000002   00  CRC32C_GLOBAL_INIT
+unittest_crc32c
+          LD          000007F0          00000002   00  UNITTEST_CRC32C
+                                                                                                                           Page    4 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+                                               1 *PROCESS DUPALIAS
+                                               2 *
+                                               3 *  Compiled by DCC Version 2.25.07 Mar  6 2021 08:51:07
+                                               4 *           on Thu Apr 29 12:42:34 2021
+                                               5 *
+
+                                               7          WXTRN @@ZARCH#
+                                               8 *
+                                               9 *
+                                              10 *
+                                              11 *    Code Section
+                                              12 *
+                                              13 @CODE    ALIAS C'@CRC32C'
+00000000                00000000 00000CCC     14 @CODE    CSECT
+                                              15 @CODE    AMODE ANY
+                                              16 @CODE    RMODE ANY
+                                              17 @DATA    ALIAS C'@crc32c'
+                                              18 fprintf  ALIAS C'fprintf'
+                                              19          EXTRN fprintf
+                                              20 __assert ALIAS C'@@ASSERT'
+                                              21          EXTRN __assert
+                                              22 __stderrp ALIAS C'@@STDERP'
+                                              23 __stderrp DXD   0F
+                                              24 rd_unittest_assert_on_failure ALIAS X'99846DA49589A3A385A2A36D81A2A2859*
+                                                                9A36D96956D86818993A49985'
+                                              25 rd_unittest_assert_on_failure DXD   0F
+                                              26 *
+                                              27 *
+                                              28 *
+                                              29 * ....... start of crc32c_init_sw
+00000000                                      30 @LNAME763 DS   0H
+00000000 0000000E                             31          DC    X'0000000E'
+00000004 839983F3F2836D89                     32          DC    C'crc32c_init_sw'
+00000012 00                                   33          DC    X'00'
+                                              34 crc32c_init_sw DCCPRLG CINDEX=763,BASER=12,FRAME=176,ENTRY=NO,ARCH=ZARC*
+                                                                H,LNAMEADDR=@LNAME763
+                                              35          macro
+                                              36          dccextrn &m
+                                              37          gblc    &$dccext(1000)
+                                              38          gbla    &$dccexti
+                                              39          lcla    &i
+                                              40 &$dccext(&$dccexti+1) setc    '&m'
+                                              41 &i       seta    1
+                                              42 .loop    aif    (&i gt &$dccexti).around
+                                              43          aif    ('&$dccext(&i)' eq '&m').getout
+                                              44 &i       seta    &i+1
+                                              45          ago     .loop
+                                              46 .around  anop
+                                              47 &$dccexti seta &$dccexti+1
+                                              48          extrn  &m
+                                              49 .getout  anop
+                                              50          mend
+                                                                                                                           Page    5 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+00000018                                      51+$eye0002    ds    0d                                                    02-DCCCA
+00000018 C4C3C3                               52+         dc cl3'DCC'                                                    02-DCCCA
+0000001B 01                                   53+         dc xl1'01' format one                                          02-DCCCA
+0000001C 00000000                             54+         dc a(0)                                                        02-DCCCA
+00000020 000000000000008A                     55+         dc ad(@PER_763)                                                02-DCCCA
+00000028 00000000000000B0                     56+         dc ad(176)                                                     02-DCCCA
+00000030 0000000000000000                     57+         dc ad(0)                                                       02-DCCCA
+00000038 0000000000001000                     58+         dc ad(4096)                                                    02-DCCCA
+00000040 20                                   59+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+00000041 03                                   60+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+00000042 03                                   61+         dc al1(3)                                                      02-DCCCA
+00000043 08                                   62+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+00000044 00                                   63+         dc bl.8'00000000'                                              02-DCCCA
+00000045 000000                               64+         dc al3(0)                                                      02-DCCCA
+00000048 0000000000000000                     65+         dc ad(@LNAME763)                                               02-DCCCA
+00000050                                      66+         ds 0d                                                          02-DCCCA
+00000050 0000000000000018                     67+         dc ad($eye0002)                                                02-DCCCA
+00000058 0000000000000000                     68+         dc ad(0)                                                       02-DCCCA
+00000060                                      69+         ds    0d                                                       01-DCCPR
+00000060                                      70+crc32c_init_sw ds 0d                                                    01-DCCPR
+00000060                                      71+@REGION_763_1 ds 0h                                                     01-DCCPR
+00000060 EBEC D008 0024          00000008     72+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+00000066 E3E0 D088 0004          00000088     73+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
+0000006C E3C0 D090 0004          00000090     74+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
+00000072 B904 002E                            75+         lgr   2,14                copy addr of our savearea            01-DCCPR
+00000076 E3B0 C018 0004          00000018     76+         lg    11,24(0,12)         get dvt address                      01-DCCPR
+0000007C A7EB 00B0               000000B0     77+         aghi  14,176              increase by frame size               01-DCCPR
+00000080 E3E0 C020 0021          00000020     78+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
+00000086 4720 B020               00000020     79+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
+0000008A                                      80+@PER_763 ds    0h                                                       01-DCCPR
+0000008A EBDE 2080 0024          00000080     81+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
+00000090 E3C0 2090 0024          00000090     82+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
+00000096 B904 00D2                            83+         lgr   13,2                set real frame pointer               01-DCCPR
+0000009A B904 00CF                            84+         lgr   12,15               set base reg                         01-DCCPR
+                        00000060              85+         using @REGION_763_1,12                                         01-DCCPR
+                                              86          DCCPRV REG=3      ; Get PRV from DVT
+0000009E E330 B008 0004          00000008     87+         LG 3,8(0,11)                                                   01-DCCPR
+                                              88 * ******* End of Prologue
+                                              89 * *
+                                              90 * ***       uint32_t n, crc, k;
+                                              91 * ***
+                                              92 * ***       for (n = 0; n < 256; n++) {
+000000A4 A7F8 0000               00000000     93          LHI   15,0        ; 0
+000000A8 47F0 C146               000001A6     94          B     @L45
+000000B0                                      95          DS    0D
+000000B0 000000B0                             96 @FRAMESIZE_763 DC F'176'
+000000B4 00000000                             97 @lit_763_1 DC  Q(@@STATIC)
+000000B8                                      98 @L44     DS    0H
+                                              99 * ***           crc = n;
+000000B8 181F                                100          LR    1,15        ; crc
+                                             101 * ***           crc = crc & 1 ? (crc >> 1) ^ 0x82f63b78 : crc >> 1;
+000000BA A7F1 0001               00000001    102          TML   15,1
+                                                                                                                           Page    6 
+  Active Usings: @REGION_763_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+000000BE 4780 C070               000000D0    103          BZ    @L48
+000000C2 8810 0001               00000001    104          SRL   1,1(0)
+000000C6 C017 82F6 3B78                      105          XILF  1,X'82F63B78'
+000000CC 47F0 C074               000000D4    106          B     @L49
+000000D0                                     107 @L48     DS    0H
+000000D0 8810 0001               00000001    108          SRL   1,1(0)
+000000D4                                     109 @L49     DS    0H
+                                             110 * ***           crc = crc & 1 ? (crc >> 1) ^ 0x82f63b78 : crc >> 1;
+000000D4 A711 0001               00000001    111          TML   1,1
+000000D8 4780 C08A               000000EA    112          BZ    @L50
+000000DC 8810 0001               00000001    113          SRL   1,1(0)
+000000E0 C017 82F6 3B78                      114          XILF  1,X'82F63B78'
+000000E6 47F0 C08E               000000EE    115          B     @L51
+000000EA                                     116 @L50     DS    0H
+000000EA 8810 0001               00000001    117          SRL   1,1(0)
+000000EE                                     118 @L51     DS    0H
+                                             119 * ***           crc = crc & 1 ? (crc >> 1) ^ 0x82f63b78 : crc >> 1;
+000000EE A711 0001               00000001    120          TML   1,1
+000000F2 4780 C0A4               00000104    121          BZ    @L52
+000000F6 8810 0001               00000001    122          SRL   1,1(0)
+000000FA C017 82F6 3B78                      123          XILF  1,X'82F63B78'
+00000100 47F0 C0A8               00000108    124          B     @L53
+00000104                                     125 @L52     DS    0H
+00000104 8810 0001               00000001    126          SRL   1,1(0)
+00000108                                     127 @L53     DS    0H
+                                             128 * ***           crc = crc & 1 ? (crc >> 1) ^ 0x82f63b78 : crc >> 1;
+00000108 A711 0001               00000001    129          TML   1,1
+0000010C 4780 C0BE               0000011E    130          BZ    @L54
+00000110 8810 0001               00000001    131          SRL   1,1(0)
+00000114 C017 82F6 3B78                      132          XILF  1,X'82F63B78'
+0000011A 47F0 C0C2               00000122    133          B     @L55
+0000011E                                     134 @L54     DS    0H
+0000011E 8810 0001               00000001    135          SRL   1,1(0)
+00000122                                     136 @L55     DS    0H
+                                             137 * ***           crc = crc & 1 ? (crc >> 1) ^ 0x82f63b78 : crc >> 1;
+00000122 A711 0001               00000001    138          TML   1,1
+00000126 4780 C0D8               00000138    139          BZ    @L56
+0000012A 8810 0001               00000001    140          SRL   1,1(0)
+0000012E C017 82F6 3B78                      141          XILF  1,X'82F63B78'
+00000134 47F0 C0DC               0000013C    142          B     @L57
+00000138                                     143 @L56     DS    0H
+00000138 8810 0001               00000001    144          SRL   1,1(0)
+0000013C                                     145 @L57     DS    0H
+                                             146 * ***           crc = crc & 1 ? (crc >> 1) ^ 0x82f63b78 : crc >> 1;
+0000013C A711 0001               00000001    147          TML   1,1
+00000140 4780 C0F2               00000152    148          BZ    @L58
+00000144 8810 0001               00000001    149          SRL   1,1(0)
+00000148 C017 82F6 3B78                      150          XILF  1,X'82F63B78'
+0000014E 47F0 C0F6               00000156    151          B     @L59
+00000152                                     152 @L58     DS    0H
+00000152 8810 0001               00000001    153          SRL   1,1(0)
+00000156                                     154 @L59     DS    0H
+                                                                                                                           Page    7 
+  Active Usings: @REGION_763_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+                                             155 * ***           crc = crc & 1 ? (crc >> 1) ^ 0x82f63b78 : crc >> 1;
+00000156 A711 0001               00000001    156          TML   1,1
+0000015A 4780 C10C               0000016C    157          BZ    @L60
+0000015E 8810 0001               00000001    158          SRL   1,1(0)
+00000162 C017 82F6 3B78                      159          XILF  1,X'82F63B78'
+00000168 47F0 C110               00000170    160          B     @L61
+0000016C                                     161 @L60     DS    0H
+0000016C 8810 0001               00000001    162          SRL   1,1(0)
+00000170                                     163 @L61     DS    0H
+                                             164 * ***           crc = crc & 1 ? (crc >> 1) ^ 0x82f63b78 : crc >> 1;
+00000170 A711 0001               00000001    165          TML   1,1
+00000174 4780 C126               00000186    166          BZ    @L62
+00000178 8810 0001               00000001    167          SRL   1,1(0)
+0000017C C017 82F6 3B78                      168          XILF  1,X'82F63B78'
+00000182 47F0 C12A               0000018A    169          B     @L63
+00000186                                     170 @L62     DS    0H
+00000186 8810 0001               00000001    171          SRL   1,1(0)
+0000018A                                     172 @L63     DS    0H
+                                             173 * ***           crc32c_table[0][n] = crc;
+0000018A B916 002F                           174          LLGFR 2,15
+0000018E E340 C054 0014          000000B4    175          LGF   4,@lit_763_1
+00000194 4144 3000               00000000    176          LA    4,0(4,3)
+00000198 EB22 0002 000D          00000002    177          SLLG  2,2,2(0)    ; *0x4
+0000019E 5012 4200               00000200    178          ST    1,512(2,4)
+                                             179 * ***       }
+000001A2 A7FA 0001               00000001    180          AHI   15,1
+000001A6                                     181 @L45     DS    0H
+000001A6 C2FF 0000 0100                      182          CLFI  15,X'00000100'
+000001AC 4740 C058               000000B8    183          BL    @L44
+                                             184 * ***       for (n = 0; n < 256; n++) {
+000001B0 A7F8 0000               00000000    185          LHI   15,0        ; 0
+000001B4 47F0 C1CA               0000022A    186          B     @L65
+000001B8                                     187 @L64     DS    0H
+                                             188 * ***           crc = crc32c_table[0][n];
+000001B8 B916 001F                           189          LLGFR 1,15
+000001BC E320 C054 0014          000000B4    190          LGF   2,@lit_763_1
+000001C2 4122 3000               00000000    191          LA    2,0(2,3)
+000001C6 EB11 0002 000D          00000002    192          SLLG  1,1,2(0)    ; *0x4
+000001CC 5811 2200               00000200    193          L     1,512(1,2)
+                                             194 * ***           for (k = 1; k < 8; k++) {
+000001D0 A728 0001               00000001    195          LHI   2,1         ; 1
+000001D4 47F0 C1BC               0000021C    196          B     @L69
+000001D8                                     197 @L68     DS    0H
+                                             198 * ***               crc = crc32c_table[0][crc & 0xff] ^ (crc >> 8);
+000001D8 1841                                199          LR    4,1
+000001DA C04B 0000 00FF                      200          NILF  4,X'000000FF'
+000001E0 B916 0044                           201          LLGFR 4,4
+000001E4 E350 C054 0014          000000B4    202          LGF   5,@lit_763_1
+000001EA 4155 3000               00000000    203          LA    5,0(5,3)
+000001EE EB44 0002 000D          00000002    204          SLLG  4,4,2(0)    ; *0x4
+000001F4 8810 0008               00000008    205          SRL   1,8(0)
+000001F8 5714 5200               00000200    206          X     1,512(4,5)
+                                                                                                                           Page    8 
+  Active Usings: @REGION_763_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+                                             207 * ***               crc32c_table[k][n] = crc;
+000001FC B916 004F                           208          LLGFR 4,15
+00000200 B916 0062                           209          LLGFR 6,2
+00000204 EB66 000A 000D          0000000A    210          SLLG  6,6,10(0)   ; *0x400
+0000020A EB44 0002 000D          00000002    211          SLLG  4,4,2(0)    ; *0x4
+00000210 4146 4000               00000000    212          LA    4,0(6,4)
+00000214 5014 5200               00000200    213          ST    1,512(4,5)
+                                             214 * ***           }
+00000218 A72A 0001               00000001    215          AHI   2,1
+0000021C                                     216 @L69     DS    0H
+0000021C C22F 0000 0008                      217          CLFI  2,X'00000008'
+00000222 4740 C178               000001D8    218          BL    @L68
+                                             219 * ***       }
+00000226 A7FA 0001               00000001    220          AHI   15,1
+0000022A                                     221 @L65     DS    0H
+0000022A C2FF 0000 0100                      222          CLFI  15,X'00000100'
+00000230 4740 C158               000001B8    223          BL    @L64
+                                             224 * ***   }
+00000234                                     225 @ret_lab_763 DS 0H
+                                             226 * * **** Start of Epilogue
+                                             227          DCCEPIL
+00000234                                     228+         ds 0h                                                          01-DCCEP
+                                             229+* Epilog
+00000234 D707 D088 D088 00000088 00000088    230+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
+0000023A E3D0 D080 0004          00000080    231+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
+00000240 E3C0 D090 0004          00000090    232+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
+00000246 E3B0 C018 0004          00000018    233+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
+0000024C E3C0 B010 0021          00000010    234+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
+00000252 E3E0 D008 0004          00000008    235+         lg  14,8(0,13)          load up return address                 01-DCCEP
+00000258 EB1C D020 0004          00000020    236+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
+0000025E 078E                                237+         bcr 8,14                if same dsab, just return              01-DCCEP
+00000260 E3F0 D010 0024          00000010    238+         stg 15,16(0,13)         save return code                       01-DCCEP
+00000266 E300 D018 0024          00000018    239+         stg 0,24(0,13)          save more return code                  01-DCCEP
+0000026C E3F0 D090 0004          00000090    240+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
+00000272 E3F0 F018 0004          00000018    241+         lg  15,24(0,15)         load dvt address                       01-DCCEP
+00000278 47F0 F040               00000040    242+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
+                                             243+* End of Epilog
+                                             244 * * **** End of Epilogue
+                                             245          DROP  12
+                                             246 *
+                                             247 *   DSECT for automatic variables in "crc32c_init_sw"
+                                             248 *      (FUNCTION #763)
+                                             249 *
+00000000                00000000 000000AC    250 @AUTO#crc32c_init_sw DSECT
+00000000                                     251          DS    XL168
+000000A8                                     252 crc32c_init_sw#k#0 DS 1F   ; k
+000000AC                000000AC 000000A8    253          ORG   @AUTO#crc32c_init_sw+168
+000000A8                                     254 crc32c_init_sw#crc#0 DS 1F ; crc
+000000AC                000000AC 000000A8    255          ORG   @AUTO#crc32c_init_sw+168
+000000A8                                     256 crc32c_init_sw#n#0 DS 1F   ; n
+                                             257 *
+0000027C                00000000 00000CCC    258 @CODE    CSECT
+                                                                                                                           Page    9 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+                                             259 *
+                                             260 *
+                                             261 *
+                                             262 * ....... start of crc32c_sw
+0000027C                                     263 @LNAME764 DS   0H
+0000027C 00000009                            264          DC    X'00000009'
+00000280 839983F3F2836DA2                    265          DC    C'crc32c_sw'
+00000289 00                                  266          DC    X'00'
+                                             267 crc32c_sw DCCPRLG CINDEX=764,BASER=12,FRAME=176,ENTRY=NO,ARCH=ZARCH,LNA*
+                                                                MEADDR=@LNAME764
+                                             268          macro
+                                             269          dccextrn &m
+                                             270          gblc    &$dccext(1000)
+                                             271          gbla    &$dccexti
+                                             272          lcla    &i
+                                             273 &$dccext(&$dccexti+1) setc    '&m'
+                                             274 &i       seta    1
+                                             275 .loop    aif    (&i gt &$dccexti).around
+                                             276          aif    ('&$dccext(&i)' eq '&m').getout
+                                             277 &i       seta    &i+1
+                                             278          ago     .loop
+                                             279 .around  anop
+                                             280 &$dccexti seta &$dccexti+1
+                                             281          extrn  &m
+                                             282 .getout  anop
+                                             283          mend
+00000290                                     284+$eye0006    ds    0d                                                    02-DCCCA
+00000290 C4C3C3                              285+         dc cl3'DCC'                                                    02-DCCCA
+00000293 01                                  286+         dc xl1'01' format one                                          02-DCCCA
+00000294 00000000                            287+         dc a(0)                                                        02-DCCCA
+00000298 0000000000000302                    288+         dc ad(@PER_764)                                                02-DCCCA
+000002A0 00000000000000B0                    289+         dc ad(176)                                                     02-DCCCA
+000002A8 0000000000000000                    290+         dc ad(0)                                                       02-DCCCA
+000002B0 0000000000001000                    291+         dc ad(4096)                                                    02-DCCCA
+000002B8 20                                  292+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+000002B9 03                                  293+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+000002BA 03                                  294+         dc al1(3)                                                      02-DCCCA
+000002BB 08                                  295+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+000002BC 00                                  296+         dc bl.8'00000000'                                              02-DCCCA
+000002BD 000000                              297+         dc al3(0)                                                      02-DCCCA
+000002C0 000000000000027C                    298+         dc ad(@LNAME764)                                               02-DCCCA
+000002C8                                     299+         ds 0d                                                          02-DCCCA
+000002C8 0000000000000290                    300+         dc ad($eye0006)                                                02-DCCCA
+000002D0 0000000000000000                    301+         dc ad(0)                                                       02-DCCCA
+000002D8                                     302+         ds    0d                                                       01-DCCPR
+000002D8                                     303+crc32c_sw ds   0d                                                       01-DCCPR
+000002D8                                     304+@REGION_764_1 ds 0h                                                     01-DCCPR
+000002D8 EBEC D008 0024          00000008    305+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+000002DE E3E0 D088 0004          00000088    306+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
+000002E4 E3C0 D090 0004          00000090    307+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
+000002EA B904 002E                           308+         lgr   2,14                copy addr of our savearea            01-DCCPR
+000002EE E3B0 C018 0004          00000018    309+         lg    11,24(0,12)         get dvt address                      01-DCCPR
+                                                                                                                           Page   10 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+000002F4 A7EB 00B0               000000B0    310+         aghi  14,176              increase by frame size               01-DCCPR
+000002F8 E3E0 C020 0021          00000020    311+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
+000002FE 4720 B020               00000020    312+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
+00000302                                     313+@PER_764 ds    0h                                                       01-DCCPR
+00000302 EBDE 2080 0024          00000080    314+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
+00000308 E3C0 2090 0024          00000090    315+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
+0000030E B904 00D2                           316+         lgr   13,2                set real frame pointer               01-DCCPR
+00000312 B904 00CF                           317+         lgr   12,15               set base reg                         01-DCCPR
+                        000002D8             318+         using @REGION_764_1,12                                         01-DCCPR
+                                             319          DCCPRV REG=3      ; Get PRV from DVT
+00000316 E330 B008 0004          00000008    320+         LG 3,8(0,11)                                                   01-DCCPR
+0000031C B904 0021                           321          LGR   2,1         ; ptr to parm area
+                                             322 * ******* End of Prologue
+                                             323 * *
+                                             324 * ***       const unsigned char *next = buf;
+00000320 E3F0 2010 0004          00000010    325          LG    15,16(0,2)  ; len
+00000326 E310 2008 0004          00000008    326          LG    1,8(0,2)    ; buf
+                                             327 * ***       uint64_t crc;
+                                             328 * ***
+                                             329 * ***       crc = crci ^ 0xffffffff;
+0000032C 5820 2004               00000004    330          L     2,4(0,2)    ; crci
+00000330 C027 FFFF FFFF                      331          XILF  2,X'FFFFFFFF'
+00000336 B916 0022                           332          LLGFR 2,2
+                                             333 * ***       while (len && ((uintptr_t)next & 7) != 0) {
+0000033A 47F0 C0D0               000003A8    334          B     @L75
+00000340                                     335          DS    0D
+00000340 000000B0                            336 @FRAMESIZE_764 DC F'176'
+00000344 00000000
+00000348 00000000000000FF                    337 @lit_764_8 DC  FD'255' 0x00000000000000ff
+00000350 00000000                            338 @lit_764_7 DC  Q(@@STATIC)
+00000354 00000000
+00000358 0000000000000007                    339 @lit_764_9 DC  FD'7' 0x0000000000000007
+00000360                                     340 @L74     DS    0H
+                                             341 * ***           crc = crc32c_table[0][(crc ^ *next++) & 0xff] ^ (crc >\
+                                             342 * > 8);
+00000360 E340 C078 0014          00000350    343          LGF   4,@lit_764_7
+00000366 4144 3000               00000000    344          LA    4,0(4,3)
+0000036A B904 0051                           345          LGR   5,1
+0000036E 4110 1001               00000001    346          LA    1,1(0,1)
+00000372 E350 5000 0094          00000000    347          LLC   5,0(0,5)
+00000378 B914 0055                           348          LGFR  5,5
+0000037C B904 0062                           349          LGR   6,2
+00000380 B982 0065                           350          XGR   6,5
+00000384 E360 C070 0080          00000348    351          NG    6,@lit_764_8
+0000038A EB56 0002 000D          00000002    352          SLLG  5,6,2(0)    ; *0x4
+00000390 E345 4200 0016          00000200    353          LLGF  4,512(5,4)
+00000396 EB22 0008 000C          00000008    354          SRLG  2,2,8(0)
+0000039C B982 0042                           355          XGR   4,2
+000003A0 B904 0024                           356          LGR   2,4         ; crc
+                                             357 * ***           len--;
+000003A4 A7FB FFFF               0000FFFF    358          AGHI  15,-1
+                                             359 * ***       }
+                                                                                                                           Page   11 
+  Active Usings: @REGION_764_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+000003A8                                     360 @L75     DS    0H
+000003A8 B902 004F                           361          LTGR  4,15
+000003AC 4780 C1E0               000004B8    362          BZ    @L80
+000003B0 B904 0041                           363          LGR   4,1
+000003B4 E340 C080 0080          00000358    364          NG    4,@lit_764_9
+000003BA B902 0044                           365          LTGR  4,4
+000003BE 4780 C1E0               000004B8    366          BE    @L80
+000003C2 47F0 C088               00000360    367          B     @L74
+                                             368 * ***       while (len >= 8) {
+000003C6                                     369 @L79     DS    0H
+                                             370 * ***
+                                             371 * ***           uint64_t ncopy;
+                                             372 * ***           __memcpy(&ncopy,next,sizeof(ncopy));
+000003C6 4140 D0A8               000000A8    373          LA    4,168(0,13)
+000003CA D207 4000 1000 00000000 00000000    374          MVC   0(8,4),0(1)
+                                             375 * ***           crc ^= __builtin_bswap64(ncopy);
+000003D0 E340 D0A8 000F          000000A8    376          LRVG  4,168(0,13)
+000003D6 B982 0024                           377          XGR   2,4
+                                             378 * ***           crc = crc32c_table[7][crc & 0xff] ^
+                                             379 * ***                 crc32c_table[6][(crc >> 8) & 0xff] ^
+                                             380 * ***                 crc32c_table[5][(crc >> 16) & 0xff] ^
+                                             381 * ***                 crc32c_table[4][(crc >> 24) & 0xff] ^
+                                             382 * ***                 crc32c_table[3][(crc >> 32) & 0xff] ^
+                                             383 * ***                 crc32c_table[2][(crc >> 40) & 0xff] ^
+                                             384 * ***                 crc32c_table[1][(crc >> 48) & 0xff] ^
+                                             385 * ***                 crc32c_table[0][crc >> 56];
+000003DA B904 0042                           386          LGR   4,2
+000003DE E340 C070 0080          00000348    387          NG    4,@lit_764_8
+000003E4 E350 C078 0014          00000350    388          LGF   5,@lit_764_7
+000003EA 4155 3000               00000000    389          LA    5,0(5,3)
+000003EE A769 1E00               00001E00    390          LGHI  6,7680      ; 7680
+000003F2 EB44 0002 000D          00000002    391          SLLG  4,4,2(0)    ; *0x4
+000003F8 4146 4000               00000000    392          LA    4,0(6,4)
+000003FC 5844 5000               00000000    393          L     4,0(4,5)
+00000400 EB62 0008 000C          00000008    394          SRLG  6,2,8(0)
+00000406 E360 C070 0080          00000348    395          NG    6,@lit_764_8
+0000040C A779 1A00               00001A00    396          LGHI  7,6656      ; 6656
+00000410 EB66 0002 000D          00000002    397          SLLG  6,6,2(0)    ; *0x4
+00000416 4167 6000               00000000    398          LA    6,0(7,6)
+0000041A 5746 5000               00000000    399          X     4,0(6,5)
+0000041E EB62 0010 000C          00000010    400          SRLG  6,2,16(0)
+00000424 E360 C070 0080          00000348    401          NG    6,@lit_764_8
+0000042A A779 1600               00001600    402          LGHI  7,5632      ; 5632
+0000042E EB66 0002 000D          00000002    403          SLLG  6,6,2(0)    ; *0x4
+00000434 4167 6000               00000000    404          LA    6,0(7,6)
+00000438 5746 5000               00000000    405          X     4,0(6,5)
+0000043C EB62 0018 000C          00000018    406          SRLG  6,2,24(0)
+00000442 E360 C070 0080          00000348    407          NG    6,@lit_764_8
+00000448 A779 1200               00001200    408          LGHI  7,4608      ; 4608
+0000044C EB66 0002 000D          00000002    409          SLLG  6,6,2(0)    ; *0x4
+00000452 4167 6000               00000000    410          LA    6,0(7,6)
+00000456 5746 5000               00000000    411          X     4,0(6,5)
+                                                                                                                           Page   12 
+  Active Usings: @REGION_764_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+0000045A EB62 0020 000C          00000020    412          SRLG  6,2,32(0)
+00000460 E360 C070 0080          00000348    413          NG    6,@lit_764_8
+00000466 EB66 0002 000D          00000002    414          SLLG  6,6,2(0)    ; *0x4
+0000046C 5746 5E00               00000E00    415          X     4,3584(6,5)
+00000470 EB62 0028 000C          00000028    416          SRLG  6,2,40(0)
+00000476 E360 C070 0080          00000348    417          NG    6,@lit_764_8
+0000047C EB66 0002 000D          00000002    418          SLLG  6,6,2(0)    ; *0x4
+00000482 5746 5A00               00000A00    419          X     4,2560(6,5)
+00000486 EB62 0030 000C          00000030    420          SRLG  6,2,48(0)
+0000048C E360 C070 0080          00000348    421          NG    6,@lit_764_8
+00000492 EB66 0002 000D          00000002    422          SLLG  6,6,2(0)    ; *0x4
+00000498 5746 5600               00000600    423          X     4,1536(6,5)
+0000049C EB22 0038 000C          00000038    424          SRLG  2,2,56(0)
+000004A2 EB22 0002 000D          00000002    425          SLLG  2,2,2(0)    ; *0x4
+000004A8 5742 5200               00000200    426          X     4,512(2,5)
+000004AC B916 0024                           427          LLGFR 2,4
+                                             428 * ***           next += 8;
+000004B0 4110 1008               00000008    429          LA    1,8(0,1)
+                                             430 * ***           len -= 8;
+000004B4 A7FB FFF8               0000FFF8    431          AGHI  15,-8
+                                             432 * ***       }
+000004B8                                     433 @L80     DS    0H
+000004B8 C2FE 0000 0008                      434          CLGFI 15,X'00000008'
+000004BE 47B0 C0EE               000003C6    435          BNL   @L79
+                                             436 * ***       while (len) {
+000004C2 47F0 C236               0000050E    437          B     @L84
+000004C6                                     438 @L83     DS    0H
+                                             439 * ***           crc = crc32c_table[0][(crc ^ *next++) & 0xff] ^ (crc >\
+                                             440 * > 8);
+000004C6 E340 C078 0014          00000350    441          LGF   4,@lit_764_7
+000004CC 4144 3000               00000000    442          LA    4,0(4,3)
+000004D0 B904 0051                           443          LGR   5,1
+000004D4 4110 1001               00000001    444          LA    1,1(0,1)
+000004D8 E350 5000 0094          00000000    445          LLC   5,0(0,5)
+000004DE B914 0055                           446          LGFR  5,5
+000004E2 B904 0062                           447          LGR   6,2
+000004E6 B982 0065                           448          XGR   6,5
+000004EA E360 C070 0080          00000348    449          NG    6,@lit_764_8
+000004F0 EB56 0002 000D          00000002    450          SLLG  5,6,2(0)    ; *0x4
+000004F6 E345 4200 0016          00000200    451          LLGF  4,512(5,4)
+000004FC EB22 0008 000C          00000008    452          SRLG  2,2,8(0)
+00000502 B982 0042                           453          XGR   4,2
+00000506 B904 0024                           454          LGR   2,4         ; crc
+                                             455 * ***           len--;
+0000050A A7FB FFFF               0000FFFF    456          AGHI  15,-1
+                                             457 * ***       }
+0000050E                                     458 @L84     DS    0H
+0000050E B902 004F                           459          LTGR  4,15
+00000512 4770 C1EE               000004C6    460          BNZ   @L83
+                                             461 * ***       return (uint32_t)crc ^ 0xffffffff;
+00000516 C027 FFFF FFFF                      462          XILF  2,X'FFFFFFFF'
+0000051C B916 00F2                           463          LLGFR 15,2
+                                                                                                                           Page   13 
+  Active Usings: @REGION_764_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+                                             464 * ***   }
+                                             465 * * **** Start of Epilogue
+                                             466          DCCEPIL
+00000520                                     467+         ds 0h                                                          01-DCCEP
+                                             468+* Epilog
+00000520 D707 D088 D088 00000088 00000088    469+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
+00000526 E3D0 D080 0004          00000080    470+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
+0000052C E3C0 D090 0004          00000090    471+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
+00000532 E3B0 C018 0004          00000018    472+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
+00000538 E3C0 B010 0021          00000010    473+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
+0000053E E3E0 D008 0004          00000008    474+         lg  14,8(0,13)          load up return address                 01-DCCEP
+00000544 EB1C D020 0004          00000020    475+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
+0000054A 078E                                476+         bcr 8,14                if same dsab, just return              01-DCCEP
+0000054C E3F0 D010 0024          00000010    477+         stg 15,16(0,13)         save return code                       01-DCCEP
+00000552 E300 D018 0024          00000018    478+         stg 0,24(0,13)          save more return code                  01-DCCEP
+00000558 E3F0 D090 0004          00000090    479+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
+0000055E E3F0 F018 0004          00000018    480+         lg  15,24(0,15)         load dvt address                       01-DCCEP
+00000564 47F0 F040               00000040    481+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
+                                             482+* End of Epilog
+                                             483 * * **** End of Epilogue
+                                             484          DROP  12
+                                             485 *
+                                             486 *   DSECT for automatic variables in "crc32c_sw"
+                                             487 *      (FUNCTION #764)
+                                             488 *
+00000000                00000000 000000B0    489 @AUTO#crc32c_sw DSECT
+00000000                                     490          DS    XL168
+000000A8                                     491 crc32c_sw#ncopy#2 DS 8XL1  ; ncopy
+000000B0                000000B0 000000A8    492          ORG   @AUTO#crc32c_sw+168
+000000A8                                     493 crc32c_sw#crc#0 DS 8XL1    ; crc
+                                             494 *
+00000568                00000000 00000CCC    495 @CODE    CSECT
+                                             496 *
+                                             497 *
+                                             498 *
+                                             499 * ....... start of crc32c
+                                             500 crc32c   ALIAS C'crc32c'
+00000568                                     501 @LNAME760 DS   0H
+00000568 00000006                            502          DC    X'00000006'
+0000056C 839983F3F283                        503          DC    C'crc32c'
+00000572 00                                  504          DC    X'00'
+                                             505 crc32c   DCCPRLG CINDEX=760,BASER=12,FRAME=192,ENTRY=YES,ARCH=ZARCH,LNA*
+                                                                MEADDR=@LNAME760
+                                             506          macro
+                                             507          dccextrn &m
+                                             508          gblc    &$dccext(1000)
+                                             509          gbla    &$dccexti
+                                             510          lcla    &i
+                                             511 &$dccext(&$dccexti+1) setc    '&m'
+                                             512 &i       seta    1
+                                             513 .loop    aif    (&i gt &$dccexti).around
+                                             514          aif    ('&$dccext(&i)' eq '&m').getout
+                                                                                                                           Page   14 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+                                             515 &i       seta    &i+1
+                                             516          ago     .loop
+                                             517 .around  anop
+                                             518 &$dccexti seta &$dccexti+1
+                                             519          extrn  &m
+                                             520 .getout  anop
+                                             521          mend
+00000578                                     522+$eye0010    ds    0d                                                    02-DCCCA
+00000578 C4C3C3                              523+         dc cl3'DCC'                                                    02-DCCCA
+0000057B 01                                  524+         dc xl1'01' format one                                          02-DCCCA
+0000057C 00000000                            525+         dc a(0)                                                        02-DCCCA
+00000580 00000000000005EA                    526+         dc ad(@PER_760)                                                02-DCCCA
+00000588 00000000000000C0                    527+         dc ad(192)                                                     02-DCCCA
+00000590 0000000000000000                    528+         dc ad(0)                                                       02-DCCCA
+00000598 0000000000001000                    529+         dc ad(4096)                                                    02-DCCCA
+000005A0 20                                  530+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+000005A1 03                                  531+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+000005A2 03                                  532+         dc al1(3)                                                      02-DCCCA
+000005A3 08                                  533+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+000005A4 00                                  534+         dc bl.8'00000000'                                              02-DCCCA
+000005A5 000000                              535+         dc al3(0)                                                      02-DCCCA
+000005A8 0000000000000568                    536+         dc ad(@LNAME760)                                               02-DCCCA
+000005B0                                     537+         ds 0d                                                          02-DCCCA
+000005B0 0000000000000578                    538+         dc ad($eye0010)                                                02-DCCCA
+000005B8 0000000000000000                    539+         dc ad(0)                                                       02-DCCCA
+000005C0                                     540+         ds    0d                                                       01-DCCPR
+                                             541+         entry crc32c                                                   01-DCCPR
+000005C0                                     542+crc32c   ds    0d                                                       01-DCCPR
+000005C0                                     543+@REGION_760_1 ds 0h                                                     01-DCCPR
+000005C0 EBEC D008 0024          00000008    544+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+000005C6 E3E0 D088 0004          00000088    545+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
+000005CC E3C0 D090 0004          00000090    546+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
+000005D2 B904 002E                           547+         lgr   2,14                copy addr of our savearea            01-DCCPR
+000005D6 E3B0 C018 0004          00000018    548+         lg    11,24(0,12)         get dvt address                      01-DCCPR
+000005DC A7EB 00C0               000000C0    549+         aghi  14,192              increase by frame size               01-DCCPR
+000005E0 E3E0 C020 0021          00000020    550+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
+000005E6 4720 B020               00000020    551+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
+000005EA                                     552+@PER_760 ds    0h                                                       01-DCCPR
+000005EA EBDE 2080 0024          00000080    553+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
+000005F0 E3C0 2090 0024          00000090    554+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
+000005F6 B904 00D2                           555+         lgr   13,2                set real frame pointer               01-DCCPR
+000005FA B904 00CF                           556+         lgr   12,15               set base reg                         01-DCCPR
+                        000005C0             557+         using @REGION_760_1,12                                         01-DCCPR
+                                             558 * ******* End of Prologue
+                                             559 * *
+                                             560 * ***   # 361 "C:\asgkafka\librdkafka\src\crc32c.c"
+                                             561 * ***                   return crc32c_sw(crc, buf, len);
+000005FE E3F0 1004 0016          00000004    562          LLGF  15,4(0,1)   ; crc
+00000604 E3F0 D0A8 0024          000000A8    563          STG   15,168(0,13)
+0000060A E3F0 1008 0004          00000008    564          LG    15,8(0,1)   ; buf
+00000610 E3F0 D0B0 0024          000000B0    565          STG   15,176(0,13)
+00000616 E3F0 1010 0004          00000010    566          LG    15,16(0,1)  ; len
+                                                                                                                           Page   15 
+  Active Usings: @REGION_760_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+0000061C E3F0 D0B8 0024          000000B8    567          STG   15,184(0,13)
+00000622 4110 D0A8               000000A8    568          LA    1,168(0,13)
+00000626 E3F0 C0C8 0004          00000688    569          LG    15,@lit_760_25 ; crc32c_sw
+0000062C                                     570 @@gen_label15 DS    0H
+0000062C 05EF                                571          BALR  14,15
+0000062E                                     572 @@gen_label16 DS    0H
+0000062E B916 00FF                           573          LLGFR 15,15
+                                             574 * ***   }
+                                             575 * * **** Start of Epilogue
+                                             576          DCCEPIL
+00000632                                     577+         ds 0h                                                          01-DCCEP
+                                             578+* Epilog
+00000632 D707 D088 D088 00000088 00000088    579+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
+00000638 E3D0 D080 0004          00000080    580+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
+0000063E E3C0 D090 0004          00000090    581+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
+00000644 E3B0 C018 0004          00000018    582+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
+0000064A E3C0 B010 0021          00000010    583+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
+00000650 E3E0 D008 0004          00000008    584+         lg  14,8(0,13)          load up return address                 01-DCCEP
+00000656 EB1C D020 0004          00000020    585+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
+0000065C 078E                                586+         bcr 8,14                if same dsab, just return              01-DCCEP
+0000065E E3F0 D010 0024          00000010    587+         stg 15,16(0,13)         save return code                       01-DCCEP
+00000664 E300 D018 0024          00000018    588+         stg 0,24(0,13)          save more return code                  01-DCCEP
+0000066A E3F0 D090 0004          00000090    589+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
+00000670 E3F0 F018 0004          00000018    590+         lg  15,24(0,15)         load dvt address                       01-DCCEP
+00000676 47F0 F040               00000040    591+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
+                                             592+* End of Epilog
+                                             593 * * **** End of Epilogue
+00000680                                     594          DS    0D
+00000680 000000C0                            595 @FRAMESIZE_760 DC F'192'
+00000684 00000000
+00000688 00000000000002D8                    596 @lit_760_25 DC AD(crc32c_sw)
+                                             597          DROP  12
+                                             598 *
+                                             599 *   DSECT for automatic variables in "crc32c"
+                                             600 *      (FUNCTION #760)
+                                             601 *
+00000000                00000000 000000A8    602 @AUTO#crc32c DSECT
+00000000                                     603          DS    XL168
+                                             604 *
+00000690                00000000 00000CCC    605 @CODE    CSECT
+                                             606 *
+                                             607 *
+                                             608 *
+                                             609 * ....... start of crc32c_global_init
+                                             610 crc32c_global_init ALIAS X'839983F3F2836D8793968281936D899589A3'
+00000690                                     611 @LNAME761 DS   0H
+00000690 00000012                            612          DC    X'00000012'
+00000694 839983F3F2836D87                    613          DC    C'crc32c_global_init'
+000006A6 00                                  614          DC    X'00'
+                                             615 crc32c_global_init DCCPRLG CINDEX=761,BASER=12,FRAME=168,ENTRY=YES,ARCH*
+                                                                =ZARCH,LNAMEADDR=@LNAME761
+                                             616          macro
+                                                                                                                           Page   16 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+                                             617          dccextrn &m
+                                             618          gblc    &$dccext(1000)
+                                             619          gbla    &$dccexti
+                                             620          lcla    &i
+                                             621 &$dccext(&$dccexti+1) setc    '&m'
+                                             622 &i       seta    1
+                                             623 .loop    aif    (&i gt &$dccexti).around
+                                             624          aif    ('&$dccext(&i)' eq '&m').getout
+                                             625 &i       seta    &i+1
+                                             626          ago     .loop
+                                             627 .around  anop
+                                             628 &$dccexti seta &$dccexti+1
+                                             629          extrn  &m
+                                             630 .getout  anop
+                                             631          mend
+000006A8                                     632+$eye0013    ds    0d                                                    02-DCCCA
+000006A8 C4C3C3                              633+         dc cl3'DCC'                                                    02-DCCCA
+000006AB 01                                  634+         dc xl1'01' format one                                          02-DCCCA
+000006AC 00000000                            635+         dc a(0)                                                        02-DCCCA
+000006B0 000000000000071A                    636+         dc ad(@PER_761)                                                02-DCCCA
+000006B8 00000000000000A8                    637+         dc ad(168)                                                     02-DCCCA
+000006C0 0000000000000000                    638+         dc ad(0)                                                       02-DCCCA
+000006C8 0000000000001000                    639+         dc ad(4096)                                                    02-DCCCA
+000006D0 20                                  640+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+000006D1 03                                  641+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+000006D2 03                                  642+         dc al1(3)                                                      02-DCCCA
+000006D3 08                                  643+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+000006D4 00                                  644+         dc bl.8'00000000'                                              02-DCCCA
+000006D5 000000                              645+         dc al3(0)                                                      02-DCCCA
+000006D8 0000000000000690                    646+         dc ad(@LNAME761)                                               02-DCCCA
+000006E0                                     647+         ds 0d                                                          02-DCCCA
+000006E0 00000000000006A8                    648+         dc ad($eye0013)                                                02-DCCCA
+000006E8 0000000000000000                    649+         dc ad(0)                                                       02-DCCCA
+000006F0                                     650+         ds    0d                                                       01-DCCPR
+                                             651+         entry crc32c_global_init                                       01-DCCPR
+000006F0                                     652+crc32c_global_init ds 0d                                                01-DCCPR
+000006F0                                     653+@REGION_761_1 ds 0h                                                     01-DCCPR
+000006F0 EBEC D008 0024          00000008    654+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+000006F6 E3E0 D088 0004          00000088    655+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
+000006FC E3C0 D090 0004          00000090    656+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
+00000702 B904 002E                           657+         lgr   2,14                copy addr of our savearea            01-DCCPR
+00000706 E3B0 C018 0004          00000018    658+         lg    11,24(0,12)         get dvt address                      01-DCCPR
+0000070C A7EB 00A8               000000A8    659+         aghi  14,168              increase by frame size               01-DCCPR
+00000710 E3E0 C020 0021          00000020    660+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
+00000716 4720 B020               00000020    661+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
+0000071A                                     662+@PER_761 ds    0h                                                       01-DCCPR
+0000071A EBDE 2080 0024          00000080    663+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
+00000720 E3C0 2090 0024          00000090    664+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
+00000726 B904 00D2                           665+         lgr   13,2                set real frame pointer               01-DCCPR
+0000072A B904 00CF                           666+         lgr   12,15               set base reg                         01-DCCPR
+                        000006F0             667+         using @REGION_761_1,12                                         01-DCCPR
+                                             668 * ******* End of Prologue
+                                                                                                                           Page   17 
+  Active Usings: @REGION_761_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+                                             669 * *
+                                             670 * ***   # 379 "C:\asgkafka\librdkafka\src\crc32c.c"
+                                             671 * ***                   crc32c_init_sw();
+0000072E E3F0 C098 0004          00000788    672          LG    15,@lit_761_27 ; crc32c_init_sw
+00000734                                     673 @@gen_label17 DS    0H
+00000734 05EF                                674          BALR  14,15
+00000736                                     675 @@gen_label18 DS    0H
+                                             676 * ***   }
+00000736                                     677 @ret_lab_761 DS 0H
+                                             678 * * **** Start of Epilogue
+                                             679          DCCEPIL
+00000736                                     680+         ds 0h                                                          01-DCCEP
+                                             681+* Epilog
+00000736 D707 D088 D088 00000088 00000088    682+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
+0000073C E3D0 D080 0004          00000080    683+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
+00000742 E3C0 D090 0004          00000090    684+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
+00000748 E3B0 C018 0004          00000018    685+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
+0000074E E3C0 B010 0021          00000010    686+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
+00000754 E3E0 D008 0004          00000008    687+         lg  14,8(0,13)          load up return address                 01-DCCEP
+0000075A EB1C D020 0004          00000020    688+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
+00000760 078E                                689+         bcr 8,14                if same dsab, just return              01-DCCEP
+00000762 E3F0 D010 0024          00000010    690+         stg 15,16(0,13)         save return code                       01-DCCEP
+00000768 E300 D018 0024          00000018    691+         stg 0,24(0,13)          save more return code                  01-DCCEP
+0000076E E3F0 D090 0004          00000090    692+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
+00000774 E3F0 F018 0004          00000018    693+         lg  15,24(0,15)         load dvt address                       01-DCCEP
+0000077A 47F0 F040               00000040    694+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
+                                             695+* End of Epilog
+                                             696 * * **** End of Epilogue
+00000780                                     697          DS    0D
+00000780 000000A8                            698 @FRAMESIZE_761 DC F'168'
+00000784 00000000
+00000788 0000000000000060                    699 @lit_761_27 DC AD(crc32c_init_sw)
+                                             700          DROP  12
+                                             701 *
+                                             702 *   DSECT for automatic variables in "crc32c_global_init"
+                                             703 *      (FUNCTION #761)
+                                             704 *
+00000000                00000000 000000A8    705 @AUTO#crc32c_global_init DSECT
+00000000                                     706          DS    XL168
+                                             707 *
+00000790                00000000 00000CCC    708 @CODE    CSECT
+                                             709 *
+                                             710 *
+                                             711 *
+                                             712 * ....... start of unittest_crc32c
+                                             713 unittest_crc32c ALIAS X'A49589A3A385A2A36D839983F3F283'
+00000790                                     714 @LNAME762 DS   0H
+00000790 0000000F                            715          DC    X'0000000F'
+00000794 A49589A3A385A2A3                    716          DC    C'unittest_crc32c'
+000007A3 00                                  717          DC    X'00'
+                                             718 unittest_crc32c DCCPRLG CINDEX=762,BASER=12,FRAME=216,ENTRY=YES,ARCH=ZA*
+                                                                RCH,LNAMEADDR=@LNAME762
+                                                                                                                           Page   18 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+                                             719          macro
+                                             720          dccextrn &m
+                                             721          gblc    &$dccext(1000)
+                                             722          gbla    &$dccexti
+                                             723          lcla    &i
+                                             724 &$dccext(&$dccexti+1) setc    '&m'
+                                             725 &i       seta    1
+                                             726 .loop    aif    (&i gt &$dccexti).around
+                                             727          aif    ('&$dccext(&i)' eq '&m').getout
+                                             728 &i       seta    &i+1
+                                             729          ago     .loop
+                                             730 .around  anop
+                                             731 &$dccexti seta &$dccexti+1
+                                             732          extrn  &m
+                                             733 .getout  anop
+                                             734          mend
+000007A8                                     735+$eye0016    ds    0d                                                    02-DCCCA
+000007A8 C4C3C3                              736+         dc cl3'DCC'                                                    02-DCCCA
+000007AB 01                                  737+         dc xl1'01' format one                                          02-DCCCA
+000007AC 00000000                            738+         dc a(0)                                                        02-DCCCA
+000007B0 000000000000081A                    739+         dc ad(@PER_762)                                                02-DCCCA
+000007B8 00000000000000D8                    740+         dc ad(216)                                                     02-DCCCA
+000007C0 0000000000000000                    741+         dc ad(0)                                                       02-DCCCA
+000007C8 0000000000001000                    742+         dc ad(4096)                                                    02-DCCCA
+000007D0 20                                  743+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+000007D1 03                                  744+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+000007D2 03                                  745+         dc al1(3)                                                      02-DCCCA
+000007D3 08                                  746+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+000007D4 00                                  747+         dc bl.8'00000000'                                              02-DCCCA
+000007D5 000000                              748+         dc al3(0)                                                      02-DCCCA
+000007D8 0000000000000790                    749+         dc ad(@LNAME762)                                               02-DCCCA
+000007E0                                     750+         ds 0d                                                          02-DCCCA
+000007E0 00000000000007A8                    751+         dc ad($eye0016)                                                02-DCCCA
+000007E8 0000000000000000                    752+         dc ad(0)                                                       02-DCCCA
+000007F0                                     753+         ds    0d                                                       01-DCCPR
+                                             754+         entry unittest_crc32c                                          01-DCCPR
+000007F0                                     755+unittest_crc32c ds 0d                                                   01-DCCPR
+000007F0                                     756+@REGION_762_1 ds 0h                                                     01-DCCPR
+000007F0 EBEC D008 0024          00000008    757+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+000007F6 E3E0 D088 0004          00000088    758+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
+000007FC E3C0 D090 0004          00000090    759+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
+00000802 B904 002E                           760+         lgr   2,14                copy addr of our savearea            01-DCCPR
+00000806 E3B0 C018 0004          00000018    761+         lg    11,24(0,12)         get dvt address                      01-DCCPR
+0000080C A7EB 00D8               000000D8    762+         aghi  14,216              increase by frame size               01-DCCPR
+00000810 E3E0 C020 0021          00000020    763+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
+00000816 4720 B020               00000020    764+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
+0000081A                                     765+@PER_762 ds    0h                                                       01-DCCPR
+0000081A EBDE 2080 0024          00000080    766+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
+00000820 E3C0 2090 0024          00000090    767+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
+00000826 B904 00D2                           768+         lgr   13,2                set real frame pointer               01-DCCPR
+0000082A B904 00CF                           769+         lgr   12,15               set base reg                         01-DCCPR
+                        000007F0             770+         using @REGION_762_1,12                                         01-DCCPR
+                                                                                                                           Page   19 
+  Active Usings: @REGION_762_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+                                             771          DCCPRV REG=6      ; Get PRV from DVT
+0000082E E360 B008 0004          00000008    772+         LG 6,8(0,11)                                                   01-DCCPR
+                                             773 * ******* End of Prologue
+                                             774 * *
+                                             775 * ***           const char *buf =
+                                             776 * ***   "  This software is provided 'as-is', without any express or i\
+                                             777 * mplied\n"
+                                             778 * ***   "  warranty.  In no event will the author be held liable for a\
+                                             779 * ny damages\n"
+                                             780 * ***   "  arising from the use of this software.\n"
+                                             781 * ***   "\n"
+                                             782 * ***   "  Permission is granted to anyone to use this software for an\
+                                             783 * y purpose,\n"
+                                             784 * ***   "  including commercial applications, and to alter it and redi\
+                                             785 * stribute it\n"
+                                             786 * ***   "  freely, subject to the following restrictions:\n"
+                                             787 * ***   "\n"
+                                             788 * ***   "  1. The origin of this software must not be misrepresented; \
+                                             789 * you must not\n"
+                                             790 * ***   "     claim that you wrote the original software. If you use t\
+                                             791 * his software\n"
+                                             792 * ***   "     in a product, an acknowledgment in the product documenta\
+                                             793 * tion would be\n"
+                                             794 * ***   "     appreciated but is not required.\n"
+                                             795 * ***   "  2. Altered source versions must be plainly marked as such, \
+                                             796 * and must not be\n"
+                                             797 * ***   "     misrepresented as being the original software.\n"
+                                             798 * ***   "  3. This notice may not be removed or altered from any sourc\
+                                             799 * e distribution.";
+00000834 E350 C230 0004          00000A20    800          LG    5,@lit_762_29
+                                             801 * ***           const uint32_t expected_crc = 0x7dcde113;
+0000083A C039 7DCD E113                      802          IILF  3,X'7DCDE113' ; 2110644499
+                                             803 * ***           uint32_t crc;
+                                             804 * ***           const char *how;
+                                             805 * ***
+                                             806 * ***   # 409 "C:\asgkafka\librdkafka\src\crc32c.c"
+                                             807 * ***           how = "software";
+00000840 4140 534C               0000034C    808          LA    4,844(0,5)
+                                             809 * ***
+                                             810 * ***           do { fprintf(__stderrp, "RDUT: INFO: %s:%d: %s: ", "C:\
+                                             811 * \\asgkafka\\librdkafka\\src\\crc32c.c", 411, __FUNCTION__); fprintf(\
+                                             812 * __stderrp, "Calculate CRC32C using %s", how); fprintf(__stderrp, "\n\
+                                             813 * "); } while (0);
+00000844                                     814 @L85     DS    0H
+00000844 E320 C248 0016          00000A38    815          LLGF  2,@lit_762_31 ; __stderrp
+0000084A E3F2 6000 0004          00000000    816          LG    15,0(2,6)   ; __stderrp
+00000850 E3F0 D0B0 0024          000000B0    817          STG   15,176(0,13)
+00000856 E370 C230 0004          00000A20    818          LG    7,@lit_762_29
+0000085C 41F0 7356               00000356    819          LA    15,854(0,7)
+00000860 E3F0 D0B8 0024          000000B8    820          STG   15,184(0,13)
+00000866 41F0 736E               0000036E    821          LA    15,878(0,7)
+0000086A E3F0 D0C0 0024          000000C0    822          STG   15,192(0,13)
+                                                                                                                           Page   20 
+  Active Usings: @REGION_762_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+00000870 E548 D0C8 019B          000000C8    823          MVGHI 200(13),411
+00000876 E3F0 C240 0004          00000A30    824          LG    15,@lit_762_33
+0000087C 41F0 F046               00000046    825          LA    15,70(0,15)
+00000880 E3F0 D0D0 0024          000000D0    826          STG   15,208(0,13)
+00000886 4110 D0B0               000000B0    827          LA    1,176(0,13)
+0000088A E380 C238 0004          00000A28    828          LG    8,@lit_762_34 ; fprintf
+00000890 B904 00F8                           829          LGR   15,8
+00000894                                     830 @@gen_label19 DS    0H
+00000894 05EF                                831          BALR  14,15
+00000896                                     832 @@gen_label20 DS    0H
+00000896 E3F2 6000 0004          00000000    833          LG    15,0(2,6)   ; __stderrp
+0000089C E3F0 D0B0 0024          000000B0    834          STG   15,176(0,13)
+000008A2 41F0 7392               00000392    835          LA    15,914(0,7)
+000008A6 E3F0 D0B8 0024          000000B8    836          STG   15,184(0,13)
+000008AC E340 D0C0 0024          000000C0    837          STG   4,192(0,13)
+000008B2 4110 D0B0               000000B0    838          LA    1,176(0,13)
+000008B6 B904 00F8                           839          LGR   15,8
+000008BA                                     840 @@gen_label21 DS    0H
+000008BA 05EF                                841          BALR  14,15
+000008BC                                     842 @@gen_label22 DS    0H
+000008BC E3F2 6000 0004          00000000    843          LG    15,0(2,6)   ; __stderrp
+000008C2 E3F0 D0B0 0024          000000B0    844          STG   15,176(0,13)
+000008C8 41F0 73AC               000003AC    845          LA    15,940(0,7)
+000008CC E3F0 D0B8 0024          000000B8    846          STG   15,184(0,13)
+000008D2 4110 D0B0               000000B0    847          LA    1,176(0,13)
+000008D6 B904 00F8                           848          LGR   15,8
+000008DA                                     849 @@gen_label23 DS    0H
+000008DA 05EF                                850          BALR  14,15
+000008DC                                     851 @@gen_label24 DS    0H
+                                             852 * ***
+                                             853 * ***           crc = crc32c(0, buf, __strlen(buf));
+000008DC B904 00F5                           854          LGR   15,5
+000008E0 A709 0000               00000000    855          LGHI  0,0
+000008E4                                     856 @@gen_label25 DS 0H
+000008E4 B25E 000F                           857          SRST  0,15
+000008E8 4710 C0F4               000008E4    858          BC  1,@@gen_label25
+000008EC B90B 0005                           859          SLGR  0,5
+000008F0 D707 D0B0 D0B0 000000B0 000000B0    860          XC    176(8,13),176(13)
+000008F6 E350 D0B8 0024          000000B8    861          STG   5,184(0,13)
+000008FC E300 D0C0 0024          000000C0    862          STG   0,192(0,13)
+00000902 4110 D0B0               000000B0    863          LA    1,176(0,13)
+00000906 E3F0 C250 0004          00000A40    864          LG    15,@lit_762_39 ; crc32c
+0000090C                                     865 @@gen_label26 DS    0H
+0000090C 05EF                                866          BALR  14,15
+0000090E                                     867 @@gen_label27 DS    0H
+0000090E 182F                                868          LR    2,15        ; crc
+                                             869 * ***           do { if (!(crc == expected_crc)) { fprintf(__stderrp, \
+                                             870 * "\033[31mRDUT: FAIL: %s:%d: %s: " "assert failed: " "crc == expected\
+                                             871 * _crc" ": ", "C:\\asgkafka\\librdkafka\\src\\crc32c.c", 414, __FUNCTI\
+                                             872 * ON__); fprintf(__stderrp, "Calculated CRC (%s) 0x%" "x" " not matchi\
+                                             873 * ng expected CRC 0x%" "x", how, crc, expected_crc); fprintf(__stderrp\
+                                             874 * , "\033[0m\n"); if (rd_unittest_assert_on_failure) ((crc == expected\
+                                                                                                                           Page   21 
+  Active Usings: @REGION_762_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+                                             875 * _crc) ? (void)0 : __assert(__func__, "C:\\asgkafka\\librdkafka\\src\\
+                                             876 * \crc32c.c", 414, "crc == expected_crc")); return 1; } } while (0);
+00000910                                     877 @L88     DS    0H
+00000910 1523                                878          CLR   2,3
+00000912 4780 C278               00000A68    879          BE    @L91
+00000916 E350 C248 0016          00000A38    880          LLGF  5,@lit_762_31 ; __stderrp
+0000091C E3F5 6000 0004          00000000    881          LG    15,0(5,6)   ; __stderrp
+00000922 E3F0 D0B0 0024          000000B0    882          STG   15,176(0,13)
+00000928 E370 C230 0004          00000A20    883          LG    7,@lit_762_29
+0000092E 41F0 73AE               000003AE    884          LA    15,942(0,7)
+00000932 E3F0 D0B8 0024          000000B8    885          STG   15,184(0,13)
+00000938 41F0 736E               0000036E    886          LA    15,878(0,7)
+0000093C E3F0 D0C0 0024          000000C0    887          STG   15,192(0,13)
+00000942 E548 D0C8 019E          000000C8    888          MVGHI 200(13),414
+00000948 E380 C240 0004          00000A30    889          LG    8,@lit_762_33
+0000094E 41F0 8046               00000046    890          LA    15,70(0,8)
+00000952 E3F0 D0D0 0024          000000D0    891          STG   15,208(0,13)
+00000958 4110 D0B0               000000B0    892          LA    1,176(0,13)
+0000095C E390 C238 0004          00000A28    893          LG    9,@lit_762_34 ; fprintf
+00000962 B904 00F9                           894          LGR   15,9
+00000966                                     895 @@gen_label29 DS    0H
+00000966 05EF                                896          BALR  14,15
+00000968                                     897 @@gen_label30 DS    0H
+00000968 E3F5 6000 0004          00000000    898          LG    15,0(5,6)   ; __stderrp
+0000096E E3F0 D0B0 0024          000000B0    899          STG   15,176(0,13)
+00000974 41F0 73F0               000003F0    900          LA    15,1008(0,7)
+00000978 E3F0 D0B8 0024          000000B8    901          STG   15,184(0,13)
+0000097E E340 D0C0 0024          000000C0    902          STG   4,192(0,13)
+00000984 B916 00F2                           903          LLGFR 15,2
+00000988 E3F0 D0C8 0024          000000C8    904          STG   15,200(0,13)
+0000098E B916 00F3                           905          LLGFR 15,3
+00000992 E3F0 D0D0 0024          000000D0    906          STG   15,208(0,13)
+00000998 4110 D0B0               000000B0    907          LA    1,176(0,13)
+0000099C B904 00F9                           908          LGR   15,9
+000009A0                                     909 @@gen_label31 DS    0H
+000009A0 05EF                                910          BALR  14,15
+000009A2                                     911 @@gen_label32 DS    0H
+000009A2 E3F5 6000 0004          00000000    912          LG    15,0(5,6)   ; __stderrp
+000009A8 E3F0 D0B0 0024          000000B0    913          STG   15,176(0,13)
+000009AE 41F0 7428               00000428    914          LA    15,1064(0,7)
+000009B2 E3F0 D0B8 0024          000000B8    915          STG   15,184(0,13)
+000009B8 4110 D0B0               000000B0    916          LA    1,176(0,13)
+000009BC B904 00F9                           917          LGR   15,9
+000009C0                                     918 @@gen_label33 DS    0H
+000009C0 05EF                                919          BALR  14,15
+000009C2                                     920 @@gen_label34 DS    0H
+000009C2 E3F0 C258 0016          00000A48    921          LLGF  15,@lit_762_48 ; rd_unittest_assert_on_failure
+000009C8 41FF 6000               00000000    922          LA    15,0(15,6)
+000009CC 9500 F000      00000000 00000000    923          CLI   0(15),0
+000009D0 4780 C21A               00000A0A    924          BE    @L92
+000009D4 1523                                925          CLR   2,3
+000009D6 4780 C21A               00000A0A    926          BE    @L92
+                                                                                                                           Page   22 
+  Active Usings: @REGION_762_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+000009DA                                     927 @L93     DS    0H
+000009DA 41F0 8046               00000046    928          LA    15,70(0,8)
+000009DE E3F0 D0B0 0024          000000B0    929          STG   15,176(0,13)
+000009E4 41F0 736E               0000036E    930          LA    15,878(0,7)
+000009E8 E3F0 D0B8 0024          000000B8    931          STG   15,184(0,13)
+000009EE E548 D0C0 019E          000000C0    932          MVGHI 192(13),414
+000009F4 41F0 742E               0000042E    933          LA    15,1070(0,7)
+000009F8 E3F0 D0C8 0024          000000C8    934          STG   15,200(0,13)
+000009FE 4110 D0B0               000000B0    935          LA    1,176(0,13)
+00000A02 E3F0 C260 0004          00000A50    936          LG    15,@lit_762_49 ; __assert
+00000A08                                     937 @@gen_label37 DS    0H
+00000A08 05EF                                938          BALR  14,15
+00000A0A                                     939 @@gen_label38 DS    0H
+00000A0A                                     940 @L94     DS    0H
+00000A0A                                     941 @L92     DS    0H
+00000A0A A7F9 0001               00000001    942          LGHI  15,1        ; 1
+00000A0E 47F0 C494               00000C84    943          B     @ret_lab_762
+00000A18                                     944          DS    0D
+00000A18 000000D8                            945 @FRAMESIZE_762 DC F'216'
+00000A1C 00000000
+00000A20 0000000000000D26                    946 @lit_762_29 DC AD(@strings@)
+00000A28 0000000000000000                    947 @lit_762_34 DC AD(fprintf)
+00000A30 0000000000000CD0                    948 @lit_762_33 DC AD(@DATA)
+00000A38 00000000                            949 @lit_762_31 DC Q(__stderrp)
+00000A3C 00000000
+00000A40 00000000000005C0                    950 @lit_762_39 DC AD(crc32c)
+00000A48 00000000                            951 @lit_762_48 DC Q(rd_unittest_assert_on_failure)
+00000A4C 00000000
+00000A50 0000000000000000                    952 @lit_762_49 DC AD(__assert)
+00000A58 0000000000000060                    953 @lit_762_51 DC AD(crc32c_init_sw)
+00000A60 00000000000002D8                    954 @lit_762_60 DC AD(crc32c_sw)
+00000A68                                     955 @L91     DS    0H
+                                             956 * ***
+                                             957 * ***
+                                             958 * ***
+                                             959 * ***
+                                             960 * ***
+                                             961 * ***
+                                             962 * ***           crc32c_init_sw();
+00000A68 E3F0 C268 0004          00000A58    963          LG    15,@lit_762_51 ; crc32c_init_sw
+00000A6E                                     964 @@gen_label39 DS    0H
+00000A6E 05EF                                965          BALR  14,15
+00000A70                                     966 @@gen_label40 DS    0H
+                                             967 * ***           do { fprintf(__stderrp, "RDUT: INFO: %s:%d: %s: ", "C:\
+                                             968 * \\asgkafka\\librdkafka\\src\\crc32c.c", 422, __FUNCTION__); fprintf(\
+                                             969 * __stderrp, "Calculate CRC32C using software"); fprintf(__stderrp, "\\
+                                             970 * n"); } while (0);
+00000A70                                     971 @L95     DS    0H
+00000A70 E320 C248 0016          00000A38    972          LLGF  2,@lit_762_31 ; __stderrp
+00000A76 E3F2 6000 0004          00000000    973          LG    15,0(2,6)   ; __stderrp
+00000A7C E3F0 D0B0 0024          000000B0    974          STG   15,176(0,13)
+00000A82 E340 C230 0004          00000A20    975          LG    4,@lit_762_29
+                                                                                                                           Page   23 
+  Active Usings: @REGION_762_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+00000A88 41F0 4356               00000356    976          LA    15,854(0,4)
+00000A8C E3F0 D0B8 0024          000000B8    977          STG   15,184(0,13)
+00000A92 41F0 436E               0000036E    978          LA    15,878(0,4)
+00000A96 E3F0 D0C0 0024          000000C0    979          STG   15,192(0,13)
+00000A9C E548 D0C8 01A6          000000C8    980          MVGHI 200(13),422
+00000AA2 E3F0 C240 0004          00000A30    981          LG    15,@lit_762_33
+00000AA8 41F0 F046               00000046    982          LA    15,70(0,15)
+00000AAC E3F0 D0D0 0024          000000D0    983          STG   15,208(0,13)
+00000AB2 4110 D0B0               000000B0    984          LA    1,176(0,13)
+00000AB6 E370 C238 0004          00000A28    985          LG    7,@lit_762_34 ; fprintf
+00000ABC B904 00F7                           986          LGR   15,7
+00000AC0                                     987 @@gen_label41 DS    0H
+00000AC0 05EF                                988          BALR  14,15
+00000AC2                                     989 @@gen_label42 DS    0H
+00000AC2 E3F2 6000 0004          00000000    990          LG    15,0(2,6)   ; __stderrp
+00000AC8 E3F0 D0B0 0024          000000B0    991          STG   15,176(0,13)
+00000ACE 41F0 4442               00000442    992          LA    15,1090(0,4)
+00000AD2 E3F0 D0B8 0024          000000B8    993          STG   15,184(0,13)
+00000AD8 4110 D0B0               000000B0    994          LA    1,176(0,13)
+00000ADC B904 00F7                           995          LGR   15,7
+00000AE0                                     996 @@gen_label43 DS    0H
+00000AE0 05EF                                997          BALR  14,15
+00000AE2                                     998 @@gen_label44 DS    0H
+00000AE2 E3F2 6000 0004          00000000    999          LG    15,0(2,6)   ; __stderrp
+00000AE8 E3F0 D0B0 0024          000000B0   1000          STG   15,176(0,13)
+00000AEE 41F0 43AC               000003AC   1001          LA    15,940(0,4)
+00000AF2 E3F0 D0B8 0024          000000B8   1002          STG   15,184(0,13)
+00000AF8 4110 D0B0               000000B0   1003          LA    1,176(0,13)
+00000AFC B904 00F7                          1004          LGR   15,7
+00000B00                                    1005 @@gen_label45 DS    0H
+00000B00 05EF                               1006          BALR  14,15
+00000B02                                    1007 @@gen_label46 DS    0H
+                                            1008 * ***           crc = crc32c_sw(0, buf, __strlen(buf));
+00000B02 B904 00F5                          1009          LGR   15,5
+00000B06 A709 0000               00000000   1010          LGHI  0,0
+00000B0A                                    1011 @@gen_label47 DS 0H
+00000B0A B25E 000F                          1012          SRST  0,15
+00000B0E 4710 C31A               00000B0A   1013          BC  1,@@gen_label47
+00000B12 B90B 0005                          1014          SLGR  0,5
+00000B16 D707 D0B0 D0B0 000000B0 000000B0   1015          XC    176(8,13),176(13)
+00000B1C E350 D0B8 0024          000000B8   1016          STG   5,184(0,13)
+00000B22 E300 D0C0 0024          000000C0   1017          STG   0,192(0,13)
+00000B28 4110 D0B0               000000B0   1018          LA    1,176(0,13)
+00000B2C E3F0 C270 0004          00000A60   1019          LG    15,@lit_762_60 ; crc32c_sw
+00000B32                                    1020 @@gen_label48 DS    0H
+00000B32 05EF                               1021          BALR  14,15
+00000B34                                    1022 @@gen_label49 DS    0H
+00000B34 182F                               1023          LR    2,15        ; crc
+                                            1024 * ***           do { if (!(crc == expected_crc)) { fprintf(__stderrp, \
+                                            1025 * "\033[31mRDUT: FAIL: %s:%d: %s: " "assert failed: " "crc == expected\
+                                            1026 * _crc" ": ", "C:\\asgkafka\\librdkafka\\src\\crc32c.c", 424, __FUNCTI\
+                                            1027 * ON__); fprintf(__stderrp, "Calculated CRC (software) 0x%" "x" " not \
+                                                                                                                           Page   24 
+  Active Usings: @REGION_762_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+                                            1028 * matching expected CRC 0x%" "x", crc, expected_crc); fprintf(__stderr\
+                                            1029 * p, "\033[0m\n"); if (rd_unittest_assert_on_failure) ((crc == expecte\
+                                            1030 * d_crc) ? (void)0 : __assert(__func__, "C:\\asgkafka\\librdkafka\\src\
+                                            1031 * \\crc32c.c", 424, "crc == expected_crc")); return 1; } } while (0);
+00000B36                                    1032 @L98     DS    0H
+00000B36 1523                               1033          CLR   2,3
+00000B38 4780 C442               00000C32   1034          BE    @L101
+00000B3C E340 C248 0016          00000A38   1035          LLGF  4,@lit_762_31 ; __stderrp
+00000B42 E3F4 6000 0004          00000000   1036          LG    15,0(4,6)   ; __stderrp
+00000B48 E3F0 D0B0 0024          000000B0   1037          STG   15,176(0,13)
+00000B4E E350 C230 0004          00000A20   1038          LG    5,@lit_762_29
+00000B54 41F0 53AE               000003AE   1039          LA    15,942(0,5)
+00000B58 E3F0 D0B8 0024          000000B8   1040          STG   15,184(0,13)
+00000B5E 41F0 536E               0000036E   1041          LA    15,878(0,5)
+00000B62 E3F0 D0C0 0024          000000C0   1042          STG   15,192(0,13)
+00000B68 E548 D0C8 01A8          000000C8   1043          MVGHI 200(13),424
+00000B6E E370 C240 0004          00000A30   1044          LG    7,@lit_762_33
+00000B74 41F0 7046               00000046   1045          LA    15,70(0,7)
+00000B78 E3F0 D0D0 0024          000000D0   1046          STG   15,208(0,13)
+00000B7E 4110 D0B0               000000B0   1047          LA    1,176(0,13)
+00000B82 E380 C238 0004          00000A28   1048          LG    8,@lit_762_34 ; fprintf
+00000B88 B904 00F8                          1049          LGR   15,8
+00000B8C                                    1050 @@gen_label51 DS    0H
+00000B8C 05EF                               1051          BALR  14,15
+00000B8E                                    1052 @@gen_label52 DS    0H
+00000B8E E3F4 6000 0004          00000000   1053          LG    15,0(4,6)   ; __stderrp
+00000B94 E3F0 D0B0 0024          000000B0   1054          STG   15,176(0,13)
+00000B9A 41F0 5462               00000462   1055          LA    15,1122(0,5)
+00000B9E E3F0 D0B8 0024          000000B8   1056          STG   15,184(0,13)
+00000BA4 B916 00F2                          1057          LLGFR 15,2
+00000BA8 E3F0 D0C0 0024          000000C0   1058          STG   15,192(0,13)
+00000BAE B916 00F3                          1059          LLGFR 15,3
+00000BB2 E3F0 D0C8 0024          000000C8   1060          STG   15,200(0,13)
+00000BB8 4110 D0B0               000000B0   1061          LA    1,176(0,13)
+00000BBC B904 00F8                          1062          LGR   15,8
+00000BC0                                    1063 @@gen_label53 DS    0H
+00000BC0 05EF                               1064          BALR  14,15
+00000BC2                                    1065 @@gen_label54 DS    0H
+00000BC2 E3F4 6000 0004          00000000   1066          LG    15,0(4,6)   ; __stderrp
+00000BC8 E3F0 D0B0 0024          000000B0   1067          STG   15,176(0,13)
+00000BCE 41F0 5428               00000428   1068          LA    15,1064(0,5)
+00000BD2 E3F0 D0B8 0024          000000B8   1069          STG   15,184(0,13)
+00000BD8 4110 D0B0               000000B0   1070          LA    1,176(0,13)
+00000BDC B904 00F8                          1071          LGR   15,8
+00000BE0                                    1072 @@gen_label55 DS    0H
+00000BE0 05EF                               1073          BALR  14,15
+00000BE2                                    1074 @@gen_label56 DS    0H
+00000BE2 E3F0 C258 0016          00000A48   1075          LLGF  15,@lit_762_48 ; rd_unittest_assert_on_failure
+00000BE8 41FF 6000               00000000   1076          LA    15,0(15,6)
+00000BEC 9500 F000      00000000 00000000   1077          CLI   0(15),0
+00000BF0 4780 C43A               00000C2A   1078          BE    @L102
+00000BF4 1523                               1079          CLR   2,3
+                                                                                                                           Page   25 
+  Active Usings: @REGION_762_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+00000BF6 4780 C43A               00000C2A   1080          BE    @L102
+00000BFA                                    1081 @L103    DS    0H
+00000BFA 41F0 7046               00000046   1082          LA    15,70(0,7)
+00000BFE E3F0 D0B0 0024          000000B0   1083          STG   15,176(0,13)
+00000C04 41F0 536E               0000036E   1084          LA    15,878(0,5)
+00000C08 E3F0 D0B8 0024          000000B8   1085          STG   15,184(0,13)
+00000C0E E548 D0C0 01A8          000000C0   1086          MVGHI 192(13),424
+00000C14 41F0 542E               0000042E   1087          LA    15,1070(0,5)
+00000C18 E3F0 D0C8 0024          000000C8   1088          STG   15,200(0,13)
+00000C1E 4110 D0B0               000000B0   1089          LA    1,176(0,13)
+00000C22 E3F0 C260 0004          00000A50   1090          LG    15,@lit_762_49 ; __assert
+00000C28                                    1091 @@gen_label59 DS    0H
+00000C28 05EF                               1092          BALR  14,15
+00000C2A                                    1093 @@gen_label60 DS    0H
+00000C2A                                    1094 @L104    DS    0H
+00000C2A                                    1095 @L102    DS    0H
+00000C2A A7F9 0001               00000001   1096          LGHI  15,1        ; 1
+00000C2E 47F0 C494               00000C84   1097          B     @ret_lab_762
+00000C32                                    1098 @L101    DS    0H
+                                            1099 * ***
+                                            1100 * ***
+                                            1101 * ***
+                                            1102 * ***
+                                            1103 * ***           do { fprintf(__stderrp, "\033[32mRDUT: PASS: %s:%d: %s\
+                                            1104 * \033[0m\n", "C:\\asgkafka\\librdkafka\\src\\crc32c.c", 429, __FUNCTI\
+                                            1105 * ON__); return 0; } while (0);
+00000C32                                    1106 @L105    DS    0H
+00000C32 E3F0 C248 0016          00000A38   1107          LLGF  15,@lit_762_31 ; __stderrp
+00000C38 E3FF 6000 0004          00000000   1108          LG    15,0(15,6)  ; __stderrp
+00000C3E E3F0 D0B0 0024          000000B0   1109          STG   15,176(0,13)
+00000C44 E3F0 C230 0004          00000A20   1110          LG    15,@lit_762_29
+00000C4A 4110 F4A0               000004A0   1111          LA    1,1184(0,15)
+00000C4E E310 D0B8 0024          000000B8   1112          STG   1,184(0,13)
+00000C54 41F0 F36E               0000036E   1113          LA    15,878(0,15)
+00000C58 E3F0 D0C0 0024          000000C0   1114          STG   15,192(0,13)
+00000C5E E548 D0C8 01AD          000000C8   1115          MVGHI 200(13),429
+00000C64 E3F0 C240 0004          00000A30   1116          LG    15,@lit_762_33
+00000C6A 41F0 F046               00000046   1117          LA    15,70(0,15)
+00000C6E E3F0 D0D0 0024          000000D0   1118          STG   15,208(0,13)
+00000C74 4110 D0B0               000000B0   1119          LA    1,176(0,13)
+00000C78 E3F0 C238 0004          00000A28   1120          LG    15,@lit_762_34 ; fprintf
+00000C7E                                    1121 @@gen_label61 DS    0H
+00000C7E 05EF                               1122          BALR  14,15
+00000C80                                    1123 @@gen_label62 DS    0H
+00000C80 A7F9 0000               00000000   1124          LGHI  15,0        ; 0
+                                            1125 * ***   }
+00000C84                                    1126 @ret_lab_762 DS 0H
+                                            1127 * * **** Start of Epilogue
+                                            1128          DCCEPIL
+00000C84                                    1129+         ds 0h                                                          01-DCCEP
+                                            1130+* Epilog
+00000C84 D707 D088 D088 00000088 00000088   1131+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
+                                                                                                                           Page   26 
+  Active Usings: @REGION_762_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+00000C8A E3D0 D080 0004          00000080   1132+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
+00000C90 E3C0 D090 0004          00000090   1133+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
+00000C96 E3B0 C018 0004          00000018   1134+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
+00000C9C E3C0 B010 0021          00000010   1135+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
+00000CA2 E3E0 D008 0004          00000008   1136+         lg  14,8(0,13)          load up return address                 01-DCCEP
+00000CA8 EB1C D020 0004          00000020   1137+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
+00000CAE 078E                               1138+         bcr 8,14                if same dsab, just return              01-DCCEP
+00000CB0 E3F0 D010 0024          00000010   1139+         stg 15,16(0,13)         save return code                       01-DCCEP
+00000CB6 E300 D018 0024          00000018   1140+         stg 0,24(0,13)          save more return code                  01-DCCEP
+00000CBC E3F0 D090 0004          00000090   1141+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
+00000CC2 E3F0 F018 0004          00000018   1142+         lg  15,24(0,15)         load dvt address                       01-DCCEP
+00000CC8 47F0 F040               00000040   1143+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
+                                            1144+* End of Epilog
+                                            1145 * * **** End of Epilogue
+                                            1146          DROP  12
+                                            1147 *
+                                            1148 *   DSECT for automatic variables in "unittest_crc32c"
+                                            1149 *      (FUNCTION #762)
+                                            1150 *
+00000000                00000000 000000AC   1151 @AUTO#unittest_crc32c DSECT
+00000000                                    1152          DS    XL168
+000000A8                                    1153 unittest_crc32c#crc#0 DS 1F ; crc
+000000AC                000000AC 000000A8   1154          ORG   @AUTO#unittest_crc32c+168
+000000A8                                    1155 unittest_crc32c#expected_crc#0 DS 1F ; expected_crc
+                                            1156 *
+00000CCC                00000000 00000CCC   1157 @CODE    CSECT
+                                            1158 @@STATIC ALIAS X'7C839983F3F28350'
+                                            1159 @@STATIC DXD   1088D
+                                            1160 *
+                                            1161 *  Non-Re-Entrant Data Section
+                                            1162 *
+00000CD0                00000CD0 00000516   1163 @DATA    CSECT
+                                            1164 @DATA    RMODE ANY
+                                            1165 @DATA    AMODE ANY
+00000CD0 99846D8381939396                   1166 @@T349   DC    X'99846D838193939683'               rd.calloc
+00000CD9 00                                 1167          DC    1X'00'
+00000CDA 99846D9481939396                   1168 @@T34D   DC    X'99846D948193939683'               rd.malloc
+00000CE3 00                                 1169          DC    1X'00'
+00000CE4 99846D9985819393                   1170 @@T352   DC    X'99846D99858193939683'             rd.realloc
+00000CEE 0000                               1171          DC    2X'00'
+00000CF0 99846DA2A39984A4                   1172 @@T358   DC    X'99846DA2A39984A497'               rd.strdup
+00000CF9 00                                 1173          DC    1X'00'
+00000CFA 99846DA2A3999584                   1174 @@T35D   DC    X'99846DA2A3999584A497'             rd.strndup
+00000D04 0000                               1175          DC    2X'00'
+00000D06 99846D9985868395                   1176 @@T365   DC    X'99846D9985868395A36DA2A482F0'     rd.refcnt.sub0
+00000D14 0000                               1177          DC    2X'00'
+00000D16 A49589A3A385A2A3                   1178 @@T388   DC    X'A49589A3A385A2A36D839983F3F283'   unittest.crc32c
+00000D25 00                                 1179          DC    1X'00'
+00000D26                                    1180 @strings@ DS   0H
+00000D26 4040E38889A240A2                   1181          DC    X'4040E38889A240A29686A3A681998540' ..This.software.
+00000D36 89A240979996A589                   1182          DC    X'89A240979996A589848584407D81A260' is.provided..as.
+00000D46 89A27D6B40A689A3                   1183          DC    X'89A27D6B40A689A38896A4A3408195A8' is...without.any
+                                                                                                                           Page   27 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+00000D56 4085A7979985A2A2                   1184          DC    X'4085A7979985A2A24096994089949793' .express.or.impl
+00000D66 898584154040A681                   1185          DC    X'898584154040A68199998195A3A84B40' ied...warranty..
+00000D76 40C9954095964085                   1186          DC    X'40C9954095964085A58595A340A68993' .In.no.event.wil
+00000D86 9340A388854081A4                   1187          DC    X'9340A388854081A4A388969940828540' l.the.author.be.
+00000D96 8885938440938981                   1188          DC    X'88859384409389818293854086969940' held.liable.for.
+00000DA6 8195A84084819481                   1189          DC    X'8195A840848194818785A21540408199' any.damages...ar
+00000DB6 89A2899587408699                   1190          DC    X'89A2899587408699969440A3888540A4' ising.from.the.u
+00000DC6 A28540968640A388                   1191          DC    X'A28540968640A38889A240A29686A3A6' se.of.this.softw
+00000DD6 8199854B15154040                   1192          DC    X'8199854B15154040D785999489A2A289' are.....Permissi
+00000DE6 96954089A2408799                   1193          DC    X'96954089A24087998195A3858440A396' on.is.granted.to
+00000DF6 408195A896958540                   1194          DC    X'408195A896958540A39640A4A28540A3' .anyone.to.use.t
+00000E06 8889A240A29686A3                   1195          DC    X'8889A240A29686A3A681998540869699' his.software.for
+00000E16 408195A84097A499                   1196          DC    X'408195A84097A4999796A2856B154040' .any.purpose....
+00000E26 89958393A4848995                   1197          DC    X'89958393A48489958740839694948599' including.commer
+00000E36 8389819340819797                   1198          DC    X'838981934081979793898381A3899695' cial.application
+00000E46 A26B4081958440A3                   1199          DC    X'A26B4081958440A396408193A3859940' s..and.to.alter.
+00000E56 89A3408195844099                   1200          DC    X'89A3408195844099858489A2A3998982' it.and.redistrib
+00000E66 A4A3854089A31540                   1201          DC    X'A4A3854089A31540408699858593A86B' ute.it...freely.
+00000E76 40A2A482918583A3                   1202          DC    X'40A2A482918583A340A39640A3888540' .subject.to.the.
+00000E86 8696939396A68995                   1203          DC    X'8696939396A6899587409985A2A39989' following.restri
+00000E96 83A3899695A27A15                   1204          DC    X'83A3899695A27A15154040F14B40E388' ctions.....1..Th
+00000EA6 8540969989878995                   1205          DC    X'854096998987899540968640A38889A2' e.origin.of.this
+00000EB6 40A29686A3A68199                   1206          DC    X'40A29686A3A68199854094A4A2A34095' .software.must.n
+00000EC6 96A3408285409489                   1207          DC    X'96A3408285409489A29985979985A285' ot.be.misreprese
+00000ED6 95A385845E40A896                   1208          DC    X'95A385845E40A896A44094A4A2A34095' nted..you.must.n
+00000EE6 96A3154040404040                   1209          DC    X'96A3154040404040839381899440A388' ot......claim.th
+00000EF6 81A340A896A440A6                   1210          DC    X'81A340A896A440A69996A38540A38885' at.you.wrote.the
+00000F06 4096998987899581                   1211          DC    X'40969989878995819340A29686A3A681' .original.softwa
+00000F16 99854B40C98640A8                   1212          DC    X'99854B40C98640A896A440A4A28540A3' re..If.you.use.t
+00000F26 8889A240A29686A3                   1213          DC    X'8889A240A29686A3A681998515404040' his.software....
+00000F36 4040899540814097                   1214          DC    X'4040899540814097999684A483A36B40' ..in.a.product..
+00000F46 8195408183929596                   1215          DC    X'8195408183929596A693858487948595' an.acknowledgmen
+00000F56 A340899540A38885                   1216          DC    X'A340899540A388854097999684A483A3' t.in.the.product
+00000F66 40849683A4948595                   1217          DC    X'40849683A4948595A381A389969540A6' .documentation.w
+00000F76 96A4938440828515                   1218          DC    X'96A49384408285154040404040819797' ould.be......app
+00000F86 9985838981A38584                   1219          DC    X'9985838981A385844082A4A34089A240' reciated.but.is.
+00000F96 9596A340998598A4                   1220          DC    X'9596A340998598A4899985844B154040' not.required....
+00000FA6 F24B40C193A38599                   1221          DC    X'F24B40C193A38599858440A296A49983' 2..Altered.sourc
+00000FB6 8540A58599A28996                   1222          DC    X'8540A58599A2899695A24094A4A2A340' e.versions.must.
+00000FC6 8285409793818995                   1223          DC    X'828540979381899593A8409481999285' be.plainly.marke
+00000FD6 844081A240A2A483                   1224          DC    X'844081A240A2A483886B408195844094' d.as.such..and.m
+00000FE6 A4A2A3409596A340                   1225          DC    X'A4A2A3409596A3408285154040404040' ust.not.be......
+00000FF6 9489A29985979985                   1226          DC    X'9489A29985979985A28595A385844081' misrepresented.a
+00001006 A240828589958740                   1227          DC    X'A240828589958740A388854096998987' s.being.the.orig
+00001016 8995819340A29686                   1228          DC    X'8995819340A29686A3A68199854B1540' inal.software...
+00001026 40F34B40E38889A2                   1229          DC    X'40F34B40E38889A2409596A389838540' .3..This.notice.
+00001036 9481A8409596A340                   1230          DC    X'9481A8409596A34082854099859496A5' may.not.be.remov
+00001046 8584409699408193                   1231          DC    X'8584409699408193A385998584408699' ed.or.altered.fr
+00001056 9694408195A840A2                   1232          DC    X'9694408195A840A296A4998385408489' om.any.source.di
+00001066 A2A3998982A4A389                   1233          DC    X'A2A3998982A4A38996954B00A29686A3' stribution..soft
+00001076 A68199850000D9C4                   1234          DC    X'A68199850000D9C4E4E37A40C9D5C6D6' ware..RDUT..INFO
+00001086 7A406CA27A6C847A                   1235          DC    X'7A406CA27A6C847A406CA27A4000C37A' ...s..d...s...C.
+                                                                                                                           Page   28 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+00001096 E081A28792818692                   1236          DC    X'E081A2879281869281E0938982998492' .asgkafka.librdk
+000010A6 81869281E0A29983                   1237          DC    X'81869281E0A29983E0839983F3F2834B' afka.src.crc32c.
+000010B6 8300C3819383A493                   1238          DC    X'8300C3819383A49381A38540C3D9C3F3' c.Calculate.CRC3
+000010C6 F2C340A4A2899587                   1239          DC    X'F2C340A4A2899587406CA20015001BAD' 2C.using..s.....
+000010D6 F3F194D9C4E4E37A                   1240          DC    X'F3F194D9C4E4E37A40C6C1C9D37A406C' 31mRDUT..FAIL...
+000010E6 A27A6C847A406CA2                   1241          DC    X'A27A6C847A406CA27A4081A2A28599A3' s..d...s..assert
+000010F6 408681899385847A                   1242          DC    X'408681899385847A40839983407E7E40' .failed..crc....
+00001106 85A7978583A38584                   1243          DC    X'85A7978583A385846D8399837A400000' expected.crc....
+00001116 C3819383A49381A3                   1244          DC    X'C3819383A49381A3858440C3D9C3404D' Calculated.CRC..
+00001126 6CA25D40F0A76CA7                   1245          DC    X'6CA25D40F0A76CA7409596A3409481A3' .s..0x.x.not.mat
+00001136 83888995874085A7                   1246          DC    X'83888995874085A7978583A3858440C3' ching.expected.C
+00001146 D9C340F0A76CA700                   1247          DC    X'D9C340F0A76CA7001BADF09415008399' RC.0x.x...0m..cr
+00001156 83407E7E4085A797                   1248          DC    X'83407E7E4085A7978583A385846D8399' c....expected.cr
+00001166 8300C3819383A493                   1249          DC    X'8300C3819383A49381A38540C3D9C3F3' c.Calculate.CRC3
+00001176 F2C340A4A2899587                   1250          DC    X'F2C340A4A289958740A29686A3A68199' 2C.using.softwar
+00001186 8500C3819383A493                   1251          DC    X'8500C3819383A49381A3858440C3D9C3' e.Calculated.CRC
+00001196 404DA29686A3A681                   1252          DC    X'404DA29686A3A68199855D40F0A76CA7' ..software..0x.x
+000011A6 409596A3409481A3                   1253          DC    X'409596A3409481A383888995874085A7' .not.matching.ex
+000011B6 978583A3858440C3                   1254          DC    X'978583A3858440C3D9C340F0A76CA700' pected.CRC.0x.x.
+000011C6 1BADF3F294D9C4E4                   1255          DC    X'1BADF3F294D9C4E4E37A40D7C1E2E27A' ..32mRDUT..PASS.
+000011D6 406CA27A6C847A40                   1256          DC    X'406CA27A6C847A406CA21BADF0941500' ..s..d...s..0m..
+                                            1257 @Erd_unittest_assert_on_failure ALIAS X'99846DA49589A3A385A2A36D81A2A28*
+                                                                599A36D96956D86818993A49985'
+                                            1258          EXTRN @Erd_unittest_assert_on_failure
+                                            1259 @E__stderrp ALIAS C'@@STDERP'
+                                            1260          EXTRN @E__stderrp
+                                            1261 *
+                                            1262 *
+                                            1263 *   Re-entrant Data Initialization Section
+                                            1264 *
+                                            1265 @@INIT@  ALIAS C'@crc32c:'
+000011E8                000011E8 00000230   1266 @@INIT@  CSECT
+                                            1267 @@INIT@  AMODE ANY
+                                            1268 @@INIT@  RMODE ANY
+000011E8 05                                 1269          DC    XL1'5'
+000011E9 000000                             1270          DC    AL3(0)
+000011EC 00000120                           1271          DC    AL4(288)
+000011F0 00000000                           1272          DC    4X'00'
+000011F4 00000000                           1273          DC    Q(@@STATIC)
+000011F8 00000000                           1274          DC    X'00000000'
+000011FC 00000001                           1275          DC    X'00000001'
+00001200 00000000                           1276          DC    X'00000000'
+00001204 000000FF                           1277          DC    X'000000FF'
+00001208 0102039C09867F97                   1278          DC    X'0102039C09867F978D8E0B0C0D0E0F10' .....f.p........
+00001218 1112139D85088718                   1279          DC    X'1112139D8508871819928F1C1D1E1F80' ....e.g..k......
+00001228 818283840A171B88                   1280          DC    X'818283840A171B88898A8B8C05060790' abcd...hi.......
+00001238 9116939495960498                   1281          DC    X'9116939495960498999A9B14159E1A20' j.lmno.qr.......
+00001248 A0E2E4E0E1E3E5E7                   1282          DC    X'A0E2E4E0E1E3E5E7F1A22E3C282B7C26' .SU..TVX1s......
+00001258 E9EAEBE8EDEEEFEC                   1283          DC    X'E9EAEBE8EDEEEFECDF21242A293B5E2D' Z..Y............
+00001268 2FC2C4C0C1C3C5C7                   1284          DC    X'2FC2C4C0C1C3C5C7D1A62C255F3E3FF8' .BD.ACEGJw.....8
+00001278 C9CACBC8CDCECFCC                   1285          DC    X'C9CACBC8CDCECFCC603A2340273D22D8' I..H...........Q
+00001288 6162636465666768                   1286          DC    X'616263646566676869ABBBF0FDFEB1B0' ...........0....
+                                                                                                                           Page   29 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+00001298 6A6B6C6D6E6F7071                   1287          DC    X'6A6B6C6D6E6F707172AABAE6B8C6A4B5' ...........W.Fu.
+000012A8 7E73747576777879                   1288          DC    X'7E737475767778797AA1BFD05BDEAEAC' ................
+000012B8 A3A5B7A9A7B6BCBD                   1289          DC    X'A3A5B7A9A7B6BCBDBEDDA8AF5DB4D77B' tv.zx.....y...P.
+000012C8 4142434445464748                   1290          DC    X'414243444546474849ADF4F6F2F3F57D' ..........46235.
+000012D8 4A4B4C4D4E4F5051                   1291          DC    X'4A4B4C4D4E4F505152B9FBFCF9FAFF5C' ............9...
+000012E8 F753545556575859                   1292          DC    X'F7535455565758595AB2D4D6D2D3D530' 7.........MOKLN.
+000012F8 3132333435363738                   1293          DC    X'313233343536373839B3DBDCD9DA9F40' ............R...
+                                            1294 *
+00001308 05                                 1295          DC    XL1'5'
+00001309 000000                             1296          DC    AL3(0)
+0000130C 000001E0                           1297          DC    AL4(480)
+00001310 00000000                           1298          DC    4X'00'
+00001314 00000000                           1299          DC    Q(@@STATIC)
+00001318 00000000                           1300          DC    X'00000000'
+0000131C 00000101                           1301          DC    X'00000101'
+00001320 00000000                           1302          DC    X'00000000'
+00001324 000000A0                           1303          DC    X'000000A0'
+00001328 010203372D2E2F16                   1304          DC    X'010203372D2E2F1605150B0C0D0E0F10' ................
+00001338 1112133C3D322618                   1305          DC    X'1112133C3D322618193F271C1D1E1F40' ................
+00001348 5A7F7B5B6C507D4D                   1306          DC    X'5A7F7B5B6C507D4D5D5C4E6B604B61F0' ...............0
+00001358 F1F2F3F4F5F6F7F8                   1307          DC    X'F1F2F3F4F5F6F7F8F97A5E4C7E6E6F7C' 123456789.......
+00001368 C1C2C3C4C5C6C7C8                   1308          DC    X'C1C2C3C4C5C6C7C8C9D1D2D3D4D5D6D7' ABCDEFGHIJKLMNOP
+00001378 D8D9E2E3E4E5E6E7                   1309          DC    X'D8D9E2E3E4E5E6E7E8E9ADE0BD5F6D79' QRSTUVWXYZ......
+00001388 8182838485868788                   1310          DC    X'81828384858687888991929394959697' abcdefghijklmnop
+00001398 9899A2A3A4A5A6A7                   1311          DC    X'9899A2A3A4A5A6A7A8A9C04FD0A10720' qrstuvwxyz......
+000013A8 2122232425061728                   1312          DC    X'2122232425061728292A2B2C090A1B30' ................
+000013B8 311A333435360838                   1313          DC    X'311A333435360838393A3B04143EFF80' ................
+                                            1314 *
+000013C8 05                                 1315          DC    XL1'5'
+000013C9 000000                             1316          DC    AL3(0)
+000013CC 00000208                           1317          DC    AL4(520)
+000013D0 00000000                           1318          DC    4X'00'
+000013D4 00000000                           1319          DC    Q(@@STATIC)
+000013D8 00000000                           1320          DC    X'00000000'
+000013DC 000001C0                           1321          DC    X'000001C0'
+000013E0 00000000                           1322          DC    X'00000000'
+000013E4 00000001                           1323          DC    X'00000001'
+000013E8 8A40404040404040                   1324          DC    X'8A40404040404040'                 ........
+                                            1325 *
+000013F0 05                                 1326          DC    XL1'5'
+000013F1 000000                             1327          DC    AL3(0)
+000013F4 00000000                           1328          DC    AL4(0)
+000013F8 00000000                           1329          DC    4X'00'
+000013FC 00000000                           1330          DC    Q(@@STATIC)
+00001400 00000000                           1331          DC    X'00000000'
+00001404 000001E0                           1332          DC    X'000001E0'
+00001408 00000000                           1333          DC    X'00000000'
+0000140C 00000001                           1334          DC    X'00000001'
+00001410 8B40404040404040                   1335          DC    X'8B40404040404040'                 ........
+                                            1336 *
+                                            1337          END
+                                                 Relocation Dictionary                                                     Page   30 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:42 
+ 00000002 00000002 00000020   A 4      +
+ 00000002 00000002 00000048   A 4      +
+ 00000002 00000002 00000050   A 4      +
+ 00000002 00000007 000000B4   Q 4      +
+ 00000002 00000002 00000298   A 4      +
+ 00000002 00000002 000002C0   A 4      +
+ 00000002 00000002 000002C8   A 4      +
+ 00000002 00000007 00000350   Q 4      +
+ 00000002 00000002 00000580   A 4      +
+ 00000002 00000002 000005A8   A 4      +
+ 00000002 00000002 000005B0   A 4      +
+ 00000002 00000002 00000688   A 4      +
+ 00000002 00000002 000006B0   A 4      +
+ 00000002 00000002 000006D8   A 4      +
+ 00000002 00000002 000006E0   A 4      +
+ 00000002 00000002 00000788   A 4      +
+ 00000002 00000002 000007B0   A 4      +
+ 00000002 00000002 000007D8   A 4      +
+ 00000002 00000002 000007E0   A 4      +
+ 00000002 00000008 00000A20   A 4      +
+ 00000002 00000003 00000A28   A 4      +
+ 00000002 00000008 00000A30   A 4      +
+ 00000002 00000005 00000A38   Q 4      +
+ 00000002 00000002 00000A40   A 4      +
+ 00000002 00000006 00000A48   Q 4      +
+ 00000002 00000004 00000A50   A 4      +
+ 00000002 00000002 00000A58   A 4      +
+ 00000002 00000002 00000A60   A 4      +
+ 0000000B 00000007 000011F4   Q 4      +
+ 0000000B 00000007 00001314   Q 4      +
+ 0000000B 00000007 000013D4   Q 4      +
+ 0000000B 00000007 000013FC   Q 4      +
+                                                 DSECT Cross Reference                                                     Page   31 
+DSECT     LENGTH    ID   DEFN                                                                         DASM V1.95.14 2021/04/29 12:42 
+@AUTO#crc32c
+         000000A8  FFFFFFFD  00602
+@AUTO#crc32c_global_init
+         000000A8  FFFFFFFC  00705
+@AUTO#crc32c_init_sw
+         000000AC  FFFFFFFF  00250
+@AUTO#crc32c_sw
+         000000B0  FFFFFFFE  00489
+@AUTO#unittest_crc32c
+         000000AC  FFFFFFFB  01151
+                                          Macro and Copy Code Source Summary                                               Page   32 
+Source                                                    Members                                     DASM V1.95.14 2021/04/29 12:42 
+
+C:\DIGNUS\MACLIB                                          DCCCATR  DCCEPIL  DCCPRLG  DCCPRV   dccextrn
+                                                      Using Map                                                            Page   33 
+                                                                                                      DASM V1.95.14 2021/04/29 12:42 
+  Stmt  -----Location----- Action ----------------Using----------------- Reg Max     Last Label and Using Text
+          Count      Id           Type          Value    Range     Id        Disp    Stmt
+    85  0000009E  00000002 USING  ORDINARY    00000060 00001000 00000002  12 001CA    223 @REGION_763_1,12
+   245  0000027C  00000002 DROP                                           12              12
+   318  00000316  00000002 USING  ORDINARY    000002D8 00001000 00000002  12 00236    460 @REGION_764_1,12
+   484  00000568  00000002 DROP                                           12              12
+   557  000005FE  00000002 USING  ORDINARY    000005C0 00001000 00000002  12 000C8    569 @REGION_760_1,12
+   597  00000690  00000002 DROP                                           12              12
+   667  0000072E  00000002 USING  ORDINARY    000006F0 00001000 00000002  12 00098    672 @REGION_761_1,12
+   700  00000790  00000002 DROP                                           12              12
+   770  0000082E  00000002 USING  ORDINARY    000007F0 00001000 00000002  12 00494   1120 @REGION_762_1,12
+  1146  00000CCC  00000002 DROP                                           12              12
+                                   Diagnostic Cross Reference and Assembler Summary                                        Page   34 
+                                                                                                      DASM V1.95.14 2021/04/29 12:42 
+      No Statements Flagged in this Assembly
+DASM Dignus Systems/ASM, VERSION 1.95.14
+SYSTEM: Windows 6.2                JOBNAME: (NOJOB)     STEPNAME: (NOSTEP)   PROCSTEP: (NOPROC)
+Datasets Used for this Assembly
+ Con  DDname   Dataset Name
+  P1  CRC32C   ..\asg\asm\crc32c.asm
+  L2  DCCPRLG  C:\DIGNUS\MACLIB\dccprlg
+  L3  DCCCATR  C:\DIGNUS\MACLIB\dcccatr
+  L4  DCCPRV   C:\DIGNUS\MACLIB\dccprv
+  L5  DCCEPIL  C:\DIGNUS\MACLIB\dccepil
+
+Assembly Start Time: 12.42.34 Stop Time: 12.42.34 Processor Time: 00.00.00.0160
+Return Code 000

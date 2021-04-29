@@ -1,0 +1,901 @@
+                                            Dignus Assembler Option Summary                                                Page    1 
+                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+
+Overriding Parameters- -LC:\DIGNUS\MACLIB\&m -oc:../asg/obj/rdmurmur2.obj ../asg/asm/rdmurmur2.asm
+  Process Statements-       DUPALIAS
+
+Options for this Assembly             Source
+-------------------------             -------------------------
+   NOADATA                            {Default}
+     ALIGN                            {Default}
+     BATCH                            {Default}
+   NOCOMPATCASE                       {Default}
+   NOCOMPATMACROCASE                  {Default}
+   NOCOMPATSYSLIST                    {Default}
+   NOCOMPATLITTYPE                    {Default}
+   NOCOMPATSYSPATH                    {Default}
+     DXREF                            {Default}
+   NOMAPAT                            {Default}
+     DUPALIAS                         {*PROCESS}
+   NOVSELIBR                          {Default}
+     ESD                              {Default}
+     ERRFMT(microsoft)                {Default}
+     FLAG(0,ALIGN,CONT,NOEXLITW,NOPAGE0,PUSH,RECORD,NOSUBSTR,NOIMPLEN,USING0)
+                                      {Default}
+   NOFOLD                             {Default}
+   NOGOFF                             {Default}
+     LANGUAGE(EN)                     {Default}
+     LINECOUNT(55)                    {Default}
+     LIST(&d&p&f.lst)                 {Default}
+     MACCPYEXT(mac)                   {Default}
+     MXREF                            {Default}
+     OBJECT(c:..\asg\obj\rdmurmur2.obj)
+                                      CMDLINE
+     OPTABLE(UNI,NOLIST)              {Default}
+     OPTIONSUMMARY                    {Default}
+   NOPCONTROL                         {Default}
+   NOPESTOP                           {Default}
+   NOPROFILE                          {Default}
+   NORA2                              {Default}
+     RLD                              {Default}
+     RENT                             {Default}
+   NORXREF                            {Default}
+     SECTALGN(8)                      {Default}
+     SIZE(MAX)                        {Default}
+   NOSUPRWARN                         {Default}
+     SYSPARM()                        {Default}
+     TERM(WIDE)                       {Default}
+     THREAD                           {Default}
+   NOTRANSLATE                        {Default}
+     TYPECHECK(MAGNITUDE,REGISTER)    {Default}
+     USING(NOLIMIT,MAP,WARN(15))      {Default}
+   NONXREF                            {Default}
+   NOXREF                             {Default}
+     XSD                              {Default}
+
+                                            Dignus Assembler Option Summary                                                Page    2 
+                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+Libraries in Search Order:
+       CMDLINE      C:\DIGNUS\MACLIB\&m
+                                              External Symbol Dictionary                                                   Page    3 
+Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                                      DASM V1.95.14 2021/04/29 12:43 
+@@ZARCH#  WX 00000001                              00
+@RDMURMUR2
+          SD 00000002 00000000 00000596            07  @CODE
+fprintf   ER 00000003                                  FPRINTF
+@@ASSERT  ER 00000004                                  __ASSERT
+@@STDERP  XD 00000005 00000003 00000000                __STDERRP
+rd_unittest_assert_on_failure
+          XD 00000006 00000003 00000000                RD_UNITTEST_ASSERT_ON_FAILURE
+@rdmurmur2&
+          XD 00000007 00000007 00000200                @@STATIC
+@rdmurmur2
+          SD 00000008 00000598 0000019E            07  @DATA
+rd_unittest_assert_on_failure
+          ER 00000009                                  @ERD_UNITTEST_ASSERT_ON_FAILURE
+@@STDERP  ER 0000000A                                  @E__STDERRP
+rdmurmur2:
+          SD 0000000B 00000738 00000230            07  @@INIT@
+rd_murmur2
+          LD          00000058          00000002   00  RD_MURMUR2
+unittest_murmur2
+          LD          00000200          00000002   00  UNITTEST_MURMUR2
+                                                                                                                           Page    4 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+                                               1 *PROCESS DUPALIAS
+                                               2 *
+                                               3 *  Compiled by DCC Version 2.25.07 Mar  6 2021 08:51:07
+                                               4 *           on Thu Apr 29 12:43:43 2021
+                                               5 *
+
+                                               7          WXTRN @@ZARCH#
+                                               8 *
+                                               9 *
+                                              10 *
+                                              11 *    Code Section
+                                              12 *
+                                              13 @CODE    ALIAS C'@RDMURMUR2'
+00000000                00000000 00000596     14 @CODE    CSECT
+                                              15 @CODE    AMODE ANY
+                                              16 @CODE    RMODE ANY
+                                              17 @DATA    ALIAS C'@rdmurmur2'
+                                              18 fprintf  ALIAS C'fprintf'
+                                              19          EXTRN fprintf
+                                              20 __assert ALIAS C'@@ASSERT'
+                                              21          EXTRN __assert
+                                              22 __stderrp ALIAS C'@@STDERP'
+                                              23 __stderrp DXD   0F
+                                              24 rd_unittest_assert_on_failure ALIAS X'99846DA49589A3A385A2A36D81A2A2859*
+                                                                9A36D96956D86818993A49985'
+                                              25 rd_unittest_assert_on_failure DXD   0F
+                                              26 *
+                                              27 *
+                                              28 *
+                                              29 * ....... start of rd_murmur2
+                                              30 rd_murmur2 ALIAS X'99846D94A49994A499F2'
+00000000                                      31 @LNAME760 DS   0H
+00000000 0000000A                             32          DC    X'0000000A'
+00000004 99846D94A49994A4                     33          DC    C'rd_murmur2'
+0000000E 00                                   34          DC    X'00'
+                                              35 rd_murmur2 DCCPRLG CINDEX=760,BASER=12,FRAME=176,SAVEAREA=NO,ENTRY=YES,*
+                                                                ARCH=ZARCH,LNAMEADDR=@LNAME760
+                                              36          macro
+                                              37          dccextrn &m
+                                              38          gblc    &$dccext(1000)
+                                              39          gbla    &$dccexti
+                                              40          lcla    &i
+                                              41 &$dccext(&$dccexti+1) setc    '&m'
+                                              42 &i       seta    1
+                                              43 .loop    aif    (&i gt &$dccexti).around
+                                              44          aif    ('&$dccext(&i)' eq '&m').getout
+                                              45 &i       seta    &i+1
+                                              46          ago     .loop
+                                              47 .around  anop
+                                              48 &$dccexti seta &$dccexti+1
+                                              49          extrn  &m
+                                              50 .getout  anop
+                                                                                                                           Page    5 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+                                              51          mend
+00000010                                      52+$eye0002    ds    0d                                                    02-DCCCA
+00000010 C4C3C3                               53+         dc cl3'DCC'                                                    02-DCCCA
+00000013 01                                   54+         dc xl1'01' format one                                          02-DCCCA
+00000014 00000000                             55+         dc a(0)                                                        02-DCCCA
+00000018 0000000000000000                     56+         dc ad(0)                                                       02-DCCCA
+00000020 00000000000000B0                     57+         dc ad(176)                                                     02-DCCCA
+00000028 0000000000000000                     58+         dc ad(0)                                                       02-DCCCA
+00000030 0000000000001000                     59+         dc ad(4096)                                                    02-DCCCA
+00000038 20                                   60+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+00000039 03                                   61+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+0000003A 03                                   62+         dc al1(3)                                                      02-DCCCA
+0000003B 08                                   63+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+0000003C 00                                   64+         dc bl.8'00000000'                                              02-DCCCA
+0000003D 000000                               65+         dc al3(0)                                                      02-DCCCA
+00000040 0000000000000000                     66+         dc ad(@LNAME760)                                               02-DCCCA
+00000048                                      67+         ds 0d                                                          02-DCCCA
+00000048 0000000000000010                     68+         dc ad($eye0002)                                                02-DCCCA
+00000050 0000000000000000                     69+         dc ad(0)                                                       02-DCCCA
+00000058                                      70+         ds    0d                                                       01-DCCPR
+                                              71+         entry rd_murmur2                                               01-DCCPR
+00000058                                      72+rd_murmur2 ds  0d                                                       01-DCCPR
+00000058                                      73+@REGION_760_1 ds 0h                                                     01-DCCPR
+00000058 EBEC D008 0024          00000008     74+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+0000005E B904 00CF                            75+         lgr   12,15               set base reg                         01-DCCPR
+                        00000058              76+         using @REGION_760_1,12                                         01-DCCPR
+                                              77 * ******* End of Prologue
+                                              78 * *
+                                              79 * ***           const uint32_t seed = 0x9747b28c;
+00000062 E3F0 1000 0004          00000000     80          LG    15,0(0,1)   ; key
+00000068 E310 1008 0004          00000008     81          LG    1,8(0,1)    ; len
+0000006E C049 9747 B28C                       82          IILF  4,X'9747B28C' ; -1756908916
+                                              83 * ***           const uint32_t m = 0x5bd1e995;
+00000074 C029 5BD1 E995                       84          IILF  2,X'5BD1E995' ; 1540483477
+                                              85 * ***           const int r = 24;
+0000007A A738 0018               00000018     86          LHI   3,24        ; 24
+                                              87 * ***           uint32_t h = seed ^ (uint32_t)len;
+0000007E 1741                                 88          XR    4,1
+                                              89 * ***           const unsigned char *tail;
+                                              90 * ***
+                                              91 * ***           if (((((intptr_t)key & 0x3) == 0))) {
+00000080 B904 005F                            92          LGR   5,15
+00000084 E350 C040 0080          00000098     93          NG    5,@lit_760_3
+0000008A B902 0055                            94          LTGR  5,5
+0000008E 4770 C07A               000000D2     95          BNE   @L44
+                                              96 * ***
+                                              97 * ***                   const uint32_t *data = (const uint32_t *)key;
+                                              98 * ***
+                                              99 * ***                   while (len >= 4) {
+00000092 47F0 C06C               000000C4    100          B     @L48
+00000098                                     101          DS    0D
+00000098 0000000000000003                    102 @lit_760_3 DC  FD'3' 0x0000000000000003
+                                                                                                                           Page    6 
+  Active Usings: @REGION_760_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+000000A0                                     103 @L47     DS    0H
+                                             104 * ***                           uint32_t k = __builtin_bswap32(*(uint3\
+                                             105 * 2_t *)data);
+000000A0 E350 F000 001E          00000000    106          LRV   5,0(0,15)
+                                             107 * ***
+                                             108 * ***                           { k *= m; k ^= k >> r; k *= m; h *= m;\
+                                             109 *  h ^= k; };
+000000A6 B252 0052                           110          MSR   5,2
+000000AA 1865                                111          LR    6,5
+000000AC 8860 3000               00000000    112          SRL   6,0(3)
+000000B0 1756                                113          XR    5,6
+000000B2 B252 0052                           114          MSR   5,2
+000000B6 B252 0042                           115          MSR   4,2
+000000BA 1745                                116          XR    4,5
+                                             117 * ***
+                                             118 * ***                           data++;
+000000BC 41F0 F004               00000004    119          LA    15,4(0,15)
+                                             120 * ***                           len -= 4;
+000000C0 A71B FFFC               0000FFFC    121          AGHI  1,-4
+                                             122 * ***                   }
+000000C4                                     123 @L48     DS    0H
+000000C4 C21E 0000 0004                      124          CLGFI 1,X'00000004'
+000000CA 47B0 C048               000000A0    125          BNL   @L47
+                                             126 * ***
+                                             127 * ***                   tail = (const unsigned char *)data;
+                                             128 * ***
+                                             129 * ***           } else {
+000000CE 47F0 C0FC               00000154    130          B     @L54
+000000D2                                     131 @L44     DS    0H
+                                             132 * ***
+                                             133 * ***                   const unsigned char *data = (const unsigned ch\
+                                             134 * ar *)key;
+                                             135 * ***
+                                             136 * ***                   while (len >= 4) {
+000000D2 47F0 C0C6               0000011E    137          B     @L53
+000000D6                                     138 @L52     DS    0H
+                                             139 * ***                           uint32_t k;
+                                             140 * ***
+                                             141 * ***                           k  = data[0];
+000000D6 E350 F000 0094          00000000    142          LLC   5,0(0,15)
+                                             143 * ***                           k |= data[1] << 8;
+000000DC E360 F001 0094          00000001    144          LLC   6,1(0,15)
+000000E2 8960 0008               00000008    145          SLL   6,8(0)
+000000E6 1656                                146          OR    5,6
+                                             147 * ***                           k |= data[2] << 16;
+000000E8 E360 F002 0094          00000002    148          LLC   6,2(0,15)
+000000EE 8960 0010               00000010    149          SLL   6,16(0)
+000000F2 1656                                150          OR    5,6
+                                             151 * ***                           k |= data[3] << 24;
+000000F4 E360 F003 0094          00000003    152          LLC   6,3(0,15)
+000000FA 8960 0018               00000018    153          SLL   6,24(0)
+000000FE 1656                                154          OR    5,6
+                                                                                                                           Page    7 
+  Active Usings: @REGION_760_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+                                             155 * ***
+                                             156 * ***                           { k *= m; k ^= k >> r; k *= m; h *= m;\
+                                             157 *  h ^= k; };
+00000100 B252 0052                           158          MSR   5,2
+00000104 1865                                159          LR    6,5
+00000106 8860 3000               00000000    160          SRL   6,0(3)
+0000010A 1756                                161          XR    5,6
+0000010C B252 0052                           162          MSR   5,2
+00000110 B252 0042                           163          MSR   4,2
+00000114 1745                                164          XR    4,5
+                                             165 * ***
+                                             166 * ***                           data += 4;
+00000116 41F0 F004               00000004    167          LA    15,4(0,15)
+                                             168 * ***                           len -= 4;
+0000011A A71B FFFC               0000FFFC    169          AGHI  1,-4
+                                             170 * ***                   }
+0000011E                                     171 @L53     DS    0H
+0000011E C21E 0000 0004                      172          CLGFI 1,X'00000004'
+00000124 47B0 C07E               000000D6    173          BNL   @L52
+                                             174 * ***
+                                             175 * ***                   tail = data;
+                                             176 * ***           }
+00000128                                     177 @L49     DS    0H
+                                             178 * ***
+                                             179 * ***
+                                             180 * ***           switch(len)
+00000128 47F0 C0FC               00000154    181          B     @L54
+                                             182 * ***           {
+                                             183 * ***           case 3: h ^= tail[2] << 16;
+0000012C                                     184 @L56     DS    0H
+0000012C E310 F002 0094          00000002    185          LLC   1,2(0,15)
+00000132 8910 0010               00000010    186          SLL   1,16(0)
+00000136 1741                                187          XR    4,1
+                                             188 * ***           case 2: h ^= tail[1] << 8;
+00000138                                     189 @L57     DS    0H
+00000138 E310 F001 0094          00000001    190          LLC   1,1(0,15)
+0000013E 8910 0008               00000008    191          SLL   1,8(0)
+00000142 1741                                192          XR    4,1
+                                             193 * ***           case 1: h ^= tail[0];
+00000144                                     194 @L58     DS    0H
+00000144 E3F0 F000 0094          00000000    195          LLC   15,0(0,15)
+0000014A 174F                                196          XR    4,15
+                                             197 * ***                   h *= m;
+0000014C B252 0042                           198          MSR   4,2
+                                             199 * ***           };
+00000150 47F0 C124               0000017C    200          B     @L55
+00000154                                     201 @L54     DS    0H
+00000154 C21E 0000 0001                      202          CLGFI 1,X'00000001'
+0000015A 4740 C124               0000017C    203          BL    @L55
+0000015E C21E 0000 0001                      204          CLGFI 1,X'00000001'
+00000164 4780 C0EC               00000144    205          BE    @L58
+00000168 C21E 0000 0002                      206          CLGFI 1,X'00000002'
+                                                                                                                           Page    8 
+  Active Usings: @REGION_760_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+0000016E 4780 C0E0               00000138    207          BE    @L57
+00000172 C21E 0000 0003                      208          CLGFI 1,X'00000003'
+00000178 4780 C0D4               0000012C    209          BE    @L56
+0000017C                                     210 @L55     DS    0H
+                                             211 * ***
+                                             212 * ***           h ^= h >> 13;
+0000017C 18F4                                213          LR    15,4
+0000017E 88F0 000D               0000000D    214          SRL   15,13(0)
+00000182 174F                                215          XR    4,15
+                                             216 * ***           h *= m;
+00000184 B252 0042                           217          MSR   4,2
+                                             218 * ***           h ^= h >> 15;
+00000188 18F4                                219          LR    15,4
+0000018A 88F0 000F               0000000F    220          SRL   15,15(0)
+0000018E 174F                                221          XR    4,15
+                                             222 * ***
+                                             223 * ***
+                                             224 * ***
+                                             225 * ***           return h;
+00000190 B916 00F4                           226          LLGFR 15,4
+                                             227 * ***   }
+                                             228 * * **** Start of Epilogue
+                                             229          DCCEPIL
+00000194                                     230+         ds 0h                                                          01-DCCEP
+                                             231+* Epilog
+                                             232+* Epilog
+00000194 E3E0 D008 0004          00000008    233+         lg    14,8(,13) restore the reg                                01-DCCEP
+0000019A EB1C D020 0004          00000020    234+         lmg   1,12,32(13)                                              01-DCCEP
+000001A0 07FE                                235+         br   14                                                        01-DCCEP
+                                             236+* End of Epilog
+                                             237 * * **** End of Epilogue
+                                             238          DROP  12
+                                             239 *
+                                             240 *   DSECT for automatic variables in "rd_murmur2"
+                                             241 *      (FUNCTION #760)
+                                             242 *
+00000000                00000000 000000AC    243 @AUTO#rd_murmur2 DSECT
+00000000                                     244          DS    XL168
+000000A8                                     245 rd_murmur2#k#5 DS 1F       ; k
+000000AC                000000AC 000000A8    246          ORG   @AUTO#rd_murmur2+168
+000000A8                                     247 rd_murmur2#k#2 DS 1F       ; k
+000000AC                000000AC 000000A8    248          ORG   @AUTO#rd_murmur2+168
+000000A8                                     249 rd_murmur2#h#0 DS 1F       ; h
+000000AC                000000AC 000000A8    250          ORG   @AUTO#rd_murmur2+168
+000000A8                                     251 rd_murmur2#r#0 DS 1F       ; r
+000000AC                000000AC 000000A8    252          ORG   @AUTO#rd_murmur2+168
+000000A8                                     253 rd_murmur2#m#0 DS 1F       ; m
+000000AC                000000AC 000000A8    254          ORG   @AUTO#rd_murmur2+168
+000000A8                                     255 rd_murmur2#seed#0 DS 1F    ; seed
+                                             256 *
+000001A2                00000000 00000596    257 @CODE    CSECT
+                                             258 *
+                                                                                                                           Page    9 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+                                             259 *
+                                             260 *
+                                             261 * ....... start of unittest_murmur2
+                                             262 unittest_murmur2 ALIAS X'A49589A3A385A2A36D94A49994A499F2'
+000001A2                                     263 @LNAME761 DS   0H
+000001A2 00000010                            264          DC    X'00000010'
+000001A6 A49589A3A385A2A3                    265          DC    C'unittest_murmur2'
+000001B6 00                                  266          DC    X'00'
+                                             267 unittest_murmur2 DCCPRLG CINDEX=761,BASER=12,FRAME=352,ENTRY=YES,ARCH=Z*
+                                                                ARCH,LNAMEADDR=@LNAME761
+                                             268          macro
+                                             269          dccextrn &m
+                                             270          gblc    &$dccext(1000)
+                                             271          gbla    &$dccexti
+                                             272          lcla    &i
+                                             273 &$dccext(&$dccexti+1) setc    '&m'
+                                             274 &i       seta    1
+                                             275 .loop    aif    (&i gt &$dccexti).around
+                                             276          aif    ('&$dccext(&i)' eq '&m').getout
+                                             277 &i       seta    &i+1
+                                             278          ago     .loop
+                                             279 .around  anop
+                                             280 &$dccexti seta &$dccexti+1
+                                             281          extrn  &m
+                                             282 .getout  anop
+                                             283          mend
+000001B8                                     284+$eye0005    ds    0d                                                    02-DCCCA
+000001B8 C4C3C3                              285+         dc cl3'DCC'                                                    02-DCCCA
+000001BB 01                                  286+         dc xl1'01' format one                                          02-DCCCA
+000001BC 00000000                            287+         dc a(0)                                                        02-DCCCA
+000001C0 000000000000022A                    288+         dc ad(@PER_761)                                                02-DCCCA
+000001C8 0000000000000160                    289+         dc ad(352)                                                     02-DCCCA
+000001D0 0000000000000000                    290+         dc ad(0)                                                       02-DCCCA
+000001D8 0000000000001000                    291+         dc ad(4096)                                                    02-DCCCA
+000001E0 20                                  292+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+000001E1 03                                  293+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+000001E2 03                                  294+         dc al1(3)                                                      02-DCCCA
+000001E3 08                                  295+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+000001E4 00                                  296+         dc bl.8'00000000'                                              02-DCCCA
+000001E5 000000                              297+         dc al3(0)                                                      02-DCCCA
+000001E8 00000000000001A2                    298+         dc ad(@LNAME761)                                               02-DCCCA
+000001F0                                     299+         ds 0d                                                          02-DCCCA
+000001F0 00000000000001B8                    300+         dc ad($eye0005)                                                02-DCCCA
+000001F8 0000000000000000                    301+         dc ad(0)                                                       02-DCCCA
+00000200                                     302+         ds    0d                                                       01-DCCPR
+                                             303+         entry unittest_murmur2                                         01-DCCPR
+00000200                                     304+unittest_murmur2 ds 0d                                                  01-DCCPR
+00000200                                     305+@REGION_761_1 ds 0h                                                     01-DCCPR
+00000200 EBEC D008 0024          00000008    306+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+00000206 E3E0 D088 0004          00000088    307+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
+0000020C E3C0 D090 0004          00000090    308+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
+00000212 B904 002E                           309+         lgr   2,14                copy addr of our savearea            01-DCCPR
+                                                                                                                           Page   10 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000216 E3B0 C018 0004          00000018    310+         lg    11,24(0,12)         get dvt address                      01-DCCPR
+0000021C A7EB 0160               00000160    311+         aghi  14,352              increase by frame size               01-DCCPR
+00000220 E3E0 C020 0021          00000020    312+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
+00000226 4720 B020               00000020    313+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
+0000022A                                     314+@PER_761 ds    0h                                                       01-DCCPR
+0000022A EBDE 2080 0024          00000080    315+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
+00000230 E3C0 2090 0024          00000090    316+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
+00000236 B904 00D2                           317+         lgr   13,2                set real frame pointer               01-DCCPR
+0000023A B904 00CF                           318+         lgr   12,15               set base reg                         01-DCCPR
+                        00000200             319+         using @REGION_761_1,12                                         01-DCCPR
+                                             320          DCCPRV REG=4      ; Get PRV from DVT
+0000023E E340 B008 0004          00000008    321+         LG 4,8(0,11)                                                   01-DCCPR
+                                             322 * ******* End of Prologue
+                                             323 * *
+                                             324 * ***           const char *short_unaligned = "1234";
+00000244 E3F0 C140 0004          00000340    325          LG    15,@lit_761_4
+                                             326 * ***           const char *unaligned = "PreAmbleWillBeRemoved,ThePreP\
+                                             327 * artThatIs";
+0000024A 4110 F006               00000006    328          LA    1,6(0,15)
+                                             329 * ***           const char *keysToTest[] = {
+                                             330 * ***                   "kafka",
+0000024E 4120 F02E               0000002E    331          LA    2,46(0,15)
+00000252 E320 D0A8 0024          000000A8    332          STG   2,168(0,13)
+                                             333 * ***                   "giberish123456789",
+00000258 4120 F034               00000034    334          LA    2,52(0,15)
+0000025C E320 D0B0 0024          000000B0    335          STG   2,176(0,13)
+                                             336 * ***                   short_unaligned,
+00000262 E3F0 D0B8 0024          000000B8    337          STG   15,184(0,13)
+                                             338 * ***                   short_unaligned+1,
+00000268 4120 F001               00000001    339          LA    2,1(0,15)
+0000026C E320 D0C0 0024          000000C0    340          STG   2,192(0,13)
+                                             341 * ***                   short_unaligned+2,
+00000272 4120 F002               00000002    342          LA    2,2(0,15)
+00000276 E320 D0C8 0024          000000C8    343          STG   2,200(0,13)
+                                             344 * ***                   short_unaligned+3,
+0000027C 4120 F003               00000003    345          LA    2,3(0,15)
+00000280 E320 D0D0 0024          000000D0    346          STG   2,208(0,13)
+                                             347 * ***                   unaligned,
+00000286 E310 D0D8 0024          000000D8    348          STG   1,216(0,13)
+                                             349 * ***                   unaligned+1,
+0000028C 4120 1001               00000001    350          LA    2,1(0,1)
+00000290 E320 D0E0 0024          000000E0    351          STG   2,224(0,13)
+                                             352 * ***                   unaligned+2,
+00000296 4120 1002               00000002    353          LA    2,2(0,1)
+0000029A E320 D0E8 0024          000000E8    354          STG   2,232(0,13)
+                                             355 * ***                   unaligned+3,
+000002A0 4110 1003               00000003    356          LA    1,3(0,1)
+000002A4 E310 D0F0 0024          000000F0    357          STG   1,240(0,13)
+                                             358 * ***                   "",
+000002AA 41F0 F046               00000046    359          LA    15,70(0,15)
+000002AE E3F0 D0F8 0024          000000F8    360          STG   15,248(0,13)
+                                             361 * ***                   ((void *)0),
+                                                                                                                           Page   11 
+  Active Usings: @REGION_761_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+                                             362 * ***           };
+                                             363 * setting 8 bytes to 0x00
+000002B4 D707 D100 D100 00000100 00000100    364          XC    256(8,13),256(13)
+                                             365 * ***
+                                             366 * ***           const int32_t java_murmur2_results[] = {
+                                             367 * ***                   0xd067cf64,
+000002BA C0F9 D067 CF64                      368          IILF  15,X'D067CF64' ; -798503068
+000002C0 50F0 D108               00000108    369          ST    15,264(0,13)
+                                             370 * ***                   0x8f552b0c,
+000002C4 C0F9 8F55 2B0C                      371          IILF  15,X'8F552B0C' ; -1890243828
+000002CA 50F0 D10C               0000010C    372          ST    15,268(0,13)
+                                             373 * ***                   0x9fc97b14,
+000002CE C0F9 9FC9 7B14                      374          IILF  15,X'9FC97B14' ; -1614185708
+000002D4 50F0 D110               00000110    375          ST    15,272(0,13)
+                                             376 * ***                   0xe7c009ca,
+000002D8 C0F9 E7C0 09CA                      377          IILF  15,X'E7C009CA' ; -406844982
+000002DE 50F0 D114               00000114    378          ST    15,276(0,13)
+                                             379 * ***                   0x873930da,
+000002E2 C0F9 8739 30DA                      380          IILF  15,X'873930DA' ; -2026295078
+000002E8 50F0 D118               00000118    381          ST    15,280(0,13)
+                                             382 * ***                   0x5a4b5ca1,
+000002EC C0F9 5A4B 5CA1                      383          IILF  15,X'5A4B5CA1' ; 1514888353
+000002F2 50F0 D11C               0000011C    384          ST    15,284(0,13)
+                                             385 * ***                   0x78424f1c,
+000002F6 C0F9 7842 4F1C                      386          IILF  15,X'78424F1C' ; 2017611548
+000002FC 50F0 D120               00000120    387          ST    15,288(0,13)
+                                             388 * ***                   0x4a62b377,
+00000300 C0F9 4A62 B377                      389          IILF  15,X'4A62B377' ; 1247982455
+00000306 50F0 D124               00000124    390          ST    15,292(0,13)
+                                             391 * ***                   0xe0e4e09e,
+0000030A C0F9 E0E4 E09E                      392          IILF  15,X'E0E4E09E' ; -521871202
+00000310 50F0 D128               00000128    393          ST    15,296(0,13)
+                                             394 * ***                   0x62b8b43f,
+00000314 C0F9 62B8 B43F                      395          IILF  15,X'62B8B43F' ; 1656271935
+0000031A 50F0 D12C               0000012C    396          ST    15,300(0,13)
+                                             397 * ***                   0x106e08d9,
+0000031E C0F9 106E 08D9                      398          IILF  15,X'106E08D9' ; 275646681
+00000324 50F0 D130               00000130    399          ST    15,304(0,13)
+                                             400 * ***                   0x106e08d9,
+00000328 50F0 D134               00000134    401          ST    15,308(0,13)
+                                             402 * ***           };
+                                             403 * ***
+                                             404 * ***           size_t i;
+                                             405 * ***           for (i = 0; i < (sizeof((keysToTest)) / sizeof(*(keysT\
+                                             406 * oTest))); i++) {
+0000032C A729 0000               00000000    407          LGHI  2,0         ; 0
+00000330 47F0 C2F2               000004F2    408          B     @L60
+00000338                                     409          DS    0D
+00000338 00000160                            410 @FRAMESIZE_761 DC F'352'
+0000033C 00000000
+00000340 00000000000005F0                    411 @lit_761_4 DC  AD(@strings@)
+00000348 0000000000000058                    412 @lit_761_19 DC AD(rd_murmur2)
+                                                                                                                           Page   12 
+  Active Usings: @REGION_761_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000350 0000000000000000                    413 @lit_761_23 DC AD(fprintf)
+00000358 0000000000000598                    414 @lit_761_22 DC AD(@DATA)
+00000360 00000000                            415 @lit_761_20 DC Q(__stderrp)
+00000364 00000000                            416 @lit_761_28 DC Q(rd_unittest_assert_on_failure)
+00000368 0000000000000000                    417 @lit_761_29 DC AD(__assert)
+00000370                                     418 @L59     DS    0H
+                                             419 * ***                   uint32_t h = rd_murmur2(keysToTest[i],
+                                             420 * ***                                           keysToTest[i] ?
+00000370 EBF2 0003 000D          00000003    421          SLLG  15,2,3(0)   ; *0x8
+00000376 E3FF D0A8 0002          000000A8    422          LTG   15,168(15,13)
+0000037C 4780 C1A4               000003A4    423          BZ    @L63
+                                             424 * ***                                           __strlen(keysToTest[i]\
+                                             425 * ) : 0);
+00000380 EBF2 0003 000D          00000003    426          SLLG  15,2,3(0)   ; *0x8
+00000386 E3FF D0A8 0004          000000A8    427          LG    15,168(15,13)
+0000038C B904 001F                           428          LGR   1,15
+00000390 A709 0000               00000000    429          LGHI  0,0
+00000394                                     430 @@gen_label4 DS 0H
+00000394 B25E 000F                           431          SRST  0,15
+00000398 4710 C194               00000394    432          BC  1,@@gen_label4
+0000039C B90B 0001                           433          SLGR  0,1
+000003A0 47F0 C1A8               000003A8    434          B     @L64
+000003A4                                     435 @L63     DS    0H
+000003A4 A709 0000               00000000    436          LGHI  0,0         ; 0
+000003A8                                     437 @L64     DS    0H
+000003A8 EBF2 0003 000D          00000003    438          SLLG  15,2,3(0)   ; *0x8
+000003AE E3FF D0A8 0004          000000A8    439          LG    15,168(15,13)
+000003B4 EBF0 D138 0024          00000138    440          STMG  15,0,312(13)
+000003BA 4110 D138               00000138    441          LA    1,312(0,13)
+000003BE E3F0 C148 0004          00000348    442          LG    15,@lit_761_19 ; rd_murmur2
+000003C4                                     443 @@gen_label5 DS    0H
+000003C4 05EF                                444          BALR  14,15
+000003C6                                     445 @@gen_label6 DS    0H
+000003C6 183F                                446          LR    3,15
+                                             447 * ***                   do { if (!((int32_t)h == java_murmur2_results[\
+                                             448 * i])) { fprintf(__stderrp, "\033[31mRDUT: FAIL: %s:%d: %s: " "assert \
+                                             449 * failed: " "(int32_t)h == java_murmur2_results[i]" ": ", "C:\\asgkafk\
+                                             450 * a\\librdkafka\\src\\rdmurmur2.c", 153, __FUNCTION__); fprintf(__stde\
+                                             451 * rrp, "Calculated murmur2 hash 0x%x for \"%s\", " "expected 0x%x", h,\
+                                             452 *  keysToTest[i], java_murmur2_results[i]); fprintf(__stderrp, "\033[0\
+                                             453 * m\n"); if (rd_unittest_assert_on_failure) (((int32_t)h == java_murmu\
+                                             454 * r2_results[i]) ? (void)0 : __assert(__func__, "C:\\asgkafka\\librdka\
+                                             455 * fka\\src\\rdmurmur2.c", 153, "(int32_t)h == java_murmur2_results[i]"\
+                                             456 * )); return 1; } } while (0);
+000003C8                                     457 @L65     DS    0H
+000003C8 EBF2 0002 000D          00000002    458          SLLG  15,2,2(0)   ; *0x4
+000003CE 593F D108               00000108    459          C     3,264(15,13)
+000003D2 4780 C2EE               000004EE    460          BE    @L68
+000003D6 E350 C160 0016          00000360    461          LLGF  5,@lit_761_20 ; __stderrp
+000003DC E3F5 4000 0004          00000000    462          LG    15,0(5,4)   ; __stderrp
+000003E2 E3F0 D138 0024          00000138    463          STG   15,312(0,13)
+000003E8 E360 C140 0004          00000340    464          LG    6,@lit_761_4
+                                                                                                                           Page   13 
+  Active Usings: @REGION_761_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+000003EE 41F0 6048               00000048    465          LA    15,72(0,6)
+000003F2 E3F0 D140 0024          00000140    466          STG   15,320(0,13)
+000003F8 41F0 609C               0000009C    467          LA    15,156(0,6)
+000003FC E3F0 D148 0024          00000148    468          STG   15,328(0,13)
+00000402 E548 D150 0099          00000150    469          MVGHI 336(13),153
+00000408 E370 C158 0004          00000358    470          LG    7,@lit_761_22
+0000040E 41F0 7046               00000046    471          LA    15,70(0,7)
+00000412 E3F0 D158 0024          00000158    472          STG   15,344(0,13)
+00000418 4110 D138               00000138    473          LA    1,312(0,13)
+0000041C E380 C150 0004          00000350    474          LG    8,@lit_761_23 ; fprintf
+00000422 B904 00F8                           475          LGR   15,8
+00000426                                     476 @@gen_label8 DS    0H
+00000426 05EF                                477          BALR  14,15
+00000428                                     478 @@gen_label9 DS    0H
+00000428 E3F5 4000 0004          00000000    479          LG    15,0(5,4)   ; __stderrp
+0000042E E3F0 D138 0024          00000138    480          STG   15,312(0,13)
+00000434 41F0 60C4               000000C4    481          LA    15,196(0,6)
+00000438 E3F0 D140 0024          00000140    482          STG   15,320(0,13)
+0000043E B916 00F3                           483          LLGFR 15,3
+00000442 E3F0 D148 0024          00000148    484          STG   15,328(0,13)
+00000448 EBF2 0003 000D          00000003    485          SLLG  15,2,3(0)   ; *0x8
+0000044E E3FF D0A8 0004          000000A8    486          LG    15,168(15,13)
+00000454 E3F0 D150 0024          00000150    487          STG   15,336(0,13)
+0000045A EBF2 0002 000D          00000002    488          SLLG  15,2,2(0)   ; *0x4
+00000460 E3FF D108 0014          00000108    489          LGF   15,264(15,13)
+00000466 E3F0 D158 0024          00000158    490          STG   15,344(0,13)
+0000046C 4110 D138               00000138    491          LA    1,312(0,13)
+00000470 B904 00F8                           492          LGR   15,8
+00000474                                     493 @@gen_label10 DS    0H
+00000474 05EF                                494          BALR  14,15
+00000476                                     495 @@gen_label11 DS    0H
+00000476 E3F5 4000 0004          00000000    496          LG    15,0(5,4)   ; __stderrp
+0000047C E3F0 D138 0024          00000138    497          STG   15,312(0,13)
+00000482 41F0 60FA               000000FA    498          LA    15,250(0,6)
+00000486 E3F0 D140 0024          00000140    499          STG   15,320(0,13)
+0000048C 4110 D138               00000138    500          LA    1,312(0,13)
+00000490 B904 00F8                           501          LGR   15,8
+00000494                                     502 @@gen_label12 DS    0H
+00000494 05EF                                503          BALR  14,15
+00000496                                     504 @@gen_label13 DS    0H
+00000496 E3F0 C164 0016          00000364    505          LLGF  15,@lit_761_28 ; rd_unittest_assert_on_failure
+0000049C 41FF 4000               00000000    506          LA    15,0(15,4)
+000004A0 9500 F000      00000000 00000000    507          CLI   0(15),0
+000004A4 4780 C2E6               000004E6    508          BE    @L69
+000004A8 EBF2 0002 000D          00000002    509          SLLG  15,2,2(0)   ; *0x4
+000004AE 593F D108               00000108    510          C     3,264(15,13)
+000004B2 4780 C2E6               000004E6    511          BE    @L69
+000004B6                                     512 @L70     DS    0H
+000004B6 41F0 7046               00000046    513          LA    15,70(0,7)
+000004BA E3F0 D138 0024          00000138    514          STG   15,312(0,13)
+000004C0 41F0 609C               0000009C    515          LA    15,156(0,6)
+000004C4 E3F0 D140 0024          00000140    516          STG   15,320(0,13)
+                                                                                                                           Page   14 
+  Active Usings: @REGION_761_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+000004CA E548 D148 0099          00000148    517          MVGHI 328(13),153
+000004D0 41F0 6100               00000100    518          LA    15,256(0,6)
+000004D4 E3F0 D150 0024          00000150    519          STG   15,336(0,13)
+000004DA 4110 D138               00000138    520          LA    1,312(0,13)
+000004DE E3F0 C168 0004          00000368    521          LG    15,@lit_761_29 ; __assert
+000004E4                                     522 @@gen_label16 DS    0H
+000004E4 05EF                                523          BALR  14,15
+000004E6                                     524 @@gen_label17 DS    0H
+000004E6                                     525 @L71     DS    0H
+000004E6                                     526 @L69     DS    0H
+000004E6 A7F9 0001               00000001    527          LGHI  15,1        ; 1
+000004EA 47F0 C34E               0000054E    528          B     @ret_lab_761
+000004EE                                     529 @L68     DS    0H
+                                             530 * ***
+                                             531 * ***
+                                             532 * ***
+                                             533 * ***           }
+000004EE A72B 0001               00000001    534          AGHI  2,1
+000004F2                                     535 @L60     DS    0H
+000004F2 C22E 0000 000C                      536          CLGFI 2,X'0000000C'
+000004F8 4740 C170               00000370    537          BL    @L59
+                                             538 * ***           do { fprintf(__stderrp, "\033[32mRDUT: PASS: %s:%d: %s\
+                                             539 * \033[0m\n", "C:\\asgkafka\\librdkafka\\src\\rdmurmur2.c", 158, __FUN\
+                                             540 * CTION__); return 0; } while (0);
+000004FC                                     541 @L72     DS    0H
+000004FC E3F0 C160 0016          00000360    542          LLGF  15,@lit_761_20 ; __stderrp
+00000502 E3FF 4000 0004          00000000    543          LG    15,0(15,4)  ; __stderrp
+00000508 E3F0 D138 0024          00000138    544          STG   15,312(0,13)
+0000050E E3F0 C140 0004          00000340    545          LG    15,@lit_761_4
+00000514 4110 F126               00000126    546          LA    1,294(0,15)
+00000518 E310 D140 0024          00000140    547          STG   1,320(0,13)
+0000051E 41F0 F09C               0000009C    548          LA    15,156(0,15)
+00000522 E3F0 D148 0024          00000148    549          STG   15,328(0,13)
+00000528 E548 D150 009E          00000150    550          MVGHI 336(13),158
+0000052E E3F0 C158 0004          00000358    551          LG    15,@lit_761_22
+00000534 41F0 F046               00000046    552          LA    15,70(0,15)
+00000538 E3F0 D158 0024          00000158    553          STG   15,344(0,13)
+0000053E 4110 D138               00000138    554          LA    1,312(0,13)
+00000542 E3F0 C150 0004          00000350    555          LG    15,@lit_761_23 ; fprintf
+00000548                                     556 @@gen_label19 DS    0H
+00000548 05EF                                557          BALR  14,15
+0000054A                                     558 @@gen_label20 DS    0H
+0000054A A7F9 0000               00000000    559          LGHI  15,0        ; 0
+                                             560 * ***   }
+0000054E                                     561 @ret_lab_761 DS 0H
+                                             562 * * **** Start of Epilogue
+                                             563          DCCEPIL
+0000054E                                     564+         ds 0h                                                          01-DCCEP
+                                             565+* Epilog
+0000054E D707 D088 D088 00000088 00000088    566+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
+00000554 E3D0 D080 0004          00000080    567+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
+0000055A E3C0 D090 0004          00000090    568+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
+                                                                                                                           Page   15 
+  Active Usings: @REGION_761_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000560 E3B0 C018 0004          00000018    569+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
+00000566 E3C0 B010 0021          00000010    570+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
+0000056C E3E0 D008 0004          00000008    571+         lg  14,8(0,13)          load up return address                 01-DCCEP
+00000572 EB1C D020 0004          00000020    572+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
+00000578 078E                                573+         bcr 8,14                if same dsab, just return              01-DCCEP
+0000057A E3F0 D010 0024          00000010    574+         stg 15,16(0,13)         save return code                       01-DCCEP
+00000580 E300 D018 0024          00000018    575+         stg 0,24(0,13)          save more return code                  01-DCCEP
+00000586 E3F0 D090 0004          00000090    576+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
+0000058C E3F0 F018 0004          00000018    577+         lg  15,24(0,15)         load dvt address                       01-DCCEP
+00000592 47F0 F040               00000040    578+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
+                                             579+* End of Epilog
+                                             580 * * **** End of Epilogue
+                                             581          DROP  12
+                                             582 *
+                                             583 *   DSECT for automatic variables in "unittest_murmur2"
+                                             584 *      (FUNCTION #761)
+                                             585 *
+00000000                00000000 00000138    586 @AUTO#unittest_murmur2 DSECT
+00000000                                     587          DS    XL168
+000000A8                                     588 unittest_murmur2#h#1 DS 1F ; h
+000000AC                000000AC 000000A8    589          ORG   @AUTO#unittest_murmur2+168
+000000A8                                     590 unittest_murmur2#i#0 DS 8XL1 ; i
+000000B0                000000B0 000000A8    591          ORG   @AUTO#unittest_murmur2+168
+000000A8                                     592 unittest_murmur2#keys$To$Test#0 DS 96XL1 ; keysToTest
+00000108                00000108 00000108    593          ORG   @AUTO#unittest_murmur2+264
+00000108                                     594 unittest_murmur2#java_murmur2_results#0 DS 48XL1 ; java_murmur2_results
+                                             595 *
+00000596                00000000 00000596    596 @CODE    CSECT
+                                             597 @@STATIC ALIAS X'7C998494A49994A499F250'
+                                             598 @@STATIC DXD   64D
+                                             599 *
+                                             600 *  Non-Re-Entrant Data Section
+                                             601 *
+00000598                00000598 0000019E    602 @DATA    CSECT
+                                             603 @DATA    RMODE ANY
+                                             604 @DATA    AMODE ANY
+00000598 99846D8381939396                    605 @@T349   DC    X'99846D838193939683'               rd.calloc
+000005A1 00                                  606          DC    1X'00'
+000005A2 99846D9481939396                    607 @@T34D   DC    X'99846D948193939683'               rd.malloc
+000005AB 00                                  608          DC    1X'00'
+000005AC 99846D9985819393                    609 @@T352   DC    X'99846D99858193939683'             rd.realloc
+000005B6 0000                                610          DC    2X'00'
+000005B8 99846DA2A39984A4                    611 @@T358   DC    X'99846DA2A39984A497'               rd.strdup
+000005C1 00                                  612          DC    1X'00'
+000005C2 99846DA2A3999584                    613 @@T35D   DC    X'99846DA2A3999584A497'             rd.strndup
+000005CC 0000                                614          DC    2X'00'
+000005CE 99846D9985868395                    615 @@T365   DC    X'99846D9985868395A36DA2A482F0'     rd.refcnt.sub0
+000005DC 0000                                616          DC    2X'00'
+000005DE A49589A3A385A2A3                    617 @@T37E   DC    X'A49589A3A385A2A36D94A49994A499F2' unittest.murmur2
+000005EE 00                                  618          DC    1X'00'
+000005F0                                     619 @strings@ DS   0H
+000005F0 F1F2F3F40000D799                    620          DC    X'F1F2F3F40000D79985C194829385E689' 1234..PreAmbleWi
+                                                                                                                           Page   16 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000600 9393C285D9859496                    621          DC    X'9393C285D9859496A585846BE38885D7' llBeRemoved.TheP
+00000610 9985D78199A3E388                    622          DC    X'9985D78199A3E38881A3C9A200009281' rePartThatIs..ka
+00000620 8692810087898285                    623          DC    X'86928100878982859989A288F1F2F3F4' fka.giberish1234
+00000630 F5F6F7F8F9000000                    624          DC    X'F5F6F7F8F90000001BADF3F194D9C4E4' 56789.....31mRDU
+00000640 E37A40C6C1C9D37A                    625          DC    X'E37A40C6C1C9D37A406CA27A6C847A40' T..FAIL...s..d..
+00000650 6CA27A4081A2A285                    626          DC    X'6CA27A4081A2A28599A3408681899385' .s..assert.faile
+00000660 847A404D8995A3F3                    627          DC    X'847A404D8995A3F3F26DA35D88407E7E' d...int32.t.h...
+00000670 409181A5816D94A4                    628          DC    X'409181A5816D94A49994A499F26D9985' .java.murmur2.re
+00000680 A2A493A3A2AD89BD                    629          DC    X'A2A493A3A2AD89BD7A400000C37AE081' sults.i.....C..a
+00000690 A2879281869281E0                    630          DC    X'A2879281869281E09389829984928186' sgkafka.librdkaf
+000006A0 9281E0A29983E099                    631          DC    X'9281E0A29983E0998494A49994A499F2' ka.src.rdmurmur2
+000006B0 4B830000C3819383                    632          DC    X'4B830000C3819383A49381A385844094' .c..Calculated.m
+000006C0 A49994A499F24088                    633          DC    X'A49994A499F2408881A28840F0A76CA7' urmur2.hash.0x.x
+000006D0 40869699407F6CA2                    634          DC    X'40869699407F6CA27F6B4085A7978583' .for...s...expec
+000006E0 A3858440F0A76CA7                    635          DC    X'A3858440F0A76CA700001BADF0941500' ted.0x.x....0m..
+000006F0 4D8995A3F3F26DA3                    636          DC    X'4D8995A3F3F26DA35D88407E7E409181' .int32.t.h....ja
+00000700 A5816D94A49994A4                    637          DC    X'A5816D94A49994A499F26D9985A2A493' va.murmur2.resul
+00000710 A3A2AD89BD001BAD                    638          DC    X'A3A2AD89BD001BADF3F294D9C4E4E37A' ts.i....32mRDUT.
+00000720 40D7C1E2E27A406C                    639          DC    X'40D7C1E2E27A406CA27A6C847A406CA2' .PASS...s..d...s
+00000730 1BADF0941500                        640          DC    X'1BADF0941500'                     ..0m..
+                                             641 @Erd_unittest_assert_on_failure ALIAS X'99846DA49589A3A385A2A36D81A2A28*
+                                                                599A36D96956D86818993A49985'
+                                             642          EXTRN @Erd_unittest_assert_on_failure
+                                             643 @E__stderrp ALIAS C'@@STDERP'
+                                             644          EXTRN @E__stderrp
+                                             645 *
+                                             646 *
+                                             647 *   Re-entrant Data Initialization Section
+                                             648 *
+                                             649 @@INIT@  ALIAS C'rdmurmur2:'
+00000738                00000738 00000230    650 @@INIT@  CSECT
+                                             651 @@INIT@  AMODE ANY
+                                             652 @@INIT@  RMODE ANY
+00000738 05                                  653          DC    XL1'5'
+00000739 000000                              654          DC    AL3(0)
+0000073C 00000120                            655          DC    AL4(288)
+00000740 00000000                            656          DC    4X'00'
+00000744 00000000                            657          DC    Q(@@STATIC)
+00000748 00000000                            658          DC    X'00000000'
+0000074C 00000001                            659          DC    X'00000001'
+00000750 00000000                            660          DC    X'00000000'
+00000754 000000FF                            661          DC    X'000000FF'
+00000758 0102039C09867F97                    662          DC    X'0102039C09867F978D8E0B0C0D0E0F10' .....f.p........
+00000768 1112139D85088718                    663          DC    X'1112139D8508871819928F1C1D1E1F80' ....e.g..k......
+00000778 818283840A171B88                    664          DC    X'818283840A171B88898A8B8C05060790' abcd...hi.......
+00000788 9116939495960498                    665          DC    X'9116939495960498999A9B14159E1A20' j.lmno.qr.......
+00000798 A0E2E4E0E1E3E5E7                    666          DC    X'A0E2E4E0E1E3E5E7F1A22E3C282B7C26' .SU..TVX1s......
+000007A8 E9EAEBE8EDEEEFEC                    667          DC    X'E9EAEBE8EDEEEFECDF21242A293B5E2D' Z..Y............
+000007B8 2FC2C4C0C1C3C5C7                    668          DC    X'2FC2C4C0C1C3C5C7D1A62C255F3E3FF8' .BD.ACEGJw.....8
+000007C8 C9CACBC8CDCECFCC                    669          DC    X'C9CACBC8CDCECFCC603A2340273D22D8' I..H...........Q
+000007D8 6162636465666768                    670          DC    X'616263646566676869ABBBF0FDFEB1B0' ...........0....
+000007E8 6A6B6C6D6E6F7071                    671          DC    X'6A6B6C6D6E6F707172AABAE6B8C6A4B5' ...........W.Fu.
+                                                                                                                           Page   17 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+000007F8 7E73747576777879                    672          DC    X'7E737475767778797AA1BFD05BDEAEAC' ................
+00000808 A3A5B7A9A7B6BCBD                    673          DC    X'A3A5B7A9A7B6BCBDBEDDA8AF5DB4D77B' tv.zx.....y...P.
+00000818 4142434445464748                    674          DC    X'414243444546474849ADF4F6F2F3F57D' ..........46235.
+00000828 4A4B4C4D4E4F5051                    675          DC    X'4A4B4C4D4E4F505152B9FBFCF9FAFF5C' ............9...
+00000838 F753545556575859                    676          DC    X'F7535455565758595AB2D4D6D2D3D530' 7.........MOKLN.
+00000848 3132333435363738                    677          DC    X'313233343536373839B3DBDCD9DA9F40' ............R...
+                                             678 *
+00000858 05                                  679          DC    XL1'5'
+00000859 000000                              680          DC    AL3(0)
+0000085C 000001E0                            681          DC    AL4(480)
+00000860 00000000                            682          DC    4X'00'
+00000864 00000000                            683          DC    Q(@@STATIC)
+00000868 00000000                            684          DC    X'00000000'
+0000086C 00000101                            685          DC    X'00000101'
+00000870 00000000                            686          DC    X'00000000'
+00000874 000000A0                            687          DC    X'000000A0'
+00000878 010203372D2E2F16                    688          DC    X'010203372D2E2F1605150B0C0D0E0F10' ................
+00000888 1112133C3D322618                    689          DC    X'1112133C3D322618193F271C1D1E1F40' ................
+00000898 5A7F7B5B6C507D4D                    690          DC    X'5A7F7B5B6C507D4D5D5C4E6B604B61F0' ...............0
+000008A8 F1F2F3F4F5F6F7F8                    691          DC    X'F1F2F3F4F5F6F7F8F97A5E4C7E6E6F7C' 123456789.......
+000008B8 C1C2C3C4C5C6C7C8                    692          DC    X'C1C2C3C4C5C6C7C8C9D1D2D3D4D5D6D7' ABCDEFGHIJKLMNOP
+000008C8 D8D9E2E3E4E5E6E7                    693          DC    X'D8D9E2E3E4E5E6E7E8E9ADE0BD5F6D79' QRSTUVWXYZ......
+000008D8 8182838485868788                    694          DC    X'81828384858687888991929394959697' abcdefghijklmnop
+000008E8 9899A2A3A4A5A6A7                    695          DC    X'9899A2A3A4A5A6A7A8A9C04FD0A10720' qrstuvwxyz......
+000008F8 2122232425061728                    696          DC    X'2122232425061728292A2B2C090A1B30' ................
+00000908 311A333435360838                    697          DC    X'311A333435360838393A3B04143EFF80' ................
+                                             698 *
+00000918 05                                  699          DC    XL1'5'
+00000919 000000                              700          DC    AL3(0)
+0000091C 00000208                            701          DC    AL4(520)
+00000920 00000000                            702          DC    4X'00'
+00000924 00000000                            703          DC    Q(@@STATIC)
+00000928 00000000                            704          DC    X'00000000'
+0000092C 000001C0                            705          DC    X'000001C0'
+00000930 00000000                            706          DC    X'00000000'
+00000934 00000001                            707          DC    X'00000001'
+00000938 8A40404040404040                    708          DC    X'8A40404040404040'                 ........
+                                             709 *
+00000940 05                                  710          DC    XL1'5'
+00000941 000000                              711          DC    AL3(0)
+00000944 00000000                            712          DC    AL4(0)
+00000948 00000000                            713          DC    4X'00'
+0000094C 00000000                            714          DC    Q(@@STATIC)
+00000950 00000000                            715          DC    X'00000000'
+00000954 000001E0                            716          DC    X'000001E0'
+00000958 00000000                            717          DC    X'00000000'
+0000095C 00000001                            718          DC    X'00000001'
+00000960 8B40404040404040                    719          DC    X'8B40404040404040'                 ........
+                                             720 *
+                                             721          END
+                                                 Relocation Dictionary                                                     Page   18 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+ 00000002 00000002 00000040   A 4      +
+ 00000002 00000002 00000048   A 4      +
+ 00000002 00000002 000001C0   A 4      +
+ 00000002 00000002 000001E8   A 4      +
+ 00000002 00000002 000001F0   A 4      +
+ 00000002 00000008 00000340   A 4      +
+ 00000002 00000002 00000348   A 4      +
+ 00000002 00000003 00000350   A 4      +
+ 00000002 00000008 00000358   A 4      +
+ 00000002 00000005 00000360   Q 4      +
+ 00000002 00000006 00000364   Q 4      +
+ 00000002 00000004 00000368   A 4      +
+ 0000000B 00000007 00000744   Q 4      +
+ 0000000B 00000007 00000864   Q 4      +
+ 0000000B 00000007 00000924   Q 4      +
+ 0000000B 00000007 0000094C   Q 4      +
+                                                 DSECT Cross Reference                                                     Page   19 
+DSECT     LENGTH    ID   DEFN                                                                         DASM V1.95.14 2021/04/29 12:43 
+@AUTO#rd_murmur2
+         000000AC  FFFFFFFF  00243
+@AUTO#unittest_murmur2
+         00000138  FFFFFFFE  00586
+                                          Macro and Copy Code Source Summary                                               Page   20 
+Source                                                    Members                                     DASM V1.95.14 2021/04/29 12:43 
+
+C:\DIGNUS\MACLIB                                          DCCCATR  DCCEPIL  DCCPRLG  DCCPRV   dccextrn
+                                                      Using Map                                                            Page   21 
+                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+  Stmt  -----Location----- Action ----------------Using----------------- Reg Max     Last Label and Using Text
+          Count      Id           Type          Value    Range     Id        Disp    Stmt
+    76  00000062  00000002 USING  ORDINARY    00000058 00001000 00000002  12 00124    209 @REGION_760_1,12
+   238  000001A2  00000002 DROP                                           12              12
+   319  0000023E  00000002 USING  ORDINARY    00000200 00001000 00000002  12 0034E    555 @REGION_761_1,12
+   581  00000596  00000002 DROP                                           12              12
+                                   Diagnostic Cross Reference and Assembler Summary                                        Page   22 
+                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+      No Statements Flagged in this Assembly
+DASM Dignus Systems/ASM, VERSION 1.95.14
+SYSTEM: Windows 6.2                JOBNAME: (NOJOB)     STEPNAME: (NOSTEP)   PROCSTEP: (NOPROC)
+Datasets Used for this Assembly
+ Con  DDname   Dataset Name
+  P1  RDMURMUR2 ..\asg\asm\rdmurmur2.asm
+  L2  DCCPRLG  C:\DIGNUS\MACLIB\dccprlg
+  L3  DCCCATR  C:\DIGNUS\MACLIB\dcccatr
+  L4  DCCEPIL  C:\DIGNUS\MACLIB\dccepil
+  L5  DCCPRV   C:\DIGNUS\MACLIB\dccprv
+
+Assembly Start Time: 12.43.43 Stop Time: 12.43.43 Processor Time: 00.00.00.0190
+Return Code 000

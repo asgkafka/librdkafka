@@ -28,6 +28,15 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+ /*
+  * ASG_LK: MODIFICATION HISTORY
+  * ==================================================================================
+  * TAG          |   DATE (DD/MM/YYYY)    |   JIRA    |   DESCRIPTION
+  * ==================================================================================
+  * ASG_LK01         22/04/2021              -           SYSTEM-C
+  * ==================================================================================
+ */
+
 #include "rdkafka_int.h"
 #include "rdendian.h"
 
@@ -48,6 +57,9 @@
 #  error "Endianness is undefined"
 #endif
 
+
+#elif defined(SYSC)                  /* ASG_LK01: SYSTEM-C */
+#  include <machine/endian.h>        /* ASG_LK01: SYSTEM-C */
 
 #elif !defined(__WIN32__) && !defined(_MSC_VER) && !defined(__sun) && !defined(_AIX)
 #  include <endian.h>

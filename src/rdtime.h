@@ -26,6 +26,15 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+ /*
+  * ASG_LK: MODIFICATION HISTORY
+  * ==================================================================================
+  * TAG          |   DATE (DD/MM/YYYY)    |   JIRA    |   DESCRIPTION
+  * ==================================================================================
+  * ASG_LK01         22/04/2021              -           SYSTEM-C
+  * ==================================================================================
+ */
+
 #ifndef _RDTIME_H_
 #define _RDTIME_H_
 
@@ -84,6 +93,10 @@ static RD_INLINE rd_ts_t rd_clock (void) {
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
 	return ((rd_ts_t)tv.tv_sec * 1000000LLU) + (rd_ts_t)tv.tv_usec;
+#elif defined(SYSC)             /* ASG_LK01: SYSTEM-C */
+    struct timeval tv;          /* ASG_LK01: SYSTEM-C */
+    gettimeofday(&tv, NULL);    /* ASG_LK01: SYSTEM-C */
+    return ((rd_ts_t)tv.tv_sec * 1000000LLU) + (rd_ts_t)tv.tv_usec;  /* ASG_LK01: SYSTEM-C */
 #elif defined(_WIN32)
         LARGE_INTEGER now;
         static RD_TLS double freq = 0.0;

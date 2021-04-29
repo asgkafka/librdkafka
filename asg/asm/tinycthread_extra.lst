@@ -1,0 +1,2060 @@
+                                            Dignus Assembler Option Summary                                                Page    1 
+                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+
+Overriding Parameters- -LC:\DIGNUS\MACLIB\&m -oc:../asg/obj/tinycthread_extra.obj ../asg/asm/tinycthread_extra.asm
+  Process Statements-       DUPALIAS
+
+Options for this Assembly             Source
+-------------------------             -------------------------
+   NOADATA                            {Default}
+     ALIGN                            {Default}
+     BATCH                            {Default}
+   NOCOMPATCASE                       {Default}
+   NOCOMPATMACROCASE                  {Default}
+   NOCOMPATSYSLIST                    {Default}
+   NOCOMPATLITTYPE                    {Default}
+   NOCOMPATSYSPATH                    {Default}
+     DXREF                            {Default}
+   NOMAPAT                            {Default}
+     DUPALIAS                         {*PROCESS}
+   NOVSELIBR                          {Default}
+     ESD                              {Default}
+     ERRFMT(microsoft)                {Default}
+     FLAG(0,ALIGN,CONT,NOEXLITW,NOPAGE0,PUSH,RECORD,NOSUBSTR,NOIMPLEN,USING0)
+                                      {Default}
+   NOFOLD                             {Default}
+   NOGOFF                             {Default}
+     LANGUAGE(EN)                     {Default}
+     LINECOUNT(55)                    {Default}
+     LIST(&d&p&f.lst)                 {Default}
+     MACCPYEXT(mac)                   {Default}
+     MXREF                            {Default}
+     OBJECT(c:..\asg\obj\tinycthread_extra.obj)
+                                      CMDLINE
+     OPTABLE(UNI,NOLIST)              {Default}
+     OPTIONSUMMARY                    {Default}
+   NOPCONTROL                         {Default}
+   NOPESTOP                           {Default}
+   NOPROFILE                          {Default}
+   NORA2                              {Default}
+     RLD                              {Default}
+     RENT                             {Default}
+   NORXREF                            {Default}
+     SECTALGN(8)                      {Default}
+     SIZE(MAX)                        {Default}
+   NOSUPRWARN                         {Default}
+     SYSPARM()                        {Default}
+     TERM(WIDE)                       {Default}
+     THREAD                           {Default}
+   NOTRANSLATE                        {Default}
+     TYPECHECK(MAGNITUDE,REGISTER)    {Default}
+     USING(NOLIMIT,MAP,WARN(15))      {Default}
+   NONXREF                            {Default}
+   NOXREF                             {Default}
+     XSD                              {Default}
+
+                                            Dignus Assembler Option Summary                                                Page    2 
+                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+Libraries in Search Order:
+       CMDLINE      C:\DIGNUS\MACLIB\&m
+                                              External Symbol Dictionary                                                   Page    3 
+Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                                      DASM V1.95.14 2021/04/29 12:43 
+@@ZARCH#  WX 00000001                              00
+@TINYCTHREAD_EXTRA
+          SD 00000002 00000000 00000FF8            07  @CODE
+@@P3R@D   ER 00000003                                  PTHREAD_RWLOCK_DESTROY
+@@P3R@I   ER 00000004                                  PTHREAD_RWLOCK_INIT
+@@P3RRL   ER 00000005                                  PTHREAD_RWLOCK_RDLOCK
+@@P3R@U   ER 00000006                                  PTHREAD_RWLOCK_UNLOCK
+@@P3RWL   ER 00000007                                  PTHREAD_RWLOCK_WRLOCK
+@@PT@S    ER 00000008                                  PTHREAD_SELF
+##ERROR   ER 00000009                                  __ERROR
+@@ASSERT  ER 0000000A                                  __ASSERT
+GETTFD@Y  ER 0000000B                                  GETTIMEOFDAY
+cnd_wait  ER 0000000C                                  CND_WAIT
+cnd_timedwait
+          ER 0000000D                                  CND_TIMEDWAIT
+@tinycthread_extra&
+          XD 0000000E 00000007 00000220                @@STATIC
+@tinycthread_extra
+          SD 0000000F 00000FF8 000000BA            07  @DATA
+tinycthread_extra:
+          SD 00000010 000010B8 00000230            07  @@INIT@
+thrd_setname
+          LD          00000180          00000002   00  THRD_SETNAME
+thrd_is_current
+          LD          000001F8          00000002   00  THRD_IS_CURRENT
+cnd_timedwait_ms
+          LD          00000318          00000002   00  CND_TIMEDWAIT_MS
+cnd_timedwait_msp
+          LD          00000550          00000002   00  CND_TIMEDWAIT_MSP
+cnd_timedwait_abs
+          LD          000006D8          00000002   00  CND_TIMEDWAIT_ABS
+rwlock_init
+          LD          00000850          00000002   00  RWLOCK_INIT
+rwlock_destroy
+          LD          00000988          00000002   00  RWLOCK_DESTROY
+rwlock_rdlock
+          LD          00000AB8          00000002   00  RWLOCK_RDLOCK
+rwlock_wrlock
+          LD          00000C20          00000002   00  RWLOCK_WRLOCK
+rwlock_rdunlock
+          LD          00000D88          00000002   00  RWLOCK_RDUNLOCK
+rwlock_wrunlock
+          LD          00000EF0          00000002   00  RWLOCK_WRUNLOCK
+                                                                                                                           Page    4 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+                                               1 *PROCESS DUPALIAS
+                                               2 *
+                                               3 *  Compiled by DCC Version 2.25.07 Mar  6 2021 08:51:07
+                                               4 *           on Thu Apr 29 12:43:51 2021
+                                               5 *
+
+                                               7          WXTRN @@ZARCH#
+                                               8 *
+                                               9 *
+                                              10 *
+                                              11 *    Code Section
+                                              12 *
+                                              13 @CODE    ALIAS X'7CE3C9D5E8C3E3C8D9C5C1C46DC5E7E3D9C1'
+00000000                00000000 00000FF8     14 @CODE    CSECT
+                                              15 @CODE    AMODE ANY
+                                              16 @CODE    RMODE ANY
+                                              17 @DATA    ALIAS X'7CA38995A883A388998581846D85A7A39981'
+                                              18 pthread_rwlock_destroy ALIAS C'@@P3R@D'
+                                              19          EXTRN pthread_rwlock_destroy
+                                              20 pthread_rwlock_init ALIAS C'@@P3R@I'
+                                              21          EXTRN pthread_rwlock_init
+                                              22 pthread_rwlock_rdlock ALIAS C'@@P3RRL'
+                                              23          EXTRN pthread_rwlock_rdlock
+                                              24 pthread_rwlock_unlock ALIAS C'@@P3R@U'
+                                              25          EXTRN pthread_rwlock_unlock
+                                              26 pthread_rwlock_wrlock ALIAS C'@@P3RWL'
+                                              27          EXTRN pthread_rwlock_wrlock
+                                              28 pthread_self ALIAS C'@@PT@S'
+                                              29          EXTRN pthread_self
+                                              30 __error  ALIAS C'##ERROR'
+                                              31          EXTRN __error
+                                              32 __assert ALIAS C'@@ASSERT'
+                                              33          EXTRN __assert
+                                              34 gettimeofday ALIAS C'GETTFD@Y'
+                                              35          EXTRN gettimeofday
+                                              36 cnd_wait ALIAS X'8395846DA68189A3'
+                                              37          EXTRN cnd_wait
+                                              38 cnd_timedwait ALIAS X'8395846DA389948584A68189A3'
+                                              39          EXTRN cnd_timedwait
+                                              40 *
+                                              41 *
+                                              42 *
+                                              43 * ....... start of rd_clock
+00000000                                      44 @LNAME759 DS   0H
+00000000 00000008                             45          DC    X'00000008'
+00000004 99846D8393968392                     46          DC    C'rd_clock'
+0000000C 00                                   47          DC    X'00'
+                                              48 rd_clock DCCPRLG CINDEX=759,BASER=12,FRAME=200,ENTRY=NO,ARCH=ZARCH,LNAM*
+                                                                EADDR=@LNAME759
+                                              49          macro
+                                              50          dccextrn &m
+                                              51          gblc    &$dccext(1000)
+                                                                                                                           Page    5 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+                                              52          gbla    &$dccexti
+                                              53          lcla    &i
+                                              54 &$dccext(&$dccexti+1) setc    '&m'
+                                              55 &i       seta    1
+                                              56 .loop    aif    (&i gt &$dccexti).around
+                                              57          aif    ('&$dccext(&i)' eq '&m').getout
+                                              58 &i       seta    &i+1
+                                              59          ago     .loop
+                                              60 .around  anop
+                                              61 &$dccexti seta &$dccexti+1
+                                              62          extrn  &m
+                                              63 .getout  anop
+                                              64          mend
+00000010                                      65+$eye0002    ds    0d                                                    02-DCCCA
+00000010 C4C3C3                               66+         dc cl3'DCC'                                                    02-DCCCA
+00000013 01                                   67+         dc xl1'01' format one                                          02-DCCCA
+00000014 00000000                             68+         dc a(0)                                                        02-DCCCA
+00000018 0000000000000082                     69+         dc ad(@PER_759)                                                02-DCCCA
+00000020 00000000000000C8                     70+         dc ad(200)                                                     02-DCCCA
+00000028 0000000000000000                     71+         dc ad(0)                                                       02-DCCCA
+00000030 0000000000001000                     72+         dc ad(4096)                                                    02-DCCCA
+00000038 20                                   73+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+00000039 03                                   74+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+0000003A 03                                   75+         dc al1(3)                                                      02-DCCCA
+0000003B 08                                   76+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+0000003C 00                                   77+         dc bl.8'00000000'                                              02-DCCCA
+0000003D 000000                               78+         dc al3(0)                                                      02-DCCCA
+00000040 0000000000000000                     79+         dc ad(@LNAME759)                                               02-DCCCA
+00000048                                      80+         ds 0d                                                          02-DCCCA
+00000048 0000000000000010                     81+         dc ad($eye0002)                                                02-DCCCA
+00000050 0000000000000000                     82+         dc ad(0)                                                       02-DCCCA
+00000058                                      83+         ds    0d                                                       01-DCCPR
+00000058                                      84+rd_clock ds    0d                                                       01-DCCPR
+00000058                                      85+@REGION_759_1 ds 0h                                                     01-DCCPR
+00000058 EBEC D008 0024          00000008     86+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+0000005E E3E0 D088 0004          00000088     87+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
+00000064 E3C0 D090 0004          00000090     88+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
+0000006A B904 002E                            89+         lgr   2,14                copy addr of our savearea            01-DCCPR
+0000006E E3B0 C018 0004          00000018     90+         lg    11,24(0,12)         get dvt address                      01-DCCPR
+00000074 A7EB 00C8               000000C8     91+         aghi  14,200              increase by frame size               01-DCCPR
+00000078 E3E0 C020 0021          00000020     92+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
+0000007E 4720 B020               00000020     93+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
+00000082                                      94+@PER_759 ds    0h                                                       01-DCCPR
+00000082 EBDE 2080 0024          00000080     95+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
+00000088 E3C0 2090 0024          00000090     96+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
+0000008E B904 00D2                            97+         lgr   13,2                set real frame pointer               01-DCCPR
+00000092 B904 00CF                            98+         lgr   12,15               set base reg                         01-DCCPR
+                        00000058              99+         using @REGION_759_1,12                                         01-DCCPR
+                                             100 * ******* End of Prologue
+                                             101 * *
+                                             102 * ***   # 97 "C:\asgkafka\librdkafka\src\rdtime.h"
+                                             103 * ***       struct timeval tv;
+                                                                                                                           Page    6 
+  Active Usings: @REGION_759_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+                                             104 * ***       gettimeofday(&tv, ((void *)0));
+00000096 41F0 D0A8               000000A8    105          LA    15,168(0,13)
+0000009A E3F0 D0B8 0024          000000B8    106          STG   15,184(0,13)
+000000A0 D707 D0C0 D0C0 000000C0 000000C0    107          XC    192(8,13),192(13)
+000000A6 4110 D0B8               000000B8    108          LA    1,184(0,13)
+000000AA E3F0 C0C0 0004          00000118    109          LG    15,@lit_759_0 ; gettimeofday
+000000B0                                     110 @@gen_label0 DS    0H
+000000B0 05EF                                111          BALR  14,15
+000000B2                                     112 @@gen_label1 DS    0H
+                                             113 * ***       return ((rd_ts_t)tv.tv_sec * 1000000LLU) + (rd_ts_t)tv.tv_\
+                                             114 * usec;
+000000B2 E3F0 D0A8 0004          000000A8    115          LG    15,168(0,13)
+000000B8 C2F0 000F 4240                      116          MSGFI 15,X'000F4240'
+000000BE E310 D0B0 0004          000000B0    117          LG    1,176(0,13) ; offset of tv_usec in timeval
+000000C4 B90A 00F1                           118          ALGR  15,1
+                                             119 * ***   # 118 "C:\asgkafka\librdkafka\src\rdtime.h"
+                                             120 * ***   }
+                                             121 * * **** Start of Epilogue
+                                             122          DCCEPIL
+000000C8                                     123+         ds 0h                                                          01-DCCEP
+                                             124+* Epilog
+000000C8 D707 D088 D088 00000088 00000088    125+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
+000000CE E3D0 D080 0004          00000080    126+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
+000000D4 E3C0 D090 0004          00000090    127+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
+000000DA E3B0 C018 0004          00000018    128+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
+000000E0 E3C0 B010 0021          00000010    129+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
+000000E6 E3E0 D008 0004          00000008    130+         lg  14,8(0,13)          load up return address                 01-DCCEP
+000000EC EB1C D020 0004          00000020    131+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
+000000F2 078E                                132+         bcr 8,14                if same dsab, just return              01-DCCEP
+000000F4 E3F0 D010 0024          00000010    133+         stg 15,16(0,13)         save return code                       01-DCCEP
+000000FA E300 D018 0024          00000018    134+         stg 0,24(0,13)          save more return code                  01-DCCEP
+00000100 E3F0 D090 0004          00000090    135+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
+00000106 E3F0 F018 0004          00000018    136+         lg  15,24(0,15)         load dvt address                       01-DCCEP
+0000010C 47F0 F040               00000040    137+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
+                                             138+* End of Epilog
+                                             139 * * **** End of Epilogue
+00000110                                     140          DS    0D
+00000110 000000C8                            141 @FRAMESIZE_759 DC F'200'
+00000114 00000000
+00000118 0000000000000000                    142 @lit_759_0 DC  AD(gettimeofday)
+                                             143          DROP  12
+                                             144 *
+                                             145 *   DSECT for automatic variables in "rd_clock"
+                                             146 *      (FUNCTION #759)
+                                             147 *
+00000000                00000000 000000B8    148 @AUTO#rd_clock DSECT
+00000000                                     149          DS    XL168
+000000A8                                     150 rd_clock#tv#0 DS 16XL1     ; tv
+                                             151 *
+00000120                00000000 00000FF8    152 @CODE    CSECT
+                                             153 *
+                                             154 *
+                                                                                                                           Page    7 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+                                             155 *
+                                             156 * ....... start of thrd_setname
+                                             157 thrd_setname ALIAS X'A38899846DA285A395819485'
+00000120                                     158 @LNAME709 DS   0H
+00000120 0000000C                            159          DC    X'0000000C'
+00000124 A38899846DA285A3                    160          DC    C'thrd_setname'
+00000130 00                                  161          DC    X'00'
+                                             162 thrd_setname DCCPRLG CINDEX=709,BASER=0,FRAME=168,SAVEAREA=NO,ENTRY=YES*
+                                                                ,ARCH=ZARCH,LNAMEADDR=@LNAME709
+                                             163          macro
+                                             164          dccextrn &m
+                                             165          gblc    &$dccext(1000)
+                                             166          gbla    &$dccexti
+                                             167          lcla    &i
+                                             168 &$dccext(&$dccexti+1) setc    '&m'
+                                             169 &i       seta    1
+                                             170 .loop    aif    (&i gt &$dccexti).around
+                                             171          aif    ('&$dccext(&i)' eq '&m').getout
+                                             172 &i       seta    &i+1
+                                             173          ago     .loop
+                                             174 .around  anop
+                                             175 &$dccexti seta &$dccexti+1
+                                             176          extrn  &m
+                                             177 .getout  anop
+                                             178          mend
+00000138                                     179+$eye0005    ds    0d                                                    02-DCCCA
+00000138 C4C3C3                              180+         dc cl3'DCC'                                                    02-DCCCA
+0000013B 01                                  181+         dc xl1'01' format one                                          02-DCCCA
+0000013C 00000000                            182+         dc a(0)                                                        02-DCCCA
+00000140 0000000000000000                    183+         dc ad(0)                                                       02-DCCCA
+00000148 00000000000000A8                    184+         dc ad(168)                                                     02-DCCCA
+00000150 0000000000000000                    185+         dc ad(0)                                                       02-DCCCA
+00000158 0000000000001000                    186+         dc ad(4096)                                                    02-DCCCA
+00000160 20                                  187+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+00000161 03                                  188+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+00000162 03                                  189+         dc al1(3)                                                      02-DCCCA
+00000163 08                                  190+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+00000164 00                                  191+         dc bl.8'00000000'                                              02-DCCCA
+00000165 000000                              192+         dc al3(0)                                                      02-DCCCA
+00000168 0000000000000120                    193+         dc ad(@LNAME709)                                               02-DCCCA
+00000170                                     194+         ds 0d                                                          02-DCCCA
+00000170 0000000000000138                    195+         dc ad($eye0005)                                                02-DCCCA
+00000178 0000000000000000                    196+         dc ad(0)                                                       02-DCCCA
+00000180                                     197+         ds    0d                                                       01-DCCPR
+                                             198+         entry thrd_setname                                             01-DCCPR
+00000180                                     199+thrd_setname ds 0d                                                      01-DCCPR
+00000180                                     200+@REGION_709_1 ds 0h                                                     01-DCCPR
+00000180 EBEC D008 0024          00000008    201+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+                                             202 * ******* End of Prologue
+                                             203 * *
+                                             204 * ***   # 50 "C:\asgkafka\librdkafka\src\tinycthread_extra.c"
+                                             205 * ***           return 2;
+                                                                                                                           Page    8 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000186 A7F9 0002               00000002    206          LGHI  15,2        ; 2
+                                             207 * ***   }
+                                             208 * * **** Start of Epilogue
+                                             209          DCCEPIL
+0000018A                                     210+         ds 0h                                                          01-DCCEP
+                                             211+* Epilog
+                                             212+* Epilog
+0000018A E3E0 D008 0004          00000008    213+         lg    14,8(,13) restore the reg                                01-DCCEP
+00000190 EB1C D020 0004          00000020    214+         lmg   1,12,32(13)                                              01-DCCEP
+00000196 07FE                                215+         br   14                                                        01-DCCEP
+                                             216+* End of Epilog
+                                             217 * * **** End of Epilogue
+                                             218 *
+                                             219 *   DSECT for automatic variables in "thrd_setname"
+                                             220 *      (FUNCTION #709)
+                                             221 *
+00000000                00000000 000000A8    222 @AUTO#thrd_setname DSECT
+00000000                                     223          DS    XL168
+                                             224 *
+00000198                00000000 00000FF8    225 @CODE    CSECT
+                                             226 *
+                                             227 *
+                                             228 *
+                                             229 * ....... start of thrd_is_current
+                                             230 thrd_is_current ALIAS X'A38899846D89A26D83A499998595A3'
+00000198                                     231 @LNAME710 DS   0H
+00000198 0000000F                            232          DC    X'0000000F'
+0000019C A38899846D89A26D                    233          DC    C'thrd_is_current'
+000001AB 00                                  234          DC    X'00'
+                                             235 thrd_is_current DCCPRLG CINDEX=710,BASER=12,FRAME=168,ENTRY=YES,ARCH=ZA*
+                                                                RCH,LNAMEADDR=@LNAME710
+                                             236          macro
+                                             237          dccextrn &m
+                                             238          gblc    &$dccext(1000)
+                                             239          gbla    &$dccexti
+                                             240          lcla    &i
+                                             241 &$dccext(&$dccexti+1) setc    '&m'
+                                             242 &i       seta    1
+                                             243 .loop    aif    (&i gt &$dccexti).around
+                                             244          aif    ('&$dccext(&i)' eq '&m').getout
+                                             245 &i       seta    &i+1
+                                             246          ago     .loop
+                                             247 .around  anop
+                                             248 &$dccexti seta &$dccexti+1
+                                             249          extrn  &m
+                                             250 .getout  anop
+                                             251          mend
+000001B0                                     252+$eye0008    ds    0d                                                    02-DCCCA
+000001B0 C4C3C3                              253+         dc cl3'DCC'                                                    02-DCCCA
+000001B3 01                                  254+         dc xl1'01' format one                                          02-DCCCA
+000001B4 00000000                            255+         dc a(0)                                                        02-DCCCA
+000001B8 0000000000000222                    256+         dc ad(@PER_710)                                                02-DCCCA
+                                                                                                                           Page    9 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+000001C0 00000000000000A8                    257+         dc ad(168)                                                     02-DCCCA
+000001C8 0000000000000000                    258+         dc ad(0)                                                       02-DCCCA
+000001D0 0000000000001000                    259+         dc ad(4096)                                                    02-DCCCA
+000001D8 20                                  260+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+000001D9 03                                  261+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+000001DA 03                                  262+         dc al1(3)                                                      02-DCCCA
+000001DB 08                                  263+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+000001DC 00                                  264+         dc bl.8'00000000'                                              02-DCCCA
+000001DD 000000                              265+         dc al3(0)                                                      02-DCCCA
+000001E0 0000000000000198                    266+         dc ad(@LNAME710)                                               02-DCCCA
+000001E8                                     267+         ds 0d                                                          02-DCCCA
+000001E8 00000000000001B0                    268+         dc ad($eye0008)                                                02-DCCCA
+000001F0 0000000000000000                    269+         dc ad(0)                                                       02-DCCCA
+000001F8                                     270+         ds    0d                                                       01-DCCPR
+                                             271+         entry thrd_is_current                                          01-DCCPR
+000001F8                                     272+thrd_is_current ds 0d                                                   01-DCCPR
+000001F8                                     273+@REGION_710_1 ds 0h                                                     01-DCCPR
+000001F8 EBEC D008 0024          00000008    274+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+000001FE E3E0 D088 0004          00000088    275+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
+00000204 E3C0 D090 0004          00000090    276+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
+0000020A B904 002E                           277+         lgr   2,14                copy addr of our savearea            01-DCCPR
+0000020E E3B0 C018 0004          00000018    278+         lg    11,24(0,12)         get dvt address                      01-DCCPR
+00000214 A7EB 00A8               000000A8    279+         aghi  14,168              increase by frame size               01-DCCPR
+00000218 E3E0 C020 0021          00000020    280+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
+0000021E 4720 B020               00000020    281+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
+00000222                                     282+@PER_710 ds    0h                                                       01-DCCPR
+00000222 EBDE 2080 0024          00000080    283+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
+00000228 E3C0 2090 0024          00000090    284+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
+0000022E B904 00D2                           285+         lgr   13,2                set real frame pointer               01-DCCPR
+00000232 B904 00CF                           286+         lgr   12,15               set base reg                         01-DCCPR
+                        000001F8             287+         using @REGION_710_1,12                                         01-DCCPR
+00000236 B904 0021                           288          LGR   2,1         ; ptr to parm area
+                                             289 * ******* End of Prologue
+                                             290 * *
+                                             291 * ***
+                                             292 * ***
+                                             293 * ***
+                                             294 * ***           return (pthread_self() == thr);
+0000023A E3F0 C068 0004          00000260    295          LG    15,@lit_710_3 ; pthread_self
+00000240                                     296 @@gen_label2 DS    0H
+00000240 05EF                                297          BALR  14,15
+00000242                                     298 @@gen_label3 DS    0H
+00000242 E310 2000 0004          00000000    299          LG    1,0(0,2)    ; thr
+00000248 B920 00F1                           300          CGR   15,1
+0000024C 4770 C070               00000268    301          BNE   @@gen_label4
+00000250 A7F8 0001               00000001    302          LHI   15,1
+00000254 47F0 C074               0000026C    303          B     @@gen_label5
+00000258                                     304          DS    0D
+00000258 000000A8                            305 @FRAMESIZE_710 DC F'168'
+0000025C 00000000
+00000260 0000000000000000                    306 @lit_710_3 DC  AD(pthread_self)
+00000268                                     307 @@gen_label4 DS 0H
+                                                                                                                           Page   10 
+  Active Usings: @REGION_710_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000268 A7F8 0000               00000000    308          LHI   15,0
+0000026C                                     309 @@gen_label5 DS 0H
+0000026C B914 00FF                           310          LGFR  15,15
+                                             311 * ***
+                                             312 * ***   }
+                                             313 * * **** Start of Epilogue
+                                             314          DCCEPIL
+00000270                                     315+         ds 0h                                                          01-DCCEP
+                                             316+* Epilog
+00000270 D707 D088 D088 00000088 00000088    317+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
+00000276 E3D0 D080 0004          00000080    318+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
+0000027C E3C0 D090 0004          00000090    319+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
+00000282 E3B0 C018 0004          00000018    320+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
+00000288 E3C0 B010 0021          00000010    321+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
+0000028E E3E0 D008 0004          00000008    322+         lg  14,8(0,13)          load up return address                 01-DCCEP
+00000294 EB1C D020 0004          00000020    323+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
+0000029A 078E                                324+         bcr 8,14                if same dsab, just return              01-DCCEP
+0000029C E3F0 D010 0024          00000010    325+         stg 15,16(0,13)         save return code                       01-DCCEP
+000002A2 E300 D018 0024          00000018    326+         stg 0,24(0,13)          save more return code                  01-DCCEP
+000002A8 E3F0 D090 0004          00000090    327+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
+000002AE E3F0 F018 0004          00000018    328+         lg  15,24(0,15)         load dvt address                       01-DCCEP
+000002B4 47F0 F040               00000040    329+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
+                                             330+* End of Epilog
+                                             331 * * **** End of Epilogue
+                                             332          DROP  12
+                                             333 *
+                                             334 *   DSECT for automatic variables in "thrd_is_current"
+                                             335 *      (FUNCTION #710)
+                                             336 *
+00000000                00000000 000000A8    337 @AUTO#thrd_is_current DSECT
+00000000                                     338          DS    XL168
+                                             339 *
+000002B8                00000000 00000FF8    340 @CODE    CSECT
+                                             341 *
+                                             342 *
+                                             343 *
+                                             344 * ....... start of cnd_timedwait_ms
+                                             345 cnd_timedwait_ms ALIAS X'8395846DA389948584A68189A36D94A2'
+000002B8                                     346 @LNAME711 DS   0H
+000002B8 00000010                            347          DC    X'00000010'
+000002BC 8395846DA3899485                    348          DC    C'cnd_timedwait_ms'
+000002CC 00                                  349          DC    X'00'
+                                             350 cnd_timedwait_ms DCCPRLG CINDEX=711,BASER=12,FRAME=224,ENTRY=YES,ARCH=Z*
+                                                                ARCH,LNAMEADDR=@LNAME711
+                                             351          macro
+                                             352          dccextrn &m
+                                             353          gblc    &$dccext(1000)
+                                             354          gbla    &$dccexti
+                                             355          lcla    &i
+                                             356 &$dccext(&$dccexti+1) setc    '&m'
+                                             357 &i       seta    1
+                                             358 .loop    aif    (&i gt &$dccexti).around
+                                                                                                                           Page   11 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+                                             359          aif    ('&$dccext(&i)' eq '&m').getout
+                                             360 &i       seta    &i+1
+                                             361          ago     .loop
+                                             362 .around  anop
+                                             363 &$dccexti seta &$dccexti+1
+                                             364          extrn  &m
+                                             365 .getout  anop
+                                             366          mend
+000002D0                                     367+$eye0011    ds    0d                                                    02-DCCCA
+000002D0 C4C3C3                              368+         dc cl3'DCC'                                                    02-DCCCA
+000002D3 01                                  369+         dc xl1'01' format one                                          02-DCCCA
+000002D4 00000000                            370+         dc a(0)                                                        02-DCCCA
+000002D8 0000000000000342                    371+         dc ad(@PER_711)                                                02-DCCCA
+000002E0 00000000000000E0                    372+         dc ad(224)                                                     02-DCCCA
+000002E8 0000000000000000                    373+         dc ad(0)                                                       02-DCCCA
+000002F0 0000000000001000                    374+         dc ad(4096)                                                    02-DCCCA
+000002F8 20                                  375+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+000002F9 03                                  376+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+000002FA 03                                  377+         dc al1(3)                                                      02-DCCCA
+000002FB 08                                  378+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+000002FC 00                                  379+         dc bl.8'00000000'                                              02-DCCCA
+000002FD 000000                              380+         dc al3(0)                                                      02-DCCCA
+00000300 00000000000002B8                    381+         dc ad(@LNAME711)                                               02-DCCCA
+00000308                                     382+         ds 0d                                                          02-DCCCA
+00000308 00000000000002D0                    383+         dc ad($eye0011)                                                02-DCCCA
+00000310 0000000000000000                    384+         dc ad(0)                                                       02-DCCCA
+00000318                                     385+         ds    0d                                                       01-DCCPR
+                                             386+         entry cnd_timedwait_ms                                         01-DCCPR
+00000318                                     387+cnd_timedwait_ms ds 0d                                                  01-DCCPR
+00000318                                     388+@REGION_711_1 ds 0h                                                     01-DCCPR
+00000318 EBEC D008 0024          00000008    389+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+0000031E E3E0 D088 0004          00000088    390+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
+00000324 E3C0 D090 0004          00000090    391+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
+0000032A B904 002E                           392+         lgr   2,14                copy addr of our savearea            01-DCCPR
+0000032E E3B0 C018 0004          00000018    393+         lg    11,24(0,12)         get dvt address                      01-DCCPR
+00000334 A7EB 00E0               000000E0    394+         aghi  14,224              increase by frame size               01-DCCPR
+00000338 E3E0 C020 0021          00000020    395+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
+0000033E 4720 B020               00000020    396+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
+00000342                                     397+@PER_711 ds    0h                                                       01-DCCPR
+00000342 EBDE 2080 0024          00000080    398+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
+00000348 E3C0 2090 0024          00000090    399+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
+0000034E B904 00D2                           400+         lgr   13,2                set real frame pointer               01-DCCPR
+00000352 B904 00CF                           401+         lgr   12,15               set base reg                         01-DCCPR
+                        00000318             402+         using @REGION_711_1,12                                         01-DCCPR
+00000356 B904 0031                           403          LGR   3,1         ; ptr to parm area
+                                             404 * ******* End of Prologue
+                                             405 * *
+                                             406 * ***           if (timeout_ms == -1 )
+0000035A 5820 3014               00000014    407          L     2,20(0,3)   ; timeout_ms
+0000035E A72E FFFF               0000FFFF    408          CHI   2,-1
+00000362 4770 C0A8               000003C0    409          BNE   @L65
+                                             410 * ***                   return cnd_wait(cnd, mtx);
+                                                                                                                           Page   12 
+  Active Usings: @REGION_711_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000366 E3F0 3000 0004          00000000    411          LG    15,0(0,3)   ; cnd
+0000036C E3F0 D0C8 0024          000000C8    412          STG   15,200(0,13)
+00000372 E3F0 3008 0004          00000008    413          LG    15,8(0,3)   ; mtx
+00000378 E3F0 D0D0 0024          000000D0    414          STG   15,208(0,13)
+0000037E 4110 D0C8               000000C8    415          LA    1,200(0,13)
+00000382 E3F0 C088 0004          000003A0    416          LG    15,@lit_711_5 ; cnd_wait
+00000388                                     417 @@gen_label7 DS    0H
+00000388 05EF                                418          BALR  14,15
+0000038A                                     419 @@gen_label8 DS    0H
+0000038A B914 00FF                           420          LGFR  15,15
+0000038E 47F0 C190               000004A8    421          B     @ret_lab_711
+00000398                                     422          DS    0D
+00000398 000000E0                            423 @FRAMESIZE_711 DC F'224'
+0000039C 00000000
+000003A0 0000000000000000                    424 @lit_711_5 DC  AD(cnd_wait)
+000003A8 0000000000000000                    425 @lit_711_6 DC  AD(gettimeofday)
+000003B0 000003E8                            426 @lit_711_9 DC  F'1000' 0x000003e8
+000003B4 10624DD3                            427 @lit_711_8 DC  F'274877907' 0x10624dd3
+000003B8 0000000000000000                    428 @lit_711_10 DC AD(cnd_timedwait)
+000003C0                                     429 @L65     DS    0H
+                                             430 * ***
+                                             431 * ***
+                                             432 * ***
+                                             433 * ***           struct timeval tv;
+                                             434 * ***           struct timespec ts;
+                                             435 * ***
+                                             436 * ***           gettimeofday(&tv, ((void *)0));
+000003C0 41F0 D0B8               000000B8    437          LA    15,184(0,13)
+000003C4 E3F0 D0C8 0024          000000C8    438          STG   15,200(0,13)
+000003CA D707 D0D0 D0D0 000000D0 000000D0    439          XC    208(8,13),208(13)
+000003D0 4110 D0C8               000000C8    440          LA    1,200(0,13)
+000003D4 E3F0 C090 0004          000003A8    441          LG    15,@lit_711_6 ; gettimeofday
+000003DA                                     442 @@gen_label9 DS    0H
+000003DA 05EF                                443          BALR  14,15
+000003DC                                     444 @@gen_label10 DS    0H
+                                             445 * ***           ts.tv_sec = tv.tv_sec;
+000003DC E3F0 D0B8 0004          000000B8    446          LG    15,184(0,13)
+000003E2 E3F0 D0A8 0024          000000A8    447          STG   15,168(0,13)
+                                             448 * ***           ts.tv_nsec = tv.tv_usec * 1000;
+000003E8 E3F0 D0C0 0004          000000C0    449          LG    15,192(0,13) ; offset of tv_usec in timeval
+000003EE A7FD 03E8               000003E8    450          MGHI  15,1000
+000003F2 E3F0 D0B0 0024          000000B0    451          STG   15,176(0,13) ; offset of tv_nsec in timespec
+                                             452 * ***
+                                             453 * ***           ts.tv_sec  += timeout_ms / 1000;
+000003F8 E3F0 D0A8 0004          000000A8    454          LG    15,168(0,13)
+000003FE 1812                                455          LR    1,2         ; /0x3e8
+00000400 1852                                456          LR    5,2         ;   .
+00000402 8810 001F               0000001F    457          SRL   1,31(0)     ;   .
+00000406 5C40 C09C               000003B4    458          M     4,@lit_711_8 ;   .
+0000040A 8A40 0006               00000006    459          SRA   4,6(0)      ;   .
+0000040E 1E41                                460          ALR   4,1         ;   .
+00000410 B918 00F4                           461          AGFR  15,4
+                                                                                                                           Page   13 
+  Active Usings: @REGION_711_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000414 E3F0 D0A8 0024          000000A8    462          STG   15,168(0,13)
+                                             463 * ***           ts.tv_nsec += (timeout_ms % 1000) * 1000000;
+0000041A E3F0 D0B0 0004          000000B0    464          LG    15,176(0,13)
+00000420 1812                                465          LR    1,2
+00000422 8810 001F               0000001F    466          SRL   1,31(0)
+00000426 1852                                467          LR    5,2
+00000428 5C40 C09C               000003B4    468          M     4,@lit_711_8
+0000042C 8A40 0006               00000006    469          SRA   4,6(0)
+00000430 1E41                                470          ALR   4,1
+00000432 1854                                471          LR    5,4
+00000434 5C40 C098               000003B0    472          M     4,@lit_711_9
+00000438 1B25                                473          SR    2,5
+0000043A C221 000F 4240                      474          MSFI  2,X'000F4240'
+00000440 B918 00F2                           475          AGFR  15,2
+00000444 E3F0 D0B0 0024          000000B0    476          STG   15,176(0,13)
+                                             477 * ***
+                                             478 * ***           if (ts.tv_nsec >= 1000000000) {
+0000044A C2FC 3B9A CA00                      479          CGFI  15,X'3B9ACA00'
+00000450 4740 C15E               00000476    480          BL    @L66
+                                             481 * ***                   ts.tv_sec++;
+00000454 E3F0 D0A8 0004          000000A8    482          LG    15,168(0,13)
+0000045A A7FB 0001               00000001    483          AGHI  15,1
+0000045E E3F0 D0A8 0024          000000A8    484          STG   15,168(0,13)
+                                             485 * ***                   ts.tv_nsec -= 1000000000;
+00000464 E3F0 D0B0 0004          000000B0    486          LG    15,176(0,13)
+0000046A C2F4 3B9A CA00                      487          SLGFI 15,X'3B9ACA00'
+00000470 E3F0 D0B0 0024          000000B0    488          STG   15,176(0,13)
+                                             489 * ***           }
+00000476                                     490 @L66     DS    0H
+                                             491 * ***
+                                             492 * ***           return cnd_timedwait(cnd, mtx, &ts);
+00000476 E3F0 3000 0004          00000000    493          LG    15,0(0,3)   ; cnd
+0000047C E3F0 D0C8 0024          000000C8    494          STG   15,200(0,13)
+00000482 E3F0 3008 0004          00000008    495          LG    15,8(0,3)   ; mtx
+00000488 E3F0 D0D0 0024          000000D0    496          STG   15,208(0,13)
+0000048E 41F0 D0A8               000000A8    497          LA    15,168(0,13)
+00000492 E3F0 D0D8 0024          000000D8    498          STG   15,216(0,13)
+00000498 4110 D0C8               000000C8    499          LA    1,200(0,13)
+0000049C E3F0 C0A0 0004          000003B8    500          LG    15,@lit_711_10 ; cnd_timedwait
+000004A2                                     501 @@gen_label12 DS    0H
+000004A2 05EF                                502          BALR  14,15
+000004A4                                     503 @@gen_label13 DS    0H
+000004A4 B914 00FF                           504          LGFR  15,15
+                                             505 * ***
+                                             506 * ***   }
+000004A8                                     507 @ret_lab_711 DS 0H
+                                             508 * * **** Start of Epilogue
+                                             509          DCCEPIL
+000004A8                                     510+         ds 0h                                                          01-DCCEP
+                                             511+* Epilog
+000004A8 D707 D088 D088 00000088 00000088    512+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
+000004AE E3D0 D080 0004          00000080    513+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
+                                                                                                                           Page   14 
+  Active Usings: @REGION_711_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+000004B4 E3C0 D090 0004          00000090    514+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
+000004BA E3B0 C018 0004          00000018    515+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
+000004C0 E3C0 B010 0021          00000010    516+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
+000004C6 E3E0 D008 0004          00000008    517+         lg  14,8(0,13)          load up return address                 01-DCCEP
+000004CC EB1C D020 0004          00000020    518+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
+000004D2 078E                                519+         bcr 8,14                if same dsab, just return              01-DCCEP
+000004D4 E3F0 D010 0024          00000010    520+         stg 15,16(0,13)         save return code                       01-DCCEP
+000004DA E300 D018 0024          00000018    521+         stg 0,24(0,13)          save more return code                  01-DCCEP
+000004E0 E3F0 D090 0004          00000090    522+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
+000004E6 E3F0 F018 0004          00000018    523+         lg  15,24(0,15)         load dvt address                       01-DCCEP
+000004EC 47F0 F040               00000040    524+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
+                                             525+* End of Epilog
+                                             526 * * **** End of Epilogue
+                                             527          DROP  12
+                                             528 *
+                                             529 *   DSECT for automatic variables in "cnd_timedwait_ms"
+                                             530 *      (FUNCTION #711)
+                                             531 *
+00000000                00000000 000000C8    532 @AUTO#cnd_timedwait_ms DSECT
+00000000                                     533          DS    XL168
+000000A8                                     534 cnd_timedwait_ms#ts#0 DS 16XL1 ; ts
+000000B8                                     535 cnd_timedwait_ms#tv#0 DS 16XL1 ; tv
+                                             536 *
+000004F0                00000000 00000FF8    537 @CODE    CSECT
+                                             538 *
+                                             539 *
+                                             540 *
+                                             541 * ....... start of cnd_timedwait_msp
+                                             542 cnd_timedwait_msp ALIAS X'8395846DA389948584A68189A36D94A297'
+000004F0                                     543 @LNAME712 DS   0H
+000004F0 00000011                            544          DC    X'00000011'
+000004F4 8395846DA3899485                    545          DC    C'cnd_timedwait_msp'
+00000505 00                                  546          DC    X'00'
+                                             547 cnd_timedwait_msp DCCPRLG CINDEX=712,BASER=12,FRAME=200,ENTRY=YES,ARCH=*
+                                                                ZARCH,LNAMEADDR=@LNAME712
+                                             548          macro
+                                             549          dccextrn &m
+                                             550          gblc    &$dccext(1000)
+                                             551          gbla    &$dccexti
+                                             552          lcla    &i
+                                             553 &$dccext(&$dccexti+1) setc    '&m'
+                                             554 &i       seta    1
+                                             555 .loop    aif    (&i gt &$dccexti).around
+                                             556          aif    ('&$dccext(&i)' eq '&m').getout
+                                             557 &i       seta    &i+1
+                                             558          ago     .loop
+                                             559 .around  anop
+                                             560 &$dccexti seta &$dccexti+1
+                                             561          extrn  &m
+                                             562 .getout  anop
+                                             563          mend
+00000508                                     564+$eye0014    ds    0d                                                    02-DCCCA
+                                                                                                                           Page   15 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000508 C4C3C3                              565+         dc cl3'DCC'                                                    02-DCCCA
+0000050B 01                                  566+         dc xl1'01' format one                                          02-DCCCA
+0000050C 00000000                            567+         dc a(0)                                                        02-DCCCA
+00000510 000000000000057A                    568+         dc ad(@PER_712)                                                02-DCCCA
+00000518 00000000000000C8                    569+         dc ad(200)                                                     02-DCCCA
+00000520 0000000000000000                    570+         dc ad(0)                                                       02-DCCCA
+00000528 0000000000001000                    571+         dc ad(4096)                                                    02-DCCCA
+00000530 20                                  572+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+00000531 03                                  573+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+00000532 03                                  574+         dc al1(3)                                                      02-DCCCA
+00000533 08                                  575+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+00000534 00                                  576+         dc bl.8'00000000'                                              02-DCCCA
+00000535 000000                              577+         dc al3(0)                                                      02-DCCCA
+00000538 00000000000004F0                    578+         dc ad(@LNAME712)                                               02-DCCCA
+00000540                                     579+         ds 0d                                                          02-DCCCA
+00000540 0000000000000508                    580+         dc ad($eye0014)                                                02-DCCCA
+00000548 0000000000000000                    581+         dc ad(0)                                                       02-DCCCA
+00000550                                     582+         ds    0d                                                       01-DCCPR
+                                             583+         entry cnd_timedwait_msp                                        01-DCCPR
+00000550                                     584+cnd_timedwait_msp ds 0d                                                 01-DCCPR
+00000550                                     585+@REGION_712_1 ds 0h                                                     01-DCCPR
+00000550 EBEC D008 0024          00000008    586+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+00000556 E3E0 D088 0004          00000088    587+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
+0000055C E3C0 D090 0004          00000090    588+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
+00000562 B904 002E                           589+         lgr   2,14                copy addr of our savearea            01-DCCPR
+00000566 E3B0 C018 0004          00000018    590+         lg    11,24(0,12)         get dvt address                      01-DCCPR
+0000056C A7EB 00C8               000000C8    591+         aghi  14,200              increase by frame size               01-DCCPR
+00000570 E3E0 C020 0021          00000020    592+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
+00000576 4720 B020               00000020    593+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
+0000057A                                     594+@PER_712 ds    0h                                                       01-DCCPR
+0000057A EBDE 2080 0024          00000080    595+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
+00000580 E3C0 2090 0024          00000090    596+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
+00000586 B904 00D2                           597+         lgr   13,2                set real frame pointer               01-DCCPR
+0000058A B904 00CF                           598+         lgr   12,15               set base reg                         01-DCCPR
+                        00000550             599+         using @REGION_712_1,12                                         01-DCCPR
+0000058E B904 0031                           600          LGR   3,1         ; ptr to parm area
+                                             601 * ******* End of Prologue
+                                             602 * *
+                                             603 * ***           rd_ts_t pre = rd_clock();
+00000592 E340 C110 0004          00000660    604          LG    4,@lit_712_12 ; rd_clock
+00000598 B904 00F4                           605          LGR   15,4
+0000059C                                     606 @@gen_label14 DS    0H
+0000059C 05EF                                607          BALR  14,15
+0000059E                                     608 @@gen_label15 DS    0H
+0000059E B904 002F                           609          LGR   2,15
+                                             610 * ***           int r;
+                                             611 * ***           r = cnd_timedwait_ms(cnd, mtx, *timeout_msp);
+000005A2 E3F0 3000 0004          00000000    612          LG    15,0(0,3)   ; cnd
+000005A8 E3F0 D0B0 0024          000000B0    613          STG   15,176(0,13)
+000005AE E3F0 3008 0004          00000008    614          LG    15,8(0,3)   ; mtx
+000005B4 E3F0 D0B8 0024          000000B8    615          STG   15,184(0,13)
+000005BA E350 3010 0004          00000010    616          LG    5,16(0,3)   ; timeout_msp
+                                                                                                                           Page   16 
+  Active Usings: @REGION_712_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+000005C0 E3F0 5000 0014          00000000    617          LGF   15,0(0,5)
+000005C6 E3F0 D0C0 0024          000000C0    618          STG   15,192(0,13)
+000005CC 4110 D0B0               000000B0    619          LA    1,176(0,13)
+000005D0 E3F0 C118 0004          00000668    620          LG    15,@lit_712_13 ; cnd_timedwait_ms
+000005D6                                     621 @@gen_label16 DS    0H
+000005D6 05EF                                622          BALR  14,15
+000005D8                                     623 @@gen_label17 DS    0H
+000005D8 183F                                624          LR    3,15
+                                             625 * ***           if (r != 4) {
+000005DA A73E 0004               00000004    626          CHI   3,4
+000005DE 4780 C0B6               00000606    627          BE    @L67
+                                             628 * ***
+                                             629 * ***                   (*timeout_msp) -= (int)(rd_clock()-pre) / 1000\
+                                             630 * ;
+000005E2 5860 5000               00000000    631          L     6,0(0,5)
+000005E6 B904 00F4                           632          LGR   15,4
+000005EA                                     633 @@gen_label19 DS    0H
+000005EA 05EF                                634          BALR  14,15
+000005EC                                     635 @@gen_label20 DS    0H
+000005EC B909 00F2                           636          SGR   15,2
+000005F0 189F                                637          LR    9,15        ;   .
+000005F2 88F0 001F               0000001F    638          SRL   15,31(0)    ;   .
+000005F6 5C80 C120               00000670    639          M     8,@lit_712_15 ;   .
+000005FA 8A80 0006               00000006    640          SRA   8,6(0)      ;   .
+000005FE 1E8F                                641          ALR   8,15        ;   .
+00000600 1B68                                642          SR    6,8
+00000602 5060 5000               00000000    643          ST    6,0(0,5)
+                                             644 * ***           }
+00000606                                     645 @L67     DS    0H
+                                             646 * ***           return r;
+00000606 B914 00F3                           647          LGFR  15,3
+                                             648 * ***   }
+                                             649 * * **** Start of Epilogue
+                                             650          DCCEPIL
+0000060A                                     651+         ds 0h                                                          01-DCCEP
+                                             652+* Epilog
+0000060A D707 D088 D088 00000088 00000088    653+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
+00000610 E3D0 D080 0004          00000080    654+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
+00000616 E3C0 D090 0004          00000090    655+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
+0000061C E3B0 C018 0004          00000018    656+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
+00000622 E3C0 B010 0021          00000010    657+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
+00000628 E3E0 D008 0004          00000008    658+         lg  14,8(0,13)          load up return address                 01-DCCEP
+0000062E EB1C D020 0004          00000020    659+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
+00000634 078E                                660+         bcr 8,14                if same dsab, just return              01-DCCEP
+00000636 E3F0 D010 0024          00000010    661+         stg 15,16(0,13)         save return code                       01-DCCEP
+0000063C E300 D018 0024          00000018    662+         stg 0,24(0,13)          save more return code                  01-DCCEP
+00000642 E3F0 D090 0004          00000090    663+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
+00000648 E3F0 F018 0004          00000018    664+         lg  15,24(0,15)         load dvt address                       01-DCCEP
+0000064E 47F0 F040               00000040    665+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
+                                             666+* End of Epilog
+                                             667 * * **** End of Epilogue
+00000658                                     668          DS    0D
+                                                                                                                           Page   17 
+  Active Usings: @REGION_712_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000658 000000C8                            669 @FRAMESIZE_712 DC F'200'
+0000065C 00000000
+00000660 0000000000000058                    670 @lit_712_12 DC AD(rd_clock)
+00000668 0000000000000318                    671 @lit_712_13 DC AD(cnd_timedwait_ms)
+00000670 10624DD3                            672 @lit_712_15 DC F'274877907' 0x10624dd3
+                                             673          DROP  12
+                                             674 *
+                                             675 *   DSECT for automatic variables in "cnd_timedwait_msp"
+                                             676 *      (FUNCTION #712)
+                                             677 *
+00000000                00000000 000000B0    678 @AUTO#cnd_timedwait_msp DSECT
+00000000                                     679          DS    XL168
+000000A8                                     680 cnd_timedwait_msp#r#0 DS 1F ; r
+000000AC                000000AC 000000A8    681          ORG   @AUTO#cnd_timedwait_msp+168
+000000A8                                     682 cnd_timedwait_msp#pre#0 DS 8XL1 ; pre
+                                             683 *
+00000674                00000000 00000FF8    684 @CODE    CSECT
+                                             685 *
+                                             686 *
+                                             687 *
+                                             688 * ....... start of cnd_timedwait_abs
+                                             689 cnd_timedwait_abs ALIAS X'8395846DA389948584A68189A36D8182A2'
+00000674                                     690 @LNAME713 DS   0H
+00000674 00000011                            691          DC    X'00000011'
+00000678 8395846DA3899485                    692          DC    C'cnd_timedwait_abs'
+00000689 00                                  693          DC    X'00'
+                                             694 cnd_timedwait_abs DCCPRLG CINDEX=713,BASER=12,FRAME=192,ENTRY=YES,ARCH=*
+                                                                ZARCH,LNAMEADDR=@LNAME713
+                                             695          macro
+                                             696          dccextrn &m
+                                             697          gblc    &$dccext(1000)
+                                             698          gbla    &$dccexti
+                                             699          lcla    &i
+                                             700 &$dccext(&$dccexti+1) setc    '&m'
+                                             701 &i       seta    1
+                                             702 .loop    aif    (&i gt &$dccexti).around
+                                             703          aif    ('&$dccext(&i)' eq '&m').getout
+                                             704 &i       seta    &i+1
+                                             705          ago     .loop
+                                             706 .around  anop
+                                             707 &$dccexti seta &$dccexti+1
+                                             708          extrn  &m
+                                             709 .getout  anop
+                                             710          mend
+00000690                                     711+$eye0017    ds    0d                                                    02-DCCCA
+00000690 C4C3C3                              712+         dc cl3'DCC'                                                    02-DCCCA
+00000693 01                                  713+         dc xl1'01' format one                                          02-DCCCA
+00000694 00000000                            714+         dc a(0)                                                        02-DCCCA
+00000698 0000000000000702                    715+         dc ad(@PER_713)                                                02-DCCCA
+000006A0 00000000000000C0                    716+         dc ad(192)                                                     02-DCCCA
+000006A8 0000000000000000                    717+         dc ad(0)                                                       02-DCCCA
+000006B0 0000000000001000                    718+         dc ad(4096)                                                    02-DCCCA
+                                                                                                                           Page   18 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+000006B8 20                                  719+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+000006B9 03                                  720+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+000006BA 03                                  721+         dc al1(3)                                                      02-DCCCA
+000006BB 08                                  722+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+000006BC 00                                  723+         dc bl.8'00000000'                                              02-DCCCA
+000006BD 000000                              724+         dc al3(0)                                                      02-DCCCA
+000006C0 0000000000000674                    725+         dc ad(@LNAME713)                                               02-DCCCA
+000006C8                                     726+         ds 0d                                                          02-DCCCA
+000006C8 0000000000000690                    727+         dc ad($eye0017)                                                02-DCCCA
+000006D0 0000000000000000                    728+         dc ad(0)                                                       02-DCCCA
+000006D8                                     729+         ds    0d                                                       01-DCCPR
+                                             730+         entry cnd_timedwait_abs                                        01-DCCPR
+000006D8                                     731+cnd_timedwait_abs ds 0d                                                 01-DCCPR
+000006D8                                     732+@REGION_713_1 ds 0h                                                     01-DCCPR
+000006D8 EBEC D008 0024          00000008    733+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+000006DE E3E0 D088 0004          00000088    734+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
+000006E4 E3C0 D090 0004          00000090    735+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
+000006EA B904 002E                           736+         lgr   2,14                copy addr of our savearea            01-DCCPR
+000006EE E3B0 C018 0004          00000018    737+         lg    11,24(0,12)         get dvt address                      01-DCCPR
+000006F4 A7EB 00C0               000000C0    738+         aghi  14,192              increase by frame size               01-DCCPR
+000006F8 E3E0 C020 0021          00000020    739+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
+000006FE 4720 B020               00000020    740+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
+00000702                                     741+@PER_713 ds    0h                                                       01-DCCPR
+00000702 EBDE 2080 0024          00000080    742+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
+00000708 E3C0 2090 0024          00000090    743+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
+0000070E B904 00D2                           744+         lgr   13,2                set real frame pointer               01-DCCPR
+00000712 B904 00CF                           745+         lgr   12,15               set base reg                         01-DCCPR
+                        000006D8             746+         using @REGION_713_1,12                                         01-DCCPR
+                                             747 * ******* End of Prologue
+                                             748 * *
+                                             749 * ***           if (tspec->tv_sec == -1)
+00000716 E3F0 1010 0004          00000010    750          LG    15,16(0,1)  ; tspec
+0000071C E558 F000 FFFF          00000000    751          CGHSI 0(15),-1
+00000722 4770 C098               00000770    752          BNE   @L68
+                                             753 * ***                   return cnd_wait(cnd, mtx);
+00000726 E3F0 1000 0004          00000000    754          LG    15,0(0,1)   ; cnd
+0000072C E3F0 D0A8 0024          000000A8    755          STG   15,168(0,13)
+00000732 E3F0 1008 0004          00000008    756          LG    15,8(0,1)   ; mtx
+00000738 E3F0 D0B0 0024          000000B0    757          STG   15,176(0,13)
+0000073E 4110 D0A8               000000A8    758          LA    1,168(0,13)
+00000742 E3F0 C088 0004          00000760    759          LG    15,@lit_713_17 ; cnd_wait
+00000748                                     760 @@gen_label22 DS    0H
+00000748 05EF                                761          BALR  14,15
+0000074A                                     762 @@gen_label23 DS    0H
+0000074A B914 00FF                           763          LGFR  15,15
+0000074E 47F0 C0D8               000007B0    764          B     @ret_lab_713
+00000758                                     765          DS    0D
+00000758 000000C0                            766 @FRAMESIZE_713 DC F'192'
+0000075C 00000000
+00000760 0000000000000000                    767 @lit_713_17 DC AD(cnd_wait)
+00000768 0000000000000000                    768 @lit_713_19 DC AD(cnd_timedwait)
+                                             769 * ***           else if (tspec->tv_sec == 0)
+                                                                                                                           Page   19 
+  Active Usings: @REGION_713_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000770                                     770 @L68     DS    0H
+00000770 E558 F000 0000          00000000    771          CGHSI 0(15),0
+00000776 4770 C0AA               00000782    772          BNE   @L69
+                                             773 * ***                   return 4;
+0000077A A7F9 0004               00000004    774          LGHI  15,4        ; 4
+0000077E 47F0 C0D8               000007B0    775          B     @ret_lab_713
+                                             776 * ***
+                                             777 * ***           return cnd_timedwait(cnd, mtx, tspec);
+00000782                                     778 @L69     DS    0H
+00000782 E320 1000 0004          00000000    779          LG    2,0(0,1)    ; cnd
+00000788 E320 D0A8 0024          000000A8    780          STG   2,168(0,13)
+0000078E E310 1008 0004          00000008    781          LG    1,8(0,1)    ; mtx
+00000794 E310 D0B0 0024          000000B0    782          STG   1,176(0,13)
+0000079A E3F0 D0B8 0024          000000B8    783          STG   15,184(0,13)
+000007A0 4110 D0A8               000000A8    784          LA    1,168(0,13)
+000007A4 E3F0 C090 0004          00000768    785          LG    15,@lit_713_19 ; cnd_timedwait
+000007AA                                     786 @@gen_label25 DS    0H
+000007AA 05EF                                787          BALR  14,15
+000007AC                                     788 @@gen_label26 DS    0H
+000007AC B914 00FF                           789          LGFR  15,15
+                                             790 * ***   }
+000007B0                                     791 @ret_lab_713 DS 0H
+                                             792 * * **** Start of Epilogue
+                                             793          DCCEPIL
+000007B0                                     794+         ds 0h                                                          01-DCCEP
+                                             795+* Epilog
+000007B0 D707 D088 D088 00000088 00000088    796+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
+000007B6 E3D0 D080 0004          00000080    797+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
+000007BC E3C0 D090 0004          00000090    798+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
+000007C2 E3B0 C018 0004          00000018    799+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
+000007C8 E3C0 B010 0021          00000010    800+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
+000007CE E3E0 D008 0004          00000008    801+         lg  14,8(0,13)          load up return address                 01-DCCEP
+000007D4 EB1C D020 0004          00000020    802+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
+000007DA 078E                                803+         bcr 8,14                if same dsab, just return              01-DCCEP
+000007DC E3F0 D010 0024          00000010    804+         stg 15,16(0,13)         save return code                       01-DCCEP
+000007E2 E300 D018 0024          00000018    805+         stg 0,24(0,13)          save more return code                  01-DCCEP
+000007E8 E3F0 D090 0004          00000090    806+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
+000007EE E3F0 F018 0004          00000018    807+         lg  15,24(0,15)         load dvt address                       01-DCCEP
+000007F4 47F0 F040               00000040    808+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
+                                             809+* End of Epilog
+                                             810 * * **** End of Epilogue
+                                             811          DROP  12
+                                             812 *
+                                             813 *   DSECT for automatic variables in "cnd_timedwait_abs"
+                                             814 *      (FUNCTION #713)
+                                             815 *
+00000000                00000000 000000A8    816 @AUTO#cnd_timedwait_abs DSECT
+00000000                                     817          DS    XL168
+                                             818 *
+000007F8                00000000 00000FF8    819 @CODE    CSECT
+                                             820 *
+                                             821 *
+                                                                                                                           Page   20 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+                                             822 *
+                                             823 * ....... start of rwlock_init
+                                             824 rwlock_init ALIAS X'99A6939683926D899589A3'
+000007F8                                     825 @LNAME714 DS   0H
+000007F8 0000000B                            826          DC    X'0000000B'
+000007FC 99A6939683926D89                    827          DC    C'rwlock_init'
+00000807 00                                  828          DC    X'00'
+                                             829 rwlock_init DCCPRLG CINDEX=714,BASER=12,FRAME=192,ENTRY=YES,ARCH=ZARCH,*
+                                                                LNAMEADDR=@LNAME714
+                                             830          macro
+                                             831          dccextrn &m
+                                             832          gblc    &$dccext(1000)
+                                             833          gbla    &$dccexti
+                                             834          lcla    &i
+                                             835 &$dccext(&$dccexti+1) setc    '&m'
+                                             836 &i       seta    1
+                                             837 .loop    aif    (&i gt &$dccexti).around
+                                             838          aif    ('&$dccext(&i)' eq '&m').getout
+                                             839 &i       seta    &i+1
+                                             840          ago     .loop
+                                             841 .around  anop
+                                             842 &$dccexti seta &$dccexti+1
+                                             843          extrn  &m
+                                             844 .getout  anop
+                                             845          mend
+00000808                                     846+$eye0020    ds    0d                                                    02-DCCCA
+00000808 C4C3C3                              847+         dc cl3'DCC'                                                    02-DCCCA
+0000080B 01                                  848+         dc xl1'01' format one                                          02-DCCCA
+0000080C 00000000                            849+         dc a(0)                                                        02-DCCCA
+00000810 000000000000087A                    850+         dc ad(@PER_714)                                                02-DCCCA
+00000818 00000000000000C0                    851+         dc ad(192)                                                     02-DCCCA
+00000820 0000000000000000                    852+         dc ad(0)                                                       02-DCCCA
+00000828 0000000000001000                    853+         dc ad(4096)                                                    02-DCCCA
+00000830 20                                  854+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+00000831 03                                  855+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+00000832 03                                  856+         dc al1(3)                                                      02-DCCCA
+00000833 08                                  857+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+00000834 00                                  858+         dc bl.8'00000000'                                              02-DCCCA
+00000835 000000                              859+         dc al3(0)                                                      02-DCCCA
+00000838 00000000000007F8                    860+         dc ad(@LNAME714)                                               02-DCCCA
+00000840                                     861+         ds 0d                                                          02-DCCCA
+00000840 0000000000000808                    862+         dc ad($eye0020)                                                02-DCCCA
+00000848 0000000000000000                    863+         dc ad(0)                                                       02-DCCCA
+00000850                                     864+         ds    0d                                                       01-DCCPR
+                                             865+         entry rwlock_init                                              01-DCCPR
+00000850                                     866+rwlock_init ds 0d                                                       01-DCCPR
+00000850                                     867+@REGION_714_1 ds 0h                                                     01-DCCPR
+00000850 EBEC D008 0024          00000008    868+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+00000856 E3E0 D088 0004          00000088    869+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
+0000085C E3C0 D090 0004          00000090    870+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
+00000862 B904 002E                           871+         lgr   2,14                copy addr of our savearea            01-DCCPR
+00000866 E3B0 C018 0004          00000018    872+         lg    11,24(0,12)         get dvt address                      01-DCCPR
+                                                                                                                           Page   21 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+0000086C A7EB 00C0               000000C0    873+         aghi  14,192              increase by frame size               01-DCCPR
+00000870 E3E0 C020 0021          00000020    874+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
+00000876 4720 B020               00000020    875+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
+0000087A                                     876+@PER_714 ds    0h                                                       01-DCCPR
+0000087A EBDE 2080 0024          00000080    877+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
+00000880 E3C0 2090 0024          00000090    878+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
+00000886 B904 00D2                           879+         lgr   13,2                set real frame pointer               01-DCCPR
+0000088A B904 00CF                           880+         lgr   12,15               set base reg                         01-DCCPR
+                        00000850             881+         using @REGION_714_1,12                                         01-DCCPR
+                                             882 * ******* End of Prologue
+                                             883 * *
+                                             884 * ***           int r = pthread_rwlock_init(rwl, ((void *)0));
+0000088E E3F0 1000 0004          00000000    885          LG    15,0(0,1)   ; rwl
+00000894 E3F0 D0B0 0024          000000B0    886          STG   15,176(0,13)
+0000089A D707 D0B8 D0B8 000000B8 000000B8    887          XC    184(8,13),184(13)
+000008A0 4110 D0B0               000000B0    888          LA    1,176(0,13)
+000008A4 E3F0 C080 0004          000008D0    889          LG    15,@lit_714_21 ; pthread_rwlock_init
+000008AA                                     890 @@gen_label27 DS    0H
+000008AA 05EF                                891          BALR  14,15
+000008AC                                     892 @@gen_label28 DS    0H
+000008AC 122F                                893          LTR   2,15
+                                             894 * ***           if (r) {
+000008AE 4780 C090               000008E0    895          BZ    @L71
+                                             896 * ***                   (* __error()) = r;
+000008B2 E3F0 C088 0004          000008D8    897          LG    15,@lit_714_22 ; __error
+000008B8                                     898 @@gen_label30 DS    0H
+000008B8 05EF                                899          BALR  14,15
+000008BA                                     900 @@gen_label31 DS    0H
+000008BA 5020 F000               00000000    901          ST    2,0(0,15)
+                                             902 * ***                   return 2;
+000008BE A7F9 0002               00000002    903          LGHI  15,2        ; 2
+000008C2 47F0 C094               000008E4    904          B     @ret_lab_714
+000008C8                                     905          DS    0D
+000008C8 000000C0                            906 @FRAMESIZE_714 DC F'192'
+000008CC 00000000
+000008D0 0000000000000000                    907 @lit_714_21 DC AD(pthread_rwlock_init)
+000008D8 0000000000000000                    908 @lit_714_22 DC AD(__error)
+                                             909 * ***           }
+000008E0                                     910 @L71     DS    0H
+                                             911 * ***           return 0;
+000008E0 A7F9 0000               00000000    912          LGHI  15,0        ; 0
+                                             913 * ***   }
+000008E4                                     914 @ret_lab_714 DS 0H
+                                             915 * * **** Start of Epilogue
+                                             916          DCCEPIL
+000008E4                                     917+         ds 0h                                                          01-DCCEP
+                                             918+* Epilog
+000008E4 D707 D088 D088 00000088 00000088    919+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
+000008EA E3D0 D080 0004          00000080    920+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
+000008F0 E3C0 D090 0004          00000090    921+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
+000008F6 E3B0 C018 0004          00000018    922+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
+000008FC E3C0 B010 0021          00000010    923+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
+                                                                                                                           Page   22 
+  Active Usings: @REGION_714_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000902 E3E0 D008 0004          00000008    924+         lg  14,8(0,13)          load up return address                 01-DCCEP
+00000908 EB1C D020 0004          00000020    925+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
+0000090E 078E                                926+         bcr 8,14                if same dsab, just return              01-DCCEP
+00000910 E3F0 D010 0024          00000010    927+         stg 15,16(0,13)         save return code                       01-DCCEP
+00000916 E300 D018 0024          00000018    928+         stg 0,24(0,13)          save more return code                  01-DCCEP
+0000091C E3F0 D090 0004          00000090    929+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
+00000922 E3F0 F018 0004          00000018    930+         lg  15,24(0,15)         load dvt address                       01-DCCEP
+00000928 47F0 F040               00000040    931+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
+                                             932+* End of Epilog
+                                             933 * * **** End of Epilogue
+                                             934          DROP  12
+                                             935 *
+                                             936 *   DSECT for automatic variables in "rwlock_init"
+                                             937 *      (FUNCTION #714)
+                                             938 *
+00000000                00000000 000000AC    939 @AUTO#rwlock_init DSECT
+00000000                                     940          DS    XL168
+000000A8                                     941 rwlock_init#r#0 DS 1F      ; r
+                                             942 *
+0000092C                00000000 00000FF8    943 @CODE    CSECT
+                                             944 *
+                                             945 *
+                                             946 *
+                                             947 * ....... start of rwlock_destroy
+                                             948 rwlock_destroy ALIAS X'99A6939683926D8485A2A39996A8'
+0000092C                                     949 @LNAME715 DS   0H
+0000092C 0000000E                            950          DC    X'0000000E'
+00000930 99A6939683926D84                    951          DC    C'rwlock_destroy'
+0000093E 00                                  952          DC    X'00'
+                                             953 rwlock_destroy DCCPRLG CINDEX=715,BASER=12,FRAME=184,ENTRY=YES,ARCH=ZAR*
+                                                                CH,LNAMEADDR=@LNAME715
+                                             954          macro
+                                             955          dccextrn &m
+                                             956          gblc    &$dccext(1000)
+                                             957          gbla    &$dccexti
+                                             958          lcla    &i
+                                             959 &$dccext(&$dccexti+1) setc    '&m'
+                                             960 &i       seta    1
+                                             961 .loop    aif    (&i gt &$dccexti).around
+                                             962          aif    ('&$dccext(&i)' eq '&m').getout
+                                             963 &i       seta    &i+1
+                                             964          ago     .loop
+                                             965 .around  anop
+                                             966 &$dccexti seta &$dccexti+1
+                                             967          extrn  &m
+                                             968 .getout  anop
+                                             969          mend
+00000940                                     970+$eye0023    ds    0d                                                    02-DCCCA
+00000940 C4C3C3                              971+         dc cl3'DCC'                                                    02-DCCCA
+00000943 01                                  972+         dc xl1'01' format one                                          02-DCCCA
+00000944 00000000                            973+         dc a(0)                                                        02-DCCCA
+00000948 00000000000009B2                    974+         dc ad(@PER_715)                                                02-DCCCA
+                                                                                                                           Page   23 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000950 00000000000000B8                    975+         dc ad(184)                                                     02-DCCCA
+00000958 0000000000000000                    976+         dc ad(0)                                                       02-DCCCA
+00000960 0000000000001000                    977+         dc ad(4096)                                                    02-DCCCA
+00000968 20                                  978+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+00000969 03                                  979+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+0000096A 03                                  980+         dc al1(3)                                                      02-DCCCA
+0000096B 08                                  981+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+0000096C 00                                  982+         dc bl.8'00000000'                                              02-DCCCA
+0000096D 000000                              983+         dc al3(0)                                                      02-DCCCA
+00000970 000000000000092C                    984+         dc ad(@LNAME715)                                               02-DCCCA
+00000978                                     985+         ds 0d                                                          02-DCCCA
+00000978 0000000000000940                    986+         dc ad($eye0023)                                                02-DCCCA
+00000980 0000000000000000                    987+         dc ad(0)                                                       02-DCCCA
+00000988                                     988+         ds    0d                                                       01-DCCPR
+                                             989+         entry rwlock_destroy                                           01-DCCPR
+00000988                                     990+rwlock_destroy ds 0d                                                    01-DCCPR
+00000988                                     991+@REGION_715_1 ds 0h                                                     01-DCCPR
+00000988 EBEC D008 0024          00000008    992+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+0000098E E3E0 D088 0004          00000088    993+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
+00000994 E3C0 D090 0004          00000090    994+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
+0000099A B904 002E                           995+         lgr   2,14                copy addr of our savearea            01-DCCPR
+0000099E E3B0 C018 0004          00000018    996+         lg    11,24(0,12)         get dvt address                      01-DCCPR
+000009A4 A7EB 00B8               000000B8    997+         aghi  14,184              increase by frame size               01-DCCPR
+000009A8 E3E0 C020 0021          00000020    998+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
+000009AE 4720 B020               00000020    999+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
+000009B2                                    1000+@PER_715 ds    0h                                                       01-DCCPR
+000009B2 EBDE 2080 0024          00000080   1001+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
+000009B8 E3C0 2090 0024          00000090   1002+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
+000009BE B904 00D2                          1003+         lgr   13,2                set real frame pointer               01-DCCPR
+000009C2 B904 00CF                          1004+         lgr   12,15               set base reg                         01-DCCPR
+                        00000988            1005+         using @REGION_715_1,12                                         01-DCCPR
+                                            1006 * ******* End of Prologue
+                                            1007 * *
+                                            1008 * ***           int r = pthread_rwlock_destroy(rwl);
+000009C6 E3F0 1000 0004          00000000   1009          LG    15,0(0,1)   ; rwl
+000009CC E3F0 D0B0 0024          000000B0   1010          STG   15,176(0,13)
+000009D2 4110 D0B0               000000B0   1011          LA    1,176(0,13)
+000009D6 E3F0 C078 0004          00000A00   1012          LG    15,@lit_715_26 ; pthread_rwlock_destroy
+000009DC                                    1013 @@gen_label32 DS    0H
+000009DC 05EF                               1014          BALR  14,15
+000009DE                                    1015 @@gen_label33 DS    0H
+000009DE 122F                               1016          LTR   2,15
+                                            1017 * ***           if (r) {
+000009E0 4780 C088               00000A10   1018          BZ    @L72
+                                            1019 * ***                   (* __error()) = r;
+000009E4 E3F0 C080 0004          00000A08   1020          LG    15,@lit_715_27 ; __error
+000009EA                                    1021 @@gen_label35 DS    0H
+000009EA 05EF                               1022          BALR  14,15
+000009EC                                    1023 @@gen_label36 DS    0H
+000009EC 5020 F000               00000000   1024          ST    2,0(0,15)
+                                            1025 * ***                   return 2;
+000009F0 A7F9 0002               00000002   1026          LGHI  15,2        ; 2
+                                                                                                                           Page   24 
+  Active Usings: @REGION_715_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+000009F4 47F0 C08C               00000A14   1027          B     @ret_lab_715
+000009F8                                    1028          DS    0D
+000009F8 000000B8                           1029 @FRAMESIZE_715 DC F'184'
+000009FC 00000000
+00000A00 0000000000000000                   1030 @lit_715_26 DC AD(pthread_rwlock_destroy)
+00000A08 0000000000000000                   1031 @lit_715_27 DC AD(__error)
+                                            1032 * ***           }
+00000A10                                    1033 @L72     DS    0H
+                                            1034 * ***           return 0;
+00000A10 A7F9 0000               00000000   1035          LGHI  15,0        ; 0
+                                            1036 * ***   }
+00000A14                                    1037 @ret_lab_715 DS 0H
+                                            1038 * * **** Start of Epilogue
+                                            1039          DCCEPIL
+00000A14                                    1040+         ds 0h                                                          01-DCCEP
+                                            1041+* Epilog
+00000A14 D707 D088 D088 00000088 00000088   1042+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
+00000A1A E3D0 D080 0004          00000080   1043+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
+00000A20 E3C0 D090 0004          00000090   1044+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
+00000A26 E3B0 C018 0004          00000018   1045+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
+00000A2C E3C0 B010 0021          00000010   1046+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
+00000A32 E3E0 D008 0004          00000008   1047+         lg  14,8(0,13)          load up return address                 01-DCCEP
+00000A38 EB1C D020 0004          00000020   1048+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
+00000A3E 078E                               1049+         bcr 8,14                if same dsab, just return              01-DCCEP
+00000A40 E3F0 D010 0024          00000010   1050+         stg 15,16(0,13)         save return code                       01-DCCEP
+00000A46 E300 D018 0024          00000018   1051+         stg 0,24(0,13)          save more return code                  01-DCCEP
+00000A4C E3F0 D090 0004          00000090   1052+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
+00000A52 E3F0 F018 0004          00000018   1053+         lg  15,24(0,15)         load dvt address                       01-DCCEP
+00000A58 47F0 F040               00000040   1054+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
+                                            1055+* End of Epilog
+                                            1056 * * **** End of Epilogue
+                                            1057          DROP  12
+                                            1058 *
+                                            1059 *   DSECT for automatic variables in "rwlock_destroy"
+                                            1060 *      (FUNCTION #715)
+                                            1061 *
+00000000                00000000 000000AC   1062 @AUTO#rwlock_destroy DSECT
+00000000                                    1063          DS    XL168
+000000A8                                    1064 rwlock_destroy#r#0 DS 1F   ; r
+                                            1065 *
+00000A5C                00000000 00000FF8   1066 @CODE    CSECT
+                                            1067 *
+                                            1068 *
+                                            1069 *
+                                            1070 * ....... start of rwlock_rdlock
+                                            1071 rwlock_rdlock ALIAS X'99A6939683926D998493968392'
+00000A5C                                    1072 @LNAME716 DS   0H
+00000A5C 0000000D                           1073          DC    X'0000000D'
+00000A60 99A6939683926D99                   1074          DC    C'rwlock_rdlock'
+00000A6D 00                                 1075          DC    X'00'
+                                            1076 rwlock_rdlock DCCPRLG CINDEX=716,BASER=12,FRAME=208,ENTRY=YES,ARCH=ZARC*
+                                                                H,LNAMEADDR=@LNAME716
+                                                                                                                           Page   25 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+                                            1077          macro
+                                            1078          dccextrn &m
+                                            1079          gblc    &$dccext(1000)
+                                            1080          gbla    &$dccexti
+                                            1081          lcla    &i
+                                            1082 &$dccext(&$dccexti+1) setc    '&m'
+                                            1083 &i       seta    1
+                                            1084 .loop    aif    (&i gt &$dccexti).around
+                                            1085          aif    ('&$dccext(&i)' eq '&m').getout
+                                            1086 &i       seta    &i+1
+                                            1087          ago     .loop
+                                            1088 .around  anop
+                                            1089 &$dccexti seta &$dccexti+1
+                                            1090          extrn  &m
+                                            1091 .getout  anop
+                                            1092          mend
+00000A70                                    1093+$eye0026    ds    0d                                                    02-DCCCA
+00000A70 C4C3C3                             1094+         dc cl3'DCC'                                                    02-DCCCA
+00000A73 01                                 1095+         dc xl1'01' format one                                          02-DCCCA
+00000A74 00000000                           1096+         dc a(0)                                                        02-DCCCA
+00000A78 0000000000000AE2                   1097+         dc ad(@PER_716)                                                02-DCCCA
+00000A80 00000000000000D0                   1098+         dc ad(208)                                                     02-DCCCA
+00000A88 0000000000000000                   1099+         dc ad(0)                                                       02-DCCCA
+00000A90 0000000000001000                   1100+         dc ad(4096)                                                    02-DCCCA
+00000A98 20                                 1101+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+00000A99 03                                 1102+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+00000A9A 03                                 1103+         dc al1(3)                                                      02-DCCCA
+00000A9B 08                                 1104+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+00000A9C 00                                 1105+         dc bl.8'00000000'                                              02-DCCCA
+00000A9D 000000                             1106+         dc al3(0)                                                      02-DCCCA
+00000AA0 0000000000000A5C                   1107+         dc ad(@LNAME716)                                               02-DCCCA
+00000AA8                                    1108+         ds 0d                                                          02-DCCCA
+00000AA8 0000000000000A70                   1109+         dc ad($eye0026)                                                02-DCCCA
+00000AB0 0000000000000000                   1110+         dc ad(0)                                                       02-DCCCA
+00000AB8                                    1111+         ds    0d                                                       01-DCCPR
+                                            1112+         entry rwlock_rdlock                                            01-DCCPR
+00000AB8                                    1113+rwlock_rdlock ds 0d                                                     01-DCCPR
+00000AB8                                    1114+@REGION_716_1 ds 0h                                                     01-DCCPR
+00000AB8 EBEC D008 0024          00000008   1115+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+00000ABE E3E0 D088 0004          00000088   1116+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
+00000AC4 E3C0 D090 0004          00000090   1117+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
+00000ACA B904 002E                          1118+         lgr   2,14                copy addr of our savearea            01-DCCPR
+00000ACE E3B0 C018 0004          00000018   1119+         lg    11,24(0,12)         get dvt address                      01-DCCPR
+00000AD4 A7EB 00D0               000000D0   1120+         aghi  14,208              increase by frame size               01-DCCPR
+00000AD8 E3E0 C020 0021          00000020   1121+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
+00000ADE 4720 B020               00000020   1122+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
+00000AE2                                    1123+@PER_716 ds    0h                                                       01-DCCPR
+00000AE2 EBDE 2080 0024          00000080   1124+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
+00000AE8 E3C0 2090 0024          00000090   1125+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
+00000AEE B904 00D2                          1126+         lgr   13,2                set real frame pointer               01-DCCPR
+00000AF2 B904 00CF                          1127+         lgr   12,15               set base reg                         01-DCCPR
+                        00000AB8            1128+         using @REGION_716_1,12                                         01-DCCPR
+                                                                                                                           Page   26 
+  Active Usings: @REGION_716_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+                                            1129 * ******* End of Prologue
+                                            1130 * *
+                                            1131 * ***           int r = pthread_rwlock_rdlock(rwl);
+00000AF6 E3F0 1000 0004          00000000   1132          LG    15,0(0,1)   ; rwl
+00000AFC E3F0 D0B0 0024          000000B0   1133          STG   15,176(0,13)
+00000B02 4110 D0B0               000000B0   1134          LA    1,176(0,13)
+00000B06 E3F0 C0E8 0004          00000BA0   1135          LG    15,@lit_716_31 ; pthread_rwlock_rdlock
+00000B0C                                    1136 @@gen_label37 DS    0H
+00000B0C 05EF                               1137          BALR  14,15
+00000B0E                                    1138 @@gen_label38 DS    0H
+                                            1139 * ***           ((r == 0) ? (void)0 : __assert(__func__, "C:\\asgkafka\
+                                            1140 * \\librdkafka\\src\\tinycthread_extra.c", 135, "r == 0"));
+00000B0E 12FF                               1141          LTR   15,15
+00000B10 4780 C094               00000B4C   1142          BE    @L74
+00000B14                                    1143 @L73     DS    0H
+00000B14 E3F0 C100 0004          00000BB8   1144          LG    15,@lit_716_32
+00000B1A 41F0 F046               00000046   1145          LA    15,70(0,15)
+00000B1E E3F0 D0B0 0024          000000B0   1146          STG   15,176(0,13)
+00000B24 E3F0 C0F8 0004          00000BB0   1147          LG    15,@lit_716_33
+00000B2A E3F0 D0B8 0024          000000B8   1148          STG   15,184(0,13)
+00000B30 E548 D0C0 0087          000000C0   1149          MVGHI 192(13),135
+00000B36 41F0 F030               00000030   1150          LA    15,48(0,15)
+00000B3A E3F0 D0C8 0024          000000C8   1151          STG   15,200(0,13)
+00000B40 4110 D0B0               000000B0   1152          LA    1,176(0,13)
+00000B44 E3F0 C0F0 0004          00000BA8   1153          LG    15,@lit_716_34 ; __assert
+00000B4A                                    1154 @@gen_label40 DS    0H
+00000B4A 05EF                               1155          BALR  14,15
+00000B4C                                    1156 @@gen_label41 DS    0H
+00000B4C                                    1157 @L74     DS    0H
+                                            1158 * ***           return 0;
+00000B4C A7F9 0000               00000000   1159          LGHI  15,0        ; 0
+                                            1160 * ***   }
+                                            1161 * * **** Start of Epilogue
+                                            1162          DCCEPIL
+00000B50                                    1163+         ds 0h                                                          01-DCCEP
+                                            1164+* Epilog
+00000B50 D707 D088 D088 00000088 00000088   1165+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
+00000B56 E3D0 D080 0004          00000080   1166+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
+00000B5C E3C0 D090 0004          00000090   1167+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
+00000B62 E3B0 C018 0004          00000018   1168+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
+00000B68 E3C0 B010 0021          00000010   1169+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
+00000B6E E3E0 D008 0004          00000008   1170+         lg  14,8(0,13)          load up return address                 01-DCCEP
+00000B74 EB1C D020 0004          00000020   1171+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
+00000B7A 078E                               1172+         bcr 8,14                if same dsab, just return              01-DCCEP
+00000B7C E3F0 D010 0024          00000010   1173+         stg 15,16(0,13)         save return code                       01-DCCEP
+00000B82 E300 D018 0024          00000018   1174+         stg 0,24(0,13)          save more return code                  01-DCCEP
+00000B88 E3F0 D090 0004          00000090   1175+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
+00000B8E E3F0 F018 0004          00000018   1176+         lg  15,24(0,15)         load dvt address                       01-DCCEP
+00000B94 47F0 F040               00000040   1177+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
+                                            1178+* End of Epilog
+                                            1179 * * **** End of Epilogue
+00000B98                                    1180          DS    0D
+                                                                                                                           Page   27 
+  Active Usings: @REGION_716_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000B98 000000D0                           1181 @FRAMESIZE_716 DC F'208'
+00000B9C 00000000
+00000BA0 0000000000000000                   1182 @lit_716_31 DC AD(pthread_rwlock_rdlock)
+00000BA8 0000000000000000                   1183 @lit_716_34 DC AD(__assert)
+00000BB0 000000000000107A                   1184 @lit_716_33 DC AD(@strings@)
+00000BB8 0000000000000FF8                   1185 @lit_716_32 DC AD(@DATA)
+                                            1186          DROP  12
+                                            1187 *
+                                            1188 *   DSECT for automatic variables in "rwlock_rdlock"
+                                            1189 *      (FUNCTION #716)
+                                            1190 *
+00000000                00000000 000000AC   1191 @AUTO#rwlock_rdlock DSECT
+00000000                                    1192          DS    XL168
+000000A8                                    1193 rwlock_rdlock#r#0 DS 1F    ; r
+                                            1194 *
+00000BC0                00000000 00000FF8   1195 @CODE    CSECT
+                                            1196 *
+                                            1197 *
+                                            1198 *
+                                            1199 * ....... start of rwlock_wrlock
+                                            1200 rwlock_wrlock ALIAS X'99A6939683926DA69993968392'
+00000BC0                                    1201 @LNAME717 DS   0H
+00000BC0 0000000D                           1202          DC    X'0000000D'
+00000BC4 99A6939683926DA6                   1203          DC    C'rwlock_wrlock'
+00000BD1 00                                 1204          DC    X'00'
+                                            1205 rwlock_wrlock DCCPRLG CINDEX=717,BASER=12,FRAME=208,ENTRY=YES,ARCH=ZARC*
+                                                                H,LNAMEADDR=@LNAME717
+                                            1206          macro
+                                            1207          dccextrn &m
+                                            1208          gblc    &$dccext(1000)
+                                            1209          gbla    &$dccexti
+                                            1210          lcla    &i
+                                            1211 &$dccext(&$dccexti+1) setc    '&m'
+                                            1212 &i       seta    1
+                                            1213 .loop    aif    (&i gt &$dccexti).around
+                                            1214          aif    ('&$dccext(&i)' eq '&m').getout
+                                            1215 &i       seta    &i+1
+                                            1216          ago     .loop
+                                            1217 .around  anop
+                                            1218 &$dccexti seta &$dccexti+1
+                                            1219          extrn  &m
+                                            1220 .getout  anop
+                                            1221          mend
+00000BD8                                    1222+$eye0029    ds    0d                                                    02-DCCCA
+00000BD8 C4C3C3                             1223+         dc cl3'DCC'                                                    02-DCCCA
+00000BDB 01                                 1224+         dc xl1'01' format one                                          02-DCCCA
+00000BDC 00000000                           1225+         dc a(0)                                                        02-DCCCA
+00000BE0 0000000000000C4A                   1226+         dc ad(@PER_717)                                                02-DCCCA
+00000BE8 00000000000000D0                   1227+         dc ad(208)                                                     02-DCCCA
+00000BF0 0000000000000000                   1228+         dc ad(0)                                                       02-DCCCA
+00000BF8 0000000000001000                   1229+         dc ad(4096)                                                    02-DCCCA
+00000C00 20                                 1230+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+                                                                                                                           Page   28 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000C01 03                                 1231+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+00000C02 03                                 1232+         dc al1(3)                                                      02-DCCCA
+00000C03 08                                 1233+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+00000C04 00                                 1234+         dc bl.8'00000000'                                              02-DCCCA
+00000C05 000000                             1235+         dc al3(0)                                                      02-DCCCA
+00000C08 0000000000000BC0                   1236+         dc ad(@LNAME717)                                               02-DCCCA
+00000C10                                    1237+         ds 0d                                                          02-DCCCA
+00000C10 0000000000000BD8                   1238+         dc ad($eye0029)                                                02-DCCCA
+00000C18 0000000000000000                   1239+         dc ad(0)                                                       02-DCCCA
+00000C20                                    1240+         ds    0d                                                       01-DCCPR
+                                            1241+         entry rwlock_wrlock                                            01-DCCPR
+00000C20                                    1242+rwlock_wrlock ds 0d                                                     01-DCCPR
+00000C20                                    1243+@REGION_717_1 ds 0h                                                     01-DCCPR
+00000C20 EBEC D008 0024          00000008   1244+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+00000C26 E3E0 D088 0004          00000088   1245+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
+00000C2C E3C0 D090 0004          00000090   1246+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
+00000C32 B904 002E                          1247+         lgr   2,14                copy addr of our savearea            01-DCCPR
+00000C36 E3B0 C018 0004          00000018   1248+         lg    11,24(0,12)         get dvt address                      01-DCCPR
+00000C3C A7EB 00D0               000000D0   1249+         aghi  14,208              increase by frame size               01-DCCPR
+00000C40 E3E0 C020 0021          00000020   1250+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
+00000C46 4720 B020               00000020   1251+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
+00000C4A                                    1252+@PER_717 ds    0h                                                       01-DCCPR
+00000C4A EBDE 2080 0024          00000080   1253+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
+00000C50 E3C0 2090 0024          00000090   1254+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
+00000C56 B904 00D2                          1255+         lgr   13,2                set real frame pointer               01-DCCPR
+00000C5A B904 00CF                          1256+         lgr   12,15               set base reg                         01-DCCPR
+                        00000C20            1257+         using @REGION_717_1,12                                         01-DCCPR
+                                            1258 * ******* End of Prologue
+                                            1259 * *
+                                            1260 * ***           int r = pthread_rwlock_wrlock(rwl);
+00000C5E E3F0 1000 0004          00000000   1261          LG    15,0(0,1)   ; rwl
+00000C64 E3F0 D0B0 0024          000000B0   1262          STG   15,176(0,13)
+00000C6A 4110 D0B0               000000B0   1263          LA    1,176(0,13)
+00000C6E E3F0 C0E8 0004          00000D08   1264          LG    15,@lit_717_37 ; pthread_rwlock_wrlock
+00000C74                                    1265 @@gen_label42 DS    0H
+00000C74 05EF                               1266          BALR  14,15
+00000C76                                    1267 @@gen_label43 DS    0H
+                                            1268 * ***           ((r == 0) ? (void)0 : __assert(__func__, "C:\\asgkafka\
+                                            1269 * \\librdkafka\\src\\tinycthread_extra.c", 141, "r == 0"));
+00000C76 12FF                               1270          LTR   15,15
+00000C78 4780 C094               00000CB4   1271          BE    @L76
+00000C7C                                    1272 @L75     DS    0H
+00000C7C E3F0 C100 0004          00000D20   1273          LG    15,@lit_717_38
+00000C82 41F0 F054               00000054   1274          LA    15,84(0,15)
+00000C86 E3F0 D0B0 0024          000000B0   1275          STG   15,176(0,13)
+00000C8C E3F0 C0F8 0004          00000D18   1276          LG    15,@lit_717_39
+00000C92 E3F0 D0B8 0024          000000B8   1277          STG   15,184(0,13)
+00000C98 E548 D0C0 008D          000000C0   1278          MVGHI 192(13),141
+00000C9E 41F0 F030               00000030   1279          LA    15,48(0,15)
+00000CA2 E3F0 D0C8 0024          000000C8   1280          STG   15,200(0,13)
+00000CA8 4110 D0B0               000000B0   1281          LA    1,176(0,13)
+00000CAC E3F0 C0F0 0004          00000D10   1282          LG    15,@lit_717_40 ; __assert
+                                                                                                                           Page   29 
+  Active Usings: @REGION_717_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000CB2                                    1283 @@gen_label45 DS    0H
+00000CB2 05EF                               1284          BALR  14,15
+00000CB4                                    1285 @@gen_label46 DS    0H
+00000CB4                                    1286 @L76     DS    0H
+                                            1287 * ***           return 0;
+00000CB4 A7F9 0000               00000000   1288          LGHI  15,0        ; 0
+                                            1289 * ***   }
+                                            1290 * * **** Start of Epilogue
+                                            1291          DCCEPIL
+00000CB8                                    1292+         ds 0h                                                          01-DCCEP
+                                            1293+* Epilog
+00000CB8 D707 D088 D088 00000088 00000088   1294+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
+00000CBE E3D0 D080 0004          00000080   1295+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
+00000CC4 E3C0 D090 0004          00000090   1296+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
+00000CCA E3B0 C018 0004          00000018   1297+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
+00000CD0 E3C0 B010 0021          00000010   1298+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
+00000CD6 E3E0 D008 0004          00000008   1299+         lg  14,8(0,13)          load up return address                 01-DCCEP
+00000CDC EB1C D020 0004          00000020   1300+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
+00000CE2 078E                               1301+         bcr 8,14                if same dsab, just return              01-DCCEP
+00000CE4 E3F0 D010 0024          00000010   1302+         stg 15,16(0,13)         save return code                       01-DCCEP
+00000CEA E300 D018 0024          00000018   1303+         stg 0,24(0,13)          save more return code                  01-DCCEP
+00000CF0 E3F0 D090 0004          00000090   1304+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
+00000CF6 E3F0 F018 0004          00000018   1305+         lg  15,24(0,15)         load dvt address                       01-DCCEP
+00000CFC 47F0 F040               00000040   1306+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
+                                            1307+* End of Epilog
+                                            1308 * * **** End of Epilogue
+00000D00                                    1309          DS    0D
+00000D00 000000D0                           1310 @FRAMESIZE_717 DC F'208'
+00000D04 00000000
+00000D08 0000000000000000                   1311 @lit_717_37 DC AD(pthread_rwlock_wrlock)
+00000D10 0000000000000000                   1312 @lit_717_40 DC AD(__assert)
+00000D18 000000000000107A                   1313 @lit_717_39 DC AD(@strings@)
+00000D20 0000000000000FF8                   1314 @lit_717_38 DC AD(@DATA)
+                                            1315          DROP  12
+                                            1316 *
+                                            1317 *   DSECT for automatic variables in "rwlock_wrlock"
+                                            1318 *      (FUNCTION #717)
+                                            1319 *
+00000000                00000000 000000AC   1320 @AUTO#rwlock_wrlock DSECT
+00000000                                    1321          DS    XL168
+000000A8                                    1322 rwlock_wrlock#r#0 DS 1F    ; r
+                                            1323 *
+00000D28                00000000 00000FF8   1324 @CODE    CSECT
+                                            1325 *
+                                            1326 *
+                                            1327 *
+                                            1328 * ....... start of rwlock_rdunlock
+                                            1329 rwlock_rdunlock ALIAS X'99A6939683926D9984A49593968392'
+00000D28                                    1330 @LNAME718 DS   0H
+00000D28 0000000F                           1331          DC    X'0000000F'
+00000D2C 99A6939683926D99                   1332          DC    C'rwlock_rdunlock'
+00000D3B 00                                 1333          DC    X'00'
+                                                                                                                           Page   30 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+                                            1334 rwlock_rdunlock DCCPRLG CINDEX=718,BASER=12,FRAME=208,ENTRY=YES,ARCH=ZA*
+                                                                RCH,LNAMEADDR=@LNAME718
+                                            1335          macro
+                                            1336          dccextrn &m
+                                            1337          gblc    &$dccext(1000)
+                                            1338          gbla    &$dccexti
+                                            1339          lcla    &i
+                                            1340 &$dccext(&$dccexti+1) setc    '&m'
+                                            1341 &i       seta    1
+                                            1342 .loop    aif    (&i gt &$dccexti).around
+                                            1343          aif    ('&$dccext(&i)' eq '&m').getout
+                                            1344 &i       seta    &i+1
+                                            1345          ago     .loop
+                                            1346 .around  anop
+                                            1347 &$dccexti seta &$dccexti+1
+                                            1348          extrn  &m
+                                            1349 .getout  anop
+                                            1350          mend
+00000D40                                    1351+$eye0032    ds    0d                                                    02-DCCCA
+00000D40 C4C3C3                             1352+         dc cl3'DCC'                                                    02-DCCCA
+00000D43 01                                 1353+         dc xl1'01' format one                                          02-DCCCA
+00000D44 00000000                           1354+         dc a(0)                                                        02-DCCCA
+00000D48 0000000000000DB2                   1355+         dc ad(@PER_718)                                                02-DCCCA
+00000D50 00000000000000D0                   1356+         dc ad(208)                                                     02-DCCCA
+00000D58 0000000000000000                   1357+         dc ad(0)                                                       02-DCCCA
+00000D60 0000000000001000                   1358+         dc ad(4096)                                                    02-DCCCA
+00000D68 20                                 1359+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+00000D69 03                                 1360+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+00000D6A 03                                 1361+         dc al1(3)                                                      02-DCCCA
+00000D6B 08                                 1362+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+00000D6C 00                                 1363+         dc bl.8'00000000'                                              02-DCCCA
+00000D6D 000000                             1364+         dc al3(0)                                                      02-DCCCA
+00000D70 0000000000000D28                   1365+         dc ad(@LNAME718)                                               02-DCCCA
+00000D78                                    1366+         ds 0d                                                          02-DCCCA
+00000D78 0000000000000D40                   1367+         dc ad($eye0032)                                                02-DCCCA
+00000D80 0000000000000000                   1368+         dc ad(0)                                                       02-DCCCA
+00000D88                                    1369+         ds    0d                                                       01-DCCPR
+                                            1370+         entry rwlock_rdunlock                                          01-DCCPR
+00000D88                                    1371+rwlock_rdunlock ds 0d                                                   01-DCCPR
+00000D88                                    1372+@REGION_718_1 ds 0h                                                     01-DCCPR
+00000D88 EBEC D008 0024          00000008   1373+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+00000D8E E3E0 D088 0004          00000088   1374+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
+00000D94 E3C0 D090 0004          00000090   1375+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
+00000D9A B904 002E                          1376+         lgr   2,14                copy addr of our savearea            01-DCCPR
+00000D9E E3B0 C018 0004          00000018   1377+         lg    11,24(0,12)         get dvt address                      01-DCCPR
+00000DA4 A7EB 00D0               000000D0   1378+         aghi  14,208              increase by frame size               01-DCCPR
+00000DA8 E3E0 C020 0021          00000020   1379+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
+00000DAE 4720 B020               00000020   1380+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
+00000DB2                                    1381+@PER_718 ds    0h                                                       01-DCCPR
+00000DB2 EBDE 2080 0024          00000080   1382+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
+00000DB8 E3C0 2090 0024          00000090   1383+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
+00000DBE B904 00D2                          1384+         lgr   13,2                set real frame pointer               01-DCCPR
+                                                                                                                           Page   31 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000DC2 B904 00CF                          1385+         lgr   12,15               set base reg                         01-DCCPR
+                        00000D88            1386+         using @REGION_718_1,12                                         01-DCCPR
+                                            1387 * ******* End of Prologue
+                                            1388 * *
+                                            1389 * ***           int r = pthread_rwlock_unlock(rwl);
+00000DC6 E3F0 1000 0004          00000000   1390          LG    15,0(0,1)   ; rwl
+00000DCC E3F0 D0B0 0024          000000B0   1391          STG   15,176(0,13)
+00000DD2 4110 D0B0               000000B0   1392          LA    1,176(0,13)
+00000DD6 E3F0 C0E8 0004          00000E70   1393          LG    15,@lit_718_43 ; pthread_rwlock_unlock
+00000DDC                                    1394 @@gen_label47 DS    0H
+00000DDC 05EF                               1395          BALR  14,15
+00000DDE                                    1396 @@gen_label48 DS    0H
+                                            1397 * ***           ((r == 0) ? (void)0 : __assert(__func__, "C:\\asgkafka\
+                                            1398 * \\librdkafka\\src\\tinycthread_extra.c", 147, "r == 0"));
+00000DDE 12FF                               1399          LTR   15,15
+00000DE0 4780 C094               00000E1C   1400          BE    @L78
+00000DE4                                    1401 @L77     DS    0H
+00000DE4 E3F0 C100 0004          00000E88   1402          LG    15,@lit_718_44
+00000DEA 41F0 F062               00000062   1403          LA    15,98(0,15)
+00000DEE E3F0 D0B0 0024          000000B0   1404          STG   15,176(0,13)
+00000DF4 E3F0 C0F8 0004          00000E80   1405          LG    15,@lit_718_45
+00000DFA E3F0 D0B8 0024          000000B8   1406          STG   15,184(0,13)
+00000E00 E548 D0C0 0093          000000C0   1407          MVGHI 192(13),147
+00000E06 41F0 F030               00000030   1408          LA    15,48(0,15)
+00000E0A E3F0 D0C8 0024          000000C8   1409          STG   15,200(0,13)
+00000E10 4110 D0B0               000000B0   1410          LA    1,176(0,13)
+00000E14 E3F0 C0F0 0004          00000E78   1411          LG    15,@lit_718_46 ; __assert
+00000E1A                                    1412 @@gen_label50 DS    0H
+00000E1A 05EF                               1413          BALR  14,15
+00000E1C                                    1414 @@gen_label51 DS    0H
+00000E1C                                    1415 @L78     DS    0H
+                                            1416 * ***           return 0;
+00000E1C A7F9 0000               00000000   1417          LGHI  15,0        ; 0
+                                            1418 * ***   }
+                                            1419 * * **** Start of Epilogue
+                                            1420          DCCEPIL
+00000E20                                    1421+         ds 0h                                                          01-DCCEP
+                                            1422+* Epilog
+00000E20 D707 D088 D088 00000088 00000088   1423+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
+00000E26 E3D0 D080 0004          00000080   1424+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
+00000E2C E3C0 D090 0004          00000090   1425+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
+00000E32 E3B0 C018 0004          00000018   1426+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
+00000E38 E3C0 B010 0021          00000010   1427+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
+00000E3E E3E0 D008 0004          00000008   1428+         lg  14,8(0,13)          load up return address                 01-DCCEP
+00000E44 EB1C D020 0004          00000020   1429+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
+00000E4A 078E                               1430+         bcr 8,14                if same dsab, just return              01-DCCEP
+00000E4C E3F0 D010 0024          00000010   1431+         stg 15,16(0,13)         save return code                       01-DCCEP
+00000E52 E300 D018 0024          00000018   1432+         stg 0,24(0,13)          save more return code                  01-DCCEP
+00000E58 E3F0 D090 0004          00000090   1433+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
+00000E5E E3F0 F018 0004          00000018   1434+         lg  15,24(0,15)         load dvt address                       01-DCCEP
+00000E64 47F0 F040               00000040   1435+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
+                                            1436+* End of Epilog
+                                                                                                                           Page   32 
+  Active Usings: @REGION_718_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+                                            1437 * * **** End of Epilogue
+00000E68                                    1438          DS    0D
+00000E68 000000D0                           1439 @FRAMESIZE_718 DC F'208'
+00000E6C 00000000
+00000E70 0000000000000000                   1440 @lit_718_43 DC AD(pthread_rwlock_unlock)
+00000E78 0000000000000000                   1441 @lit_718_46 DC AD(__assert)
+00000E80 000000000000107A                   1442 @lit_718_45 DC AD(@strings@)
+00000E88 0000000000000FF8                   1443 @lit_718_44 DC AD(@DATA)
+                                            1444          DROP  12
+                                            1445 *
+                                            1446 *   DSECT for automatic variables in "rwlock_rdunlock"
+                                            1447 *      (FUNCTION #718)
+                                            1448 *
+00000000                00000000 000000AC   1449 @AUTO#rwlock_rdunlock DSECT
+00000000                                    1450          DS    XL168
+000000A8                                    1451 rwlock_rdunlock#r#0 DS 1F  ; r
+                                            1452 *
+00000E90                00000000 00000FF8   1453 @CODE    CSECT
+                                            1454 *
+                                            1455 *
+                                            1456 *
+                                            1457 * ....... start of rwlock_wrunlock
+                                            1458 rwlock_wrunlock ALIAS X'99A6939683926DA699A49593968392'
+00000E90                                    1459 @LNAME719 DS   0H
+00000E90 0000000F                           1460          DC    X'0000000F'
+00000E94 99A6939683926DA6                   1461          DC    C'rwlock_wrunlock'
+00000EA3 00                                 1462          DC    X'00'
+                                            1463 rwlock_wrunlock DCCPRLG CINDEX=719,BASER=12,FRAME=208,ENTRY=YES,ARCH=ZA*
+                                                                RCH,LNAMEADDR=@LNAME719
+                                            1464          macro
+                                            1465          dccextrn &m
+                                            1466          gblc    &$dccext(1000)
+                                            1467          gbla    &$dccexti
+                                            1468          lcla    &i
+                                            1469 &$dccext(&$dccexti+1) setc    '&m'
+                                            1470 &i       seta    1
+                                            1471 .loop    aif    (&i gt &$dccexti).around
+                                            1472          aif    ('&$dccext(&i)' eq '&m').getout
+                                            1473 &i       seta    &i+1
+                                            1474          ago     .loop
+                                            1475 .around  anop
+                                            1476 &$dccexti seta &$dccexti+1
+                                            1477          extrn  &m
+                                            1478 .getout  anop
+                                            1479          mend
+00000EA8                                    1480+$eye0035    ds    0d                                                    02-DCCCA
+00000EA8 C4C3C3                             1481+         dc cl3'DCC'                                                    02-DCCCA
+00000EAB 01                                 1482+         dc xl1'01' format one                                          02-DCCCA
+00000EAC 00000000                           1483+         dc a(0)                                                        02-DCCCA
+00000EB0 0000000000000F1A                   1484+         dc ad(@PER_719)                                                02-DCCCA
+00000EB8 00000000000000D0                   1485+         dc ad(208)                                                     02-DCCCA
+00000EC0 0000000000000000                   1486+         dc ad(0)                                                       02-DCCCA
+                                                                                                                           Page   33 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000EC8 0000000000001000                   1487+         dc ad(4096)                                                    02-DCCCA
+00000ED0 20                                 1488+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
+00000ED1 03                                 1489+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
+00000ED2 03                                 1490+         dc al1(3)                                                      02-DCCCA
+00000ED3 08                                 1491+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
+00000ED4 00                                 1492+         dc bl.8'00000000'                                              02-DCCCA
+00000ED5 000000                             1493+         dc al3(0)                                                      02-DCCCA
+00000ED8 0000000000000E90                   1494+         dc ad(@LNAME719)                                               02-DCCCA
+00000EE0                                    1495+         ds 0d                                                          02-DCCCA
+00000EE0 0000000000000EA8                   1496+         dc ad($eye0035)                                                02-DCCCA
+00000EE8 0000000000000000                   1497+         dc ad(0)                                                       02-DCCCA
+00000EF0                                    1498+         ds    0d                                                       01-DCCPR
+                                            1499+         entry rwlock_wrunlock                                          01-DCCPR
+00000EF0                                    1500+rwlock_wrunlock ds 0d                                                   01-DCCPR
+00000EF0                                    1501+@REGION_719_1 ds 0h                                                     01-DCCPR
+00000EF0 EBEC D008 0024          00000008   1502+         stmg  14,12,8(13)                         Save regs            01-DCCPR
+00000EF6 E3E0 D088 0004          00000088   1503+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
+00000EFC E3C0 D090 0004          00000090   1504+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
+00000F02 B904 002E                          1505+         lgr   2,14                copy addr of our savearea            01-DCCPR
+00000F06 E3B0 C018 0004          00000018   1506+         lg    11,24(0,12)         get dvt address                      01-DCCPR
+00000F0C A7EB 00D0               000000D0   1507+         aghi  14,208              increase by frame size               01-DCCPR
+00000F10 E3E0 C020 0021          00000020   1508+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
+00000F16 4720 B020               00000020   1509+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
+00000F1A                                    1510+@PER_719 ds    0h                                                       01-DCCPR
+00000F1A EBDE 2080 0024          00000080   1511+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
+00000F20 E3C0 2090 0024          00000090   1512+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
+00000F26 B904 00D2                          1513+         lgr   13,2                set real frame pointer               01-DCCPR
+00000F2A B904 00CF                          1514+         lgr   12,15               set base reg                         01-DCCPR
+                        00000EF0            1515+         using @REGION_719_1,12                                         01-DCCPR
+                                            1516 * ******* End of Prologue
+                                            1517 * *
+                                            1518 * ***           int r = pthread_rwlock_unlock(rwl);
+00000F2E E3F0 1000 0004          00000000   1519          LG    15,0(0,1)   ; rwl
+00000F34 E3F0 D0B0 0024          000000B0   1520          STG   15,176(0,13)
+00000F3A 4110 D0B0               000000B0   1521          LA    1,176(0,13)
+00000F3E E3F0 C0E8 0004          00000FD8   1522          LG    15,@lit_719_49 ; pthread_rwlock_unlock
+00000F44                                    1523 @@gen_label52 DS    0H
+00000F44 05EF                               1524          BALR  14,15
+00000F46                                    1525 @@gen_label53 DS    0H
+                                            1526 * ***           ((r == 0) ? (void)0 : __assert(__func__, "C:\\asgkafka\
+                                            1527 * \\librdkafka\\src\\tinycthread_extra.c", 153, "r == 0"));
+00000F46 12FF                               1528          LTR   15,15
+00000F48 4780 C094               00000F84   1529          BE    @L80
+00000F4C                                    1530 @L79     DS    0H
+00000F4C E3F0 C100 0004          00000FF0   1531          LG    15,@lit_719_50
+00000F52 41F0 F072               00000072   1532          LA    15,114(0,15)
+00000F56 E3F0 D0B0 0024          000000B0   1533          STG   15,176(0,13)
+00000F5C E3F0 C0F8 0004          00000FE8   1534          LG    15,@lit_719_51
+00000F62 E3F0 D0B8 0024          000000B8   1535          STG   15,184(0,13)
+00000F68 E548 D0C0 0099          000000C0   1536          MVGHI 192(13),153
+00000F6E 41F0 F030               00000030   1537          LA    15,48(0,15)
+00000F72 E3F0 D0C8 0024          000000C8   1538          STG   15,200(0,13)
+                                                                                                                           Page   34 
+  Active Usings: @REGION_719_1,R12  
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00000F78 4110 D0B0               000000B0   1539          LA    1,176(0,13)
+00000F7C E3F0 C0F0 0004          00000FE0   1540          LG    15,@lit_719_52 ; __assert
+00000F82                                    1541 @@gen_label55 DS    0H
+00000F82 05EF                               1542          BALR  14,15
+00000F84                                    1543 @@gen_label56 DS    0H
+00000F84                                    1544 @L80     DS    0H
+                                            1545 * ***           return 0;
+00000F84 A7F9 0000               00000000   1546          LGHI  15,0        ; 0
+                                            1547 * ***   }
+                                            1548 * * **** Start of Epilogue
+                                            1549          DCCEPIL
+00000F88                                    1550+         ds 0h                                                          01-DCCEP
+                                            1551+* Epilog
+00000F88 D707 D088 D088 00000088 00000088   1552+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
+00000F8E E3D0 D080 0004          00000080   1553+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
+00000F94 E3C0 D090 0004          00000090   1554+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
+00000F9A E3B0 C018 0004          00000018   1555+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
+00000FA0 E3C0 B010 0021          00000010   1556+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
+00000FA6 E3E0 D008 0004          00000008   1557+         lg  14,8(0,13)          load up return address                 01-DCCEP
+00000FAC EB1C D020 0004          00000020   1558+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
+00000FB2 078E                               1559+         bcr 8,14                if same dsab, just return              01-DCCEP
+00000FB4 E3F0 D010 0024          00000010   1560+         stg 15,16(0,13)         save return code                       01-DCCEP
+00000FBA E300 D018 0024          00000018   1561+         stg 0,24(0,13)          save more return code                  01-DCCEP
+00000FC0 E3F0 D090 0004          00000090   1562+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
+00000FC6 E3F0 F018 0004          00000018   1563+         lg  15,24(0,15)         load dvt address                       01-DCCEP
+00000FCC 47F0 F040               00000040   1564+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
+                                            1565+* End of Epilog
+                                            1566 * * **** End of Epilogue
+00000FD0                                    1567          DS    0D
+00000FD0 000000D0                           1568 @FRAMESIZE_719 DC F'208'
+00000FD4 00000000
+00000FD8 0000000000000000                   1569 @lit_719_49 DC AD(pthread_rwlock_unlock)
+00000FE0 0000000000000000                   1570 @lit_719_52 DC AD(__assert)
+00000FE8 000000000000107A                   1571 @lit_719_51 DC AD(@strings@)
+00000FF0 0000000000000FF8                   1572 @lit_719_50 DC AD(@DATA)
+                                            1573          DROP  12
+                                            1574 *
+                                            1575 *   DSECT for automatic variables in "rwlock_wrunlock"
+                                            1576 *      (FUNCTION #719)
+                                            1577 *
+00000000                00000000 000000AC   1578 @AUTO#rwlock_wrunlock DSECT
+00000000                                    1579          DS    XL168
+000000A8                                    1580 rwlock_wrunlock#r#0 DS 1F  ; r
+                                            1581 *
+00000FF8                00000000 00000FF8   1582 @CODE    CSECT
+                                            1583 @@STATIC ALIAS X'7CA38995A883A388998581846D85A7A3998150'
+                                            1584 @@STATIC DXD   68D
+                                            1585 *
+                                            1586 *  Non-Re-Entrant Data Section
+                                            1587 *
+00000FF8                00000FF8 000000BA   1588 @DATA    CSECT
+                                            1589 @DATA    RMODE ANY
+                                                                                                                           Page   35 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+                                            1590 @DATA    AMODE ANY
+00000FF8 99846D8381939396                   1591 @@T349   DC    X'99846D838193939683'               rd.calloc
+00001001 00                                 1592          DC    1X'00'
+00001002 99846D9481939396                   1593 @@T34D   DC    X'99846D948193939683'               rd.malloc
+0000100B 00                                 1594          DC    1X'00'
+0000100C 99846D9985819393                   1595 @@T352   DC    X'99846D99858193939683'             rd.realloc
+00001016 0000                               1596          DC    2X'00'
+00001018 99846DA2A39984A4                   1597 @@T358   DC    X'99846DA2A39984A497'               rd.strdup
+00001021 00                                 1598          DC    1X'00'
+00001022 99846DA2A3999584                   1599 @@T35D   DC    X'99846DA2A3999584A497'             rd.strndup
+0000102C 0000                               1600          DC    2X'00'
+0000102E 99846D9985868395                   1601 @@T365   DC    X'99846D9985868395A36DA2A482F0'     rd.refcnt.sub0
+0000103C 0000                               1602          DC    2X'00'
+0000103E 99A6939683926D99                   1603 @@T39B   DC    X'99A6939683926D998493968392'       rwlock.rdlock
+0000104B 00                                 1604          DC    1X'00'
+0000104C 99A6939683926DA6                   1605 @@T39E   DC    X'99A6939683926DA69993968392'       rwlock.wrlock
+00001059 00                                 1606          DC    1X'00'
+0000105A 99A6939683926D99                   1607 @@T3A1   DC    X'99A6939683926D9984A49593968392'   rwlock.rdunlock
+00001069 00                                 1608          DC    1X'00'
+0000106A 99A6939683926DA6                   1609 @@T3A4   DC    X'99A6939683926DA699A49593968392'   rwlock.wrunlock
+00001079 00                                 1610          DC    1X'00'
+0000107A                                    1611 @strings@ DS   0H
+0000107A C37AE081A2879281                   1612          DC    X'C37AE081A2879281869281E093898299' C..asgkafka.libr
+0000108A 849281869281E0A2                   1613          DC    X'849281869281E0A29983E0A38995A883' dkafka.src.tinyc
+0000109A A388998581846D85                   1614          DC    X'A388998581846D85A7A399814B830000' thread.extra.c..
+000010AA 99407E7E40F00000                   1615          DC    X'99407E7E40F00000'                 r....0..
+                                            1616 *
+                                            1617 *
+                                            1618 *   Re-entrant Data Initialization Section
+                                            1619 *
+                                            1620 @@INIT@  ALIAS C'tinycthread_extra:'
+000010B8                000010B8 00000230   1621 @@INIT@  CSECT
+                                            1622 @@INIT@  AMODE ANY
+                                            1623 @@INIT@  RMODE ANY
+000010B8 05                                 1624          DC    XL1'5'
+000010B9 000000                             1625          DC    AL3(0)
+000010BC 00000120                           1626          DC    AL4(288)
+000010C0 00000000                           1627          DC    4X'00'
+000010C4 00000000                           1628          DC    Q(@@STATIC)
+000010C8 00000000                           1629          DC    X'00000000'
+000010CC 00000001                           1630          DC    X'00000001'
+000010D0 00000000                           1631          DC    X'00000000'
+000010D4 000000FF                           1632          DC    X'000000FF'
+000010D8 0102039C09867F97                   1633          DC    X'0102039C09867F978D8E0B0C0D0E0F10' .....f.p........
+000010E8 1112139D85088718                   1634          DC    X'1112139D8508871819928F1C1D1E1F80' ....e.g..k......
+000010F8 818283840A171B88                   1635          DC    X'818283840A171B88898A8B8C05060790' abcd...hi.......
+00001108 9116939495960498                   1636          DC    X'9116939495960498999A9B14159E1A20' j.lmno.qr.......
+00001118 A0E2E4E0E1E3E5E7                   1637          DC    X'A0E2E4E0E1E3E5E7F1A22E3C282B7C26' .SU..TVX1s......
+00001128 E9EAEBE8EDEEEFEC                   1638          DC    X'E9EAEBE8EDEEEFECDF21242A293B5E2D' Z..Y............
+00001138 2FC2C4C0C1C3C5C7                   1639          DC    X'2FC2C4C0C1C3C5C7D1A62C255F3E3FF8' .BD.ACEGJw.....8
+00001148 C9CACBC8CDCECFCC                   1640          DC    X'C9CACBC8CDCECFCC603A2340273D22D8' I..H...........Q
+00001158 6162636465666768                   1641          DC    X'616263646566676869ABBBF0FDFEB1B0' ...........0....
+                                                                                                                           Page   36 
+  Active Usings: None
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+00001168 6A6B6C6D6E6F7071                   1642          DC    X'6A6B6C6D6E6F707172AABAE6B8C6A4B5' ...........W.Fu.
+00001178 7E73747576777879                   1643          DC    X'7E737475767778797AA1BFD05BDEAEAC' ................
+00001188 A3A5B7A9A7B6BCBD                   1644          DC    X'A3A5B7A9A7B6BCBDBEDDA8AF5DB4D77B' tv.zx.....y...P.
+00001198 4142434445464748                   1645          DC    X'414243444546474849ADF4F6F2F3F57D' ..........46235.
+000011A8 4A4B4C4D4E4F5051                   1646          DC    X'4A4B4C4D4E4F505152B9FBFCF9FAFF5C' ............9...
+000011B8 F753545556575859                   1647          DC    X'F7535455565758595AB2D4D6D2D3D530' 7.........MOKLN.
+000011C8 3132333435363738                   1648          DC    X'313233343536373839B3DBDCD9DA9F40' ............R...
+                                            1649 *
+000011D8 05                                 1650          DC    XL1'5'
+000011D9 000000                             1651          DC    AL3(0)
+000011DC 000001E0                           1652          DC    AL4(480)
+000011E0 00000000                           1653          DC    4X'00'
+000011E4 00000000                           1654          DC    Q(@@STATIC)
+000011E8 00000000                           1655          DC    X'00000000'
+000011EC 00000101                           1656          DC    X'00000101'
+000011F0 00000000                           1657          DC    X'00000000'
+000011F4 000000A0                           1658          DC    X'000000A0'
+000011F8 010203372D2E2F16                   1659          DC    X'010203372D2E2F1605150B0C0D0E0F10' ................
+00001208 1112133C3D322618                   1660          DC    X'1112133C3D322618193F271C1D1E1F40' ................
+00001218 5A7F7B5B6C507D4D                   1661          DC    X'5A7F7B5B6C507D4D5D5C4E6B604B61F0' ...............0
+00001228 F1F2F3F4F5F6F7F8                   1662          DC    X'F1F2F3F4F5F6F7F8F97A5E4C7E6E6F7C' 123456789.......
+00001238 C1C2C3C4C5C6C7C8                   1663          DC    X'C1C2C3C4C5C6C7C8C9D1D2D3D4D5D6D7' ABCDEFGHIJKLMNOP
+00001248 D8D9E2E3E4E5E6E7                   1664          DC    X'D8D9E2E3E4E5E6E7E8E9ADE0BD5F6D79' QRSTUVWXYZ......
+00001258 8182838485868788                   1665          DC    X'81828384858687888991929394959697' abcdefghijklmnop
+00001268 9899A2A3A4A5A6A7                   1666          DC    X'9899A2A3A4A5A6A7A8A9C04FD0A10720' qrstuvwxyz......
+00001278 2122232425061728                   1667          DC    X'2122232425061728292A2B2C090A1B30' ................
+00001288 311A333435360838                   1668          DC    X'311A333435360838393A3B04143EFF80' ................
+                                            1669 *
+00001298 05                                 1670          DC    XL1'5'
+00001299 000000                             1671          DC    AL3(0)
+0000129C 00000208                           1672          DC    AL4(520)
+000012A0 00000000                           1673          DC    4X'00'
+000012A4 00000000                           1674          DC    Q(@@STATIC)
+000012A8 00000000                           1675          DC    X'00000000'
+000012AC 000001C0                           1676          DC    X'000001C0'
+000012B0 00000000                           1677          DC    X'00000000'
+000012B4 00000001                           1678          DC    X'00000001'
+000012B8 8A40404040404040                   1679          DC    X'8A40404040404040'                 ........
+                                            1680 *
+000012C0 05                                 1681          DC    XL1'5'
+000012C1 000000                             1682          DC    AL3(0)
+000012C4 00000000                           1683          DC    AL4(0)
+000012C8 00000000                           1684          DC    4X'00'
+000012CC 00000000                           1685          DC    Q(@@STATIC)
+000012D0 00000000                           1686          DC    X'00000000'
+000012D4 000001E0                           1687          DC    X'000001E0'
+000012D8 00000000                           1688          DC    X'00000000'
+000012DC 00000001                           1689          DC    X'00000001'
+000012E0 8B40404040404040                   1690          DC    X'8B40404040404040'                 ........
+                                            1691 *
+                                            1692          END
+                                                 Relocation Dictionary                                                     Page   37 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+ 00000002 00000002 00000018   A 4      +
+ 00000002 00000002 00000040   A 4      +
+ 00000002 00000002 00000048   A 4      +
+ 00000002 0000000B 00000118   A 4      +
+ 00000002 00000002 00000168   A 4      +
+ 00000002 00000002 00000170   A 4      +
+ 00000002 00000002 000001B8   A 4      +
+ 00000002 00000002 000001E0   A 4      +
+ 00000002 00000002 000001E8   A 4      +
+ 00000002 00000008 00000260   A 4      +
+ 00000002 00000002 000002D8   A 4      +
+ 00000002 00000002 00000300   A 4      +
+ 00000002 00000002 00000308   A 4      +
+ 00000002 0000000C 000003A0   A 4      +
+ 00000002 0000000B 000003A8   A 4      +
+ 00000002 0000000D 000003B8   A 4      +
+ 00000002 00000002 00000510   A 4      +
+ 00000002 00000002 00000538   A 4      +
+ 00000002 00000002 00000540   A 4      +
+ 00000002 00000002 00000660   A 4      +
+ 00000002 00000002 00000668   A 4      +
+ 00000002 00000002 00000698   A 4      +
+ 00000002 00000002 000006C0   A 4      +
+ 00000002 00000002 000006C8   A 4      +
+ 00000002 0000000C 00000760   A 4      +
+ 00000002 0000000D 00000768   A 4      +
+ 00000002 00000002 00000810   A 4      +
+ 00000002 00000002 00000838   A 4      +
+ 00000002 00000002 00000840   A 4      +
+ 00000002 00000004 000008D0   A 4      +
+ 00000002 00000009 000008D8   A 4      +
+ 00000002 00000002 00000948   A 4      +
+ 00000002 00000002 00000970   A 4      +
+ 00000002 00000002 00000978   A 4      +
+ 00000002 00000003 00000A00   A 4      +
+ 00000002 00000009 00000A08   A 4      +
+ 00000002 00000002 00000A78   A 4      +
+ 00000002 00000002 00000AA0   A 4      +
+ 00000002 00000002 00000AA8   A 4      +
+ 00000002 00000005 00000BA0   A 4      +
+ 00000002 0000000A 00000BA8   A 4      +
+ 00000002 0000000F 00000BB0   A 4      +
+ 00000002 0000000F 00000BB8   A 4      +
+ 00000002 00000002 00000BE0   A 4      +
+ 00000002 00000002 00000C08   A 4      +
+ 00000002 00000002 00000C10   A 4      +
+ 00000002 00000007 00000D08   A 4      +
+ 00000002 0000000A 00000D10   A 4      +
+ 00000002 0000000F 00000D18   A 4      +
+ 00000002 0000000F 00000D20   A 4      +
+ 00000002 00000002 00000D48   A 4      +
+ 00000002 00000002 00000D70   A 4      +
+ 00000002 00000002 00000D78   A 4      +
+                                                 Relocation Dictionary                                                     Page   38 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+ 00000002 00000006 00000E70   A 4      +
+ 00000002 0000000A 00000E78   A 4      +
+ 00000002 0000000F 00000E80   A 4      +
+ 00000002 0000000F 00000E88   A 4      +
+ 00000002 00000002 00000EB0   A 4      +
+ 00000002 00000002 00000ED8   A 4      +
+ 00000002 00000002 00000EE0   A 4      +
+ 00000002 00000006 00000FD8   A 4      +
+ 00000002 0000000A 00000FE0   A 4      +
+ 00000002 0000000F 00000FE8   A 4      +
+ 00000002 0000000F 00000FF0   A 4      +
+ 00000010 0000000E 000010C4   Q 4      +
+ 00000010 0000000E 000011E4   Q 4      +
+ 00000010 0000000E 000012A4   Q 4      +
+ 00000010 0000000E 000012CC   Q 4      +
+                                                 DSECT Cross Reference                                                     Page   39 
+DSECT     LENGTH    ID   DEFN                                                                         DASM V1.95.14 2021/04/29 12:43 
+@AUTO#cnd_timedwait_abs
+         000000A8  FFFFFFFA  00816
+@AUTO#cnd_timedwait_ms
+         000000C8  FFFFFFFC  00532
+@AUTO#cnd_timedwait_msp
+         000000B0  FFFFFFFB  00678
+@AUTO#rd_clock
+         000000B8  FFFFFFFF  00148
+@AUTO#rwlock_destroy
+         000000AC  FFFFFFF8  01062
+@AUTO#rwlock_init
+         000000AC  FFFFFFF9  00939
+@AUTO#rwlock_rdlock
+         000000AC  FFFFFFF7  01191
+@AUTO#rwlock_rdunlock
+         000000AC  FFFFFFF5  01449
+@AUTO#rwlock_wrlock
+         000000AC  FFFFFFF6  01320
+@AUTO#rwlock_wrunlock
+         000000AC  FFFFFFF4  01578
+@AUTO#thrd_is_current
+         000000A8  FFFFFFFD  00337
+@AUTO#thrd_setname
+         000000A8  FFFFFFFE  00222
+                                          Macro and Copy Code Source Summary                                               Page   40 
+Source                                                    Members                                     DASM V1.95.14 2021/04/29 12:43 
+
+C:\DIGNUS\MACLIB                                          DCCCATR  DCCEPIL  DCCPRLG  dccextrn
+                                                      Using Map                                                            Page   41 
+                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+  Stmt  -----Location----- Action ----------------Using----------------- Reg Max     Last Label and Using Text
+          Count      Id           Type          Value    Range     Id        Disp    Stmt
+    99  00000096  00000002 USING  ORDINARY    00000058 00001000 00000002  12 000C0    109 @REGION_759_1,12
+   143  00000120  00000002 DROP                                           12              12
+   287  00000236  00000002 USING  ORDINARY    000001F8 00001000 00000002  12 00074    303 @REGION_710_1,12
+   332  000002B8  00000002 DROP                                           12              12
+   402  00000356  00000002 USING  ORDINARY    00000318 00001000 00000002  12 00190    500 @REGION_711_1,12
+   527  000004F0  00000002 DROP                                           12              12
+   599  0000058E  00000002 USING  ORDINARY    00000550 00001000 00000002  12 00120    639 @REGION_712_1,12
+   673  00000674  00000002 DROP                                           12              12
+   746  00000716  00000002 USING  ORDINARY    000006D8 00001000 00000002  12 000D8    785 @REGION_713_1,12
+   811  000007F8  00000002 DROP                                           12              12
+   881  0000088E  00000002 USING  ORDINARY    00000850 00001000 00000002  12 00094    904 @REGION_714_1,12
+   934  0000092C  00000002 DROP                                           12              12
+  1005  000009C6  00000002 USING  ORDINARY    00000988 00001000 00000002  12 0008C   1027 @REGION_715_1,12
+  1057  00000A5C  00000002 DROP                                           12              12
+  1128  00000AF6  00000002 USING  ORDINARY    00000AB8 00001000 00000002  12 00100   1153 @REGION_716_1,12
+  1186  00000BC0  00000002 DROP                                           12              12
+  1257  00000C5E  00000002 USING  ORDINARY    00000C20 00001000 00000002  12 00100   1282 @REGION_717_1,12
+  1315  00000D28  00000002 DROP                                           12              12
+  1386  00000DC6  00000002 USING  ORDINARY    00000D88 00001000 00000002  12 00100   1411 @REGION_718_1,12
+  1444  00000E90  00000002 DROP                                           12              12
+  1515  00000F2E  00000002 USING  ORDINARY    00000EF0 00001000 00000002  12 00100   1540 @REGION_719_1,12
+  1573  00000FF8  00000002 DROP                                           12              12
+                                   Diagnostic Cross Reference and Assembler Summary                                        Page   42 
+                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+      No Statements Flagged in this Assembly
+DASM Dignus Systems/ASM, VERSION 1.95.14
+SYSTEM: Windows 6.2                JOBNAME: (NOJOB)     STEPNAME: (NOSTEP)   PROCSTEP: (NOPROC)
+Datasets Used for this Assembly
+ Con  DDname   Dataset Name
+  P1  TINYCTHREAD_EXTRA ..\asg\asm\tinycthread_extra.asm
+  L2  DCCPRLG  C:\DIGNUS\MACLIB\dccprlg
+  L3  DCCCATR  C:\DIGNUS\MACLIB\dcccatr
+  L4  DCCEPIL  C:\DIGNUS\MACLIB\dccepil
+
+Assembly Start Time: 12.43.51 Stop Time: 12.43.51 Processor Time: 00.00.00.0360
+Return Code 000

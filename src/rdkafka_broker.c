@@ -26,6 +26,16 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+ /*
+  * ASG_LK: MODIFICATION HISTORY
+  * ==================================================================================
+  * TAG          |   DATE (DD/MM/YYYY)    |   JIRA    |   DESCRIPTION
+  * ==================================================================================
+  * ASG_LK01         22/04/2021              -           Disable SSL/SASL for STAGE#1
+  * ASG_LK02         22/04/2021              -           USS Socket Implementation
+  * ==================================================================================
+ */
+
 #if defined(__MINGW32__)
 #include <ws2tcpip.h>
 #endif
@@ -1942,6 +1952,9 @@ int rd_kafka_recv (rd_kafka_broker_t *rkb) {
  */
 int rd_kafka_socket_cb_linux (int domain, int type, int protocol,
                               void *opaque) {
+#ifdef SYSC                                     /* ASG_LK02: USS Socket */
+    return socket(AF_INET, SOCK_STREAM, 0);     /* ASG_LK02: USS Socket */
+#endif                                          /* ASG_LK02: USS Socket */
 #ifdef SOCK_CLOEXEC
         return socket(domain, type | SOCK_CLOEXEC, protocol);
 #else
@@ -2295,6 +2308,7 @@ static void rd_kafka_broker_connect_auth (rd_kafka_broker_t *rkb) {
                                 RD_KAFKA_BROKER_STATE_AUTH_LEGACY);
 			rd_kafka_broker_unlock(rkb);
 
+#if !defined(SYSC) || (defined(SYSC) && WITHSEC)    /* ASG_LK01: ZNOSEC */
 			if (rd_kafka_sasl_client_new(
 				    rkb->rkb_transport, sasl_errstr,
 				    sizeof(sasl_errstr)) == -1) {
@@ -2306,6 +2320,7 @@ static void rd_kafka_broker_connect_auth (rd_kafka_broker_t *rkb) {
 					sasl_errstr);
 				return;
 			}
+#endif                                              /* ASG_LK01: ZNOSEC */
 		}
 
 		return;
@@ -5256,6 +5271,7 @@ static int rd_kafka_broker_thread_main (void *arg) {
                         if (unlikely(rd_kafka_terminating(rkb->rkb_rk)))
                                 rd_kafka_broker_serve(rkb, 1000);
 
+#if !defined(SYSC) || (defined(SYSC) && WITHSEC)    /* ASG_LK01: ZNOSEC */
                         if (!rd_kafka_sasl_ready(rkb->rkb_rk)) {
                                 /* SASL provider not yet ready. */
                                 rd_kafka_broker_serve(rkb,
@@ -5264,7 +5280,7 @@ static int rd_kafka_broker_thread_main (void *arg) {
                                  * we are not terminating). */
                                 continue;
                         }
-
+#endif                                              /* ASG_LK01: ZNOSEC */
                         /* Throttle & jitter reconnects to avoid
                          * thundering horde of reconnecting clients after
                          * a broker / network outage. Issue #403 */
@@ -5416,12 +5432,14 @@ void rd_kafka_broker_destroy_final (rd_kafka_broker_t *rkb) {
         rd_assert(TAILQ_EMPTY(&rkb->rkb_retrybufs.rkbq_bufs));
         rd_assert(TAILQ_EMPTY(&rkb->rkb_toppars));
 
+#if !defined(SYSC) || (defined(SYSC) && WITHSEC)    /* ASG_LK01: ZNOSEC */
         if (rkb->rkb_source != RD_KAFKA_INTERNAL &&
             (rkb->rkb_rk->rk_conf.security_protocol ==
              RD_KAFKA_PROTO_SASL_PLAINTEXT ||
              rkb->rkb_rk->rk_conf.security_protocol ==
              RD_KAFKA_PROTO_SASL_SSL))
                 rd_kafka_sasl_broker_term(rkb);
+#endif                                              /* ASG_LK01: ZNOSEC */
 
         if (rkb->rkb_wakeup_fd[0] != -1)
                 rd_close(rkb->rkb_wakeup_fd[0]);
@@ -5627,11 +5645,13 @@ rd_kafka_broker_t *rd_kafka_broker_add (rd_kafka_t *rk,
 	}
 
         if (rkb->rkb_source != RD_KAFKA_INTERNAL) {
+#if !defined(SYSC) || (defined(SYSC) && WITHSEC)    /* ASG_LK01: ZNOSEC */
                 if (rk->rk_conf.security_protocol ==
                     RD_KAFKA_PROTO_SASL_PLAINTEXT ||
                     rk->rk_conf.security_protocol == RD_KAFKA_PROTO_SASL_SSL)
                         rd_kafka_sasl_broker_init(rkb);
 
+#endif                                              /* ASG_LK01: ZNOSEC */
                 /* Insert broker at head of list, idea is that
                  * newer brokers are more relevant than old ones,
                  * and in particular LEARNED brokers are more relevant
