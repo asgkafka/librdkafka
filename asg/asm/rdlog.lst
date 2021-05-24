@@ -1,5 +1,5 @@
                                             Dignus Assembler Option Summary                                                Page    1 
-                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+                                                                                                      DASM V1.95.14 2021/04/30 15:36 
 
 Overriding Parameters- -LC:\DIGNUS\MACLIB\&m -oc:../asg/obj/rdlog.obj ../asg/asm/rdlog.asm
   Process Statements-       DUPALIAS
@@ -54,10 +54,10 @@ Options for this Assembly             Source
 
 Libraries in Search Order:
                                             Dignus Assembler Option Summary                                                Page    2 
-                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+                                                                                                      DASM V1.95.14 2021/04/30 15:36 
        CMDLINE      C:\DIGNUS\MACLIB\&m
                                               External Symbol Dictionary                                                   Page    3 
-Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                                      DASM V1.95.14 2021/04/29 12:43 
+Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                                      DASM V1.95.14 2021/04/30 15:36 
 @@ZARCH#  WX 00000001                              00
 @RDLOG    SD 00000002 00000000 0000067C            07  @CODE
 @@STDOUP  XD 00000003 00000003 00000000                __STDOUTP
@@ -79,11 +79,11 @@ rd_msghdr_print
           LD          00000500          00000002   00  RD_MSGHDR_PRINT
                                                                                                                            Page    4 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                                1 *PROCESS DUPALIAS
                                                2 *
                                                3 *  Compiled by DCC Version 2.25.07 Mar  6 2021 08:51:07
-                                               4 *           on Thu Apr 29 12:43:41 2021
+                                               4 *           on Fri Apr 30 15:36:18 2021
                                                5 *
 
                                                7          WXTRN @@ZARCH#
@@ -134,7 +134,7 @@ rd_msghdr_print
                                               51 .around  anop
                                                                                                                            Page    5 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                               52 &$dccexti seta &$dccexti+1
                                               53          extrn  &m
                                               54 .getout  anop
@@ -189,7 +189,7 @@ rd_msghdr_print
                                              103 * ***
                                                                                                                            Page    6 
   Active Usings: @REGION_1085_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                              104 * ***      if (name)
 000000B0 E3F0 9008 0004          00000008    105          LG    15,8(0,9)   ; name
 000000B6 B902 001F                           106          LTGR  1,15
@@ -244,7 +244,7 @@ rd_msghdr_print
 0000014A A7F9 0031               00000031    153          LGHI  15,49       ; 49
                                                                                                                            Page    7 
   Active Usings: @REGION_1085_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 0000014E B914 0014                           154          LGFR  1,4
 00000152 B90B 00F1                           155          SLGR  15,1
 00000156 E3F0 D0F8 0024          000000F8    156          STG   15,248(0,13)
@@ -299,7 +299,7 @@ rd_msghdr_print
                                              205 * >>> end inline copy of __maskrune
                                                                                                                            Page    8 
   Active Usings: @REGION_1085_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000001EA 10FF                                206          LPR   15,15
 000001EC 13FF                                207          LCR   15,15
 000001EE 88F0 001F               0000001F    208          SRL   15,31(0)
@@ -354,7 +354,7 @@ rd_msghdr_print
 0000028C E3F0 D108 0024          00000108    257          STG   15,264(0,13)
                                                                                                                            Page    9 
   Active Usings: @REGION_1085_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00000292 41F0 D0D9               000000D9    258          LA    15,217(0,13)
 00000296 E3F0 D110 0024          00000110    259          STG   15,272(0,13)
 0000029C 4110 D0F0               000000F0    260          LA    1,240(0,13)
@@ -409,7 +409,7 @@ rd_msghdr_print
                                              309 *
                                                                                                                            Page   10 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000002FC                00000000 0000067C    310 @CODE    CSECT
                                              311 *
                                              312 *
@@ -464,7 +464,7 @@ rd_msghdr_print
 0000035E E3E0 D088 0004          00000088    360+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
                                                                                                                            Page   11 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00000364 E3C0 D090 0004          00000090    361+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
 0000036A B904 002E                           362+         lgr   2,14                copy addr of our savearea            01-DCCPR
 0000036E E3B0 C018 0004          00000018    363+         lg    11,24(0,12)         get dvt address                      01-DCCPR
@@ -519,7 +519,7 @@ rd_msghdr_print
 00000430 05EF                                412          BALR  14,15
                                                                                                                            Page   12 
   Active Usings: @REGION_1086_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00000432                                     413 @@gen_label21 DS    0H
 00000432                                     414 @L658    DS    0H
                                              415 * ***   }
@@ -574,7 +574,7 @@ rd_msghdr_print
                                              462          dccextrn &m
                                                                                                                            Page   13 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                              463          gblc    &$dccext(1000)
                                              464          gbla    &$dccexti
                                              465          lcla    &i
@@ -629,7 +629,7 @@ rd_msghdr_print
                                              514 * ******* End of Prologue
                                                                                                                            Page   14 
   Active Usings: @REGION_1087_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                              515 * *
 00000542 EB45 6000 0004          00000000    516          LMG   4,5,0(6)    ; what
                                              517 * ***           int i;
@@ -684,7 +684,7 @@ rd_msghdr_print
 000005FA E33F 1008 000A          00000008    565          ALG   3,8(15,1)
                                                                                                                            Page   15 
   Active Usings: @REGION_1087_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                              566 * ***           }
 00000600 A72A 0001               00000001    567          AHI   2,1
 00000604                                     568 @L660    DS    0H
@@ -739,7 +739,7 @@ rd_msghdr_print
                                              617 @@STATIC DXD   219D
                                                                                                                            Page   16 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                              618 *
                                              619 *  Non-Re-Entrant Data Section
                                              620 *
@@ -794,7 +794,7 @@ rd_msghdr_print
 000007D7 00                                  669          DC    1X'00'
                                                                                                                            Page   17 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000007D8 99846D9281869281                    670 @@T81A   DC    X'99846D92818692816D82A4866D868995' rd.kafka.buf.fin
 000007E8 819389A9856D8199                    671          DC    X'819389A9856D81999981A88395A3'     alize.arraycnt
 000007F6 0000                                672          DC    2X'00'
@@ -849,7 +849,7 @@ rd_msghdr_print
 00000AB6 0000C3998581A385                    721          DC    X'0000C3998581A385C48593858781A389' ..CreateDelegati
                                                                                                                            Page   18 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00000AC6 9695E39692859500                    722          DC    X'9695E39692859500D9859585A6C48593' onToken.RenewDel
 00000AD6 858781A3899695E3                    723          DC    X'858781A3899695E3969285950000C5A7' egationToken..Ex
 00000AE6 97899985C4859385                    724          DC    X'97899985C48593858781A3899695E396' pireDelegationTo
@@ -904,7 +904,7 @@ rd_msghdr_print
                                              773          EXTRN @E_$Current$Rune$Locale
                                                                                                                            Page   19 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                              774 @E__stdoutp ALIAS C'@@STDOUP'
                                              775          EXTRN @E__stdoutp
                                              776 *
@@ -959,7 +959,7 @@ rd_msghdr_print
 00000F88 8182838485868788                    825          DC    X'81828384858687888991929394959697' abcdefghijklmnop
                                                                                                                            Page   20 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00000F98 9899A2A3A4A5A6A7                    826          DC    X'9899A2A3A4A5A6A7A8A9C04FD0A10720' qrstuvwxyz......
 00000FA8 2122232425061728                    827          DC    X'2122232425061728292A2B2C090A1B30' ................
 00000FB8 311A333435360838                    828          DC    X'311A333435360838393A3B04143EFF80' ................
@@ -1014,7 +1014,7 @@ rd_msghdr_print
 00001070 00000000                            877          DC    4X'00'
                                                                                                                            Page   21 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00001074 00000000                            878          DC    Q(@@STATIC)
 00001078 00000000                            879          DC    X'00000000'
 0000107C 00000230                            880          DC    X'00000230'
@@ -1069,7 +1069,7 @@ rd_msghdr_print
 00001130 0D                                  929          DC    XL1'D'
                                                                                                                            Page   22 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00001131 000000                              930          DC    AL3(0)
 00001134 00000370                            931          DC    AL4(880)
 00001138 00000000                            932          DC    4X'00'
@@ -1124,7 +1124,7 @@ rd_msghdr_print
 000011F0 00000000                            981          DC    X'00000000'
                                                                                                                            Page   23 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000011F4 000002B0                            982          DC    X'000002B0'
                                              983 *
 000011F8 0D                                  984          DC    XL1'D'
@@ -1179,7 +1179,7 @@ rd_msghdr_print
 000012A8 00000000                           1033          DC    X'00000000'
                                                                                                                            Page   24 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000012AC 000002A0                           1034          DC    X'000002A0'
 000012B0 0000000000000680                   1035          DC    ADL8(@DATA)
 000012B8 00000000                           1036          DC    X'00000000'
@@ -1234,7 +1234,7 @@ rd_msghdr_print
 00001364 000005A0                           1085          DC    AL4(1440)
                                                                                                                            Page   25 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00001368 00000000                           1086          DC    4X'00'
 0000136C 00000000                           1087          DC    Q(@@STATIC)
 00001370 00000000                           1088          DC    X'00000000'
@@ -1289,7 +1289,7 @@ rd_msghdr_print
                                             1137 *
                                                                                                                            Page   26 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00001428 0D                                 1138          DC    XL1'D'
 00001429 000000                             1139          DC    AL3(0)
 0000142C 00000668                           1140          DC    AL4(1640)
@@ -1344,7 +1344,7 @@ rd_msghdr_print
 000014E0 0000000000000680                   1189          DC    ADL8(@DATA)
                                                                                                                            Page   27 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000014E8 00000000                           1190          DC    X'00000000'
 000014EC 000003BA                           1191          DC    X'000003BA'
                                             1192 *
@@ -1399,7 +1399,7 @@ rd_msghdr_print
 0000159C 00000000                           1241          DC    Q(@@STATIC)
                                                                                                                            Page   28 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000015A0 00000000                           1242          DC    X'00000000'
 000015A4 00000338                           1243          DC    X'00000338'
 000015A8 0000000000000680                   1244          DC    ADL8(@DATA)
@@ -1454,7 +1454,7 @@ rd_msghdr_print
 00001659 000000                             1293          DC    AL3(0)
                                                                                                                            Page   29 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 0000165C 00000898                           1294          DC    AL4(2200)
 00001660 00000000                           1295          DC    4X'00'
 00001664 00000000                           1296          DC    Q(@@STATIC)
@@ -1509,7 +1509,7 @@ rd_msghdr_print
 0000171C 000004B4                           1345          DC    X'000004B4'
                                                                                                                            Page   30 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                             1346 *
 00001720 0D                                 1347          DC    XL1'D'
 00001721 000000                             1348          DC    AL3(0)
@@ -1564,7 +1564,7 @@ rd_msghdr_print
 000017D4 000003A8                           1397          DC    X'000003A8'
                                                                                                                            Page   31 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000017D8 0000000000000680                   1398          DC    ADL8(@DATA)
 000017E0 00000000                           1399          DC    X'00000000'
 000017E4 0000054A                           1400          DC    X'0000054A'
@@ -1619,7 +1619,7 @@ rd_msghdr_print
 00001890 00000000                           1449          DC    4X'00'
                                                                                                                            Page   32 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00001894 00000000                           1450          DC    Q(@@STATIC)
 00001898 00000000                           1451          DC    X'00000000'
 0000189C 000003D0                           1452          DC    X'000003D0'
@@ -1674,7 +1674,7 @@ rd_msghdr_print
 00001950 0D                                 1501          DC    XL1'D'
                                                                                                                            Page   33 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00001951 000000                             1502          DC    AL3(0)
 00001954 00000B90                           1503          DC    AL4(2960)
 00001958 00000000                           1504          DC    4X'00'
@@ -1729,7 +1729,7 @@ rd_msghdr_print
 00001A10 00000000                           1553          DC    X'00000000'
                                                                                                                            Page   34 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00001A14 00000648                           1554          DC    X'00000648'
                                             1555 *
 00001A18 0D                                 1556          DC    XL1'D'
@@ -1784,7 +1784,7 @@ rd_msghdr_print
 00001AC8 00000000                           1605          DC    X'00000000'
                                                                                                                            Page   35 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00001ACC 00000528                           1606          DC    X'00000528'
 00001AD0 0000000000000680                   1607          DC    ADL8(@DATA)
 00001AD8 00000000                           1608          DC    X'00000000'
@@ -1839,7 +1839,7 @@ rd_msghdr_print
 00001B84 00000DC0                           1657          DC    AL4(3520)
                                                                                                                            Page   36 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00001B88 00000000                           1658          DC    4X'00'
 00001B8C 00000000                           1659          DC    Q(@@STATIC)
 00001B90 00000000                           1660          DC    X'00000000'
@@ -1894,7 +1894,7 @@ rd_msghdr_print
                                             1709 *
                                                                                                                            Page   37 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00001C48 0D                                 1710          DC    XL1'D'
 00001C49 000000                             1711          DC    AL3(0)
 00001C4C 00000E88                           1712          DC    AL4(3720)
@@ -1949,7 +1949,7 @@ rd_msghdr_print
 00001D00 0000000000000680                   1761          DC    ADL8(@DATA)
                                                                                                                            Page   38 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00001D08 00000000                           1762          DC    X'00000000'
 00001D0C 000006EE                           1763          DC    X'000006EE'
                                             1764 *
@@ -2004,7 +2004,7 @@ rd_msghdr_print
 00001DBC 00000000                           1813          DC    Q(@@STATIC)
                                                                                                                            Page   39 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00001DC0 00000000                           1814          DC    X'00000000'
 00001DC4 000006C0                           1815          DC    X'000006C0'
 00001DC8 0000000000000680                   1816          DC    ADL8(@DATA)
@@ -2035,7 +2035,7 @@ rd_msghdr_print
                                             1841 *
                                             1842          END
                                                  Relocation Dictionary                                                     Page   40 
-  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/30 15:36 
  00000002 00000002 00000018   A 4      +
  00000002 00000002 00000040   A 4      +
  00000002 00000002 00000048   A 4      +
@@ -2090,7 +2090,7 @@ rd_msghdr_print
  0000000D 00000009 0000122C   Q 4      +
  0000000D 0000000A 00001238   A 4      +
                                                  Relocation Dictionary                                                     Page   41 
-  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/30 15:36 
  0000000D 00000009 00001254   Q 4      +
  0000000D 0000000A 00001260   A 4      +
  0000000D 00000009 0000127C   Q 4      +
@@ -2145,7 +2145,7 @@ rd_msghdr_print
  0000000D 0000000A 00001648   A 4      +
  0000000D 00000009 00001664   Q 4      +
                                                  Relocation Dictionary                                                     Page   42 
-  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/30 15:36 
  0000000D 0000000A 00001670   A 4      +
  0000000D 00000009 0000168C   Q 4      +
  0000000D 0000000A 00001698   A 4      +
@@ -2200,7 +2200,7 @@ rd_msghdr_print
  0000000D 00000009 00001A74   Q 4      +
  0000000D 0000000A 00001A80   A 4      +
                                                  Relocation Dictionary                                                     Page   43 
-  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/30 15:36 
  0000000D 00000009 00001A9C   Q 4      +
  0000000D 0000000A 00001AA8   A 4      +
  0000000D 00000009 00001AC4   Q 4      +
@@ -2248,7 +2248,7 @@ rd_msghdr_print
  0000000D 00000009 00001E0C   Q 4      +
  0000000D 0000000A 00001E18   A 4      +
                                                  DSECT Cross Reference                                                     Page   44 
-DSECT     LENGTH    ID   DEFN                                                                         DASM V1.95.14 2021/04/29 12:43 
+DSECT     LENGTH    ID   DEFN                                                                         DASM V1.95.14 2021/04/30 15:36 
 @AUTO#rd_hexdump
          000000EA  FFFFFFFF  00296
 @AUTO#rd_iov_print
@@ -2256,11 +2256,11 @@ DSECT     LENGTH    ID   DEFN                                                   
 @AUTO#rd_msghdr_print
          000000B0  FFFFFFFD  00609
                                           Macro and Copy Code Source Summary                                               Page   45 
-Source                                                    Members                                     DASM V1.95.14 2021/04/29 12:43 
+Source                                                    Members                                     DASM V1.95.14 2021/04/30 15:36 
 
 C:\DIGNUS\MACLIB                                          DCCCATR  DCCEPIL  DCCPRLG  DCCPRV   dccextrn
                                                       Using Map                                                            Page   46 
-                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+                                                                                                      DASM V1.95.14 2021/04/30 15:36 
   Stmt  -----Location----- Action ----------------Using----------------- Reg Max     Last Label and Using Text
           Count      Id           Type          Value    Range     Id        Disp    Stmt
     91  00000096  00000002 USING  ORDINARY    00000058 00001000 00000002  12 00254    269 @REGION_1085_1,12
@@ -2270,7 +2270,7 @@ C:\DIGNUS\MACLIB                                          DCCCATR  DCCEPIL  DCCP
    512  0000053E  00000002 USING  ORDINARY    00000500 00001000 00000002  12 00104    579 @REGION_1087_1,12
    604  0000067C  00000002 DROP                                           12              12
                                    Diagnostic Cross Reference and Assembler Summary                                        Page   47 
-                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+                                                                                                      DASM V1.95.14 2021/04/30 15:36 
       No Statements Flagged in this Assembly
 DASM Dignus Systems/ASM, VERSION 1.95.14
 SYSTEM: Windows 6.2                JOBNAME: (NOJOB)     STEPNAME: (NOSTEP)   PROCSTEP: (NOPROC)
@@ -2282,5 +2282,5 @@ Datasets Used for this Assembly
   L4  DCCPRV   C:\DIGNUS\MACLIB\dccprv
   L5  DCCEPIL  C:\DIGNUS\MACLIB\dccepil
 
-Assembly Start Time: 12.43.42 Stop Time: 12.43.42 Processor Time: 00.00.00.0260
+Assembly Start Time: 15.36.19 Stop Time: 15.36.19 Processor Time: 00.00.00.0190
 Return Code 000

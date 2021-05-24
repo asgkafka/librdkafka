@@ -1,5 +1,5 @@
                                             Dignus Assembler Option Summary                                                Page    1 
-                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+                                                                                                      DASM V1.95.14 2021/04/30 15:36 
 
 Overriding Parameters- -LC:\DIGNUS\MACLIB\&m -oc:../asg/obj/rdkafka_subscription.obj ../asg/asm/rdkafka_subscription.asm
   Process Statements-       DUPALIAS
@@ -54,11 +54,11 @@ Options for this Assembly             Source
      XSD                              {Default}
 
                                             Dignus Assembler Option Summary                                                Page    2 
-                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+                                                                                                      DASM V1.95.14 2021/04/30 15:36 
 Libraries in Search Order:
        CMDLINE      C:\DIGNUS\MACLIB\&m
                                               External Symbol Dictionary                                                   Page    3 
-Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                                      DASM V1.95.14 2021/04/29 12:43 
+Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                                      DASM V1.95.14 2021/04/30 15:36 
 @@ZARCH#  WX 00000001                              00
 @RDKAFKA_SUBSCRIPTION
           SD 00000002 00000000 00001410            07  @CODE
@@ -113,7 +113,7 @@ rd_kafka_assign0
 rd_kafka_assign
           LD          00000760          00000002   00  RD_KAFKA_ASSIGN
                                               External Symbol Dictionary                                                   Page    4 
-Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                                      DASM V1.95.14 2021/04/29 12:43 
+Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                                      DASM V1.95.14 2021/04/30 15:36 
 rd_kafka_incremental_assign
           LD          000008E0          00000002   00  RD_KAFKA_INCREMENTAL_ASSIGN
 rd_kafka_incremental_unassign
@@ -132,11 +132,11 @@ rd_kafka_resume_partitions
           LD          00001340          00000002   00  RD_KAFKA_RESUME_PARTITIONS
                                                                                                                            Page    5 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                                1 *PROCESS DUPALIAS
                                                2 *
                                                3 *  Compiled by DCC Version 2.25.07 Mar  6 2021 08:51:07
-                                               4 *           on Thu Apr 29 12:43:34 2021
+                                               4 *           on Fri Apr 30 15:36:12 2021
                                                5 *
 
                                                7          WXTRN @@ZARCH#
@@ -187,7 +187,7 @@ rd_kafka_resume_partitions
                                               45          EXTRN rd_kafka_error_new
                                                                                                                            Page    6 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                               46 rd_kafka_topic_partition_list_new ALIAS X'99846D92818692816DA3969789836*
                                                                 D978199A389A38996956D9389A2A36D9585A6'
                                               47          EXTRN rd_kafka_topic_partition_list_new
@@ -242,7 +242,7 @@ rd_kafka_resume_partitions
 0000004C 00                                   92+         dc bl.8'00000000'                                              02-DCCCA
                                                                                                                            Page    7 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 0000004D 000000                               93+         dc al3(0)                                                      02-DCCCA
 00000050 0000000000000000                     94+         dc ad(@LNAME602)                                               02-DCCCA
 00000058                                      95+         ds 0d                                                          02-DCCCA
@@ -297,7 +297,7 @@ rd_kafka_resume_partitions
 000000FC                                     143 @@gen_label1 DS    0H
                                                                                                                            Page    8 
   Active Usings: @REGION_602_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000000FC 05EF                                144          BALR  14,15
 000000FE                                     145 @@gen_label2 DS    0H
 000000FE E3F0 D0B0 0024          000000B0    146          STG   15,176(0,13)
@@ -352,7 +352,7 @@ rd_kafka_resume_partitions
                                              194          gblc    &$dccext(1000)
                                                                                                                            Page    9 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                              195          gbla    &$dccexti
                                              196          lcla    &i
                                              197 &$dccext(&$dccexti+1) setc    '&m'
@@ -407,7 +407,7 @@ rd_kafka_resume_partitions
                                              246 * ***           rd_regex_t *re;
                                                                                                                            Page   10 
   Active Usings: @REGION_1917_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                              247 * ***           char errstr[1];
                                              248 * ***
                                              249 * ***           if (!*rktpar->topic)
@@ -462,7 +462,7 @@ rd_kafka_resume_partitions
                                              297 * ***
                                                                                                                            Page   11 
   Active Usings: @REGION_1917_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                              298 * ***           return 0;
 00000298 A7F9 0000               00000000    299          LGHI  15,0        ; 0
                                              300 * ***   }
@@ -517,7 +517,7 @@ rd_kafka_resume_partitions
                                              348 .loop    aif    (&i gt &$dccexti).around
                                                                                                                            Page   12 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                              349          aif    ('&$dccext(&i)' eq '&m').getout
                                              350 &i       seta    &i+1
                                              351          ago     .loop
@@ -572,7 +572,7 @@ rd_kafka_resume_partitions
                                              400 * ***
                                                                                                                            Page   13 
   Active Usings: @REGION_601_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                              401 * ***           if (!(rkcg = ((rk)->rk_cgrp)))
 0000038C E3F0 1000 0004          00000000    402          LG    15,0(0,1)   ; rk
 00000392 E330 F208 0004          00000208    403          LG    3,520(0,15) ; offset of rk_cgrp in rd_kafka_s
@@ -627,7 +627,7 @@ rd_kafka_resume_partitions
 00000440 05EF                                451          BALR  14,15
                                                                                                                            Page   14 
   Active Usings: @REGION_601_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00000442                                     452 @@gen_label18 DS    0H
 00000442 B904 002F                           453          LGR   2,15
                                              454 * ***           if (rd_kafka_topic_partition_list_has_duplicates(topic\
@@ -682,7 +682,7 @@ rd_kafka_resume_partitions
 000004C4 05EF                                502          BALR  14,15
                                                                                                                            Page   15 
   Active Usings: @REGION_601_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000004C6                                     503 @@gen_label27 DS    0H
 000004C6 E3F0 D0B0 0024          000000B0    504          STG   15,176(0,13)
 000004CC 4110 D0B0               000000B0    505          LA    1,176(0,13)
@@ -737,7 +737,7 @@ rd_kafka_resume_partitions
                                              553          gblc    &$dccext(1000)
                                                                                                                            Page   16 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                              554          gbla    &$dccexti
                                              555          lcla    &i
                                              556 &$dccext(&$dccexti+1) setc    '&m'
@@ -792,7 +792,7 @@ rd_kafka_resume_partitions
                                              605 * *
                                                                                                                            Page   17 
   Active Usings: @REGION_1918_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                              606 * ***           rd_kafka_op_t *rko;
                                              607 * ***           rd_kafka_cgrp_t *rkcg;
                                              608 * ***
@@ -847,7 +847,7 @@ rd_kafka_resume_partitions
 00000666 4780 C0FA               00000682    656          BZ    @L639
                                                                                                                            Page   18 
   Active Usings: @REGION_1918_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                              657 * ***                   rko->rko_u.assign.partitions =
                                              658 * ***                           rd_kafka_topic_partition_list_copy(par\
                                              659 * titions);
@@ -902,7 +902,7 @@ rd_kafka_resume_partitions
                                              708 *
                                                                                                                            Page   19 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                              709 *   DSECT for automatic variables in "rd_kafka_assign0"
                                              710 *      (FUNCTION #1918)
                                              711 *
@@ -957,7 +957,7 @@ rd_kafka_resume_partitions
 00000758 0000000000000000                    759+         dc ad(0)                                                       02-DCCCA
                                                                                                                            Page   20 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00000760                                     760+         ds    0d                                                       01-DCCPR
                                              761+         entry rd_kafka_assign                                          01-DCCPR
 00000760                                     762+rd_kafka_assign ds 0d                                                   01-DCCPR
@@ -1012,7 +1012,7 @@ rd_kafka_resume_partitions
 00000800                                     810 @L640    DS    0H
                                                                                                                            Page   21 
   Active Usings: @REGION_609_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                              811 * ***                   err = rd_kafka_error_code(error);
 00000800 E330 D0B0 0024          000000B0    812          STG   3,176(0,13)
 00000806 4110 D0B0               000000B0    813          LA    1,176(0,13)
@@ -1067,7 +1067,7 @@ rd_kafka_resume_partitions
                                              862 *
                                                                                                                            Page   22 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                              863 *
                                              864 * ....... start of rd_kafka_incremental_assign
                                              865 rd_kafka_incremental_assign ALIAS X'99846D92818692816D8995839985948595A*
@@ -1122,7 +1122,7 @@ rd_kafka_resume_partitions
 000008F2 B904 002E                           912+         lgr   2,14                copy addr of our savearea            01-DCCPR
                                                                                                                            Page   23 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000008F6 E3B0 C018 0004          00000018    913+         lg    11,24(0,12)         get dvt address                      01-DCCPR
 000008FC A7EB 00C0               000000C0    914+         aghi  14,192              increase by frame size               01-DCCPR
 00000900 E3E0 C020 0021          00000020    915+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
@@ -1177,7 +1177,7 @@ rd_kafka_resume_partitions
 0000099C                                     963 @ret_lab_606 DS 0H
                                                                                                                            Page   24 
   Active Usings: @REGION_606_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                              964 * * **** Start of Epilogue
                                              965          DCCEPIL
 0000099C                                     966+         ds 0h                                                          01-DCCEP
@@ -1232,7 +1232,7 @@ rd_kafka_resume_partitions
                                             1013 .around  anop
                                                                                                                            Page   25 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                             1014 &$dccexti seta &$dccexti+1
                                             1015          extrn  &m
                                             1016 .getout  anop
@@ -1287,7 +1287,7 @@ rd_kafka_resume_partitions
 00000AA2 E3F0 C088 0004          00000AD8   1065          LG    15,@lit_607_39
                                                                                                                            Page   26 
   Active Usings: @REGION_607_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00000AA8 41F0 F02E               0000002E   1066          LA    15,46(0,15)
 00000AAC E3F0 D0B0 0024          000000B0   1067          STG   15,176(0,13)
 00000AB2 4110 D0A8               000000A8   1068          LA    1,168(0,13)
@@ -1342,7 +1342,7 @@ rd_kafka_resume_partitions
                                             1116 *   DSECT for automatic variables in "rd_kafka_incremental_unassign"
                                                                                                                            Page   27 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                             1117 *      (FUNCTION #607)
                                             1118 *
 00000000                00000000 000000A8   1119 @AUTO#rd_kafka_incremental_unassign DSECT
@@ -1397,7 +1397,7 @@ rd_kafka_resume_partitions
 00000BB8 0000000000000000                   1166+         dc ad(0)                                                       02-DCCCA
                                                                                                                            Page   28 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00000BC0                                    1167+         ds    0d                                                       01-DCCPR
                                             1168+         entry rd_kafka_assignment_lost                                 01-DCCPR
 00000BC0                                    1169+rd_kafka_assignment_lost ds 0d                                          01-DCCPR
@@ -1452,7 +1452,7 @@ rd_kafka_resume_partitions
                                             1217 * * **** Start of Epilogue
                                                                                                                            Page   29 
   Active Usings: @REGION_611_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                             1218          DCCEPIL
 00000C5C                                    1219+         ds 0h                                                          01-DCCEP
                                             1220+* Epilog
@@ -1507,7 +1507,7 @@ rd_kafka_resume_partitions
                                             1267 &$dccexti seta &$dccexti+1
                                                                                                                            Page   30 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                             1268          extrn  &m
                                             1269 .getout  anop
                                             1270          mend
@@ -1562,7 +1562,7 @@ rd_kafka_resume_partitions
 00000D62 A7F9 0000               00000000   1319          LGHI  15,0        ; 0
                                                                                                                            Page   31 
   Active Usings: @REGION_608_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00000D66 47F0 C0E6               00000DF6   1320          B     @ret_lab_608
 00000D70                                    1321          DS    0D
 00000D70 000000C0                           1322 @FRAMESIZE_608 DC F'192'
@@ -1617,7 +1617,7 @@ rd_kafka_resume_partitions
 00000DF0 05EF                               1370          BALR  14,15
                                                                                                                            Page   32 
   Active Usings: @REGION_608_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00000DF2                                    1371 @@gen_label70 DS    0H
                                             1372 * ***
                                             1373 * ***           return result;
@@ -1672,7 +1672,7 @@ rd_kafka_resume_partitions
                                             1421 &i       seta    1
                                                                                                                            Page   33 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                             1422 .loop    aif    (&i gt &$dccexti).around
                                             1423          aif    ('&$dccext(&i)' eq '&m').getout
                                             1424 &i       seta    &i+1
@@ -1727,7 +1727,7 @@ rd_kafka_resume_partitions
                                             1473 * ***
                                                                                                                            Page   34 
   Active Usings: @REGION_610_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                             1474 * ***           if (!(rkcg = ((rk)->rk_cgrp)))
 00000EE4 E3F0 1000 0004          00000000   1475          LG    15,0(0,1)   ; rk
 00000EEA E3F0 F208 0004          00000208   1476          LG    15,520(0,15) ; offset of rk_cgrp in rd_kafka_s
@@ -1782,7 +1782,7 @@ rd_kafka_resume_partitions
                                             1524 * ***           if (!*partitions && !err) {
                                                                                                                            Page   35 
   Active Usings: @REGION_610_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00000F7A E3F0 2000 0002          00000000   1525          LTG   15,0(0,2)   ; partitions
 00000F80 4770 C102               00000FA2   1526          BNZ   @L651
 00000F84 1233                               1527          LTR   3,3
@@ -1837,7 +1837,7 @@ rd_kafka_resume_partitions
                                             1576 *
                                                                                                                            Page   36 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                             1577 *
                                             1578 * ....... start of rd_kafka_subscription
                                             1579 rd_kafka_subscription ALIAS X'99846D92818692816DA2A482A283998997A389969*
@@ -1892,7 +1892,7 @@ rd_kafka_resume_partitions
 00001062 B904 002E                          1626+         lgr   2,14                copy addr of our savearea            01-DCCPR
                                                                                                                            Page   37 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00001066 E3B0 C018 0004          00000018   1627+         lg    11,24(0,12)         get dvt address                      01-DCCPR
 0000106C A7EB 00C0               000000C0   1628+         aghi  14,192              increase by frame size               01-DCCPR
 00001070 E3E0 C020 0021          00000020   1629+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
@@ -1947,7 +1947,7 @@ rd_kafka_resume_partitions
                                             1677 * ***           err = rko->rko_err;
                                                                                                                            Page   38 
   Active Usings: @REGION_603_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000010FE 5830 F020               00000020   1678          L     3,32(0,15)  ; offset of rko_err in rd_kafka_op_s
                                             1679 * ***
                                             1680 * ***           *topics = rko->rko_u.subscribe.topics;
@@ -2002,7 +2002,7 @@ rd_kafka_resume_partitions
 00001188 E300 D018 0024          00000018   1729+         stg 0,24(0,13)          save more return code                  01-DCCEP
                                                                                                                            Page   39 
   Active Usings: @REGION_603_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 0000118E E3F0 D090 0004          00000090   1730+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
 00001194 E3F0 F018 0004          00000018   1731+         lg  15,24(0,15)         load dvt address                       01-DCCEP
 0000119A 47F0 F040               00000040   1732+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
@@ -2057,7 +2057,7 @@ rd_kafka_resume_partitions
 000011E8 20                                 1779+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
                                                                                                                            Page   40 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000011E9 03                                 1780+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
 000011EA 03                                 1781+         dc al1(3)                                                      02-DCCCA
 000011EB 08                                 1782+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
@@ -2112,7 +2112,7 @@ rd_kafka_resume_partitions
                                             1831+* Epilog
                                                                                                                            Page   41 
   Active Usings: @REGION_570_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00001280 D707 D088 D088 00000088 00000088   1832+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
 00001286 E3D0 D080 0004          00000080   1833+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
 0000128C E3C0 D090 0004          00000090   1834+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
@@ -2167,7 +2167,7 @@ rd_kafka_resume_partitions
                                             1880 .around  anop
                                                                                                                            Page   42 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                             1881 &$dccexti seta &$dccexti+1
                                             1882          extrn  &m
                                             1883 .getout  anop
@@ -2222,7 +2222,7 @@ rd_kafka_resume_partitions
 00001396 E3F0 1008 0004          00000008   1932          LG    15,8(0,1)   ; partitions
                                                                                                                            Page   43 
   Active Usings: @REGION_571_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 0000139C E3F0 D0C8 0024          000000C8   1933          STG   15,200(0,13)
 000013A2 4110 D0A8               000000A8   1934          LA    1,168(0,13)
 000013A6 E3F0 C0C8 0004          00001408   1935          LG    15,@lit_571_69 ; rd_kafka_toppars_pause_resume
@@ -2277,7 +2277,7 @@ rd_kafka_resume_partitions
 00001423 00                                 1983          DC    1X'00'
                                                                                                                            Page   44 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00001424 99846D9985819393                   1984 @@T498   DC    X'99846D99858193939683'             rd.realloc
 0000142E 0000                               1985          DC    2X'00'
 00001430 99846DA2A39984A4                   1986 @@T49E   DC    X'99846DA2A39984A497'               rd.strdup
@@ -2332,7 +2332,7 @@ rd_kafka_resume_partitions
 000015B6                                    2035 @strings@ DS   0H
                                                                                                                            Page   45 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000015B6 D98598A4899985A2                   2036          DC    X'D98598A4899985A2408140839695A2A4' Requires.a.consu
 000015C6 94859940A689A388                   2037          DC    X'94859940A689A38840879996A4974B89' mer.with.group.i
 000015D6 8440839695868987                   2038          DC    X'8440839695868987A499858400009781' d.configured..pa
@@ -2387,7 +2387,7 @@ rd_kafka_resume_partitions
 000018E6 8595A3A2D98598A4                   2087          DC    X'8595A3A2D98598A485A2A300D68686A2' entsRequest.Offs
                                                                                                                            Page   46 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000018F6 85A3C4859385A385                   2088          DC    X'85A3C4859385A385D98598A485A2A300' etDeleteRequest.
 00001906 C485A28399898285                   2089          DC    X'C485A28399898285C393898595A3D8A4' DescribeClientQu
 00001916 96A381A2D98598A4                   2090          DC    X'96A381A2D98598A485A2A300C193A385' otasRequest.Alte
@@ -2442,7 +2442,7 @@ rd_kafka_resume_partitions
 00001B54 00000001                           2139          DC    X'00000001'
                                                                                                                            Page   47 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00001B58 00000000                           2140          DC    X'00000000'
 00001B5C 000000FF                           2141          DC    X'000000FF'
 00001B60 0102039C09867F97                   2142          DC    X'0102039C09867F978D8E0B0C0D0E0F10' .....f.p........
@@ -2497,7 +2497,7 @@ rd_kafka_resume_partitions
 00001D49 000000                             2191          DC    AL3(0)
                                                                                                                            Page   48 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00001D4C 00000230                           2192          DC    AL4(560)
 00001D50 00000000                           2193          DC    4X'00'
 00001D54 00000000                           2194          DC    Q(@@STATIC)
@@ -2552,7 +2552,7 @@ rd_kafka_resume_partitions
 00001E0C 00000206                           2243          DC    X'00000206'
                                                                                                                            Page   49 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                             2244 *
 00001E10 0D                                 2245          DC    XL1'D'
 00001E11 000000                             2246          DC    AL3(0)
@@ -2607,7 +2607,7 @@ rd_kafka_resume_partitions
 00001EC4 00000260                           2295          DC    X'00000260'
                                                                                                                            Page   50 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00001EC8 0000000000001410                   2296          DC    ADL8(@DATA)
 00001ED0 00000000                           2297          DC    X'00000000'
 00001ED4 0000024E                           2298          DC    X'0000024E'
@@ -2662,7 +2662,7 @@ rd_kafka_resume_partitions
 00001F80 00000000                           2347          DC    4X'00'
                                                                                                                            Page   51 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00001F84 00000000                           2348          DC    Q(@@STATIC)
 00001F88 00000000                           2349          DC    X'00000000'
 00001F8C 00000288                           2350          DC    X'00000288'
@@ -2717,7 +2717,7 @@ rd_kafka_resume_partitions
 00002040 0D                                 2399          DC    XL1'D'
                                                                                                                            Page   52 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00002041 000000                             2400          DC    AL3(0)
 00002044 00000528                           2401          DC    AL4(1320)
 00002048 00000000                           2402          DC    4X'00'
@@ -2772,7 +2772,7 @@ rd_kafka_resume_partitions
 00002100 00000000                           2451          DC    X'00000000'
                                                                                                                            Page   53 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00002104 00000302                           2452          DC    X'00000302'
                                             2453 *
 00002108 0D                                 2454          DC    XL1'D'
@@ -2827,7 +2827,7 @@ rd_kafka_resume_partitions
 000021B8 00000000                           2503          DC    X'00000000'
                                                                                                                            Page   54 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000021BC 000002F8                           2504          DC    X'000002F8'
 000021C0 0000000000001410                   2505          DC    ADL8(@DATA)
 000021C8 00000000                           2506          DC    X'00000000'
@@ -2882,7 +2882,7 @@ rd_kafka_resume_partitions
 00002274 00000758                           2555          DC    AL4(1880)
                                                                                                                            Page   55 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00002278 00000000                           2556          DC    4X'00'
 0000227C 00000000                           2557          DC    Q(@@STATIC)
 00002280 00000000                           2558          DC    X'00000000'
@@ -2937,7 +2937,7 @@ rd_kafka_resume_partitions
                                             2607 *
                                                                                                                            Page   56 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00002338 0D                                 2608          DC    XL1'D'
 00002339 000000                             2609          DC    AL3(0)
 0000233C 00000820                           2610          DC    AL4(2080)
@@ -2992,7 +2992,7 @@ rd_kafka_resume_partitions
 000023F0 0000000000001410                   2659          DC    ADL8(@DATA)
                                                                                                                            Page   57 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000023F8 00000000                           2660          DC    X'00000000'
 000023FC 00000442                           2661          DC    X'00000442'
                                             2662 *
@@ -3047,7 +3047,7 @@ rd_kafka_resume_partitions
 000024AC 00000000                           2711          DC    Q(@@STATIC)
                                                                                                                            Page   58 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000024B0 00000000                           2712          DC    X'00000000'
 000024B4 00000390                           2713          DC    X'00000390'
 000024B8 0000000000001410                   2714          DC    ADL8(@DATA)
@@ -3102,7 +3102,7 @@ rd_kafka_resume_partitions
 00002569 000000                             2763          DC    AL3(0)
                                                                                                                            Page   59 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 0000256C 00000A50                           2764          DC    AL4(2640)
 00002570 00000000                           2765          DC    4X'00'
 00002574 00000000                           2766          DC    Q(@@STATIC)
@@ -3157,7 +3157,7 @@ rd_kafka_resume_partitions
 0000262C 000005AC                           2815          DC    X'000005AC'
                                                                                                                            Page   60 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
                                             2816 *
 00002630 0D                                 2817          DC    XL1'D'
 00002631 000000                             2818          DC    AL3(0)
@@ -3212,7 +3212,7 @@ rd_kafka_resume_partitions
 000026E4 000004C8                           2867          DC    X'000004C8'
                                                                                                                            Page   61 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000026E8 0000000000001410                   2868          DC    ADL8(@DATA)
 000026F0 00000000                           2869          DC    X'00000000'
 000026F4 000005FE                           2870          DC    X'000005FE'
@@ -3267,7 +3267,7 @@ rd_kafka_resume_partitions
 000027A0 00000000                           2919          DC    4X'00'
                                                                                                                            Page   62 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000027A4 00000000                           2920          DC    Q(@@STATIC)
 000027A8 00000000                           2921          DC    X'00000000'
 000027AC 00000510                           2922          DC    X'00000510'
@@ -3322,7 +3322,7 @@ rd_kafka_resume_partitions
 00002860 0D                                 2971          DC    XL1'D'
                                                                                                                            Page   63 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00002861 000000                             2972          DC    AL3(0)
 00002864 00000D48                           2973          DC    AL4(3400)
 00002868 00000000                           2974          DC    4X'00'
@@ -3377,7 +3377,7 @@ rd_kafka_resume_partitions
 00002920 00000000                           3023          DC    X'00000000'
                                                                                                                            Page   64 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00002924 0000067A                           3024          DC    X'0000067A'
                                             3025 *
 00002928 0D                                 3026          DC    XL1'D'
@@ -3432,7 +3432,7 @@ rd_kafka_resume_partitions
 000029D8 00000000                           3075          DC    X'00000000'
                                                                                                                            Page   65 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 000029DC 00000680                           3076          DC    X'00000680'
 000029E0 0000000000001410                   3077          DC    ADL8(@DATA)
 000029E8 00000000                           3078          DC    X'00000000'
@@ -3487,7 +3487,7 @@ rd_kafka_resume_partitions
 00002A94 00000F78                           3127          DC    AL4(3960)
                                                                                                                            Page   66 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00002A98 00000000                           3128          DC    4X'00'
 00002A9C 00000000                           3129          DC    Q(@@STATIC)
 00002AA0 00000000                           3130          DC    X'00000000'
@@ -3542,7 +3542,7 @@ rd_kafka_resume_partitions
                                             3179 *
                                                                                                                            Page   67 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:36 
 00002B58 0D                                 3180          DC    XL1'D'
 00002B59 000000                             3181          DC    AL3(0)
 00002B5C 00000000                           3182          DC    AL4(0)
@@ -3556,7 +3556,7 @@ rd_kafka_resume_partitions
                                             3190 *
                                             3191          END
                                                  Relocation Dictionary                                                     Page   68 
-  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/30 15:36 
  00000002 00000002 00000028   A 4      +
  00000002 00000002 00000050   A 4      +
  00000002 00000002 00000058   A 4      +
@@ -3611,7 +3611,7 @@ rd_kafka_resume_partitions
  00000002 0000000D 00000C28   A 4      +
  00000002 00000002 00000CD0   A 4      +
                                                  Relocation Dictionary                                                     Page   69 
-  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/30 15:36 
  00000002 00000002 00000CF8   A 4      +
  00000002 00000002 00000D00   A 4      +
  00000002 0000000A 00000D78   A 4      +
@@ -3666,7 +3666,7 @@ rd_kafka_resume_partitions
  00000017 00000016 00001F40   A 4      +
  00000017 00000015 00001F5C   Q 4      +
                                                  Relocation Dictionary                                                     Page   70 
-  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/30 15:36 
  00000017 00000016 00001F68   A 4      +
  00000017 00000015 00001F84   Q 4      +
  00000017 00000016 00001F90   A 4      +
@@ -3721,7 +3721,7 @@ rd_kafka_resume_partitions
  00000017 00000015 0000236C   Q 4      +
  00000017 00000016 00002378   A 4      +
                                                  Relocation Dictionary                                                     Page   71 
-  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/30 15:36 
  00000017 00000015 00002394   Q 4      +
  00000017 00000016 000023A0   A 4      +
  00000017 00000015 000023BC   Q 4      +
@@ -3776,7 +3776,7 @@ rd_kafka_resume_partitions
  00000017 00000016 00002788   A 4      +
  00000017 00000015 000027A4   Q 4      +
                                                  Relocation Dictionary                                                     Page   72 
-  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/30 15:36 
  00000017 00000016 000027B0   A 4      +
  00000017 00000015 000027CC   Q 4      +
  00000017 00000016 000027D8   A 4      +
@@ -3827,7 +3827,7 @@ rd_kafka_resume_partitions
  00000017 00000015 00002B64   Q 4      +
  00000017 00000016 00002B70   A 4      +
                                                  DSECT Cross Reference                                                     Page   73 
-DSECT     LENGTH    ID   DEFN                                                                         DASM V1.95.14 2021/04/29 12:43 
+DSECT     LENGTH    ID   DEFN                                                                         DASM V1.95.14 2021/04/30 15:36 
 @AUTO#_invalid_topic_cb
          000000A9  FFFFFFFE  00326
 @AUTO#rd_kafka_assign
@@ -3855,11 +3855,11 @@ DSECT     LENGTH    ID   DEFN                                                   
 @AUTO#rd_kafka_unsubscribe
          000000A8  FFFFFFFF  00179
                                           Macro and Copy Code Source Summary                                               Page   74 
-Source                                                    Members                                     DASM V1.95.14 2021/04/29 12:43 
+Source                                                    Members                                     DASM V1.95.14 2021/04/30 15:36 
 
 C:\DIGNUS\MACLIB                                          DCCCATR  DCCEPIL  DCCPRLG  dccextrn
                                                       Using Map                                                            Page   75 
-                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+                                                                                                      DASM V1.95.14 2021/04/30 15:36 
   Stmt  -----Location----- Action ----------------Using----------------- Reg Max     Last Label and Using Text
           Count      Id           Type          Value    Range     Id        Disp    Stmt
    115  000000A6  00000002 USING  ORDINARY    00000068 00001000 00000002  12 000AC    148 @REGION_602_1,12
@@ -3889,7 +3889,7 @@ C:\DIGNUS\MACLIB                                          DCCCATR  DCCEPIL  DCCP
   1920  0000137E  00000002 USING  ORDINARY    00001340 00001000 00000002  12 000C8   1935 @REGION_571_1,12
   1963  00001410  00000002 DROP                                           12              12
                                    Diagnostic Cross Reference and Assembler Summary                                        Page   76 
-                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+                                                                                                      DASM V1.95.14 2021/04/30 15:36 
       No Statements Flagged in this Assembly
 DASM Dignus Systems/ASM, VERSION 1.95.14
 SYSTEM: Windows 6.2                JOBNAME: (NOJOB)     STEPNAME: (NOSTEP)   PROCSTEP: (NOPROC)
@@ -3900,5 +3900,5 @@ Datasets Used for this Assembly
   L3  DCCCATR  C:\DIGNUS\MACLIB\dcccatr
   L4  DCCEPIL  C:\DIGNUS\MACLIB\dccepil
 
-Assembly Start Time: 12.43.35 Stop Time: 12.43.35 Processor Time: 00.00.00.0380
+Assembly Start Time: 15.36.13 Stop Time: 15.36.13 Processor Time: 00.00.00.0260
 Return Code 000

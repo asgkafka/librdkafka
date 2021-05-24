@@ -1,7 +1,7 @@
 *PROCESS DUPALIAS
 *
 *  Compiled by DCC Version 2.25.07 Mar  6 2021 08:51:07
-*           on Thu Apr 29 12:42:50 2021
+*           on Tue May 04 11:36:32 2021
 *
 
          WXTRN @@ZARCH#
@@ -277,6 +277,9 @@ rd_kafka_bufq_dump ALIAS X'99846D92818692816D82A486986D84A49497'
          EXTRN rd_kafka_bufq_dump
 snprintf ALIAS C'snprintf'
          EXTRN snprintf
+rd_kafka_sasl_broker_term ALIAS X'99846D92818692816DA281A2936D829996928*
+               5996DA3859994'
+         EXTRN rd_kafka_sasl_broker_term
 rd_kafka_crash ALIAS X'99846D92818692816D839981A288'
          EXTRN rd_kafka_crash
 rd_kafka_buf_callback ALIAS X'99846D92818692816D82A4866D838193938281839*
@@ -40081,176 +40084,199 @@ rd_kafka_broker_destroy_final DCCPRLG CINDEX=1804,BASER=12,FRAME=200,EN*
 @L3048   DS    0H
 * ***   
 * ***   
-* ***   # 5444 "C:\asgkafka\librdkafka\src\rdkafka_broker.c"
+* ***           if (rkb->rkb_source != RD_KAFKA_INTERNAL &&
+         CHSI  328(2),2
+         BE    @L3049
+* ***               (rkb->rkb_rk->rk_conf.security_protocol ==
+* ***                RD_KAFKA_PROTO_SASL_PLAINTEXT ||
+         LG    15,4048(0,2) ; offset of rkb_rk in rd_kafka_broker_s
+         CHSI  912(15),2
+         BE    @L3050
+* ***                rkb->rkb_rk->rk_conf.security_protocol ==
+* ***                RD_KAFKA_PROTO_SASL_SSL))
+         LG    15,4048(0,2) ; offset of rkb_rk in rd_kafka_broker_s
+         CHSI  912(15),3
+         BNE   @L3049
+@L3050   DS    0H
+* ***                   rd_kafka_sasl_broker_term(rkb);
+         STG   2,168(0,13)
+         LA    1,168(0,13)
+         LG    15,@lit_1804_3324 ; rd_kafka_sasl_broker_term
+@@gen_label4449 DS    0H 
+         BALR  14,15
+@@gen_label4450 DS    0H 
+@L3049   DS    0H
+* ***   
+* ***   
 * ***           if (rkb->rkb_wakeup_fd[0] != -1)
          LGHI  3,5728      ; 5728
          LA    15,0(3,2)
          CHSI  0(15),-1
-         BE    @L3049
+         BE    @L3051
 * ***                   close(rkb->rkb_wakeup_fd[0]);
          LGF   15,0(3,2)
          STG   15,168(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1804_3326 ; close
-@@gen_label4447 DS    0H 
+         LG    15,@lit_1804_3327 ; close
+@@gen_label4452 DS    0H 
          BALR  14,15
-@@gen_label4448 DS    0H 
-@L3049   DS    0H
+@@gen_label4453 DS    0H 
+@L3051   DS    0H
 * ***           if (rkb->rkb_wakeup_fd[1] != -1)
          LA    15,4(3,2)
          CHSI  0(15),-1
-         BE    @L3050
+         BE    @L3052
 * ***                   close(rkb->rkb_wakeup_fd[1]);
          LGF   15,4(3,2)
          STG   15,168(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1804_3326 ; close
-@@gen_label4450 DS    0H 
+         LG    15,@lit_1804_3327 ; close
+@@gen_label4455 DS    0H 
          BALR  14,15
-@@gen_label4451 DS    0H 
-@L3050   DS    0H
+@@gen_label4456 DS    0H 
+@L3052   DS    0H
 * ***   
 * ***      if (rkb->rkb_recv_buf)
          LTG   15,4056(0,2) ; offset of rkb_recv_buf in rd_kafka_broker*
                _s
-         BZ    @L3051
+         BZ    @L3053
 * ***         do { if (rd_refcnt_sub0(&(rkb->rkb_recv_buf)->rkbuf_refc\
 * nt) > 0) break; rd_kafka_buf_destroy_final(rkb->rkb_recv_buf); } whi\
 * le (0);
-@L3052   DS    0H
+@L3054   DS    0H
          LG    15,4056(0,2) ; offset of rkb_recv_buf in rd_kafka_broker*
                _s
          LA    15,264(0,15)
          STG   15,168(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1804_3330 ; rd_refcnt_sub0
-@@gen_label4453 DS    0H 
+         LG    15,@lit_1804_3331 ; rd_refcnt_sub0
+@@gen_label4458 DS    0H 
          BALR  14,15
-@@gen_label4454 DS    0H 
+@@gen_label4459 DS    0H 
          LTR   15,15
-         BH    @L3051
-@L3055   DS    0H
+         BH    @L3053
+@L3057   DS    0H
          LG    15,4056(0,2)
          STG   15,168(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1804_3331 ; rd_kafka_buf_destroy_final
-@@gen_label4456 DS    0H 
+         LG    15,@lit_1804_3332 ; rd_kafka_buf_destroy_final
+@@gen_label4461 DS    0H 
          BALR  14,15
-@@gen_label4457 DS    0H 
-@L3053   DS    0H
+@@gen_label4462 DS    0H 
+@L3055   DS    0H
 * ***   
 * ***      if (rkb->rkb_rsal)
-@L3051   DS    0H
+@L3053   DS    0H
          LTG   15,24(0,2)  ; offset of rkb_rsal in rd_kafka_broker_s
-         BZ    @L3056
+         BZ    @L3058
 * ***         rd_sockaddr_list_destroy(rkb->rkb_rsal);
          LG    15,24(0,2)
          STG   15,168(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1804_3332 ; rd_sockaddr_list_destroy
-@@gen_label4459 DS    0H 
+         LG    15,@lit_1804_3333 ; rd_sockaddr_list_destroy
+@@gen_label4464 DS    0H 
          BALR  14,15
-@@gen_label4460 DS    0H 
-@L3056   DS    0H
+@@gen_label4465 DS    0H 
+@L3058   DS    0H
 * ***   
 * ***      if (rkb->rkb_ApiVersions)
          LTG   15,288(0,2) ; offset of rkb_ApiVersions in rd_kafka_brok*
                er_s
-         BZ    @L3057
+         BZ    @L3059
 * ***         rd_free(rkb->rkb_ApiVersions);
          LG    15,288(0,2)
          STG   15,168(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1804_3333 ; rd_free
-@@gen_label4462 DS    0H 
+         LG    15,@lit_1804_3334 ; rd_free
+@@gen_label4467 DS    0H 
          BALR  14,15
-@@gen_label4463 DS    0H 
-@L3057   DS    0H
+@@gen_label4468 DS    0H 
+@L3059   DS    0H
 * ***           rd_free(rkb->rkb_origname);
          LGHI  15,5664     ; 5664
          LG    15,0(15,2)
          STG   15,168(0,13)
          LA    1,168(0,13)
-         LG    3,@lit_1804_3333 ; rd_free
+         LG    3,@lit_1804_3334 ; rd_free
          LGR   15,3
-@@gen_label4464 DS    0H 
+@@gen_label4469 DS    0H 
          BALR  14,15
-@@gen_label4465 DS    0H 
+@@gen_label4470 DS    0H 
 * ***   
 * ***      rd_kafka_q_purge0(rkb->rkb_ops, 1 );
          LG    15,64(0,2)
          STG   15,168(0,13)
          MVGHI 176(13),1
          LA    1,168(0,13)
-         LG    15,@lit_1804_3336 ; rd_kafka_q_purge0
-@@gen_label4466 DS    0H 
+         LG    15,@lit_1804_3337 ; rd_kafka_q_purge0
+@@gen_label4471 DS    0H 
          BALR  14,15
-@@gen_label4467 DS    0H 
+@@gen_label4472 DS    0H 
 * ***           rd_kafka_q_destroy_owner(rkb->rkb_ops);
          LG    15,64(0,2)
          STG   15,168(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1804_3337 ; rd_kafka_q_destroy_owner
-@@gen_label4468 DS    0H 
+         LG    15,@lit_1804_3338 ; rd_kafka_q_destroy_owner
+@@gen_label4473 DS    0H 
          BALR  14,15
-@@gen_label4469 DS    0H 
+@@gen_label4474 DS    0H 
 * ***   
 * ***           rd_avg_destroy(&rkb->rkb_avg_int_latency);
          LGHI  15,4408     ; 4408
          LA    15,0(15,2)
          STG   15,168(0,13)
          LA    1,168(0,13)
-         LG    4,@lit_1804_3339 ; rd_avg_destroy
+         LG    4,@lit_1804_3340 ; rd_avg_destroy
          LGR   15,4
-@@gen_label4470 DS    0H 
+@@gen_label4475 DS    0H 
          BALR  14,15
-@@gen_label4471 DS    0H 
+@@gen_label4476 DS    0H 
 * ***           rd_avg_destroy(&rkb->rkb_avg_outbuf_latency);
          LGHI  15,4592     ; 4592
          LA    15,0(15,2)
          STG   15,168(0,13)
          LA    1,168(0,13)
          LGR   15,4
-@@gen_label4472 DS    0H 
+@@gen_label4477 DS    0H 
          BALR  14,15
-@@gen_label4473 DS    0H 
+@@gen_label4478 DS    0H 
 * ***           rd_avg_destroy(&rkb->rkb_avg_rtt);
          LGHI  15,4776     ; 4776
          LA    15,0(15,2)
          STG   15,168(0,13)
          LA    1,168(0,13)
          LGR   15,4
-@@gen_label4474 DS    0H 
+@@gen_label4479 DS    0H 
          BALR  14,15
-@@gen_label4475 DS    0H 
+@@gen_label4480 DS    0H 
 * ***      rd_avg_destroy(&rkb->rkb_avg_throttle);
          LGHI  15,4960     ; 4960
          LA    15,0(15,2)
          STG   15,168(0,13)
          LA    1,168(0,13)
          LGR   15,4
-@@gen_label4476 DS    0H 
+@@gen_label4481 DS    0H 
          BALR  14,15
-@@gen_label4477 DS    0H 
+@@gen_label4482 DS    0H 
 * ***   
 * ***           mtx_lock(&rkb->rkb_logname_lock);
          LGHI  4,5688      ; 5688
          LA    15,0(4,2)
          STG   15,168(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1804_3347 ; mtx_lock
-@@gen_label4478 DS    0H 
+         LG    15,@lit_1804_3348 ; mtx_lock
+@@gen_label4483 DS    0H 
          BALR  14,15
-@@gen_label4479 DS    0H 
+@@gen_label4484 DS    0H 
 * ***           rd_free(rkb->rkb_logname);
          LGHI  5,5680      ; 5680
          LG    15,0(5,2)
          STG   15,168(0,13)
          LA    1,168(0,13)
          LGR   15,3
-@@gen_label4480 DS    0H 
+@@gen_label4485 DS    0H 
          BALR  14,15
-@@gen_label4481 DS    0H 
+@@gen_label4486 DS    0H 
 * ***           rkb->rkb_logname = ((void *)0);
          LGHI  15,0        ; 0
          STG   15,0(5,2)   ; offset of rkb_logname in rd_kafka_broker_s
@@ -40258,39 +40284,39 @@ rd_kafka_broker_destroy_final DCCPRLG CINDEX=1804,BASER=12,FRAME=200,EN*
          LA    15,0(4,2)
          STG   15,168(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1804_3353 ; mtx_unlock
-@@gen_label4482 DS    0H 
+         LG    15,@lit_1804_3354 ; mtx_unlock
+@@gen_label4487 DS    0H 
          BALR  14,15
-@@gen_label4483 DS    0H 
+@@gen_label4488 DS    0H 
 * ***           mtx_destroy(&rkb->rkb_logname_lock);
          LA    15,0(4,2)
          STG   15,168(0,13)
          LA    1,168(0,13)
-         LG    3,@lit_1804_3355 ; mtx_destroy
+         LG    3,@lit_1804_3356 ; mtx_destroy
          LGR   15,3
-@@gen_label4484 DS    0H 
+@@gen_label4489 DS    0H 
          BALR  14,15
-@@gen_label4485 DS    0H 
+@@gen_label4490 DS    0H 
 * ***   
 * ***      mtx_destroy(&rkb->rkb_lock);
          LA    15,72(0,2)
          STG   15,168(0,13)
          LA    1,168(0,13)
          LGR   15,3
-@@gen_label4486 DS    0H 
+@@gen_label4491 DS    0H 
          BALR  14,15
-@@gen_label4487 DS    0H 
+@@gen_label4492 DS    0H 
 * ***   
 * ***           do { } while (0);
-@L3058   DS    0H
+@L3060   DS    0H
 * ***   
 * ***      rd_free(rkb);
          STG   2,168(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1804_3333 ; rd_free
-@@gen_label4488 DS    0H 
+         LG    15,@lit_1804_3334 ; rd_free
+@@gen_label4493 DS    0H 
          BALR  14,15
-@@gen_label4489 DS    0H 
+@@gen_label4494 DS    0H 
 * ***   }
 @ret_lab_1804 DS 0H
 * * **** Start of Epilogue
@@ -40303,17 +40329,18 @@ rd_kafka_broker_destroy_final DCCPRLG CINDEX=1804,BASER=12,FRAME=200,EN*
 @lit_1804_3299 DC AD(@strings@+8192)
 @lit_1804_3298 DC AD(@strings@)
 @lit_1804_3297 DC AD(@DATA)
-@lit_1804_3326 DC AD(close)
-@lit_1804_3330 DC AD(rd_refcnt_sub0)
-@lit_1804_3331 DC AD(rd_kafka_buf_destroy_final)
-@lit_1804_3332 DC AD(rd_sockaddr_list_destroy)
-@lit_1804_3333 DC AD(rd_free)
-@lit_1804_3336 DC AD(rd_kafka_q_purge0)
-@lit_1804_3337 DC AD(rd_kafka_q_destroy_owner)
-@lit_1804_3339 DC AD(rd_avg_destroy)
-@lit_1804_3347 DC AD(mtx_lock)
-@lit_1804_3353 DC AD(mtx_unlock)
-@lit_1804_3355 DC AD(mtx_destroy)
+@lit_1804_3324 DC AD(rd_kafka_sasl_broker_term)
+@lit_1804_3327 DC AD(close)
+@lit_1804_3331 DC AD(rd_refcnt_sub0)
+@lit_1804_3332 DC AD(rd_kafka_buf_destroy_final)
+@lit_1804_3333 DC AD(rd_sockaddr_list_destroy)
+@lit_1804_3334 DC AD(rd_free)
+@lit_1804_3337 DC AD(rd_kafka_q_purge0)
+@lit_1804_3338 DC AD(rd_kafka_q_destroy_owner)
+@lit_1804_3340 DC AD(rd_avg_destroy)
+@lit_1804_3348 DC AD(mtx_lock)
+@lit_1804_3354 DC AD(mtx_unlock)
+@lit_1804_3356 DC AD(mtx_destroy)
          DROP  12
 *
 *   DSECT for automatic variables in "rd_kafka_broker_destroy_final"
@@ -40344,33 +40371,33 @@ rd_kafka_broker_internal DCCPRLG CINDEX=1818,BASER=12,FRAME=192,ENTRY=Y*
          LA    15,312(0,2)
          STG   15,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1818_3359 ; mtx_lock
-@@gen_label4490 DS    0H 
+         LG    15,@lit_1818_3360 ; mtx_lock
+@@gen_label4495 DS    0H 
          BALR  14,15
-@@gen_label4491 DS    0H 
+@@gen_label4496 DS    0H 
 * ***      rkb = rk->rk_internal_rkb;
          LG    3,352(0,2)  ; offset of rk_internal_rkb in rd_kafka_s
 * ***      if (rkb)
          LTGR  15,3
-         BZ    @L3061
+         BZ    @L3063
 * ***         rd_atomic32_add(&(rkb)->rkb_refcnt, 1);
          LA    15,4000(0,3)
          STG   15,176(0,13)
          MVGHI 184(13),1
          LA    1,176(0,13)
-         LG    15,@lit_1818_3360 ; rd_atomic32_add
-@@gen_label4493 DS    0H 
+         LG    15,@lit_1818_3361 ; rd_atomic32_add
+@@gen_label4498 DS    0H 
          BALR  14,15
-@@gen_label4494 DS    0H 
-@L3061   DS    0H
+@@gen_label4499 DS    0H 
+@L3063   DS    0H
 * ***           mtx_unlock(&rk->rk_internal_rkb_lock);
          LA    15,312(0,2)
          STG   15,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1818_3361 ; mtx_unlock
-@@gen_label4495 DS    0H 
+         LG    15,@lit_1818_3362 ; mtx_unlock
+@@gen_label4500 DS    0H 
          BALR  14,15
-@@gen_label4496 DS    0H 
+@@gen_label4501 DS    0H 
 * ***   
 * ***      return rkb;
          LGR   15,3
@@ -40380,9 +40407,9 @@ rd_kafka_broker_internal DCCPRLG CINDEX=1818,BASER=12,FRAME=192,ENTRY=Y*
 * * **** End of Epilogue
          DS    0D
 @FRAMESIZE_1818 DC F'192'
-@lit_1818_3359 DC AD(mtx_lock)
-@lit_1818_3360 DC AD(rd_atomic32_add)
-@lit_1818_3361 DC AD(mtx_unlock)
+@lit_1818_3360 DC AD(mtx_lock)
+@lit_1818_3361 DC AD(rd_atomic32_add)
+@lit_1818_3362 DC AD(mtx_unlock)
          DROP  12
 *
 *   DSECT for automatic variables in "rd_kafka_broker_internal"
@@ -40419,15 +40446,15 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          MVGHI 464(13),1
          MVGHI 472(13),6544
          LA    1,464(0,13)
-         LG    15,@lit_1806_3363 ; rd_calloc
-@@gen_label4497 DS    0H 
+         LG    15,@lit_1806_3364 ; rd_calloc
+@@gen_label4502 DS    0H 
          BALR  14,15
-@@gen_label4498 DS    0H 
+@@gen_label4503 DS    0H 
          LGR   5,15
 * ***   
 * ***           if (source != RD_KAFKA_LOGICAL) {
          CHI   3,3
-         BE    @L3062
+         BE    @L3064
 * ***                   rd_kafka_mk_nodename(rkb->rkb_nodename,
 * ***                                        sizeof(rkb->rkb_nodename)\
 * ,
@@ -40440,10 +40467,10 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          LLGH  15,38(0,6)  ; port
          STG   15,488(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3365 ; rd_kafka_mk_nodename
-@@gen_label4500 DS    0H 
+         LG    15,@lit_1806_3366 ; rd_kafka_mk_nodename
+@@gen_label4505 DS    0H 
          BALR  14,15
-@@gen_label4501 DS    0H 
+@@gen_label4506 DS    0H 
 * ***                   rd_kafka_mk_brokername(rkb->rkb_name, sizeof(r\
 * kb->rkb_name),
 * ***                                          proto, rkb->rkb_nodenam\
@@ -40462,47 +40489,47 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          LGFR  15,3
          STG   15,504(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3368 ; rd_kafka_mk_brokername
-@@gen_label4502 DS    0H 
+         LG    15,@lit_1806_3369 ; rd_kafka_mk_brokername
+@@gen_label4507 DS    0H 
          BALR  14,15
-@@gen_label4503 DS    0H 
+@@gen_label4508 DS    0H 
 * ***           } else {
-         B     @L3063
+         B     @L3065
          DS    0D
 @FRAMESIZE_1806 DC F'528'
-@lit_1806_3363 DC AD(rd_calloc)
-@lit_1806_3365 DC AD(rd_kafka_mk_nodename)
-@lit_1806_3368 DC AD(rd_kafka_mk_brokername)
-@lit_1806_3371 DC AD(snprintf)
-@lit_1806_3370 DC AD(@strings@)
-@lit_1806_3372 DC AD(rd_clock)
-@lit_1806_3376 DC AD(rd_strdup)
-@lit_1806_3377 DC AD(mtx_init)
-@lit_1806_3388 DC AD(rd_kafka_bufq_init)
-@lit_1806_3394 DC AD(rd_kafka_q_new0)
-@lit_1806_3393 DC AD(@DATA)
-@lit_1806_3399 DC AD(rd_avg_init)
-@lit_1806_3415 DC AD(rd_atomic32_init)
-@lit_1806_3416 DC AD(rd_atomic32_add)
-@lit_1806_3420 DC AD(rd_atomic64_init)
-@lit_1806_3422 DC AD(rd_interval_init)
-@lit_1806_3423 DC AD(rd_interval_fixed)
-@lit_1806_3430 DC AD(sigemptyset)
-@lit_1806_3431 DC AD(sigfillset)
-@lit_1806_3432 DC AD(sigdelset)
-@lit_1806_3433 DC AD(pthread_sigmask)
-@lit_1806_3438 DC AD(rd_pipe_nonblocking)
-@lit_1806_3440 DC AD(mtx_lock)
-@lit_1806_3442 DC AD(rd_strlcpy)
-@lit_1806_3444 DC AD(mtx_unlock)
-@lit_1806_3445 DC AD(strerror)
-@lit_1806_3447 DC AD(rd_kafka_log0)
-@lit_1806_3446 DC AD(@strings@+8192)
-@lit_1806_3457 DC AD(rd_kafka_q_io_event_enable)
-@lit_1806_3461 DC AD(thrd_create)
-@lit_1806_3460 DC AD(rd_kafka_broker_thread_main)
+@lit_1806_3364 DC AD(rd_calloc)
+@lit_1806_3366 DC AD(rd_kafka_mk_nodename)
+@lit_1806_3369 DC AD(rd_kafka_mk_brokername)
+@lit_1806_3372 DC AD(snprintf)
+@lit_1806_3371 DC AD(@strings@)
+@lit_1806_3373 DC AD(rd_clock)
+@lit_1806_3377 DC AD(rd_strdup)
+@lit_1806_3378 DC AD(mtx_init)
+@lit_1806_3389 DC AD(rd_kafka_bufq_init)
+@lit_1806_3395 DC AD(rd_kafka_q_new0)
+@lit_1806_3394 DC AD(@DATA)
+@lit_1806_3400 DC AD(rd_avg_init)
+@lit_1806_3416 DC AD(rd_atomic32_init)
+@lit_1806_3417 DC AD(rd_atomic32_add)
+@lit_1806_3421 DC AD(rd_atomic64_init)
+@lit_1806_3423 DC AD(rd_interval_init)
+@lit_1806_3424 DC AD(rd_interval_fixed)
+@lit_1806_3431 DC AD(sigemptyset)
+@lit_1806_3432 DC AD(sigfillset)
+@lit_1806_3433 DC AD(sigdelset)
+@lit_1806_3434 DC AD(pthread_sigmask)
+@lit_1806_3439 DC AD(rd_pipe_nonblocking)
+@lit_1806_3441 DC AD(mtx_lock)
+@lit_1806_3443 DC AD(rd_strlcpy)
+@lit_1806_3445 DC AD(mtx_unlock)
+@lit_1806_3446 DC AD(strerror)
+@lit_1806_3448 DC AD(rd_kafka_log0)
+@lit_1806_3447 DC AD(@strings@+8192)
+@lit_1806_3458 DC AD(rd_kafka_q_io_event_enable)
+@lit_1806_3462 DC AD(thrd_create)
+@lit_1806_3461 DC AD(rd_kafka_broker_thread_main)
 @lit_region_diff_1806_1_2  DC A(@REGION_1806_2-@REGION_1806_1)
-@L3062   DS    0H
+@L3064   DS    0H
 * ***                   
 * ***   
 * ***                   snprintf(rkb->rkb_name, sizeof(rkb->rkb_name),\
@@ -40511,27 +40538,27 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          LA    15,0(15,5)
          STG   15,464(0,13)
          MVGHI 472(13),256
-         LG    15,@lit_1806_3370
+         LG    15,@lit_1806_3371
          LA    15,1344(0,15)
          STG   15,480(0,13)
          STG   4,488(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3371 ; snprintf
-@@gen_label4504 DS    0H 
+         LG    15,@lit_1806_3372 ; snprintf
+@@gen_label4509 DS    0H 
          BALR  14,15
-@@gen_label4505 DS    0H 
+@@gen_label4510 DS    0H 
 * ***           }
-@L3063   DS    0H
+@L3065   DS    0H
 * ***   
 * ***      rkb->rkb_source = source;
          ST    3,328(0,5)  ; offset of rkb_source in rd_kafka_broker_s
 * ***      rkb->rkb_rk = rk;
          STG   2,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
 * ***           rkb->rkb_ts_state = rd_clock();
-         LG    15,@lit_1806_3372 ; rd_clock
-@@gen_label4506 DS    0H 
+         LG    15,@lit_1806_3373 ; rd_clock
+@@gen_label4511 DS    0H 
          BALR  14,15
-@@gen_label4507 DS    0H 
+@@gen_label4512 DS    0H 
          STG   15,200(0,5)
 * ***      rkb->rkb_nodeid = nodeid;
          L     15,44(0,6)  ; nodeid
@@ -40548,11 +40575,11 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          LGHI  6,5664      ; 5664
          STG   4,464(0,13)
          LA    1,464(0,13)
-         LG    4,@lit_1806_3376 ; rd_strdup
+         LG    4,@lit_1806_3377 ; rd_strdup
          LGR   15,4
-@@gen_label4508 DS    0H 
+@@gen_label4513 DS    0H 
          BALR  14,15
-@@gen_label4509 DS    0H 
+@@gen_label4514 DS    0H 
          STG   15,0(6,5)
 * ***   
 * ***      mtx_init(&rkb->rkb_lock, 0);
@@ -40560,11 +40587,11 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          STG   15,464(0,13)
          XC    472(8,13),472(13)
          LA    1,464(0,13)
-         LG    6,@lit_1806_3377 ; mtx_init
+         LG    6,@lit_1806_3378 ; mtx_init
          LGR   15,6
-@@gen_label4510 DS    0H 
+@@gen_label4515 DS    0H 
          BALR  14,15
-@@gen_label4511 DS    0H 
+@@gen_label4516 DS    0H 
 * ***           mtx_init(&rkb->rkb_logname_lock, 0);
          LGHI  15,5688     ; 5688
          LA    15,0(15,5)
@@ -40572,9 +40599,9 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          XC    472(8,13),472(13)
          LA    1,464(0,13)
          LGR   15,6
-@@gen_label4512 DS    0H 
+@@gen_label4517 DS    0H 
          BALR  14,15
-@@gen_label4513 DS    0H 
+@@gen_label4518 DS    0H 
 * ***           rkb->rkb_logname = rd_strdup(rkb->rkb_name);
          LGHI  6,5680      ; 5680
          LGHI  15,5144     ; 5144
@@ -40582,14 +40609,14 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          STG   15,464(0,13)
          LA    1,464(0,13)
          LGR   15,4
-@@gen_label4514 DS    0H 
+@@gen_label4519 DS    0H 
          BALR  14,15
-@@gen_label4515 DS    0H 
+@@gen_label4520 DS    0H 
          STG   15,0(6,5)
 * ***      do { (&rkb->rkb_toppars)->tqh_first = (((void *)0)); (&rkb-\
 * >rkb_toppars)->tqh_last = &(&rkb->rkb_toppars)->tqh_first; } while (\
 *  0);
-@L3064   DS    0H
+@L3066   DS    0H
          LGHI  15,0        ; 0
          STG   15,120(0,5) ; offset of rkb_toppars in rd_kafka_broker_s
          LA    15,120(0,5)
@@ -40597,7 +40624,7 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
 * ***           do { (&rkb->rkb_active_toppars)->cqh_first = ((void *)\
 * (&rkb->rkb_active_toppars)); (&rkb->rkb_active_toppars)->cqh_last = \
 * ((void *)(&rkb->rkb_active_toppars)); } while ( 0);
-@L3067   DS    0H
+@L3069   DS    0H
          LA    15,144(0,5)
          STG   15,144(0,5) ; offset of rkb_active_toppars in rd_kafka_b*
                roker_s
@@ -40606,7 +40633,7 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
 * ***           do { (&rkb->rkb_monitors)->tqh_first = (((void *)0)); \
 * (&rkb->rkb_monitors)->tqh_last = &(&rkb->rkb_monitors)->tqh_first; }\
 *  while ( 0);
-@L3070   DS    0H
+@L3072   DS    0H
          LGHI  15,5808     ; 5808
          LGHI  1,0         ; 0
          STG   1,0(15,5)   ; offset of rkb_monitors in rd_kafka_broker_*
@@ -40617,52 +40644,52 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          LA    15,4072(0,5)
          STG   15,464(0,13)
          LA    1,464(0,13)
-         LG    4,@lit_1806_3388 ; rd_kafka_bufq_init
+         LG    4,@lit_1806_3389 ; rd_kafka_bufq_init
          LGR   15,4
-@@gen_label4516 DS    0H 
+@@gen_label4521 DS    0H 
          BALR  14,15
-@@gen_label4517 DS    0H 
+@@gen_label4522 DS    0H 
 * ***      rd_kafka_bufq_init(&rkb->rkb_waitresps);
          LGHI  15,4184     ; 4184
          LA    15,0(15,5)
          STG   15,464(0,13)
          LA    1,464(0,13)
          LGR   15,4
-@@gen_label4518 DS    0H 
+@@gen_label4523 DS    0H 
          BALR  14,15
-@@gen_label4519 DS    0H 
+@@gen_label4524 DS    0H 
 * ***      rd_kafka_bufq_init(&rkb->rkb_retrybufs);
          LGHI  15,4296     ; 4296
          LA    15,0(15,5)
          STG   15,464(0,13)
          LA    1,464(0,13)
          LGR   15,4
-@@gen_label4520 DS    0H 
+@@gen_label4525 DS    0H 
          BALR  14,15
-@@gen_label4521 DS    0H 
+@@gen_label4526 DS    0H 
 * ***      rkb->rkb_ops = rd_kafka_q_new0(rk,__FUNCTION__,5548);
          STG   2,464(0,13)
-         LG    15,@lit_1806_3393
+         LG    15,@lit_1806_3394
          LA    15,1186(0,15)
          STG   15,472(0,13)
          MVGHI 480(13),5548
          LA    1,464(0,13)
-         LG    15,@lit_1806_3394 ; rd_kafka_q_new0
-@@gen_label4522 DS    0H 
+         LG    15,@lit_1806_3395 ; rd_kafka_q_new0
+@@gen_label4527 DS    0H 
          BALR  14,15
-@@gen_label4523 DS    0H 
+@@gen_label4528 DS    0H 
          STG   15,64(0,5)
 * ***           rd_avg_init(&rkb->rkb_avg_int_latency, RD_AVG_GAUGE, 0\
 * , 100*1000, 2,
 * ***                       rk->rk_conf.stats_interval_ms ? 1 : 0);
          LT    15,856(0,2) ; offset of stats_interval_ms in rd_kafka_co*
                nf_s
-         BZ    @L3073
+         BZ    @L3075
          LHI   15,1        ; 1
-         B     @L3074
-@L3073   DS    0H
+         B     @L3076
+@L3075   DS    0H
          LHI   15,0        ; 0
-@L3074   DS    0H
+@L3076   DS    0H
          LGHI  1,4408      ; 4408
          LA    1,0(1,5)
          STG   1,464(0,13)
@@ -40673,22 +40700,22 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          LGFR  15,15
          STG   15,504(0,13)
          LA    1,464(0,13)
-         LG    6,@lit_1806_3399 ; rd_avg_init
+         LG    6,@lit_1806_3400 ; rd_avg_init
          LGR   15,6
-@@gen_label4525 DS    0H 
+@@gen_label4530 DS    0H 
          BALR  14,15
-@@gen_label4526 DS    0H 
+@@gen_label4531 DS    0H 
 * ***           rd_avg_init(&rkb->rkb_avg_outbuf_latency, RD_AVG_GAUGE\
 * , 0, 100*1000, 2,
 * ***                       rk->rk_conf.stats_interval_ms ? 1 : 0);
          LT    15,856(0,2) ; offset of stats_interval_ms in rd_kafka_co*
                nf_s
-         BZ    @L3075
+         BZ    @L3077
          LHI   15,1        ; 1
-         B     @L3076
-@L3075   DS    0H
+         B     @L3078
+@L3077   DS    0H
          LHI   15,0        ; 0
-@L3076   DS    0H
+@L3078   DS    0H
          LGHI  1,4592      ; 4592
          LA    1,0(1,5)
          STG   1,464(0,13)
@@ -40699,20 +40726,20 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          STG   15,504(0,13)
          LA    1,464(0,13)
          LGR   15,6
-@@gen_label4528 DS    0H 
+@@gen_label4533 DS    0H 
          BALR  14,15
-@@gen_label4529 DS    0H 
+@@gen_label4534 DS    0H 
 * ***           rd_avg_init(&rkb->rkb_avg_rtt, RD_AVG_GAUGE, 0, 500*10\
 * 00, 2,
 * ***                       rk->rk_conf.stats_interval_ms ? 1 : 0);
          LT    15,856(0,2) ; offset of stats_interval_ms in rd_kafka_co*
                nf_s
-         BZ    @L3077
+         BZ    @L3079
          LHI   15,1        ; 1
-         B     @L3078
-@L3077   DS    0H
+         B     @L3080
+@L3079   DS    0H
          LHI   15,0        ; 0
-@L3078   DS    0H
+@L3080   DS    0H
          LGHI  1,4776      ; 4776
          LA    1,0(1,5)
          STG   1,464(0,13)
@@ -40724,20 +40751,20 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          STG   15,504(0,13)
          LA    1,464(0,13)
          LGR   15,6
-@@gen_label4531 DS    0H 
+@@gen_label4536 DS    0H 
          BALR  14,15
-@@gen_label4532 DS    0H 
+@@gen_label4537 DS    0H 
 * ***           rd_avg_init(&rkb->rkb_avg_throttle, RD_AVG_GAUGE, 0, 5\
 * 000*1000, 2,
 * ***                       rk->rk_conf.stats_interval_ms ? 1 : 0);
          LT    15,856(0,2) ; offset of stats_interval_ms in rd_kafka_co*
                nf_s
-         BZ    @L3079
+         BZ    @L3081
          LHI   15,1        ; 1
-         B     @L3080
-@L3079   DS    0H
+         B     @L3082
+@L3081   DS    0H
          LHI   15,0        ; 0
-@L3080   DS    0H
+@L3082   DS    0H
          LGHI  1,4960      ; 4960
          LA    1,0(1,5)
          STG   1,464(0,13)
@@ -40749,28 +40776,28 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          STG   15,504(0,13)
          LA    1,464(0,13)
          LGR   15,6
-@@gen_label4534 DS    0H 
+@@gen_label4539 DS    0H 
          BALR  14,15
-@@gen_label4535 DS    0H 
+@@gen_label4540 DS    0H 
 * ***           rd_atomic32_init(&rkb->rkb_refcnt, 0);
          LA    15,4000(0,5)
          STG   15,464(0,13)
          XC    472(8,13),472(13)
          LA    1,464(0,13)
-         LG    4,@lit_1806_3415 ; rd_atomic32_init
+         LG    4,@lit_1806_3416 ; rd_atomic32_init
          LGR   15,4
-@@gen_label4536 DS    0H 
+@@gen_label4541 DS    0H 
          BALR  14,15
-@@gen_label4537 DS    0H 
+@@gen_label4542 DS    0H 
 * ***           rd_atomic32_add(&(rkb)->rkb_refcnt, 1); 
          LA    15,4000(0,5)
          STG   15,464(0,13)
          MVGHI 472(13),1
          LA    1,464(0,13)
-         LG    15,@lit_1806_3416 ; rd_atomic32_add
-@@gen_label4538 DS    0H 
+         LG    15,@lit_1806_3417 ; rd_atomic32_add
+@@gen_label4543 DS    0H 
          BALR  14,15
-@@gen_label4539 DS    0H 
+@@gen_label4544 DS    0H 
 * ***   
 * ***           rkb->rkb_reconnect_backoff_ms = rk->rk_conf.reconnect_\
 * backoff_ms;
@@ -40786,45 +40813,45 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          XC    472(8,13),472(13)
          LA    1,464(0,13)
          LGR   15,4
-@@gen_label4540 DS    0H 
+@@gen_label4545 DS    0H 
          BALR  14,15
-@@gen_label4541 DS    0H 
+@@gen_label4546 DS    0H 
 * ***   
 * ***           rd_atomic64_init(&rkb->rkb_c.ts_send, 0);
          LA    15,3888(0,5)
          STG   15,464(0,13)
          XC    472(8,13),472(13)
          LA    1,464(0,13)
-         LG    4,@lit_1806_3420 ; rd_atomic64_init
+         LG    4,@lit_1806_3421 ; rd_atomic64_init
          LGR   15,4
-@@gen_label4542 DS    0H 
+@@gen_label4547 DS    0H 
          BALR  14,15
-@@gen_label4543 DS    0H 
+@@gen_label4548 DS    0H 
 * ***           rd_atomic64_init(&rkb->rkb_c.ts_recv, 0);
          LA    15,3936(0,5)
          STG   15,464(0,13)
          XC    472(8,13),472(13)
          LA    1,464(0,13)
          LGR   15,4
-@@gen_label4544 DS    0H 
+@@gen_label4549 DS    0H 
          BALR  14,15
-@@gen_label4545 DS    0H 
+@@gen_label4550 DS    0H 
 * ***   
 * ***           
 * ***           if (rkb->rkb_rk->rk_conf.api_version_request) {
          LG    15,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
          LT    15,888(0,15) ; offset of api_version_request in rd_kafka*
                _conf_s
-         BZ    @L3081
+         BZ    @L3083
 * ***                   rd_interval_init(&rkb->rkb_ApiVersion_fail_int\
 * vl);
          LA    15,304(0,5)
          STG   15,464(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3422 ; rd_interval_init
-@@gen_label4547 DS    0H 
+         LG    15,@lit_1806_3423 ; rd_interval_init
+@@gen_label4552 DS    0H 
          BALR  14,15
-@@gen_label4548 DS    0H 
+@@gen_label4553 DS    0H 
 * ***                   rd_interval_fixed(
 * ***                           &rkb->rkb_ApiVersion_fail_intvl,
 * ***                           (rd_ts_t)rkb->rkb_rk->rk_conf.api_vers\
@@ -40837,12 +40864,12 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          MGHI  15,1000
          STG   15,472(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3423 ; rd_interval_fixed
-@@gen_label4549 DS    0H 
+         LG    15,@lit_1806_3424 ; rd_interval_fixed
+@@gen_label4554 DS    0H 
          BALR  14,15
-@@gen_label4550 DS    0H 
+@@gen_label4555 DS    0H 
 * ***           }
-@L3081   DS    0H
+@L3083   DS    0H
 * ***   
 * ***           rd_interval_init(&rkb->rkb_suppress.unsupported_compre\
 * ssion);
@@ -40850,28 +40877,28 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          LA    15,0(4,5)
          STG   15,464(0,13)
          LA    1,464(0,13)
-         LG    6,@lit_1806_3422 ; rd_interval_init
+         LG    6,@lit_1806_3423 ; rd_interval_init
          LGR   15,6
-@@gen_label4551 DS    0H 
+@@gen_label4556 DS    0H 
          BALR  14,15
-@@gen_label4552 DS    0H 
+@@gen_label4557 DS    0H 
 * ***           rd_interval_init(&rkb->rkb_suppress.unsupported_kip62)\
 * ;
          LA    15,24(4,5)
          STG   15,464(0,13)
          LA    1,464(0,13)
          LGR   15,6
-@@gen_label4553 DS    0H 
+@@gen_label4558 DS    0H 
          BALR  14,15
-@@gen_label4554 DS    0H 
+@@gen_label4559 DS    0H 
 * ***           rd_interval_init(&rkb->rkb_suppress.fail_error);
          LA    15,72(4,5)
          STG   15,464(0,13)
          LA    1,464(0,13)
          LGR   15,6
-@@gen_label4555 DS    0H 
+@@gen_label4560 DS    0H 
          BALR  14,15
-@@gen_label4556 DS    0H 
+@@gen_label4561 DS    0H 
 * ***   
 * ***   
 * ***           
@@ -40880,22 +40907,22 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          LA    15,168(0,13)
          STG   15,464(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3430 ; sigemptyset
-@@gen_label4557 DS    0H 
+         LG    15,@lit_1806_3431 ; sigemptyset
+@@gen_label4562 DS    0H 
          BALR  14,15
-@@gen_label4558 DS    0H 
+@@gen_label4563 DS    0H 
 * ***           sigfillset(&newset);
          LA    15,184(0,13)
          STG   15,464(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3431 ; sigfillset
-@@gen_label4559 DS    0H 
+         LG    15,@lit_1806_3432 ; sigfillset
+@@gen_label4564 DS    0H 
          BALR  14,15
-@@gen_label4560 DS    0H 
+@@gen_label4565 DS    0H 
 * ***      if (rkb->rkb_rk->rk_conf.term_sig)
          LG    15,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
          LT    15,860(0,15) ; offset of term_sig in rd_kafka_conf_s
-         BZ    @L3082
+         BZ    @L3084
 * ***         sigdelset(&newset, rkb->rkb_rk->rk_conf.term_sig);
          LA    15,184(0,13)
          STG   15,464(0,13)
@@ -40903,11 +40930,11 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          LGF   15,860(0,15)
          STG   15,472(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3432 ; sigdelset
-@@gen_label4562 DS    0H 
+         LG    15,@lit_1806_3433 ; sigdelset
+@@gen_label4567 DS    0H 
          BALR  14,15
-@@gen_label4563 DS    0H 
-@L3082   DS    0H
+@@gen_label4568 DS    0H 
+@L3084   DS    0H
 * ***           pthread_sigmask(3, &newset, &oldset);
          MVGHI 464(13),3
          LA    15,184(0,13)
@@ -40915,10 +40942,10 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          LA    15,168(0,13)
          STG   15,480(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3433 ; pthread_sigmask
-@@gen_label4564 DS    0H 
+         LG    15,@lit_1806_3434 ; pthread_sigmask
+@@gen_label4569 DS    0H 
          BALR  14,15
-@@gen_label4565 DS    0H 
+@@gen_label4570 DS    0H 
 * ***   
 * ***   
 * ***           
@@ -40941,28 +40968,28 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          LA    15,0(15,5)
          STG   15,464(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3438 ; rd_pipe_nonblocking
-@@gen_label4566 DS    0H 
+         LG    15,@lit_1806_3439 ; rd_pipe_nonblocking
+@@gen_label4571 DS    0H 
          BALR  14,15
-@@gen_label4567 DS    0H 
+@@gen_label4572 DS    0H 
          LR    4,15
          CHI   4,-1
-         BNE   @L3083
+         BNE   @L3085
 * ***                   do { char _logname[256]; mtx_lock(&(rkb)->rkb_\
 * logname_lock); rd_strlcpy(_logname, rkb->rkb_logname, sizeof(_lognam\
 * e)); mtx_unlock(&(rkb)->rkb_logname_lock); rd_kafka_log0(&(rkb)->rkb\
 * _rk->rk_conf, (rkb)->rkb_rk, _logname, 3, 0x0, "WAKEUPFD", "Failed t\
 * o setup broker queue wake-up fds: " "%s: disabling low-latency mode"\
 * , strerror(r)); } while (0);
-@L3084   DS    0H
+@L3086   DS    0H
          LGHI  3,5688      ; 5688
          LA    15,0(3,5)
          STG   15,464(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3440 ; mtx_lock
-@@gen_label4569 DS    0H 
+         LG    15,@lit_1806_3441 ; mtx_lock
+@@gen_label4574 DS    0H 
          BALR  14,15
-@@gen_label4570 DS    0H 
+@@gen_label4575 DS    0H 
          LA    15,200(0,13)
          STG   15,464(0,13)
          LGHI  15,5680     ; 5680
@@ -40970,24 +40997,24 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          STG   15,472(0,13)
          MVGHI 480(13),256
          LA    1,464(0,13)
-         LG    15,@lit_1806_3442 ; rd_strlcpy
-@@gen_label4571 DS    0H 
+         LG    15,@lit_1806_3443 ; rd_strlcpy
+@@gen_label4576 DS    0H 
          BALR  14,15
-@@gen_label4572 DS    0H 
+@@gen_label4577 DS    0H 
          LA    15,0(3,5)
          STG   15,464(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3444 ; mtx_unlock
-@@gen_label4573 DS    0H 
+         LG    15,@lit_1806_3445 ; mtx_unlock
+@@gen_label4578 DS    0H 
          BALR  14,15
-@@gen_label4574 DS    0H 
+@@gen_label4579 DS    0H 
          LGFR  15,4
          STG   15,464(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3445 ; strerror
-@@gen_label4575 DS    0H 
+         LG    15,@lit_1806_3446 ; strerror
+@@gen_label4580 DS    0H 
          BALR  14,15
-@@gen_label4576 DS    0H 
+@@gen_label4581 DS    0H 
          LG    1,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
          STG   1,464(0,13)
@@ -40997,30 +41024,30 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          STG   1,480(0,13)
          MVGHI 488(13),3
          XC    496(8,13),496(13)
-         LG    1,@lit_1806_3446
+         LG    1,@lit_1806_3447
          LA    3,644(0,1)
          STG   3,504(0,13)
          LA    1,654(0,1)
          STG   1,512(0,13)
          STG   15,520(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3447 ; rd_kafka_log0
-@@gen_label4577 DS    0H 
+         LG    15,@lit_1806_3448 ; rd_kafka_log0
+@@gen_label4582 DS    0H 
          BALR  14,15
-@@gen_label4578 DS    0H 
+@@gen_label4583 DS    0H 
 * ***   
 * ***   
 * ***   
 * ***   
 * ***           } else if (source == RD_KAFKA_INTERNAL) {
-         B     @L3087
-@L3083   DS    0H
+         B     @L3089
+@L3085   DS    0H
          CHI   3,2
-         BE    @L3087
+         BE    @L3089
 * ***                   
 * ***   
 * ***           } else {
-@L3088   DS    0H
+@L3090   DS    0H
 * ***                   char onebyte = 1;
          MVI   200(13),1   ; onebyte
 * ***   
@@ -41030,19 +41057,19 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
 * k(&(rkb)->rkb_logname_lock); rd_kafka_log0(&(rkb)->rkb_rk->rk_conf, \
 * (rkb)->rkb_rk, _logname, 7, (0x20), "WAKEUPFD", "Enabled low-latency\
 *  ops queue wake-ups"); } while (0); } } while (0);
-@L3090   DS    0H
+@L3092   DS    0H
          LG    15,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
          TM    803(15),32
-         BZ    @L3093
-@L3094   DS    0H
+         BZ    @L3095
+@L3096   DS    0H
          LGHI  3,5688      ; 5688
          LA    15,0(3,5)
          STG   15,464(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3440 ; mtx_lock
-@@gen_label4581 DS    0H 
+         LG    15,@lit_1806_3441 ; mtx_lock
+@@gen_label4586 DS    0H 
          BALR  14,15
-@@gen_label4582 DS    0H 
+@@gen_label4587 DS    0H 
          LA    15,201(0,13)
          STG   15,464(0,13)
          LGHI  15,5680     ; 5680
@@ -41050,17 +41077,17 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          STG   15,472(0,13)
          MVGHI 480(13),256
          LA    1,464(0,13)
-         LG    15,@lit_1806_3442 ; rd_strlcpy
-@@gen_label4583 DS    0H 
+         LG    15,@lit_1806_3443 ; rd_strlcpy
+@@gen_label4588 DS    0H 
          BALR  14,15
-@@gen_label4584 DS    0H 
+@@gen_label4589 DS    0H 
          LA    15,0(3,5)
          STG   15,464(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3444 ; mtx_unlock
-@@gen_label4585 DS    0H 
+         LG    15,@lit_1806_3445 ; mtx_unlock
+@@gen_label4590 DS    0H 
          BALR  14,15
-@@gen_label4586 DS    0H 
+@@gen_label4591 DS    0H 
          LG    15,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
          LA    15,528(0,15)
          STG   15,464(0,13)
@@ -41070,17 +41097,17 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          STG   15,480(0,13)
          MVGHI 488(13),7
          MVGHI 496(13),32
-         LG    15,@lit_1806_3446
+         LG    15,@lit_1806_3447
          LA    1,644(0,15)
          STG   1,504(0,13)
          LA    15,728(0,15)
          STG   15,512(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3447 ; rd_kafka_log0
-@@gen_label4587 DS    0H 
+         LG    15,@lit_1806_3448 ; rd_kafka_log0
+@@gen_label4592 DS    0H 
          BALR  14,15
-@@gen_label4588 DS    0H 
-@L3093   DS    0H
+@@gen_label4593 DS    0H 
+@L3095   DS    0H
 * ***   
 * ***                   rd_kafka_q_io_event_enable(rkb->rkb_ops, rkb->\
 * rkb_wakeup_fd[1],
@@ -41095,51 +41122,51 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          STG   15,480(0,13)
          MVGHI 488(13),1
          LA    1,464(0,13)
-         LG    15,@lit_1806_3457 ; rd_kafka_q_io_event_enable
-@@gen_label4589 DS    0H 
+         LG    15,@lit_1806_3458 ; rd_kafka_q_io_event_enable
+@@gen_label4594 DS    0H 
          BALR  14,15
-@@gen_label4590 DS    0H 
+@@gen_label4595 DS    0H 
 * ***           }
-@L3089   DS    0H
+@L3091   DS    0H
 * ***   
 * ***           
 * ***   
 * ***      mtx_lock(&(rkb)->rkb_lock);
-@L3087   DS    0H
+@L3089   DS    0H
          LA    15,72(0,5)
          STG   15,464(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3440 ; mtx_lock
-@@gen_label4591 DS    0H 
+         LG    15,@lit_1806_3441 ; mtx_lock
+@@gen_label4596 DS    0H 
          BALR  14,15
-@@gen_label4592 DS    0H 
+@@gen_label4597 DS    0H 
 * ***           rd_atomic32_add(&(rkb)->rkb_refcnt, 1); 
          LA    15,4000(0,5)
          STG   15,464(0,13)
          MVGHI 472(13),1
          LA    1,464(0,13)
-         LG    15,@lit_1806_3416 ; rd_atomic32_add
-@@gen_label4593 DS    0H 
+         LG    15,@lit_1806_3417 ; rd_atomic32_add
+@@gen_label4598 DS    0H 
          BALR  14,15
-@@gen_label4594 DS    0H 
+@@gen_label4599 DS    0H 
 * ***      if (thrd_create(&rkb->rkb_thread,
 * ***            rd_kafka_broker_thread_main, rkb) != 0) {
          LA    15,3992(0,5)
          STG   15,464(0,13)
-         LG    15,@lit_1806_3460 ; rd_kafka_broker_thread_main
+         LG    15,@lit_1806_3461 ; rd_kafka_broker_thread_main
          STG   15,472(0,13)
          STG   5,480(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3461 ; thrd_create
-@@gen_label4595 DS    0H 
+         LG    15,@lit_1806_3462 ; thrd_create
+@@gen_label4600 DS    0H 
          BALR  14,15
-@@gen_label4596 DS    0H 
+@@gen_label4601 DS    0H 
          LTR   15,15
          BNE   *+14  Around region break
          ALGF  12,@lit_region_diff_1806_1_2
          DROP  12
          USING @REGION_1806_2,12
-         B     @L3097
+         B     @L3099
          DROP  12
          USING @REGION_1806_1,12
          ALGF  12,@lit_region_diff_1806_1_2
@@ -41150,10 +41177,10 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          LA    15,72(0,5)
          STG   15,464(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3462 ; mtx_unlock
-@@gen_label4598 DS    0H 
+         LG    15,@lit_1806_3463 ; mtx_unlock
+@@gen_label4603 DS    0H 
          BALR  14,15
-@@gen_label4599 DS    0H 
+@@gen_label4604 DS    0H 
 * ***   
 * ***                   rd_kafka_log0(&rk->rk_conf, rk, ((void *)0), 2\
 * , 0x0, "THREAD", "Unable to create broker thread");
@@ -41163,16 +41190,16 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          XC    480(8,13),480(13)
          MVGHI 488(13),2
          XC    496(8,13),496(13)
-         LG    15,@lit_1806_3463
+         LG    15,@lit_1806_3464
          LA    1,768(0,15)
          STG   1,504(0,13)
          LA    15,776(0,15)
          STG   15,512(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3464 ; rd_kafka_log0
-@@gen_label4600 DS    0H 
+         LG    15,@lit_1806_3465 ; rd_kafka_log0
+@@gen_label4605 DS    0H 
          BALR  14,15
-@@gen_label4601 DS    0H 
+@@gen_label4606 DS    0H 
 * ***   
 * ***   
 * ***         
@@ -41181,65 +41208,65 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
 * reate broker thread"); break; } rd_kafka_q_op_err((rk)->rk_rep, RD_K\
 * AFKA_RESP_ERR__CRIT_SYS_RESOURCE, "Unable to create broker thread");\
 *  } while (0);
-@L3098   DS    0H
+@L3100   DS    0H
          TM    755(2),8
-         BNZ   @L3101
+         BNZ   @L3103
          LA    15,528(0,2)
          STG   15,464(0,13)
          STG   2,472(0,13)
          XC    480(8,13),480(13)
          MVGHI 488(13),3
          XC    496(8,13),496(13)
-         LG    15,@lit_1806_3465
+         LG    15,@lit_1806_3466
          LA    15,550(0,15)
          STG   15,504(0,13)
-         LG    15,@lit_1806_3463
+         LG    15,@lit_1806_3464
          LA    15,776(0,15)
          STG   15,512(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3464 ; rd_kafka_log0
-@@gen_label4603 DS    0H 
+         LG    15,@lit_1806_3465 ; rd_kafka_log0
+@@gen_label4608 DS    0H 
          BALR  14,15
-@@gen_label4604 DS    0H 
-         B     @L3099
+@@gen_label4609 DS    0H 
+         B     @L3101
          DS    0D
-@lit_1806_3462 DC AD(mtx_unlock)
-@lit_1806_3464 DC AD(rd_kafka_log0)
-@lit_1806_3463 DC AD(@strings@+8192)
-@lit_1806_3465 DC AD(@strings@)
-@lit_1806_3469 DC AD(rd_kafka_q_op_err)
-@lit_1806_3470 DC AD(rd_free)
-@lit_1806_3471 DC AD(pthread_sigmask)
-@lit_1806_3473 DC AD(rd_atomic32_add)
-@lit_1806_3474 DC AD(rd_list_add)
-@lit_1806_3476 DC AD(rd_list_sort)
-@lit_1806_3475 DC AD(rd_kafka_broker_cmp_by_id)
-@lit_1806_3478 DC AD(mtx_lock)
-@lit_1806_3480 DC AD(rd_strlcpy)
-@lit_1806_3488 DC AD(rd_kafka_broker_monitor_add)
-@lit_1806_3487 DC AD(rd_kafka_coord_rkb_monitor_cb)
-@L3101   DS    0H
+@lit_1806_3463 DC AD(mtx_unlock)
+@lit_1806_3465 DC AD(rd_kafka_log0)
+@lit_1806_3464 DC AD(@strings@+8192)
+@lit_1806_3466 DC AD(@strings@)
+@lit_1806_3470 DC AD(rd_kafka_q_op_err)
+@lit_1806_3471 DC AD(rd_free)
+@lit_1806_3472 DC AD(pthread_sigmask)
+@lit_1806_3474 DC AD(rd_atomic32_add)
+@lit_1806_3475 DC AD(rd_list_add)
+@lit_1806_3477 DC AD(rd_list_sort)
+@lit_1806_3476 DC AD(rd_kafka_broker_cmp_by_id)
+@lit_1806_3479 DC AD(mtx_lock)
+@lit_1806_3481 DC AD(rd_strlcpy)
+@lit_1806_3489 DC AD(rd_kafka_broker_monitor_add)
+@lit_1806_3488 DC AD(rd_kafka_coord_rkb_monitor_cb)
+@L3103   DS    0H
          LG    15,0(0,2)
          STG   15,464(0,13)
          MVGHI 472(13),-194
-         LG    15,@lit_1806_3463
+         LG    15,@lit_1806_3464
          LA    15,776(0,15)
          STG   15,480(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3469 ; rd_kafka_q_op_err
-@@gen_label4605 DS    0H 
+         LG    15,@lit_1806_3470 ; rd_kafka_q_op_err
+@@gen_label4610 DS    0H 
          BALR  14,15
-@@gen_label4606 DS    0H 
-@L3099   DS    0H
+@@gen_label4611 DS    0H 
+@L3101   DS    0H
 * ***   
 * ***   
 * ***         rd_free(rkb);
          STG   5,464(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3470 ; rd_free
-@@gen_label4607 DS    0H 
+         LG    15,@lit_1806_3471 ; rd_free
+@@gen_label4612 DS    0H 
          BALR  14,15
-@@gen_label4608 DS    0H 
+@@gen_label4613 DS    0H 
 * ***   
 * ***   
 * ***         
@@ -41249,21 +41276,21 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          STG   15,472(0,13)
          XC    480(8,13),480(13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3471 ; pthread_sigmask
-@@gen_label4609 DS    0H 
+         LG    15,@lit_1806_3472 ; pthread_sigmask
+@@gen_label4614 DS    0H 
          BALR  14,15
-@@gen_label4610 DS    0H 
+@@gen_label4615 DS    0H 
 * ***   
 * ***   
 * ***         return ((void *)0);
          LGHI  15,0        ; 0
          B     @ret_lab_1806
 * ***      }
-@L3097   DS    0H
+@L3099   DS    0H
 * ***   
 * ***           if (rkb->rkb_source != RD_KAFKA_INTERNAL) {
          CHSI  328(5),2
-         BE    @L3102
+         BE    @L3104
 * ***   # 5655 "C:\asgkafka\librdkafka\src\rdkafka_broker.c"
 * ***                   
 * ***   
@@ -41275,20 +41302,20 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
 * kb->rkb_rk->rk_brokers)->tqh_last = &(rkb)->rkb_link .tqe_next; (&rk\
 * b->rkb_rk->rk_brokers)->tqh_first = (rkb); (rkb)->rkb_link .tqe_prev\
 *  = &(&rkb->rkb_rk->rk_brokers)->tqh_first; } while ( 0);
-@L3103   DS    0H
+@L3105   DS    0H
          LG    15,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
          LG    15,16(0,15) ; offset of rk_brokers in rd_kafka_s
          STG   15,0(0,5)
          LTGR  15,15
-         BE    @L3106
+         BE    @L3108
          LG    15,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
          LG    15,16(0,15) ; offset of rk_brokers in rd_kafka_s
          STG   5,8(0,15)   ; offset of tqe_prev in 0000124
-         B     @L3107
-@L3106   DS    0H
+         B     @L3109
+@L3108   DS    0H
          LG    15,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
          STG   5,24(0,15)  ; offset of tqh_last in 0000145
-@L3107   DS    0H
+@L3109   DS    0H
          LG    15,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
          STG   5,16(0,15)  ; offset of rk_brokers in rd_kafka_s
          LG    15,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
@@ -41300,17 +41327,17 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          STG   15,464(0,13)
          MVGHI 472(13),1
          LA    1,464(0,13)
-         LG    15,@lit_1806_3473 ; rd_atomic32_add
-@@gen_label4613 DS    0H 
+         LG    15,@lit_1806_3474 ; rd_atomic32_add
+@@gen_label4618 DS    0H 
          BALR  14,15
-@@gen_label4614 DS    0H 
+@@gen_label4619 DS    0H 
 * ***   
 * ***                   if (rkb->rkb_nodeid != -1 && !((rkb)->rkb_sour\
 * ce == RD_KAFKA_LOGICAL)) {
          CHSI  16(5),-1
-         BE    @L3109
+         BE    @L3111
          CHSI  328(5),3
-         BE    @L3109
+         BE    @L3111
 * ***                           rd_list_add(&rkb->rkb_rk->rk_broker_by\
 * _id, rkb);
          LG    15,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
@@ -41318,10 +41345,10 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          STG   15,464(0,13)
          STG   5,472(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3474 ; rd_list_add
-@@gen_label4617 DS    0H 
+         LG    15,@lit_1806_3475 ; rd_list_add
+@@gen_label4622 DS    0H 
          BALR  14,15
-@@gen_label4618 DS    0H 
+@@gen_label4623 DS    0H 
 * ***                           rd_list_sort(&rkb->rkb_rk->rk_broker_b\
 * y_id,
 * ***                                        rd_kafka_broker_cmp_by_id\
@@ -41329,15 +41356,15 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          LG    15,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
          LA    15,32(0,15)
          STG   15,464(0,13)
-         LG    15,@lit_1806_3475 ; rd_kafka_broker_cmp_by_id
+         LG    15,@lit_1806_3476 ; rd_kafka_broker_cmp_by_id
          STG   15,472(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3476 ; rd_list_sort
-@@gen_label4619 DS    0H 
+         LG    15,@lit_1806_3477 ; rd_list_sort
+@@gen_label4624 DS    0H 
          BALR  14,15
-@@gen_label4620 DS    0H 
+@@gen_label4625 DS    0H 
 * ***                   }
-@L3108   DS    0H
+@L3110   DS    0H
 * ***   
 * ***         do { if ((((rkb)->rkb_rk->rk_conf.debug & (0x2)))) { do \
 * { char _logname[256]; mtx_lock(&(rkb)->rkb_logname_lock); rd_strlcpy\
@@ -41345,19 +41372,19 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
 * kb_logname_lock); rd_kafka_log0(&(rkb)->rkb_rk->rk_conf, (rkb)->rkb_\
 * rk, _logname, 7, (0x2), "BROKER", "Added new broker with NodeId %" "\
 * d", rkb->rkb_nodeid); } while (0); } } while (0);
-@L3109   DS    0H
+@L3111   DS    0H
          LG    15,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
          TM    803(15),2
-         BZ    @L3112
-@L3113   DS    0H
+         BZ    @L3114
+@L3115   DS    0H
          LGHI  3,5688      ; 5688
          LA    15,0(3,5)
          STG   15,464(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3478 ; mtx_lock
-@@gen_label4622 DS    0H 
+         LG    15,@lit_1806_3479 ; mtx_lock
+@@gen_label4627 DS    0H 
          BALR  14,15
-@@gen_label4623 DS    0H 
+@@gen_label4628 DS    0H 
          LA    15,200(0,13)
          STG   15,464(0,13)
          LGHI  15,5680     ; 5680
@@ -41365,17 +41392,17 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          STG   15,472(0,13)
          MVGHI 480(13),256
          LA    1,464(0,13)
-         LG    15,@lit_1806_3480 ; rd_strlcpy
-@@gen_label4624 DS    0H 
+         LG    15,@lit_1806_3481 ; rd_strlcpy
+@@gen_label4629 DS    0H 
          BALR  14,15
-@@gen_label4625 DS    0H 
+@@gen_label4630 DS    0H 
          LA    15,0(3,5)
          STG   15,464(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3462 ; mtx_unlock
-@@gen_label4626 DS    0H 
+         LG    15,@lit_1806_3463 ; mtx_unlock
+@@gen_label4631 DS    0H 
          BALR  14,15
-@@gen_label4627 DS    0H 
+@@gen_label4632 DS    0H 
          LG    15,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
          LA    15,528(0,15)
          STG   15,464(0,13)
@@ -41385,7 +41412,7 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          STG   15,480(0,13)
          MVGHI 488(13),7
          MVGHI 496(13),2
-         LG    15,@lit_1806_3463
+         LG    15,@lit_1806_3464
          LA    1,808(0,15)
          STG   1,504(0,13)
          LA    15,816(0,15)
@@ -41393,24 +41420,24 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          LGF   15,16(0,5)
          STG   15,520(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3464 ; rd_kafka_log0
-@@gen_label4628 DS    0H 
+         LG    15,@lit_1806_3465 ; rd_kafka_log0
+@@gen_label4633 DS    0H 
          BALR  14,15
-@@gen_label4629 DS    0H 
-@L3112   DS    0H
+@@gen_label4634 DS    0H 
+@L3114   DS    0H
 * ***   
 * ***   
 * ***      }
-@L3102   DS    0H
+@L3104   DS    0H
 * ***   
 * ***      mtx_unlock(&(rkb)->rkb_lock);
          LA    15,72(0,5)
          STG   15,464(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3462 ; mtx_unlock
-@@gen_label4630 DS    0H 
+         LG    15,@lit_1806_3463 ; mtx_unlock
+@@gen_label4635 DS    0H 
          BALR  14,15
-@@gen_label4631 DS    0H 
+@@gen_label4636 DS    0H 
 * ***   
 * ***           
 * ***   
@@ -41425,13 +41452,13 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          STG   5,472(0,13)
          LG    15,8(0,2)
          STG   15,480(0,13)
-         LG    15,@lit_1806_3487 ; rd_kafka_coord_rkb_monitor_cb
+         LG    15,@lit_1806_3488 ; rd_kafka_coord_rkb_monitor_cb
          STG   15,488(0,13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3488 ; rd_kafka_broker_monitor_add
-@@gen_label4632 DS    0H 
+         LG    15,@lit_1806_3489 ; rd_kafka_broker_monitor_add
+@@gen_label4637 DS    0H 
          BALR  14,15
-@@gen_label4633 DS    0H 
+@@gen_label4638 DS    0H 
 * ***   
 * ***   
 * ***   
@@ -41442,10 +41469,10 @@ rd_kafka_broker_add DCCPRLG CINDEX=1806,BASER=12,FRAME=528,ENTRY=YES,AR*
          STG   15,472(0,13)
          XC    480(8,13),480(13)
          LA    1,464(0,13)
-         LG    15,@lit_1806_3471 ; pthread_sigmask
-@@gen_label4634 DS    0H 
+         LG    15,@lit_1806_3472 ; pthread_sigmask
+@@gen_label4639 DS    0H 
          BALR  14,15
-@@gen_label4635 DS    0H 
+@@gen_label4640 DS    0H 
 * ***   
 * ***   
 * ***      return rkb;
@@ -41499,10 +41526,10 @@ rd_kafka_broker_add_logical DCCPRLG CINDEX=1807,BASER=12,FRAME=224,ENTR*
          LA    15,2464(0,2)
          STG   15,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1807_3493 ; rwlock_wrlock
-@@gen_label4636 DS    0H 
+         LG    15,@lit_1807_3494 ; rwlock_wrlock
+@@gen_label4641 DS    0H 
          BALR  14,15
-@@gen_label4637 DS    0H 
+@@gen_label4642 DS    0H 
 * ***           rkb = rd_kafka_broker_add(rk, RD_KAFKA_LOGICAL,
 * ***                                     rk->rk_conf.security_protoco\
 * l,
@@ -41516,67 +41543,67 @@ rd_kafka_broker_add_logical DCCPRLG CINDEX=1807,BASER=12,FRAME=224,ENTR*
          XC    208(8,13),208(13)
          MVGHI 216(13),-1
          LA    1,176(0,13)
-         LG    15,@lit_1807_3494 ; rd_kafka_broker_add
-@@gen_label4638 DS    0H 
+         LG    15,@lit_1807_3495 ; rd_kafka_broker_add
+@@gen_label4643 DS    0H 
          BALR  14,15
-@@gen_label4639 DS    0H 
+@@gen_label4644 DS    0H 
          LGR   3,15
 * ***           ((rkb && *"failed to create broker thread") ? (void)0 \
 * : __assert(__func__, "C:\\asgkafka\\librdkafka\\src\\rdkafka_broker.\
 * c", 5722, "rkb && *\"failed to create broker thread\""));
          LTGR  15,3
-         BZ    @L3116
-         LG    15,@lit_1807_3495
+         BZ    @L3118
+         LG    15,@lit_1807_3496
          LA    15,848(0,15)
          CLI   0(15),0
-         BNE   @L3117
-@L3116   DS    0H
-         LG    15,@lit_1807_3496
+         BNE   @L3119
+@L3118   DS    0H
+         LG    15,@lit_1807_3497
          LA    15,1206(0,15)
          STG   15,176(0,13)
-         LG    15,@lit_1807_3497
+         LG    15,@lit_1807_3498
          LA    15,1152(0,15)
          STG   15,184(0,13)
          MVGHI 192(13),5722
-         LG    15,@lit_1807_3495
+         LG    15,@lit_1807_3496
          LA    15,880(0,15)
          STG   15,200(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1807_3499 ; __assert
-@@gen_label4642 DS    0H 
+         LG    15,@lit_1807_3500 ; __assert
+@@gen_label4647 DS    0H 
          BALR  14,15
-@@gen_label4643 DS    0H 
-@L3117   DS    0H
+@@gen_label4648 DS    0H 
+@L3119   DS    0H
 * ***           rwlock_wrunlock(&(rk)->rk_lock);
          LA    15,2464(0,2)
          STG   15,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1807_3500 ; rwlock_wrunlock
-@@gen_label4644 DS    0H 
+         LG    15,@lit_1807_3501 ; rwlock_wrunlock
+@@gen_label4649 DS    0H 
          BALR  14,15
-@@gen_label4645 DS    0H 
+@@gen_label4650 DS    0H 
 * ***   
 * ***           rd_atomic32_add(&rk->rk_broker_addrless_cnt, 1);
          LA    15,264(0,2)
          STG   15,176(0,13)
          MVGHI 184(13),1
          LA    1,176(0,13)
-         LG    15,@lit_1807_3501 ; rd_atomic32_add
-@@gen_label4646 DS    0H 
+         LG    15,@lit_1807_3502 ; rd_atomic32_add
+@@gen_label4651 DS    0H 
          BALR  14,15
-@@gen_label4647 DS    0H 
+@@gen_label4652 DS    0H 
 * ***   
 * ***           do {} while (0);
-@L3118   DS    0H
+@L3120   DS    0H
 * ***           rd_atomic32_add(&(rkb)->rkb_refcnt, 1);
          LA    15,4000(0,3)
          STG   15,176(0,13)
          MVGHI 184(13),1
          LA    1,176(0,13)
-         LG    15,@lit_1807_3501 ; rd_atomic32_add
-@@gen_label4648 DS    0H 
+         LG    15,@lit_1807_3502 ; rd_atomic32_add
+@@gen_label4653 DS    0H 
          BALR  14,15
-@@gen_label4649 DS    0H 
+@@gen_label4654 DS    0H 
 * ***           return rkb;
          LGR   15,3
 * ***   }
@@ -41585,14 +41612,14 @@ rd_kafka_broker_add_logical DCCPRLG CINDEX=1807,BASER=12,FRAME=224,ENTR*
 * * **** End of Epilogue
          DS    0D
 @FRAMESIZE_1807 DC F'224'
-@lit_1807_3493 DC AD(rwlock_wrlock)
-@lit_1807_3494 DC AD(rd_kafka_broker_add)
-@lit_1807_3495 DC AD(@strings@+8192)
-@lit_1807_3499 DC AD(__assert)
-@lit_1807_3497 DC AD(@strings@)
-@lit_1807_3496 DC AD(@DATA)
-@lit_1807_3500 DC AD(rwlock_wrunlock)
-@lit_1807_3501 DC AD(rd_atomic32_add)
+@lit_1807_3494 DC AD(rwlock_wrlock)
+@lit_1807_3495 DC AD(rd_kafka_broker_add)
+@lit_1807_3496 DC AD(@strings@+8192)
+@lit_1807_3500 DC AD(__assert)
+@lit_1807_3498 DC AD(@strings@)
+@lit_1807_3497 DC AD(@DATA)
+@lit_1807_3501 DC AD(rwlock_wrunlock)
+@lit_1807_3502 DC AD(rd_atomic32_add)
          DROP  12
 *
 *   DSECT for automatic variables in "rd_kafka_broker_add_logical"
@@ -41627,60 +41654,60 @@ rd_kafka_broker_set_nodename DCCPRLG CINDEX=1808,BASER=12,FRAME=1016,EN*
 *  __assert(__func__, "C:\\asgkafka\\librdkafka\\src\\rdkafka_broker.c\
 * ", 5758, "((rkb)->rkb_source == RD_KAFKA_LOGICAL)"));
          CHSI  328(3),3
-         BE    @L3122
-@L3121   DS    0H
-         LG    15,@lit_1808_3504
+         BE    @L3124
+@L3123   DS    0H
+         LG    15,@lit_1808_3505
          LA    15,1234(0,15)
          STG   15,944(0,13)
-         LG    15,@lit_1808_3505
+         LG    15,@lit_1808_3506
          LA    15,1152(0,15)
          STG   15,952(0,13)
          MVGHI 960(13),5758
-         LG    15,@lit_1808_3506
+         LG    15,@lit_1808_3507
          LA    15,922(0,15)
          STG   15,968(0,13)
          LA    1,944(0,13)
-         LG    15,@lit_1808_3507 ; __assert
-@@gen_label4651 DS    0H 
+         LG    15,@lit_1808_3508 ; __assert
+@@gen_label4656 DS    0H 
          BALR  14,15
-@@gen_label4652 DS    0H 
-@L3122   DS    0H
+@@gen_label4657 DS    0H 
+@L3124   DS    0H
 * ***   
 * ***           ((rkb != from_rkb) ? (void)0 : __assert(__func__, "C:\\
 * \asgkafka\\librdkafka\\src\\rdkafka_broker.c", 5760, "rkb != from_rk\
 * b"));
          CGR   3,4
-         BNE   @L3124
-@L3123   DS    0H
-         LG    15,@lit_1808_3504
+         BNE   @L3126
+@L3125   DS    0H
+         LG    15,@lit_1808_3505
          LA    15,1234(0,15)
          STG   15,944(0,13)
-         LG    15,@lit_1808_3505
+         LG    15,@lit_1808_3506
          LA    15,1152(0,15)
          STG   15,952(0,13)
          MVGHI 960(13),5760
-         LG    15,@lit_1808_3506
+         LG    15,@lit_1808_3507
          LA    15,962(0,15)
          STG   15,968(0,13)
          LA    1,944(0,13)
-         LG    15,@lit_1808_3507 ; __assert
-@@gen_label4654 DS    0H 
+         LG    15,@lit_1808_3508 ; __assert
+@@gen_label4659 DS    0H 
          BALR  14,15
-@@gen_label4655 DS    0H 
-@L3124   DS    0H
+@@gen_label4660 DS    0H 
+@L3126   DS    0H
 * ***   
 * ***           
 * ***           if (from_rkb) {
          LTGR  15,4
-         BZ    @L3125
+         BZ    @L3127
 * ***                   mtx_lock(&(from_rkb)->rkb_lock);
          LA    15,72(0,4)
          STG   15,944(0,13)
          LA    1,944(0,13)
-         LG    15,@lit_1808_3512 ; mtx_lock
-@@gen_label4657 DS    0H 
+         LG    15,@lit_1808_3513 ; mtx_lock
+@@gen_label4662 DS    0H 
          BALR  14,15
-@@gen_label4658 DS    0H 
+@@gen_label4663 DS    0H 
 * ***                   rd_strlcpy(nodename, from_rkb->rkb_nodename, s\
 * izeof(nodename));
          LA    15,168(0,13)
@@ -41690,70 +41717,70 @@ rd_kafka_broker_set_nodename DCCPRLG CINDEX=1808,BASER=12,FRAME=1016,EN*
          STG   15,952(0,13)
          MVGHI 960(13),256
          LA    1,944(0,13)
-         LG    15,@lit_1808_3514 ; rd_strlcpy
-@@gen_label4659 DS    0H 
+         LG    15,@lit_1808_3515 ; rd_strlcpy
+@@gen_label4664 DS    0H 
          BALR  14,15
-@@gen_label4660 DS    0H 
+@@gen_label4665 DS    0H 
 * ***                   nodeid = from_rkb->rkb_nodeid;
          L     2,16(0,4)   ; offset of rkb_nodeid in rd_kafka_broker_s
 * ***                   mtx_unlock(&(from_rkb)->rkb_lock);
          LA    15,72(0,4)
          STG   15,944(0,13)
          LA    1,944(0,13)
-         LG    15,@lit_1808_3515 ; mtx_unlock
-@@gen_label4661 DS    0H 
+         LG    15,@lit_1808_3516 ; mtx_unlock
+@@gen_label4666 DS    0H 
          BALR  14,15
-@@gen_label4662 DS    0H 
+@@gen_label4667 DS    0H 
 * ***           } else {
-         B     @L3126
+         B     @L3128
          DS    0D
 @FRAMESIZE_1808 DC F'1016'
-@lit_1808_3507 DC AD(__assert)
-@lit_1808_3506 DC AD(@strings@+8192)
-@lit_1808_3505 DC AD(@strings@)
-@lit_1808_3504 DC AD(@DATA)
-@lit_1808_3512 DC AD(mtx_lock)
-@lit_1808_3514 DC AD(rd_strlcpy)
-@lit_1808_3515 DC AD(mtx_unlock)
-@lit_1808_3527 DC AD(rd_kafka_log0)
-@lit_1808_3542 DC AD(rd_kafka_mk_brokername)
-@lit_1808_3543 DC AD(rd_kafka_broker_set_logname)
-@lit_1808_3545 DC AD(rd_atomic32_sub)
-@lit_1808_3546 DC AD(rd_atomic32_add)
-@lit_1808_3547 DC AD(rd_kafka_broker_schedule_connection)
-@L3125   DS    0H
+@lit_1808_3508 DC AD(__assert)
+@lit_1808_3507 DC AD(@strings@+8192)
+@lit_1808_3506 DC AD(@strings@)
+@lit_1808_3505 DC AD(@DATA)
+@lit_1808_3513 DC AD(mtx_lock)
+@lit_1808_3515 DC AD(rd_strlcpy)
+@lit_1808_3516 DC AD(mtx_unlock)
+@lit_1808_3528 DC AD(rd_kafka_log0)
+@lit_1808_3543 DC AD(rd_kafka_mk_brokername)
+@lit_1808_3544 DC AD(rd_kafka_broker_set_logname)
+@lit_1808_3546 DC AD(rd_atomic32_sub)
+@lit_1808_3547 DC AD(rd_atomic32_add)
+@lit_1808_3548 DC AD(rd_kafka_broker_schedule_connection)
+@L3127   DS    0H
 * ***                   *nodename = '\0';
          MVI   168(13),0
 * ***                   nodeid = -1;
          LHI   2,-1        ; -1
 * ***           }
-@L3126   DS    0H
+@L3128   DS    0H
 * ***   
 * ***           
 * ***           mtx_lock(&(rkb)->rkb_lock);
          LA    15,72(0,3)
          STG   15,944(0,13)
          LA    1,944(0,13)
-         LG    15,@lit_1808_3512 ; mtx_lock
-@@gen_label4663 DS    0H 
+         LG    15,@lit_1808_3513 ; mtx_lock
+@@gen_label4668 DS    0H 
          BALR  14,15
-@@gen_label4664 DS    0H 
+@@gen_label4669 DS    0H 
 * ***           if (__strcmp(rkb->rkb_nodename,nodename)) {
          LGHI  15,5400     ; 5400
          LA    15,0(15,3)
          LA    1,168(0,13)
          LA    0,0(0,0)
          LGHI  4,0
-@@gen_label4665 DS 0H
+@@gen_label4670 DS 0H
          CLST  15,1
-         BC  1,@@gen_label4665
-         BE    @@gen_label4666
+         BC  1,@@gen_label4670
+         BE    @@gen_label4671
          LLGC  4,0(0,15)
          LLGC  15,0(0,1)
          SLGR  4,15
-@@gen_label4666 DS 0H
+@@gen_label4671 DS 0H
          LTR   4,4
-         BZ    @L3127
+         BZ    @L3129
 * ***                   do { if ((((rkb)->rkb_rk->rk_conf.debug & (0x2\
 * )))) { do { char _logname[256]; mtx_lock(&(rkb)->rkb_logname_lock); \
 * rd_strlcpy(_logname, rkb->rkb_logname, sizeof(_logname)); mtx_unlock\
@@ -41761,19 +41788,19 @@ rd_kafka_broker_set_nodename DCCPRLG CINDEX=1808,BASER=12,FRAME=1016,EN*
 * rkb)->rkb_rk, _logname, 7, (0x2), "NODENAME", "Broker nodename chang\
 * ed from \"%s\" to \"%s\"", rkb->rkb_nodename, nodename); } while (0)\
 * ; } } while (0);
-@L3128   DS    0H
+@L3130   DS    0H
          LG    15,4048(0,3) ; offset of rkb_rk in rd_kafka_broker_s
          TM    803(15),2
-         BZ    @L3131
-@L3132   DS    0H
+         BZ    @L3133
+@L3134   DS    0H
          LGHI  4,5688      ; 5688
          LA    15,0(4,3)
          STG   15,944(0,13)
          LA    1,944(0,13)
-         LG    15,@lit_1808_3512 ; mtx_lock
-@@gen_label4669 DS    0H 
+         LG    15,@lit_1808_3513 ; mtx_lock
+@@gen_label4674 DS    0H 
          BALR  14,15
-@@gen_label4670 DS    0H 
+@@gen_label4675 DS    0H 
          LA    15,680(0,13)
          STG   15,944(0,13)
          LGHI  15,5680     ; 5680
@@ -41781,17 +41808,17 @@ rd_kafka_broker_set_nodename DCCPRLG CINDEX=1808,BASER=12,FRAME=1016,EN*
          STG   15,952(0,13)
          MVGHI 960(13),256
          LA    1,944(0,13)
-         LG    15,@lit_1808_3514 ; rd_strlcpy
-@@gen_label4671 DS    0H 
+         LG    15,@lit_1808_3515 ; rd_strlcpy
+@@gen_label4676 DS    0H 
          BALR  14,15
-@@gen_label4672 DS    0H 
+@@gen_label4677 DS    0H 
          LA    15,0(4,3)
          STG   15,944(0,13)
          LA    1,944(0,13)
-         LG    15,@lit_1808_3515 ; mtx_unlock
-@@gen_label4673 DS    0H 
+         LG    15,@lit_1808_3516 ; mtx_unlock
+@@gen_label4678 DS    0H 
          BALR  14,15
-@@gen_label4674 DS    0H 
+@@gen_label4679 DS    0H 
          LG    15,4048(0,3) ; offset of rkb_rk in rd_kafka_broker_s
          LA    15,528(0,15)
          STG   15,944(0,13)
@@ -41801,7 +41828,7 @@ rd_kafka_broker_set_nodename DCCPRLG CINDEX=1808,BASER=12,FRAME=1016,EN*
          STG   15,960(0,13)
          MVGHI 968(13),7
          MVGHI 976(13),2
-         LG    15,@lit_1808_3506
+         LG    15,@lit_1808_3507
          LA    1,978(0,15)
          STG   1,984(0,13)
          LA    15,988(0,15)
@@ -41812,11 +41839,11 @@ rd_kafka_broker_set_nodename DCCPRLG CINDEX=1808,BASER=12,FRAME=1016,EN*
          LA    15,168(0,13)
          STG   15,1008(0,13)
          LA    1,944(0,13)
-         LG    15,@lit_1808_3527 ; rd_kafka_log0
-@@gen_label4675 DS    0H 
+         LG    15,@lit_1808_3528 ; rd_kafka_log0
+@@gen_label4680 DS    0H 
          BALR  14,15
-@@gen_label4676 DS    0H 
-@L3131   DS    0H
+@@gen_label4681 DS    0H 
+@L3133   DS    0H
 * ***   
 * ***   
 * ***                   rd_strlcpy(rkb->rkb_nodename, nodename,
@@ -41828,10 +41855,10 @@ rd_kafka_broker_set_nodename DCCPRLG CINDEX=1808,BASER=12,FRAME=1016,EN*
          STG   15,952(0,13)
          MVGHI 960(13),256
          LA    1,944(0,13)
-         LG    15,@lit_1808_3514 ; rd_strlcpy
-@@gen_label4677 DS    0H 
+         LG    15,@lit_1808_3515 ; rd_strlcpy
+@@gen_label4682 DS    0H 
          BALR  14,15
-@@gen_label4678 DS    0H 
+@@gen_label4683 DS    0H 
 * ***                   rkb->rkb_nodename_epoch++;
          LGHI  15,5672     ; 5672
          L     1,0(15,3)
@@ -41840,11 +41867,11 @@ rd_kafka_broker_set_nodename DCCPRLG CINDEX=1808,BASER=12,FRAME=1016,EN*
 * ***                   changed = 1;
          MVI   936(13),1   ; changed
 * ***           }
-@L3127   DS    0H
+@L3129   DS    0H
 * ***   
 * ***           if (rkb->rkb_nodeid != nodeid) {
          C     2,16(0,3)
-         BE    @L3135
+         BE    @L3137
 * ***                   do { if ((((rkb)->rkb_rk->rk_conf.debug & (0x2\
 * )))) { do { char _logname[256]; mtx_lock(&(rkb)->rkb_logname_lock); \
 * rd_strlcpy(_logname, rkb->rkb_logname, sizeof(_logname)); mtx_unlock\
@@ -41852,19 +41879,19 @@ rd_kafka_broker_set_nodename DCCPRLG CINDEX=1808,BASER=12,FRAME=1016,EN*
 * rkb)->rkb_rk, _logname, 7, (0x2), "NODEID", "Broker nodeid changed f\
 * rom %" "d" " to %" "d", rkb->rkb_nodeid, nodeid); } while (0); } } w\
 * hile (0);
-@L3136   DS    0H
+@L3138   DS    0H
          LG    15,4048(0,3) ; offset of rkb_rk in rd_kafka_broker_s
          TM    803(15),2
-         BZ    @L3139
-@L3140   DS    0H
+         BZ    @L3141
+@L3142   DS    0H
          LGHI  4,5688      ; 5688
          LA    15,0(4,3)
          STG   15,944(0,13)
          LA    1,944(0,13)
-         LG    15,@lit_1808_3512 ; mtx_lock
-@@gen_label4681 DS    0H 
+         LG    15,@lit_1808_3513 ; mtx_lock
+@@gen_label4686 DS    0H 
          BALR  14,15
-@@gen_label4682 DS    0H 
+@@gen_label4687 DS    0H 
          LA    15,680(0,13)
          STG   15,944(0,13)
          LGHI  15,5680     ; 5680
@@ -41872,17 +41899,17 @@ rd_kafka_broker_set_nodename DCCPRLG CINDEX=1808,BASER=12,FRAME=1016,EN*
          STG   15,952(0,13)
          MVGHI 960(13),256
          LA    1,944(0,13)
-         LG    15,@lit_1808_3514 ; rd_strlcpy
-@@gen_label4683 DS    0H 
+         LG    15,@lit_1808_3515 ; rd_strlcpy
+@@gen_label4688 DS    0H 
          BALR  14,15
-@@gen_label4684 DS    0H 
+@@gen_label4689 DS    0H 
          LA    15,0(4,3)
          STG   15,944(0,13)
          LA    1,944(0,13)
-         LG    15,@lit_1808_3515 ; mtx_unlock
-@@gen_label4685 DS    0H 
+         LG    15,@lit_1808_3516 ; mtx_unlock
+@@gen_label4690 DS    0H 
          BALR  14,15
-@@gen_label4686 DS    0H 
+@@gen_label4691 DS    0H 
          LG    15,4048(0,3) ; offset of rkb_rk in rd_kafka_broker_s
          LA    15,528(0,15)
          STG   15,944(0,13)
@@ -41892,7 +41919,7 @@ rd_kafka_broker_set_nodename DCCPRLG CINDEX=1808,BASER=12,FRAME=1016,EN*
          STG   15,960(0,13)
          MVGHI 968(13),7
          MVGHI 976(13),2
-         LG    15,@lit_1808_3506
+         LG    15,@lit_1808_3507
          LA    1,1030(0,15)
          STG   1,984(0,13)
          LA    15,1038(0,15)
@@ -41902,26 +41929,26 @@ rd_kafka_broker_set_nodename DCCPRLG CINDEX=1808,BASER=12,FRAME=1016,EN*
          LGFR  15,2
          STG   15,1008(0,13)
          LA    1,944(0,13)
-         LG    15,@lit_1808_3527 ; rd_kafka_log0
-@@gen_label4687 DS    0H 
+         LG    15,@lit_1808_3528 ; rd_kafka_log0
+@@gen_label4692 DS    0H 
          BALR  14,15
-@@gen_label4688 DS    0H 
-@L3139   DS    0H
+@@gen_label4693 DS    0H 
+@L3141   DS    0H
 * ***   
 * ***   
 * ***                   rkb->rkb_nodeid = nodeid;
          ST    2,16(0,3)   ; offset of rkb_nodeid in rd_kafka_broker_s
 * ***           }
-@L3135   DS    0H
+@L3137   DS    0H
 * ***   
 * ***           mtx_unlock(&(rkb)->rkb_lock);
          LA    15,72(0,3)
          STG   15,944(0,13)
          LA    1,944(0,13)
-         LG    15,@lit_1808_3515 ; mtx_unlock
-@@gen_label4689 DS    0H 
+         LG    15,@lit_1808_3516 ; mtx_unlock
+@@gen_label4694 DS    0H 
          BALR  14,15
-@@gen_label4690 DS    0H 
+@@gen_label4695 DS    0H 
 * ***   
 * ***           
 * ***   
@@ -41943,32 +41970,32 @@ rd_kafka_broker_set_nodename DCCPRLG CINDEX=1808,BASER=12,FRAME=1016,EN*
          LGF   15,328(0,3)
          STG   15,984(0,13)
          LA    1,944(0,13)
-         LG    15,@lit_1808_3542 ; rd_kafka_mk_brokername
-@@gen_label4691 DS    0H 
+         LG    15,@lit_1808_3543 ; rd_kafka_mk_brokername
+@@gen_label4696 DS    0H 
          BALR  14,15
-@@gen_label4692 DS    0H 
+@@gen_label4697 DS    0H 
 * ***   
 * ***           rd_kafka_broker_set_logname(rkb, brokername);
          STG   3,944(0,13)
          LA    15,424(0,13)
          STG   15,952(0,13)
          LA    1,944(0,13)
-         LG    15,@lit_1808_3543 ; rd_kafka_broker_set_logname
-@@gen_label4693 DS    0H 
+         LG    15,@lit_1808_3544 ; rd_kafka_broker_set_logname
+@@gen_label4698 DS    0H 
          BALR  14,15
-@@gen_label4694 DS    0H 
+@@gen_label4699 DS    0H 
 * ***   
 * ***           if (!changed)
          CLI   936(13),0
          BE    @ret_lab_1808
 * ***                   return;
-@L3143   DS    0H
+@L3145   DS    0H
 * ***   
 * ***           if (*rkb->rkb_nodename)
          LGHI  15,5400     ; 5400
          LA    15,0(15,3)
          CLI   0(15),0
-         BE    @L3144
+         BE    @L3146
 * ***                   rd_atomic32_sub(&rkb->rkb_rk->rk_broker_addrle\
 * ss_cnt, 1);
          LG    15,4048(0,3) ; offset of rkb_rk in rd_kafka_broker_s
@@ -41976,13 +42003,13 @@ rd_kafka_broker_set_nodename DCCPRLG CINDEX=1808,BASER=12,FRAME=1016,EN*
          STG   15,944(0,13)
          MVGHI 952(13),1
          LA    1,944(0,13)
-         LG    15,@lit_1808_3545 ; rd_atomic32_sub
-@@gen_label4697 DS    0H 
+         LG    15,@lit_1808_3546 ; rd_atomic32_sub
+@@gen_label4702 DS    0H 
          BALR  14,15
-@@gen_label4698 DS    0H 
-         B     @L3145
+@@gen_label4703 DS    0H 
+         B     @L3147
 * ***           else
-@L3144   DS    0H
+@L3146   DS    0H
 * ***                   rd_atomic32_add(&rkb->rkb_rk->rk_broker_addrle\
 * ss_cnt, 1);
          LG    15,4048(0,3) ; offset of rkb_rk in rd_kafka_broker_s
@@ -41990,20 +42017,20 @@ rd_kafka_broker_set_nodename DCCPRLG CINDEX=1808,BASER=12,FRAME=1016,EN*
          STG   15,944(0,13)
          MVGHI 952(13),1
          LA    1,944(0,13)
-         LG    15,@lit_1808_3546 ; rd_atomic32_add
-@@gen_label4699 DS    0H 
+         LG    15,@lit_1808_3547 ; rd_atomic32_add
+@@gen_label4704 DS    0H 
          BALR  14,15
-@@gen_label4700 DS    0H 
-@L3145   DS    0H
+@@gen_label4705 DS    0H 
+@L3147   DS    0H
 * ***   
 * ***           
 * ***           rd_kafka_broker_schedule_connection(rkb);
          STG   3,944(0,13)
          LA    1,944(0,13)
-         LG    15,@lit_1808_3547 ; rd_kafka_broker_schedule_connection
-@@gen_label4701 DS    0H 
+         LG    15,@lit_1808_3548 ; rd_kafka_broker_schedule_connection
+@@gen_label4706 DS    0H 
          BALR  14,15
-@@gen_label4702 DS    0H 
+@@gen_label4707 DS    0H 
 * ***   }
 @ret_lab_1808 DS 0H
 * * **** Start of Epilogue
@@ -42055,10 +42082,10 @@ rd_kafka_broker_find_by_nodeid0_fl DCCPRLG CINDEX=1791,BASER=12,FRAME=6*
 * setting 6524 bytes to 0x00
          LGR   1,13
          LGHI  15,25       ; 25
-@@gen_label4703 DS 0H
+@@gen_label4708 DS 0H
          XC    284(256,1),284(1)
          LA    1,256(0,1)
-         BCTG  15,@@gen_label4703
+         BCTG  15,@@gen_label4708
          XC    284(124,1),284(1)
 * ***   
 * ***           if ((rd_atomic32_get(&(rk)->rk_terminate) & 0x1))
@@ -42067,25 +42094,25 @@ rd_kafka_broker_find_by_nodeid0_fl DCCPRLG CINDEX=1791,BASER=12,FRAME=6*
          AGHI  2,4096
          STG   15,2712(0,2)
          LA    1,2712(0,2)
-         LG    15,@lit_1791_3550 ; rd_atomic32_get
-@@gen_label4704 DS    0H 
+         LG    15,@lit_1791_3551 ; rd_atomic32_get
+@@gen_label4709 DS    0H 
          BALR  14,15
-@@gen_label4705 DS    0H 
+@@gen_label4710 DS    0H 
          TML   15,1
-         BZ    @L3146
+         BZ    @L3148
 * ***                   return ((void *)0);
          LGHI  15,0        ; 0
          B     @ret_lab_1791
          DS    0D
 @FRAMESIZE_1791 DC F'6832'
-@lit_1791_3550 DC AD(rd_atomic32_get)
-@lit_1791_3553 DC AD(rd_list_find)
-@lit_1791_3552 DC AD(rd_kafka_broker_cmp_by_id)
-@lit_1791_3555 DC AD(mtx_lock)
-@lit_1791_3556 DC AD(mtx_unlock)
-@lit_1791_3557 DC AD(rd_kafka_broker_schedule_connection)
-@lit_1791_3559 DC AD(rd_atomic32_add)
-@L3146   DS    0H
+@lit_1791_3551 DC AD(rd_atomic32_get)
+@lit_1791_3554 DC AD(rd_list_find)
+@lit_1791_3553 DC AD(rd_kafka_broker_cmp_by_id)
+@lit_1791_3556 DC AD(mtx_lock)
+@lit_1791_3557 DC AD(mtx_unlock)
+@lit_1791_3558 DC AD(rd_kafka_broker_schedule_connection)
+@lit_1791_3560 DC AD(rd_atomic32_add)
+@L3148   DS    0H
 * ***   
 * ***           rkb = rd_list_find(&rk->rk_broker_by_id, &skel,
 * ***                              rd_kafka_broker_cmp_by_id);
@@ -42093,86 +42120,86 @@ rd_kafka_broker_find_by_nodeid0_fl DCCPRLG CINDEX=1791,BASER=12,FRAME=6*
          STG   15,2712(0,2)
          LA    15,264(0,13)
          STG   15,2720(0,2)
-         LG    15,@lit_1791_3552 ; rd_kafka_broker_cmp_by_id
+         LG    15,@lit_1791_3553 ; rd_kafka_broker_cmp_by_id
          STG   15,2728(0,2)
          LA    1,2712(0,2)
-         LG    15,@lit_1791_3553 ; rd_list_find
-@@gen_label4707 DS    0H 
+         LG    15,@lit_1791_3554 ; rd_list_find
+@@gen_label4712 DS    0H 
          BALR  14,15
-@@gen_label4708 DS    0H 
+@@gen_label4713 DS    0H 
          LGR   4,15
 * ***   
 * ***           if (!rkb)
          LTGR  15,4
-         BNZ   @L3147
+         BNZ   @L3149
 * ***                   return ((void *)0);
          LGHI  15,0        ; 0
          B     @ret_lab_1791
-@L3147   DS    0H
+@L3149   DS    0H
 * ***   
 * ***           if (state != -1) {
          CHSI  36(6),-1
-         BE    @L3148
+         BE    @L3150
 * ***                   int broker_state;
 * ***                   mtx_lock(&(rkb)->rkb_lock);
          LA    15,72(0,4)
          STG   15,2712(0,2)
          LA    1,2712(0,2)
-         LG    15,@lit_1791_3555 ; mtx_lock
-@@gen_label4711 DS    0H 
+         LG    15,@lit_1791_3556 ; mtx_lock
+@@gen_label4716 DS    0H 
          BALR  14,15
-@@gen_label4712 DS    0H 
+@@gen_label4717 DS    0H 
 * ***                   broker_state = (int)rkb->rkb_state;
          L     5,196(0,4)  ; offset of rkb_state in rd_kafka_broker_s
 * ***                   mtx_unlock(&(rkb)->rkb_lock);
          LA    15,72(0,4)
          STG   15,2712(0,2)
          LA    1,2712(0,2)
-         LG    15,@lit_1791_3556 ; mtx_unlock
-@@gen_label4713 DS    0H 
+         LG    15,@lit_1791_3557 ; mtx_unlock
+@@gen_label4718 DS    0H 
          BALR  14,15
-@@gen_label4714 DS    0H 
+@@gen_label4719 DS    0H 
 * ***   
 * ***                   if (broker_state != state) {
          C     5,36(0,6)
-         BE    @L3149
+         BE    @L3151
 * ***                           if (do_connect &&
          CLI   47(6),0
-         BE    @L3150
+         BE    @L3152
 * ***                               broker_state == RD_KAFKA_BROKER_ST\
 * ATE_INIT &&
          LTR   5,5
-         BNE   @L3150
+         BNE   @L3152
 * ***                               rk->rk_conf.sparse_connections)
          LT    15,880(0,3) ; offset of sparse_connections in rd_kafka_c*
                onf_s
-         BZ    @L3150
+         BZ    @L3152
 * ***                                   rd_kafka_broker_schedule_conne\
 * ction(rkb);
          STG   4,2712(0,2)
          LA    1,2712(0,2)
-         LG    15,@lit_1791_3557 ; rd_kafka_broker_schedule_connection
-@@gen_label4719 DS    0H 
+         LG    15,@lit_1791_3558 ; rd_kafka_broker_schedule_connection
+@@gen_label4724 DS    0H 
          BALR  14,15
-@@gen_label4720 DS    0H 
-@L3150   DS    0H
+@@gen_label4725 DS    0H 
+@L3152   DS    0H
 * ***                           return ((void *)0);
          LGHI  15,0        ; 0
          B     @ret_lab_1791
 * ***                   }
-@L3149   DS    0H
+@L3151   DS    0H
 * ***           }
-@L3148   DS    0H
+@L3150   DS    0H
 * ***   
 * ***           rd_atomic32_add(&(rkb)->rkb_refcnt, 1);
          LA    15,4000(0,4)
          STG   15,2712(0,2)
          MVGHI 2720(2),1
          LA    1,2712(0,2)
-         LG    15,@lit_1791_3559 ; rd_atomic32_add
-@@gen_label4721 DS    0H 
+         LG    15,@lit_1791_3560 ; rd_atomic32_add
+@@gen_label4726 DS    0H 
          BALR  14,15
-@@gen_label4722 DS    0H 
+@@gen_label4727 DS    0H 
 * ***           return rkb;
          LGR   15,4
 * ***   }
@@ -42219,106 +42246,106 @@ rd_kafka_broker_find DCCPRLG CINDEX=2156,BASER=12,FRAME=456,ENTRY=NO,AR*
          LLGH  15,30(0,3)  ; port
          STG   15,448(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_2156_3561 ; rd_kafka_mk_nodename
-@@gen_label4723 DS    0H 
+         LG    15,@lit_2156_3562 ; rd_kafka_mk_nodename
+@@gen_label4728 DS    0H 
          BALR  14,15
-@@gen_label4724 DS    0H 
+@@gen_label4729 DS    0H 
 * ***   
 * ***      for ((rkb) = ((&rk->rk_brokers)->tqh_first); (rkb) != (((vo\
 * id *)0)); (rkb) = ((rkb)->rkb_link .tqe_next)) {
          LG    15,0(0,3)   ; rk
          LG    2,16(0,15)  ; offset of rk_brokers in rd_kafka_s
-         B     @L3152
+         B     @L3154
          DS    0D
 @FRAMESIZE_2156 DC F'456'
-@lit_2156_3561 DC AD(rd_kafka_mk_nodename)
-@lit_2156_3562 DC AD(mtx_lock)
-@lit_2156_3563 DC AD(rd_atomic32_get)
-@lit_2156_3566 DC AD(rd_atomic32_add)
-@lit_2156_3567 DC AD(mtx_unlock)
-@L3151   DS    0H
+@lit_2156_3562 DC AD(rd_kafka_mk_nodename)
+@lit_2156_3563 DC AD(mtx_lock)
+@lit_2156_3564 DC AD(rd_atomic32_get)
+@lit_2156_3567 DC AD(rd_atomic32_add)
+@lit_2156_3568 DC AD(mtx_unlock)
+@L3153   DS    0H
 * ***                   if (((rkb)->rkb_source == RD_KAFKA_LOGICAL))
          CHSI  328(2),3
-         BE    @L3154
+         BE    @L3156
 * ***                           continue;
-@L3155   DS    0H
+@L3157   DS    0H
 * ***   
 * ***         mtx_lock(&(rkb)->rkb_lock);
          LA    15,72(0,2)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_2156_3562 ; mtx_lock
-@@gen_label4726 DS    0H 
+         LG    15,@lit_2156_3563 ; mtx_lock
+@@gen_label4731 DS    0H 
          BALR  14,15
-@@gen_label4727 DS    0H 
+@@gen_label4732 DS    0H 
 * ***         if (!(rd_atomic32_get(&(rk)->rk_terminate) & 0x1) &&
          LG    15,0(0,3)   ; rk
          LA    15,2416(0,15)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_2156_3563 ; rd_atomic32_get
-@@gen_label4728 DS    0H 
+         LG    15,@lit_2156_3564 ; rd_atomic32_get
+@@gen_label4733 DS    0H 
          BALR  14,15
-@@gen_label4729 DS    0H 
+@@gen_label4734 DS    0H 
          TML   15,1
-         BNZ   @L3156
+         BNZ   @L3158
 * ***             rkb->rkb_proto == proto &&
          LGHI  15,5864     ; 5864
          L     15,0(15,2)  ; offset of rkb_proto in rd_kafka_broker_s
          C     15,12(0,3)
-         BNE   @L3156
+         BNE   @L3158
 * ***             !__strcmp(rkb->rkb_nodename,nodename)) {
          LGHI  15,5400     ; 5400
          LA    15,0(15,2)
          LA    1,168(0,13)
          LA    0,0(0,0)
          LGHI  4,0
-@@gen_label4732 DS 0H
+@@gen_label4737 DS 0H
          CLST  15,1
-         BC  1,@@gen_label4732
-         BE    @@gen_label4733
+         BC  1,@@gen_label4737
+         BE    @@gen_label4738
          LLGC  4,0(0,15)
          LLGC  15,0(0,1)
          SLGR  4,15
-@@gen_label4733 DS 0H
+@@gen_label4738 DS 0H
          LTR   4,4
-         BNZ   @L3156
+         BNZ   @L3158
 * ***            rd_atomic32_add(&(rkb)->rkb_refcnt, 1);
          LA    15,4000(0,2)
          STG   15,424(0,13)
          MVGHI 432(13),1
          LA    1,424(0,13)
-         LG    15,@lit_2156_3566 ; rd_atomic32_add
-@@gen_label4735 DS    0H 
+         LG    15,@lit_2156_3567 ; rd_atomic32_add
+@@gen_label4740 DS    0H 
          BALR  14,15
-@@gen_label4736 DS    0H 
+@@gen_label4741 DS    0H 
 * ***            mtx_unlock(&(rkb)->rkb_lock);
          LA    15,72(0,2)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_2156_3567 ; mtx_unlock
-@@gen_label4737 DS    0H 
+         LG    15,@lit_2156_3568 ; mtx_unlock
+@@gen_label4742 DS    0H 
          BALR  14,15
-@@gen_label4738 DS    0H 
+@@gen_label4743 DS    0H 
 * ***            return rkb;
          LGR   15,2
          B     @ret_lab_2156
 * ***         }
-@L3156   DS    0H
+@L3158   DS    0H
 * ***         mtx_unlock(&(rkb)->rkb_lock);
          LA    15,72(0,2)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_2156_3567 ; mtx_unlock
-@@gen_label4739 DS    0H 
+         LG    15,@lit_2156_3568 ; mtx_unlock
+@@gen_label4744 DS    0H 
          BALR  14,15
-@@gen_label4740 DS    0H 
+@@gen_label4745 DS    0H 
 * ***      }
-@L3154   DS    0H
+@L3156   DS    0H
          LG    2,0(0,2)    ; rkb
-@L3152   DS    0H
+@L3154   DS    0H
          LTGR  15,2
-         BNE   @L3151
+         BNE   @L3153
 * ***   
 * ***      return ((void *)0);
          LGHI  15,0        ; 0
@@ -42363,39 +42390,39 @@ rd_kafka_broker_name_parse DCCPRLG CINDEX=2157,BASER=12,FRAME=256,ENTRY*
 * 1); char *_dst = __builtin_alloca(_srclen + 1); __memcpy(_dst,_src,_\
 * srclen); _dst[_srclen] = '\0'; *(&orig) = _dst; } while (0); } while\
 *  (0);
-@L3157   DS    0H
+@L3159   DS    0H
          LG    3,0(0,7)    ; name
          LGR   1,3
          LGHI  0,0
-@@gen_label4742 DS 0H
+@@gen_label4747 DS 0H
          SRST  0,1
-         BC  1,@@gen_label4742
+         BC  1,@@gen_label4747
          LGR   4,0
          SLGR  4,3
-@L3160   DS    0H
+@L3162   DS    0H
          LGR   0,4
          AGHI  0,1
          STG   0,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_2157_3571 ; @@ALLOCA
-@@gen_label4743 DS    0H 
+         LG    15,@lit_2157_3572 ; @@ALLOCA
+@@gen_label4748 DS    0H 
          BALR  14,15
-@@gen_label4744 DS    0H 
+@@gen_label4749 DS    0H 
          LGR   5,15
          LTGR  1,4
-         BZ    @@gen_label4747
+         BZ    @@gen_label4752
          AGHI  1,-1
          SRAG  11,1,8(0)
          LTGR  11,11
-         BZ    @@gen_label4746
-@@gen_label4745 DS 0H
+         BZ    @@gen_label4751
+@@gen_label4750 DS 0H
          MVC   0(256,5),0(3)
          LA    5,256(0,5)
          LA    3,256(0,3)
-         BCTG  11,@@gen_label4745
-@@gen_label4746 DS 0H
-         EX    1,@lit_2157_3572
-@@gen_label4747 DS 0H
+         BCTG  11,@@gen_label4750
+@@gen_label4751 DS 0H
+         EX    1,@lit_2157_3573
+@@gen_label4752 DS 0H
          LA    1,0(4,15)
          MVI   0(1),0
          STG   15,168(0,13)
@@ -42403,67 +42430,67 @@ rd_kafka_broker_name_parse DCCPRLG CINDEX=2157,BASER=12,FRAME=256,ENTRY*
 * ***      
 * ***      if ((n = __strchr(s,',')))
          LGR   5,2
-@@gen_label4748 DS 0H
+@@gen_label4753 DS 0H
          CLI   0(5),107
-         BE    @@gen_label4749
+         BE    @@gen_label4754
          CLI   0(5),0
-         BE    @@gen_label4750
+         BE    @@gen_label4755
          LA    5,1(0,5)
-         B     @@gen_label4748
+         B     @@gen_label4753
          DS    0D
 @FRAMESIZE_2157 DC F'256'
-@lit_2157_3571 DC AD(@@ALLOCA)
-@lit_2157_3572          MVC 0(1,5),0(3)
-@lit_2157_3574 DC AD(strstr)
-@lit_2157_3573 DC AD(@strings@+8192)
-@lit_2157_3575 DC AD(rd_kafka_log0)
-@lit_2157_3577 DC AD(___toupper)
-@lit_2157_3578 DC Q(_$Current$Rune$Locale)
-@lit_2157_3581 DC AD(strcasecmp)
-@lit_2157_3580 DC Q(rd_kafka_secproto_names)
-@lit_2157_3590 DC AD(atoi)
-@@gen_label4750 DS 0H
+@lit_2157_3572 DC AD(@@ALLOCA)
+@lit_2157_3573          MVC 0(1,5),0(3)
+@lit_2157_3575 DC AD(strstr)
+@lit_2157_3574 DC AD(@strings@+8192)
+@lit_2157_3576 DC AD(rd_kafka_log0)
+@lit_2157_3578 DC AD(___toupper)
+@lit_2157_3579 DC Q(_$Current$Rune$Locale)
+@lit_2157_3582 DC AD(strcasecmp)
+@lit_2157_3581 DC Q(rd_kafka_secproto_names)
+@lit_2157_3591 DC AD(atoi)
+@@gen_label4755 DS 0H
          LGHI  5,0
-@@gen_label4749 DS 0H
+@@gen_label4754 DS 0H
          LTGR  15,5
-         BZ    @L3163
+         BZ    @L3165
 * ***         *n = '\0';
          MVI   0(5),0      ; n
-         B     @L3164
+         B     @L3166
 * ***      else
-@L3163   DS    0H
+@L3165   DS    0H
 * ***         n = s + __strlen(s)-1;
          LGR   15,2
          LGHI  0,0
-@@gen_label4752 DS 0H
+@@gen_label4757 DS 0H
          SRST  0,15
-         BC  1,@@gen_label4752
+         BC  1,@@gen_label4757
          SLGR  0,2
          LGR   15,0
          BCTGR 15,0
          LA    5,0(15,2)
-@L3164   DS    0H
+@L3166   DS    0H
 * ***   
 * ***   
 * ***      
 * ***      if ((t = strstr(s, "://"))) {
          STG   2,176(0,13)
-         LG    4,@lit_2157_3573
+         LG    4,@lit_2157_3574
          LA    15,1074(0,4)
          STG   15,184(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_2157_3574 ; strstr
-@@gen_label4753 DS    0H 
+         LG    15,@lit_2157_3575 ; strstr
+@@gen_label4758 DS    0H 
          BALR  14,15
-@@gen_label4754 DS    0H 
+@@gen_label4759 DS    0H 
          LTGR  3,15        ; t
-         BZ    @L3165
+         BZ    @L3167
 * ***         int i;
 * ***         
 * ***   
 * ***         if (t == s) {
          CGR   3,2
-         BNE   @L3166
+         BNE   @L3168
 * ***            rd_kafka_log0(&rk->rk_conf, rk, ((void *)0), 4, 0x0, \
 * "BROKER", "Broker name \"%s\" parse error: " "empty protocol name", \
 * orig);
@@ -42480,23 +42507,23 @@ rd_kafka_broker_name_parse DCCPRLG CINDEX=2157,BASER=12,FRAME=256,ENTRY*
          LG    15,168(0,13) ; orig
          STG   15,232(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_2157_3575 ; rd_kafka_log0
-@@gen_label4757 DS    0H 
+         LG    15,@lit_2157_3576 ; rd_kafka_log0
+@@gen_label4762 DS    0H 
          BALR  14,15
-@@gen_label4758 DS    0H 
+@@gen_label4763 DS    0H 
 * ***   
 * ***   
 * ***            return -1;
          LGHI  15,-1       ; -1
          B     @ret_lab_2157
 * ***         }
-@L3166   DS    0H
+@L3168   DS    0H
 * ***   
 * ***         
 * ***         for (t2 = s ; t2 < t ; t2++)
          LGR   4,2         ; t2
-         B     @L3168
-@L3167   DS    0H
+         B     @L3170
+@L3169   DS    0H
 * ***            *t2 = __toupper(*t2);
          LLC   15,0(0,4)
 * <<< begin inline copy of __toupper
@@ -42509,15 +42536,15 @@ rd_kafka_broker_name_parse DCCPRLG CINDEX=2157,BASER=12,FRAME=256,ENTRY*
          LGFR  15,15
          STG   15,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_2157_3577 ; ___toupper
-@@gen_label4761 DS    0H 
+         LG    15,@lit_2157_3578 ; ___toupper
+@@gen_label4766 DS    0H 
          BALR  14,15
-@@gen_label4762 DS    0H 
+@@gen_label4767 DS    0H 
          B     @2_@L28
 @2_@L26  DS    0H
 * ***             _CurrentRuneLocale->__mapupper[_c];
          LGFR  15,15
-         LLGF  1,@lit_2157_3578 ; _CurrentRuneLocale
+         LLGF  1,@lit_2157_3579 ; _CurrentRuneLocale
          LG    1,0(1,9)    ; _CurrentRuneLocale
          SLLG  15,15,2(0)  ; *0x4
          L     15,3136(15,1)
@@ -42526,9 +42553,9 @@ rd_kafka_broker_name_parse DCCPRLG CINDEX=2157,BASER=12,FRAME=256,ENTRY*
 * >>> end inline copy of __toupper
          STC   15,0(0,4)
          LA    4,1(0,4)
-@L3168   DS    0H
+@L3170   DS    0H
          CGR   4,3
-         BL    @L3167
+         BL    @L3169
 * ***   
 * ***         *t = '\0';
          MVI   0(3),0      ; t
@@ -42536,35 +42563,35 @@ rd_kafka_broker_name_parse DCCPRLG CINDEX=2157,BASER=12,FRAME=256,ENTRY*
 * ***         
 * ***         for (i = 0 ; i < RD_KAFKA_PROTO_NUM ; i++)
          LHI   4,0         ; 0
-         B     @L3172
-@L3171   DS    0H
+         B     @L3174
+@L3173   DS    0H
 * ***            if (!strcasecmp(s,rd_kafka_secproto_names[i]))
          STG   2,176(0,13)
          LGFR  15,4
-         LLGF  1,@lit_2157_3580 ; rd_kafka_secproto_names
+         LLGF  1,@lit_2157_3581 ; rd_kafka_secproto_names
          SLLG  15,15,3(0)  ; *0x8
          LA    15,0(1,15)
          LG    15,0(15,9)
          STG   15,184(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_2157_3581 ; strcasecmp
-@@gen_label4764 DS    0H 
+         LG    15,@lit_2157_3582 ; strcasecmp
+@@gen_label4769 DS    0H 
          BALR  14,15
-@@gen_label4765 DS    0H 
+@@gen_label4770 DS    0H 
          LTR   15,15
-         BZ    @L3173
+         BZ    @L3175
 * ***               break;
-@L3175   DS    0H
+@L3177   DS    0H
 * ***   
 * ***         
 * ***         if (i == RD_KAFKA_PROTO_NUM) {
          AHI   4,1
-@L3172   DS    0H
+@L3174   DS    0H
          CHI   4,4
-         BL    @L3171
-@L3173   DS    0H
+         BL    @L3173
+@L3175   DS    0H
          CHI   4,4
-         BNE   @L3176
+         BNE   @L3178
 * ***            rd_kafka_log0(&rk->rk_conf, rk, ((void *)0), 4, 0x0, \
 * "BROKER", "Broker name \"%s\" parse error: " "unsupported protocol \\
 * "%s\"", orig, s);
@@ -42574,7 +42601,7 @@ rd_kafka_broker_name_parse DCCPRLG CINDEX=2157,BASER=12,FRAME=256,ENTRY*
          XC    192(8,13),192(13)
          MVGHI 200(13),4
          XC    208(8,13),208(13)
-         LG    15,@lit_2157_3573
+         LG    15,@lit_2157_3574
          LA    1,808(0,15)
          STG   1,216(0,13)
          LA    15,1128(0,15)
@@ -42583,10 +42610,10 @@ rd_kafka_broker_name_parse DCCPRLG CINDEX=2157,BASER=12,FRAME=256,ENTRY*
          STG   15,232(0,13)
          STG   2,240(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_2157_3575 ; rd_kafka_log0
-@@gen_label4769 DS    0H 
+         LG    15,@lit_2157_3576 ; rd_kafka_log0
+@@gen_label4774 DS    0H 
          BALR  14,15
-@@gen_label4770 DS    0H 
+@@gen_label4775 DS    0H 
 * ***   
 * ***   
 * ***   
@@ -42594,7 +42621,7 @@ rd_kafka_broker_name_parse DCCPRLG CINDEX=2157,BASER=12,FRAME=256,ENTRY*
          LGHI  15,-1       ; -1
          B     @ret_lab_2157
 * ***         }
-@L3176   DS    0H
+@L3178   DS    0H
 * ***   
 * ***         *proto = i;
          ST    4,0(0,8)    ; proto
@@ -42604,7 +42631,7 @@ rd_kafka_broker_name_parse DCCPRLG CINDEX=2157,BASER=12,FRAME=256,ENTRY*
          L     15,912(0,6) ; offset of security_protocol in rd_kafka_co*
                nf_s
          C     15,0(0,8)
-         BE    @L3177
+         BE    @L3179
 * ***            rd_kafka_log0(&rk->rk_conf, rk, ((void *)0), 4, 0x0, \
 * "BROKER", "Broker name \"%s\" parse error: " "protocol \"%s\" does n\
 * ot match " "security.protocol setting \"%s\"", orig, s, rd_kafka_sec\
@@ -42615,7 +42642,7 @@ rd_kafka_broker_name_parse DCCPRLG CINDEX=2157,BASER=12,FRAME=256,ENTRY*
          XC    192(8,13),192(13)
          MVGHI 200(13),4
          XC    208(8,13),208(13)
-         LG    15,@lit_2157_3573
+         LG    15,@lit_2157_3574
          LA    1,808(0,15)
          STG   1,216(0,13)
          LA    15,1184(0,15)
@@ -42624,22 +42651,22 @@ rd_kafka_broker_name_parse DCCPRLG CINDEX=2157,BASER=12,FRAME=256,ENTRY*
          STG   15,232(0,13)
          STG   2,240(0,13)
          LGF   15,912(0,6)
-         LLGF  1,@lit_2157_3580 ; rd_kafka_secproto_names
+         LLGF  1,@lit_2157_3581 ; rd_kafka_secproto_names
          SLLG  15,15,3(0)  ; *0x8
          LA    15,0(1,15)
          LG    15,0(15,9)
          STG   15,248(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_2157_3575 ; rd_kafka_log0
-@@gen_label4772 DS    0H 
+         LG    15,@lit_2157_3576 ; rd_kafka_log0
+@@gen_label4777 DS    0H 
          BALR  14,15
-@@gen_label4773 DS    0H 
+@@gen_label4778 DS    0H 
 * ***   # 5964 "C:\asgkafka\librdkafka\src\rdkafka_broker.c"
 * ***            return -1;
          LGHI  15,-1       ; -1
          B     @ret_lab_2157
 * ***         }
-@L3177   DS    0H
+@L3179   DS    0H
 * ***   
 * ***         
 * ***         s = t+3;
@@ -42648,30 +42675,30 @@ rd_kafka_broker_name_parse DCCPRLG CINDEX=2157,BASER=12,FRAME=256,ENTRY*
 * ***         
 * ***         if ((t = __strchr(s,'/')))
          LGR   3,2
-@@gen_label4774 DS 0H
+@@gen_label4779 DS 0H
          CLI   0(3),97
-         BE    @@gen_label4775
+         BE    @@gen_label4780
          CLI   0(3),0
-         BE    @@gen_label4776
+         BE    @@gen_label4781
          LA    3,1(0,3)
-         B     @@gen_label4774
-@@gen_label4776 DS 0H
+         B     @@gen_label4779
+@@gen_label4781 DS 0H
          LGHI  3,0
-@@gen_label4775 DS 0H
+@@gen_label4780 DS 0H
          LTGR  15,3
-         BZ    @L3179
+         BZ    @L3181
 * ***            *t = '\0';
          MVI   0(3),0      ; t
-@L3178   DS    0H
+@L3180   DS    0H
 * ***   
 * ***      } else
-         B     @L3179
-@L3165   DS    0H
+         B     @L3181
+@L3167   DS    0H
 * ***         *proto = rk->rk_conf.security_protocol; 
          L     15,912(0,6) ; offset of security_protocol in rd_kafka_co*
                nf_s
          ST    15,0(0,8)   ; proto
-@L3179   DS    0H
+@L3181   DS    0H
 * ***   
 * ***   
 * ***      *port = 9092;
@@ -42682,37 +42709,37 @@ rd_kafka_broker_name_parse DCCPRLG CINDEX=2157,BASER=12,FRAME=256,ENTRY*
 * ***      if ((t = __strrchr(s,':')) &&
          LGR   15,2
          LGHI  3,0
-@@gen_label4778 DS 0H
+@@gen_label4783 DS 0H
          CLI   0(15),122
-         BNE   @@gen_label4779
+         BNE   @@gen_label4784
          LGR   3,15
-@@gen_label4779 DS 0H
+@@gen_label4784 DS 0H
          CLI   0(15),0
-         BE    @@gen_label4780
+         BE    @@gen_label4785
          LA    15,1(0,15)
-         B     @@gen_label4778
-@@gen_label4780 DS 0H
+         B     @@gen_label4783
+@@gen_label4785 DS 0H
          LTGR  15,3
-         BZ    @L3180
+         BZ    @L3182
 * ***          ((t2 = __strchr(s,':')) == t || *(t-1) == ']')) {
          LGR   15,2
-@@gen_label4782 DS 0H
+@@gen_label4787 DS 0H
          CLI   0(15),122
-         BE    @@gen_label4783
+         BE    @@gen_label4788
          CLI   0(15),0
-         BE    @@gen_label4784
+         BE    @@gen_label4789
          LA    15,1(0,15)
-         B     @@gen_label4782
-@@gen_label4784 DS 0H
+         B     @@gen_label4787
+@@gen_label4789 DS 0H
          LGHI  15,0
-@@gen_label4783 DS 0H
+@@gen_label4788 DS 0H
          CGR   15,3
-         BE    @L3181
+         BE    @L3183
          LGHI  15,-1       ; -1
          LA    15,0(15,3)
          CLI   0(15),189
-         BNE   @L3180
-@L3181   DS    0H
+         BNE   @L3182
+@L3183   DS    0H
 * ***         *t = '\0';
          MVI   0(3),0      ; t
 * ***         *port = atoi(t+1);
@@ -42720,22 +42747,22 @@ rd_kafka_broker_name_parse DCCPRLG CINDEX=2157,BASER=12,FRAME=256,ENTRY*
          LA    15,1(0,3)
          STG   15,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_2157_3590 ; atoi
-@@gen_label4787 DS    0H 
+         LG    15,@lit_2157_3591 ; atoi
+@@gen_label4792 DS    0H 
          BALR  14,15
-@@gen_label4788 DS    0H 
+@@gen_label4793 DS    0H 
          STH   15,0(0,4)
 * ***      }
-@L3180   DS    0H
+@L3182   DS    0H
 * ***   
 * ***      
 * ***      if (!*s) 
          CLI   0(2),0
-         BNE   @L3182
+         BNE   @L3184
 * ***         s = "localhost";
-         LG    15,@lit_2157_3573
+         LG    15,@lit_2157_3574
          LA    2,1274(0,15)
-@L3182   DS    0H
+@L3184   DS    0H
 * ***   
 * ***      *host = s;
          LG    15,24(0,10) ; host
@@ -42784,10 +42811,10 @@ rd_kafka_brokers_add0 DCCPRLG CINDEX=1800,BASER=12,FRAME=248,ENTRY=YES,*
          LG    15,8(0,1)   ; brokerlist
          STG   15,200(0,13)
          LA    1,200(0,13)
-         LG    15,@lit_1800_3594 ; rd_strdup
-@@gen_label4790 DS    0H 
+         LG    15,@lit_1800_3595 ; rd_strdup
+@@gen_label4795 DS    0H 
          BALR  14,15
-@@gen_label4791 DS    0H 
+@@gen_label4796 DS    0H 
          LGR   6,15
 * ***      char *s = s_copy;
          STG   6,192(0,13) ; s
@@ -42798,32 +42825,32 @@ rd_kafka_brokers_add0 DCCPRLG CINDEX=1800,BASER=12,FRAME=248,ENTRY=YES,*
          LA    15,72(0,5)
          STG   15,200(0,13)
          LA    1,200(0,13)
-         LG    15,@lit_1800_3596 ; rd_atomic32_get
-@@gen_label4792 DS    0H 
+         LG    15,@lit_1800_3597 ; rd_atomic32_get
+@@gen_label4797 DS    0H 
          BALR  14,15
-@@gen_label4793 DS    0H 
+@@gen_label4798 DS    0H 
          LR    4,15
 * ***   
 * ***      
 * ***      while (*s) {
-         B     @L3186
+         B     @L3188
          DS    0D
 @FRAMESIZE_1800 DC F'248'
-@lit_1800_3594 DC AD(rd_strdup)
-@lit_1800_3596 DC AD(rd_atomic32_get)
-@lit_1800_3597 DC AD(rd_kafka_broker_name_parse)
-@lit_1800_3598 DC AD(rwlock_wrlock)
-@lit_1800_3599 DC AD(rd_kafka_broker_find)
-@lit_1800_3600 DC AD(rd_kafka_broker_add)
-@lit_1800_3601 DC AD(rd_refcnt_sub0)
-@lit_1800_3602 DC AD(rd_kafka_broker_destroy_final)
-@lit_1800_3603 DC AD(rwlock_wrunlock)
-@lit_1800_3604 DC AD(rd_free)
-@lit_1800_3605 DC AD(rwlock_rdlock)
-@lit_1800_3607 DC AD(rd_kafka_connect_any)
-@lit_1800_3606 DC AD(@strings@+8192)
-@lit_1800_3608 DC AD(rwlock_rdunlock)
-@L3185   DS    0H
+@lit_1800_3595 DC AD(rd_strdup)
+@lit_1800_3597 DC AD(rd_atomic32_get)
+@lit_1800_3598 DC AD(rd_kafka_broker_name_parse)
+@lit_1800_3599 DC AD(rwlock_wrlock)
+@lit_1800_3600 DC AD(rd_kafka_broker_find)
+@lit_1800_3601 DC AD(rd_kafka_broker_add)
+@lit_1800_3602 DC AD(rd_refcnt_sub0)
+@lit_1800_3603 DC AD(rd_kafka_broker_destroy_final)
+@lit_1800_3604 DC AD(rwlock_wrunlock)
+@lit_1800_3605 DC AD(rd_free)
+@lit_1800_3606 DC AD(rwlock_rdlock)
+@lit_1800_3608 DC AD(rd_kafka_connect_any)
+@lit_1800_3607 DC AD(@strings@+8192)
+@lit_1800_3609 DC AD(rwlock_rdunlock)
+@L3187   DS    0H
 * ***         uint16_t port;
 * ***         const char *host;
 * ***         rd_kafka_secproto_t proto;
@@ -42831,17 +42858,17 @@ rd_kafka_brokers_add0 DCCPRLG CINDEX=1800,BASER=12,FRAME=248,ENTRY=YES,*
 * ***         if (*s == ',' || *s == ' ') {
          LG    15,192(0,13) ; s
          CLI   0(15),107
-         BE    @L3188
+         BE    @L3190
          CLI   0(15),64
-         BNE   @L3187
-@L3188   DS    0H
+         BNE   @L3189
+@L3190   DS    0H
 * ***            s++;
          LA    15,1(0,15)
          STG   15,192(0,13) ; s
 * ***            continue;
-         B     @L3186
+         B     @L3188
 * ***         }
-@L3187   DS    0H
+@L3189   DS    0H
 * ***   
 * ***         if (rd_kafka_broker_name_parse(rk, &s, &proto,
 * ***                         &host, &port) == -1)
@@ -42855,23 +42882,23 @@ rd_kafka_brokers_add0 DCCPRLG CINDEX=1800,BASER=12,FRAME=248,ENTRY=YES,*
          LA    15,168(0,13)
          STG   15,232(0,13)
          LA    1,200(0,13)
-         LG    15,@lit_1800_3597 ; rd_kafka_broker_name_parse
-@@gen_label4796 DS    0H 
+         LG    15,@lit_1800_3598 ; rd_kafka_broker_name_parse
+@@gen_label4801 DS    0H 
          BALR  14,15
-@@gen_label4797 DS    0H 
+@@gen_label4802 DS    0H 
          CHI   15,-1
-         BE    @L3183
+         BE    @L3185
 * ***            break;
-@L3189   DS    0H
+@L3191   DS    0H
 * ***   
 * ***         rwlock_wrlock(&(rk)->rk_lock);
          LA    15,2464(0,5)
          STG   15,200(0,13)
          LA    1,200(0,13)
-         LG    15,@lit_1800_3598 ; rwlock_wrlock
-@@gen_label4799 DS    0H 
+         LG    15,@lit_1800_3599 ; rwlock_wrlock
+@@gen_label4804 DS    0H 
          BALR  14,15
-@@gen_label4800 DS    0H 
+@@gen_label4805 DS    0H 
 * ***   
 * ***         if ((rkb = rd_kafka_broker_find(rk, proto, host, port)) \
 * &&
@@ -42883,21 +42910,21 @@ rd_kafka_brokers_add0 DCCPRLG CINDEX=1800,BASER=12,FRAME=248,ENTRY=YES,*
          LLGH  15,168(0,13) ; port
          STG   15,224(0,13)
          LA    1,200(0,13)
-         LG    15,@lit_1800_3599 ; rd_kafka_broker_find
-@@gen_label4801 DS    0H 
+         LG    15,@lit_1800_3600 ; rd_kafka_broker_find
+@@gen_label4806 DS    0H 
          BALR  14,15
-@@gen_label4802 DS    0H 
+@@gen_label4807 DS    0H 
          LGR   3,15
          LTGR  15,3
-         BZ    @L3190
+         BZ    @L3192
 * ***             rkb->rkb_source == RD_KAFKA_CONFIGURED) {
          CHSI  328(3),0
-         BNE   @L3190
+         BNE   @L3192
 * ***            cnt++;
          AHI   2,1
 * ***         } else if (rd_kafka_broker_add(rk, RD_KAFKA_CONFIGURED,
-         B     @L3191
-@L3190   DS    0H
+         B     @L3193
+@L3192   DS    0H
 * ***                         proto, host, port,
 * ***                         -1) != ((void *)0))
          STG   5,200(0,13)
@@ -42910,78 +42937,78 @@ rd_kafka_brokers_add0 DCCPRLG CINDEX=1800,BASER=12,FRAME=248,ENTRY=YES,*
          STG   15,232(0,13)
          MVGHI 240(13),-1
          LA    1,200(0,13)
-         LG    15,@lit_1800_3600 ; rd_kafka_broker_add
-@@gen_label4805 DS    0H 
+         LG    15,@lit_1800_3601 ; rd_kafka_broker_add
+@@gen_label4810 DS    0H 
          BALR  14,15
-@@gen_label4806 DS    0H 
+@@gen_label4811 DS    0H 
          LTGR  15,15
-         BE    @L3191
+         BE    @L3193
 * ***            cnt++;
          AHI   2,1
-@L3192   DS    0H
+@L3194   DS    0H
 * ***   
 * ***         
 * ***   
 * ***   
 * ***         if (rkb)
-@L3191   DS    0H
+@L3193   DS    0H
          LTGR  15,3
-         BZ    @L3193
+         BZ    @L3195
 * ***            do { if (rd_refcnt_sub0(&(rkb)->rkb_refcnt) > 0) brea\
 * k; rd_kafka_broker_destroy_final(rkb); } while (0);
-@L3194   DS    0H
+@L3196   DS    0H
          LA    15,4000(0,3)
          STG   15,200(0,13)
          LA    1,200(0,13)
-         LG    15,@lit_1800_3601 ; rd_refcnt_sub0
-@@gen_label4809 DS    0H 
-         BALR  14,15
-@@gen_label4810 DS    0H 
-         LTR   15,15
-         BH    @L3193
-@L3197   DS    0H
-         STG   3,200(0,13)
-         LA    1,200(0,13)
-         LG    15,@lit_1800_3602 ; rd_kafka_broker_destroy_final
-@@gen_label4812 DS    0H 
-         BALR  14,15
-@@gen_label4813 DS    0H 
-@L3195   DS    0H
-* ***   
-* ***         rwlock_wrunlock(&(rk)->rk_lock);
-@L3193   DS    0H
-         LA    15,2464(0,5)
-         STG   15,200(0,13)
-         LA    1,200(0,13)
-         LG    15,@lit_1800_3603 ; rwlock_wrunlock
+         LG    15,@lit_1800_3602 ; rd_refcnt_sub0
 @@gen_label4814 DS    0H 
          BALR  14,15
 @@gen_label4815 DS    0H 
+         LTR   15,15
+         BH    @L3195
+@L3199   DS    0H
+         STG   3,200(0,13)
+         LA    1,200(0,13)
+         LG    15,@lit_1800_3603 ; rd_kafka_broker_destroy_final
+@@gen_label4817 DS    0H 
+         BALR  14,15
+@@gen_label4818 DS    0H 
+@L3197   DS    0H
+* ***   
+* ***         rwlock_wrunlock(&(rk)->rk_lock);
+@L3195   DS    0H
+         LA    15,2464(0,5)
+         STG   15,200(0,13)
+         LA    1,200(0,13)
+         LG    15,@lit_1800_3604 ; rwlock_wrunlock
+@@gen_label4819 DS    0H 
+         BALR  14,15
+@@gen_label4820 DS    0H 
 * ***      }
-@L3184   DS    0H
 @L3186   DS    0H
+@L3188   DS    0H
          LG    15,192(0,13) ; s
          CLI   0(15),0
-         BNE   @L3185
-@L3183   DS    0H
+         BNE   @L3187
+@L3185   DS    0H
 * ***   
 * ***      rd_free(s_copy);
          STG   6,200(0,13)
          LA    1,200(0,13)
-         LG    15,@lit_1800_3604 ; rd_free
-@@gen_label4817 DS    0H 
+         LG    15,@lit_1800_3605 ; rd_free
+@@gen_label4822 DS    0H 
          BALR  14,15
-@@gen_label4818 DS    0H 
+@@gen_label4823 DS    0H 
 * ***   
 * ***           if (rk->rk_conf.sparse_connections && cnt > 0 && pre_c\
 * nt == 0) {
          LT    15,880(0,5) ; offset of sparse_connections in rd_kafka_c*
                onf_s
-         BZ    @L3198
+         BZ    @L3200
          LTR   2,2
-         BNH   @L3198
+         BNH   @L3200
          LTR   4,4
-         BNE   @L3198
+         BNE   @L3200
 * ***                   
 * ***   
 * ***   
@@ -42990,31 +43017,31 @@ rd_kafka_brokers_add0 DCCPRLG CINDEX=1800,BASER=12,FRAME=248,ENTRY=YES,*
          LA    15,2464(0,5)
          STG   15,200(0,13)
          LA    1,200(0,13)
-         LG    15,@lit_1800_3605 ; rwlock_rdlock
-@@gen_label4822 DS    0H 
+         LG    15,@lit_1800_3606 ; rwlock_rdlock
+@@gen_label4827 DS    0H 
          BALR  14,15
-@@gen_label4823 DS    0H 
+@@gen_label4828 DS    0H 
 * ***                   rd_kafka_connect_any(rk, "bootstrap servers ad\
 * ded");
          STG   5,200(0,13)
-         LG    15,@lit_1800_3606
+         LG    15,@lit_1800_3607
          LA    15,1284(0,15)
          STG   15,208(0,13)
          LA    1,200(0,13)
-         LG    15,@lit_1800_3607 ; rd_kafka_connect_any
-@@gen_label4824 DS    0H 
+         LG    15,@lit_1800_3608 ; rd_kafka_connect_any
+@@gen_label4829 DS    0H 
          BALR  14,15
-@@gen_label4825 DS    0H 
+@@gen_label4830 DS    0H 
 * ***                   rwlock_rdunlock(&(rk)->rk_lock);
          LA    15,2464(0,5)
          STG   15,200(0,13)
          LA    1,200(0,13)
-         LG    15,@lit_1800_3608 ; rwlock_rdunlock
-@@gen_label4826 DS    0H 
+         LG    15,@lit_1800_3609 ; rwlock_rdunlock
+@@gen_label4831 DS    0H 
          BALR  14,15
-@@gen_label4827 DS    0H 
+@@gen_label4832 DS    0H 
 * ***           }
-@L3198   DS    0H
+@L3200   DS    0H
 * ***   
 * ***      return cnt;
          LGFR  15,2
@@ -43057,10 +43084,10 @@ rd_kafka_brokers_add DCCPRLG CINDEX=1019,BASER=12,FRAME=184,ENTRY=YES,A*
          LG    15,8(0,1)   ; brokerlist
          STG   15,176(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1019_3610 ; rd_kafka_brokers_add0
-@@gen_label4828 DS    0H 
+         LG    15,@lit_1019_3611 ; rd_kafka_brokers_add0
+@@gen_label4833 DS    0H 
          BALR  14,15
-@@gen_label4829 DS    0H 
+@@gen_label4834 DS    0H 
          LGFR  15,15
 * ***   }
 * * **** Start of Epilogue
@@ -43068,7 +43095,7 @@ rd_kafka_brokers_add DCCPRLG CINDEX=1019,BASER=12,FRAME=184,ENTRY=YES,A*
 * * **** End of Epilogue
          DS    0D
 @FRAMESIZE_1019 DC F'184'
-@lit_1019_3610 DC AD(rd_kafka_brokers_add0)
+@lit_1019_3611 DC AD(rd_kafka_brokers_add0)
          DROP  12
 *
 *   DSECT for automatic variables in "rd_kafka_brokers_add"
@@ -43111,71 +43138,71 @@ rd_kafka_broker_update DCCPRLG CINDEX=1805,BASER=12,FRAME=472,ENTRY=YES*
          LLGHR 15,15
          STG   15,448(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1805_3613 ; rd_kafka_mk_nodename
-@@gen_label4830 DS    0H 
+         LG    15,@lit_1805_3614 ; rd_kafka_mk_nodename
+@@gen_label4835 DS    0H 
          BALR  14,15
-@@gen_label4831 DS    0H 
+@@gen_label4836 DS    0H 
 * ***   
 * ***      rwlock_wrlock(&(rk)->rk_lock);
          LA    15,2464(0,4)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1805_3614 ; rwlock_wrlock
-@@gen_label4832 DS    0H 
+         LG    15,@lit_1805_3615 ; rwlock_wrlock
+@@gen_label4837 DS    0H 
          BALR  14,15
-@@gen_label4833 DS    0H 
+@@gen_label4838 DS    0H 
 * ***      if ((((rd_atomic32_get(&(rk)->rk_terminate) & 0x1)))) {
          LA    15,2416(0,4)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1805_3615 ; rd_atomic32_get
-@@gen_label4834 DS    0H 
+         LG    15,@lit_1805_3616 ; rd_atomic32_get
+@@gen_label4839 DS    0H 
          BALR  14,15
-@@gen_label4835 DS    0H 
+@@gen_label4840 DS    0H 
          TML   15,1
-         BZ    @L3199
+         BZ    @L3201
 * ***         
 * ***   
 * ***         rwlock_wrunlock(&(rk)->rk_lock);
          LA    15,2464(0,4)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1805_3616 ; rwlock_wrunlock
-@@gen_label4837 DS    0H 
+         LG    15,@lit_1805_3617 ; rwlock_wrunlock
+@@gen_label4842 DS    0H 
          BALR  14,15
-@@gen_label4838 DS    0H 
+@@gen_label4843 DS    0H 
 * ***                   if (rkbp)
          LTGR  15,6
          BZ    @ret_lab_1805
 * ***                           *rkbp = ((void *)0);
          LGHI  15,0        ; 0
          STG   15,0(0,6)   ; rkbp
-@L3200   DS    0H
+@L3202   DS    0H
 * ***                   return;
          B     @ret_lab_1805
          DS    0D
 @FRAMESIZE_1805 DC F'472'
-@lit_1805_3613 DC AD(rd_kafka_mk_nodename)
-@lit_1805_3614 DC AD(rwlock_wrlock)
-@lit_1805_3615 DC AD(rd_atomic32_get)
-@lit_1805_3616 DC AD(rwlock_wrunlock)
-@lit_1805_3619 DC AD(rd_kafka_broker_find_by_nodeid0_fl)
-@lit_1805_3618 DC AD(@DATA)
-@lit_1805_3622 DC AD(rd_kafka_broker_find)
-@lit_1805_3624 DC AD(rd_kafka_broker_add)
-@lit_1805_3625 DC AD(rd_atomic32_add)
-@lit_1805_3627 DC AD(rd_kafka_op_new0)
-@lit_1805_3628 DC AD(rd_strlcpy)
-@lit_1805_3629 DC AD(rd_kafka_op_req)
-@lit_1805_3630 DC AD(rd_kafka_op_err_destroy)
-@lit_1805_3631 DC AD(rd_refcnt_sub0)
-@lit_1805_3632 DC AD(rd_kafka_broker_destroy_final)
+@lit_1805_3614 DC AD(rd_kafka_mk_nodename)
+@lit_1805_3615 DC AD(rwlock_wrlock)
+@lit_1805_3616 DC AD(rd_atomic32_get)
+@lit_1805_3617 DC AD(rwlock_wrunlock)
+@lit_1805_3620 DC AD(rd_kafka_broker_find_by_nodeid0_fl)
+@lit_1805_3619 DC AD(@DATA)
+@lit_1805_3623 DC AD(rd_kafka_broker_find)
+@lit_1805_3625 DC AD(rd_kafka_broker_add)
+@lit_1805_3626 DC AD(rd_atomic32_add)
+@lit_1805_3628 DC AD(rd_kafka_op_new0)
+@lit_1805_3629 DC AD(rd_strlcpy)
+@lit_1805_3630 DC AD(rd_kafka_op_req)
+@lit_1805_3631 DC AD(rd_kafka_op_err_destroy)
+@lit_1805_3632 DC AD(rd_refcnt_sub0)
+@lit_1805_3633 DC AD(rd_kafka_broker_destroy_final)
 * ***      }
-@L3199   DS    0H
+@L3201   DS    0H
 * ***   
 * ***      if ((rkb = rd_kafka_broker_find_by_nodeid0_fl(__FUNCTION__,\
 * 6102, rk,mdb->id,-1,0))) {
-         LG    15,@lit_1805_3618
+         LG    15,@lit_1805_3619
          LA    15,1264(0,15)
          STG   15,424(0,13)
          MVGHI 432(13),6102
@@ -43185,12 +43212,12 @@ rd_kafka_broker_update DCCPRLG CINDEX=1805,BASER=12,FRAME=472,ENTRY=YES*
          MVGHI 456(13),-1
          XC    464(8,13),464(13)
          LA    1,424(0,13)
-         LG    15,@lit_1805_3619 ; rd_kafka_broker_find_by_nodeid0_fl
-@@gen_label4840 DS    0H 
+         LG    15,@lit_1805_3620 ; rd_kafka_broker_find_by_nodeid0_fl
+@@gen_label4845 DS    0H 
          BALR  14,15
-@@gen_label4841 DS    0H 
+@@gen_label4846 DS    0H 
          LTGR  2,15        ; rkb
-         BZ    @L3201
+         BZ    @L3203
 * ***                   
 * ***   
 * ***                   if (__strcmp(rkb->rkb_nodename,nodename))
@@ -43199,22 +43226,22 @@ rd_kafka_broker_update DCCPRLG CINDEX=1805,BASER=12,FRAME=472,ENTRY=YES*
          LA    1,168(0,13)
          LA    0,0(0,0)
          LGHI  7,0
-@@gen_label4843 DS 0H
+@@gen_label4848 DS 0H
          CLST  15,1
-         BC  1,@@gen_label4843
-         BE    @@gen_label4844
+         BC  1,@@gen_label4848
+         BE    @@gen_label4849
          LLGC  7,0(0,15)
          LLGC  15,0(0,1)
          SLGR  7,15
-@@gen_label4844 DS 0H
+@@gen_label4849 DS 0H
          LTR   7,7
-         BZ    @L3203
+         BZ    @L3205
 * ***                           needs_update = 1;
          LHI   3,1         ; 1
-@L3202   DS    0H
+@L3204   DS    0H
 * ***           } else if ((rkb = rd_kafka_broker_find(rk, proto,
-         B     @L3203
-@L3201   DS    0H
+         B     @L3205
+@L3203   DS    0H
 * ***                         mdb->host, mdb->port))) {
          STG   4,424(0,13)
          LGF   15,12(0,7)  ; proto
@@ -43225,12 +43252,12 @@ rd_kafka_broker_update DCCPRLG CINDEX=1805,BASER=12,FRAME=472,ENTRY=YES*
          LLGHR 15,15
          STG   15,448(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1805_3622 ; rd_kafka_broker_find
-@@gen_label4846 DS    0H 
+         LG    15,@lit_1805_3623 ; rd_kafka_broker_find
+@@gen_label4851 DS    0H 
          BALR  14,15
-@@gen_label4847 DS    0H 
+@@gen_label4852 DS    0H 
          LTGR  2,15        ; rkb
-         BZ    @L3204
+         BZ    @L3206
 * ***                   
 * ***   
 * ***                   needs_update = 1;
@@ -43238,8 +43265,8 @@ rd_kafka_broker_update DCCPRLG CINDEX=1805,BASER=12,FRAME=472,ENTRY=YES*
 * ***   
 * ***           } else if ((rkb = rd_kafka_broker_add(rk, RD_KAFKA_LEA\
 * RNED, proto,
-         B     @L3203
-@L3204   DS    0H
+         B     @L3205
+@L3206   DS    0H
 * ***                        mdb->host, mdb->port, mdb->id))){
          STG   4,424(0,13)
          MVGHI 432(13),1
@@ -43253,52 +43280,52 @@ rd_kafka_broker_update DCCPRLG CINDEX=1805,BASER=12,FRAME=472,ENTRY=YES*
          LGF   15,0(0,5)
          STG   15,464(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1805_3624 ; rd_kafka_broker_add
-@@gen_label4849 DS    0H 
+         LG    15,@lit_1805_3625 ; rd_kafka_broker_add
+@@gen_label4854 DS    0H 
          BALR  14,15
-@@gen_label4850 DS    0H 
+@@gen_label4855 DS    0H 
          LTGR  2,15        ; rkb
-         BZ    @L3203
+         BZ    @L3205
 * ***         rd_atomic32_add(&(rkb)->rkb_refcnt, 1);
          LA    15,4000(0,2)
          STG   15,424(0,13)
          MVGHI 432(13),1
          LA    1,424(0,13)
-         LG    15,@lit_1805_3625 ; rd_atomic32_add
-@@gen_label4852 DS    0H 
+         LG    15,@lit_1805_3626 ; rd_atomic32_add
+@@gen_label4857 DS    0H 
          BALR  14,15
-@@gen_label4853 DS    0H 
+@@gen_label4858 DS    0H 
 * ***      }
-@L3206   DS    0H
+@L3208   DS    0H
 * ***   
 * ***      rwlock_wrunlock(&(rk)->rk_lock);
+@L3207   DS    0H
 @L3205   DS    0H
-@L3203   DS    0H
          LA    15,2464(0,4)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1805_3616 ; rwlock_wrunlock
-@@gen_label4854 DS    0H 
+         LG    15,@lit_1805_3617 ; rwlock_wrunlock
+@@gen_label4859 DS    0H 
          BALR  14,15
-@@gen_label4855 DS    0H 
+@@gen_label4860 DS    0H 
 * ***   
 * ***           if (rkb) {
          LTGR  15,2
-         BZ    @L3207
+         BZ    @L3209
 * ***                   
 * ***                   if (needs_update) {
          LTR   3,3
-         BZ    @L3207
+         BZ    @L3209
 * ***                           rd_kafka_op_t *rko;
 * ***                           rko = rd_kafka_op_new0(((void *)0), RD\
 * _KAFKA_OP_NODE_UPDATE);
          XC    424(8,13),424(13)
          MVGHI 432(13),7
          LA    1,424(0,13)
-         LG    15,@lit_1805_3627 ; rd_kafka_op_new0
-@@gen_label4858 DS    0H 
+         LG    15,@lit_1805_3628 ; rd_kafka_op_new0
+@@gen_label4863 DS    0H 
          BALR  14,15
-@@gen_label4859 DS    0H 
+@@gen_label4864 DS    0H 
          LGR   3,15
 * ***                           rd_strlcpy(rko->rko_u.node.nodename, n\
 * odename,
@@ -43310,10 +43337,10 @@ rd_kafka_broker_update DCCPRLG CINDEX=1805,BASER=12,FRAME=472,ENTRY=YES*
          STG   15,432(0,13)
          MVGHI 440(13),256
          LA    1,424(0,13)
-         LG    15,@lit_1805_3628 ; rd_strlcpy
-@@gen_label4860 DS    0H 
+         LG    15,@lit_1805_3629 ; rd_strlcpy
+@@gen_label4865 DS    0H 
          BALR  14,15
-@@gen_label4861 DS    0H 
+@@gen_label4866 DS    0H 
 * ***                           rko->rko_u.node.nodeid   = mdb->id;
          L     15,0(0,5)   ; mdb
          ST    15,112(0,3) ; offset of rko_u in rd_kafka_op_s
@@ -43329,54 +43356,54 @@ rd_kafka_broker_update DCCPRLG CINDEX=1805,BASER=12,FRAME=472,ENTRY=YES*
          STG   3,432(0,13)
          MVGHI 440(13),-1
          LA    1,424(0,13)
-         LG    15,@lit_1805_3629 ; rd_kafka_op_req
-@@gen_label4862 DS    0H 
+         LG    15,@lit_1805_3630 ; rd_kafka_op_req
+@@gen_label4867 DS    0H 
          BALR  14,15
-@@gen_label4863 DS    0H 
+@@gen_label4868 DS    0H 
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1805_3630 ; rd_kafka_op_err_destroy
-@@gen_label4864 DS    0H 
+         LG    15,@lit_1805_3631 ; rd_kafka_op_err_destroy
+@@gen_label4869 DS    0H 
          BALR  14,15
-@@gen_label4865 DS    0H 
+@@gen_label4870 DS    0H 
 * ***                   }
-@L3208   DS    0H
+@L3210   DS    0H
 * ***           }
-@L3207   DS    0H
+@L3209   DS    0H
 * ***   
 * ***           if (rkbp)
          LTGR  15,6
-         BZ    @L3209
+         BZ    @L3211
 * ***                   *rkbp = rkb;
          STG   2,0(0,6)    ; rkbp
-         B     @L3210
+         B     @L3212
 * ***           else if (rkb)
-@L3209   DS    0H
+@L3211   DS    0H
          LTGR  15,2
-         BZ    @L3210
+         BZ    @L3212
 * ***                   do { if (rd_refcnt_sub0(&(rkb)->rkb_refcnt) > \
 * 0) break; rd_kafka_broker_destroy_final(rkb); } while (0);
-@L3212   DS    0H
+@L3214   DS    0H
          LA    15,4000(0,2)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1805_3631 ; rd_refcnt_sub0
-@@gen_label4868 DS    0H 
+         LG    15,@lit_1805_3632 ; rd_refcnt_sub0
+@@gen_label4873 DS    0H 
          BALR  14,15
-@@gen_label4869 DS    0H 
+@@gen_label4874 DS    0H 
          LTR   15,15
-         BH    @L3210
-@L3215   DS    0H
+         BH    @L3212
+@L3217   DS    0H
          STG   2,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1805_3632 ; rd_kafka_broker_destroy_final
-@@gen_label4871 DS    0H 
+         LG    15,@lit_1805_3633 ; rd_kafka_broker_destroy_final
+@@gen_label4876 DS    0H 
          BALR  14,15
-@@gen_label4872 DS    0H 
-@L3213   DS    0H
+@@gen_label4877 DS    0H 
+@L3215   DS    0H
 * ***   }
-@L3211   DS    0H
-@L3210   DS    0H
+@L3213   DS    0H
+@L3212   DS    0H
 @ret_lab_1805 DS 0H
 * * **** Start of Epilogue
          DCCEPIL 
@@ -43411,51 +43438,51 @@ rd_kafka_broker_id DCCPRLG CINDEX=1820,BASER=12,FRAME=184,ENTRY=YES,ARC*
 * ***   
 * ***           if (((!rkb)))
          LTGR  15,2
-         BNZ   @L3216
+         BNZ   @L3218
 * ***                   return -1;
          LGHI  15,-1       ; -1
          B     @ret_lab_1820
          DS    0D
 @FRAMESIZE_1820 DC F'184'
-@lit_1820_3635 DC AD(thrd_is_current)
-@lit_1820_3636 DC AD(mtx_lock)
-@lit_1820_3637 DC AD(mtx_unlock)
-@L3216   DS    0H
+@lit_1820_3636 DC AD(thrd_is_current)
+@lit_1820_3637 DC AD(mtx_lock)
+@lit_1820_3638 DC AD(mtx_unlock)
+@L3218   DS    0H
 * ***   
 * ***           
 * ***           if (thrd_is_current(rkb->rkb_thread))
          LG    15,3992(0,2)
          STG   15,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1820_3635 ; thrd_is_current
-@@gen_label4874 DS    0H 
+         LG    15,@lit_1820_3636 ; thrd_is_current
+@@gen_label4879 DS    0H 
          BALR  14,15
-@@gen_label4875 DS    0H 
+@@gen_label4880 DS    0H 
          LTR   15,15
-         BZ    @L3217
+         BZ    @L3219
 * ***                   return rkb->rkb_nodeid;
          LGF   15,16(0,2)
          B     @ret_lab_1820
-@L3217   DS    0H
+@L3219   DS    0H
 * ***   
 * ***           mtx_lock(&(rkb)->rkb_lock);
          LA    15,72(0,2)
          STG   15,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1820_3636 ; mtx_lock
-@@gen_label4877 DS    0H 
+         LG    15,@lit_1820_3637 ; mtx_lock
+@@gen_label4882 DS    0H 
          BALR  14,15
-@@gen_label4878 DS    0H 
+@@gen_label4883 DS    0H 
 * ***           broker_id = rkb->rkb_nodeid;
          L     3,16(0,2)   ; offset of rkb_nodeid in rd_kafka_broker_s
 * ***           mtx_unlock(&(rkb)->rkb_lock);
          LA    15,72(0,2)
          STG   15,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1820_3637 ; mtx_unlock
-@@gen_label4879 DS    0H 
+         LG    15,@lit_1820_3638 ; mtx_unlock
+@@gen_label4884 DS    0H 
          BALR  14,15
-@@gen_label4880 DS    0H 
+@@gen_label4885 DS    0H 
 * ***   
 * ***           return broker_id;
          LGFR  15,3
@@ -43493,66 +43520,66 @@ rd_kafka_broker_name DCCPRLG CINDEX=1821,BASER=12,FRAME=200,ENTRY=YES,A*
          LG    2,0(0,1)    ; rkb
 * ***   
 * ***           reti = (reti + 1) % 4;
-         LGF   15,@lit_1821_3639
+         LGF   15,@lit_1821_3640
          LA    15,0(15,3)
          L     1,2776(0,15) ; reti
          AHI   1,1
          LR    4,1
          NILF  4,X'00000003'
          LTR   1,1
-         BNL   @@gen_label4881
+         BNL   @@gen_label4886
          LTR   4,4
-         BNE   @@gen_label4882
+         BNE   @@gen_label4887
          LHI   4,0
-         B     @@gen_label4881
+         B     @@gen_label4886
          DS    0D
 @FRAMESIZE_1821 DC F'200'
-@lit_1821_3639 DC Q(@@STATIC)
-@lit_1821_3641 DC AD(mtx_lock)
-@lit_1821_3645 DC AD(snprintf)
-@lit_1821_3643 DC AD(@strings@)
-@lit_1821_3647 DC AD(mtx_unlock)
-@@gen_label4882 DS 0H
+@lit_1821_3640 DC Q(@@STATIC)
+@lit_1821_3642 DC AD(mtx_lock)
+@lit_1821_3646 DC AD(snprintf)
+@lit_1821_3644 DC AD(@strings@)
+@lit_1821_3648 DC AD(mtx_unlock)
+@@gen_label4887 DS 0H
          OILF  4,X'FFFFFFFC'
-@@gen_label4881 DS 0H
+@@gen_label4886 DS 0H
          ST    4,2776(0,15) ; reti
 * ***           mtx_lock(&rkb->rkb_logname_lock);
          LGHI  4,5688      ; 5688
          LA    15,0(4,2)
          STG   15,168(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1821_3641 ; mtx_lock
-@@gen_label4883 DS    0H 
+         LG    15,@lit_1821_3642 ; mtx_lock
+@@gen_label4888 DS    0H 
          BALR  14,15
-@@gen_label4884 DS    0H 
+@@gen_label4889 DS    0H 
 * ***           snprintf(ret[reti], sizeof(ret[reti]), "%s", rkb->rkb_\
 * logname);
-         LGF   15,@lit_1821_3639
+         LGF   15,@lit_1821_3640
          LA    3,0(15,3)
          LGF   15,2776(0,3) ; reti
          SLLG  15,15,8(0)  ; *0x100
          LA    15,1752(15,3)
          STG   15,168(0,13)
          MVGHI 176(13),256
-         LG    15,@lit_1821_3643
+         LG    15,@lit_1821_3644
          LA    15,1344(0,15)
          STG   15,184(0,13)
          LGHI  15,5680     ; 5680
          LG    15,0(15,2)
          STG   15,192(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1821_3645 ; snprintf
-@@gen_label4885 DS    0H 
+         LG    15,@lit_1821_3646 ; snprintf
+@@gen_label4890 DS    0H 
          BALR  14,15
-@@gen_label4886 DS    0H 
+@@gen_label4891 DS    0H 
 * ***           mtx_unlock(&rkb->rkb_logname_lock);
          LA    15,0(4,2)
          STG   15,168(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1821_3647 ; mtx_unlock
-@@gen_label4887 DS    0H 
+         LG    15,@lit_1821_3648 ; mtx_unlock
+@@gen_label4892 DS    0H 
          BALR  14,15
-@@gen_label4888 DS    0H 
+@@gen_label4893 DS    0H 
 * ***   
 * ***           return ret[reti];
          LGF   15,2776(0,3) ; reti
@@ -43591,10 +43618,10 @@ rd_kafka_broker_wakeup DCCPRLG CINDEX=1822,BASER=12,FRAME=480,ENTRY=YES*
          XC    424(8,13),424(13)
          MVGHI 432(13),31
          LA    1,424(0,13)
-         LG    15,@lit_1822_3649 ; rd_kafka_op_new0
-@@gen_label4889 DS    0H 
+         LG    15,@lit_1822_3650 ; rd_kafka_op_new0
+@@gen_label4894 DS    0H 
          BALR  14,15
-@@gen_label4890 DS    0H 
+@@gen_label4895 DS    0H 
 * ***           ((rko)->rko_prio = RD_KAFKA_PRIO_FLASH);
          MVHI  52(15),3    ; offset of rko_prio in rd_kafka_op_s
 * ***           rd_kafka_q_enq(rkb->rkb_ops, rko);
@@ -43602,29 +43629,29 @@ rd_kafka_broker_wakeup DCCPRLG CINDEX=1822,BASER=12,FRAME=480,ENTRY=YES*
          STG   1,424(0,13)
          STG   15,432(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1822_3650 ; rd_kafka_q_enq
-@@gen_label4891 DS    0H 
+         LG    15,@lit_1822_3651 ; rd_kafka_q_enq
+@@gen_label4896 DS    0H 
          BALR  14,15
-@@gen_label4892 DS    0H 
+@@gen_label4897 DS    0H 
 * ***           do { if ((((rkb)->rkb_rk->rk_conf.debug & (0x20)))) { \
 * do { char _logname[256]; mtx_lock(&(rkb)->rkb_logname_lock); rd_strl\
 * cpy(_logname, rkb->rkb_logname, sizeof(_logname)); mtx_unlock(&(rkb)\
 * ->rkb_logname_lock); rd_kafka_log0(&(rkb)->rkb_rk->rk_conf, (rkb)->r\
 * kb_rk, _logname, 7, (0x20), "WAKEUP", "Wake-up"); } while (0); } } w\
 * hile (0);
-@L3218   DS    0H
+@L3220   DS    0H
          LG    15,4048(0,2) ; offset of rkb_rk in rd_kafka_broker_s
          TM    803(15),32
-         BZ    @L3221
-@L3222   DS    0H
+         BZ    @L3223
+@L3224   DS    0H
          LGHI  3,5688      ; 5688
          LA    15,0(3,2)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1822_3652 ; mtx_lock
-@@gen_label4894 DS    0H 
+         LG    15,@lit_1822_3653 ; mtx_lock
+@@gen_label4899 DS    0H 
          BALR  14,15
-@@gen_label4895 DS    0H 
+@@gen_label4900 DS    0H 
          LA    15,168(0,13)
          STG   15,424(0,13)
          LGHI  15,5680     ; 5680
@@ -43632,17 +43659,17 @@ rd_kafka_broker_wakeup DCCPRLG CINDEX=1822,BASER=12,FRAME=480,ENTRY=YES*
          STG   15,432(0,13)
          MVGHI 440(13),256
          LA    1,424(0,13)
-         LG    15,@lit_1822_3654 ; rd_strlcpy
-@@gen_label4896 DS    0H 
+         LG    15,@lit_1822_3655 ; rd_strlcpy
+@@gen_label4901 DS    0H 
          BALR  14,15
-@@gen_label4897 DS    0H 
+@@gen_label4902 DS    0H 
          LA    15,0(3,2)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1822_3656 ; mtx_unlock
-@@gen_label4898 DS    0H 
+         LG    15,@lit_1822_3657 ; mtx_unlock
+@@gen_label4903 DS    0H 
          BALR  14,15
-@@gen_label4899 DS    0H 
+@@gen_label4904 DS    0H 
          LG    15,4048(0,2) ; offset of rkb_rk in rd_kafka_broker_s
          LA    15,528(0,15)
          STG   15,424(0,13)
@@ -43652,17 +43679,17 @@ rd_kafka_broker_wakeup DCCPRLG CINDEX=1822,BASER=12,FRAME=480,ENTRY=YES*
          STG   15,440(0,13)
          MVGHI 448(13),7
          MVGHI 456(13),32
-         LG    15,@lit_1822_3657
+         LG    15,@lit_1822_3658
          LA    1,1308(0,15)
          STG   1,464(0,13)
          LA    15,1316(0,15)
          STG   15,472(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1822_3658 ; rd_kafka_log0
-@@gen_label4900 DS    0H 
+         LG    15,@lit_1822_3659 ; rd_kafka_log0
+@@gen_label4905 DS    0H 
          BALR  14,15
-@@gen_label4901 DS    0H 
-@L3221   DS    0H
+@@gen_label4906 DS    0H 
+@L3223   DS    0H
 * ***   }
 @ret_lab_1822 DS 0H
 * * **** Start of Epilogue
@@ -43670,13 +43697,13 @@ rd_kafka_broker_wakeup DCCPRLG CINDEX=1822,BASER=12,FRAME=480,ENTRY=YES*
 * * **** End of Epilogue
          DS    0D
 @FRAMESIZE_1822 DC F'480'
-@lit_1822_3649 DC AD(rd_kafka_op_new0)
-@lit_1822_3650 DC AD(rd_kafka_q_enq)
-@lit_1822_3652 DC AD(mtx_lock)
-@lit_1822_3654 DC AD(rd_strlcpy)
-@lit_1822_3656 DC AD(mtx_unlock)
-@lit_1822_3658 DC AD(rd_kafka_log0)
-@lit_1822_3657 DC AD(@strings@+8192)
+@lit_1822_3650 DC AD(rd_kafka_op_new0)
+@lit_1822_3651 DC AD(rd_kafka_q_enq)
+@lit_1822_3653 DC AD(mtx_lock)
+@lit_1822_3655 DC AD(rd_strlcpy)
+@lit_1822_3657 DC AD(mtx_unlock)
+@lit_1822_3659 DC AD(rd_kafka_log0)
+@lit_1822_3658 DC AD(@strings@+8192)
          DROP  12
 *
 *   DSECT for automatic variables in "rd_kafka_broker_wakeup"
@@ -43711,77 +43738,77 @@ rd_kafka_all_brokers_wakeup DCCPRLG CINDEX=1823,BASER=12,FRAME=184,ENTR*
          LA    15,2464(0,4)
          STG   15,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1823_3661 ; rwlock_rdlock
-@@gen_label4902 DS    0H 
+         LG    15,@lit_1823_3662 ; rwlock_rdlock
+@@gen_label4907 DS    0H 
          BALR  14,15
-@@gen_label4903 DS    0H 
+@@gen_label4908 DS    0H 
 * ***           for ((rkb) = ((&rk->rk_brokers)->tqh_first); (rkb) != \
 * (((void *)0)); (rkb) = ((rkb)->rkb_link .tqe_next)) {
          LG    2,16(0,4)   ; offset of rk_brokers in rd_kafka_s
-         B     @L3226
+         B     @L3228
          DS    0D
 @FRAMESIZE_1823 DC F'184'
-@lit_1823_3661 DC AD(rwlock_rdlock)
-@lit_1823_3662 DC AD(mtx_lock)
-@lit_1823_3663 DC AD(mtx_unlock)
-@lit_1823_3664 DC AD(rd_kafka_broker_wakeup)
-@lit_1823_3665 DC AD(rwlock_rdunlock)
-@L3225   DS    0H
+@lit_1823_3662 DC AD(rwlock_rdlock)
+@lit_1823_3663 DC AD(mtx_lock)
+@lit_1823_3664 DC AD(mtx_unlock)
+@lit_1823_3665 DC AD(rd_kafka_broker_wakeup)
+@lit_1823_3666 DC AD(rwlock_rdunlock)
+@L3227   DS    0H
 * ***                   int do_wakeup;
 * ***   
 * ***                   mtx_lock(&(rkb)->rkb_lock);
          LA    15,72(0,2)
          STG   15,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1823_3662 ; mtx_lock
-@@gen_label4904 DS    0H 
+         LG    15,@lit_1823_3663 ; mtx_lock
+@@gen_label4909 DS    0H 
          BALR  14,15
-@@gen_label4905 DS    0H 
+@@gen_label4910 DS    0H 
 * ***                   do_wakeup = (int)rkb->rkb_state >= min_state;
          L     15,196(0,2) ; offset of rkb_state in rd_kafka_broker_s
          C     15,12(0,6)
-         BL    @@gen_label4906
+         BL    @@gen_label4911
          LHI   5,1
-         B     @@gen_label4907
-@@gen_label4906 DS 0H
+         B     @@gen_label4912
+@@gen_label4911 DS 0H
          LHI   5,0
-@@gen_label4907 DS 0H
+@@gen_label4912 DS 0H
 * ***                   mtx_unlock(&(rkb)->rkb_lock);
          LA    15,72(0,2)
          STG   15,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1823_3663 ; mtx_unlock
-@@gen_label4908 DS    0H 
+         LG    15,@lit_1823_3664 ; mtx_unlock
+@@gen_label4913 DS    0H 
          BALR  14,15
-@@gen_label4909 DS    0H 
+@@gen_label4914 DS    0H 
 * ***   
 * ***                   if (do_wakeup) {
          LTR   5,5
-         BZ    @L3229
+         BZ    @L3231
 * ***                           rd_kafka_broker_wakeup(rkb);
          STG   2,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1823_3664 ; rd_kafka_broker_wakeup
-@@gen_label4911 DS    0H 
+         LG    15,@lit_1823_3665 ; rd_kafka_broker_wakeup
+@@gen_label4916 DS    0H 
          BALR  14,15
-@@gen_label4912 DS    0H 
+@@gen_label4917 DS    0H 
 * ***                           cnt += 1;
          AHI   3,1
 * ***                   }
-@L3229   DS    0H
+@L3231   DS    0H
 * ***           }
          LG    2,0(0,2)    ; rkb
-@L3226   DS    0H
+@L3228   DS    0H
          LTGR  15,2
-         BNE   @L3225
+         BNE   @L3227
 * ***           rwlock_rdunlock(&(rk)->rk_lock);
          LA    15,2464(0,4)
          STG   15,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1823_3665 ; rwlock_rdunlock
-@@gen_label4914 DS    0H 
+         LG    15,@lit_1823_3666 ; rwlock_rdunlock
+@@gen_label4919 DS    0H 
          BALR  14,15
-@@gen_label4915 DS    0H 
+@@gen_label4920 DS    0H 
 * ***   
 * ***           return cnt;
          LGFR  15,3
@@ -43819,10 +43846,10 @@ rd_kafka_broker_filter_never_connected DCCPRLG CINDEX=2158,BASER=12,FRA*
          LA    15,960(0,15)
          STG   15,168(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_2158_3667 ; rd_atomic32_get
-@@gen_label4916 DS    0H 
+         LG    15,@lit_2158_3668 ; rd_atomic32_get
+@@gen_label4921 DS    0H 
          BALR  14,15
-@@gen_label4917 DS    0H 
+@@gen_label4922 DS    0H 
          LGFR  15,15
 * ***   }
 * * **** Start of Epilogue
@@ -43830,7 +43857,7 @@ rd_kafka_broker_filter_never_connected DCCPRLG CINDEX=2158,BASER=12,FRA*
 * * **** End of Epilogue
          DS    0D
 @FRAMESIZE_2158 DC F'176'
-@lit_2158_3667 DC AD(rd_atomic32_get)
+@lit_2158_3668 DC AD(rd_atomic32_get)
          DROP  12
 *
 *   DSECT for automatic variables in "rd_kafka_broker_filter_never_con
@@ -43866,35 +43893,15 @@ rd_kafka_connect_any DCCPRLG CINDEX=1824,BASER=12,FRAME=496,ENTRY=YES,A*
          LA    15,120(0,3)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    2,@lit_1824_3669 ; rd_atomic32_get
-         LGR   15,2
-@@gen_label4918 DS    0H 
-         BALR  14,15
-@@gen_label4919 DS    0H 
-         LR    5,15
-* ***               rd_atomic32_get(&rk->rk_logical_broker_up_cnt) > 0\
-*  ||
-         LA    15,168(0,3)
-         STG   15,424(0,13)
-         LA    1,424(0,13)
-         LGR   15,2
-@@gen_label4920 DS    0H 
-         BALR  14,15
-@@gen_label4921 DS    0H 
-         SR    5,15
-         LTR   5,5
-         BH    @ret_lab_1824
-* ***               rd_atomic32_get(&rk->rk_broker_cnt) -
-         LA    15,72(0,3)
-         STG   15,424(0,13)
-         LA    1,424(0,13)
+         LG    2,@lit_1824_3670 ; rd_atomic32_get
          LGR   15,2
 @@gen_label4923 DS    0H 
          BALR  14,15
 @@gen_label4924 DS    0H 
          LR    5,15
-* ***               rd_atomic32_get(&rk->rk_broker_addrless_cnt) == 0)
-         LA    15,264(0,3)
+* ***               rd_atomic32_get(&rk->rk_logical_broker_up_cnt) > 0\
+*  ||
+         LA    15,168(0,3)
          STG   15,424(0,13)
          LA    1,424(0,13)
          LGR   15,2
@@ -43903,38 +43910,58 @@ rd_kafka_connect_any DCCPRLG CINDEX=1824,BASER=12,FRAME=496,ENTRY=YES,A*
 @@gen_label4926 DS    0H 
          SR    5,15
          LTR   5,5
-         BNE   @L3230
-@L3231   DS    0H
+         BH    @ret_lab_1824
+* ***               rd_atomic32_get(&rk->rk_broker_cnt) -
+         LA    15,72(0,3)
+         STG   15,424(0,13)
+         LA    1,424(0,13)
+         LGR   15,2
+@@gen_label4928 DS    0H 
+         BALR  14,15
+@@gen_label4929 DS    0H 
+         LR    5,15
+* ***               rd_atomic32_get(&rk->rk_broker_addrless_cnt) == 0)
+         LA    15,264(0,3)
+         STG   15,424(0,13)
+         LA    1,424(0,13)
+         LGR   15,2
+@@gen_label4930 DS    0H 
+         BALR  14,15
+@@gen_label4931 DS    0H 
+         SR    5,15
+         LTR   5,5
+         BNE   @L3232
+@L3233   DS    0H
 * ***                   return;
          B     @ret_lab_1824
          DS    0D
 @FRAMESIZE_1824 DC F'496'
-@lit_1824_3669 DC AD(rd_atomic32_get)
-@lit_1824_3674 DC AD(mtx_lock)
-@lit_1824_3676 DC AD(rd_interval0)
-@lit_1824_3678 DC AD(mtx_unlock)
-@lit_1824_3682 DC AD(rd_kafka_log0)
-@lit_1824_3681 DC F'1000' 0x000003e8
-@lit_1824_3680 DC AD(@strings@+8192)
-@lit_1824_3679 DC AD(@strings@)
-@lit_1824_3685 DC AD(rd_kafka_broker_random0)
-@lit_1824_3684 DC AD(rd_kafka_broker_filter_never_connected)
-@lit_1824_3683 DC AD(@DATA)
-@lit_1824_3693 DC AD(rd_strlcpy)
-@lit_1824_3700 DC AD(rd_kafka_broker_schedule_connection)
-@lit_1824_3701 DC AD(rd_refcnt_sub0)
-@lit_1824_3702 DC AD(rd_kafka_broker_destroy_final)
-@L3230   DS    0H
+@lit_1824_3670 DC AD(rd_atomic32_get)
+@lit_1824_3675 DC AD(mtx_lock)
+@lit_1824_3677 DC AD(rd_interval0)
+@lit_1824_3679 DC AD(mtx_unlock)
+@lit_1824_3683 DC AD(rd_kafka_log0)
+@lit_1824_3682 DC F'1000' 0x000003e8
+@lit_1824_3681 DC AD(@strings@+8192)
+@lit_1824_3680 DC AD(@strings@)
+@lit_1824_3686 DC AD(rd_kafka_broker_random0)
+@lit_1824_3685 DC AD(rd_kafka_broker_filter_never_connected)
+@lit_1824_3684 DC AD(@DATA)
+@lit_1824_3694 DC AD(rd_strlcpy)
+@lit_1824_3701 DC AD(rd_kafka_broker_schedule_connection)
+@lit_1824_3702 DC AD(rd_refcnt_sub0)
+@lit_1824_3703 DC AD(rd_kafka_broker_destroy_final)
+@L3232   DS    0H
 * ***   
 * ***           mtx_lock(&rk->rk_suppress.sparse_connect_lock);
          LGHI  5,4368      ; 4368
          LA    15,48(5,3)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1824_3674 ; mtx_lock
-@@gen_label4928 DS    0H 
+         LG    15,@lit_1824_3675 ; mtx_lock
+@@gen_label4933 DS    0H 
          BALR  14,15
-@@gen_label4929 DS    0H 
+@@gen_label4934 DS    0H 
 * ***           suppr = rd_interval0(&rk->rk_suppress.sparse_connect_r\
 * andom,rk->rk_conf.sparse_connect_intvl*1000,0,0);
          LA    15,24(5,3)
@@ -43946,29 +43973,29 @@ rd_kafka_connect_any DCCPRLG CINDEX=1824,BASER=12,FRAME=496,ENTRY=YES,A*
          STG   15,432(0,13)
          XC    440(16,13),440(13)
          LA    1,424(0,13)
-         LG    15,@lit_1824_3676 ; rd_interval0
-@@gen_label4930 DS    0H 
+         LG    15,@lit_1824_3677 ; rd_interval0
+@@gen_label4935 DS    0H 
          BALR  14,15
-@@gen_label4931 DS    0H 
+@@gen_label4936 DS    0H 
          LGR   2,15
 * ***   
 * ***           mtx_unlock(&rk->rk_suppress.sparse_connect_lock);
          LA    15,48(5,3)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1824_3678 ; mtx_unlock
-@@gen_label4932 DS    0H 
+         LG    15,@lit_1824_3679 ; mtx_unlock
+@@gen_label4937 DS    0H 
          BALR  14,15
-@@gen_label4933 DS    0H 
+@@gen_label4938 DS    0H 
 * ***   
 * ***           if (suppr <= 0) {
          LTGR  15,2
-         BH    @L3232
+         BH    @L3234
 * ***                   do { if ((((rk)->rk_conf.debug & (0x2|0x1)))) \
 * rd_kafka_log0(&rk->rk_conf,rk,((void *)0), 7,(0x2|0x1), "CONNECT","N\
 * ot selecting any broker for cluster connection: " "still suppressed \
 * for %" "lld" "ms: %s", -suppr/1000, reason); } while (0);
-@L3233   DS    0H
+@L3235   DS    0H
          TM    803(3),3
          BZ    @ret_lab_1824
          LA    15,528(0,3)
@@ -43977,28 +44004,28 @@ rd_kafka_connect_any DCCPRLG CINDEX=1824,BASER=12,FRAME=496,ENTRY=YES,A*
          XC    440(8,13),440(13)
          MVGHI 448(13),7
          MVGHI 456(13),3
-         LG    15,@lit_1824_3679
+         LG    15,@lit_1824_3680
          LA    15,3300(0,15)
          STG   15,464(0,13)
-         LG    15,@lit_1824_3680
+         LG    15,@lit_1824_3681
          LA    15,1324(0,15)
          STG   15,472(0,13)
          LCGR  3,2
-         DSGF  2,@lit_1824_3681
+         DSGF  2,@lit_1824_3682
          STMG  3,4,480(13)
          LA    1,424(0,13)
-         LG    15,@lit_1824_3682 ; rd_kafka_log0
-@@gen_label4936 DS    0H 
+         LG    15,@lit_1824_3683 ; rd_kafka_log0
+@@gen_label4941 DS    0H 
          BALR  14,15
-@@gen_label4937 DS    0H 
-@L3236   DS    0H
+@@gen_label4942 DS    0H 
+@L3238   DS    0H
 * ***   
 * ***   
 * ***   
 * ***                   return;
          B     @ret_lab_1824
 * ***           }
-@L3232   DS    0H
+@L3234   DS    0H
 * ***   
 * ***           
 * ***   
@@ -44006,28 +44033,28 @@ rd_kafka_connect_any DCCPRLG CINDEX=1824,BASER=12,FRAME=496,ENTRY=YES,A*
 * ***           rkb = rd_kafka_broker_random0(__FUNCTION__, 6282, rk, \
 * 0, RD_KAFKA_BROKER_STATE_INIT, ((void *)0), rd_kafka_broker_filter_n\
 * ever_connected, ((void *)0));
-         LG    5,@lit_1824_3683
+         LG    5,@lit_1824_3684
          LA    15,1288(0,5)
          STG   15,424(0,13)
          MVGHI 432(13),6282
          STG   3,440(0,13)
          XC    448(24,13),448(13)
-         LG    15,@lit_1824_3684 ; rd_kafka_broker_filter_never_connect*
+         LG    15,@lit_1824_3685 ; rd_kafka_broker_filter_never_connect*
                ed
          STG   15,472(0,13)
          XC    480(8,13),480(13)
          LA    1,424(0,13)
-         LG    6,@lit_1824_3685 ; rd_kafka_broker_random0
+         LG    6,@lit_1824_3686 ; rd_kafka_broker_random0
          LGR   15,6
-@@gen_label4938 DS    0H 
+@@gen_label4943 DS    0H 
          BALR  14,15
-@@gen_label4939 DS    0H 
+@@gen_label4944 DS    0H 
          LTGR  2,15        ; rkb
 * ***   
 * ***   
 * ***           
 * ***           if (!rkb)
-         BNZ   @L3237
+         BNZ   @L3239
 * ***                   rkb = rd_kafka_broker_random0(__FUNCTION__, 62\
 * 87, rk, 0, RD_KAFKA_BROKER_STATE_INIT, ((void *)0), ((void *)0), ((v\
 * oid *)0));
@@ -44038,16 +44065,16 @@ rd_kafka_connect_any DCCPRLG CINDEX=1824,BASER=12,FRAME=496,ENTRY=YES,A*
          XC    448(40,13),448(13)
          LA    1,424(0,13)
          LGR   15,6
-@@gen_label4941 DS    0H 
+@@gen_label4946 DS    0H 
          BALR  14,15
-@@gen_label4942 DS    0H 
+@@gen_label4947 DS    0H 
          LGR   2,15        ; rkb
-@L3237   DS    0H
+@L3239   DS    0H
 * ***   
 * ***   
 * ***           if (!rkb) {
          LTGR  15,2
-         BNZ   @L3243
+         BNZ   @L3245
 * ***                   
 * ***   
 * ***   
@@ -44055,7 +44082,7 @@ rd_kafka_connect_any DCCPRLG CINDEX=1824,BASER=12,FRAME=496,ENTRY=YES,A*
 * ***                   do { if ((((rk)->rk_conf.debug & (0x2|0x1)))) \
 * rd_kafka_log0(&rk->rk_conf,rk,((void *)0), 7,(0x2|0x1), "CONNECT","C\
 * luster connection already in progress: %s", reason); } while (0);
-@L3239   DS    0H
+@L3241   DS    0H
          TM    803(3),3
          BZ    @ret_lab_1824
          LA    15,528(0,3)
@@ -44064,19 +44091,19 @@ rd_kafka_connect_any DCCPRLG CINDEX=1824,BASER=12,FRAME=496,ENTRY=YES,A*
          XC    440(8,13),440(13)
          MVGHI 448(13),7
          MVGHI 456(13),3
-         LG    15,@lit_1824_3679
+         LG    15,@lit_1824_3680
          LA    15,3300(0,15)
          STG   15,464(0,13)
-         LG    15,@lit_1824_3680
+         LG    15,@lit_1824_3681
          LA    15,1406(0,15)
          STG   15,472(0,13)
          STG   4,480(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1824_3682 ; rd_kafka_log0
-@@gen_label4945 DS    0H 
+         LG    15,@lit_1824_3683 ; rd_kafka_log0
+@@gen_label4950 DS    0H 
          BALR  14,15
-@@gen_label4946 DS    0H 
-@L3242   DS    0H
+@@gen_label4951 DS    0H 
+@L3244   DS    0H
 * ***   
 * ***   
 * ***                   return;
@@ -44090,19 +44117,19 @@ rd_kafka_connect_any DCCPRLG CINDEX=1824,BASER=12,FRAME=496,ENTRY=YES,A*
 * ->rkb_rk, _logname, 7, (0x2|0x1), "CONNECT", "Selected for cluster c\
 * onnection: " "%s (broker has %d connection attempt(s))", reason, rd_\
 * atomic32_get(&rkb->rkb_c.connects)); } while (0); } } while (0);
-@L3243   DS    0H
+@L3245   DS    0H
          LG    15,4048(0,2) ; offset of rkb_rk in rd_kafka_broker_s
          TM    803(15),3
-         BZ    @L3246
-@L3247   DS    0H
+         BZ    @L3248
+@L3249   DS    0H
          LGHI  3,5688      ; 5688
          LA    15,0(3,2)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1824_3674 ; mtx_lock
-@@gen_label4948 DS    0H 
+         LG    15,@lit_1824_3675 ; mtx_lock
+@@gen_label4953 DS    0H 
          BALR  14,15
-@@gen_label4949 DS    0H 
+@@gen_label4954 DS    0H 
          LA    15,168(0,13)
          STG   15,424(0,13)
          LGHI  15,5680     ; 5680
@@ -44110,24 +44137,24 @@ rd_kafka_connect_any DCCPRLG CINDEX=1824,BASER=12,FRAME=496,ENTRY=YES,A*
          STG   15,432(0,13)
          MVGHI 440(13),256
          LA    1,424(0,13)
-         LG    15,@lit_1824_3693 ; rd_strlcpy
-@@gen_label4950 DS    0H 
+         LG    15,@lit_1824_3694 ; rd_strlcpy
+@@gen_label4955 DS    0H 
          BALR  14,15
-@@gen_label4951 DS    0H 
+@@gen_label4956 DS    0H 
          LA    15,0(3,2)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1824_3678 ; mtx_unlock
-@@gen_label4952 DS    0H 
+         LG    15,@lit_1824_3679 ; mtx_unlock
+@@gen_label4957 DS    0H 
          BALR  14,15
-@@gen_label4953 DS    0H 
+@@gen_label4958 DS    0H 
          LA    15,960(0,2)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1824_3669 ; rd_atomic32_get
-@@gen_label4954 DS    0H 
+         LG    15,@lit_1824_3670 ; rd_atomic32_get
+@@gen_label4959 DS    0H 
          BALR  14,15
-@@gen_label4955 DS    0H 
+@@gen_label4960 DS    0H 
          LG    1,4048(0,2) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
          STG   1,424(0,13)
@@ -44137,21 +44164,21 @@ rd_kafka_connect_any DCCPRLG CINDEX=1824,BASER=12,FRAME=496,ENTRY=YES,A*
          STG   1,440(0,13)
          MVGHI 448(13),7
          MVGHI 456(13),3
-         LG    1,@lit_1824_3679
+         LG    1,@lit_1824_3680
          LA    1,3300(0,1)
          STG   1,464(0,13)
-         LG    1,@lit_1824_3680
+         LG    1,@lit_1824_3681
          LA    1,1450(0,1)
          STG   1,472(0,13)
          STG   4,480(0,13)
          LGFR  15,15
          STG   15,488(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1824_3682 ; rd_kafka_log0
-@@gen_label4956 DS    0H 
+         LG    15,@lit_1824_3683 ; rd_kafka_log0
+@@gen_label4961 DS    0H 
          BALR  14,15
-@@gen_label4957 DS    0H 
-@L3246   DS    0H
+@@gen_label4962 DS    0H 
+@L3248   DS    0H
 * ***   
 * ***   
 * ***   
@@ -44159,31 +44186,31 @@ rd_kafka_connect_any DCCPRLG CINDEX=1824,BASER=12,FRAME=496,ENTRY=YES,A*
 * ***           rd_kafka_broker_schedule_connection(rkb);
          STG   2,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1824_3700 ; rd_kafka_broker_schedule_connection
-@@gen_label4958 DS    0H 
-         BALR  14,15
-@@gen_label4959 DS    0H 
-* ***   
-* ***           do { if (rd_refcnt_sub0(&(rkb)->rkb_refcnt) > 0) break\
-* ; rd_kafka_broker_destroy_final(rkb); } while (0); 
-@L3250   DS    0H
-         LA    15,4000(0,2)
-         STG   15,424(0,13)
-         LA    1,424(0,13)
-         LG    15,@lit_1824_3701 ; rd_refcnt_sub0
-@@gen_label4960 DS    0H 
-         BALR  14,15
-@@gen_label4961 DS    0H 
-         LTR   15,15
-         BH    @L3251
-@L3253   DS    0H
-         STG   2,424(0,13)
-         LA    1,424(0,13)
-         LG    15,@lit_1824_3702 ; rd_kafka_broker_destroy_final
+         LG    15,@lit_1824_3701 ; rd_kafka_broker_schedule_connection
 @@gen_label4963 DS    0H 
          BALR  14,15
 @@gen_label4964 DS    0H 
-@L3251   DS    0H
+* ***   
+* ***           do { if (rd_refcnt_sub0(&(rkb)->rkb_refcnt) > 0) break\
+* ; rd_kafka_broker_destroy_final(rkb); } while (0); 
+@L3252   DS    0H
+         LA    15,4000(0,2)
+         STG   15,424(0,13)
+         LA    1,424(0,13)
+         LG    15,@lit_1824_3702 ; rd_refcnt_sub0
+@@gen_label4965 DS    0H 
+         BALR  14,15
+@@gen_label4966 DS    0H 
+         LTR   15,15
+         BH    @L3253
+@L3255   DS    0H
+         STG   2,424(0,13)
+         LA    1,424(0,13)
+         LG    15,@lit_1824_3703 ; rd_kafka_broker_destroy_final
+@@gen_label4968 DS    0H 
+         BALR  14,15
+@@gen_label4969 DS    0H 
+@L3253   DS    0H
 * ***   }
 @ret_lab_1824 DS 0H
 * * **** Start of Epilogue
@@ -44221,10 +44248,10 @@ rd_kafka_broker_purge_queues DCCPRLG CINDEX=1825,BASER=12,FRAME=192,ENT*
          XC    176(8,13),176(13)
          MVGHI 184(13),42
          LA    1,176(0,13)
-         LG    15,@lit_1825_3704 ; rd_kafka_op_new0
-@@gen_label4965 DS    0H 
+         LG    15,@lit_1825_3705 ; rd_kafka_op_new0
+@@gen_label4970 DS    0H 
          BALR  14,15
-@@gen_label4966 DS    0H 
+@@gen_label4971 DS    0H 
 * ***           ((rko)->rko_prio = RD_KAFKA_PRIO_FLASH);
          MVHI  52(15),3    ; offset of rko_prio in rd_kafka_op_s
 * ***           rko->rko_replyq = replyq;
@@ -44238,10 +44265,10 @@ rd_kafka_broker_purge_queues DCCPRLG CINDEX=1825,BASER=12,FRAME=192,ENT*
          STG   1,176(0,13)
          STG   15,184(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1825_3705 ; rd_kafka_q_enq
-@@gen_label4967 DS    0H 
+         LG    15,@lit_1825_3706 ; rd_kafka_q_enq
+@@gen_label4972 DS    0H 
          BALR  14,15
-@@gen_label4968 DS    0H 
+@@gen_label4973 DS    0H 
 * ***   }
 @ret_lab_1825 DS 0H
 * * **** Start of Epilogue
@@ -44249,8 +44276,8 @@ rd_kafka_broker_purge_queues DCCPRLG CINDEX=1825,BASER=12,FRAME=192,ENT*
 * * **** End of Epilogue
          DS    0D
 @FRAMESIZE_1825 DC F'192'
-@lit_1825_3704 DC AD(rd_kafka_op_new0)
-@lit_1825_3705 DC AD(rd_kafka_q_enq)
+@lit_1825_3705 DC AD(rd_kafka_op_new0)
+@lit_1825_3706 DC AD(rd_kafka_q_enq)
          DROP  12
 *
 *   DSECT for automatic variables in "rd_kafka_broker_purge_queues"
@@ -44292,19 +44319,19 @@ rd_kafka_broker_handle_purge_queues DCCPRLG CINDEX=2096,BASER=12,FRAME=*
 * )->rkb_rk, _logname, 7, (0x20|0x4), "PURGE", "Purging queues with fl\
 * ags %s", rd_kafka_purge_flags2str(purge_flags)); } while (0); } } wh\
 * ile (0);
-@L3254   DS    0H
+@L3256   DS    0H
          LG    15,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
          TM    803(15),36
-         BZ    @L3257
-@L3258   DS    0H
+         BZ    @L3259
+@L3260   DS    0H
          LGHI  8,5688      ; 5688
          LA    15,0(8,5)
          STG   15,432(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_2096_3711 ; mtx_lock
-@@gen_label4970 DS    0H 
+         LG    15,@lit_2096_3712 ; mtx_lock
+@@gen_label4975 DS    0H 
          BALR  14,15
-@@gen_label4971 DS    0H 
+@@gen_label4976 DS    0H 
          LA    15,172(0,13)
          STG   15,432(0,13)
          LGHI  15,5680     ; 5680
@@ -44312,24 +44339,24 @@ rd_kafka_broker_handle_purge_queues DCCPRLG CINDEX=2096,BASER=12,FRAME=*
          STG   15,440(0,13)
          MVGHI 448(13),256
          LA    1,432(0,13)
-         LG    15,@lit_2096_3713 ; rd_strlcpy
-@@gen_label4972 DS    0H 
+         LG    15,@lit_2096_3714 ; rd_strlcpy
+@@gen_label4977 DS    0H 
          BALR  14,15
-@@gen_label4973 DS    0H 
+@@gen_label4978 DS    0H 
          LA    15,0(8,5)
          STG   15,432(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_2096_3715 ; mtx_unlock
-@@gen_label4974 DS    0H 
+         LG    15,@lit_2096_3716 ; mtx_unlock
+@@gen_label4979 DS    0H 
          BALR  14,15
-@@gen_label4975 DS    0H 
+@@gen_label4980 DS    0H 
          LGFR  15,6
          STG   15,432(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_2096_3716 ; rd_kafka_purge_flags2str
-@@gen_label4976 DS    0H 
+         LG    15,@lit_2096_3717 ; rd_kafka_purge_flags2str
+@@gen_label4981 DS    0H 
          BALR  14,15
-@@gen_label4977 DS    0H 
+@@gen_label4982 DS    0H 
          LG    1,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
          STG   1,432(0,13)
@@ -44339,18 +44366,18 @@ rd_kafka_broker_handle_purge_queues DCCPRLG CINDEX=2096,BASER=12,FRAME=*
          STG   1,448(0,13)
          MVGHI 456(13),7
          MVGHI 464(13),36
-         LG    1,@lit_2096_3717
+         LG    1,@lit_2096_3718
          LA    8,1524(0,1)
          STG   8,472(0,13)
          LA    1,1530(0,1)
          STG   1,480(0,13)
          STG   15,488(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_2096_3718 ; rd_kafka_log0
-@@gen_label4978 DS    0H 
+         LG    15,@lit_2096_3719 ; rd_kafka_log0
+@@gen_label4983 DS    0H 
          BALR  14,15
-@@gen_label4979 DS    0H 
-@L3257   DS    0H
+@@gen_label4984 DS    0H 
+@L3259   DS    0H
 * ***   
 * ***   
 * ***   
@@ -44363,7 +44390,7 @@ rd_kafka_broker_handle_purge_queues DCCPRLG CINDEX=2096,BASER=12,FRAME=*
 * ***           
 * ***           if (purge_flags & 0x2)
          TML   6,2
-         BZ    @L3261
+         BZ    @L3263
 * ***                   inflight_cnt = rd_kafka_broker_bufq_timeout_sc\
 * an(
 * ***                           rkb, 1, &rkb->rkb_waitresps, ((void *)\
@@ -44379,16 +44406,16 @@ rd_kafka_broker_handle_purge_queues DCCPRLG CINDEX=2096,BASER=12,FRAME=*
          MVGHI 472(13),-151
          XC    480(24,13),480(13)
          LA    1,432(0,13)
-         LG    15,@lit_2096_3720 ; rd_kafka_broker_bufq_timeout_scan
-@@gen_label4981 DS    0H 
+         LG    15,@lit_2096_3721 ; rd_kafka_broker_bufq_timeout_scan
+@@gen_label4986 DS    0H 
          BALR  14,15
-@@gen_label4982 DS    0H 
+@@gen_label4987 DS    0H 
          LR    2,15        ; inflight_cnt
-@L3261   DS    0H
+@L3263   DS    0H
 * ***   
 * ***           if (purge_flags & 0x1) {
          TML   6,1
-         BZ    @L3264
+         BZ    @L3266
 * ***                   
 * ***                   retry_cnt = rd_kafka_broker_bufq_timeout_scan(
 * ***                           rkb, 0, &rkb->rkb_retrybufs, ((void *)\
@@ -44404,11 +44431,11 @@ rd_kafka_broker_handle_purge_queues DCCPRLG CINDEX=2096,BASER=12,FRAME=*
          MVGHI 472(13),-152
          XC    480(24,13),480(13)
          LA    1,432(0,13)
-         LG    4,@lit_2096_3720 ; rd_kafka_broker_bufq_timeout_scan
+         LG    4,@lit_2096_3721 ; rd_kafka_broker_bufq_timeout_scan
          LGR   15,4
-@@gen_label4984 DS    0H 
+@@gen_label4989 DS    0H 
          BALR  14,15
-@@gen_label4985 DS    0H 
+@@gen_label4990 DS    0H 
          LR    3,15        ; retry_cnt
 * ***   
 * ***                   
@@ -44430,9 +44457,9 @@ rd_kafka_broker_handle_purge_queues DCCPRLG CINDEX=2096,BASER=12,FRAME=*
          XC    480(24,13),480(13)
          LA    1,432(0,13)
          LGR   15,4
-@@gen_label4986 DS    0H 
+@@gen_label4991 DS    0H 
          BALR  14,15
-@@gen_label4987 DS    0H 
+@@gen_label4992 DS    0H 
          LR    4,15        ; outq_cnt
 * ***   
 * ***                   
@@ -44440,7 +44467,7 @@ rd_kafka_broker_handle_purge_queues DCCPRLG CINDEX=2096,BASER=12,FRAME=*
 * ***   
 * ***                   if (partial_cnt)
          LT    15,168(0,13) ; partial_cnt
-         BZ    @L3264
+         BZ    @L3266
 * ***                           rd_kafka_broker_fail(
 * ***                                   rkb,
 * ***                                   7,
@@ -44453,19 +44480,19 @@ rd_kafka_broker_handle_purge_queues DCCPRLG CINDEX=2096,BASER=12,FRAME=*
          MVGHI 448(13),-152
 * ***                                   "forcing disconnect", partial_\
 * cnt);
-         LG    1,@lit_2096_3717
+         LG    1,@lit_2096_3718
          LA    1,1560(0,1)
          STG   1,456(0,13)
          LGFR  15,15
          STG   15,464(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_2096_3725 ; rd_kafka_broker_fail
-@@gen_label4989 DS    0H 
+         LG    15,@lit_2096_3726 ; rd_kafka_broker_fail
+@@gen_label4994 DS    0H 
          BALR  14,15
-@@gen_label4990 DS    0H 
-@L3263   DS    0H
+@@gen_label4995 DS    0H 
+@L3265   DS    0H
 * ***           }
-@L3262   DS    0H
+@L3264   DS    0H
 * ***   
 * ***           do { if ((((rkb)->rkb_rk->rk_conf.debug & (0x20|0x4)))\
 * ) { do { char _logname[256]; mtx_lock(&(rkb)->rkb_logname_lock); rd_\
@@ -44475,19 +44502,19 @@ rd_kafka_broker_handle_purge_queues DCCPRLG CINDEX=2096,BASER=12,FRAME=*
 * %i retry-queued, " "%i out-queue, %i partially-sent requests", infli\
 * ght_cnt, retry_cnt, outq_cnt, partial_cnt); } while (0); } } while (\
 * 0);
-@L3264   DS    0H
+@L3266   DS    0H
          LG    15,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
          TM    803(15),36
-         BZ    @L3267
-@L3268   DS    0H
+         BZ    @L3269
+@L3270   DS    0H
          LGHI  8,5688      ; 5688
          LA    15,0(8,5)
          STG   15,432(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_2096_3711 ; mtx_lock
-@@gen_label4992 DS    0H 
+         LG    15,@lit_2096_3712 ; mtx_lock
+@@gen_label4997 DS    0H 
          BALR  14,15
-@@gen_label4993 DS    0H 
+@@gen_label4998 DS    0H 
          LA    15,172(0,13)
          STG   15,432(0,13)
          LGHI  15,5680     ; 5680
@@ -44495,17 +44522,17 @@ rd_kafka_broker_handle_purge_queues DCCPRLG CINDEX=2096,BASER=12,FRAME=*
          STG   15,440(0,13)
          MVGHI 448(13),256
          LA    1,432(0,13)
-         LG    15,@lit_2096_3713 ; rd_strlcpy
-@@gen_label4994 DS    0H 
+         LG    15,@lit_2096_3714 ; rd_strlcpy
+@@gen_label4999 DS    0H 
          BALR  14,15
-@@gen_label4995 DS    0H 
+@@gen_label5000 DS    0H 
          LA    15,0(8,5)
          STG   15,432(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_2096_3715 ; mtx_unlock
-@@gen_label4996 DS    0H 
+         LG    15,@lit_2096_3716 ; mtx_unlock
+@@gen_label5001 DS    0H 
          BALR  14,15
-@@gen_label4997 DS    0H 
+@@gen_label5002 DS    0H 
          LG    15,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
          LA    15,528(0,15)
          STG   15,432(0,13)
@@ -44515,7 +44542,7 @@ rd_kafka_broker_handle_purge_queues DCCPRLG CINDEX=2096,BASER=12,FRAME=*
          STG   15,448(0,13)
          MVGHI 456(13),7
          MVGHI 464(13),36
-         LG    15,@lit_2096_3717
+         LG    15,@lit_2096_3718
          LA    1,1614(0,15)
          STG   1,472(0,13)
          LA    15,1622(0,15)
@@ -44529,11 +44556,11 @@ rd_kafka_broker_handle_purge_queues DCCPRLG CINDEX=2096,BASER=12,FRAME=*
          LGF   15,168(0,13) ; partial_cnt
          STG   15,512(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_2096_3718 ; rd_kafka_log0
-@@gen_label4998 DS    0H 
+         LG    15,@lit_2096_3719 ; rd_kafka_log0
+@@gen_label5003 DS    0H 
          BALR  14,15
-@@gen_label4999 DS    0H 
-@L3267   DS    0H
+@@gen_label5004 DS    0H 
+@L3269   DS    0H
 * ***   
 * ***   
 * ***   
@@ -44541,7 +44568,7 @@ rd_kafka_broker_handle_purge_queues DCCPRLG CINDEX=2096,BASER=12,FRAME=*
 * ***           
 * ***           if (purge_flags & 0x1) {
          TML   6,1
-         BZ    @L3271
+         BZ    @L3273
 * ***                   rd_kafka_toppar_t *rktp;
 * ***                   int msg_cnt = 0;
          LHI   3,0         ; 0
@@ -44552,20 +44579,20 @@ rd_kafka_broker_handle_purge_queues DCCPRLG CINDEX=2096,BASER=12,FRAME=*
 * ; (rktp) != (((void *)0)); (rktp) = ((rktp)->rktp_rkblink .tqe_next)\
 * ) {
          LG    2,120(0,5)  ; offset of rkb_toppars in rd_kafka_broker_s
-         B     @L3273
+         B     @L3275
          DS    0D
 @FRAMESIZE_2096 DC F'520'
-@lit_2096_3711 DC AD(mtx_lock)
-@lit_2096_3713 DC AD(rd_strlcpy)
-@lit_2096_3715 DC AD(mtx_unlock)
-@lit_2096_3716 DC AD(rd_kafka_purge_flags2str)
-@lit_2096_3718 DC AD(rd_kafka_log0)
-@lit_2096_3717 DC AD(@strings@+8192)
-@lit_2096_3720 DC AD(rd_kafka_broker_bufq_timeout_scan)
-@lit_2096_3725 DC AD(rd_kafka_broker_fail)
-@lit_2096_3736 DC AD(rd_kafka_toppar_purge_queues)
-@lit_2096_3745 DC AD(rd_kafka_op_reply)
-@L3272   DS    0H
+@lit_2096_3712 DC AD(mtx_lock)
+@lit_2096_3714 DC AD(rd_strlcpy)
+@lit_2096_3716 DC AD(mtx_unlock)
+@lit_2096_3717 DC AD(rd_kafka_purge_flags2str)
+@lit_2096_3719 DC AD(rd_kafka_log0)
+@lit_2096_3718 DC AD(@strings@+8192)
+@lit_2096_3721 DC AD(rd_kafka_broker_bufq_timeout_scan)
+@lit_2096_3726 DC AD(rd_kafka_broker_fail)
+@lit_2096_3737 DC AD(rd_kafka_toppar_purge_queues)
+@lit_2096_3746 DC AD(rd_kafka_op_reply)
+@L3274   DS    0H
 * ***                           int r;
 * ***   
 * ***                           r = rd_kafka_toppar_purge_queues(
@@ -44576,25 +44603,25 @@ rd_kafka_broker_handle_purge_queues DCCPRLG CINDEX=2096,BASER=12,FRAME=*
          STG   15,440(0,13)
          MVGHI 448(13),1
          LA    1,432(0,13)
-         LG    15,@lit_2096_3736 ; rd_kafka_toppar_purge_queues
-@@gen_label5001 DS    0H 
+         LG    15,@lit_2096_3737 ; rd_kafka_toppar_purge_queues
+@@gen_label5006 DS    0H 
          BALR  14,15
-@@gen_label5002 DS    0H 
+@@gen_label5007 DS    0H 
 * ***                           if (r > 0) {
          LTR   15,15
-         BNH   @L3276
+         BNH   @L3278
 * ***                                   msg_cnt += r;
          AR    3,15
 * ***                                   part_cnt++;
          AHI   4,1
 * ***                           }
-@L3276   DS    0H
+@L3278   DS    0H
 * ***                   }
          LG    2,16(0,2)   ; offset of rktp_rkblink in rd_kafka_toppar_*
                s
-@L3273   DS    0H
+@L3275   DS    0H
          LTGR  15,2
-         BNE   @L3272
+         BNE   @L3274
 * ***   
 * ***                   do { if ((((rkb)->rkb_rk->rk_conf.debug & (0x2\
 * 0|0x4)))) { do { char _logname[256]; mtx_lock(&(rkb)->rkb_logname_lo\
@@ -44603,19 +44630,19 @@ rd_kafka_broker_handle_purge_queues DCCPRLG CINDEX=2096,BASER=12,FRAME=*
 * nf, (rkb)->rkb_rk, _logname, 7, (0x20|0x4), "PURGEQ", "Purged %i mes\
 * sage(s) from %d partition(s)", msg_cnt, part_cnt); } while (0); } } \
 * while (0);
-@L3277   DS    0H
+@L3279   DS    0H
          LG    15,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
          TM    803(15),36
-         BZ    @L3280
-@L3281   DS    0H
+         BZ    @L3282
+@L3283   DS    0H
          LGHI  2,5688      ; 5688
          LA    15,0(2,5)
          STG   15,432(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_2096_3711 ; mtx_lock
-@@gen_label5006 DS    0H 
+         LG    15,@lit_2096_3712 ; mtx_lock
+@@gen_label5011 DS    0H 
          BALR  14,15
-@@gen_label5007 DS    0H 
+@@gen_label5012 DS    0H 
          LA    15,172(0,13)
          STG   15,432(0,13)
          LGHI  15,5680     ; 5680
@@ -44623,17 +44650,17 @@ rd_kafka_broker_handle_purge_queues DCCPRLG CINDEX=2096,BASER=12,FRAME=*
          STG   15,440(0,13)
          MVGHI 448(13),256
          LA    1,432(0,13)
-         LG    15,@lit_2096_3713 ; rd_strlcpy
-@@gen_label5008 DS    0H 
+         LG    15,@lit_2096_3714 ; rd_strlcpy
+@@gen_label5013 DS    0H 
          BALR  14,15
-@@gen_label5009 DS    0H 
+@@gen_label5014 DS    0H 
          LA    15,0(2,5)
          STG   15,432(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_2096_3715 ; mtx_unlock
-@@gen_label5010 DS    0H 
+         LG    15,@lit_2096_3716 ; mtx_unlock
+@@gen_label5015 DS    0H 
          BALR  14,15
-@@gen_label5011 DS    0H 
+@@gen_label5016 DS    0H 
          LG    15,4048(0,5) ; offset of rkb_rk in rd_kafka_broker_s
          LA    15,528(0,15)
          STG   15,432(0,13)
@@ -44643,7 +44670,7 @@ rd_kafka_broker_handle_purge_queues DCCPRLG CINDEX=2096,BASER=12,FRAME=*
          STG   15,448(0,13)
          MVGHI 456(13),7
          MVGHI 464(13),36
-         LG    15,@lit_2096_3717
+         LG    15,@lit_2096_3718
          LA    1,1614(0,15)
          STG   1,472(0,13)
          LA    15,1702(0,15)
@@ -44653,25 +44680,25 @@ rd_kafka_broker_handle_purge_queues DCCPRLG CINDEX=2096,BASER=12,FRAME=*
          LGFR  15,4
          STG   15,496(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_2096_3718 ; rd_kafka_log0
-@@gen_label5012 DS    0H 
+         LG    15,@lit_2096_3719 ; rd_kafka_log0
+@@gen_label5017 DS    0H 
          BALR  14,15
-@@gen_label5013 DS    0H 
-@L3280   DS    0H
+@@gen_label5018 DS    0H 
+@L3282   DS    0H
 * ***   
 * ***   
 * ***           }
-@L3271   DS    0H
+@L3273   DS    0H
 * ***   
 * ***           rd_kafka_op_reply(rko, RD_KAFKA_RESP_ERR_NO_ERROR);
          LG    15,8(0,7)   ; rko
          STG   15,432(0,13)
          XC    440(8,13),440(13)
          LA    1,432(0,13)
-         LG    15,@lit_2096_3745 ; rd_kafka_op_reply
-@@gen_label5014 DS    0H 
+         LG    15,@lit_2096_3746 ; rd_kafka_op_reply
+@@gen_label5019 DS    0H 
          BALR  14,15
-@@gen_label5015 DS    0H 
+@@gen_label5020 DS    0H 
 * ***   }
 @ret_lab_2096 DS 0H
 * * **** Start of Epilogue
@@ -44736,22 +44763,22 @@ rd_kafka_broker_active_toppar_add DCCPRLG CINDEX=1831,BASER=12,FRAME=54*
 * ***   
 * ***           if (is_consumer && rktp->rktp_fetch)
          LTR   4,4
-         BZ    @L3285
+         BZ    @L3287
          LT    15,304(0,3) ; offset of rktp_fetch in rd_kafka_toppar_s
-         BZ    @L3285
+         BZ    @L3287
 * ***                   return; 
          B     @ret_lab_1831
          DS    0D
 @FRAMESIZE_1831 DC F'544'
-@lit_1831_3748 DC AD(__launder_type)
-@lit_1831_3749 DC AD(rd_kafka_broker_active_toppar_next)
-@lit_1831_3751 DC AD(mtx_lock)
-@lit_1831_3753 DC AD(rd_strlcpy)
-@lit_1831_3755 DC AD(mtx_unlock)
-@lit_1831_3757 DC AD(@strings@+4096)
-@lit_1831_3758 DC AD(@strings@+8192)
-@lit_1831_3759 DC AD(rd_kafka_msgq_len)
-@lit_1831_3761 DC AD(rd_kafka_log0)
+@lit_1831_3749 DC AD(__launder_type)
+@lit_1831_3750 DC AD(rd_kafka_broker_active_toppar_next)
+@lit_1831_3752 DC AD(mtx_lock)
+@lit_1831_3754 DC AD(rd_strlcpy)
+@lit_1831_3756 DC AD(mtx_unlock)
+@lit_1831_3758 DC AD(@strings@+4096)
+@lit_1831_3759 DC AD(@strings@+8192)
+@lit_1831_3760 DC AD(rd_kafka_msgq_len)
+@lit_1831_3762 DC AD(rd_kafka_log0)
 * ***   
 * ***           do {  (rktp)->rktp_activelink .cqe_next = ((void *)(&r\
 * kb->rkb_active_toppars)); (rktp)->rktp_activelink .cqe_prev = (&rkb-\
@@ -44760,7 +44787,7 @@ rd_kafka_broker_active_toppar_add DCCPRLG CINDEX=1831,BASER=12,FRAME=54*
 * ve_toppars)->cqh_first = (rktp); else (&rkb->rkb_active_toppars)->cq\
 * h_last->rktp_activelink .cqe_next = (rktp); (&rkb->rkb_active_toppar\
 * s)->cqh_last = (rktp); } while ( 0);
-@L3285   DS    0H
+@L3287   DS    0H
          LA    15,144(0,2)
          STG   15,32(0,3)  ; offset of rktp_activelink in rd_kafka_topp*
                ar_s
@@ -44771,20 +44798,20 @@ rd_kafka_broker_active_toppar_add DCCPRLG CINDEX=1831,BASER=12,FRAME=54*
          LA    15,144(0,2)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1831_3748 ; __launder_type
-@@gen_label5018 DS    0H 
+         LG    15,@lit_1831_3749 ; __launder_type
+@@gen_label5023 DS    0H 
          BALR  14,15
-@@gen_label5019 DS    0H 
+@@gen_label5024 DS    0H 
          CGR   6,15
-         BNE   @L3288
+         BNE   @L3290
          STG   3,144(0,2)  ; offset of rkb_active_toppars in rd_kafka_b*
                roker_s
-         B     @L3289
-@L3288   DS    0H
+         B     @L3291
+@L3290   DS    0H
          LG    15,152(0,2) ; offset of cqh_last in 0000126
          STG   3,32(0,15)  ; offset of rktp_activelink in rd_kafka_topp*
                ar_s
-@L3289   DS    0H
+@L3291   DS    0H
          STG   3,152(0,2)  ; offset of cqh_last in 0000126
 * ***           rkb->rkb_active_toppar_cnt++;
          L     15,160(0,2)
@@ -44793,22 +44820,22 @@ rd_kafka_broker_active_toppar_add DCCPRLG CINDEX=1831,BASER=12,FRAME=54*
 * ***   
 * ***           if (is_consumer)
          LTR   4,4
-         BZ    @L3290
+         BZ    @L3292
 * ***                   rktp->rktp_fetch = 1;
          MVHI  304(3),1    ; offset of rktp_fetch in rd_kafka_toppar_s
-@L3290   DS    0H
+@L3292   DS    0H
 * ***   
 * ***           if (((rkb->rkb_active_toppar_cnt == 1)))
          CHSI  160(2),1
-         BNE   @L3292
+         BNE   @L3294
 * ***                   rd_kafka_broker_active_toppar_next(rkb, rktp);
          STMG  2,3,424(13)
          LA    1,424(0,13)
-         LG    15,@lit_1831_3749 ; rd_kafka_broker_active_toppar_next
-@@gen_label5023 DS    0H 
+         LG    15,@lit_1831_3750 ; rd_kafka_broker_active_toppar_next
+@@gen_label5028 DS    0H 
          BALR  14,15
-@@gen_label5024 DS    0H 
-@L3291   DS    0H
+@@gen_label5029 DS    0H 
+@L3293   DS    0H
 * ***   
 * ***           do { if ((((rkb)->rkb_rk->rk_conf.debug & (0x4)))) { d\
 * o { char _logname[256]; mtx_lock(&(rkb)->rkb_logname_lock); rd_strlc\
@@ -44821,19 +44848,19 @@ rd_kafka_broker_active_toppar_add DCCPRLG CINDEX=1831,BASER=12,FRAME=54*
 * mer ? "fetch" : "active", rkb->rkb_active_toppar_cnt, rktp->rktp_fet\
 * ch_version, rd_kafka_msgq_len(&rktp->rktp_msgq), reason); } while (0\
 * ); } } while (0);
-@L3292   DS    0H
+@L3294   DS    0H
          LG    15,4048(0,2) ; offset of rkb_rk in rd_kafka_broker_s
          TM    803(15),4
-         BZ    @L3295
-@L3296   DS    0H
+         BZ    @L3297
+@L3298   DS    0H
          LGHI  6,5688      ; 5688
          LA    15,0(6,2)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1831_3751 ; mtx_lock
-@@gen_label5026 DS    0H 
+         LG    15,@lit_1831_3752 ; mtx_lock
+@@gen_label5031 DS    0H 
          BALR  14,15
-@@gen_label5027 DS    0H 
+@@gen_label5032 DS    0H 
          LA    15,168(0,13)
          STG   15,424(0,13)
          LGHI  15,5680     ; 5680
@@ -44841,44 +44868,44 @@ rd_kafka_broker_active_toppar_add DCCPRLG CINDEX=1831,BASER=12,FRAME=54*
          STG   15,432(0,13)
          MVGHI 440(13),256
          LA    1,424(0,13)
-         LG    15,@lit_1831_3753 ; rd_strlcpy
-@@gen_label5028 DS    0H 
+         LG    15,@lit_1831_3754 ; rd_strlcpy
+@@gen_label5033 DS    0H 
          BALR  14,15
-@@gen_label5029 DS    0H 
+@@gen_label5034 DS    0H 
          LA    15,0(6,2)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1831_3755 ; mtx_unlock
-@@gen_label5030 DS    0H 
+         LG    15,@lit_1831_3756 ; mtx_unlock
+@@gen_label5035 DS    0H 
          BALR  14,15
-@@gen_label5031 DS    0H 
+@@gen_label5036 DS    0H 
          LG    15,96(0,3)  ; offset of rktp_rkt in rd_kafka_toppar_s
          LG    15,128(0,15) ; offset of rkt_topic in rd_kafka_topic_s
          CHSI  0(15),-1
-         BNE   @L3299
+         BNE   @L3301
          LHI   6,0         ; 0
-         B     @L3300
-@L3299   DS    0H
+         B     @L3302
+@L3301   DS    0H
          LG    15,96(0,3)  ; offset of rktp_rkt in rd_kafka_toppar_s
          LG    15,128(0,15) ; offset of rkt_topic in rd_kafka_topic_s
          L     6,0(0,15)
-@L3300   DS    0H
-         LTR   4,4
-         BZ    @L3301
-         LG    15,@lit_1831_3757
-         LA    4,2774(0,15)
-         B     @L3302
-@L3301   DS    0H
-         LG    15,@lit_1831_3758
-         LA    4,1744(0,15)
 @L3302   DS    0H
+         LTR   4,4
+         BZ    @L3303
+         LG    15,@lit_1831_3758
+         LA    4,2774(0,15)
+         B     @L3304
+@L3303   DS    0H
+         LG    15,@lit_1831_3759
+         LA    4,1744(0,15)
+@L3304   DS    0H
          LA    15,240(0,3)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1831_3759 ; rd_kafka_msgq_len
-@@gen_label5034 DS    0H 
+         LG    15,@lit_1831_3760 ; rd_kafka_msgq_len
+@@gen_label5039 DS    0H 
          BALR  14,15
-@@gen_label5035 DS    0H 
+@@gen_label5040 DS    0H 
          LG    1,4048(0,2) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
          STG   1,424(0,13)
@@ -44888,7 +44915,7 @@ rd_kafka_broker_active_toppar_add DCCPRLG CINDEX=1831,BASER=12,FRAME=54*
          STG   1,440(0,13)
          MVGHI 448(13),7
          MVGHI 456(13),4
-         LG    1,@lit_1831_3758
+         LG    1,@lit_1831_3759
          LA    7,1752(0,1)
          STG   7,464(0,13)
          LA    1,1762(0,1)
@@ -44911,11 +44938,11 @@ rd_kafka_broker_active_toppar_add DCCPRLG CINDEX=1831,BASER=12,FRAME=54*
          LG    15,16(0,5)  ; reason
          STG   15,536(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1831_3761 ; rd_kafka_log0
-@@gen_label5036 DS    0H 
+         LG    15,@lit_1831_3762 ; rd_kafka_log0
+@@gen_label5041 DS    0H 
          BALR  14,15
-@@gen_label5037 DS    0H 
-@L3295   DS    0H
+@@gen_label5042 DS    0H 
+@L3297   DS    0H
 * ***   # 6449 "C:\asgkafka\librdkafka\src\rdkafka_broker.c"
 * ***   }
 @ret_lab_1831 DS 0H
@@ -44963,24 +44990,24 @@ rd_kafka_broker_active_toppar_del DCCPRLG CINDEX=1832,BASER=12,FRAME=53*
 * ***   
 * ***           if (is_consumer && !rktp->rktp_fetch)
          LTR   4,4
-         BZ    @L3304
+         BZ    @L3306
          LT    15,304(0,3) ; offset of rktp_fetch in rd_kafka_toppar_s
-         BNZ   @L3304
+         BNZ   @L3306
 * ***                   return; 
          B     @ret_lab_1832
          DS    0D
 @FRAMESIZE_1832 DC F'536'
-@lit_1832_3764 DC AD(__launder_type)
-@lit_1832_3769 DC AD(rd_kafka_crash)
-@lit_1832_3768 DC AD(@strings@+8192)
-@lit_1832_3767 DC AD(@DATA)
-@lit_1832_3766 DC AD(@strings@)
-@lit_1832_3771 DC AD(rd_kafka_broker_active_toppar_next)
-@lit_1832_3773 DC AD(mtx_lock)
-@lit_1832_3775 DC AD(rd_strlcpy)
-@lit_1832_3777 DC AD(mtx_unlock)
-@lit_1832_3779 DC AD(@strings@+4096)
-@lit_1832_3782 DC AD(rd_kafka_log0)
+@lit_1832_3765 DC AD(__launder_type)
+@lit_1832_3770 DC AD(rd_kafka_crash)
+@lit_1832_3769 DC AD(@strings@+8192)
+@lit_1832_3768 DC AD(@DATA)
+@lit_1832_3767 DC AD(@strings@)
+@lit_1832_3772 DC AD(rd_kafka_broker_active_toppar_next)
+@lit_1832_3774 DC AD(mtx_lock)
+@lit_1832_3776 DC AD(rd_strlcpy)
+@lit_1832_3778 DC AD(mtx_unlock)
+@lit_1832_3780 DC AD(@strings@+4096)
+@lit_1832_3783 DC AD(rd_kafka_log0)
 * ***   
 * ***           do {   if ((rktp)->rktp_activelink .cqe_next == (__lau\
 * nder_type(&rkb->rkb_active_toppars))) (&rkb->rkb_active_toppars)->cq\
@@ -44991,74 +45018,74 @@ rd_kafka_broker_active_toppar_del DCCPRLG CINDEX=1832,BASER=12,FRAME=53*
 * (rktp)->rktp_activelink .cqe_next; else (rktp)->rktp_activelink .cqe\
 * _prev->rktp_activelink .cqe_next = (rktp)->rktp_activelink .cqe_next\
 * ;  } while ( 0);
-@L3304   DS    0H
+@L3306   DS    0H
          LG    6,32(0,3)   ; offset of rktp_activelink in rd_kafka_topp*
                ar_s
          LA    15,144(0,2)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    7,@lit_1832_3764 ; __launder_type
+         LG    7,@lit_1832_3765 ; __launder_type
          LGR   15,7
-@@gen_label5040 DS    0H 
+@@gen_label5045 DS    0H 
          BALR  14,15
-@@gen_label5041 DS    0H 
+@@gen_label5046 DS    0H 
          CGR   6,15
-         BNE   @L3307
+         BNE   @L3309
          LG    15,40(0,3)  ; offset of cqe_prev in 0000134
          STG   15,152(0,2) ; offset of cqh_last in 0000126
-         B     @L3308
-@L3307   DS    0H
+         B     @L3310
+@L3309   DS    0H
          LG    15,32(0,3)  ; offset of rktp_activelink in rd_kafka_topp*
                ar_s
          LG    1,40(0,3)   ; offset of cqe_prev in 0000134
          STG   1,40(0,15)  ; offset of cqe_prev in 0000134
-@L3308   DS    0H
+@L3310   DS    0H
          LG    6,40(0,3)   ; offset of cqe_prev in 0000134
          LA    15,144(0,2)
          STG   15,424(0,13)
          LA    1,424(0,13)
          LGR   15,7
-@@gen_label5043 DS    0H 
+@@gen_label5048 DS    0H 
          BALR  14,15
-@@gen_label5044 DS    0H 
+@@gen_label5049 DS    0H 
          CGR   6,15
-         BNE   @L3309
+         BNE   @L3311
          LG    15,32(0,3)  ; offset of rktp_activelink in rd_kafka_topp*
                ar_s
          STG   15,144(0,2) ; offset of rkb_active_toppars in rd_kafka_b*
                roker_s
-         B     @L3310
-@L3309   DS    0H
+         B     @L3312
+@L3311   DS    0H
          LG    15,40(0,3)  ; offset of cqe_prev in 0000134
          LG    1,32(0,3)   ; offset of rktp_activelink in rd_kafka_topp*
                ar_s
          STG   1,32(0,15)  ; offset of rktp_activelink in rd_kafka_topp*
                ar_s
-@L3310   DS    0H
+@L3312   DS    0H
 * ***           do { if (((!(rkb->rkb_active_toppar_cnt > 0)))) rd_kaf\
 * ka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_broker.c",6467, __F\
 * UNCTION__, (((void *)0)), "assert: " "rkb->rkb_active_toppar_cnt > 0\
 * "); } while (0);
-@L3311   DS    0H
+@L3313   DS    0H
          CHSI  160(2),0
-         BH    @L3314
-         LG    15,@lit_1832_3766
+         BH    @L3316
+         LG    15,@lit_1832_3767
          LA    15,1152(0,15)
          STG   15,424(0,13)
          MVGHI 432(13),6467
-         LG    15,@lit_1832_3767
+         LG    15,@lit_1832_3768
          LA    15,1310(0,15)
          STG   15,440(0,13)
          XC    448(8,13),448(13)
-         LG    15,@lit_1832_3768
+         LG    15,@lit_1832_3769
          LA    15,1834(0,15)
          STG   15,456(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1832_3769 ; rd_kafka_crash
-@@gen_label5047 DS    0H 
+         LG    15,@lit_1832_3770 ; rd_kafka_crash
+@@gen_label5052 DS    0H 
          BALR  14,15
-@@gen_label5048 DS    0H 
-@L3314   DS    0H
+@@gen_label5053 DS    0H 
+@L3316   DS    0H
 * ***           rkb->rkb_active_toppar_cnt--;
          L     15,160(0,2)
          AHI   15,-1
@@ -45066,16 +45093,16 @@ rd_kafka_broker_active_toppar_del DCCPRLG CINDEX=1832,BASER=12,FRAME=53*
 * ***   
 * ***           if (is_consumer)
          LTR   4,4
-         BZ    @L3315
+         BZ    @L3317
 * ***                   rktp->rktp_fetch = 0;
          MVHI  304(3),0    ; offset of rktp_fetch in rd_kafka_toppar_s
-@L3315   DS    0H
+@L3317   DS    0H
 * ***   
 * ***           if (rkb->rkb_active_toppar_next == rktp) {
          LG    15,168(0,2) ; offset of rkb_active_toppar_next in rd_kaf*
                ka_broker_s
          CGR   15,3
-         BNE   @L3319
+         BNE   @L3321
 * ***                   
 * ***                   rd_kafka_broker_active_toppar_next(
 * ***                           rkb, (((rktp)->rktp_activelink .cqe_ne\
@@ -45086,29 +45113,29 @@ rd_kafka_broker_active_toppar_del DCCPRLG CINDEX=1832,BASER=12,FRAME=53*
          LA    15,144(0,2)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1832_3764 ; __launder_type
-@@gen_label5051 DS    0H 
+         LG    15,@lit_1832_3765 ; __launder_type
+@@gen_label5056 DS    0H 
          BALR  14,15
-@@gen_label5052 DS    0H 
+@@gen_label5057 DS    0H 
          CGR   6,15
-         BNE   @L3317
+         BNE   @L3319
          LG    15,144(0,2) ; offset of rkb_active_toppars in rd_kafka_b*
                roker_s
-         B     @L3318
-@L3317   DS    0H
+         B     @L3320
+@L3319   DS    0H
          LG    15,32(0,3)  ; offset of rktp_activelink in rd_kafka_topp*
                ar_s
-@L3318   DS    0H
+@L3320   DS    0H
          STG   2,424(0,13)
          STG   15,432(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1832_3771 ; rd_kafka_broker_active_toppar_next
-@@gen_label5054 DS    0H 
+         LG    15,@lit_1832_3772 ; rd_kafka_broker_active_toppar_next
+@@gen_label5059 DS    0H 
          BALR  14,15
-@@gen_label5055 DS    0H 
+@@gen_label5060 DS    0H 
 * ***   
 * ***           }
-@L3316   DS    0H
+@L3318   DS    0H
 * ***   
 * ***           do { if ((((rkb)->rkb_rk->rk_conf.debug & (0x4)))) { d\
 * o { char _logname[256]; mtx_lock(&(rkb)->rkb_logname_lock); rd_strlc\
@@ -45120,19 +45147,19 @@ rd_kafka_broker_active_toppar_del DCCPRLG CINDEX=1832,BASER=12,FRAME=53*
 * rkt->rkt_topic)->str, rktp->rktp_partition, is_consumer ? "fetch" : \
 * "active", rkb->rkb_active_toppar_cnt, rktp->rktp_fetch_version, reas\
 * on); } while (0); } } while (0);
-@L3319   DS    0H
+@L3321   DS    0H
          LG    15,4048(0,2) ; offset of rkb_rk in rd_kafka_broker_s
          TM    803(15),4
-         BZ    @L3322
-@L3323   DS    0H
+         BZ    @L3324
+@L3325   DS    0H
          LGHI  6,5688      ; 5688
          LA    15,0(6,2)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1832_3773 ; mtx_lock
-@@gen_label5057 DS    0H 
+         LG    15,@lit_1832_3774 ; mtx_lock
+@@gen_label5062 DS    0H 
          BALR  14,15
-@@gen_label5058 DS    0H 
+@@gen_label5063 DS    0H 
          LA    15,168(0,13)
          STG   15,424(0,13)
          LGHI  15,5680     ; 5680
@@ -45140,37 +45167,37 @@ rd_kafka_broker_active_toppar_del DCCPRLG CINDEX=1832,BASER=12,FRAME=53*
          STG   15,432(0,13)
          MVGHI 440(13),256
          LA    1,424(0,13)
-         LG    15,@lit_1832_3775 ; rd_strlcpy
-@@gen_label5059 DS    0H 
+         LG    15,@lit_1832_3776 ; rd_strlcpy
+@@gen_label5064 DS    0H 
          BALR  14,15
-@@gen_label5060 DS    0H 
+@@gen_label5065 DS    0H 
          LA    15,0(6,2)
          STG   15,424(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1832_3777 ; mtx_unlock
-@@gen_label5061 DS    0H 
+         LG    15,@lit_1832_3778 ; mtx_unlock
+@@gen_label5066 DS    0H 
          BALR  14,15
-@@gen_label5062 DS    0H 
+@@gen_label5067 DS    0H 
          LG    15,96(0,3)  ; offset of rktp_rkt in rd_kafka_toppar_s
          LG    15,128(0,15) ; offset of rkt_topic in rd_kafka_topic_s
          CHSI  0(15),-1
-         BNE   @L3326
+         BNE   @L3328
          LHI   15,0        ; 0
-         B     @L3327
-@L3326   DS    0H
+         B     @L3329
+@L3328   DS    0H
          LG    15,96(0,3)  ; offset of rktp_rkt in rd_kafka_toppar_s
          LG    15,128(0,15) ; offset of rkt_topic in rd_kafka_topic_s
          L     15,0(0,15)
-@L3327   DS    0H
-         LTR   4,4
-         BZ    @L3328
-         LG    1,@lit_1832_3779
-         LA    1,2774(0,1)
-         B     @L3329
-@L3328   DS    0H
-         LG    1,@lit_1832_3768
-         LA    1,1744(0,1)
 @L3329   DS    0H
+         LTR   4,4
+         BZ    @L3330
+         LG    1,@lit_1832_3780
+         LA    1,2774(0,1)
+         B     @L3331
+@L3330   DS    0H
+         LG    1,@lit_1832_3769
+         LA    1,1744(0,1)
+@L3331   DS    0H
          LG    4,4048(0,2) ; offset of rkb_rk in rd_kafka_broker_s
          LA    4,528(0,4)
          STG   4,424(0,13)
@@ -45180,7 +45207,7 @@ rd_kafka_broker_active_toppar_del DCCPRLG CINDEX=1832,BASER=12,FRAME=53*
          STG   4,440(0,13)
          MVGHI 448(13),7
          MVGHI 456(13),4
-         LG    4,@lit_1832_3768
+         LG    4,@lit_1832_3769
          LA    6,1752(0,4)
          STG   6,464(0,13)
          LA    4,1874(0,4)
@@ -45201,11 +45228,11 @@ rd_kafka_broker_active_toppar_del DCCPRLG CINDEX=1832,BASER=12,FRAME=53*
          LG    15,16(0,5)  ; reason
          STG   15,528(0,13)
          LA    1,424(0,13)
-         LG    15,@lit_1832_3782 ; rd_kafka_log0
-@@gen_label5065 DS    0H 
+         LG    15,@lit_1832_3783 ; rd_kafka_log0
+@@gen_label5070 DS    0H 
          BALR  14,15
-@@gen_label5066 DS    0H 
-@L3322   DS    0H
+@@gen_label5071 DS    0H 
+@L3324   DS    0H
 * ***   
 * ***   # 6489 "C:\asgkafka\librdkafka\src\rdkafka_broker.c"
 * ***   }
@@ -45249,10 +45276,10 @@ rd_kafka_broker_schedule_connection DCCPRLG CINDEX=1833,BASER=12,FRAME=*
          XC    176(8,13),176(13)
          MVGHI 184(13),43
          LA    1,176(0,13)
-         LG    15,@lit_1833_3784 ; rd_kafka_op_new0
-@@gen_label5067 DS    0H 
+         LG    15,@lit_1833_3785 ; rd_kafka_op_new0
+@@gen_label5072 DS    0H 
          BALR  14,15
-@@gen_label5068 DS    0H 
+@@gen_label5073 DS    0H 
 * ***           ((rko)->rko_prio = RD_KAFKA_PRIO_FLASH);
          MVHI  52(15),3    ; offset of rko_prio in rd_kafka_op_s
 * ***           rd_kafka_q_enq(rkb->rkb_ops, rko);
@@ -45261,10 +45288,10 @@ rd_kafka_broker_schedule_connection DCCPRLG CINDEX=1833,BASER=12,FRAME=*
          STG   1,176(0,13)
          STG   15,184(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1833_3785 ; rd_kafka_q_enq
-@@gen_label5069 DS    0H 
+         LG    15,@lit_1833_3786 ; rd_kafka_q_enq
+@@gen_label5074 DS    0H 
          BALR  14,15
-@@gen_label5070 DS    0H 
+@@gen_label5075 DS    0H 
 * ***   }
 @ret_lab_1833 DS 0H
 * * **** Start of Epilogue
@@ -45272,8 +45299,8 @@ rd_kafka_broker_schedule_connection DCCPRLG CINDEX=1833,BASER=12,FRAME=*
 * * **** End of Epilogue
          DS    0D
 @FRAMESIZE_1833 DC F'192'
-@lit_1833_3784 DC AD(rd_kafka_op_new0)
-@lit_1833_3785 DC AD(rd_kafka_q_enq)
+@lit_1833_3785 DC AD(rd_kafka_op_new0)
+@lit_1833_3786 DC AD(rd_kafka_q_enq)
          DROP  12
 *
 *   DSECT for automatic variables in "rd_kafka_broker_schedule_connect
@@ -45307,10 +45334,10 @@ rd_kafka_broker_persistent_connection_add DCCPRLG CINDEX=1834,BASER=12,*
          STG   15,168(0,13)
          MVGHI 176(13),1
          LA    1,168(0,13)
-         LG    15,@lit_1834_3787 ; rd_atomic32_add
-@@gen_label5071 DS    0H 
+         LG    15,@lit_1834_3788 ; rd_atomic32_add
+@@gen_label5076 DS    0H 
          BALR  14,15
-@@gen_label5072 DS    0H 
+@@gen_label5077 DS    0H 
          CHI   15,1
          BNE   @ret_lab_1834
 * ***                   
@@ -45318,12 +45345,12 @@ rd_kafka_broker_persistent_connection_add DCCPRLG CINDEX=1834,BASER=12,*
          LG    15,0(0,2)   ; rkb
          STG   15,168(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1834_3788 ; rd_kafka_broker_schedule_connection
-@@gen_label5074 DS    0H 
+         LG    15,@lit_1834_3789 ; rd_kafka_broker_schedule_connection
+@@gen_label5079 DS    0H 
          BALR  14,15
-@@gen_label5075 DS    0H 
+@@gen_label5080 DS    0H 
 * ***           }
-@L3330   DS    0H
+@L3332   DS    0H
 * ***   }
 @ret_lab_1834 DS 0H
 * * **** Start of Epilogue
@@ -45331,8 +45358,8 @@ rd_kafka_broker_persistent_connection_add DCCPRLG CINDEX=1834,BASER=12,*
 * * **** End of Epilogue
          DS    0D
 @FRAMESIZE_1834 DC F'184'
-@lit_1834_3787 DC AD(rd_atomic32_add)
-@lit_1834_3788 DC AD(rd_kafka_broker_schedule_connection)
+@lit_1834_3788 DC AD(rd_atomic32_add)
+@lit_1834_3789 DC AD(rd_kafka_broker_schedule_connection)
          DROP  12
 *
 *   DSECT for automatic variables in "rd_kafka_broker_persistent_conne
@@ -45364,31 +45391,31 @@ rd_kafka_broker_persistent_connection_del DCCPRLG CINDEX=1835,BASER=12,*
          STG   15,176(0,13)
          MVGHI 184(13),1
          LA    1,176(0,13)
-         LG    15,@lit_1835_3790 ; rd_atomic32_sub
-@@gen_label5076 DS    0H 
+         LG    15,@lit_1835_3791 ; rd_atomic32_sub
+@@gen_label5081 DS    0H 
          BALR  14,15
-@@gen_label5077 DS    0H 
+@@gen_label5082 DS    0H 
 * ***           ((r >= 0) ? (void)0 : __assert(__func__, "C:\\asgkafka\
 * \\librdkafka\\src\\rdkafka_broker.c", 6538, "r >= 0"));
          LTR   15,15
-         BNL   @L3332
-@L3331   DS    0H
-         LG    15,@lit_1835_3791
+         BNL   @L3334
+@L3333   DS    0H
+         LG    15,@lit_1835_3792
          LA    15,1344(0,15)
          STG   15,176(0,13)
-         LG    15,@lit_1835_3792
+         LG    15,@lit_1835_3793
          LA    15,1152(0,15)
          STG   15,184(0,13)
          MVGHI 192(13),6538
-         LG    15,@lit_1835_3793
+         LG    15,@lit_1835_3794
          LA    15,1930(0,15)
          STG   15,200(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1835_3794 ; __assert
-@@gen_label5079 DS    0H 
+         LG    15,@lit_1835_3795 ; __assert
+@@gen_label5084 DS    0H 
          BALR  14,15
-@@gen_label5080 DS    0H 
-@L3332   DS    0H
+@@gen_label5085 DS    0H 
+@L3334   DS    0H
 * ***   }
 @ret_lab_1835 DS 0H
 * * **** Start of Epilogue
@@ -45396,11 +45423,11 @@ rd_kafka_broker_persistent_connection_del DCCPRLG CINDEX=1835,BASER=12,*
 * * **** End of Epilogue
          DS    0D
 @FRAMESIZE_1835 DC F'208'
-@lit_1835_3790 DC AD(rd_atomic32_sub)
-@lit_1835_3794 DC AD(__assert)
-@lit_1835_3793 DC AD(@strings@+8192)
-@lit_1835_3792 DC AD(@strings@)
-@lit_1835_3791 DC AD(@DATA)
+@lit_1835_3791 DC AD(rd_atomic32_sub)
+@lit_1835_3795 DC AD(__assert)
+@lit_1835_3794 DC AD(@strings@+8192)
+@lit_1835_3793 DC AD(@strings@)
+@lit_1835_3792 DC AD(@DATA)
          DROP  12
 *
 *   DSECT for automatic variables in "rd_kafka_broker_persistent_conne
@@ -45427,17 +45454,17 @@ rd_kafka_broker_monitor_op_cb DCCPRLG CINDEX=2159,BASER=12,FRAME=176,EN*
 * ***           if (rko->rko_err != RD_KAFKA_RESP_ERR__DESTROY)
          LG    15,16(0,1)  ; rko
          CHSI  32(15),-197
-         BE    @L3333
+         BE    @L3335
 * ***                   rko->rko_u.broker_monitor.cb(rko->rko_u.broker\
 * _monitor.rkb);
          LG    1,112(0,15)
          STG   1,168(0,13)
          LG    15,120(0,15) ; offset of cb in 0000086
          LA    1,168(0,13)
-@@gen_label5082 DS    0H 
+@@gen_label5087 DS    0H 
          BALR  14,15
-@@gen_label5083 DS    0H 
-@L3333   DS    0H
+@@gen_label5088 DS    0H 
+@L3335   DS    0H
 * ***           return RD_KAFKA_OP_RES_HANDLED;
          LGHI  15,1        ; 1
 * ***   }
@@ -45476,14 +45503,14 @@ rd_kafka_broker_trigger_monitors DCCPRLG CINDEX=2097,BASER=12,FRAME=200*
          LGHI  15,5808     ; 5808
          LG    2,0(15,3)   ; offset of rkb_monitors in rd_kafka_broker_*
                s
-         B     @L3335
+         B     @L3337
          DS    0D
 @FRAMESIZE_2097 DC F'200'
-@lit_2097_3800 DC AD(rd_kafka_op_new_cb)
-@lit_2097_3799 DC AD(rd_kafka_broker_monitor_op_cb)
-@lit_2097_3801 DC AD(rd_atomic32_add)
-@lit_2097_3802 DC AD(rd_kafka_q_enq)
-@L3334   DS    0H
+@lit_2097_3801 DC AD(rd_kafka_op_new_cb)
+@lit_2097_3800 DC AD(rd_kafka_broker_monitor_op_cb)
+@lit_2097_3802 DC AD(rd_atomic32_add)
+@lit_2097_3803 DC AD(rd_kafka_q_enq)
+@L3336   DS    0H
 * ***                   rd_kafka_op_t *rko = rd_kafka_op_new_cb(
 * ***                           rkb->rkb_rk,
 * ***                           RD_KAFKA_OP_BROKER_MONITOR,
@@ -45491,23 +45518,23 @@ rd_kafka_broker_trigger_monitors DCCPRLG CINDEX=2097,BASER=12,FRAME=200*
          LG    15,4048(0,3)
          STG   15,176(0,13)
          MVGHI 184(13),46
-         LG    15,@lit_2097_3799 ; rd_kafka_broker_monitor_op_cb
+         LG    15,@lit_2097_3800 ; rd_kafka_broker_monitor_op_cb
          STG   15,192(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_2097_3800 ; rd_kafka_op_new_cb
-@@gen_label5084 DS    0H 
+         LG    15,@lit_2097_3801 ; rd_kafka_op_new_cb
+@@gen_label5089 DS    0H 
          BALR  14,15
-@@gen_label5085 DS    0H 
+@@gen_label5090 DS    0H 
          LGR   4,15
 * ***                   rd_atomic32_add(&(rkb)->rkb_refcnt, 1);
          LA    15,4000(0,3)
          STG   15,176(0,13)
          MVGHI 184(13),1
          LA    1,176(0,13)
-         LG    15,@lit_2097_3801 ; rd_atomic32_add
-@@gen_label5086 DS    0H 
+         LG    15,@lit_2097_3802 ; rd_atomic32_add
+@@gen_label5091 DS    0H 
          BALR  14,15
-@@gen_label5087 DS    0H 
+@@gen_label5092 DS    0H 
 * ***                   rko->rko_u.broker_monitor.rkb = rkb;
          STG   3,112(0,4)  ; offset of rko_u in rd_kafka_op_s
 * ***                   rko->rko_u.broker_monitor.cb  = rkbmon->rkbmon\
@@ -45520,15 +45547,15 @@ rd_kafka_broker_trigger_monitors DCCPRLG CINDEX=2097,BASER=12,FRAME=200*
          STG   15,176(0,13)
          STG   4,184(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_2097_3802 ; rd_kafka_q_enq
-@@gen_label5088 DS    0H 
+         LG    15,@lit_2097_3803 ; rd_kafka_q_enq
+@@gen_label5093 DS    0H 
          BALR  14,15
-@@gen_label5089 DS    0H 
+@@gen_label5094 DS    0H 
 * ***           }
          LG    2,0(0,2)    ; rkbmon
-@L3335   DS    0H
+@L3337   DS    0H
          LTGR  15,2
-         BNE   @L3334
+         BNE   @L3336
 * ***   }
 @ret_lab_2097 DS 0H
 * * **** Start of Epilogue
@@ -45564,24 +45591,24 @@ rd_kafka_broker_monitor_add DCCPRLG CINDEX=1836,BASER=12,FRAME=200,ENTR*
          LMG   2,3,0(4)    ; rkbmon
          LTG   15,16(0,2)  ; offset of rkbmon_rkb in rd_kafka_broker_mo*
                nitor_s
-         BZ    @L3339
-@L3338   DS    0H
-         LG    15,@lit_1836_3804
+         BZ    @L3341
+@L3340   DS    0H
+         LG    15,@lit_1836_3805
          LA    15,1386(0,15)
          STG   15,168(0,13)
-         LG    15,@lit_1836_3805
+         LG    15,@lit_1836_3806
          LA    15,1152(0,15)
          STG   15,176(0,13)
          MVGHI 184(13),6603
-         LG    15,@lit_1836_3806
+         LG    15,@lit_1836_3807
          LA    15,1938(0,15)
          STG   15,192(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1836_3807 ; __assert
-@@gen_label5092 DS    0H 
+         LG    15,@lit_1836_3808 ; __assert
+@@gen_label5097 DS    0H 
          BALR  14,15
-@@gen_label5093 DS    0H 
-@L3339   DS    0H
+@@gen_label5098 DS    0H 
+@L3341   DS    0H
 * ***           rkbmon->rkbmon_rkb    = rkb;
          STG   3,16(0,2)   ; offset of rkbmon_rkb in rd_kafka_broker_mo*
                nitor_s
@@ -45592,10 +45619,10 @@ rd_kafka_broker_monitor_add DCCPRLG CINDEX=1836,BASER=12,FRAME=200,ENTR*
 * ***           rd_kafka_q_keep(rkbmon->rkbmon_q);
          STG   15,168(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1836_3808 ; rd_kafka_q_keep
-@@gen_label5094 DS    0H 
+         LG    15,@lit_1836_3809 ; rd_kafka_q_keep
+@@gen_label5099 DS    0H 
          BALR  14,15
-@@gen_label5095 DS    0H 
+@@gen_label5100 DS    0H 
 * ***           rkbmon->rkbmon_cb     = callback;
          LG    15,24(0,4)  ; callback
          STG   15,32(0,2)  ; offset of rkbmon_cb in rd_kafka_broker_mon*
@@ -45606,24 +45633,24 @@ rd_kafka_broker_monitor_add DCCPRLG CINDEX=1836,BASER=12,FRAME=200,ENTR*
          STG   15,168(0,13)
          MVGHI 176(13),1
          LA    1,168(0,13)
-         LG    15,@lit_1836_3809 ; rd_atomic32_add
-@@gen_label5096 DS    0H 
+         LG    15,@lit_1836_3810 ; rd_atomic32_add
+@@gen_label5101 DS    0H 
          BALR  14,15
-@@gen_label5097 DS    0H 
+@@gen_label5102 DS    0H 
 * ***   
 * ***           mtx_lock(&(rkb)->rkb_lock);
          LA    15,72(0,3)
          STG   15,168(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1836_3810 ; mtx_lock
-@@gen_label5098 DS    0H 
+         LG    15,@lit_1836_3811 ; mtx_lock
+@@gen_label5103 DS    0H 
          BALR  14,15
-@@gen_label5099 DS    0H 
+@@gen_label5104 DS    0H 
 * ***           do {  (rkbmon)->rkbmon_link .tqe_next = (((void *)0));\
 *  (rkbmon)->rkbmon_link .tqe_prev = (&rkb->rkb_monitors)->tqh_last; *\
 * (&rkb->rkb_monitors)->tqh_last = (rkbmon); (&rkb->rkb_monitors)->tqh\
 * _last = &(rkbmon)->rkbmon_link .tqe_next; } while ( 0);
-@L3340   DS    0H
+@L3342   DS    0H
          LGHI  15,0        ; 0
          STG   15,0(0,2)   ; rkbmon
          LGHI  15,5808     ; 5808
@@ -45636,10 +45663,10 @@ rd_kafka_broker_monitor_add DCCPRLG CINDEX=1836,BASER=12,FRAME=200,ENTR*
          LA    15,72(0,3)
          STG   15,168(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1836_3815 ; mtx_unlock
-@@gen_label5100 DS    0H 
+         LG    15,@lit_1836_3816 ; mtx_unlock
+@@gen_label5105 DS    0H 
          BALR  14,15
-@@gen_label5101 DS    0H 
+@@gen_label5106 DS    0H 
 * ***   }
 @ret_lab_1836 DS 0H
 * * **** Start of Epilogue
@@ -45647,14 +45674,14 @@ rd_kafka_broker_monitor_add DCCPRLG CINDEX=1836,BASER=12,FRAME=200,ENTR*
 * * **** End of Epilogue
          DS    0D
 @FRAMESIZE_1836 DC F'200'
-@lit_1836_3807 DC AD(__assert)
-@lit_1836_3806 DC AD(@strings@+8192)
-@lit_1836_3805 DC AD(@strings@)
-@lit_1836_3804 DC AD(@DATA)
-@lit_1836_3808 DC AD(rd_kafka_q_keep)
-@lit_1836_3809 DC AD(rd_atomic32_add)
-@lit_1836_3810 DC AD(mtx_lock)
-@lit_1836_3815 DC AD(mtx_unlock)
+@lit_1836_3808 DC AD(__assert)
+@lit_1836_3807 DC AD(@strings@+8192)
+@lit_1836_3806 DC AD(@strings@)
+@lit_1836_3805 DC AD(@DATA)
+@lit_1836_3809 DC AD(rd_kafka_q_keep)
+@lit_1836_3810 DC AD(rd_atomic32_add)
+@lit_1836_3811 DC AD(mtx_lock)
+@lit_1836_3816 DC AD(mtx_unlock)
          DROP  12
 *
 *   DSECT for automatic variables in "rd_kafka_broker_monitor_add"
@@ -45687,16 +45714,16 @@ rd_kafka_broker_monitor_del DCCPRLG CINDEX=1837,BASER=12,FRAME=192,ENTR*
          LTGR  15,3
          BZ    @ret_lab_1837
 * ***                   return;
-@L3343   DS    0H
+@L3345   DS    0H
 * ***   
 * ***           mtx_lock(&(rkb)->rkb_lock);
          LA    15,72(0,3)
          STG   15,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1837_3817 ; mtx_lock
-@@gen_label5103 DS    0H 
+         LG    15,@lit_1837_3818 ; mtx_lock
+@@gen_label5108 DS    0H 
          BALR  14,15
-@@gen_label5104 DS    0H 
+@@gen_label5109 DS    0H 
 * ***           rkbmon->rkbmon_rkb = ((void *)0);
          LGHI  15,0        ; 0
          STG   15,16(0,2)  ; offset of rkbmon_rkb in rd_kafka_broker_mo*
@@ -45706,34 +45733,34 @@ rd_kafka_broker_monitor_del DCCPRLG CINDEX=1837,BASER=12,FRAME=192,ENTR*
          STG   15,176(0,13)
          XC    184(8,13),184(13)
          LA    1,176(0,13)
-         LG    15,@lit_1837_3819 ; rd_kafka_q_destroy0
-@@gen_label5105 DS    0H 
+         LG    15,@lit_1837_3820 ; rd_kafka_q_destroy0
+@@gen_label5110 DS    0H 
          BALR  14,15
-@@gen_label5106 DS    0H 
+@@gen_label5111 DS    0H 
 * ***           do {   if (((rkbmon)->rkbmon_link .tqe_next) != (((voi\
 * d *)0))) (rkbmon)->rkbmon_link .tqe_next->rkbmon_link .tqe_prev = (r\
 * kbmon)->rkbmon_link .tqe_prev; else (&rkb->rkb_monitors)->tqh_last =\
 *  (rkbmon)->rkbmon_link .tqe_prev; *(rkbmon)->rkbmon_link .tqe_prev =\
 *  (rkbmon)->rkbmon_link .tqe_next; ; } while ( 0);
-@L3344   DS    0H
+@L3346   DS    0H
          LTG   15,0(0,2)   ; rkbmon
-         BE    @L3347
+         BE    @L3349
          LG    15,0(0,2)   ; rkbmon
          LG    1,8(0,2)    ; offset of tqe_prev in 0000123
          STG   1,8(0,15)   ; offset of tqe_prev in 0000123
-         B     @L3348
+         B     @L3350
          DS    0D
 @FRAMESIZE_1837 DC F'192'
-@lit_1837_3817 DC AD(mtx_lock)
-@lit_1837_3819 DC AD(rd_kafka_q_destroy0)
-@lit_1837_3821 DC AD(mtx_unlock)
-@lit_1837_3822 DC AD(rd_refcnt_sub0)
-@lit_1837_3823 DC AD(rd_kafka_broker_destroy_final)
-@L3347   DS    0H
+@lit_1837_3818 DC AD(mtx_lock)
+@lit_1837_3820 DC AD(rd_kafka_q_destroy0)
+@lit_1837_3822 DC AD(mtx_unlock)
+@lit_1837_3823 DC AD(rd_refcnt_sub0)
+@lit_1837_3824 DC AD(rd_kafka_broker_destroy_final)
+@L3349   DS    0H
          LGHI  15,5808     ; 5808
          LG    1,8(0,2)    ; offset of tqe_prev in 0000123
          STG   1,8(15,3)   ; offset of tqh_last in 0000129
-@L3348   DS    0H
+@L3350   DS    0H
          LG    15,8(0,2)   ; offset of tqe_prev in 0000123
          LG    1,0(0,2)    ; rkbmon
          STG   1,0(0,15)
@@ -45741,31 +45768,31 @@ rd_kafka_broker_monitor_del DCCPRLG CINDEX=1837,BASER=12,FRAME=192,ENTR*
          LA    15,72(0,3)
          STG   15,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1837_3821 ; mtx_unlock
-@@gen_label5108 DS    0H 
-         BALR  14,15
-@@gen_label5109 DS    0H 
-* ***   
-* ***           do { if (rd_refcnt_sub0(&(rkb)->rkb_refcnt) > 0) break\
-* ; rd_kafka_broker_destroy_final(rkb); } while (0);
-@L3349   DS    0H
-         LA    15,4000(0,3)
-         STG   15,176(0,13)
-         LA    1,176(0,13)
-         LG    15,@lit_1837_3822 ; rd_refcnt_sub0
-@@gen_label5110 DS    0H 
-         BALR  14,15
-@@gen_label5111 DS    0H 
-         LTR   15,15
-         BH    @L3350
-@L3352   DS    0H
-         STG   3,176(0,13)
-         LA    1,176(0,13)
-         LG    15,@lit_1837_3823 ; rd_kafka_broker_destroy_final
+         LG    15,@lit_1837_3822 ; mtx_unlock
 @@gen_label5113 DS    0H 
          BALR  14,15
 @@gen_label5114 DS    0H 
-@L3350   DS    0H
+* ***   
+* ***           do { if (rd_refcnt_sub0(&(rkb)->rkb_refcnt) > 0) break\
+* ; rd_kafka_broker_destroy_final(rkb); } while (0);
+@L3351   DS    0H
+         LA    15,4000(0,3)
+         STG   15,176(0,13)
+         LA    1,176(0,13)
+         LG    15,@lit_1837_3823 ; rd_refcnt_sub0
+@@gen_label5115 DS    0H 
+         BALR  14,15
+@@gen_label5116 DS    0H 
+         LTR   15,15
+         BH    @L3352
+@L3354   DS    0H
+         STG   3,176(0,13)
+         LA    1,176(0,13)
+         LG    15,@lit_1837_3824 ; rd_kafka_broker_destroy_final
+@@gen_label5118 DS    0H 
+         BALR  14,15
+@@gen_label5119 DS    0H 
+@L3352   DS    0H
 * ***   }
 @ret_lab_1837 DS 0H
 * * **** Start of Epilogue
@@ -45797,10 +45824,10 @@ unittest_broker DCCPRLG CINDEX=1838,BASER=12,FRAME=176,ENTRY=YES,ARCH=Z*
          LHI   2,0         ; 0
 * ***   
 * ***           fails += rd_ut_reconnect_backoff();
-         LG    15,@lit_1838_3826 ; rd_ut_reconnect_backoff
-@@gen_label5115 DS    0H 
+         LG    15,@lit_1838_3827 ; rd_ut_reconnect_backoff
+@@gen_label5120 DS    0H 
          BALR  14,15
-@@gen_label5116 DS    0H 
+@@gen_label5121 DS    0H 
          AR    2,15
 * ***   
 * ***           return fails;
@@ -45811,7 +45838,7 @@ unittest_broker DCCPRLG CINDEX=1838,BASER=12,FRAME=176,ENTRY=YES,ARCH=Z*
 * * **** End of Epilogue
          DS    0D
 @FRAMESIZE_1838 DC F'176'
-@lit_1838_3826 DC AD(rd_ut_reconnect_backoff)
+@lit_1838_3827 DC AD(rd_ut_reconnect_backoff)
          DROP  12
 *
 *   DSECT for automatic variables in "unittest_broker"

@@ -1,5 +1,5 @@
                                             Dignus Assembler Option Summary                                                Page    1 
-                                                                                                      DASM V1.95.14 2021/04/29 12:42 
+                                                                                                      DASM V1.95.14 2021/04/30 15:35 
 
 Overriding Parameters- -LC:\DIGNUS\MACLIB\&m -oc:../asg/obj/rdaddr.obj ../asg/asm/rdaddr.asm
   Process Statements-       DUPALIAS
@@ -54,10 +54,10 @@ Options for this Assembly             Source
 
 Libraries in Search Order:
                                             Dignus Assembler Option Summary                                                Page    2 
-                                                                                                      DASM V1.95.14 2021/04/29 12:42 
+                                                                                                      DASM V1.95.14 2021/04/30 15:35 
        CMDLINE      C:\DIGNUS\MACLIB\&m
                                               External Symbol Dictionary                                                   Page    3 
-Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                                      DASM V1.95.14 2021/04/29 12:42 
+Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                                      DASM V1.95.14 2021/04/30 15:35 
 @@ZARCH#  WX 00000001                              00
 @RDADDR   SD 00000002 00000000 00001018            07  @CODE
 rd_array_shuffle
@@ -86,11 +86,11 @@ rd_sockaddr_list_destroy
           LD          00000F68          00000002   00  RD_SOCKADDR_LIST_DESTROY
                                                                                                                            Page    4 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                                1 *PROCESS DUPALIAS
                                                2 *
                                                3 *  Compiled by DCC Version 2.25.07 Mar  6 2021 08:51:07
-                                               4 *           on Thu Apr 29 12:42:38 2021
+                                               4 *           on Fri Apr 30 15:35:14 2021
                                                5 *
 
                                                7          WXTRN @@ZARCH#
@@ -141,7 +141,7 @@ rd_sockaddr_list_destroy
                                               51          gblc    &$dccext(1000)
                                                                                                                            Page    5 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                               52          gbla    &$dccexti
                                               53          lcla    &i
                                               54 &$dccext(&$dccexti+1) setc    '&m'
@@ -196,7 +196,7 @@ rd_sockaddr_list_destroy
 00000096 E3F0 1000 0004          00000000    103          LG    15,0(0,1)   ; num
                                                                                                                            Page    6 
   Active Usings: @REGION_751_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 0000009C E3F0 D0B0 0024          000000B0    104          STG   15,176(0,13)
 000000A2 E3F0 1008 0004          00000008    105          LG    15,8(0,1)   ; sz
 000000A8 E3F0 D0B8 0024          000000B8    106          STG   15,184(0,13)
@@ -251,7 +251,7 @@ rd_sockaddr_list_destroy
 0000014C 00000000
                                                                                                                            Page    7 
   Active Usings: @REGION_751_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000150 0000000000000000                    155 @lit_751_0 DC  AD(calloc)
 00000158 0000000000000000                    156 @lit_751_3 DC  AD(__assert)
 00000160 000000000000105E                    157 @lit_751_2 DC  AD(@strings@)
@@ -306,7 +306,7 @@ rd_sockaddr_list_destroy
 000001AC 00                                  205+         dc bl.8'00000000'                                              02-DCCCA
                                                                                                                            Page    8 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000001AD 000000                              206+         dc al3(0)                                                      02-DCCCA
 000001B0 0000000000000170                    207+         dc ad(@LNAME754)                                               02-DCCCA
 000001B8                                     208+         ds 0d                                                          02-DCCCA
@@ -361,7 +361,7 @@ rd_sockaddr_list_destroy
                                              257+* End of Epilog
                                                                                                                            Page    9 
   Active Usings: @REGION_754_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                              258 * * **** End of Epilogue
 00000268                                     259          DS    0D
 00000268 000000B0                            260 @FRAMESIZE_754 DC F'176'
@@ -416,7 +416,7 @@ rd_sockaddr_list_destroy
 000002BB 08                                  307+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
                                                                                                                            Page   10 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000002BC 00                                  308+         dc bl.8'00000000'                                              02-DCCCA
 000002BD 000000                              309+         dc al3(0)                                                      02-DCCCA
 000002C0 0000000000000278                    310+         dc ad(@LNAME885)                                               02-DCCCA
@@ -471,7 +471,7 @@ rd_sockaddr_list_destroy
                                              359+* Epilog
                                                                                                                            Page   11 
   Active Usings: @REGION_885_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                              360+* Epilog
 0000033A E3E0 D008 0004          00000008    361+         lg    14,8(,13) restore the reg                                01-DCCEP
 00000340 EB1C D020 0004          00000020    362+         lmg   1,12,32(13)                                              01-DCCEP
@@ -526,7 +526,7 @@ rd_sockaddr_list_destroy
 00000389 03                                  410+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
                                                                                                                            Page   12 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 0000038A 03                                  411+         dc al1(3)                                                      02-DCCCA
 0000038B 08                                  412+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
 0000038C 00                                  413+         dc bl.8'00000000'                                              02-DCCCA
@@ -581,7 +581,7 @@ rd_sockaddr_list_destroy
 0000041C 1211                                462          LTR   1,1
                                                                                                                            Page   13 
   Active Usings: @REGION_880_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 0000041E 47B0 C0B6               0000045E    463          BNL   @@gen_label7
 00000422 1244                                464          LTR   4,4
 00000424 4770 C0B0               00000458    465          BNE   @@gen_label8
@@ -636,7 +636,7 @@ rd_sockaddr_list_destroy
 000004D0 4110 1032               00000032    514          LA    1,50(0,1)
                                                                                                                            Page   14 
   Active Usings: @REGION_880_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000004D4 E310 D0D8 0024          000000D8    515          STG   1,216(0,13)
 000004DA B914 00FF                           516          LGFR  15,15
 000004DE E3F0 D0E0 0024          000000E0    517          STG   15,224(0,13)
@@ -691,7 +691,7 @@ rd_sockaddr_list_destroy
                                              566 * ***
                                                                                                                            Page   15 
   Active Usings: @REGION_880_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                              567 * ***                                (flags & 0x1) ?
                                              568 * ***
                                              569 * ***                                (flags & 0x1) ?
@@ -746,7 +746,7 @@ rd_sockaddr_list_destroy
 000005E6 E3F0 D0E0 0024          000000E0    618          STG   15,224(0,13)
                                                                                                                            Page   16 
   Active Usings: @REGION_880_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000005EC E310 D0E8 0024          000000E8    619          STG   1,232(0,13)
 000005F2 E380 D0F0 0024          000000F0    620          STG   8,240(0,13)
 000005F8 B914 00F3                           621          LGFR  15,3
@@ -801,7 +801,7 @@ rd_sockaddr_list_destroy
 00000672                                     670 @L69     DS    0H
                                                                                                                            Page   17 
   Active Usings: @REGION_880_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000672 E310 C098 0004          00000440    671          LG    1,@lit_880_18
 00000678 4110 103C               0000003C    672          LA    1,60(0,1)
 0000067C                                     673 @L70     DS    0H
@@ -856,7 +856,7 @@ rd_sockaddr_list_destroy
 00000734 4780 C0BE               00000466    722          BE    @L52
                                                                                                                            Page   18 
   Active Usings: @REGION_880_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000738                                     723 @L50     DS    0H
                                              724 * ***
                                              725 * ***
@@ -911,7 +911,7 @@ rd_sockaddr_list_destroy
 000007DE EB1C D020 0004          00000020    774+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
                                                                                                                            Page   19 
   Active Usings: @REGION_880_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000007E4 078E                                775+         bcr 8,14                if same dsab, just return              01-DCCEP
 000007E6 E3F0 D010 0024          00000010    776+         stg 15,16(0,13)         save return code                       01-DCCEP
 000007EC E300 D018 0024          00000018    777+         stg 0,24(0,13)          save more return code                  01-DCCEP
@@ -966,7 +966,7 @@ rd_sockaddr_list_destroy
                                              825 .getout  anop
                                                                                                                            Page   20 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                              826          mend
 00000820                                     827+$eye0015    ds    0d                                                    02-DCCCA
 00000820 C4C3C3                              828+         dc cl3'DCC'                                                    02-DCCCA
@@ -1021,7 +1021,7 @@ rd_sockaddr_list_destroy
                                              877 * ***      *snode = '\0';
                                                                                                                            Page   21 
   Active Usings: @REGION_881_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000008BE E350 C094 0014          000008FC    878          LGF   5,@lit_881_49
 000008C4 4155 3000               00000000    879          LA    5,0(5,3)
 000008C8 A75B 2000               00002000    880          AGHI  5,8192
@@ -1076,7 +1076,7 @@ rd_sockaddr_list_destroy
                                              929 * ***         nodelen = 0;
                                                                                                                            Page   22 
   Active Usings: @REGION_881_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 0000094C B904 0021                           930          LGR   2,1         ; nodelen
                                              931 * ***         svct = nodesvc;
 00000950 B904 001F                           932          LGR   1,15        ; svct
@@ -1131,7 +1131,7 @@ rd_sockaddr_list_destroy
 000009D8                                     981 @L78     DS    0H
                                                                                                                            Page   23 
   Active Usings: @REGION_881_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                              982 * ***         __strcpy(ssvc,svct);
 000009D8 E350 C094 0014          000008FC    983          LGF   5,@lit_881_49
 000009DE 4155 3000               00000000    984          LA    5,0(5,3)
@@ -1186,7 +1186,7 @@ rd_sockaddr_list_destroy
 00000A5A B904 005F                          1033          LGR   5,15
                                                                                                                            Page   24 
   Active Usings: @REGION_881_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000A5E 4110 1204               00000204   1034          LA    1,516(0,1)
 00000A62 B902 00F2                          1035          LTGR  15,2
 00000A66 4780 C22C               00000A94   1036          BZ    @@gen_label58
@@ -1241,7 +1241,7 @@ rd_sockaddr_list_destroy
 00000B06 078E                               1085+         bcr 8,14                if same dsab, just return              01-DCCEP
                                                                                                                            Page   25 
   Active Usings: @REGION_881_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000B08 E3F0 D010 0024          00000010   1086+         stg 15,16(0,13)         save return code                       01-DCCEP
 00000B0E E300 D018 0024          00000018   1087+         stg 0,24(0,13)          save more return code                  01-DCCEP
 00000B14 E3F0 D090 0004          00000090   1088+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
@@ -1296,7 +1296,7 @@ rd_sockaddr_list_destroy
 00000B58 0000000000001000                   1136+         dc ad(4096)                                                    02-DCCCA
                                                                                                                            Page   26 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000B60 20                                 1137+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
 00000B61 03                                 1138+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
 00000B62 03                                 1139+         dc al1(3)                                                      02-DCCCA
@@ -1351,7 +1351,7 @@ rd_sockaddr_list_destroy
                                             1188 * ***      char *node, *svc;
                                                                                                                            Page   27 
   Active Usings: @REGION_883_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             1189 * ***      int r;
                                             1190 * ***      int cnt = 0;
 00000BF2 A728 0000               00000000   1191          LHI   2,0         ; 0
@@ -1406,7 +1406,7 @@ rd_sockaddr_list_destroy
                                             1238 * ***         defsvc = svc;
                                                                                                                            Page   28 
   Active Usings: @REGION_883_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000CAE E3F0 4008 0024          00000008   1239          STG   15,8(0,4)   ; defsvc
 00000CB4                                    1240 @L86     DS    0H
                                             1241 * ***
@@ -1461,7 +1461,7 @@ rd_sockaddr_list_destroy
 00000D3A                                    1290 @@gen_label73 DS    0H
                                                                                                                            Page   29 
   Active Usings: @REGION_883_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000D3A 05EF                               1291          BALR  14,15
 00000D3C                                    1292 @@gen_label74 DS    0H
 00000D3C E3F0 3000 0024          00000000   1293          STG   15,0(0,3)
@@ -1516,7 +1516,7 @@ rd_sockaddr_list_destroy
 00000DAA E3F0 3000 0024          00000000   1342          STG   15,0(0,3)   ; errstr
                                                                                                                            Page   30 
   Active Usings: @REGION_883_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             1343 * ***         return ((void *)0);
 00000DB0 A7F9 0000               00000000   1344          LGHI  15,0        ; 0
 00000DB4 47F0 C334               00000EB4   1345          B     @ret_lab_883
@@ -1571,7 +1571,7 @@ rd_sockaddr_list_destroy
 00000E56                                    1394 @@gen_label86 DS 0H
                                                                                                                            Page   31 
   Active Usings: @REGION_883_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000E56 4410 C110               00000C90   1395          EX    1,@lit_883_77
 00000E5A                                    1396 @@gen_label87 DS 0H
 00000E5A E3F0 F028 0004          00000028   1397          LG    15,40(0,15) ; offset of ai_next in addrinfo
@@ -1626,7 +1626,7 @@ rd_sockaddr_list_destroy
 00000EE0 E3F0 D010 0024          00000010   1446+         stg 15,16(0,13)         save return code                       01-DCCEP
                                                                                                                            Page   32 
   Active Usings: @REGION_883_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000EE6 E300 D018 0024          00000018   1447+         stg 0,24(0,13)          save more return code                  01-DCCEP
 00000EEC E3F0 D090 0004          00000090   1448+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
 00000EF2 E3F0 F018 0004          00000018   1449+         lg  15,24(0,15)         load dvt address                       01-DCCEP
@@ -1681,7 +1681,7 @@ rd_sockaddr_list_destroy
 00000F24 00000000                           1496+         dc a(0)                                                        02-DCCCA
                                                                                                                            Page   33 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000F28 0000000000000F92                   1497+         dc ad(@PER_884)                                                02-DCCCA
 00000F30 00000000000000B0                   1498+         dc ad(176)                                                     02-DCCCA
 00000F38 0000000000000000                   1499+         dc ad(0)                                                       02-DCCCA
@@ -1736,7 +1736,7 @@ rd_sockaddr_list_destroy
 00000FD0 E3B0 C018 0004          00000018   1548+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
                                                                                                                            Page   34 
   Active Usings: @REGION_884_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000FD6 E3C0 B010 0021          00000010   1549+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
 00000FDC E3E0 D008 0004          00000008   1550+         lg  14,8(0,13)          load up return address                 01-DCCEP
 00000FE2 EB1C D020 0004          00000020   1551+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
@@ -1791,7 +1791,7 @@ rd_sockaddr_list_destroy
 000010BE 96A285607DBD7D00                   1599          DC    X'96A285607DBD7D00E28599A589838540' ose.....Service.
                                                                                                                            Page   35 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000010CE 9581948540A39696                   1600          DC    X'9581948540A39696409396958700D596' name.too.long.No
 000010DE 408184849985A2A2                   1601          DC    X'408184849985A2A285A20000'         .addresses..
                                             1602 *
@@ -1846,7 +1846,7 @@ rd_sockaddr_list_destroy
 00001290 8182838485868788                   1651          DC    X'81828384858687888991929394959697' abcdefghijklmnop
                                                                                                                            Page   36 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000012A0 9899A2A3A4A5A6A7                   1652          DC    X'9899A2A3A4A5A6A7A8A9C04FD0A10720' qrstuvwxyz......
 000012B0 2122232425061728                   1653          DC    X'2122232425061728292A2B2C090A1B30' ................
 000012C0 311A333435360838                   1654          DC    X'311A333435360838393A3B04143EFF80' ................
@@ -1875,7 +1875,7 @@ rd_sockaddr_list_destroy
                                             1677 *
                                             1678          END
                                                  Relocation Dictionary                                                     Page   37 
-  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:42 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/30 15:35 
  00000002 00000002 00000018   A 4      +
  00000002 00000002 00000040   A 4      +
  00000002 00000002 00000048   A 4      +
@@ -1924,7 +1924,7 @@ rd_sockaddr_list_destroy
  00000010 0000000E 000012DC   Q 4      +
  00000010 0000000E 00001304   Q 4      +
                                                  DSECT Cross Reference                                                     Page   38 
-DSECT     LENGTH    ID   DEFN                                                                         DASM V1.95.14 2021/04/29 12:42 
+DSECT     LENGTH    ID   DEFN                                                                         DASM V1.95.14 2021/04/30 15:35 
 @AUTO#rd_addrinfo_prepare
          000000B0  FFFFFFFB  01098
 @AUTO#rd_calloc
@@ -1940,11 +1940,11 @@ DSECT     LENGTH    ID   DEFN                                                   
 @AUTO#rd_sockaddr2str
          000000C8  FFFFFFFC  00788
                                           Macro and Copy Code Source Summary                                               Page   39 
-Source                                                    Members                                     DASM V1.95.14 2021/04/29 12:42 
+Source                                                    Members                                     DASM V1.95.14 2021/04/30 15:35 
 
 C:\DIGNUS\MACLIB                                          DCCCATR  DCCEPIL  DCCPRLG  DCCPRV   dccextrn
                                                       Using Map                                                            Page   40 
-                                                                                                      DASM V1.95.14 2021/04/29 12:42 
+                                                                                                      DASM V1.95.14 2021/04/30 15:35 
   Stmt  -----Location----- Action ----------------Using----------------- Reg Max     Last Label and Using Text
           Count      Id           Type          Value    Range     Id        Disp    Stmt
     99  00000096  00000002 USING  ORDINARY    00000058 00001000 00000002  12 00110    126 @REGION_751_1,12
@@ -1962,7 +1962,7 @@ C:\DIGNUS\MACLIB                                          DCCCATR  DCCEPIL  DCCP
   1528  00000FA6  00000002 USING  ORDINARY    00000F68 00001000 00000002  12 000A8   1535 @REGION_884_1,12
   1563  00001018  00000002 DROP                                           12              12
                                    Diagnostic Cross Reference and Assembler Summary                                        Page   41 
-                                                                                                      DASM V1.95.14 2021/04/29 12:42 
+                                                                                                      DASM V1.95.14 2021/04/30 15:35 
       No Statements Flagged in this Assembly
 DASM Dignus Systems/ASM, VERSION 1.95.14
 SYSTEM: Windows 6.2                JOBNAME: (NOJOB)     STEPNAME: (NOSTEP)   PROCSTEP: (NOPROC)
@@ -1974,5 +1974,5 @@ Datasets Used for this Assembly
   L4  DCCEPIL  C:\DIGNUS\MACLIB\dccepil
   L5  DCCPRV   C:\DIGNUS\MACLIB\dccprv
 
-Assembly Start Time: 12.42.38 Stop Time: 12.42.38 Processor Time: 00.00.00.0150
+Assembly Start Time: 15.35.14 Stop Time: 15.35.14 Processor Time: 00.00.00.0130
 Return Code 000

@@ -1,5 +1,5 @@
                                             Dignus Assembler Option Summary                                                Page    1 
-                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+                                                                                                      DASM V1.95.14 2021/04/30 15:35 
 
 Overriding Parameters- -LC:\DIGNUS\MACLIB\&m -oc:../asg/obj/rdkafka_interceptor.obj ../asg/asm/rdkafka_interceptor.asm
   Process Statements-       DUPALIAS
@@ -54,11 +54,11 @@ Options for this Assembly             Source
      XSD                              {Default}
 
                                             Dignus Assembler Option Summary                                                Page    2 
-                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+                                                                                                      DASM V1.95.14 2021/04/30 15:35 
 Libraries in Search Order:
        CMDLINE      C:\DIGNUS\MACLIB\&m
                                               External Symbol Dictionary                                                   Page    3 
-Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                                      DASM V1.95.14 2021/04/29 12:43 
+Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                                      DASM V1.95.14 2021/04/30 15:35 
 @@ZARCH#  WX 00000001                              00
 @RDKAFKA_INTERCEPTOR
           SD 00000002 00000000 00004510            07  @CODE
@@ -113,7 +113,7 @@ rd_kafka_interceptors_on_conf_dup
 rd_kafka_interceptors_on_conf_destroy
           LD          00001B70          00000002   00  RD_KAFKA_INTERCEPTORS_ON_CONF_DESTROY
                                               External Symbol Dictionary                                                   Page    4 
-Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                                      DASM V1.95.14 2021/04/29 12:43 
+Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                                      DASM V1.95.14 2021/04/30 15:35 
 rd_kafka_interceptors_on_new
           LD          00001CD0          00000002   00  RD_KAFKA_INTERCEPTORS_ON_NEW
 rd_kafka_interceptors_on_destroy
@@ -164,11 +164,11 @@ rd_kafka_interceptor_add_on_thread_exit
           LD          000043D0          00000002   00  RD_KAFKA_INTERCEPTOR_ADD_ON_THREAD_EXIT
                                                                                                                            Page    5 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                                1 *PROCESS DUPALIAS
                                                2 *
                                                3 *  Compiled by DCC Version 2.25.07 Mar  6 2021 08:51:07
-                                               4 *           on Thu Apr 29 12:43:02 2021
+                                               4 *           on Fri Apr 30 15:35:36 2021
                                                5 *
 
                                                7          WXTRN @@ZARCH#
@@ -219,7 +219,7 @@ rd_kafka_interceptor_add_on_thread_exit
                                               52 *
                                                                                                                            Page    6 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                               53 * ....... start of rd_calloc
 00000000                                      54 @LNAME1077 DS  0H
 00000000 00000009                             55          DC    X'00000009'
@@ -274,7 +274,7 @@ rd_kafka_interceptor_add_on_thread_exit
 0000007E 4720 B020               00000020    103+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
                                                                                                                            Page    7 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000082                                     104+@PER_1077 ds   0h                                                       01-DCCPR
 00000082 EBDE 2080 0024          00000080    105+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
 00000088 E3C0 2090 0024          00000090    106+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
@@ -329,7 +329,7 @@ rd_kafka_interceptor_add_on_thread_exit
 00000128 078E                                155+         bcr 8,14                if same dsab, just return              01-DCCEP
                                                                                                                            Page    8 
   Active Usings: @REGION_1077_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 0000012A E3F0 D010 0024          00000010    156+         stg 15,16(0,13)         save return code                       01-DCCEP
 00000130 E300 D018 0024          00000018    157+         stg 0,24(0,13)          save more return code                  01-DCCEP
 00000136 E3F0 D090 0004          00000090    158+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
@@ -384,7 +384,7 @@ rd_kafka_interceptor_add_on_thread_exit
 00000183 01                                  205+         dc xl1'01' format one                                          02-DCCCA
                                                                                                                            Page    9 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000184 00000000                            206+         dc a(0)                                                        02-DCCCA
 00000188 00000000000001F2                    207+         dc ad(@PER_1080)                                               02-DCCCA
 00000190 00000000000000B0                    208+         dc ad(176)                                                     02-DCCCA
@@ -439,7 +439,7 @@ rd_kafka_interceptor_add_on_thread_exit
 00000230 E3B0 C018 0004          00000018    257+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
                                                                                                                            Page   10 
   Active Usings: @REGION_1080_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000236 E3C0 B010 0021          00000010    258+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
 0000023C E3E0 D008 0004          00000008    259+         lg  14,8(0,13)          load up return address                 01-DCCEP
 00000242 EB1C D020 0004          00000020    260+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
@@ -494,7 +494,7 @@ rd_kafka_interceptor_add_on_thread_exit
 00000288 C4C3C3                              307+         dc cl3'DCC'                                                    02-DCCCA
                                                                                                                            Page   11 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 0000028B 01                                  308+         dc xl1'01' format one                                          02-DCCCA
 0000028C 00000000                            309+         dc a(0)                                                        02-DCCCA
 00000290 00000000000002FA                    310+         dc ad(@PER_1081)                                               02-DCCCA
@@ -549,7 +549,7 @@ rd_kafka_interceptor_add_on_thread_exit
 0000032E 4770 C09A               0000036A    359          BNZ   @L38
                                                                                                                            Page   12 
   Active Usings: @REGION_1081_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000332                                     360 @L37     DS    0H
 00000332 E3F0 C108 0004          000003D8    361          LG    15,@lit_1081_8
 00000338 41F0 F020               00000020    362          LA    15,32(0,15)
@@ -604,7 +604,7 @@ rd_kafka_interceptor_add_on_thread_exit
                                              410 *
                                                                                                                            Page   13 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000003E0                00000000 00004510    411 @CODE    CSECT
                                              412 *
                                              413 *
@@ -659,7 +659,7 @@ rd_kafka_interceptor_add_on_thread_exit
 0000045C E3C0 D090 0004          00000090    461+         lg    12,18*8(0,13)       addr of DSAB                         01-DCCPR
                                                                                                                            Page   14 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000462 B904 002E                           462+         lgr   2,14                copy addr of our savearea            01-DCCPR
 00000466 E3B0 C018 0004          00000018    463+         lg    11,24(0,12)         get dvt address                      01-DCCPR
 0000046C A7EB 00B8               000000B8    464+         aghi  14,184              increase by frame size               01-DCCPR
@@ -714,7 +714,7 @@ rd_kafka_interceptor_add_on_thread_exit
                                              513 * * **** End of Epilogue
                                                                                                                            Page   15 
   Active Usings: @REGION_1935_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000508                                     514          DS    0D
 00000508 000000B8                            515 @FRAMESIZE_1935 DC F'184'
 0000050C 00000000
@@ -769,7 +769,7 @@ rd_kafka_interceptor_add_on_thread_exit
 00000563 08                                  563+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
                                                                                                                            Page   16 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000564 00                                  564+         dc bl.8'00000000'                                              02-DCCCA
 00000565 000000                              565+         dc al3(0)                                                      02-DCCCA
 00000568 0000000000000518                    566+         dc ad(@LNAME1936)                                              02-DCCCA
@@ -824,7 +824,7 @@ rd_kafka_interceptor_add_on_thread_exit
 00000608 05EF                                615          BALR  14,15
                                                                                                                            Page   17 
   Active Usings: @REGION_1936_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 0000060A                                     616 @@gen_label20 DS    0H
 0000060A B902 0014                           617          LTGR  1,4
 0000060E 4780 C0C8               00000648    618          BZ    @L631
@@ -879,7 +879,7 @@ rd_kafka_interceptor_add_on_thread_exit
 000006FC 05EF                                666          BALR  14,15
                                                                                                                            Page   18 
   Active Usings: @REGION_1936_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000006FE                                     667 @@gen_label24 DS    0H
 000006FE 47F0 C248               000007C8    668          B     @ret_lab_1936
                                              669 * ***   # 96 "C:\asgkafka\librdkafka\src\rdkafka_interceptor.c"
@@ -934,7 +934,7 @@ rd_kafka_interceptor_add_on_thread_exit
 000007BC 4110 D0A8               000000A8    718          LA    1,168(0,13)
                                                                                                                            Page   19 
   Active Usings: @REGION_1936_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000007C0 E3F0 C0C0 0004          00000640    719          LG    15,@lit_1936_21 ; rd_kafka_log0
 000007C6                                     720 @@gen_label29 DS    0H
 000007C6 05EF                                721          BALR  14,15
@@ -989,7 +989,7 @@ rd_kafka_interceptor_add_on_thread_exit
                                              769          lcla    &i
                                                                                                                            Page   20 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                              770 &$dccext(&$dccexti+1) setc    '&m'
                                              771 &i       seta    1
                                              772 .loop    aif    (&i gt &$dccexti).around
@@ -1044,7 +1044,7 @@ rd_kafka_interceptor_add_on_thread_exit
                                              821 * ***           method             = rd_calloc(1, sizeof(*method));
                                                                                                                            Page   21 
   Active Usings: @REGION_1937_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000008C2 E548 D0B0 0001          000000B0    822          MVGHI 176(13),1
 000008C8 E548 D0B8 0018          000000B8    823          MVGHI 184(13),24
 000008CE 4110 D0B0               000000B0    824          LA    1,176(0,13)
@@ -1099,7 +1099,7 @@ rd_kafka_interceptor_add_on_thread_exit
 00000970 00000000000002D0                    871 @lit_1937_30 DC AD(rd_strdup)
                                                                                                                            Page   22 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                              872          DROP  12
                                              873 *
                                              874 *   DSECT for automatic variables in "rd_kafka_interceptor_method_new"
@@ -1154,7 +1154,7 @@ rd_kafka_interceptor_add_on_thread_exit
 000009D8 00000000000009A0                    922+         dc ad($eye0020)                                                02-DCCCA
                                                                                                                            Page   23 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000009E0 0000000000000000                    923+         dc ad(0)                                                       02-DCCCA
 000009E8                                     924+         ds    0d                                                       01-DCCPR
 000009E8                                     925+rd_kafka_interceptor_method_cmp ds 0d                                   01-DCCPR
@@ -1209,7 +1209,7 @@ rd_kafka_interceptor_add_on_thread_exit
                                              974 *   DSECT for automatic variables in "rd_kafka_interceptor_method_cmp"
                                                                                                                            Page   24 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                              975 *      (FUNCTION #1938)
                                              976 *
 00000000                00000000 000000A8    977 @AUTO#rd_kafka_interceptor_method_cmp DSECT
@@ -1264,7 +1264,7 @@ rd_kafka_interceptor_add_on_thread_exit
 00000AC8                                    1025+rd_kafka_interceptor_method_add ds 0d                                   01-DCCPR
                                                                                                                            Page   25 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000AC8                                    1026+@REGION_1939_1 ds 0h                                                    01-DCCPR
 00000AC8 EBEC D008 0024          00000008   1027+         stmg  14,12,8(13)                         Save regs            01-DCCPR
 00000ACE E3E0 D088 0004          00000088   1028+         lg    14,17*8(0,13)       addr of next savearea                01-DCCPR
@@ -1319,7 +1319,7 @@ rd_kafka_interceptor_add_on_thread_exit
 00000B5E B902 00FF                          1077          LTGR  15,15
                                                                                                                            Page   26 
   Active Usings: @REGION_1939_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000B62 4780 C0D0               00000B98   1078          BZ    @L641
                                             1079 * ***                   return RD_KAFKA_RESP_ERR__CONFLICT;
 00000B66 A7F9 FF53               0000FF53   1080          LGHI  15,-173     ; -173
@@ -1374,7 +1374,7 @@ rd_kafka_interceptor_add_on_thread_exit
 00000C10 E3F0 F018 0004          00000018   1128+         lg  15,24(0,15)         load dvt address                       01-DCCEP
                                                                                                                            Page   27 
   Active Usings: @REGION_1939_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000C16 47F0 F040               00000040   1129+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
                                             1130+* End of Epilog
                                             1131 * * **** End of Epilogue
@@ -1429,7 +1429,7 @@ rd_kafka_interceptor_add_on_thread_exit
 00000C6A 03                                 1178+         dc al1(3)                                                      02-DCCCA
                                                                                                                            Page   28 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000C6B 08                                 1179+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
 00000C6C 00                                 1180+         dc bl.8'00000000'                                              02-DCCCA
 00000C6D 000000                             1181+         dc al3(0)                                                      02-DCCCA
@@ -1484,7 +1484,7 @@ rd_kafka_interceptor_add_on_thread_exit
 00000D0C 05EF                               1230          BALR  14,15
                                                                                                                            Page   29 
   Active Usings: @REGION_1934_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000D0E                                    1231 @@gen_label51 DS    0H
                                             1232 * ***           rd_list_destroy(&conf->interceptors.on_new);
 00000D0E 41F0 2338               00000338   1233          LA    15,824(0,2)
@@ -1539,7 +1539,7 @@ rd_kafka_interceptor_add_on_thread_exit
 00000D86 41F0 2428               00000428   1282          LA    15,1064(0,2)
                                                                                                                            Page   30 
   Active Usings: @REGION_1934_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000D8A E3F0 D0A8 0024          000000A8   1283          STG   15,168(0,13)
 00000D90 4110 D0A8               000000A8   1284          LA    1,168(0,13)
 00000D94 B904 00F3                          1285          LGR   15,3
@@ -1594,7 +1594,7 @@ rd_kafka_interceptor_add_on_thread_exit
 00000E02 E3C0 B010 0021          00000010   1334+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
                                                                                                                            Page   31 
   Active Usings: @REGION_1934_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000E08 E3E0 D008 0004          00000008   1335+         lg  14,8(0,13)          load up return address                 01-DCCEP
 00000E0E EB1C D020 0004          00000020   1336+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
 00000E14 078E                               1337+         bcr 8,14                if same dsab, just return              01-DCCEP
@@ -1649,7 +1649,7 @@ rd_kafka_interceptor_add_on_thread_exit
 00000E6B 01                                 1384+         dc xl1'01' format one                                          02-DCCCA
                                                                                                                            Page   32 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000E6C 00000000                           1385+         dc a(0)                                                        02-DCCCA
 00000E70 0000000000000EDA                   1386+         dc ad(@PER_1940)                                               02-DCCCA
 00000E78 00000000000000C0                   1387+         dc ad(192)                                                     02-DCCCA
@@ -1704,7 +1704,7 @@ rd_kafka_interceptor_add_on_thread_exit
 00000F28 5010 F018               00000018   1436          ST    1,24(0,15)
                                                                                                                            Page   33 
   Active Usings: @REGION_1940_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             1437 * ***           rd_list_init(&conf->interceptors.on_conf_dup, 0,
                                             1438 * ***                        rd_kafka_interceptor_method_destroy)
                                             1439 * ***                   ->rl_flags |= 0x8;
@@ -1759,7 +1759,7 @@ rd_kafka_interceptor_add_on_thread_exit
 00000FC2                                    1488 @@gen_label82 DS    0H
                                                                                                                            Page   34 
   Active Usings: @REGION_1940_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000FC2 05EF                               1489          BALR  14,15
 00000FC4                                    1490 @@gen_label83 DS    0H
 00000FC4 5810 F018               00000018   1491          L     1,24(0,15)
@@ -1814,7 +1814,7 @@ rd_kafka_interceptor_add_on_thread_exit
                                             1540 * ***           rd_list_init(&conf->interceptors.on_commit, 0,
                                                                                                                            Page   35 
   Active Usings: @REGION_1940_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             1541 * ***                        rd_kafka_interceptor_method_destroy)
                                             1542 * ***                   ->rl_flags |= 0x8;
 00001054 41F0 2400               00000400   1543          LA    15,1024(0,2)
@@ -1869,7 +1869,7 @@ rd_kafka_interceptor_add_on_thread_exit
 000010E8 E330 D0B8 0024          000000B8   1592          STG   3,184(0,13)
                                                                                                                            Page   36 
   Active Usings: @REGION_1940_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000010EE 4110 D0A8               000000A8   1593          LA    1,168(0,13)
 000010F2 B904 00F4                          1594          LGR   15,4
 000010F6                                    1595 @@gen_label96 DS    0H
@@ -1924,7 +1924,7 @@ rd_kafka_interceptor_add_on_thread_exit
 00001182 E3F0 D010 0024          00000010   1644+         stg 15,16(0,13)         save return code                       01-DCCEP
                                                                                                                            Page   37 
   Active Usings: @REGION_1940_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00001188 E300 D018 0024          00000018   1645+         stg 0,24(0,13)          save more return code                  01-DCCEP
 0000118E E3F0 D090 0004          00000090   1646+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
 00001194 E3F0 F018 0004          00000018   1647+         lg  15,24(0,15)         load dvt address                       01-DCCEP
@@ -1979,7 +1979,7 @@ rd_kafka_interceptor_add_on_thread_exit
 000011EB 01                                 1693+         dc xl1'01' format one                                          02-DCCCA
                                                                                                                            Page   38 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000011EC 00000000                           1694+         dc a(0)                                                        02-DCCCA
 000011F0 000000000000125A                   1695+         dc ad(@PER_1931)                                               02-DCCCA
 000011F8 00000000000000D0                   1696+         dc ad(208)                                                     02-DCCCA
@@ -2034,7 +2034,7 @@ rd_kafka_interceptor_add_on_thread_exit
 000012A8 E3F0 D0C8 0024          000000C8   1745          STG   15,200(0,13)
                                                                                                                            Page   39 
   Active Usings: @REGION_1931_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000012AE 4110 D0B0               000000B0   1746          LA    1,176(0,13)
 000012B2 E3F0 C0F0 0004          00001320   1747          LG    15,@lit_1931_86 ; __assert
 000012B8                                    1748 @@gen_label103 DS    0H
@@ -2089,7 +2089,7 @@ rd_kafka_interceptor_add_on_thread_exit
                                             1796 *
                                                                                                                            Page   40 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             1797 *
                                             1798 * ....... start of rd_kafka_conf_interceptor_dtor
                                             1799 rd_kafka_conf_interceptor_dtor ALIAS X'99846D92818692816D839695866D8995*
@@ -2144,7 +2144,7 @@ rd_kafka_interceptor_add_on_thread_exit
 000013C2 B904 002E                          1846+         lgr   2,14                copy addr of our savearea            01-DCCPR
                                                                                                                            Page   41 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000013C6 E3B0 C018 0004          00000018   1847+         lg    11,24(0,12)         get dvt address                      01-DCCPR
 000013CC A7EB 00D0               000000D0   1848+         aghi  14,208              increase by frame size               01-DCCPR
 000013D0 E3E0 C020 0021          00000020   1849+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
@@ -2199,7 +2199,7 @@ rd_kafka_interceptor_add_on_thread_exit
 0000145E E3B0 C018 0004          00000018   1898+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
                                                                                                                            Page   42 
   Active Usings: @REGION_1932_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00001464 E3C0 B010 0021          00000010   1899+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
 0000146A E3E0 D008 0004          00000008   1900+         lg  14,8(0,13)          load up return address                 01-DCCEP
 00001470 EB1C D020 0004          00000020   1901+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
@@ -2254,7 +2254,7 @@ rd_kafka_interceptor_add_on_thread_exit
                                             1947 &$dccexti seta &$dccexti+1
                                                                                                                            Page   43 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             1948          extrn  &m
                                             1949 .getout  anop
                                             1950          mend
@@ -2309,7 +2309,7 @@ rd_kafka_interceptor_add_on_thread_exit
 00001578 E55C 6004 0001          00000004   1999          CHSI  4(6),1
                                                                                                                            Page   44 
   Active Usings: @REGION_1933_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 0000157E 4780 C08E               000015BE   2000          BE    @L647
 00001582                                    2001 @L646    DS    0H
 00001582 E3F0 C0B0 0004          000015E0   2002          LG    15,@lit_1933_94
@@ -2364,7 +2364,7 @@ rd_kafka_interceptor_add_on_thread_exit
                                             2050 * ***                           size_t flen = __strlen(filter[fi]);
                                                                                                                            Page   45 
   Active Usings: @REGION_1933_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 0000161C E370 6030 0004          00000030   2051          LG    7,48(0,6)   ; filter
 00001622 EB81 0003 000D          00000003   2052          SLLG  8,1,3(0)    ; *0x8
 00001628 E378 7000 0004          00000000   2053          LG    7,0(8,7)
@@ -2419,7 +2419,7 @@ rd_kafka_interceptor_add_on_thread_exit
                                             2102 * ***                           continue;
                                                                                                                            Page   46 
   Active Usings: @REGION_1933_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000016C4                                    2103 @L657    DS    0H
                                             2104 * ***
                                             2105 * ***
@@ -2474,7 +2474,7 @@ rd_kafka_interceptor_add_on_thread_exit
                                             2154+* End of Epilog
                                                                                                                            Page   47 
   Active Usings: @REGION_1933_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             2155 * * **** End of Epilogue
                                             2156          DROP  12
                                             2157 *
@@ -2529,7 +2529,7 @@ rd_kafka_interceptor_add_on_thread_exit
 000017A0 00000000000000E0                   2204+         dc ad(224)                                                     02-DCCCA
                                                                                                                            Page   48 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000017A8 0000000000000000                   2205+         dc ad(0)                                                       02-DCCCA
 000017B0 0000000000001000                   2206+         dc ad(4096)                                                    02-DCCCA
 000017B8 20                                 2207+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
@@ -2584,7 +2584,7 @@ rd_kafka_interceptor_add_on_thread_exit
                                             2255 * ***                                               name, val, errstr,\
                                                                                                                            Page   49 
   Active Usings: @REGION_1917_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             2256 *  errstr_size,
                                             2257 * ***                                               method->ic_opaque)\
                                             2258 * ;
@@ -2639,7 +2639,7 @@ rd_kafka_interceptor_add_on_thread_exit
 000018E6                                    2307 @@gen_label136 DS    0H
                                                                                                                            Page   50 
   Active Usings: @REGION_1917_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000018E6                                    2308 @L663    DS    0H
                                             2309 * ***                   return res;
 000018E6 B914 00F4                          2310          LGFR  15,4
@@ -2694,7 +2694,7 @@ rd_kafka_interceptor_add_on_thread_exit
 000000A8                                    2359 rd_kafka_interceptors_on_conf_set#res#1 DS 1F ; res
                                                                                                                            Page   51 
   Active Usings: None
-D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000000AC                000000AC 000000A8   2360          ORG   @AUTO#rd_kafka_interceptors_on_conf_set+168
 000000A8                                    2361 rd_kafka_interceptors_on_conf_set#i#0 DS 1F ; i
                                             2362 *
@@ -2749,7 +2749,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 000019D8                                    2409+         ds    0d                                                       01-DCCPR
                                                                                                                            Page   52 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             2410+         entry rd_kafka_interceptors_on_conf_dup                        01-DCCPR
 000019D8                                    2411+rd_kafka_interceptors_on_conf_dup ds 0d                                 01-DCCPR
 000019D8                                    2412+@REGION_1918_1 ds 0h                                                    01-DCCPR
@@ -2804,7 +2804,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             2460 * ***           }
                                                                                                                            Page   53 
   Active Usings: @REGION_1918_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00001A80 A72A 0001               00000001   2461          AHI   2,1
 00001A84                                    2462 @L665    DS    0H
 00001A84 E3F0 3008 0004          00000008   2463          LG    15,8(0,3)   ; old_conf
@@ -2859,7 +2859,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                                                 599838597A39699A26D96956D839695866D8485A2A39996A8'
                                                                                                                            Page   54 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00001AFA                                    2512 @LNAME1919 DS  0H
 00001AFA 00000025                           2513          DC    X'00000025'
 00001AFE 99846D9281869281                   2514          DC    C'rd_kafka_interceptors_on_conf_de'
@@ -2914,7 +2914,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00001B90 E3E0 C020 0021          00000020   2562+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
                                                                                                                            Page   55 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00001B96 4720 B020               00000020   2563+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
 00001B9A                                    2564+@PER_1919 ds   0h                                                       01-DCCPR
 00001B9A EBDE 2080 0024          00000080   2565+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
@@ -2969,7 +2969,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             2613+* Epilog
                                                                                                                            Page   56 
   Active Usings: @REGION_1919_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00001C1A D707 D088 D088 00000088 00000088   2614+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
 00001C20 E3D0 D080 0004          00000080   2615+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
 00001C26 E3C0 D090 0004          00000090   2616+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
@@ -3024,7 +3024,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             2663          extrn  &m
                                                                                                                            Page   57 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             2664 .getout  anop
                                             2665          mend
 00001C88                                    2666+$eye0050    ds    0d                                                    02-DCCCA
@@ -3079,7 +3079,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00001D20 000002D8                           2715 @FRAMESIZE_1920 DC F'728'
                                                                                                                            Page   58 
   Active Usings: @REGION_1920_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00001D24 00000000
 00001D28 0000000000000580                   2716 @lit_1920_116 DC AD(rd_kafka_interceptor_failed)
 00001D30 000000000000487A                   2717 @lit_1920_115 DC AD(@strings@)
@@ -3134,7 +3134,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00001DCA B914 00F2                          2766          LGFR  15,2
                                                                                                                            Page   59 
   Active Usings: @REGION_1920_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00001DCE E3F0 D2B0 0024          000002B0   2767          STG   15,688(0,13)
 00001DD4 4110 D2A8               000002A8   2768          LA    1,680(0,13)
 00001DD8 E3F0 C068 0004          00001D38   2769          LG    15,@lit_1920_117 ; rd_list_elem
@@ -3189,7 +3189,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00001E34 00000020                           2817          DC    X'00000020'
                                                                                                                            Page   60 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00001E38 99846D9281869281                   2818          DC    C'rd_kafka_interceptors_on_destroy'
 00001E58 00                                 2819          DC    X'00'
                                             2820 rd_kafka_interceptors_on_destroy DCCPRLG CINDEX=1921,BASER=12,FRAME=224*
@@ -3244,7 +3244,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00001ED2 EBDE 2080 0024          00000080   2868+         stmg  13,14,16*8(2)       back/forwards sa                     01-DCCPR
                                                                                                                            Page   61 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00001ED8 E3C0 2090 0024          00000090   2869+         stg   12,18*8(0,2)        dsab sa                              01-DCCPR
 00001EDE B904 00D2                          2870+         lgr   13,2                set real frame pointer               01-DCCPR
 00001EE2 B904 00CF                          2871+         lgr   12,15               set base reg                         01-DCCPR
@@ -3299,7 +3299,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00001F6E                                    2919 @@gen_label162 DS    0H
                                                                                                                            Page   62 
   Active Usings: @REGION_1921_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00001F6E                                    2920 @L681    DS    0H
                                             2921 * ***           }
 00001F6E A72A 0001               00000001   2922          AHI   2,1
@@ -3354,7 +3354,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             2971 *
                                                                                                                            Page   63 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             2972 * ....... start of rd_kafka_interceptors_on_send
                                             2973 rd_kafka_interceptors_on_send ALIAS X'99846D92818692816D8995A3859983859*
                                                                 7A39699A26D96956DA2859584'
@@ -3409,7 +3409,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00002066 E3B0 C018 0004          00000018   3021+         lg    11,24(0,12)         get dvt address                      01-DCCPR
                                                                                                                            Page   64 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 0000206C A7EB 00E0               000000E0   3022+         aghi  14,224              increase by frame size               01-DCCPR
 00002070 E3E0 C020 0021          00000020   3023+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
 00002076 4720 B020               00000020   3024+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
@@ -3464,7 +3464,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00002100 E310 D0C0 0024          000000C0   3072          STG   1,192(0,13)
                                                                                                                            Page   65 
   Active Usings: @REGION_1922_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00002106 B914 00FF                          3073          LGFR  15,15
 0000210A E3F0 D0C8 0024          000000C8   3074          STG   15,200(0,13)
 00002110 E3F0 5008 0004          00000008   3075          LG    15,8(0,5)   ; rkmessage
@@ -3519,7 +3519,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             3124 *
                                                                                                                            Page   66 
   Active Usings: None
-D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000000                00000000 000000AC   3125 @AUTO#rd_kafka_interceptors_on_send DSECT
 00000000                                    3126          DS    XL168
 000000A8                                    3127 rd_kafka_interceptors_on_send#err#1 DS 1F ; err
@@ -3574,7 +3574,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00002208 00000000000021A6                   3173+         dc ad(@LNAME1923)                                              02-DCCCA
                                                                                                                            Page   67 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00002210                                    3174+         ds 0d                                                          02-DCCCA
 00002210 00000000000021D8                   3175+         dc ad($eye0059)                                                02-DCCCA
 00002218 0000000000000000                   3176+         dc ad(0)                                                       02-DCCCA
@@ -3629,7 +3629,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 000022AE E3F0 4000 0004          00000000   3224          LG    15,0(0,4)   ; method
                                                                                                                            Page   68 
   Active Usings: @REGION_1923_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000022B4 4110 D0B0               000000B0   3225          LA    1,176(0,13)
 000022B8                                    3226 @@gen_label174 DS    0H
 000022B8 05EF                               3227          BALR  14,15
@@ -3684,7 +3684,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 0000233A E3C0 D090 0004          00000090   3276+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
                                                                                                                            Page   69 
   Active Usings: @REGION_1923_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00002340 E3B0 C018 0004          00000018   3277+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
 00002346 E3C0 B010 0021          00000010   3278+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
 0000234C E3E0 D008 0004          00000008   3279+         lg  14,8(0,13)          load up return address                 01-DCCEP
@@ -3739,7 +3739,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             3325 &$dccexti seta &$dccexti+1
                                                                                                                            Page   70 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             3326          extrn  &m
                                             3327 .getout  anop
                                             3328          mend
@@ -3794,7 +3794,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00002454 00000000
                                                                                                                            Page   71 
   Active Usings: @REGION_1924_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00002458 0000000000002220                   3377 @lit_1924_134 DC AD(rd_kafka_interceptors_on_acknowledgement)
 00002460                                    3378 @L692    DS    0H
                                             3379 * ***                   if (force_err)
@@ -3849,7 +3849,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             3427 *
                                                                                                                            Page   72 
   Active Usings: None
-D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000000                00000000 000000A8   3428 @AUTO#rd_kafka_interceptors_on_acknowledgement_queue DSECT
 00000000                                    3429          DS    XL168
                                             3430 *
@@ -3904,7 +3904,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             3477+         entry rd_kafka_interceptors_on_consume                         01-DCCPR
                                                                                                                            Page   73 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00002550                                    3478+rd_kafka_interceptors_on_consume ds 0d                                  01-DCCPR
 00002550                                    3479+@REGION_1925_1 ds 0h                                                    01-DCCPR
 00002550 EBEC D008 0024          00000008   3480+         stmg  14,12,8(13)                         Save regs            01-DCCPR
@@ -3959,7 +3959,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 000025EC 4780 C0DE               0000262E   3528          BZ    @L701
                                                                                                                            Page   74 
   Active Usings: @REGION_1925_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             3529 * ***                           rd_kafka_interceptor_failed(rk, method\
                                             3530 * ,
                                             3531 * ***                                                       "on_consum\
@@ -4014,7 +4014,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00002690 E300 D018 0024          00000018   3580+         stg 0,24(0,13)          save more return code                  01-DCCEP
                                                                                                                            Page   75 
   Active Usings: @REGION_1925_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00002696 E3F0 D090 0004          00000090   3581+         lg  15,18*8(0,13)       load dsab address                      01-DCCEP
 0000269C E3F0 F018 0004          00000018   3582+         lg  15,24(0,15)         load dvt address                       01-DCCEP
 000026A2 47F0 F040               00000040   3583+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
@@ -4069,7 +4069,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 000026E8 0000000000000000                   3630+         dc ad(0)                                                       02-DCCCA
                                                                                                                            Page   76 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000026F0 0000000000001000                   3631+         dc ad(4096)                                                    02-DCCCA
 000026F8 20                                 3632+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
 000026F9 03                                 3633+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
@@ -4124,7 +4124,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             3681 * );
                                                                                                                            Page   77 
   Active Usings: @REGION_1926_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00002788 E330 D0B0 0024          000000B0   3682          STG   3,176(0,13)
 0000278E E3F0 5008 0004          00000008   3683          LG    15,8(0,5)   ; offsets
 00002794 E3F0 D0B8 0024          000000B8   3684          STG   15,184(0,13)
@@ -4179,7 +4179,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             3733 * * **** Start of Epilogue
                                                                                                                            Page   78 
   Active Usings: @REGION_1926_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             3734          DCCEPIL
 00002826                                    3735+         ds 0h                                                          01-DCCEP
                                             3736+* Epilog
@@ -4234,7 +4234,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             3783          aif    ('&$dccext(&i)' eq '&m').getout
                                                                                                                            Page   79 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             3784 &i       seta    &i+1
                                             3785          ago     .loop
                                             3786 .around  anop
@@ -4289,7 +4289,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             3835 * ceptors.on_request_sent, i)) ; i++) {
                                                                                                                            Page   80 
   Active Usings: @REGION_1927_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00002928 A728 0000               00000000   3836          LHI   2,0         ; 0
 0000292C 47F0 C11E               000029FE   3837          B     @L708
 00002930                                    3838          DS    0D
@@ -4344,7 +4344,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             3886 * void *)0), ((void *)0));
                                                                                                                            Page   81 
   Active Usings: @REGION_1927_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000029C8 EB34 D0B0 0024          000000B0   3887          STMG  3,4,176(13)
 000029CE E310 C060 0004          00002940   3888          LG    1,@lit_1927_147
 000029D4 4110 1120               00000120   3889          LA    1,288(0,1)
@@ -4399,7 +4399,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             3938 *   DSECT for automatic variables in "rd_kafka_interceptors_on_request
                                                                                                                            Page   82 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             3939 *           _sent"
                                             3940 *      (FUNCTION #1927)
                                             3941 *
@@ -4454,7 +4454,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00002AD3 08                                 3987+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
                                                                                                                            Page   83 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00002AD4 00                                 3988+         dc bl.8'00000000'                                              02-DCCCA
 00002AD5 000000                             3989+         dc al3(0)                                                      02-DCCCA
 00002AD8 0000000000002A72                   3990+         dc ad(@LNAME1928)                                              02-DCCCA
@@ -4509,7 +4509,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             4038 * id,
                                                                                                                            Page   84 
   Active Usings: @REGION_1928_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             4039 * ***                                                           ApiKey\
                                             4040 * ,
                                             4041 * ***                                                           ApiVer\
@@ -4564,7 +4564,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00002C0A E3F0 D0C8 0024          000000C8   4090          STG   15,200(0,13)
                                                                                                                            Page   85 
   Active Usings: @REGION_1928_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00002C10 D70F D0D0 D0D0 000000D0 000000D0   4091          XC    208(16,13),208(13)
 00002C16 4110 D0B0               000000B0   4092          LA    1,176(0,13)
 00002C1A E3F0 C058 0004          00002B48   4093          LG    15,@lit_1928_153 ; rd_kafka_interceptor_failed
@@ -4619,7 +4619,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 000000A8                                    4142 rd_kafka_interceptors_on_response_received#ic_err#1 DS 1F ; ic_err
                                                                                                                            Page   86 
   Active Usings: None
-D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000000AC                000000AC 000000A8   4143          ORG   @AUTO#rd_kafka_interceptors_on_response_received+168
 000000A8                                    4144 rd_kafka_interceptors_on_response_received#i#0 DS 1F ; i
                                             4145 *
@@ -4674,7 +4674,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00002D10                                    4192+         ds    0d                                                       01-DCCPR
                                                                                                                            Page   87 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             4193+         entry rd_kafka_interceptors_on_thread_start                    01-DCCPR
 00002D10                                    4194+rd_kafka_interceptors_on_thread_start ds 0d                             01-DCCPR
 00002D10                                    4195+@REGION_1929_1 ds 0h                                                    01-DCCPR
@@ -4729,7 +4729,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00002DA4 E3F0 D0C0 0024          000000C0   4244          STG   15,192(0,13)
                                                                                                                            Page   88 
   Active Usings: @REGION_1929_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00002DAA E3F0 4010 0004          00000010   4245          LG    15,16(0,4)
 00002DB0 E3F0 D0C8 0024          000000C8   4246          STG   15,200(0,13)
 00002DB6 E3F0 4000 0004          00000000   4247          LG    15,0(0,4)   ; method
@@ -4784,7 +4784,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00002E30 E3D0 D080 0004          00000080   4296+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
                                                                                                                            Page   89 
   Active Usings: @REGION_1929_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00002E36 E3C0 D090 0004          00000090   4297+         lg  12,18*8(0,13)       get the DSAB ptr                       01-DCCEP
 00002E3C E3B0 C018 0004          00000018   4298+         lg  11,24(0,12)         fetch dvt                              01-DCCEP
 00002E42 E3C0 B010 0021          00000010   4299+         clg 12,16(0,11)         does the dsab change?                  01-DCCEP
@@ -4839,7 +4839,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             4346 &$dccexti seta &$dccexti+1
                                                                                                                            Page   90 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             4347          extrn  &m
                                             4348 .getout  anop
                                             4349          mend
@@ -4894,7 +4894,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00002F3A 47F0 C0EE               00002FD6   4398          B     @L723
                                                                                                                            Page   91 
   Active Usings: @REGION_1930_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00002F40                                    4399          DS    0D
 00002F40 000000E0                           4400 @FRAMESIZE_1930 DC F'224'
 00002F44 00000000                           4401 @lit_1930_163 DC Q(rd_kafka_thread_name)
@@ -4949,7 +4949,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00002FD2 A72A 0001               00000001   4450          AHI   2,1
                                                                                                                            Page   92 
   Active Usings: @REGION_1930_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00002FD6                                    4451 @L723    DS    0H
 00002FD6 41F0 36B0               000006B0   4452          LA    15,1712(0,3)
 00002FDA E3F0 D0B0 0024          000000B0   4453          STG   15,176(0,13)
@@ -5004,7 +5004,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             4502 rd_kafka_conf_interceptor_add_on_conf_set ALIAS X'99846D92818692816D839*
                                                                                                                            Page   93 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                                                 695866D8995A38599838597A396996D8184846D96956D839695866DA*
                                                                 285A3'
 0000304A                                    4503 @LNAME670 DS   0H
@@ -5059,7 +5059,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 000030D6 E3B0 C018 0004          00000018   4551+         lg    11,24(0,12)         get dvt address                      01-DCCPR
                                                                                                                            Page   94 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000030DC A7EB 00C8               000000C8   4552+         aghi  14,200              increase by frame size               01-DCCPR
 000030E0 E3E0 C020 0021          00000020   4553+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
 000030E6 4720 B020               00000020   4554+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
@@ -5114,7 +5114,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00003190                                    4603          DS    0D
                                                                                                                            Page   95 
   Active Usings: @REGION_670_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00003190 000000C8                           4604 @FRAMESIZE_670 DC F'200'
 00003194 00000000
 00003198 0000000000000AC8                   4605 @lit_670_168 DC AD(rd_kafka_interceptor_method_add)
@@ -5169,7 +5169,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 000031F8 20                                 4651+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
                                                                                                                            Page   96 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000031F9 03                                 4652+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
 000031FA 03                                 4653+         dc al1(3)                                                      02-DCCCA
 000031FB 08                                 4654+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
@@ -5224,7 +5224,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             4703          DCCEPIL
                                                                                                                            Page   97 
   Active Usings: @REGION_671_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 0000329A                                    4704+         ds 0h                                                          01-DCCEP
                                             4705+* Epilog
 0000329A D707 D088 D088 00000088 00000088   4706+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
@@ -5279,7 +5279,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             4751 &i       seta    1
                                                                                                                            Page   98 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             4752 .loop    aif    (&i gt &$dccexti).around
                                             4753          aif    ('&$dccext(&i)' eq '&m').getout
                                             4754 &i       seta    &i+1
@@ -5334,7 +5334,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             4803 * ***                                                  ic_opaque);
                                                                                                                            Page   99 
   Active Usings: @REGION_672_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000033B6 E3F0 1000 0004          00000000   4804          LG    15,0(0,1)   ; conf
 000033BC 41F0 F310               00000310   4805          LA    15,784(0,15)
 000033C0 E3F0 D0A8 0024          000000A8   4806          STG   15,168(0,13)
@@ -5389,7 +5389,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             4854 *
                                                                                                                            Page  100 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             4855 * ....... start of rd_kafka_conf_interceptor_add_on_new
                                             4856 rd_kafka_conf_interceptor_add_on_new ALIAS X'99846D92818692816D83969586*
                                                                 6D8995A38599838597A396996D8184846D96956D9585A6'
@@ -5444,7 +5444,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 000034E2 B904 002E                          4904+         lgr   2,14                copy addr of our savearea            01-DCCPR
                                                                                                                            Page  101 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000034E6 E3B0 C018 0004          00000018   4905+         lg    11,24(0,12)         get dvt address                      01-DCCPR
 000034EC A7EB 00C8               000000C8   4906+         aghi  14,200              increase by frame size               01-DCCPR
 000034F0 E3E0 C020 0021          00000020   4907+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
@@ -5499,7 +5499,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             4956 * * **** End of Epilogue
                                                                                                                            Page  102 
   Active Usings: @REGION_673_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000035A0                                    4957          DS    0D
 000035A0 000000C8                           4958 @FRAMESIZE_673 DC F'200'
 000035A4 00000000
@@ -5554,7 +5554,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00003600 20                                 5005+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
                                                                                                                            Page  103 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00003601 03                                 5006+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
 00003602 03                                 5007+         dc al1(3)                                                      02-DCCCA
 00003603 08                                 5008+         dc al.4(0000),bl.4'1000'                                       02-DCCCA
@@ -5609,7 +5609,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 000036B2                                    5057 @@gen_label244 DS    0H
                                                                                                                            Page  104 
   Active Usings: @REGION_674_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000036B2                                    5058 @L728    DS    0H
                                             5059 * ***           return rd_kafka_interceptor_method_add(&rk->rk_conf.in\
                                             5060 * terceptors.on_destroy,
@@ -5664,7 +5664,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             5108 *      (FUNCTION #674)
                                                                                                                            Page  105 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             5109 *
 00000000                00000000 000000A8   5110 @AUTO#rd_kafka_interceptor_add_on_destroy DSECT
 00000000                                    5111          DS    XL168
@@ -5719,7 +5719,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 000037D0                                    5158+         ds    0d                                                       01-DCCPR
                                                                                                                            Page  106 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             5159+         entry rd_kafka_interceptor_add_on_send                         01-DCCPR
 000037D0                                    5160+rd_kafka_interceptor_add_on_send ds 0d                                  01-DCCPR
 000037D0                                    5161+@REGION_675_1 ds 0h                                                     01-DCCPR
@@ -5774,7 +5774,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00003872 E3F0 D0B0 0024          000000B0   5210          STG   15,176(0,13)
                                                                                                                            Page  107 
   Active Usings: @REGION_675_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00003878 E3F0 2010 0004          00000010   5211          LG    15,16(0,2)  ; on_send
 0000387E E3F0 D0B8 0024          000000B8   5212          STG   15,184(0,13)
 00003884 E3F0 2018 0004          00000018   5213          LG    15,24(0,2)  ; ic_opaque
@@ -5829,7 +5829,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                                                 995A38599838597A396996D8184846D96956D8183929596A69385848*
                                                                                                                            Page  108 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                                                 785948595A3'
 00003910                                    5261 @LNAME676 DS   0H
 00003910 0000002B                           5262          DC    X'0000002B'
@@ -5884,7 +5884,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 000039A4 A7EB 00C8               000000C8   5310+         aghi  14,200              increase by frame size               01-DCCPR
                                                                                                                            Page  109 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000039A8 E3E0 C020 0021          00000020   5311+         clg   14,32(0,12)  Will this DSAB hold this stack frame?       01-DCCPR
 000039AE 4720 B020               00000020   5312+         bc    2,32(0,11)          goto prolog expansion                01-DCCPR
 000039B2                                    5313+@PER_676 ds    0h                                                       01-DCCPR
@@ -5939,7 +5939,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00003A4C E3F0 C138 0004          00003AC0   5362          LG    15,@lit_676_192 ; rd_kafka_interceptor_method_add
                                                                                                                            Page  110 
   Active Usings: @REGION_676_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00003A52                                    5363 @@gen_label255 DS    0H
 00003A52 05EF                               5364          BALR  14,15
 00003A54                                    5365 @@gen_label256 DS    0H
@@ -5994,7 +5994,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00003AEF 00                                 5412          DC    X'00'
                                                                                                                            Page  111 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             5413 rd_kafka_interceptor_add_on_consume DCCPRLG CINDEX=677,BASER=12,FRAME=2*
                                                                 00,ENTRY=YES,ARCH=ZARCH,LNAMEADDR=@LNAME677
                                             5414          macro
@@ -6049,7 +6049,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00003B6E B904 00D2                          5463+         lgr   13,2                set real frame pointer               01-DCCPR
                                                                                                                            Page  112 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00003B72 B904 00CF                          5464+         lgr   12,15               set base reg                         01-DCCPR
                         00003B38            5465+         using @REGION_677_1,12                                         01-DCCPR
 00003B76 B904 0021                          5466          LGR   2,1         ; ptr to parm area
@@ -6104,7 +6104,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00003C08                                    5515+         ds 0h                                                          01-DCCEP
                                                                                                                            Page  113 
   Active Usings: @REGION_677_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             5516+* Epilog
 00003C08 D707 D088 D088 00000088 00000088   5517+         xc  17*8(8,13),17*8(13)             clear next DSA             01-DCCEP
 00003C0E E3D0 D080 0004          00000080   5518+         lg  13,16*8(0,13)       get the prev DSA                       01-DCCEP
@@ -6159,7 +6159,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             5564 &$dccext(&$dccexti+1) setc    '&m'
                                                                                                                            Page  114 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             5565 &i       seta    1
                                             5566 .loop    aif    (&i gt &$dccexti).around
                                             5567          aif    ('&$dccext(&i)' eq '&m').getout
@@ -6214,7 +6214,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             5616 * k_initialized"));
                                                                                                                            Page  115 
   Active Usings: @REGION_678_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00003D2A E330 2000 0004          00000000   5617          LG    3,0(0,2)    ; rk
 00003D30 A7F9 1098               00001098   5618          LGHI  15,4248     ; 4248
 00003D34 E3FF 3000 0012          00000000   5619          LT    15,0(15,3)  ; offset of rk_initialized in rd_kafka_s
@@ -6269,7 +6269,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00003DDC EB1C D020 0004          00000020   5668+         lmg 1,12,32(13)         load rest of regs                      01-DCCEP
                                                                                                                            Page  116 
   Active Usings: @REGION_678_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00003DE2 078E                               5669+         bcr 8,14                if same dsab, just return              01-DCCEP
 00003DE4 E3F0 D010 0024          00000010   5670+         stg 15,16(0,13)         save return code                       01-DCCEP
 00003DEA E300 D018 0024          00000018   5671+         stg 0,24(0,13)          save more return code                  01-DCCEP
@@ -6324,7 +6324,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             5716 &$dccexti seta &$dccexti+1
                                                                                                                            Page  117 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             5717          extrn  &m
                                             5718 .getout  anop
                                             5719          mend
@@ -6379,7 +6379,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00003EFC 41F0 F2C0               000002C0   5768          LA    15,704(0,15)
                                                                                                                            Page  118 
   Active Usings: @REGION_679_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00003F00 E3F0 D0A8 0024          000000A8   5769          STG   15,168(0,13)
 00003F06 E3F0 C128 0004          00003FC8   5770          LG    15,@lit_679_208
 00003F0C 4110 F094               00000094   5771          LA    1,148(0,15)
@@ -6434,7 +6434,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00003FB4 47F0 F040               00000040   5820+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
                                                                                                                            Page  119 
   Active Usings: @REGION_679_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             5821+* End of Epilog
                                             5822 * * **** End of Epilogue
 00003FB8                                    5823          DS    0D
@@ -6489,7 +6489,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 0000401B 01                                 5868+         dc xl1'01' format one                                          02-DCCCA
                                                                                                                            Page  120 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 0000401C 00000000                           5869+         dc a(0)                                                        02-DCCCA
 00004020 000000000000408A                   5870+         dc ad(@PER_680)                                                02-DCCCA
 00004028 00000000000000C8                   5871+         dc ad(200)                                                     02-DCCCA
@@ -6544,7 +6544,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 000040DC 41F0 F166               00000166   5920          LA    15,358(0,15)
                                                                                                                            Page  121 
   Active Usings: @REGION_680_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000040E0 E3F0 D0C0 0024          000000C0   5921          STG   15,192(0,13)
 000040E6 4110 D0A8               000000A8   5922          LA    1,168(0,13)
 000040EA E3F0 C120 0004          00004180   5923          LG    15,@lit_680_215 ; __assert
@@ -6599,7 +6599,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 0000417C 00000000
                                                                                                                            Page  122 
   Active Usings: @REGION_680_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00004180 0000000000000000                   5972 @lit_680_215 DC AD(__assert)
 00004188 000000000000487A                   5973 @lit_680_214 DC AD(@strings@)
 00004190 0000000000004510                   5974 @lit_680_213 DC AD(@DATA)
@@ -6654,7 +6654,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 000041F0 0000000000001000                   6020+         dc ad(4096)                                                    02-DCCCA
                                                                                                                            Page  123 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000041F8 20                                 6021+         dc bl.4'0010',bl.2'00',bl.2'00'                                02-DCCCA
 000041F9 03                                 6022+         dc bl.3'000',bl.1'0',bl.4'0011'                                02-DCCCA
 000041FA 03                                 6023+         dc al1(3)                                                      02-DCCCA
@@ -6709,7 +6709,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 000042A8 05EF                               6072          BALR  14,15
                                                                                                                            Page  124 
   Active Usings: @REGION_681_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000042AA                                    6073 @@gen_label279 DS    0H
 000042AA                                    6074 @L742    DS    0H
                                             6075 * ***           return rd_kafka_interceptor_method_add(&rk->rk_conf.in\
@@ -6764,7 +6764,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             6123          DROP  12
                                                                                                                            Page  125 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             6124 *
                                             6125 *   DSECT for automatic variables in "rd_kafka_interceptor_add_on_thre
                                             6126 *           ad_start"
@@ -6819,7 +6819,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 000043B5 000000                             6173+         dc al3(0)                                                      02-DCCCA
                                                                                                                            Page  126 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000043B8 0000000000004358                   6174+         dc ad(@LNAME682)                                               02-DCCCA
 000043C0                                    6175+         ds 0d                                                          02-DCCCA
 000043C0 0000000000004388                   6176+         dc ad($eye0121)                                                02-DCCCA
@@ -6874,7 +6874,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             6225 * ***                                                  (void *)on_thre\
                                                                                                                            Page  127 
   Active Usings: @REGION_682_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             6226 * ad_exit,
                                             6227 * ***                                                  ic_opaque);
                                             6228 * ***                                                  on_thread_exit,
@@ -6929,7 +6929,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00000000                                    6276          DS    XL168
                                                                                                                            Page  128 
   Active Usings: None
-D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             6277 *
 00004510                00000000 00004510   6278 @CODE    CSECT
                                             6279 @@STATIC ALIAS X'7C998492818692816D8995A38599838597A3969950'
@@ -6984,7 +6984,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00004652 F0                                 6328          DC    X'F0'                               0
                                                                                                                            Page  129 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00004653 00                                 6329          DC    1X'00'
 00004654 99846D9281869281                   6330 @@T7F9   DC    X'99846D92818692816D82A4866DA49784' rd.kafka.buf.upd
 00004664 81A385                             6331          DC    X'81A385'                           ate
@@ -7039,7 +7039,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00004848 81846DA2A38199A3                   6380          DC    X'81846DA2A38199A3'                 ad.start
                                                                                                                            Page  130 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00004850 0000                               6381          DC    2X'00'
 00004852 99846D9281869281                   6382 @@TB2F   DC    X'99846D92818692816D8995A385998385' rd.kafka.interce
 00004862 97A396996D818484                   6383          DC    X'97A396996D8184846D96956DA3889985' ptor.add.on.thre
@@ -7094,7 +7094,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00004B4A E396E3A79500C595                   6432          DC    X'E396E3A79500C59584E3A7950000E699' ToTxn.EndTxn..Wr
                                                                                                                            Page  131 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00004B5A 89A385E3A795D481                   6433          DC    X'89A385E3A795D48199928599A200E3A7' iteTxnMarkers.Tx
 00004B6A 95D68686A285A3C3                   6434          DC    X'95D68686A285A3C396949489A300C485' nOffsetCommit.De
 00004B7A A28399898285C183                   6435          DC    X'A28399898285C18393A20000C3998581' scribeAcls..Crea
@@ -7149,7 +7149,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00004E8A 879585840000C499                   6484          DC    X'879585840000C499818995D985A285A3' gned..DrainReset
                                                                                                                            Page  132 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00004E9A 0000C499818995C2                   6485          DC    X'0000C499818995C2A4949700D9858184' ..DrainBump.Read
 00004EAA A8D596A3C1839285                   6486          DC    X'A8D596A3C18392858400D9858184A800' yNotAcked.Ready.
 00004EBA C995E3998195A281                   6487          DC    X'C995E3998195A28183A389969500C285' InTransaction.Be
@@ -7204,7 +7204,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 0000505C 00000000                           6535          DC    Q(@@STATIC)
                                                                                                                            Page  133 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00005060 00000000                           6536          DC    X'00000000'
 00005064 00000101                           6537          DC    X'00000101'
 00005068 00000000                           6538          DC    X'00000000'
@@ -7259,7 +7259,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00005190 00000000                           6587          DC    4X'00'
                                                                                                                            Page  134 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00005194 00000000                           6588          DC    Q(@@STATIC)
 00005198 00000000                           6589          DC    X'00000000'
 0000519C 00000228                           6590          DC    X'00000228'
@@ -7314,7 +7314,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00005250 0D                                 6639          DC    XL1'D'
                                                                                                                            Page  135 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00005251 000000                             6640          DC    AL3(0)
 00005254 00000348                           6641          DC    AL4(840)
 00005258 00000000                           6642          DC    4X'00'
@@ -7369,7 +7369,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00005310 00000000                           6691          DC    X'00000000'
                                                                                                                            Page  136 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00005314 0000055C                           6692          DC    X'0000055C'
                                             6693 *
 00005318 0D                                 6694          DC    XL1'D'
@@ -7424,7 +7424,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 000053C8 00000000                           6743          DC    X'00000000'
                                                                                                                            Page  137 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000053CC 00000298                           6744          DC    X'00000298'
 000053D0 0000000000004510                   6745          DC    ADL8(@DATA)
 000053D8 00000000                           6746          DC    X'00000000'
@@ -7479,7 +7479,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00005484 00000578                           6795          DC    AL4(1400)
                                                                                                                            Page  138 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00005488 00000000                           6796          DC    4X'00'
 0000548C 00000000                           6797          DC    Q(@@STATIC)
 00005490 00000000                           6798          DC    X'00000000'
@@ -7534,7 +7534,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             6847 *
                                                                                                                            Page  139 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00005548 0D                                 6848          DC    XL1'D'
 00005549 000000                             6849          DC    AL3(0)
 0000554C 00000640                           6850          DC    AL4(1600)
@@ -7589,7 +7589,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00005600 0000000000004510                   6899          DC    ADL8(@DATA)
                                                                                                                            Page  140 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00005608 00000000                           6900          DC    X'00000000'
 0000560C 00000668                           6901          DC    X'00000668'
                                             6902 *
@@ -7644,7 +7644,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 000056BC 00000000                           6951          DC    Q(@@STATIC)
                                                                                                                            Page  141 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000056C0 00000000                           6952          DC    X'00000000'
 000056C4 00000330                           6953          DC    X'00000330'
 000056C8 0000000000004510                   6954          DC    ADL8(@DATA)
@@ -7699,7 +7699,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00005779 000000                             7003          DC    AL3(0)
                                                                                                                            Page  142 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 0000577C 00000870                           7004          DC    AL4(2160)
 00005780 00000000                           7005          DC    4X'00'
 00005784 00000000                           7006          DC    Q(@@STATIC)
@@ -7754,7 +7754,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 0000583C 0000075C                           7055          DC    X'0000075C'
                                                                                                                            Page  143 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                             7056 *
 00005840 0D                                 7057          DC    XL1'D'
 00005841 000000                             7058          DC    AL3(0)
@@ -7809,7 +7809,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 000058F4 000003A0                           7107          DC    X'000003A0'
                                                                                                                            Page  144 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000058F8 0000000000004510                   7108          DC    ADL8(@DATA)
 00005900 00000000                           7109          DC    X'00000000'
 00005904 000007EA                           7110          DC    X'000007EA'
@@ -7864,7 +7864,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 000059B0 00000000                           7159          DC    4X'00'
                                                                                                                            Page  145 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000059B4 00000000                           7160          DC    Q(@@STATIC)
 000059B8 00000000                           7161          DC    X'00000000'
 000059BC 000003C8                           7162          DC    X'000003C8'
@@ -7919,7 +7919,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00005A70 0D                                 7211          DC    XL1'D'
                                                                                                                            Page  146 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00005A71 000000                             7212          DC    AL3(0)
 00005A74 00000B68                           7213          DC    AL4(2920)
 00005A78 00000000                           7214          DC    4X'00'
@@ -7974,7 +7974,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00005B30 00000000                           7263          DC    X'00000000'
                                                                                                                            Page  147 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00005B34 00000900                           7264          DC    X'00000900'
                                             7265 *
 00005B38 0D                                 7266          DC    XL1'D'
@@ -8029,7 +8029,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00005BE8 00000000                           7315          DC    X'00000000'
                                                                                                                            Page  148 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00005BEC 00000520                           7316          DC    X'00000520'
 00005BF0 0000000000004510                   7317          DC    ADL8(@DATA)
 00005BF8 00000000                           7318          DC    X'00000000'
@@ -8084,7 +8084,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00005CA4 00000D98                           7367          DC    AL4(3480)
                                                                                                                            Page  149 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00005CA8 00000000                           7368          DC    4X'00'
 00005CAC 00000000                           7369          DC    Q(@@STATIC)
 00005CB0 00000000                           7370          DC    X'00000000'
@@ -8139,7 +8139,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             7419 *
                                                                                                                            Page  150 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00005D68 0D                                 7420          DC    XL1'D'
 00005D69 000000                             7421          DC    AL3(0)
 00005D6C 00000E60                           7422          DC    AL4(3680)
@@ -8194,7 +8194,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00005E20 0000000000004510                   7471          DC    ADL8(@DATA)
                                                                                                                            Page  151 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00005E28 00000000                           7472          DC    X'00000000'
 00005E2C 000009A4                           7473          DC    X'000009A4'
                                             7474 *
@@ -8249,7 +8249,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
 00005EDC 00000000                           7523          DC    Q(@@STATIC)
                                                                                                                            Page  152 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:43 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00005EE0 00000000                           7524          DC    X'00000000'
 00005EE4 000006B8                           7525          DC    X'000006B8'
 00005EE8 0000000000004510                   7526          DC    ADL8(@DATA)
@@ -8291,7 +8291,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
                                             7562 *
                                             7563          END
                                                  Relocation Dictionary                                                     Page  153 
-  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/30 15:35 
  00000002 00000002 00000018   A 4      +
  00000002 00000002 00000040   A 4      +
  00000002 00000002 00000048   A 4      +
@@ -8346,7 +8346,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
  00000002 00000002 000011B0   A 4      +
  00000002 0000000F 000011B8   A 4      +
                                                  Relocation Dictionary                                                     Page  154 
-  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/30 15:35 
  00000002 00000002 000011F0   A 4      +
  00000002 00000002 00001218   A 4      +
  00000002 00000002 00001220   A 4      +
@@ -8401,7 +8401,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
  00000002 00000002 000020A8   A 4      +
  00000002 00000014 000020B0   A 4      +
                                                  Relocation Dictionary                                                     Page  155 
-  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/30 15:35 
  00000002 0000000C 000020B8   A 4      +
  00000002 00000002 000021E0   A 4      +
  00000002 00000002 00002208   A 4      +
@@ -8456,7 +8456,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
  00000002 00000002 000030B0   A 4      +
  00000002 00000002 00003198   A 4      +
                                                  Relocation Dictionary                                                     Page  156 
-  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/30 15:35 
  00000002 00000002 000031D8   A 4      +
  00000002 00000002 00003200   A 4      +
  00000002 00000002 00003208   A 4      +
@@ -8511,7 +8511,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
  00000002 00000014 00003FC8   A 4      +
  00000002 00000014 00003FD0   A 4      +
                                                  Relocation Dictionary                                                     Page  157 
-  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/30 15:35 
  00000002 00000002 00003FD8   A 4      +
  00000002 00000002 00004020   A 4      +
  00000002 00000002 00004048   A 4      +
@@ -8566,7 +8566,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
  00000016 00000014 00005358   A 4      +
  00000016 00000013 00005374   Q 4      +
                                                  Relocation Dictionary                                                     Page  158 
-  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/30 15:35 
  00000016 00000014 00005380   A 4      +
  00000016 00000013 0000539C   Q 4      +
  00000016 00000014 000053A8   A 4      +
@@ -8621,7 +8621,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
  00000016 00000013 00005784   Q 4      +
  00000016 00000014 00005790   A 4      +
                                                  Relocation Dictionary                                                     Page  159 
-  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/30 15:35 
  00000016 00000013 000057AC   Q 4      +
  00000016 00000014 000057B8   A 4      +
  00000016 00000013 000057D4   Q 4      +
@@ -8676,7 +8676,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
  00000016 00000014 00005BA0   A 4      +
  00000016 00000013 00005BBC   Q 4      +
                                                  Relocation Dictionary                                                     Page  160 
-  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:43 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/30 15:35 
  00000016 00000014 00005BC8   A 4      +
  00000016 00000013 00005BE4   Q 4      +
  00000016 00000014 00005BF0   A 4      +
@@ -8725,7 +8725,7 @@ D-Loc    Object Code      Addr1    Addr2    Stmt  Source Statement              
  00000016 00000013 00005F54   Q 4      +
  00000016 00000014 00005F60   A 4      +
                                                  DSECT Cross Reference                                                     Page  161 
-DSECT     LENGTH    ID   DEFN                                                                         DASM V1.95.14 2021/04/29 12:43 
+DSECT     LENGTH    ID   DEFN                                                                         DASM V1.95.14 2021/04/30 15:35 
 @AUTO#rd_calloc
          000000A8  FFFFFFFF  00174
 @AUTO#rd_free
@@ -8780,7 +8780,7 @@ DSECT     LENGTH    ID   DEFN                                                   
          000000AC  FFFFFFEC  03295
 @AUTO#rd_kafka_interceptors_on_acknowledgement_queue
                                                  DSECT Cross Reference                                                     Page  162 
-DSECT     LENGTH    ID   DEFN                                                                         DASM V1.95.14 2021/04/29 12:43 
+DSECT     LENGTH    ID   DEFN                                                                         DASM V1.95.14 2021/04/30 15:35 
          000000A8  FFFFFFEB  03428
 @AUTO#rd_kafka_interceptors_on_commit
          000000AC  FFFFFFE9  03757
@@ -8809,11 +8809,11 @@ DSECT     LENGTH    ID   DEFN                                                   
 @AUTO#rd_strdup
          000000A8  FFFFFFFD  00408
                                           Macro and Copy Code Source Summary                                               Page  163 
-Source                                                    Members                                     DASM V1.95.14 2021/04/29 12:43 
+Source                                                    Members                                     DASM V1.95.14 2021/04/30 15:35 
 
 C:\DIGNUS\MACLIB                                          DCCCATR  DCCEPIL  DCCPRLG  DCCPRV   dccextrn
                                                       Using Map                                                            Page  164 
-                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+                                                                                                      DASM V1.95.14 2021/04/30 15:35 
   Stmt  -----Location----- Action ----------------Using----------------- Reg Max     Last Label and Using Text
           Count      Id           Type          Value    Range     Id        Disp    Stmt
    109  00000096  00000002 USING  ORDINARY    00000058 00001000 00000002  12 00110    136 @REGION_1077_1,12
@@ -8868,7 +8868,7 @@ C:\DIGNUS\MACLIB                                          DCCCATR  DCCEPIL  DCCP
   4134  00002C9A  00000002 DROP                                           12              12
   4209  00002D4E  00000002 USING  ORDINARY    00002D10 00001000 00000002  12 000EE   4288 @REGION_1929_1,12
                                                       Using Map                                                            Page  165 
-                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+                                                                                                      DASM V1.95.14 2021/04/30 15:35 
   4310  00002E72  00000002 DROP                                           12              12
   4385  00002F26  00000002 USING  ORDINARY    00002EE8 00001000 00000002  12 000EE   4463 @REGION_1930_1,12
   4485  0000304A  00000002 DROP                                           12              12
@@ -8899,7 +8899,7 @@ C:\DIGNUS\MACLIB                                          DCCCATR  DCCEPIL  DCCP
   6195  0000440E  00000002 USING  ORDINARY    000043D0 00001000 00000002  12 00138   6238 @REGION_682_1,12
   6269  00004510  00000002 DROP                                           12              12
                                    Diagnostic Cross Reference and Assembler Summary                                        Page  166 
-                                                                                                      DASM V1.95.14 2021/04/29 12:43 
+                                                                                                      DASM V1.95.14 2021/04/30 15:35 
       No Statements Flagged in this Assembly
 DASM Dignus Systems/ASM, VERSION 1.95.14
 SYSTEM: Windows 6.2                JOBNAME: (NOJOB)     STEPNAME: (NOSTEP)   PROCSTEP: (NOPROC)
@@ -8911,5 +8911,5 @@ Datasets Used for this Assembly
   L4  DCCEPIL  C:\DIGNUS\MACLIB\dccepil
   L5  DCCPRV   C:\DIGNUS\MACLIB\dccprv
 
-Assembly Start Time: 12.43.03 Stop Time: 12.43.03 Processor Time: 00.00.00.0530
+Assembly Start Time: 15.35.37 Stop Time: 15.35.37 Processor Time: 00.00.00.0660
 Return Code 000

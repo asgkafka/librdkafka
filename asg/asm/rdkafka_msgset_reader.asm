@@ -1,7 +1,7 @@
 *PROCESS DUPALIAS
 *
 *  Compiled by DCC Version 2.25.07 Mar  6 2021 08:51:07
-*           on Thu Apr 29 12:43:12 2021
+*           on Fri Apr 30 15:35:46 2021
 *
 
          WXTRN @@ZARCH#
@@ -8999,7 +8999,7 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          ALGF  12,@lit_region_diff_1946_2_5
          DROP  12
          USING @REGION_1946_5,12
-         B     @L1327
+         B     @L1334
          DROP  12
          USING @REGION_1946_2,12
 * ***                   struct {
@@ -10713,74 +10713,50 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
 * ***                                   break;
 @L1309   DS    0H
 * ***   
-* ***                           if (((!msetr->msetr_aborted_txns)))
+* ***                           if (((!msetr->msetr_aborted_txns))) {
          LTG   15,48(0,6)  ; offset of msetr_aborted_txns in rd_kafka_m*
                sgset_reader_s
-         BNZ   *+14  Around region break
+         BZ    *+14  Around region break
          ALGF  12,@lit_region_diff_1946_4_5
          DROP  12
          USING @REGION_1946_5,12
-         B     @L1316
+         B     @L1310
          DROP  12
          USING @REGION_1946_4,12
-* ***                                   goto unexpected_abort_txn;
+* ***                                   do { if ((((msetr->msetr_rkb)-\
+* >rkb_rk->rk_conf.debug & (0x40|0x8000)))) { do { char _logname[256];\
+*  mtx_lock(&(msetr->msetr_rkb)->rkb_logname_lock); rd_strlcpy(_lognam\
+* e, msetr->msetr_rkb->rkb_logname, sizeof(_logname)); mtx_unlock(&(ms\
+* etr->msetr_rkb)->rkb_logname_lock); rd_kafka_log0(&(msetr->msetr_rkb\
+* )->rkb_rk->rk_conf, (msetr->msetr_rkb)->rkb_rk, _logname, 7, (0x40|0\
+* x8000), "TXN", "%s [%" "d" "] received abort txn " "ctrl msg at offs\
+* et %" "lld" " for " "PID %" "lld" ", but there are no " "known abort\
+* ed transactions: " "ignoring", rktp->rktp_rkt->rkt_topic->str, rktp-\
+* >rktp_partition, hdr.Offset, msetr->msetr_v2_hdr->PID); } while (0);\
+*  } } while (0);
          ALGF  12,@lit_region_diff_1946_4_5
 @REGION_1946_5 DS 0H
          DROP  12
          USING @REGION_1946_5,12
-@L1310   DS    0H
-* ***   
-* ***                           
-* ***   
-* ***                           aborted_txn_start_offset = rd_kafka_ab\
-* orted_txns_pop_offset(
-* ***                                   msetr->msetr_aborted_txns, mse\
-* tr->msetr_v2_hdr->PID);
-         LG    15,48(0,6)
-         STG   15,872(0,13)
-         LG    15,40(0,6)  ; offset of msetr_v2_hdr in rd_kafka_msgset_*
-               reader_s
-         LG    15,48(0,15)
-         STG   15,880(0,13)
-         LA    1,872(0,13)
-         LG    15,@lit_1946_840 ; rd_kafka_aborted_txns_pop_offset
-@@gen_label1141 DS    0H 
-         BALR  14,15
-@@gen_label1142 DS    0H 
-         LGR   3,15
-* ***   
-* ***                           if (((aborted_txn_start_offset == -1))\
-* )
-         CGHI  3,-1
-         BE    @L1316
-* ***                                   goto unexpected_abort_txn;
 @L1311   DS    0H
-* ***   
-* ***                           if (((aborted_txn_start_offset > hdr.O\
-* ffset)))
-         CG    3,256(0,13)
-         BNH   @L1306
-* ***                                   do { char _logname[256]; mtx_l\
-* ock(&(msetr->msetr_rkb)->rkb_logname_lock); rd_strlcpy(_logname, mse\
-* tr->msetr_rkb->rkb_logname, sizeof(_logname)); mtx_unlock(&(msetr->m\
-* setr_rkb)->rkb_logname_lock); rd_kafka_log0(&(msetr->msetr_rkb)->rkb\
-* _rk->rk_conf, (msetr->msetr_rkb)->rkb_rk, _logname, 3, 0x0, "TXN", "\
-* %s [%" "d" "]: " "Abort txn ctrl msg bad order " "at offset %" "lld"\
-*  ": expected " "before or at %" "lld" ": messages " "in aborted tran\
-* sactions may be " "delivered to the application", rktp->rktp_rkt->rk\
-* t_topic->str, rktp->rktp_partition, hdr.Offset, aborted_txn_start_of\
-* fset); } while (0);
-@L1313   DS    0H
          LG    15,72(0,6)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
-         LGHI  4,5688      ; 5688
-         LA    15,0(4,15)
+         LG    15,4048(0,15) ; offset of rkb_rk in rd_kafka_broker_s
+         L     15,800(0,15)
+         NILF  15,X'00008040'
+         LTR   15,15
+         BZ    @L1306
+@L1315   DS    0H
+         LG    15,72(0,6)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
+               der_s
+         LGHI  3,5688      ; 5688
+         LA    15,0(3,15)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_842 ; mtx_lock
-@@gen_label1145 DS    0H 
+         LG    15,@lit_1946_841 ; mtx_lock
+@@gen_label1142 DS    0H 
          BALR  14,15
-@@gen_label1146 DS    0H 
+@@gen_label1143 DS    0H 
          LA    15,360(0,13)
          STG   15,872(0,13)
          LG    15,72(0,6)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
@@ -10790,19 +10766,19 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          STG   15,880(0,13)
          MVGHI 888(13),256
          LA    1,872(0,13)
-         LG    15,@lit_1946_844 ; rd_strlcpy
-@@gen_label1147 DS    0H 
+         LG    15,@lit_1946_843 ; rd_strlcpy
+@@gen_label1144 DS    0H 
          BALR  14,15
-@@gen_label1148 DS    0H 
+@@gen_label1145 DS    0H 
          LG    15,72(0,6)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
-         LA    15,0(4,15)
+         LA    15,0(3,15)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_846 ; mtx_unlock
-@@gen_label1149 DS    0H 
+         LG    15,@lit_1946_845 ; mtx_unlock
+@@gen_label1146 DS    0H 
          BALR  14,15
-@@gen_label1150 DS    0H 
+@@gen_label1147 DS    0H 
          LG    15,72(0,6)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LG    15,4048(0,15) ; offset of rkb_rk in rd_kafka_broker_s
@@ -10814,8 +10790,9 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          STG   15,880(0,13)
          LA    15,360(0,13)
          STG   15,888(0,13)
-         MVGHI 896(13),3
-         XC    904(8,13),904(13)
+         MVGHI 896(13),7
+         LLILF 15,X'00008040' ; 32832
+         STG   15,904(0,13)
          LG    15,@lit_1946_847
          LA    1,1530(0,15)
          STG   1,912(0,13)
@@ -10829,59 +10806,101 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          STG   15,936(0,13)
          LG    15,256(0,13)
          STG   15,944(0,13)
-         STG   3,952(0,13)
+         LG    15,40(0,6)  ; offset of msetr_v2_hdr in rd_kafka_msgset_*
+               reader_s
+         LG    15,48(0,15)
+         STG   15,952(0,13)
          LA    1,872(0,13)
          LG    15,@lit_1946_848 ; rd_kafka_log0
-@@gen_label1151 DS    0H 
+@@gen_label1148 DS    0H 
          BALR  14,15
-@@gen_label1152 DS    0H 
-* ***   
-* ***   # 846 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
-* ***                           break;
-@L1312   DS    0H
+@@gen_label1149 DS    0H 
+@L1314   DS    0H
+* ***   # 835 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
+* ***                                   break;
          B     @L1306
          DS    0D
-@lit_1946_840 DC AD(rd_kafka_aborted_txns_pop_offset)
-@lit_1946_842 DC AD(mtx_lock)
-@lit_1946_844 DC AD(rd_strlcpy)
-@lit_1946_846 DC AD(mtx_unlock)
+@lit_1946_841 DC AD(mtx_lock)
+@lit_1946_843 DC AD(rd_strlcpy)
+@lit_1946_845 DC AD(mtx_unlock)
 @lit_1946_848 DC AD(rd_kafka_log0)
 @lit_1946_847 DC AD(@strings@)
+@lit_1946_849 DC AD(rd_kafka_aborted_txns_pop_offset)
 @lit_region_diff_1946_5_4  DC A(@REGION_1946_5-@REGION_1946_4)
-@lit_1946_865 DC AD(rd_kafka_op_new_ctrl_msg)
-@lit_1946_866 DC AD(rd_kafka_q_enq)
+@lit_1946_867 DC AD(rd_kafka_op_new_ctrl_msg)
+@lit_1946_868 DC AD(rd_kafka_q_enq)
 @lit_region_diff_1946_5_7  DC A(@REGION_1946_7-@REGION_1946_5)
-@lit_1946_868 DC AD(rd_slice_read_varint)
-@lit_1946_871 DC AD(rd_kafka_crash)
-@lit_1946_870 DC AD(@DATA)
-@lit_1946_873 DC AD(snprintf)
-@lit_1946_880 DC AD(rd_kafka_$Api$Key2str)
-@lit_1946_881 DC AD(rd_slice_offset)
-@lit_1946_882 DC AD(rd_slice_abs_offset)
-@lit_1946_890 DC AD(rd_slice_ensure_contig)
+@lit_1946_870 DC AD(rd_slice_read_varint)
+@lit_1946_873 DC AD(rd_kafka_crash)
+@lit_1946_872 DC AD(@DATA)
+@lit_1946_875 DC AD(snprintf)
+@lit_1946_882 DC AD(rd_kafka_$Api$Key2str)
+@lit_1946_883 DC AD(rd_slice_offset)
+@lit_1946_884 DC AD(rd_slice_abs_offset)
 @lit_region_diff_1946_5_6  DC A(@REGION_1946_6-@REGION_1946_5)
+@lit_1946_892 DC AD(rd_slice_ensure_contig)
+* ***                           }
+@L1310   DS    0H
 * ***   
-* ***   unexpected_abort_txn:
-* ***                           do { char _logname[256]; mtx_lock(&(ms\
-* etr->msetr_rkb)->rkb_logname_lock); rd_strlcpy(_logname, msetr->mset\
-* r_rkb->rkb_logname, sizeof(_logname)); mtx_unlock(&(msetr->msetr_rkb\
-* )->rkb_logname_lock); rd_kafka_log0(&(msetr->msetr_rkb)->rkb_rk->rk_\
-* conf, (msetr->msetr_rkb)->rkb_rk, _logname, 4, 0x0, "TXN", "%s [%" "\
-* d" "]: " "Received abort txn ctrl msg for " "unknown txn PID %" "lld\
-* " " at " "offset %" "lld" ": ignoring", rktp->rktp_rkt->rkt_topic->s\
-* tr, rktp->rktp_partition, msetr->msetr_v2_hdr->PID, hdr.Offset); } w\
-* hile (0);
-@L1316   DS    0H
+* ***                           
+* ***   
+* ***                           aborted_txn_start_offset =
+* ***                                   rd_kafka_aborted_txns_pop_offs\
+* et(
+* ***                                           msetr->msetr_aborted_t\
+* xns,
+* ***                                           msetr->msetr_v2_hdr->P\
+* ID,
+* ***                                           hdr.Offset);
+         LG    15,48(0,6)
+         STG   15,872(0,13)
+         LG    15,40(0,6)  ; offset of msetr_v2_hdr in rd_kafka_msgset_*
+               reader_s
+         LG    15,48(0,15)
+         STG   15,880(0,13)
+         LG    15,256(0,13)
+         STG   15,888(0,13)
+         LA    1,872(0,13)
+         LG    15,@lit_1946_849 ; rd_kafka_aborted_txns_pop_offset
+@@gen_label1150 DS    0H 
+         BALR  14,15
+@@gen_label1151 DS    0H 
+* ***   
+* ***                           if (((aborted_txn_start_offset == -1))\
+* ) {
+         CGHI  15,-1
+         BNE   @L1306
+* ***                                   do { if ((((msetr->msetr_rkb)-\
+* >rkb_rk->rk_conf.debug & (0x40|0x8000)))) { do { char _logname[256];\
+*  mtx_lock(&(msetr->msetr_rkb)->rkb_logname_lock); rd_strlcpy(_lognam\
+* e, msetr->msetr_rkb->rkb_logname, sizeof(_logname)); mtx_unlock(&(ms\
+* etr->msetr_rkb)->rkb_logname_lock); rd_kafka_log0(&(msetr->msetr_rkb\
+* )->rkb_rk->rk_conf, (msetr->msetr_rkb)->rkb_rk, _logname, 7, (0x40|0\
+* x8000), "TXN", "%s [%" "d" "] received abort txn " "ctrl msg at offs\
+* et %" "lld" " for " "PID %" "lld" ", but this offset is " "not liste\
+* d as an aborted " "transaction: aborted transaction " "was possibly \
+* empty: ignoring", rktp->rktp_rkt->rkt_topic->str, rktp->rktp_partiti\
+* on, hdr.Offset, msetr->msetr_v2_hdr->PID); } while (0); } } while (0\
+* );
+@L1319   DS    0H
+         LG    15,72(0,6)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
+               der_s
+         LG    15,4048(0,15) ; offset of rkb_rk in rd_kafka_broker_s
+         L     15,800(0,15)
+         NILF  15,X'00008040'
+         LTR   15,15
+         BZ    @L1306
+@L1323   DS    0H
          LG    15,72(0,6)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LGHI  3,5688      ; 5688
          LA    15,0(3,15)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_842 ; mtx_lock
-@@gen_label1153 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_841 ; mtx_lock
 @@gen_label1154 DS    0H 
+         BALR  14,15
+@@gen_label1155 DS    0H 
          LA    15,360(0,13)
          STG   15,872(0,13)
          LG    15,72(0,6)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
@@ -10891,19 +10910,19 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          STG   15,880(0,13)
          MVGHI 888(13),256
          LA    1,872(0,13)
-         LG    15,@lit_1946_844 ; rd_strlcpy
-@@gen_label1155 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_843 ; rd_strlcpy
 @@gen_label1156 DS    0H 
+         BALR  14,15
+@@gen_label1157 DS    0H 
          LG    15,72(0,6)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LA    15,0(3,15)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_846 ; mtx_unlock
-@@gen_label1157 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_845 ; mtx_unlock
 @@gen_label1158 DS    0H 
+         BALR  14,15
+@@gen_label1159 DS    0H 
          LG    15,72(0,6)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LG    15,4048(0,15) ; offset of rkb_rk in rd_kafka_broker_s
@@ -10915,12 +10934,13 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          STG   15,880(0,13)
          LA    15,360(0,13)
          STG   15,888(0,13)
-         MVGHI 896(13),4
-         XC    904(8,13),904(13)
+         MVGHI 896(13),7
+         LLILF 15,X'00008040' ; 32832
+         STG   15,904(0,13)
          LG    15,@lit_1946_847
          LA    1,1530(0,15)
          STG   1,912(0,13)
-         LA    15,1686(0,15)
+         LA    15,1654(0,15)
          STG   15,920(0,13)
          LG    15,96(0,2)  ; offset of rktp_rkt in rd_kafka_toppar_s
          LG    15,128(0,15) ; offset of rkt_topic in rd_kafka_topic_s
@@ -10928,20 +10948,24 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          STG   15,928(0,13)
          LGF   15,104(0,2)
          STG   15,936(0,13)
+         LG    15,256(0,13)
+         STG   15,944(0,13)
          LG    15,40(0,6)  ; offset of msetr_v2_hdr in rd_kafka_msgset_*
                reader_s
          LG    15,48(0,15)
-         STG   15,944(0,13)
-         LG    15,256(0,13)
          STG   15,952(0,13)
          LA    1,872(0,13)
          LG    15,@lit_1946_848 ; rd_kafka_log0
-@@gen_label1159 DS    0H 
-         BALR  14,15
 @@gen_label1160 DS    0H 
-* ***   # 857 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
-* ***                           break;
+         BALR  14,15
+@@gen_label1161 DS    0H 
+@L1322   DS    0H
+* ***   # 859 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
+* ***                                   break;
          B     @L1306
+* ***                           }
+* ***                           break;
+* ***   
 * ***   
 * ***                   default:
 * ***                           do { if ((((msetr->msetr_rkb)->rkb_rk-\
@@ -10953,23 +10977,23 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
 * "d" "]: " "Unsupported ctrl message " "type %" "d" " at offset" " %"\
 *  "lld" ": ignoring", rktp->rktp_rkt->rkt_topic->str, rktp->rktp_part\
 * ition, ctrl_data.Type, hdr.Offset); } while (0); } } while (0);
-@L1320   DS    0H
+@L1327   DS    0H
          LG    15,72(0,6)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LG    15,4048(0,15) ; offset of rkb_rk in rd_kafka_broker_s
          TM    803(15),64
          BZ    @L1306
-@L1324   DS    0H
+@L1331   DS    0H
          LG    15,72(0,6)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LGHI  3,5688      ; 5688
          LA    15,0(3,15)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_842 ; mtx_lock
-@@gen_label1162 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_841 ; mtx_lock
 @@gen_label1163 DS    0H 
+         BALR  14,15
+@@gen_label1164 DS    0H 
          LA    15,360(0,13)
          STG   15,872(0,13)
          LG    15,72(0,6)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
@@ -10979,19 +11003,19 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          STG   15,880(0,13)
          MVGHI 888(13),256
          LA    1,872(0,13)
-         LG    15,@lit_1946_844 ; rd_strlcpy
-@@gen_label1164 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_843 ; rd_strlcpy
 @@gen_label1165 DS    0H 
+         BALR  14,15
+@@gen_label1166 DS    0H 
          LG    15,72(0,6)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LA    15,0(3,15)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_846 ; mtx_unlock
-@@gen_label1166 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_845 ; mtx_unlock
 @@gen_label1167 DS    0H 
+         BALR  14,15
+@@gen_label1168 DS    0H 
          LG    15,72(0,6)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LG    15,4048(0,15) ; offset of rkb_rk in rd_kafka_broker_s
@@ -11006,7 +11030,7 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          MVGHI 896(13),7
          MVGHI 904(13),64
          LG    15,@lit_1946_847
-         LA    15,1774(0,15)
+         LA    15,1826(0,15)
          STG   15,912(0,13)
          LG    15,96(0,2)  ; offset of rktp_rkt in rd_kafka_toppar_s
          LG    15,128(0,15) ; offset of rkt_topic in rd_kafka_topic_s
@@ -11021,18 +11045,18 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          STG   15,944(0,13)
          LA    1,872(0,13)
          LG    15,@lit_1946_848 ; rd_kafka_log0
-@@gen_label1168 DS    0H 
-         BALR  14,15
 @@gen_label1169 DS    0H 
-@L1323   DS    0H
-* ***   # 868 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
+         BALR  14,15
+@@gen_label1170 DS    0H 
+@L1330   DS    0H
+* ***   # 873 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
 * ***                           break;
          B     @L1306
 * ***                   }
 @L1305   DS    0H
          LH    15,354(0,13)
          LTR   15,15
-         BL    @L1320
+         BL    @L1327
          LTR   15,15
          BNE   *+14  Around region break
          SLGF  12,@lit_region_diff_1946_5_4
@@ -11042,7 +11066,7 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          DROP  12
          USING @REGION_1946_5,12
          CHI   15,1
-         BNE   @L1320
+         BNE   @L1327
 @L1306   DS    0H
 * ***   
 * ***                   rko = rd_kafka_op_new_ctrl_msg(
@@ -11057,19 +11081,19 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          LG    15,256(0,13)
          STG   15,896(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_865 ; rd_kafka_op_new_ctrl_msg
-@@gen_label1170 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_867 ; rd_kafka_op_new_ctrl_msg
 @@gen_label1171 DS    0H 
+         BALR  14,15
+@@gen_label1172 DS    0H 
 * ***                   rd_kafka_q_enq(&msetr->msetr_rkq, rko);
          LA    1,104(0,6)
          STG   1,872(0,13)
          STG   15,880(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_866 ; rd_kafka_q_enq
-@@gen_label1172 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_868 ; rd_kafka_q_enq
 @@gen_label1173 DS    0H 
+         BALR  14,15
+@@gen_label1174 DS    0H 
 * ***                   msetr->msetr_msgcnt++;
          L     15,88(0,6)
          AHI   15,1
@@ -11092,7 +11116,7 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
 * ***           do { int64_t _len2; size_t _r = rd_slice_read_varint(&\
 * (rkbuf)->rkbuf_reader, &_len2); if ((((_r == 0)))) do { if (log_deco\
 * de_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_kafka_crash("C\
-* :\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",884, __FUNCTI\
+* :\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",889, __FUNCTI\
 * ON__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); } while (0); ch\
 * ar __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr), ": " "varint \
 * parsing failed"); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; d\
@@ -11105,7 +11129,7 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
 * expected %" "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_\
 * kafka_ApiKey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.A\
 * piVersion, rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_re\
-* ader)->end - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 884, (siz\
+* ader)->end - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 889, (siz\
 * e_t)0, ((&rkbuf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rk\
 * buf_reader)), rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mit\
 * igation : "incorrect broker.version.fallback?", __tmpstr); } while (\
@@ -11118,7 +11142,7 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
 * size_t)(_len2); if (((__len0 > ((&(rkbuf)->rkbuf_reader)->end - rd_s\
 * lice_abs_offset(&(rkbuf)->rkbuf_reader))))) { do { if (log_decode_er\
 * rors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_kafka_crash("C:\\as\
-* gkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",884, __FUNCTION__,\
+* gkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",889, __FUNCTION__,\
 *  (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); } while (0); char __\
 * tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr), ": "); if (__strle\
 * n(__tmpstr) == 2) __tmpstr[0] = '\0'; do { char _logname[256]; mtx_l\
@@ -11131,46 +11155,46 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
 * "%" "zu" " remaining bytes (%s)%s", rd_kafka_ApiKey2str(rkbuf->rkbuf\
 * _reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion, rd_slice_offset(&r\
 * kbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end - (&rkbuf->rkbuf_r\
-* eader)->start), __FUNCTION__, 884, __len0, ((&rkbuf->rkbuf_reader)->\
+* eader)->start), __FUNCTION__, 889, __len0, ((&rkbuf->rkbuf_reader)->\
 * end - rd_slice_abs_offset(&rkbuf->rkbuf_reader)), rkbuf->rkbuf_uflow\
 * _mitigation ? rkbuf->rkbuf_uflow_mitigation : "incorrect broker.vers\
 * ion.fallback?", __tmpstr); } while (0); } (rkbuf)->rkbuf_err = RD_KA\
 * FKA_RESP_ERR__UNDERFLOW; goto err_parse; } while (0); } } while (0);\
 *  } while (0);
-@L1327   DS    0H
+@L1334   DS    0H
          LA    15,120(0,7)
          STG   15,872(0,13)
          LA    15,208(0,13)
          STG   15,880(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_868 ; rd_slice_read_varint
-@@gen_label1174 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_870 ; rd_slice_read_varint
 @@gen_label1175 DS    0H 
+         BALR  14,15
+@@gen_label1176 DS    0H 
          LTGR  15,15
-         BNE   @L1330
-@L1331   DS    0H
+         BNE   @L1337
+@L1338   DS    0H
          LTR   3,3
-         BNH   @L1334
-@L1335   DS    0H
+         BNH   @L1341
+@L1342   DS    0H
          LTG   15,256(0,7) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1338
+         BNZ   @L1345
          LG    15,@lit_1946_847
          LA    1,718(0,15)
          STG   1,872(0,13)
-         MVGHI 880(13),884
-         LG    1,@lit_1946_870
+         MVGHI 880(13),889
+         LG    1,@lit_1946_872
          LA    1,538(0,1)
          STG   1,888(0,13)
          XC    896(8,13),896(13)
          LA    15,866(0,15)
          STG   15,904(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_871 ; rd_kafka_crash
-@@gen_label1179 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_873 ; rd_kafka_crash
 @@gen_label1180 DS    0H 
-@L1338   DS    0H
+         BALR  14,15
+@@gen_label1181 DS    0H 
+@L1345   DS    0H
          LA    15,344(0,13)
          STG   15,872(0,13)
          MVGHI 880(13),256
@@ -11178,31 +11202,31 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          LA    15,1322(0,15)
          STG   15,888(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_873 ; snprintf
-@@gen_label1181 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_875 ; snprintf
 @@gen_label1182 DS    0H 
+         BALR  14,15
+@@gen_label1183 DS    0H 
          LA    15,344(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label1183 DS 0H
+@@gen_label1184 DS 0H
          SRST  0,15
-         BC  1,@@gen_label1183
+         BC  1,@@gen_label1184
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1340
+         BNE   @L1347
          MVI   344(13),0
-@L1339   DS    0H
-@L1340   DS    0H
+@L1346   DS    0H
+@L1347   DS    0H
          LG    15,256(0,7) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  2,5688      ; 5688
          LA    15,0(2,15)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_842 ; mtx_lock
-@@gen_label1185 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_841 ; mtx_lock
 @@gen_label1186 DS    0H 
+         BALR  14,15
+@@gen_label1187 DS    0H 
          LA    15,600(0,13)
          STG   15,872(0,13)
          LG    15,256(0,7) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -11211,53 +11235,53 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          STG   15,880(0,13)
          MVGHI 888(13),256
          LA    1,872(0,13)
-         LG    15,@lit_1946_844 ; rd_strlcpy
-@@gen_label1187 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_843 ; rd_strlcpy
 @@gen_label1188 DS    0H 
+         BALR  14,15
+@@gen_label1189 DS    0H 
          LG    15,256(0,7) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(2,15)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_846 ; mtx_unlock
-@@gen_label1189 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_845 ; mtx_unlock
 @@gen_label1190 DS    0H 
+         BALR  14,15
+@@gen_label1191 DS    0H 
          LGH   15,184(0,7)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_880 ; rd_kafka_ApiKey2str
-@@gen_label1191 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_882 ; rd_kafka_ApiKey2str
 @@gen_label1192 DS    0H 
+         BALR  14,15
+@@gen_label1193 DS    0H 
          LGR   2,15
          LA    15,120(0,7)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_881 ; rd_slice_offset
-@@gen_label1193 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_883 ; rd_slice_offset
 @@gen_label1194 DS    0H 
+         BALR  14,15
+@@gen_label1195 DS    0H 
          LGR   4,15
          LG    5,152(0,7)  ; offset of end in rd_slice_s
          LA    15,120(0,7)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_882 ; rd_slice_abs_offset
-@@gen_label1195 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_884 ; rd_slice_abs_offset
 @@gen_label1196 DS    0H 
+         BALR  14,15
+@@gen_label1197 DS    0H 
          SLGR  5,15
          LTG   15,488(0,7) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L1343
+         BZ    @L1350
          LG    15,488(0,7) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         B     @L1344
-@L1343   DS    0H
+         B     @L1351
+@L1350   DS    0H
          LG    15,@lit_1946_847
          LA    15,896(0,15)
-@L1344   DS    0H
+@L1351   DS    0H
          LG    1,256(0,7)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -11282,10 +11306,10 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          LG    1,152(0,7)  ; offset of end in rd_slice_s
          SLG   1,144(0,7)
          STG   1,952(0,13)
-         LG    1,@lit_1946_870
+         LG    1,@lit_1946_872
          LA    1,538(0,1)
          STG   1,960(0,13)
-         MVGHI 968(13),884
+         MVGHI 968(13),889
          XC    976(8,13),976(13)
          STG   5,984(0,13)
          STG   15,992(0,13)
@@ -11293,10 +11317,10 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          STG   15,1000(0,13)
          LA    1,872(0,13)
          LG    15,@lit_1946_848 ; rd_kafka_log0
-@@gen_label1198 DS    0H 
-         BALR  14,15
 @@gen_label1199 DS    0H 
-@L1334   DS    0H
+         BALR  14,15
+@@gen_label1200 DS    0H 
+@L1341   DS    0H
          MVHI  392(7),-155 ; offset of rkbuf_err in rd_kafka_buf_s
          ALGF  12,@lit_region_diff_1946_5_7
          DROP  12
@@ -11304,77 +11328,105 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          B     @_err_parse@1946@2
          DROP  12
          USING @REGION_1946_5,12
-@L1330   DS    0H
+@L1337   DS    0H
          LG    15,208(0,13) ; _len2
          ST    15,264(0,13) ; offset of Key in 0000157
          CHSI  264(13),-1
-         BNE   @L1345
+         BNE   @L1352
          LGHI  15,0        ; 0
          STG   15,272(0,13) ; offset of data in rd_kafkap_bytes_s
          MVHI  264(13),0   ; offset of Key in 0000157
-         B     @L1346
-@L1345   DS    0H
+         ALGF  12,@lit_region_diff_1946_5_6
+         DROP  12
+         USING @REGION_1946_6,12
+         B     @L1353
+         DROP  12
+         USING @REGION_1946_5,12
+@L1352   DS    0H
          CHSI  264(13),-1
-         BNE   @L1347
+         BNE   @L1354
          LHI   15,0        ; 0
-         B     @L1348
-@L1347   DS    0H
+         B     @L1355
+@L1354   DS    0H
          L     15,264(0,13) ; offset of Key in 0000157
-@L1348   DS    0H
+@L1355   DS    0H
          LTR   15,15
-         BNE   @L1349
+         BNE   @L1356
          LG    15,@lit_1946_847
          LA    15,168(0,15)
          STG   15,272(0,13) ; offset of data in rd_kafkap_bytes_s
-         B     @L1346
-@L1349   DS    0H
+         ALGF  12,@lit_region_diff_1946_5_6
+         DROP  12
+         USING @REGION_1946_6,12
+         B     @L1353
+         DROP  12
+         USING @REGION_1946_5,12
+@L1356   DS    0H
          LA    15,120(0,7)
          STG   15,872(0,13)
          LG    15,208(0,13) ; _len2
          STG   15,880(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_890 ; rd_slice_ensure_contig
-@@gen_label1203 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_892 ; rd_slice_ensure_contig
 @@gen_label1204 DS    0H 
+         BALR  14,15
+@@gen_label1205 DS    0H 
          STG   15,272(0,13)
          LTGR  15,15
-         BNZ   @L1346
-@L1352   DS    0H
+         BZ    *+14  Around region break
+         ALGF  12,@lit_region_diff_1946_5_6
+         DROP  12
+         USING @REGION_1946_6,12
+         B     @L1353
+         DROP  12
+         USING @REGION_1946_5,12
+@L1359   DS    0H
          LG    5,208(0,13) ; _len2
          LG    8,152(0,7)  ; offset of end in rd_slice_s
          LA    15,120(0,7)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_882 ; rd_slice_abs_offset
-@@gen_label1206 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_884 ; rd_slice_abs_offset
 @@gen_label1207 DS    0H 
+         BALR  14,15
+@@gen_label1208 DS    0H 
          SLGR  8,15
          CLGR  5,8
-         BNH   @L1355
-@L1356   DS    0H
+         BH    *+14  Around region break
+         ALGF  12,@lit_region_diff_1946_5_6
+         DROP  12
+         USING @REGION_1946_6,12
+         B     @L1362
+         DROP  12
+         USING @REGION_1946_5,12
+@L1363   DS    0H
          LTR   3,3
-         BNH   @L1359
-@L1360   DS    0H
+         BH    *+14  Around region break
+         ALGF  12,@lit_region_diff_1946_5_6
+         DROP  12
+         USING @REGION_1946_6,12
+         B     @L1366
+         DROP  12
+         USING @REGION_1946_5,12
+@L1367   DS    0H
          LTG   15,256(0,7) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1363
+         BNZ   @L1370
          LG    15,@lit_1946_847
          LA    1,718(0,15)
          STG   1,872(0,13)
-         MVGHI 880(13),884
-         LG    1,@lit_1946_870
+         MVGHI 880(13),889
+         LG    1,@lit_1946_872
          LA    1,538(0,1)
          STG   1,888(0,13)
          XC    896(8,13),896(13)
          LA    15,866(0,15)
          STG   15,904(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_871 ; rd_kafka_crash
-@@gen_label1211 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_873 ; rd_kafka_crash
 @@gen_label1212 DS    0H 
-@L1363   DS    0H
+         BALR  14,15
+@@gen_label1213 DS    0H 
+@L1370   DS    0H
          LA    15,344(0,13)
          STG   15,872(0,13)
          MVGHI 880(13),256
@@ -11382,31 +11434,31 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          LA    15,892(0,15)
          STG   15,888(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_873 ; snprintf
-@@gen_label1213 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_875 ; snprintf
 @@gen_label1214 DS    0H 
+         BALR  14,15
+@@gen_label1215 DS    0H 
          LA    15,344(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label1215 DS 0H
+@@gen_label1216 DS 0H
          SRST  0,15
-         BC  1,@@gen_label1215
+         BC  1,@@gen_label1216
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1365
+         BNE   @L1372
          MVI   344(13),0
-@L1364   DS    0H
-@L1365   DS    0H
+@L1371   DS    0H
+@L1372   DS    0H
          LG    15,256(0,7) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  2,5688      ; 5688
          LA    15,0(2,15)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_842 ; mtx_lock
-@@gen_label1217 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_841 ; mtx_lock
 @@gen_label1218 DS    0H 
+         BALR  14,15
+@@gen_label1219 DS    0H 
          LA    15,600(0,13)
          STG   15,872(0,13)
          LG    15,256(0,7) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -11415,53 +11467,62 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          STG   15,880(0,13)
          MVGHI 888(13),256
          LA    1,872(0,13)
-         LG    15,@lit_1946_844 ; rd_strlcpy
-@@gen_label1219 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_843 ; rd_strlcpy
 @@gen_label1220 DS    0H 
+         BALR  14,15
+@@gen_label1221 DS    0H 
          LG    15,256(0,7) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(2,15)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_846 ; mtx_unlock
-@@gen_label1221 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_845 ; mtx_unlock
 @@gen_label1222 DS    0H 
+         BALR  14,15
+@@gen_label1223 DS    0H 
          LGH   15,184(0,7)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_880 ; rd_kafka_ApiKey2str
-@@gen_label1223 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_882 ; rd_kafka_ApiKey2str
 @@gen_label1224 DS    0H 
+         BALR  14,15
+@@gen_label1225 DS    0H 
          LGR   2,15
          LA    15,120(0,7)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_881 ; rd_slice_offset
-@@gen_label1225 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_883 ; rd_slice_offset
 @@gen_label1226 DS    0H 
+         BALR  14,15
+@@gen_label1227 DS    0H 
          LGR   4,15
          LG    8,152(0,7)  ; offset of end in rd_slice_s
          LA    15,120(0,7)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_882 ; rd_slice_abs_offset
-@@gen_label1227 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_884 ; rd_slice_abs_offset
 @@gen_label1228 DS    0H 
+         BALR  14,15
+@@gen_label1229 DS    0H 
          SLGR  8,15
          LTG   15,488(0,7) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L1368
+         BZ    @L1375
          LG    15,488(0,7) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         B     @L1369
-@L1368   DS    0H
+         ALGF  12,@lit_region_diff_1946_5_6
+         DROP  12
+         USING @REGION_1946_6,12
+         B     @L1376
+         DROP  12
+         USING @REGION_1946_5,12
+@L1375   DS    0H
          LG    15,@lit_1946_847
          LA    15,896(0,15)
-@L1369   DS    0H
+         ALGF  12,@lit_region_diff_1946_5_6
+@REGION_1946_6 DS 0H
+         DROP  12
+         USING @REGION_1946_6,12
+@L1376   DS    0H
          LG    1,256(0,7)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -11474,7 +11535,7 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          LGFR  1,3
          STG   1,896(0,13)
          XC    904(8,13),904(13)
-         LG    1,@lit_1946_847
+         LG    1,@lit_1946_909
          LA    3,932(0,1)
          STG   3,912(0,13)
          LA    1,944(0,1)
@@ -11486,36 +11547,51 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          LG    1,152(0,7)  ; offset of end in rd_slice_s
          SLG   1,144(0,7)
          STG   1,952(0,13)
-         LG    1,@lit_1946_870
+         LG    1,@lit_1946_910
          LA    1,538(0,1)
          STG   1,960(0,13)
-         MVGHI 968(13),884
+         MVGHI 968(13),889
          STG   5,976(0,13)
          STG   8,984(0,13)
          STG   15,992(0,13)
          LA    15,344(0,13)
          STG   15,1000(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_848 ; rd_kafka_log0
-@@gen_label1230 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_911 ; rd_kafka_log0
 @@gen_label1231 DS    0H 
-@L1359   DS    0H
+         BALR  14,15
+@@gen_label1232 DS    0H 
+@L1366   DS    0H
          MVHI  392(7),-155 ; offset of rkbuf_err in rd_kafka_buf_s
-         ALGF  12,@lit_region_diff_1946_5_7
+         ALGF  12,@lit_region_diff_1946_6_7
          DROP  12
          USING @REGION_1946_7,12
          B     @_err_parse@1946@2
          DROP  12
-         USING @REGION_1946_5,12
-@L1355   DS    0H
-@L1351   DS    0H
-@L1350   DS    0H
-@L1346   DS    0H
+         USING @REGION_1946_6,12
+         DS    0D
+@lit_1946_911 DC AD(rd_kafka_log0)
+@lit_1946_910 DC AD(@DATA)
+@lit_1946_909 DC AD(@strings@)
+@lit_region_diff_1946_6_7  DC A(@REGION_1946_7-@REGION_1946_6)
+@lit_1946_912 DC AD(rd_slice_read_varint)
+@lit_1946_915 DC AD(rd_kafka_crash)
+@lit_1946_917 DC AD(snprintf)
+@lit_1946_919 DC AD(mtx_lock)
+@lit_1946_921 DC AD(rd_strlcpy)
+@lit_1946_923 DC AD(mtx_unlock)
+@lit_1946_924 DC AD(rd_kafka_$Api$Key2str)
+@lit_1946_925 DC AD(rd_slice_offset)
+@lit_1946_926 DC AD(rd_slice_abs_offset)
+@lit_1946_934 DC AD(rd_slice_ensure_contig)
+@L1362   DS    0H
+@L1358   DS    0H
+@L1357   DS    0H
+@L1353   DS    0H
 * ***           do { int64_t _len2; size_t _r = rd_slice_read_varint(&\
 * (rkbuf)->rkbuf_reader, &_len2); if ((((_r == 0)))) do { if (log_deco\
 * de_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_kafka_crash("C\
-* :\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",885, __FUNCTI\
+* :\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",890, __FUNCTI\
 * ON__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); } while (0); ch\
 * ar __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr), ": " "varint \
 * parsing failed"); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; d\
@@ -11528,7 +11604,7 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
 * expected %" "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_\
 * kafka_ApiKey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.A\
 * piVersion, rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_re\
-* ader)->end - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 885, (siz\
+* ader)->end - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 890, (siz\
 * e_t)0, ((&rkbuf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rk\
 * buf_reader)), rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mit\
 * igation : "incorrect broker.version.fallback?", __tmpstr); } while (\
@@ -11541,8 +11617,8 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
 * ize_t __len0 = (size_t)(_len2); if (((__len0 > ((&(rkbuf)->rkbuf_rea\
 * der)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader))))) { do { i\
 * f (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_kaf\
-* ka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",88\
-* 5, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); } wh\
+* ka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",89\
+* 0, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); } wh\
 * ile (0); char __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr), ":\
 *  "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do { char _log\
 * name[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_strlc\
@@ -11554,82 +11630,78 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
 * zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_kafka_ApiKey2\
 * str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion, rd\
 * _slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end - \
-* (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 885, __len0, ((&rkbuf-\
+* (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 890, __len0, ((&rkbuf-\
 * >rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkbuf_reader)), rk\
 * buf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation : "incor\
 * rect broker.version.fallback?", __tmpstr); } while (0); } (rkbuf)->r\
 * kbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while (0)\
 * ; } } while (0); } while (0);
-         ALGF  12,@lit_region_diff_1946_5_6
-@REGION_1946_6 DS 0H
-         DROP  12
-         USING @REGION_1946_6,12
-@L1370   DS    0H
+@L1377   DS    0H
          LA    15,120(0,7)
          STG   15,872(0,13)
          LA    15,216(0,13)
          STG   15,880(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_910 ; rd_slice_read_varint
-@@gen_label1232 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_912 ; rd_slice_read_varint
 @@gen_label1233 DS    0H 
+         BALR  14,15
+@@gen_label1234 DS    0H 
          LTGR  15,15
-         BNE   @L1373
-@L1374   DS    0H
+         BNE   @L1380
+@L1381   DS    0H
          LTR   3,3
-         BNH   @L1377
-@L1378   DS    0H
+         BNH   @L1384
+@L1385   DS    0H
          LTG   15,256(0,7) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1381
-         LG    15,@lit_1946_911
+         BNZ   @L1388
+         LG    15,@lit_1946_909
          LA    1,718(0,15)
          STG   1,872(0,13)
-         MVGHI 880(13),885
-         LG    1,@lit_1946_912
+         MVGHI 880(13),890
+         LG    1,@lit_1946_910
          LA    1,538(0,1)
          STG   1,888(0,13)
          XC    896(8,13),896(13)
          LA    15,866(0,15)
          STG   15,904(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_913 ; rd_kafka_crash
-@@gen_label1237 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_915 ; rd_kafka_crash
 @@gen_label1238 DS    0H 
-@L1381   DS    0H
+         BALR  14,15
+@@gen_label1239 DS    0H 
+@L1388   DS    0H
          LA    15,344(0,13)
          STG   15,872(0,13)
          MVGHI 880(13),256
-         LG    15,@lit_1946_911
+         LG    15,@lit_1946_909
          LA    15,1322(0,15)
          STG   15,888(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_915 ; snprintf
-@@gen_label1239 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_917 ; snprintf
 @@gen_label1240 DS    0H 
+         BALR  14,15
+@@gen_label1241 DS    0H 
          LA    15,344(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label1241 DS 0H
+@@gen_label1242 DS 0H
          SRST  0,15
-         BC  1,@@gen_label1241
+         BC  1,@@gen_label1242
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1383
+         BNE   @L1390
          MVI   344(13),0
-@L1382   DS    0H
-@L1383   DS    0H
+@L1389   DS    0H
+@L1390   DS    0H
          LG    15,256(0,7) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  2,5688      ; 5688
          LA    15,0(2,15)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_917 ; mtx_lock
-@@gen_label1243 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_919 ; mtx_lock
 @@gen_label1244 DS    0H 
+         BALR  14,15
+@@gen_label1245 DS    0H 
          LA    15,600(0,13)
          STG   15,872(0,13)
          LG    15,256(0,7) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -11638,68 +11710,53 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          STG   15,880(0,13)
          MVGHI 888(13),256
          LA    1,872(0,13)
-         LG    15,@lit_1946_919 ; rd_strlcpy
-@@gen_label1245 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_921 ; rd_strlcpy
 @@gen_label1246 DS    0H 
+         BALR  14,15
+@@gen_label1247 DS    0H 
          LG    15,256(0,7) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(2,15)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_921 ; mtx_unlock
-@@gen_label1247 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_923 ; mtx_unlock
 @@gen_label1248 DS    0H 
+         BALR  14,15
+@@gen_label1249 DS    0H 
          LGH   15,184(0,7)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_922 ; rd_kafka_ApiKey2str
-@@gen_label1249 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_924 ; rd_kafka_ApiKey2str
 @@gen_label1250 DS    0H 
+         BALR  14,15
+@@gen_label1251 DS    0H 
          LGR   2,15
          LA    15,120(0,7)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_923 ; rd_slice_offset
-@@gen_label1251 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_925 ; rd_slice_offset
 @@gen_label1252 DS    0H 
+         BALR  14,15
+@@gen_label1253 DS    0H 
          LGR   4,15
          LG    5,152(0,7)  ; offset of end in rd_slice_s
          LA    15,120(0,7)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_924 ; rd_slice_abs_offset
-@@gen_label1253 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_926 ; rd_slice_abs_offset
 @@gen_label1254 DS    0H 
+         BALR  14,15
+@@gen_label1255 DS    0H 
          SLGR  5,15
          LTG   15,488(0,7) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L1386
+         BZ    @L1393
          LG    15,488(0,7) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         B     @L1387
-         DS    0D
-@lit_1946_910 DC AD(rd_slice_read_varint)
-@lit_1946_913 DC AD(rd_kafka_crash)
-@lit_1946_912 DC AD(@DATA)
-@lit_1946_911 DC AD(@strings@)
-@lit_1946_915 DC AD(snprintf)
-@lit_1946_917 DC AD(mtx_lock)
-@lit_1946_919 DC AD(rd_strlcpy)
-@lit_1946_921 DC AD(mtx_unlock)
-@lit_1946_922 DC AD(rd_kafka_$Api$Key2str)
-@lit_1946_923 DC AD(rd_slice_offset)
-@lit_1946_924 DC AD(rd_slice_abs_offset)
-@lit_1946_928 DC AD(rd_kafka_log0)
-@lit_region_diff_1946_6_7  DC A(@REGION_1946_7-@REGION_1946_6)
-@lit_1946_932 DC AD(rd_slice_ensure_contig)
-@L1386   DS    0H
-         LG    15,@lit_1946_911
+         B     @L1394
+@L1393   DS    0H
+         LG    15,@lit_1946_909
          LA    15,896(0,15)
-@L1387   DS    0H
+@L1394   DS    0H
          LG    1,256(0,7)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -11712,7 +11769,7 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          LGFR  1,3
          STG   1,896(0,13)
          XC    904(8,13),904(13)
-         LG    1,@lit_1946_911
+         LG    1,@lit_1946_909
          LA    3,932(0,1)
          STG   3,912(0,13)
          LA    1,944(0,1)
@@ -11724,21 +11781,21 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          LG    1,152(0,7)  ; offset of end in rd_slice_s
          SLG   1,144(0,7)
          STG   1,952(0,13)
-         LG    1,@lit_1946_912
+         LG    1,@lit_1946_910
          LA    1,538(0,1)
          STG   1,960(0,13)
-         MVGHI 968(13),885
+         MVGHI 968(13),890
          XC    976(8,13),976(13)
          STG   5,984(0,13)
          STG   15,992(0,13)
          LA    15,344(0,13)
          STG   15,1000(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_928 ; rd_kafka_log0
-@@gen_label1256 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_911 ; rd_kafka_log0
 @@gen_label1257 DS    0H 
-@L1377   DS    0H
+         BALR  14,15
+@@gen_label1258 DS    0H 
+@L1384   DS    0H
          MVHI  392(7),-155 ; offset of rkbuf_err in rd_kafka_buf_s
          ALGF  12,@lit_region_diff_1946_6_7
          DROP  12
@@ -11746,109 +11803,109 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          B     @_err_parse@1946@2
          DROP  12
          USING @REGION_1946_6,12
-@L1373   DS    0H
+@L1380   DS    0H
          LG    15,216(0,13) ; _len2
          ST    15,288(0,13) ; offset of Value in 0000157
          CHSI  288(13),-1
-         BNE   @L1388
+         BNE   @L1395
          LGHI  15,0        ; 0
          STG   15,296(0,13) ; offset of data in rd_kafkap_bytes_s
          MVHI  288(13),0   ; offset of Value in 0000157
-         B     @L1389
-@L1388   DS    0H
+         B     @L1396
+@L1395   DS    0H
          CHSI  288(13),-1
-         BNE   @L1390
+         BNE   @L1397
          LHI   15,0        ; 0
-         B     @L1391
-@L1390   DS    0H
+         B     @L1398
+@L1397   DS    0H
          L     15,288(0,13) ; offset of Value in 0000157
-@L1391   DS    0H
+@L1398   DS    0H
          LTR   15,15
-         BNE   @L1392
-         LG    15,@lit_1946_911
+         BNE   @L1399
+         LG    15,@lit_1946_909
          LA    15,168(0,15)
          STG   15,296(0,13) ; offset of data in rd_kafkap_bytes_s
-         B     @L1389
-@L1392   DS    0H
+         B     @L1396
+@L1399   DS    0H
          LA    15,120(0,7)
          STG   15,872(0,13)
          LG    15,216(0,13) ; _len2
          STG   15,880(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_932 ; rd_slice_ensure_contig
-@@gen_label1261 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_934 ; rd_slice_ensure_contig
 @@gen_label1262 DS    0H 
+         BALR  14,15
+@@gen_label1263 DS    0H 
          STG   15,296(0,13)
          LTGR  15,15
-         BNZ   @L1389
-@L1395   DS    0H
+         BNZ   @L1396
+@L1402   DS    0H
          LG    5,216(0,13) ; _len2
          LG    8,152(0,7)  ; offset of end in rd_slice_s
          LA    15,120(0,7)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_924 ; rd_slice_abs_offset
-@@gen_label1264 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_926 ; rd_slice_abs_offset
 @@gen_label1265 DS    0H 
+         BALR  14,15
+@@gen_label1266 DS    0H 
          SLGR  8,15
          CLGR  5,8
-         BNH   @L1398
-@L1399   DS    0H
+         BNH   @L1405
+@L1406   DS    0H
          LTR   3,3
-         BNH   @L1402
-@L1403   DS    0H
+         BNH   @L1409
+@L1410   DS    0H
          LTG   15,256(0,7) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1406
-         LG    15,@lit_1946_911
+         BNZ   @L1413
+         LG    15,@lit_1946_909
          LA    1,718(0,15)
          STG   1,872(0,13)
-         MVGHI 880(13),885
-         LG    1,@lit_1946_912
+         MVGHI 880(13),890
+         LG    1,@lit_1946_910
          LA    1,538(0,1)
          STG   1,888(0,13)
          XC    896(8,13),896(13)
          LA    15,866(0,15)
          STG   15,904(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_913 ; rd_kafka_crash
-@@gen_label1269 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_915 ; rd_kafka_crash
 @@gen_label1270 DS    0H 
-@L1406   DS    0H
+         BALR  14,15
+@@gen_label1271 DS    0H 
+@L1413   DS    0H
          LA    15,344(0,13)
          STG   15,872(0,13)
          MVGHI 880(13),256
-         LG    15,@lit_1946_911
+         LG    15,@lit_1946_909
          LA    15,892(0,15)
          STG   15,888(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_915 ; snprintf
-@@gen_label1271 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_917 ; snprintf
 @@gen_label1272 DS    0H 
+         BALR  14,15
+@@gen_label1273 DS    0H 
          LA    15,344(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label1273 DS 0H
+@@gen_label1274 DS 0H
          SRST  0,15
-         BC  1,@@gen_label1273
+         BC  1,@@gen_label1274
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1408
+         BNE   @L1415
          MVI   344(13),0
-@L1407   DS    0H
-@L1408   DS    0H
+@L1414   DS    0H
+@L1415   DS    0H
          LG    15,256(0,7) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  2,5688      ; 5688
          LA    15,0(2,15)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_917 ; mtx_lock
-@@gen_label1275 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_919 ; mtx_lock
 @@gen_label1276 DS    0H 
+         BALR  14,15
+@@gen_label1277 DS    0H 
          LA    15,600(0,13)
          STG   15,872(0,13)
          LG    15,256(0,7) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -11857,53 +11914,53 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          STG   15,880(0,13)
          MVGHI 888(13),256
          LA    1,872(0,13)
-         LG    15,@lit_1946_919 ; rd_strlcpy
-@@gen_label1277 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_921 ; rd_strlcpy
 @@gen_label1278 DS    0H 
+         BALR  14,15
+@@gen_label1279 DS    0H 
          LG    15,256(0,7) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(2,15)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_921 ; mtx_unlock
-@@gen_label1279 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_923 ; mtx_unlock
 @@gen_label1280 DS    0H 
+         BALR  14,15
+@@gen_label1281 DS    0H 
          LGH   15,184(0,7)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_922 ; rd_kafka_ApiKey2str
-@@gen_label1281 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_924 ; rd_kafka_ApiKey2str
 @@gen_label1282 DS    0H 
+         BALR  14,15
+@@gen_label1283 DS    0H 
          LGR   2,15
          LA    15,120(0,7)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_923 ; rd_slice_offset
-@@gen_label1283 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_925 ; rd_slice_offset
 @@gen_label1284 DS    0H 
+         BALR  14,15
+@@gen_label1285 DS    0H 
          LGR   4,15
          LG    8,152(0,7)  ; offset of end in rd_slice_s
          LA    15,120(0,7)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_924 ; rd_slice_abs_offset
-@@gen_label1285 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_926 ; rd_slice_abs_offset
 @@gen_label1286 DS    0H 
+         BALR  14,15
+@@gen_label1287 DS    0H 
          SLGR  8,15
          LTG   15,488(0,7) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L1411
+         BZ    @L1418
          LG    15,488(0,7) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         B     @L1412
-@L1411   DS    0H
-         LG    15,@lit_1946_911
+         B     @L1419
+@L1418   DS    0H
+         LG    15,@lit_1946_909
          LA    15,896(0,15)
-@L1412   DS    0H
+@L1419   DS    0H
          LG    1,256(0,7)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -11916,7 +11973,7 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          LGFR  1,3
          STG   1,896(0,13)
          XC    904(8,13),904(13)
-         LG    1,@lit_1946_911
+         LG    1,@lit_1946_909
          LA    3,932(0,1)
          STG   3,912(0,13)
          LA    1,944(0,1)
@@ -11928,21 +11985,21 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          LG    1,152(0,7)  ; offset of end in rd_slice_s
          SLG   1,144(0,7)
          STG   1,952(0,13)
-         LG    1,@lit_1946_912
+         LG    1,@lit_1946_910
          LA    1,538(0,1)
          STG   1,960(0,13)
-         MVGHI 968(13),885
+         MVGHI 968(13),890
          STG   5,976(0,13)
          STG   8,984(0,13)
          STG   15,992(0,13)
          LA    15,344(0,13)
          STG   15,1000(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_928 ; rd_kafka_log0
-@@gen_label1288 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_911 ; rd_kafka_log0
 @@gen_label1289 DS    0H 
-@L1402   DS    0H
+         BALR  14,15
+@@gen_label1290 DS    0H 
+@L1409   DS    0H
          MVHI  392(7),-155 ; offset of rkbuf_err in rd_kafka_buf_s
          ALGF  12,@lit_region_diff_1946_6_7
          DROP  12
@@ -11950,10 +12007,10 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          B     @_err_parse@1946@2
          DROP  12
          USING @REGION_1946_6,12
-@L1398   DS    0H
-@L1394   DS    0H
-@L1393   DS    0H
-@L1389   DS    0H
+@L1405   DS    0H
+@L1401   DS    0H
+@L1400   DS    0H
+@L1396   DS    0H
 * ***   
 * ***           
 * ***   
@@ -11963,10 +12020,10 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          LA    15,120(0,7)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_923 ; rd_slice_offset
-@@gen_label1290 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_925 ; rd_slice_offset
 @@gen_label1291 DS    0H 
+         BALR  14,15
+@@gen_label1292 DS    0H 
          SLGR  4,15
          ST    4,312(0,13)
 * ***           do { size_t _klen = hdr.Headers.len; if (!(*(&hdr.Head\
@@ -11975,7 +12032,7 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
 * buf)->rkbuf_reader)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reade\
 * r))))) { do { if (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf\
 * _rkb)))) rd_kafka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgs\
-* et_reader.c",891, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rk\
+* et_reader.c",896, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rk\
 * buf_rkb"); } while (0); char __tmpstr[256]; snprintf(__tmpstr, sizeo\
 * f(__tmpstr), ": "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0';\
 *  do { char _logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_\
@@ -11987,91 +12044,91 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
 *  "expected %" "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", r\
 * d_kafka_ApiKey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr\
 * .ApiVersion, rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_\
-* reader)->end - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 891, __\
+* reader)->end - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 896, __\
 * len0, ((&rkbuf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkb\
 * uf_reader)), rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_miti\
 * gation : "incorrect broker.version.fallback?", __tmpstr); } while (0\
 * ); } (rkbuf)->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_par\
 * se; } while (0); } } while (0); } while (0);
-@L1413   DS    0H
+@L1420   DS    0H
          LGF   4,312(0,13)
          LA    15,120(0,7)
          STG   15,872(0,13)
          STG   4,880(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_932 ; rd_slice_ensure_contig
-@@gen_label1292 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_934 ; rd_slice_ensure_contig
 @@gen_label1293 DS    0H 
+         BALR  14,15
+@@gen_label1294 DS    0H 
          STG   15,320(0,13)
          LTGR  15,15
-         BNZ   @L1416
-@L1417   DS    0H
+         BNZ   @L1423
+@L1424   DS    0H
          LG    5,152(0,7)  ; offset of end in rd_slice_s
          LA    15,120(0,7)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_924 ; rd_slice_abs_offset
-@@gen_label1295 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_926 ; rd_slice_abs_offset
 @@gen_label1296 DS    0H 
+         BALR  14,15
+@@gen_label1297 DS    0H 
          SLGR  5,15
          CLGR  4,5
-         BNH   @L1420
-@L1421   DS    0H
+         BNH   @L1427
+@L1428   DS    0H
          LTR   3,3
-         BNH   @L1424
-@L1425   DS    0H
+         BNH   @L1431
+@L1432   DS    0H
          LTG   15,256(0,7) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1428
-         LG    15,@lit_1946_911
+         BNZ   @L1435
+         LG    15,@lit_1946_909
          LA    1,718(0,15)
          STG   1,872(0,13)
-         MVGHI 880(13),891
-         LG    1,@lit_1946_912
+         MVGHI 880(13),896
+         LG    1,@lit_1946_910
          LA    1,538(0,1)
          STG   1,888(0,13)
          XC    896(8,13),896(13)
          LA    15,866(0,15)
          STG   15,904(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_913 ; rd_kafka_crash
-@@gen_label1300 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_915 ; rd_kafka_crash
 @@gen_label1301 DS    0H 
-@L1428   DS    0H
+         BALR  14,15
+@@gen_label1302 DS    0H 
+@L1435   DS    0H
          LA    15,344(0,13)
          STG   15,872(0,13)
          MVGHI 880(13),256
-         LG    15,@lit_1946_911
+         LG    15,@lit_1946_909
          LA    15,892(0,15)
          STG   15,888(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_915 ; snprintf
-@@gen_label1302 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_917 ; snprintf
 @@gen_label1303 DS    0H 
+         BALR  14,15
+@@gen_label1304 DS    0H 
          LA    15,344(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label1304 DS 0H
+@@gen_label1305 DS 0H
          SRST  0,15
-         BC  1,@@gen_label1304
+         BC  1,@@gen_label1305
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1430
+         BNE   @L1437
          MVI   344(13),0
-@L1429   DS    0H
-@L1430   DS    0H
+@L1436   DS    0H
+@L1437   DS    0H
          LG    15,256(0,7) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  2,5688      ; 5688
          LA    15,0(2,15)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_917 ; mtx_lock
-@@gen_label1306 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_919 ; mtx_lock
 @@gen_label1307 DS    0H 
+         BALR  14,15
+@@gen_label1308 DS    0H 
          LA    15,600(0,13)
          STG   15,872(0,13)
          LG    15,256(0,7) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -12080,53 +12137,53 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          STG   15,880(0,13)
          MVGHI 888(13),256
          LA    1,872(0,13)
-         LG    15,@lit_1946_919 ; rd_strlcpy
-@@gen_label1308 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_921 ; rd_strlcpy
 @@gen_label1309 DS    0H 
+         BALR  14,15
+@@gen_label1310 DS    0H 
          LG    15,256(0,7) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(2,15)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_921 ; mtx_unlock
-@@gen_label1310 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_923 ; mtx_unlock
 @@gen_label1311 DS    0H 
+         BALR  14,15
+@@gen_label1312 DS    0H 
          LGH   15,184(0,7)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_922 ; rd_kafka_ApiKey2str
-@@gen_label1312 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_924 ; rd_kafka_ApiKey2str
 @@gen_label1313 DS    0H 
+         BALR  14,15
+@@gen_label1314 DS    0H 
          LGR   2,15
          LA    15,120(0,7)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_923 ; rd_slice_offset
-@@gen_label1314 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_925 ; rd_slice_offset
 @@gen_label1315 DS    0H 
+         BALR  14,15
+@@gen_label1316 DS    0H 
          LGR   5,15
          LG    8,152(0,7)  ; offset of end in rd_slice_s
          LA    15,120(0,7)
          STG   15,872(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_924 ; rd_slice_abs_offset
-@@gen_label1316 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_926 ; rd_slice_abs_offset
 @@gen_label1317 DS    0H 
+         BALR  14,15
+@@gen_label1318 DS    0H 
          SLGR  8,15
          LTG   15,488(0,7) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L1433
+         BZ    @L1440
          LG    15,488(0,7) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         B     @L1434
-@L1433   DS    0H
-         LG    15,@lit_1946_911
+         B     @L1441
+@L1440   DS    0H
+         LG    15,@lit_1946_909
          LA    15,896(0,15)
-@L1434   DS    0H
+@L1441   DS    0H
          LG    1,256(0,7)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -12139,7 +12196,7 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          LGFR  1,3
          STG   1,896(0,13)
          XC    904(8,13),904(13)
-         LG    1,@lit_1946_911
+         LG    1,@lit_1946_909
          LA    3,932(0,1)
          STG   3,912(0,13)
          LA    1,944(0,1)
@@ -12151,21 +12208,21 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          LG    1,152(0,7)  ; offset of end in rd_slice_s
          SLG   1,144(0,7)
          STG   1,952(0,13)
-         LG    1,@lit_1946_912
+         LG    1,@lit_1946_910
          LA    1,538(0,1)
          STG   1,960(0,13)
-         MVGHI 968(13),891
+         MVGHI 968(13),896
          STG   4,976(0,13)
          STG   8,984(0,13)
          STG   15,992(0,13)
          LA    15,344(0,13)
          STG   15,1000(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_928 ; rd_kafka_log0
-@@gen_label1319 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_911 ; rd_kafka_log0
 @@gen_label1320 DS    0H 
-@L1424   DS    0H
+         BALR  14,15
+@@gen_label1321 DS    0H 
+@L1431   DS    0H
          MVHI  392(7),-155 ; offset of rkbuf_err in rd_kafka_buf_s
          ALGF  12,@lit_region_diff_1946_6_7
          DROP  12
@@ -12173,8 +12230,8 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          B     @_err_parse@1946@2
          DROP  12
          USING @REGION_1946_6,12
-@L1420   DS    0H
-@L1416   DS    0H
+@L1427   DS    0H
+@L1423   DS    0H
 * ***   
 * ***           
 * ***           rko = rd_kafka_op_new_fetch_msg(&rkm,
@@ -12190,48 +12247,52 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
 * ***                                           ((&hdr.Value)->len == \
 * -1) ?
          CHSI  264(13),-1
-         BNE   @L1435
+         BNE   @L1442
          LHI   15,0        ; 0
-         B     @L1436
-@L1435   DS    0H
-         L     15,264(0,13) ; offset of Key in 0000157
-@L1436   DS    0H
-         LGFR  15,15
-         CHSI  264(13),-1
-         BNE   @L1437
-* ***                                           ((void *)0) : hdr.Key.\
-* data,
-         LGHI  1,0         ; 0
-         B     @L1438
-@L1437   DS    0H
-         LG    1,272(0,13) ; offset of data in rd_kafkap_bytes_s
-@L1438   DS    0H
-         CHSI  288(13),-1
-         BNE   @L1439
-         LHI   3,0         ; 0
-         B     @L1440
-@L1439   DS    0H
-         L     3,288(0,13) ; offset of Value in 0000157
-@L1440   DS    0H
-         LGFR  3,3
-         CHSI  288(13),-1
-         BNE   @L1441
-* ***                                           ((void *)0) : hdr.Valu\
-* e.data);
-         LGHI  4,0         ; 0
          ALGF  12,@lit_region_diff_1946_6_7
          DROP  12
          USING @REGION_1946_7,12
-         B     @L1442
+         B     @L1443
          DROP  12
          USING @REGION_1946_6,12
-@L1441   DS    0H
-         LG    4,296(0,13) ; offset of data in rd_kafkap_bytes_s
+@L1442   DS    0H
+         L     15,264(0,13) ; offset of Key in 0000157
          ALGF  12,@lit_region_diff_1946_6_7
 @REGION_1946_7 DS 0H
          DROP  12
          USING @REGION_1946_7,12
-@L1442   DS    0H
+@L1443   DS    0H
+         LGFR  15,15
+         CHSI  264(13),-1
+         BNE   @L1444
+* ***                                           ((void *)0) : hdr.Key.\
+* data,
+         LGHI  1,0         ; 0
+         B     @L1445
+         DS    0D
+@lit_1946_979 DC AD(rd_kafka_op_new_fetch_msg)
+@lit_1946_980 DC AD(rd_kafka_q_enq)
+@lit_1946_982 DC AD(rd_atomic64_add)
+@L1444   DS    0H
+         LG    1,272(0,13) ; offset of data in rd_kafkap_bytes_s
+@L1445   DS    0H
+         CHSI  288(13),-1
+         BNE   @L1446
+         LHI   3,0         ; 0
+         B     @L1447
+@L1446   DS    0H
+         L     3,288(0,13) ; offset of Value in 0000157
+@L1447   DS    0H
+         LGFR  3,3
+         CHSI  288(13),-1
+         BNE   @L1448
+* ***                                           ((void *)0) : hdr.Valu\
+* e.data);
+         LGHI  4,0         ; 0
+         B     @L1449
+@L1448   DS    0H
+         LG    4,296(0,13) ; offset of data in rd_kafkap_bytes_s
+@L1449   DS    0H
          LA    5,336(0,13)
          STG   5,872(0,13)
          STG   2,880(0,13)
@@ -12246,10 +12307,10 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          STG   1,920(0,13)
          STMG  3,4,928(13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_977 ; rd_kafka_op_new_fetch_msg
-@@gen_label1325 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_979 ; rd_kafka_op_new_fetch_msg
 @@gen_label1326 DS    0H 
+         BALR  14,15
+@@gen_label1327 DS    0H 
 * ***   
 * ***           rkm->rkm_broker_id = msetr->msetr_broker_id;
          LG    1,336(0,13) ; rkm
@@ -12271,18 +12332,18 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          STG   2,128(0,1)  ; offset of data in rd_kafkap_bytes_s
 * ***   
 * ***           
-* ***   # 919 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
+* ***   # 924 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
 * ***           if ((msetr->msetr_v2_hdr->Attributes &
 * ***                (1 << 3)) ||
          LG    1,40(0,6)   ; offset of msetr_v2_hdr in rd_kafka_msgset_*
                reader_s
          LH    1,24(0,1)
          TML   1,8
-         BNZ   @L1444
+         BNZ   @L1451
 * ***               (hdr.MsgAttributes & (1 << 3))) {
          TM    232(13),8
-         BZ    @L1443
-@L1444   DS    0H
+         BZ    @L1450
+@L1451   DS    0H
 * ***                   rkm->rkm_tstype = RD_KAFKA_TIMESTAMP_LOG_APPEN\
 * D_TIME;
          LG    1,336(0,13) ; rkm
@@ -12295,12 +12356,8 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          LG    2,40(0,2)   ; offset of MaxTimestamp in msgset_v2_hdr
          STG   2,96(0,1)   ; offset of rkm_timestamp in rd_kafka_msg_s
 * ***           } else {
-         B     @L1445
-         DS    0D
-@lit_1946_977 DC AD(rd_kafka_op_new_fetch_msg)
-@lit_1946_978 DC AD(rd_kafka_q_enq)
-@lit_1946_980 DC AD(rd_atomic64_add)
-@L1443   DS    0H
+         B     @L1452
+@L1450   DS    0H
 * ***                   rkm->rkm_tstype = RD_KAFKA_TIMESTAMP_CREATE_TI\
 * ME;
          LG    1,336(0,13) ; rkm
@@ -12315,7 +12372,7 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          AG    2,240(0,13)
          STG   2,96(0,1)   ; offset of rkm_timestamp in rd_kafka_msg_s
 * ***           }
-@L1445   DS    0H
+@L1452   DS    0H
 * ***   
 * ***   
 * ***           
@@ -12324,10 +12381,10 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          STG   1,872(0,13)
          STG   15,880(0,13)
          LA    1,872(0,13)
-         LG    15,@lit_1946_978 ; rd_kafka_q_enq
-@@gen_label1329 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_980 ; rd_kafka_q_enq
 @@gen_label1330 DS    0H 
+         BALR  14,15
+@@gen_label1331 DS    0H 
 * ***           msetr->msetr_msgcnt++;
          L     15,88(0,6)
          AHI   15,1
@@ -12356,10 +12413,10 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
          STG   15,872(0,13)
          MVGHI 880(13),1
          LA    1,872(0,13)
-         LG    15,@lit_1946_980 ; rd_atomic64_add
-@@gen_label1331 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1946_982 ; rd_atomic64_add
 @@gen_label1332 DS    0H 
+         BALR  14,15
+@@gen_label1333 DS    0H 
 * ***           return rkbuf->rkbuf_err;
          LGF   15,392(0,7)
 * ***   }
@@ -12374,17 +12431,17 @@ rd_kafka_msgset_reader_msg_v2 DCCPRLG CINDEX=1946,BASER=12,FRAME=1008,E*
 *
 @AUTO#rd_kafka_msgset_reader_msg_v2 DSECT
          DS    XL168
-rd_kafka_msgset_reader_msg_v2#__len0#115 DS 8XL1 ; __len0
+rd_kafka_msgset_reader_msg_v2#__len0#121 DS 8XL1 ; __len0
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+168
-rd_kafka_msgset_reader_msg_v2#_klen#114 DS 8XL1 ; _klen
+rd_kafka_msgset_reader_msg_v2#_klen#120 DS 8XL1 ; _klen
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+168
-rd_kafka_msgset_reader_msg_v2#__len0#108 DS 8XL1 ; __len0
+rd_kafka_msgset_reader_msg_v2#__len0#114 DS 8XL1 ; __len0
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+168
-rd_kafka_msgset_reader_msg_v2#_r#102 DS 8XL1 ; _r
+rd_kafka_msgset_reader_msg_v2#_r#108 DS 8XL1 ; _r
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+168
-rd_kafka_msgset_reader_msg_v2#__len0#96 DS 8XL1 ; __len0
+rd_kafka_msgset_reader_msg_v2#__len0#102 DS 8XL1 ; __len0
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+168
-rd_kafka_msgset_reader_msg_v2#_r#90 DS 8XL1 ; _r
+rd_kafka_msgset_reader_msg_v2#_r#96 DS 8XL1 ; _r
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+168
 rd_kafka_msgset_reader_msg_v2#__len0#78 DS 8XL1 ; __len0
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+168
@@ -12438,21 +12495,21 @@ rd_kafka_msgset_reader_msg_v2#_v#45 DS 2XL1 ; _v
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+202
 rd_kafka_msgset_reader_msg_v2#_v#69 DS 2XL1 ; _v
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+208
-rd_kafka_msgset_reader_msg_v2#_len2#90 DS 8XL1 ; _len2
+rd_kafka_msgset_reader_msg_v2#_len2#96 DS 8XL1 ; _len2
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+216
-rd_kafka_msgset_reader_msg_v2#_len2#102 DS 8XL1 ; _len2
+rd_kafka_msgset_reader_msg_v2#_len2#108 DS 8XL1 ; _len2
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+224
 rd_kafka_msgset_reader_msg_v2#hdr#0 DS 112XL1 ; hdr
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+344
-rd_kafka_msgset_reader_msg_v2#__tmpstr#119 DS 256XL1 ; __tmpstr
+rd_kafka_msgset_reader_msg_v2#__tmpstr#125 DS 256XL1 ; __tmpstr
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+344
-rd_kafka_msgset_reader_msg_v2#__tmpstr#112 DS 256XL1 ; __tmpstr
+rd_kafka_msgset_reader_msg_v2#__tmpstr#118 DS 256XL1 ; __tmpstr
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+344
-rd_kafka_msgset_reader_msg_v2#__tmpstr#105 DS 256XL1 ; __tmpstr
+rd_kafka_msgset_reader_msg_v2#__tmpstr#111 DS 256XL1 ; __tmpstr
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+344
-rd_kafka_msgset_reader_msg_v2#__tmpstr#100 DS 256XL1 ; __tmpstr
+rd_kafka_msgset_reader_msg_v2#__tmpstr#106 DS 256XL1 ; __tmpstr
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+344
-rd_kafka_msgset_reader_msg_v2#__tmpstr#93 DS 256XL1 ; __tmpstr
+rd_kafka_msgset_reader_msg_v2#__tmpstr#99 DS 256XL1 ; __tmpstr
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+344
 rd_kafka_msgset_reader_msg_v2#ctrl_data#34 DS 16XL1 ; ctrl_data
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+344
@@ -12468,11 +12525,11 @@ rd_kafka_msgset_reader_msg_v2#__tmpstr#11 DS 256XL1 ; __tmpstr
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+344
 rd_kafka_msgset_reader_msg_v2#__tmpstr#4 DS 256XL1 ; __tmpstr
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+360
-rd_kafka_msgset_reader_msg_v2#_logname#89 DS 256XL1 ; _logname
+rd_kafka_msgset_reader_msg_v2#_logname#95 DS 256XL1 ; _logname
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+360
-rd_kafka_msgset_reader_msg_v2#_logname#86 DS 256XL1 ; _logname
+rd_kafka_msgset_reader_msg_v2#_logname#92 DS 256XL1 ; _logname
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+360
-rd_kafka_msgset_reader_msg_v2#_logname#85 DS 256XL1 ; _logname
+rd_kafka_msgset_reader_msg_v2#_logname#88 DS 256XL1 ; _logname
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+360
 rd_kafka_msgset_reader_msg_v2#__tmpstr#82 DS 256XL1 ; __tmpstr
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+360
@@ -12494,15 +12551,15 @@ rd_kafka_msgset_reader_msg_v2#_logname#43 DS 256XL1 ; _logname
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+360
 rd_kafka_msgset_reader_msg_v2#__tmpstr#38 DS 256XL1 ; __tmpstr
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+600
-rd_kafka_msgset_reader_msg_v2#_logname#120 DS 256XL1 ; _logname
+rd_kafka_msgset_reader_msg_v2#_logname#126 DS 256XL1 ; _logname
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+600
-rd_kafka_msgset_reader_msg_v2#_logname#113 DS 256XL1 ; _logname
+rd_kafka_msgset_reader_msg_v2#_logname#119 DS 256XL1 ; _logname
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+600
-rd_kafka_msgset_reader_msg_v2#_logname#106 DS 256XL1 ; _logname
+rd_kafka_msgset_reader_msg_v2#_logname#112 DS 256XL1 ; _logname
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+600
-rd_kafka_msgset_reader_msg_v2#_logname#101 DS 256XL1 ; _logname
+rd_kafka_msgset_reader_msg_v2#_logname#107 DS 256XL1 ; _logname
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+600
-rd_kafka_msgset_reader_msg_v2#_logname#94 DS 256XL1 ; _logname
+rd_kafka_msgset_reader_msg_v2#_logname#100 DS 256XL1 ; _logname
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+600
 rd_kafka_msgset_reader_msg_v2#_logname#33 DS 256XL1 ; _logname
          ORG   @AUTO#rd_kafka_msgset_reader_msg_v2+600
@@ -12550,34 +12607,34 @@ rd_kafka_msgset_reader_msgs_v2 DCCPRLG CINDEX=1942,BASER=12,FRAME=816,E*
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    15,4048(0,15) ; offset of rkb_rk in rd_kafka_broker_s
          TM    803(15),128
-         BZ    @L1446
+         BZ    @L1453
          LHI   6,7         ; 7
-         B     @L1447
+         B     @L1454
          DS    0D
 @FRAMESIZE_1942 DC F'816'
-@lit_1942_1032 DC AD(rd_kafka_aborted_txns_get_offset)
-@lit_1942_1034 DC AD(mtx_lock)
-@lit_1942_1036 DC AD(rd_strlcpy)
-@lit_1942_1038 DC AD(mtx_unlock)
-@lit_1942_1040 DC AD(rd_kafka_log0)
-@lit_1942_1039 DC AD(@strings@)
-@lit_1942_1041 DC AD(rd_slice_abs_offset)
-@lit_1942_1042 DC AD(rd_slice_read)
-@lit_1942_1046 DC AD(rd_kafka_crash)
-@lit_1942_1045 DC AD(@DATA)
-@lit_1942_1048 DC AD(snprintf)
-@lit_1942_1055 DC AD(rd_kafka_$Api$Key2str)
-@lit_1942_1056 DC AD(rd_slice_offset)
-@lit_1942_1063 DC AD(rd_kafka_msgset_reader_msg_v2)
-@lit_1942_1066 DC AD(rd_atomic64_add)
-@L1446   DS    0H
+@lit_1942_1039 DC AD(rd_kafka_aborted_txns_get_offset)
+@lit_1942_1041 DC AD(mtx_lock)
+@lit_1942_1043 DC AD(rd_strlcpy)
+@lit_1942_1045 DC AD(mtx_unlock)
+@lit_1942_1047 DC AD(rd_kafka_log0)
+@lit_1942_1046 DC AD(@strings@)
+@lit_1942_1048 DC AD(rd_slice_abs_offset)
+@lit_1942_1049 DC AD(rd_slice_read)
+@lit_1942_1053 DC AD(rd_kafka_crash)
+@lit_1942_1052 DC AD(@DATA)
+@lit_1942_1055 DC AD(snprintf)
+@lit_1942_1062 DC AD(rd_kafka_$Api$Key2str)
+@lit_1942_1063 DC AD(rd_slice_offset)
+@lit_1942_1070 DC AD(rd_kafka_msgset_reader_msg_v2)
+@lit_1942_1073 DC AD(rd_atomic64_add)
+@L1453   DS    0H
          LHI   6,0         ; 0
-@L1447   DS    0H
+@L1454   DS    0H
 * ***   
 * ***           if (msetr->msetr_aborted_txns != ((void *)0) &&
          LTG   15,48(0,3)  ; offset of msetr_aborted_txns in rd_kafka_m*
                sgset_reader_s
-         BE    @L1482
+         BE    @L1489
 * ***               (msetr->msetr_v2_hdr->Attributes &
 * ***                ((1 << 4)|
 * ***                 (1 << 5))) ==
@@ -12587,7 +12644,7 @@ rd_kafka_msgset_reader_msgs_v2 DCCPRLG CINDEX=1942,BASER=12,FRAME=816,E*
          LH    15,24(0,15)
          NILF  15,X'00000030'
          CHI   15,16
-         BNE   @L1482
+         BNE   @L1489
 * ***                   
 * ***   
 * ***                   int64_t txn_start_offset =
@@ -12601,22 +12658,22 @@ rd_kafka_msgset_reader_msgs_v2 DCCPRLG CINDEX=1942,BASER=12,FRAME=816,E*
          LG    15,48(0,15)
          STG   15,688(0,13)
          LA    1,680(0,13)
-         LG    15,@lit_1942_1032 ; rd_kafka_aborted_txns_get_offset
-@@gen_label1336 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1942_1039 ; rd_kafka_aborted_txns_get_offset
 @@gen_label1337 DS    0H 
+         BALR  14,15
+@@gen_label1338 DS    0H 
          LGR   2,15
 * ***   
 * ***                   if (txn_start_offset != -1 &&
          CGHI  2,-1
-         BE    @L1449
+         BE    @L1456
 * ***                       msetr->msetr_v2_hdr->BaseOffset >=
 * ***                       txn_start_offset) {
          LG    15,40(0,3)  ; offset of msetr_v2_hdr in rd_kafka_msgset_*
                reader_s
          LG    15,0(0,15)
          CGR   15,2
-         BL    @L1449
+         BL    @L1456
 * ***                           
 * ***                           do { if ((((msetr->msetr_rkb)->rkb_rk-\
 * >rk_conf.debug & (0x40)))) { do { char _logname[256]; mtx_lock(&(mse\
@@ -12625,26 +12682,26 @@ rd_kafka_msgset_reader_msgs_v2 DCCPRLG CINDEX=1942,BASER=12,FRAME=816,E*
 * ->rkb_logname_lock); rd_kafka_log0(&(msetr->msetr_rkb)->rkb_rk->rk_c\
 * onf, (msetr->msetr_rkb)->rkb_rk, _logname, 7, (0x40), "MSG", "%s [%"\
 *  "d" "]: " "Skipping %" "d" " message(s) " "in aborted transaction "\
-*  "at offset %" "lld", rktp->rktp_rkt->rkt_topic->str, rktp->rktp_par\
-* tition, msetr->msetr_v2_hdr->RecordCount, txn_start_offset); } while\
-*  (0); } } while (0);
-@L1450   DS    0H
+*  "at offset %" "lld" " for PID %" "lld", rktp->rktp_rkt->rkt_topic->\
+* str, rktp->rktp_partition, msetr->msetr_v2_hdr->RecordCount, txn_sta\
+* rt_offset, msetr->msetr_v2_hdr->PID); } while (0); } } while (0);
+@L1457   DS    0H
          LG    15,72(0,3)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LG    15,4048(0,15) ; offset of rkb_rk in rd_kafka_broker_s
          TM    803(15),64
-         BZ    @L1453
-@L1454   DS    0H
+         BZ    @L1460
+@L1461   DS    0H
          LG    15,72(0,3)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LGHI  7,5688      ; 5688
          LA    15,0(7,15)
          STG   15,680(0,13)
          LA    1,680(0,13)
-         LG    15,@lit_1942_1034 ; mtx_lock
-@@gen_label1341 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1942_1041 ; mtx_lock
 @@gen_label1342 DS    0H 
+         BALR  14,15
+@@gen_label1343 DS    0H 
          LA    15,168(0,13)
          STG   15,680(0,13)
          LG    15,72(0,3)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
@@ -12654,19 +12711,19 @@ rd_kafka_msgset_reader_msgs_v2 DCCPRLG CINDEX=1942,BASER=12,FRAME=816,E*
          STG   15,688(0,13)
          MVGHI 696(13),256
          LA    1,680(0,13)
-         LG    15,@lit_1942_1036 ; rd_strlcpy
-@@gen_label1343 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1942_1043 ; rd_strlcpy
 @@gen_label1344 DS    0H 
+         BALR  14,15
+@@gen_label1345 DS    0H 
          LG    15,72(0,3)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LA    15,0(7,15)
          STG   15,680(0,13)
          LA    1,680(0,13)
-         LG    15,@lit_1942_1038 ; mtx_unlock
-@@gen_label1345 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1942_1045 ; mtx_unlock
 @@gen_label1346 DS    0H 
+         BALR  14,15
+@@gen_label1347 DS    0H 
          LG    15,72(0,3)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LG    15,4048(0,15) ; offset of rkb_rk in rd_kafka_broker_s
@@ -12680,10 +12737,10 @@ rd_kafka_msgset_reader_msgs_v2 DCCPRLG CINDEX=1942,BASER=12,FRAME=816,E*
          STG   15,696(0,13)
          MVGHI 704(13),7
          MVGHI 712(13),64
-         LG    15,@lit_1942_1039
+         LG    15,@lit_1942_1046
          LA    1,1346(0,15)
          STG   1,720(0,13)
-         LA    15,1844(0,15)
+         LA    15,1896(0,15)
          STG   15,728(0,13)
          LG    15,96(0,5)  ; offset of rktp_rkt in rd_kafka_toppar_s
          LG    15,128(0,15) ; offset of rkt_topic in rd_kafka_topic_s
@@ -12696,13 +12753,17 @@ rd_kafka_msgset_reader_msgs_v2 DCCPRLG CINDEX=1942,BASER=12,FRAME=816,E*
          LGF   15,64(0,15)
          STG   15,752(0,13)
          STG   2,760(0,13)
+         LG    15,40(0,3)  ; offset of msetr_v2_hdr in rd_kafka_msgset_*
+               reader_s
+         LG    15,48(0,15)
+         STG   15,768(0,13)
          LA    1,680(0,13)
-         LG    15,@lit_1942_1040 ; rd_kafka_log0
-@@gen_label1347 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1942_1047 ; rd_kafka_log0
 @@gen_label1348 DS    0H 
-@L1453   DS    0H
-* ***   # 981 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
+         BALR  14,15
+@@gen_label1349 DS    0H 
+@L1460   DS    0H
+* ***   # 987 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
 * ***                           do { size_t __len1 = (size_t)(((&msetr\
 * ->msetr_rkbuf->rkbuf_reader)->end - rd_slice_abs_offset(&msetr->mset\
 * r_rkbuf->rkbuf_reader))); if (__len1 && !rd_slice_read(&(msetr->mset\
@@ -12711,7 +12772,7 @@ rd_kafka_msgset_reader_msgs_v2 DCCPRLG CINDEX=1942,BASER=12,FRAME=816,E*
 * r)->end - rd_slice_abs_offset(&(msetr->msetr_rkbuf)->rkbuf_reader)))\
 * )) { do { if (log_decode_errors > 0) { do { if (((!(msetr->msetr_rkb\
 * uf->rkbuf_rkb)))) rd_kafka_crash("C:\\asgkafka\\librdkafka\\src\\rdk\
-* afka_msgset_reader.c",981, __FUNCTION__, (((void *)0)), "assert: " "\
+* afka_msgset_reader.c",987, __FUNCTION__, (((void *)0)), "assert: " "\
 * msetr->msetr_rkbuf->rkbuf_rkb"); } while (0); char __tmpstr[256]; sn\
 * printf(__tmpstr, sizeof(__tmpstr), ": "); if (__strlen(__tmpstr) == \
 * 2) __tmpstr[0] = '\0'; do { char _logname[256]; mtx_lock(&(msetr->ms\
@@ -12726,108 +12787,108 @@ rd_kafka_msgset_reader_msgs_v2 DCCPRLG CINDEX=1942,BASER=12,FRAME=816,E*
 * dr. ApiKey), msetr->msetr_rkbuf->rkbuf_reqhdr.ApiVersion, rd_slice_o\
 * ffset(&msetr->msetr_rkbuf->rkbuf_reader), ((&msetr->msetr_rkbuf->rkb\
 * uf_reader)->end - (&msetr->msetr_rkbuf->rkbuf_reader)->start), __FUN\
-* CTION__, 981, __len0, ((&msetr->msetr_rkbuf->rkbuf_reader)->end - rd\
+* CTION__, 987, __len0, ((&msetr->msetr_rkbuf->rkbuf_reader)->end - rd\
 * _slice_abs_offset(&msetr->msetr_rkbuf->rkbuf_reader)), msetr->msetr_\
 * rkbuf->rkbuf_uflow_mitigation ? msetr->msetr_rkbuf->rkbuf_uflow_miti\
 * gation : "incorrect broker.version.fallback?", __tmpstr); } while (0\
 * ); } (msetr->msetr_rkbuf)->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW;\
 *  goto err_parse; } while (0); } } while (0); } while (0);
-@L1457   DS    0H
+@L1464   DS    0H
          LG    15,0(0,3)   ; msetr
          LG    2,152(0,15) ; offset of end in rd_slice_s
          LG    15,0(0,3)   ; msetr
          LA    15,120(0,15)
          STG   15,680(0,13)
          LA    1,680(0,13)
-         LG    15,@lit_1942_1041 ; rd_slice_abs_offset
-@@gen_label1349 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1942_1048 ; rd_slice_abs_offset
 @@gen_label1350 DS    0H 
+         BALR  14,15
+@@gen_label1351 DS    0H 
          SLGR  2,15
          LTGR  15,2
-         BZ    @L1460
+         BZ    @L1467
          LG    15,0(0,3)   ; msetr
          LA    15,120(0,15)
          STG   15,680(0,13)
          XC    688(8,13),688(13)
          STG   2,696(0,13)
          LA    1,680(0,13)
-         LG    15,@lit_1942_1042 ; rd_slice_read
-@@gen_label1352 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1942_1049 ; rd_slice_read
 @@gen_label1353 DS    0H 
+         BALR  14,15
+@@gen_label1354 DS    0H 
          LTGR  15,15
-         BNZ   @L1460
-@L1461   DS    0H
+         BNZ   @L1467
+@L1468   DS    0H
          LG    15,0(0,3)   ; msetr
          LG    5,152(0,15) ; offset of end in rd_slice_s
          LG    15,0(0,3)   ; msetr
          LA    15,120(0,15)
          STG   15,680(0,13)
          LA    1,680(0,13)
-         LG    15,@lit_1942_1041 ; rd_slice_abs_offset
-@@gen_label1355 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1942_1048 ; rd_slice_abs_offset
 @@gen_label1356 DS    0H 
+         BALR  14,15
+@@gen_label1357 DS    0H 
          SLGR  5,15
          CLGR  2,5
-         BNH   @L1464
-@L1465   DS    0H
+         BNH   @L1471
+@L1472   DS    0H
          LTR   6,6
-         BNH   @L1468
-@L1469   DS    0H
+         BNH   @L1475
+@L1476   DS    0H
          LG    15,0(0,3)   ; msetr
          LTG   15,256(0,15) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1472
-         LG    15,@lit_1942_1039
+         BNZ   @L1479
+         LG    15,@lit_1942_1046
          LA    1,718(0,15)
          STG   1,680(0,13)
-         MVGHI 688(13),981
-         LG    1,@lit_1942_1045
+         MVGHI 688(13),987
+         LG    1,@lit_1942_1052
          LA    1,568(0,1)
          STG   1,696(0,13)
          XC    704(8,13),704(13)
-         LA    15,1914(0,15)
+         LA    15,1980(0,15)
          STG   15,712(0,13)
          LA    1,680(0,13)
-         LG    15,@lit_1942_1046 ; rd_kafka_crash
-@@gen_label1360 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1942_1053 ; rd_kafka_crash
 @@gen_label1361 DS    0H 
-@L1472   DS    0H
+         BALR  14,15
+@@gen_label1362 DS    0H 
+@L1479   DS    0H
          LA    15,168(0,13)
          STG   15,680(0,13)
          MVGHI 688(13),256
-         LG    15,@lit_1942_1039
+         LG    15,@lit_1942_1046
          LA    15,892(0,15)
          STG   15,696(0,13)
          LA    1,680(0,13)
-         LG    15,@lit_1942_1048 ; snprintf
-@@gen_label1362 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1942_1055 ; snprintf
 @@gen_label1363 DS    0H 
+         BALR  14,15
+@@gen_label1364 DS    0H 
          LA    15,168(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label1364 DS 0H
+@@gen_label1365 DS 0H
          SRST  0,15
-         BC  1,@@gen_label1364
+         BC  1,@@gen_label1365
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1474
+         BNE   @L1481
          MVI   168(13),0
-@L1473   DS    0H
-@L1474   DS    0H
+@L1480   DS    0H
+@L1481   DS    0H
          LG    15,0(0,3)   ; msetr
          LG    15,256(0,15) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  5,5688      ; 5688
          LA    15,0(5,15)
          STG   15,680(0,13)
          LA    1,680(0,13)
-         LG    15,@lit_1942_1034 ; mtx_lock
-@@gen_label1366 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1942_1041 ; mtx_lock
 @@gen_label1367 DS    0H 
+         BALR  14,15
+@@gen_label1368 DS    0H 
          LA    15,424(0,13)
          STG   15,680(0,13)
          LG    15,0(0,3)   ; msetr
@@ -12837,36 +12898,36 @@ rd_kafka_msgset_reader_msgs_v2 DCCPRLG CINDEX=1942,BASER=12,FRAME=816,E*
          STG   15,688(0,13)
          MVGHI 696(13),256
          LA    1,680(0,13)
-         LG    15,@lit_1942_1036 ; rd_strlcpy
-@@gen_label1368 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1942_1043 ; rd_strlcpy
 @@gen_label1369 DS    0H 
+         BALR  14,15
+@@gen_label1370 DS    0H 
          LG    15,0(0,3)   ; msetr
          LG    15,256(0,15) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(5,15)
          STG   15,680(0,13)
          LA    1,680(0,13)
-         LG    15,@lit_1942_1038 ; mtx_unlock
-@@gen_label1370 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1942_1045 ; mtx_unlock
 @@gen_label1371 DS    0H 
+         BALR  14,15
+@@gen_label1372 DS    0H 
          LG    15,0(0,3)   ; msetr
          LGH   15,184(0,15)
          STG   15,680(0,13)
          LA    1,680(0,13)
-         LG    15,@lit_1942_1055 ; rd_kafka_ApiKey2str
-@@gen_label1372 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1942_1062 ; rd_kafka_ApiKey2str
 @@gen_label1373 DS    0H 
+         BALR  14,15
+@@gen_label1374 DS    0H 
          LGR   5,15
          LG    15,0(0,3)   ; msetr
          LA    15,120(0,15)
          STG   15,680(0,13)
          LA    1,680(0,13)
-         LG    15,@lit_1942_1056 ; rd_slice_offset
-@@gen_label1374 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1942_1063 ; rd_slice_offset
 @@gen_label1375 DS    0H 
+         BALR  14,15
+@@gen_label1376 DS    0H 
          LGR   7,15
          LG    15,0(0,3)   ; msetr
          LG    8,152(0,15) ; offset of end in rd_slice_s
@@ -12874,23 +12935,23 @@ rd_kafka_msgset_reader_msgs_v2 DCCPRLG CINDEX=1942,BASER=12,FRAME=816,E*
          LA    15,120(0,15)
          STG   15,680(0,13)
          LA    1,680(0,13)
-         LG    15,@lit_1942_1041 ; rd_slice_abs_offset
-@@gen_label1376 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1942_1048 ; rd_slice_abs_offset
 @@gen_label1377 DS    0H 
+         BALR  14,15
+@@gen_label1378 DS    0H 
          SLGR  8,15
          LG    15,0(0,3)   ; msetr
          LTG   15,488(0,15) ; offset of rkbuf_uflow_mitigation in rd_ka*
                fka_buf_s
-         BZ    @L1477
+         BZ    @L1484
          LG    15,0(0,3)   ; msetr
          LG    15,488(0,15) ; offset of rkbuf_uflow_mitigation in rd_ka*
                fka_buf_s
-         B     @L1478
-@L1477   DS    0H
-         LG    15,@lit_1942_1039
+         B     @L1485
+@L1484   DS    0H
+         LG    15,@lit_1942_1046
          LA    15,896(0,15)
-@L1478   DS    0H
+@L1485   DS    0H
          LG    1,0(0,3)    ; msetr
          LG    1,256(0,1)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
@@ -12905,7 +12966,7 @@ rd_kafka_msgset_reader_msgs_v2 DCCPRLG CINDEX=1942,BASER=12,FRAME=816,E*
          LGFR  1,6
          STG   1,704(0,13)
          XC    712(8,13),712(13)
-         LG    1,@lit_1942_1039
+         LG    1,@lit_1942_1046
          LA    6,932(0,1)
          STG   6,720(0,13)
          LA    1,944(0,1)
@@ -12921,68 +12982,68 @@ rd_kafka_msgset_reader_msgs_v2 DCCPRLG CINDEX=1942,BASER=12,FRAME=816,E*
          LG    5,0(0,3)    ; msetr
          SLG   1,144(0,5)
          STG   1,760(0,13)
-         LG    1,@lit_1942_1045
+         LG    1,@lit_1942_1052
          LA    1,568(0,1)
          STG   1,768(0,13)
-         MVGHI 776(13),981
+         MVGHI 776(13),987
          STG   2,784(0,13)
          STG   8,792(0,13)
          STG   15,800(0,13)
          LA    15,168(0,13)
          STG   15,808(0,13)
          LA    1,680(0,13)
-         LG    15,@lit_1942_1040 ; rd_kafka_log0
-@@gen_label1379 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1942_1047 ; rd_kafka_log0
 @@gen_label1380 DS    0H 
-@L1468   DS    0H
+         BALR  14,15
+@@gen_label1381 DS    0H 
+@L1475   DS    0H
          LG    15,0(0,3)   ; msetr
          MVHI  392(15),-155 ; offset of rkbuf_err in rd_kafka_buf_s
-         B     @_err_parse@1942@4
-@L1464   DS    0H
-@L1460   DS    0H
+         B     @_err_parse@1942@3
+@L1471   DS    0H
+@L1467   DS    0H
 * ***   
 * ***                           return RD_KAFKA_RESP_ERR_NO_ERROR;
          LGHI  15,0        ; 0
          B     @ret_lab_1942
 * ***                   }
-@L1449   DS    0H
+@L1456   DS    0H
 * ***           }
-@L1448   DS    0H
+@L1455   DS    0H
 * ***   
 * ***           while (((&(msetr->msetr_rkbuf)->rkbuf_reader)->end - r\
 * d_slice_abs_offset(&(msetr->msetr_rkbuf)->rkbuf_reader))) {
-         B     @L1482
-@L1481   DS    0H
+         B     @L1489
+@L1488   DS    0H
 * ***                   rd_kafka_resp_err_t err;
 * ***                   err = rd_kafka_msgset_reader_msg_v2(msetr);
          STG   3,680(0,13)
          LA    1,680(0,13)
-         LG    15,@lit_1942_1063 ; rd_kafka_msgset_reader_msg_v2
-@@gen_label1381 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1942_1070 ; rd_kafka_msgset_reader_msg_v2
 @@gen_label1382 DS    0H 
+         BALR  14,15
+@@gen_label1383 DS    0H 
 * ***                   if (((err)))
          LTR   15,15
-         BZ    @L1483
+         BZ    @L1490
 * ***                           return err;
          LGFR  15,15
          B     @ret_lab_1942
-@L1483   DS    0H
+@L1490   DS    0H
 * ***           }
-@L1482   DS    0H
+@L1489   DS    0H
          LG    15,0(0,3)   ; msetr
          LG    2,152(0,15) ; offset of end in rd_slice_s
          LG    15,0(0,3)   ; msetr
          LA    15,120(0,15)
          STG   15,680(0,13)
          LA    1,680(0,13)
-         LG    15,@lit_1942_1041 ; rd_slice_abs_offset
-@@gen_label1384 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1942_1048 ; rd_slice_abs_offset
 @@gen_label1385 DS    0H 
+         BALR  14,15
+@@gen_label1386 DS    0H 
          SLGR  2,15
-         BC  5,@L1481
+         BC  5,@L1488
 * ***   
 * ***           return RD_KAFKA_RESP_ERR_NO_ERROR;
          LGHI  15,0        ; 0
@@ -12992,17 +13053,17 @@ rd_kafka_msgset_reader_msgs_v2 DCCPRLG CINDEX=1942,BASER=12,FRAME=816,E*
 * ***           
 * ***           rd_atomic64_add(&msetr->msetr_rkb->rkb_c.rx_partial, 1\
 * );
-@_err_parse@1942@4 DS 0H
+@_err_parse@1942@3 DS 0H
          LG    15,72(0,3)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LA    15,768(0,15)
          STG   15,680(0,13)
          MVGHI 688(13),1
          LA    1,680(0,13)
-         LG    15,@lit_1942_1066 ; rd_atomic64_add
-@@gen_label1387 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1942_1073 ; rd_atomic64_add
 @@gen_label1388 DS    0H 
+         BALR  14,15
+@@gen_label1389 DS    0H 
 * ***           msetr->msetr_v2_hdr = ((void *)0);
          LGHI  15,0        ; 0
          STG   15,40(0,3)  ; offset of msetr_v2_hdr in rd_kafka_msgset_*
@@ -13072,27 +13133,27 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    15,4048(0,15) ; offset of rkb_rk in rd_kafka_broker_s
          TM    803(15),128
-         BZ    @L1484
+         BZ    @L1491
          LHI   8,7         ; 7
-         B     @L1485
+         B     @L1492
          DS    0D
 @FRAMESIZE_1947 DC F'1040'
-@lit_1947_1073 DC AD(rd_slice_read)
-@lit_1947_1074 DC AD(rd_slice_abs_offset)
-@lit_1947_1077 DC AD(rd_kafka_crash)
-@lit_1947_1076 DC AD(@DATA)
-@lit_1947_1075 DC AD(@strings@)
-@lit_1947_1079 DC AD(snprintf)
-@lit_1947_1081 DC AD(mtx_lock)
-@lit_1947_1083 DC AD(rd_strlcpy)
-@lit_1947_1085 DC AD(mtx_unlock)
-@lit_1947_1086 DC AD(rd_kafka_$Api$Key2str)
-@lit_1947_1087 DC AD(rd_slice_offset)
-@lit_1947_1092 DC AD(rd_kafka_log0)
+@lit_1947_1080 DC AD(rd_slice_read)
+@lit_1947_1081 DC AD(rd_slice_abs_offset)
+@lit_1947_1084 DC AD(rd_kafka_crash)
+@lit_1947_1083 DC AD(@DATA)
+@lit_1947_1082 DC AD(@strings@)
+@lit_1947_1086 DC AD(snprintf)
+@lit_1947_1088 DC AD(mtx_lock)
+@lit_1947_1090 DC AD(rd_strlcpy)
+@lit_1947_1092 DC AD(mtx_unlock)
+@lit_1947_1093 DC AD(rd_kafka_$Api$Key2str)
+@lit_1947_1094 DC AD(rd_slice_offset)
+@lit_1947_1099 DC AD(rd_kafka_log0)
 @lit_region_diff_1947_1_7  DC A(@REGION_1947_7-@REGION_1947_1)
 @lit_region_diff_1947_1_2  DC A(@REGION_1947_2-@REGION_1947_1)
-@L1484   DS    0H
-@L1485   DS    0H
+@L1491   DS    0H
+@L1492   DS    0H
 * ***   
 * ***           do { int64_t _v; do { size_t __len2 = (size_t)(sizeof(\
 * _v)); if (!rd_slice_read(&(rkbuf)->rkbuf_reader, &_v, __len2)) do { \
@@ -13100,7 +13161,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 * eader)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader))))) { do {\
 *  if (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_k\
 * afka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",\
-* 1022, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); }\
+* 1028, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); }\
 *  while (0); char __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr),\
 *  ": "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do { char _\
 * logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_st\
@@ -13112,15 +13173,15 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 * " "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_kafka_ApiK\
 * ey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion,\
 *  rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end\
-*  - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1022, __len0, ((&rk\
+*  - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1028, __len0, ((&rk\
 * buf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkbuf_reader))\
 * , rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation : "i\
 * ncorrect broker.version.fallback?", __tmpstr); } while (0); } (rkbuf\
 * )->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while\
 *  (0); } } while (0); } while (0); *(&hdr.BaseOffset) = (_v); } while\
 *  (0);
-@L1486   DS    0H
-@L1489   DS    0H
+@L1493   DS    0H
+@L1496   DS    0H
          LGHI  2,8         ; 8
          LA    15,120(0,4)
          STG   15,904(0,13)
@@ -13128,78 +13189,78 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          STG   2,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1073 ; rd_slice_read
-@@gen_label1390 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1080 ; rd_slice_read
 @@gen_label1391 DS    0H 
+         BALR  14,15
+@@gen_label1392 DS    0H 
          LTGR  15,15
-         BNZ   @L1492
-@L1493   DS    0H
+         BNZ   @L1499
+@L1500   DS    0H
          LG    6,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1074 ; rd_slice_abs_offset
-@@gen_label1393 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1081 ; rd_slice_abs_offset
 @@gen_label1394 DS    0H 
+         BALR  14,15
+@@gen_label1395 DS    0H 
          SLGR  6,15
          CLGR  2,6
-         BNH   @L1496
-@L1497   DS    0H
+         BNH   @L1503
+@L1504   DS    0H
          LTR   8,8
-         BNH   @L1500
-@L1501   DS    0H
+         BNH   @L1507
+@L1508   DS    0H
          LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1504
-         LG    15,@lit_1947_1075
+         BNZ   @L1511
+         LG    15,@lit_1947_1082
          LA    1,718(0,15)
          STG   1,904(0,13)
-         MVGHI 912(13),1022
-         LG    1,@lit_1947_1076
+         MVGHI 912(13),1028
+         LG    1,@lit_1947_1083
          LA    1,600(0,1)
          STG   1,920(0,13)
          XC    928(8,13),928(13)
          LA    15,866(0,15)
          STG   15,936(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1077 ; rd_kafka_crash
-@@gen_label1398 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1084 ; rd_kafka_crash
 @@gen_label1399 DS    0H 
-@L1504   DS    0H
+         BALR  14,15
+@@gen_label1400 DS    0H 
+@L1511   DS    0H
          LA    15,352(0,13)
          STG   15,904(0,13)
          MVGHI 912(13),256
-         LG    15,@lit_1947_1075
+         LG    15,@lit_1947_1082
          LA    15,892(0,15)
          STG   15,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1079 ; snprintf
-@@gen_label1400 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1086 ; snprintf
 @@gen_label1401 DS    0H 
+         BALR  14,15
+@@gen_label1402 DS    0H 
          LA    15,352(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label1402 DS 0H
+@@gen_label1403 DS 0H
          SRST  0,15
-         BC  1,@@gen_label1402
+         BC  1,@@gen_label1403
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1506
+         BNE   @L1513
          MVI   352(13),0
-@L1505   DS    0H
-@L1506   DS    0H
+@L1512   DS    0H
+@L1513   DS    0H
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  5,5688      ; 5688
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1081 ; mtx_lock
-@@gen_label1404 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1088 ; mtx_lock
 @@gen_label1405 DS    0H 
+         BALR  14,15
+@@gen_label1406 DS    0H 
          LA    15,608(0,13)
          STG   15,904(0,13)
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -13208,53 +13269,53 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          MVGHI 920(13),256
          LA    1,904(0,13)
-         LG    15,@lit_1947_1083 ; rd_strlcpy
-@@gen_label1406 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1090 ; rd_strlcpy
 @@gen_label1407 DS    0H 
+         BALR  14,15
+@@gen_label1408 DS    0H 
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1085 ; mtx_unlock
-@@gen_label1408 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1092 ; mtx_unlock
 @@gen_label1409 DS    0H 
+         BALR  14,15
+@@gen_label1410 DS    0H 
          LGH   15,184(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1086 ; rd_kafka_ApiKey2str
-@@gen_label1410 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1093 ; rd_kafka_ApiKey2str
 @@gen_label1411 DS    0H 
+         BALR  14,15
+@@gen_label1412 DS    0H 
          LGR   5,15
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1087 ; rd_slice_offset
-@@gen_label1412 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1094 ; rd_slice_offset
 @@gen_label1413 DS    0H 
+         BALR  14,15
+@@gen_label1414 DS    0H 
          LGR   6,15
          LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1074 ; rd_slice_abs_offset
-@@gen_label1414 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1081 ; rd_slice_abs_offset
 @@gen_label1415 DS    0H 
+         BALR  14,15
+@@gen_label1416 DS    0H 
          SLGR  7,15
          LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L1509
+         BZ    @L1516
          LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         B     @L1510
-@L1509   DS    0H
-         LG    15,@lit_1947_1075
+         B     @L1517
+@L1516   DS    0H
+         LG    15,@lit_1947_1082
          LA    15,896(0,15)
-@L1510   DS    0H
+@L1517   DS    0H
          LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -13267,7 +13328,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LGFR  1,8
          STG   1,928(0,13)
          XC    936(8,13),936(13)
-         LG    1,@lit_1947_1075
+         LG    1,@lit_1947_1082
          LA    8,932(0,1)
          STG   8,944(0,13)
          LA    1,944(0,1)
@@ -13280,30 +13341,30 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LG    1,152(0,4)  ; offset of end in rd_slice_s
          SLG   1,144(0,4)
          STG   1,984(0,13)
-         LG    1,@lit_1947_1076
+         LG    1,@lit_1947_1083
          LA    1,600(0,1)
          STG   1,992(0,13)
-         MVGHI 1000(13),1022
+         MVGHI 1000(13),1028
          STG   2,1008(0,13)
          STG   7,1016(0,13)
          STG   15,1024(0,13)
          LA    15,352(0,13)
          STG   15,1032(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1092 ; rd_kafka_log0
-@@gen_label1417 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1099 ; rd_kafka_log0
 @@gen_label1418 DS    0H 
-@L1500   DS    0H
+         BALR  14,15
+@@gen_label1419 DS    0H 
+@L1507   DS    0H
          MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
          ALGF  12,@lit_region_diff_1947_1_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @_err_parse@1947@5
+         B     @_err_parse@1947@4
          DROP  12
          USING @REGION_1947_1,12
-@L1496   DS    0H
-@L1492   DS    0H
+@L1503   DS    0H
+@L1499   DS    0H
          LG    15,168(0,13) ; _v
          STG   15,240(0,13)
 * ***           do { int32_t _v; do { size_t __len2 = (size_t)(sizeof(\
@@ -13312,7 +13373,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 * eader)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader))))) { do {\
 *  if (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_k\
 * afka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",\
-* 1023, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); }\
+* 1029, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); }\
 *  while (0); char __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr),\
 *  ": "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do { char _\
 * logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_st\
@@ -13324,15 +13385,15 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 * " "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_kafka_ApiK\
 * ey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion,\
 *  rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end\
-*  - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1023, __len0, ((&rk\
+*  - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1029, __len0, ((&rk\
 * buf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkbuf_reader))\
 * , rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation : "i\
 * ncorrect broker.version.fallback?", __tmpstr); } while (0); } (rkbuf\
 * )->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while\
 *  (0); } } while (0); } while (0); *(&hdr.Length) = (_v); } while (0)\
 * ;
-@L1511   DS    0H
-@L1514   DS    0H
+@L1518   DS    0H
+@L1521   DS    0H
          LGHI  2,4         ; 4
          LA    15,120(0,4)
          STG   15,904(0,13)
@@ -13340,78 +13401,78 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          STG   2,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1073 ; rd_slice_read
-@@gen_label1419 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1080 ; rd_slice_read
 @@gen_label1420 DS    0H 
+         BALR  14,15
+@@gen_label1421 DS    0H 
          LTGR  15,15
-         BNZ   @L1517
-@L1518   DS    0H
+         BNZ   @L1524
+@L1525   DS    0H
          LG    6,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1074 ; rd_slice_abs_offset
-@@gen_label1422 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1081 ; rd_slice_abs_offset
 @@gen_label1423 DS    0H 
+         BALR  14,15
+@@gen_label1424 DS    0H 
          SLGR  6,15
          CLGR  2,6
-         BNH   @L1521
-@L1522   DS    0H
+         BNH   @L1528
+@L1529   DS    0H
          LTR   8,8
-         BNH   @L1525
-@L1526   DS    0H
+         BNH   @L1532
+@L1533   DS    0H
          LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1529
-         LG    15,@lit_1947_1075
+         BNZ   @L1536
+         LG    15,@lit_1947_1082
          LA    1,718(0,15)
          STG   1,904(0,13)
-         MVGHI 912(13),1023
-         LG    1,@lit_1947_1076
+         MVGHI 912(13),1029
+         LG    1,@lit_1947_1083
          LA    1,600(0,1)
          STG   1,920(0,13)
          XC    928(8,13),928(13)
          LA    15,866(0,15)
          STG   15,936(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1077 ; rd_kafka_crash
-@@gen_label1427 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1084 ; rd_kafka_crash
 @@gen_label1428 DS    0H 
-@L1529   DS    0H
+         BALR  14,15
+@@gen_label1429 DS    0H 
+@L1536   DS    0H
          LA    15,352(0,13)
          STG   15,904(0,13)
          MVGHI 912(13),256
-         LG    15,@lit_1947_1075
+         LG    15,@lit_1947_1082
          LA    15,892(0,15)
          STG   15,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1079 ; snprintf
-@@gen_label1429 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1086 ; snprintf
 @@gen_label1430 DS    0H 
+         BALR  14,15
+@@gen_label1431 DS    0H 
          LA    15,352(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label1431 DS 0H
+@@gen_label1432 DS 0H
          SRST  0,15
-         BC  1,@@gen_label1431
+         BC  1,@@gen_label1432
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1531
+         BNE   @L1538
          MVI   352(13),0
-@L1530   DS    0H
-@L1531   DS    0H
+@L1537   DS    0H
+@L1538   DS    0H
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  5,5688      ; 5688
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1081 ; mtx_lock
-@@gen_label1433 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1088 ; mtx_lock
 @@gen_label1434 DS    0H 
+         BALR  14,15
+@@gen_label1435 DS    0H 
          LA    15,608(0,13)
          STG   15,904(0,13)
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -13420,53 +13481,53 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          MVGHI 920(13),256
          LA    1,904(0,13)
-         LG    15,@lit_1947_1083 ; rd_strlcpy
-@@gen_label1435 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1090 ; rd_strlcpy
 @@gen_label1436 DS    0H 
+         BALR  14,15
+@@gen_label1437 DS    0H 
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1085 ; mtx_unlock
-@@gen_label1437 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1092 ; mtx_unlock
 @@gen_label1438 DS    0H 
+         BALR  14,15
+@@gen_label1439 DS    0H 
          LGH   15,184(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1086 ; rd_kafka_ApiKey2str
-@@gen_label1439 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1093 ; rd_kafka_ApiKey2str
 @@gen_label1440 DS    0H 
+         BALR  14,15
+@@gen_label1441 DS    0H 
          LGR   5,15
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1087 ; rd_slice_offset
-@@gen_label1441 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1094 ; rd_slice_offset
 @@gen_label1442 DS    0H 
+         BALR  14,15
+@@gen_label1443 DS    0H 
          LGR   6,15
          LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1074 ; rd_slice_abs_offset
-@@gen_label1443 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1081 ; rd_slice_abs_offset
 @@gen_label1444 DS    0H 
+         BALR  14,15
+@@gen_label1445 DS    0H 
          SLGR  7,15
          LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L1534
+         BZ    @L1541
          LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         B     @L1535
-@L1534   DS    0H
-         LG    15,@lit_1947_1075
+         B     @L1542
+@L1541   DS    0H
+         LG    15,@lit_1947_1082
          LA    15,896(0,15)
-@L1535   DS    0H
+@L1542   DS    0H
          LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -13479,7 +13540,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LGFR  1,8
          STG   1,928(0,13)
          XC    936(8,13),936(13)
-         LG    1,@lit_1947_1075
+         LG    1,@lit_1947_1082
          LA    8,932(0,1)
          STG   8,944(0,13)
          LA    1,944(0,1)
@@ -13492,40 +13553,40 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LG    1,152(0,4)  ; offset of end in rd_slice_s
          SLG   1,144(0,4)
          STG   1,984(0,13)
-         LG    1,@lit_1947_1076
+         LG    1,@lit_1947_1083
          LA    1,600(0,1)
          STG   1,992(0,13)
-         MVGHI 1000(13),1023
+         MVGHI 1000(13),1029
          STG   2,1008(0,13)
          STG   7,1016(0,13)
          STG   15,1024(0,13)
          LA    15,352(0,13)
          STG   15,1032(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1092 ; rd_kafka_log0
-@@gen_label1446 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1099 ; rd_kafka_log0
 @@gen_label1447 DS    0H 
-@L1525   DS    0H
+         BALR  14,15
+@@gen_label1448 DS    0H 
+@L1532   DS    0H
          MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
          ALGF  12,@lit_region_diff_1947_1_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @_err_parse@1947@5
+         B     @_err_parse@1947@4
          DROP  12
          USING @REGION_1947_1,12
-@L1521   DS    0H
-@L1517   DS    0H
+@L1528   DS    0H
+@L1524   DS    0H
          L     15,176(0,13) ; _v
          ST    15,248(0,13) ; offset of Length in msgset_v2_hdr
 * ***           len_start  = rd_slice_offset(&rkbuf->rkbuf_reader);
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1087 ; rd_slice_offset
-@@gen_label1448 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1094 ; rd_slice_offset
 @@gen_label1449 DS    0H 
+         BALR  14,15
+@@gen_label1450 DS    0H 
          LGR   6,15
 * ***   
 * ***           if (((hdr.Length < (8+4+4+1+4+2+4+8+8+8+2+4+4) - 8 - 4\
@@ -13535,12 +13596,12 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          ALGF  12,@lit_region_diff_1947_1_2
          DROP  12
          USING @REGION_1947_2,12
-         B     @L1556
+         B     @L1563
          DROP  12
          USING @REGION_1947_1,12
 * ***                   do { if (log_decode_errors > 0) { do { if (((!\
 * (rkbuf->rkbuf_rkb)))) rd_kafka_crash("C:\\asgkafka\\librdkafka\\src\\
-* \rdkafka_msgset_reader.c",1027, __FUNCTION__, (((void *)0)), "assert\
+* \rdkafka_msgset_reader.c",1033, __FUNCTION__, (((void *)0)), "assert\
 * : " "rkbuf->rkbuf_rkb"); } while (0); do { char _logname[256]; mtx_l\
 * ock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_strlcpy(_logname, rkb\
 * uf->rkbuf_rkb->rkb_logname, sizeof(_logname)); mtx_unlock(&(rkbuf->r\
@@ -13551,7 +13612,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 * _kafka_ApiKey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.\
 * ApiVersion, (rkbuf->rkbuf_flags&0x40? "(flex)":""), rd_slice_offset(\
 * &rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end - (&rkbuf->rkbuf\
-* _reader)->start), __FUNCTION__, 1027); } while (0); do { char _logna\
+* _reader)->start), __FUNCTION__, 1033); } while (0); do { char _logna\
 * me[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_strlcpy\
 * (_logname, rkbuf->rkbuf_rkb->rkb_logname, sizeof(_logname)); mtx_unl\
 * ock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_kafka_log0(&(rkbuf->r\
@@ -13561,44 +13622,44 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 * kt_topic->str, rktp->rktp_partition, hdr.BaseOffset, hdr.Length, (8+\
 * 4+4+1+4+2+4+8+8+8+2+4+4) - 8 - 4); } while (0); } (rkbuf)->rkbuf_err\
 *  = RD_KAFKA_RESP_ERR__BAD_MSG; goto err_parse; } while (0);
-@L1537   DS    0H
+@L1544   DS    0H
          LTR   8,8
          BH    *+14  Around region break
          ALGF  12,@lit_region_diff_1947_1_2
          DROP  12
          USING @REGION_1947_2,12
-         B     @L1540
+         B     @L1547
          DROP  12
          USING @REGION_1947_1,12
-@L1541   DS    0H
+@L1548   DS    0H
          LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1544
-         LG    15,@lit_1947_1075
+         BNZ   @L1551
+         LG    15,@lit_1947_1082
          LA    1,718(0,15)
          STG   1,904(0,13)
-         MVGHI 912(13),1027
-         LG    1,@lit_1947_1076
+         MVGHI 912(13),1033
+         LG    1,@lit_1947_1083
          LA    1,600(0,1)
          STG   1,920(0,13)
          XC    928(8,13),928(13)
          LA    15,866(0,15)
          STG   15,936(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1077 ; rd_kafka_crash
-@@gen_label1453 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1084 ; rd_kafka_crash
 @@gen_label1454 DS    0H 
-@L1544   DS    0H
-@L1545   DS    0H
+         BALR  14,15
+@@gen_label1455 DS    0H 
+@L1551   DS    0H
+@L1552   DS    0H
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  2,5688      ; 5688
          LA    15,0(2,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1081 ; mtx_lock
-@@gen_label1455 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1088 ; mtx_lock
 @@gen_label1456 DS    0H 
+         BALR  14,15
+@@gen_label1457 DS    0H 
          LA    15,352(0,13)
          STG   15,904(0,13)
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -13607,42 +13668,42 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          MVGHI 920(13),256
          LA    1,904(0,13)
-         LG    15,@lit_1947_1083 ; rd_strlcpy
-@@gen_label1457 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1090 ; rd_strlcpy
 @@gen_label1458 DS    0H 
+         BALR  14,15
+@@gen_label1459 DS    0H 
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(2,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1085 ; mtx_unlock
-@@gen_label1459 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1092 ; mtx_unlock
 @@gen_label1460 DS    0H 
+         BALR  14,15
+@@gen_label1461 DS    0H 
          LGH   15,184(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1086 ; rd_kafka_ApiKey2str
-@@gen_label1461 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1093 ; rd_kafka_ApiKey2str
 @@gen_label1462 DS    0H 
+         BALR  14,15
+@@gen_label1463 DS    0H 
          LGR   2,15
          TM    35(4),64
-         BZ    @L1548
-         LG    15,@lit_1947_1075
+         BZ    @L1555
+         LG    15,@lit_1947_1082
          LA    6,1066(0,15)
-         B     @L1549
-@L1548   DS    0H
-         LG    15,@lit_1947_1075
+         B     @L1556
+@L1555   DS    0H
+         LG    15,@lit_1947_1082
          LA    6,168(0,15)
-@L1549   DS    0H
+@L1556   DS    0H
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1087 ; rd_slice_offset
-@@gen_label1464 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1094 ; rd_slice_offset
 @@gen_label1465 DS    0H 
+         BALR  14,15
+@@gen_label1466 DS    0H 
          LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -13655,7 +13716,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LGFR  1,8
          STG   1,928(0,13)
          XC    936(8,13),936(13)
-         LG    1,@lit_1947_1075
+         LG    1,@lit_1947_1082
          LA    7,1074(0,1)
          STG   7,944(0,13)
          LA    1,1084(0,1)
@@ -13668,25 +13729,25 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LG    15,152(0,4) ; offset of end in rd_slice_s
          SLG   15,144(0,4)
          STG   15,992(0,13)
-         LG    15,@lit_1947_1076
+         LG    15,@lit_1947_1083
          LA    15,600(0,15)
          STG   15,1000(0,13)
-         MVGHI 1008(13),1027
+         MVGHI 1008(13),1033
          LA    1,904(0,13)
-         LG    15,@lit_1947_1092 ; rd_kafka_log0
-@@gen_label1466 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1099 ; rd_kafka_log0
 @@gen_label1467 DS    0H 
-@L1550   DS    0H
+         BALR  14,15
+@@gen_label1468 DS    0H 
+@L1557   DS    0H
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  2,5688      ; 5688
          LA    15,0(2,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1081 ; mtx_lock
-@@gen_label1468 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1088 ; mtx_lock
 @@gen_label1469 DS    0H 
+         BALR  14,15
+@@gen_label1470 DS    0H 
          LA    15,352(0,13)
          STG   15,904(0,13)
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -13695,18 +13756,18 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          MVGHI 920(13),256
          LA    1,904(0,13)
-         LG    15,@lit_1947_1083 ; rd_strlcpy
-@@gen_label1470 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1090 ; rd_strlcpy
 @@gen_label1471 DS    0H 
+         BALR  14,15
+@@gen_label1472 DS    0H 
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(2,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1085 ; mtx_unlock
-@@gen_label1472 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1092 ; mtx_unlock
 @@gen_label1473 DS    0H 
+         BALR  14,15
+@@gen_label1474 DS    0H 
          ALGF  12,@lit_region_diff_1947_1_2
 @REGION_1947_2 DS 0H
          DROP  12
@@ -13723,10 +13784,10 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LGFR  15,8
          STG   15,928(0,13)
          XC    936(8,13),936(13)
-         LG    15,@lit_1947_1137
+         LG    15,@lit_1947_1144
          LA    1,1074(0,15)
          STG   1,944(0,13)
-         LA    15,1952(0,15)
+         LA    15,2018(0,15)
          STG   15,952(0,13)
          LG    15,96(0,5)  ; offset of rktp_rkt in rd_kafka_toppar_s
          LG    15,128(0,15) ; offset of rkt_topic in rd_kafka_topic_s
@@ -13740,43 +13801,43 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,984(0,13)
          MVGHI 992(13),49
          LA    1,904(0,13)
-         LG    15,@lit_1947_1138 ; rd_kafka_log0
-@@gen_label1474 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1145 ; rd_kafka_log0
 @@gen_label1475 DS    0H 
-@L1540   DS    0H
+         BALR  14,15
+@@gen_label1476 DS    0H 
+@L1547   DS    0H
          MVHI  392(4),-199 ; offset of rkbuf_err in rd_kafka_buf_s
          ALGF  12,@lit_region_diff_1947_2_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @_err_parse@1947@5
+         B     @_err_parse@1947@4
          DROP  12
          USING @REGION_1947_2,12
          DS    0D
-@lit_1947_1138 DC AD(rd_kafka_log0)
-@lit_1947_1137 DC AD(@strings@)
+@lit_1947_1145 DC AD(rd_kafka_log0)
+@lit_1947_1144 DC AD(@strings@)
 @lit_region_diff_1947_2_7  DC A(@REGION_1947_7-@REGION_1947_2)
-@lit_1947_1140 DC AD(rd_slice_read)
-@lit_1947_1141 DC AD(rd_slice_abs_offset)
-@lit_1947_1144 DC AD(rd_kafka_crash)
-@lit_1947_1143 DC AD(@DATA)
-@lit_1947_1146 DC AD(snprintf)
-@lit_1947_1148 DC AD(mtx_lock)
-@lit_1947_1150 DC AD(rd_strlcpy)
-@lit_1947_1152 DC AD(mtx_unlock)
-@lit_1947_1153 DC AD(rd_kafka_$Api$Key2str)
-@lit_1947_1154 DC AD(rd_slice_offset)
+@lit_1947_1147 DC AD(rd_slice_read)
+@lit_1947_1148 DC AD(rd_slice_abs_offset)
+@lit_1947_1151 DC AD(rd_kafka_crash)
+@lit_1947_1150 DC AD(@DATA)
+@lit_1947_1153 DC AD(snprintf)
+@lit_1947_1155 DC AD(mtx_lock)
+@lit_1947_1157 DC AD(rd_strlcpy)
+@lit_1947_1159 DC AD(mtx_unlock)
+@lit_1947_1160 DC AD(rd_kafka_$Api$Key2str)
+@lit_1947_1161 DC AD(rd_slice_offset)
 @lit_region_diff_1947_2_3  DC A(@REGION_1947_3-@REGION_1947_2)
-@lit_1947_1202 DC AD(rd_slice_narrow_copy_relative)
+@lit_1947_1209 DC AD(rd_slice_narrow_copy_relative)
 * ***   
-* ***   # 1036 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
+* ***   # 1042 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
 * ***           do { int32_t _v; do { size_t __len2 = (size_t)(sizeof(\
 * _v)); if (!rd_slice_read(&(rkbuf)->rkbuf_reader, &_v, __len2)) do { \
 * size_t __len0 = (size_t)(__len2); if (((__len0 > ((&(rkbuf)->rkbuf_r\
 * eader)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader))))) { do {\
 *  if (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_k\
 * afka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",\
-* 1036, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); }\
+* 1042, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); }\
 *  while (0); char __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr),\
 *  ": "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do { char _\
 * logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_st\
@@ -13788,14 +13849,14 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 * " "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_kafka_ApiK\
 * ey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion,\
 *  rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end\
-*  - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1036, __len0, ((&rk\
+*  - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1042, __len0, ((&rk\
 * buf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkbuf_reader))\
 * , rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation : "i\
 * ncorrect broker.version.fallback?", __tmpstr); } while (0); } (rkbuf\
 * )->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while\
 *  (0); } } while (0); } while (0); *(&hdr.PartitionLeaderEpoch) = (_v\
 * ); } while (0);
-@L1556   DS    0H
+@L1563   DS    0H
          LGHI  2,4         ; 4
          LA    15,120(0,4)
          STG   15,904(0,13)
@@ -13803,78 +13864,78 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          STG   2,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1140 ; rd_slice_read
-@@gen_label1476 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1147 ; rd_slice_read
 @@gen_label1477 DS    0H 
+         BALR  14,15
+@@gen_label1478 DS    0H 
          LTGR  15,15
-         BNZ   @L1559
-@L1560   DS    0H
+         BNZ   @L1566
+@L1567   DS    0H
          LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1141 ; rd_slice_abs_offset
-@@gen_label1479 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1148 ; rd_slice_abs_offset
 @@gen_label1480 DS    0H 
+         BALR  14,15
+@@gen_label1481 DS    0H 
          SLGR  7,15
          CLGR  2,7
-         BNH   @L1563
-@L1564   DS    0H
+         BNH   @L1570
+@L1571   DS    0H
          LTR   8,8
-         BNH   @L1567
-@L1568   DS    0H
+         BNH   @L1574
+@L1575   DS    0H
          LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1571
-         LG    15,@lit_1947_1137
+         BNZ   @L1578
+         LG    15,@lit_1947_1144
          LA    1,718(0,15)
          STG   1,904(0,13)
-         MVGHI 912(13),1036
-         LG    1,@lit_1947_1143
+         MVGHI 912(13),1042
+         LG    1,@lit_1947_1150
          LA    1,600(0,1)
          STG   1,920(0,13)
          XC    928(8,13),928(13)
          LA    15,866(0,15)
          STG   15,936(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1144 ; rd_kafka_crash
-@@gen_label1484 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1151 ; rd_kafka_crash
 @@gen_label1485 DS    0H 
-@L1571   DS    0H
+         BALR  14,15
+@@gen_label1486 DS    0H 
+@L1578   DS    0H
          LA    15,352(0,13)
          STG   15,904(0,13)
          MVGHI 912(13),256
-         LG    15,@lit_1947_1137
+         LG    15,@lit_1947_1144
          LA    15,892(0,15)
          STG   15,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1146 ; snprintf
-@@gen_label1486 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1153 ; snprintf
 @@gen_label1487 DS    0H 
+         BALR  14,15
+@@gen_label1488 DS    0H 
          LA    15,352(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label1488 DS 0H
+@@gen_label1489 DS 0H
          SRST  0,15
-         BC  1,@@gen_label1488
+         BC  1,@@gen_label1489
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1573
+         BNE   @L1580
          MVI   352(13),0
-@L1572   DS    0H
-@L1573   DS    0H
+@L1579   DS    0H
+@L1580   DS    0H
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  5,5688      ; 5688
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1148 ; mtx_lock
-@@gen_label1490 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1155 ; mtx_lock
 @@gen_label1491 DS    0H 
+         BALR  14,15
+@@gen_label1492 DS    0H 
          LA    15,608(0,13)
          STG   15,904(0,13)
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -13883,53 +13944,53 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          MVGHI 920(13),256
          LA    1,904(0,13)
-         LG    15,@lit_1947_1150 ; rd_strlcpy
-@@gen_label1492 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1157 ; rd_strlcpy
 @@gen_label1493 DS    0H 
+         BALR  14,15
+@@gen_label1494 DS    0H 
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1152 ; mtx_unlock
-@@gen_label1494 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1159 ; mtx_unlock
 @@gen_label1495 DS    0H 
+         BALR  14,15
+@@gen_label1496 DS    0H 
          LGH   15,184(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1153 ; rd_kafka_ApiKey2str
-@@gen_label1496 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1160 ; rd_kafka_ApiKey2str
 @@gen_label1497 DS    0H 
+         BALR  14,15
+@@gen_label1498 DS    0H 
          LGR   5,15
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1154 ; rd_slice_offset
-@@gen_label1498 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1161 ; rd_slice_offset
 @@gen_label1499 DS    0H 
+         BALR  14,15
+@@gen_label1500 DS    0H 
          LGR   6,15
          LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1141 ; rd_slice_abs_offset
-@@gen_label1500 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1148 ; rd_slice_abs_offset
 @@gen_label1501 DS    0H 
+         BALR  14,15
+@@gen_label1502 DS    0H 
          SLGR  7,15
          LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L1576
+         BZ    @L1583
          LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         B     @L1577
-@L1576   DS    0H
-         LG    15,@lit_1947_1137
+         B     @L1584
+@L1583   DS    0H
+         LG    15,@lit_1947_1144
          LA    15,896(0,15)
-@L1577   DS    0H
+@L1584   DS    0H
          LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -13942,7 +14003,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LGFR  1,8
          STG   1,928(0,13)
          XC    936(8,13),936(13)
-         LG    1,@lit_1947_1137
+         LG    1,@lit_1947_1144
          LA    8,932(0,1)
          STG   8,944(0,13)
          LA    1,944(0,1)
@@ -13955,30 +14016,30 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LG    1,152(0,4)  ; offset of end in rd_slice_s
          SLG   1,144(0,4)
          STG   1,984(0,13)
-         LG    1,@lit_1947_1143
+         LG    1,@lit_1947_1150
          LA    1,600(0,1)
          STG   1,992(0,13)
-         MVGHI 1000(13),1036
+         MVGHI 1000(13),1042
          STG   2,1008(0,13)
          STG   7,1016(0,13)
          STG   15,1024(0,13)
          LA    15,352(0,13)
          STG   15,1032(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1138 ; rd_kafka_log0
-@@gen_label1503 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1145 ; rd_kafka_log0
 @@gen_label1504 DS    0H 
-@L1567   DS    0H
+         BALR  14,15
+@@gen_label1505 DS    0H 
+@L1574   DS    0H
          MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
          ALGF  12,@lit_region_diff_1947_2_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @_err_parse@1947@5
+         B     @_err_parse@1947@4
          DROP  12
          USING @REGION_1947_2,12
-@L1563   DS    0H
-@L1559   DS    0H
+@L1570   DS    0H
+@L1566   DS    0H
          L     15,180(0,13) ; _v
          ST    15,252(0,13) ; offset of PartitionLeaderEpoch in msgset_*
                v2_hdr
@@ -13987,7 +14048,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 *  (size_t)(__len2); if (((__len0 > ((&(rkbuf)->rkbuf_reader)->end - r\
 * d_slice_abs_offset(&(rkbuf)->rkbuf_reader))))) { do { if (log_decode\
 * _errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_kafka_crash("C:\\
-* \asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",1037, __FUNCTIO\
+* \asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",1043, __FUNCTIO\
 * N__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); } while (0); cha\
 * r __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr), ": "); if (__s\
 * trlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do { char _logname[256]; m\
@@ -14000,13 +14061,13 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 * > " "%" "zu" " remaining bytes (%s)%s", rd_kafka_ApiKey2str(rkbuf->r\
 * kbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion, rd_slice_offse\
 * t(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end - (&rkbuf->rkb\
-* uf_reader)->start), __FUNCTION__, 1037, __len0, ((&rkbuf->rkbuf_read\
+* uf_reader)->start), __FUNCTION__, 1043, __len0, ((&rkbuf->rkbuf_read\
 * er)->end - rd_slice_abs_offset(&rkbuf->rkbuf_reader)), rkbuf->rkbuf_\
 * uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation : "incorrect broker\
 * .version.fallback?", __tmpstr); } while (0); } (rkbuf)->rkbuf_err = \
 * RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while (0); } } while\
 *  (0); } while (0);
-@L1578   DS    0H
+@L1585   DS    0H
          LGHI  2,1         ; 1
          LA    15,120(0,4)
          STG   15,904(0,13)
@@ -14014,78 +14075,78 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          STG   2,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1140 ; rd_slice_read
-@@gen_label1505 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1147 ; rd_slice_read
 @@gen_label1506 DS    0H 
+         BALR  14,15
+@@gen_label1507 DS    0H 
          LTGR  15,15
-         BNZ   @L1581
-@L1582   DS    0H
+         BNZ   @L1588
+@L1589   DS    0H
          LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1141 ; rd_slice_abs_offset
-@@gen_label1508 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1148 ; rd_slice_abs_offset
 @@gen_label1509 DS    0H 
+         BALR  14,15
+@@gen_label1510 DS    0H 
          SLGR  7,15
          CLGR  2,7
-         BNH   @L1585
-@L1586   DS    0H
+         BNH   @L1592
+@L1593   DS    0H
          LTR   8,8
-         BNH   @L1589
-@L1590   DS    0H
+         BNH   @L1596
+@L1597   DS    0H
          LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1593
-         LG    15,@lit_1947_1137
+         BNZ   @L1600
+         LG    15,@lit_1947_1144
          LA    1,718(0,15)
          STG   1,904(0,13)
-         MVGHI 912(13),1037
-         LG    1,@lit_1947_1143
+         MVGHI 912(13),1043
+         LG    1,@lit_1947_1150
          LA    1,600(0,1)
          STG   1,920(0,13)
          XC    928(8,13),928(13)
          LA    15,866(0,15)
          STG   15,936(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1144 ; rd_kafka_crash
-@@gen_label1513 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1151 ; rd_kafka_crash
 @@gen_label1514 DS    0H 
-@L1593   DS    0H
+         BALR  14,15
+@@gen_label1515 DS    0H 
+@L1600   DS    0H
          LA    15,352(0,13)
          STG   15,904(0,13)
          MVGHI 912(13),256
-         LG    15,@lit_1947_1137
+         LG    15,@lit_1947_1144
          LA    15,892(0,15)
          STG   15,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1146 ; snprintf
-@@gen_label1515 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1153 ; snprintf
 @@gen_label1516 DS    0H 
+         BALR  14,15
+@@gen_label1517 DS    0H 
          LA    15,352(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label1517 DS 0H
+@@gen_label1518 DS 0H
          SRST  0,15
-         BC  1,@@gen_label1517
+         BC  1,@@gen_label1518
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1595
+         BNE   @L1602
          MVI   352(13),0
-@L1594   DS    0H
-@L1595   DS    0H
+@L1601   DS    0H
+@L1602   DS    0H
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  5,5688      ; 5688
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1148 ; mtx_lock
-@@gen_label1519 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1155 ; mtx_lock
 @@gen_label1520 DS    0H 
+         BALR  14,15
+@@gen_label1521 DS    0H 
          LA    15,608(0,13)
          STG   15,904(0,13)
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -14094,53 +14155,53 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          MVGHI 920(13),256
          LA    1,904(0,13)
-         LG    15,@lit_1947_1150 ; rd_strlcpy
-@@gen_label1521 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1157 ; rd_strlcpy
 @@gen_label1522 DS    0H 
+         BALR  14,15
+@@gen_label1523 DS    0H 
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1152 ; mtx_unlock
-@@gen_label1523 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1159 ; mtx_unlock
 @@gen_label1524 DS    0H 
+         BALR  14,15
+@@gen_label1525 DS    0H 
          LGH   15,184(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1153 ; rd_kafka_ApiKey2str
-@@gen_label1525 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1160 ; rd_kafka_ApiKey2str
 @@gen_label1526 DS    0H 
+         BALR  14,15
+@@gen_label1527 DS    0H 
          LGR   5,15
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1154 ; rd_slice_offset
-@@gen_label1527 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1161 ; rd_slice_offset
 @@gen_label1528 DS    0H 
+         BALR  14,15
+@@gen_label1529 DS    0H 
          LGR   6,15
          LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1141 ; rd_slice_abs_offset
-@@gen_label1529 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1148 ; rd_slice_abs_offset
 @@gen_label1530 DS    0H 
+         BALR  14,15
+@@gen_label1531 DS    0H 
          SLGR  7,15
          LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L1598
+         BZ    @L1605
          LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         B     @L1599
-@L1598   DS    0H
-         LG    15,@lit_1947_1137
+         B     @L1606
+@L1605   DS    0H
+         LG    15,@lit_1947_1144
          LA    15,896(0,15)
-@L1599   DS    0H
+@L1606   DS    0H
          LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -14153,7 +14214,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LGFR  1,8
          STG   1,928(0,13)
          XC    936(8,13),936(13)
-         LG    1,@lit_1947_1137
+         LG    1,@lit_1947_1144
          LA    8,932(0,1)
          STG   8,944(0,13)
          LA    1,944(0,1)
@@ -14166,37 +14227,37 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LG    1,152(0,4)  ; offset of end in rd_slice_s
          SLG   1,144(0,4)
          STG   1,984(0,13)
-         LG    1,@lit_1947_1143
+         LG    1,@lit_1947_1150
          LA    1,600(0,1)
          STG   1,992(0,13)
-         MVGHI 1000(13),1037
+         MVGHI 1000(13),1043
          STG   2,1008(0,13)
          STG   7,1016(0,13)
          STG   15,1024(0,13)
          LA    15,352(0,13)
          STG   15,1032(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1138 ; rd_kafka_log0
-@@gen_label1532 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1145 ; rd_kafka_log0
 @@gen_label1533 DS    0H 
-@L1589   DS    0H
+         BALR  14,15
+@@gen_label1534 DS    0H 
+@L1596   DS    0H
          MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
          ALGF  12,@lit_region_diff_1947_2_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @_err_parse@1947@5
+         B     @_err_parse@1947@4
          DROP  12
          USING @REGION_1947_2,12
-@L1585   DS    0H
-@L1581   DS    0H
+@L1592   DS    0H
+@L1588   DS    0H
 * ***           do { int32_t _v; do { size_t __len2 = (size_t)(sizeof(\
 * _v)); if (!rd_slice_read(&(rkbuf)->rkbuf_reader, &_v, __len2)) do { \
 * size_t __len0 = (size_t)(__len2); if (((__len0 > ((&(rkbuf)->rkbuf_r\
 * eader)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader))))) { do {\
 *  if (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_k\
 * afka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",\
-* 1038, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); }\
+* 1044, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); }\
 *  while (0); char __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr),\
 *  ": "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do { char _\
 * logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_st\
@@ -14208,14 +14269,14 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 * " "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_kafka_ApiK\
 * ey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion,\
 *  rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end\
-*  - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1038, __len0, ((&rk\
+*  - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1044, __len0, ((&rk\
 * buf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkbuf_reader))\
 * , rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation : "i\
 * ncorrect broker.version.fallback?", __tmpstr); } while (0); } (rkbuf\
 * )->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while\
 *  (0); } } while (0); } while (0); *(&hdr.Crc) = (_v); } while (0);
-@L1600   DS    0H
-@L1603   DS    0H
+@L1607   DS    0H
+@L1610   DS    0H
          LGHI  2,4         ; 4
          LA    15,120(0,4)
          STG   15,904(0,13)
@@ -14223,78 +14284,78 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          STG   2,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1140 ; rd_slice_read
-@@gen_label1534 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1147 ; rd_slice_read
 @@gen_label1535 DS    0H 
+         BALR  14,15
+@@gen_label1536 DS    0H 
          LTGR  15,15
-         BNZ   @L1606
-@L1607   DS    0H
+         BNZ   @L1613
+@L1614   DS    0H
          LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1141 ; rd_slice_abs_offset
-@@gen_label1537 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1148 ; rd_slice_abs_offset
 @@gen_label1538 DS    0H 
+         BALR  14,15
+@@gen_label1539 DS    0H 
          SLGR  7,15
          CLGR  2,7
-         BNH   @L1610
-@L1611   DS    0H
+         BNH   @L1617
+@L1618   DS    0H
          LTR   8,8
-         BNH   @L1614
-@L1615   DS    0H
+         BNH   @L1621
+@L1622   DS    0H
          LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1618
-         LG    15,@lit_1947_1137
+         BNZ   @L1625
+         LG    15,@lit_1947_1144
          LA    1,718(0,15)
          STG   1,904(0,13)
-         MVGHI 912(13),1038
-         LG    1,@lit_1947_1143
+         MVGHI 912(13),1044
+         LG    1,@lit_1947_1150
          LA    1,600(0,1)
          STG   1,920(0,13)
          XC    928(8,13),928(13)
          LA    15,866(0,15)
          STG   15,936(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1144 ; rd_kafka_crash
-@@gen_label1542 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1151 ; rd_kafka_crash
 @@gen_label1543 DS    0H 
-@L1618   DS    0H
+         BALR  14,15
+@@gen_label1544 DS    0H 
+@L1625   DS    0H
          LA    15,352(0,13)
          STG   15,904(0,13)
          MVGHI 912(13),256
-         LG    15,@lit_1947_1137
+         LG    15,@lit_1947_1144
          LA    15,892(0,15)
          STG   15,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1146 ; snprintf
-@@gen_label1544 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1153 ; snprintf
 @@gen_label1545 DS    0H 
+         BALR  14,15
+@@gen_label1546 DS    0H 
          LA    15,352(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label1546 DS 0H
+@@gen_label1547 DS 0H
          SRST  0,15
-         BC  1,@@gen_label1546
+         BC  1,@@gen_label1547
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1620
+         BNE   @L1627
          MVI   352(13),0
-@L1619   DS    0H
-@L1620   DS    0H
+@L1626   DS    0H
+@L1627   DS    0H
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  5,5688      ; 5688
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1148 ; mtx_lock
-@@gen_label1548 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1155 ; mtx_lock
 @@gen_label1549 DS    0H 
+         BALR  14,15
+@@gen_label1550 DS    0H 
          LA    15,608(0,13)
          STG   15,904(0,13)
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -14303,53 +14364,53 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          MVGHI 920(13),256
          LA    1,904(0,13)
-         LG    15,@lit_1947_1150 ; rd_strlcpy
-@@gen_label1550 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1157 ; rd_strlcpy
 @@gen_label1551 DS    0H 
+         BALR  14,15
+@@gen_label1552 DS    0H 
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1152 ; mtx_unlock
-@@gen_label1552 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1159 ; mtx_unlock
 @@gen_label1553 DS    0H 
+         BALR  14,15
+@@gen_label1554 DS    0H 
          LGH   15,184(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1153 ; rd_kafka_ApiKey2str
-@@gen_label1554 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1160 ; rd_kafka_ApiKey2str
 @@gen_label1555 DS    0H 
+         BALR  14,15
+@@gen_label1556 DS    0H 
          LGR   5,15
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1154 ; rd_slice_offset
-@@gen_label1556 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1161 ; rd_slice_offset
 @@gen_label1557 DS    0H 
+         BALR  14,15
+@@gen_label1558 DS    0H 
          LGR   6,15
          LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1141 ; rd_slice_abs_offset
-@@gen_label1558 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1148 ; rd_slice_abs_offset
 @@gen_label1559 DS    0H 
+         BALR  14,15
+@@gen_label1560 DS    0H 
          SLGR  7,15
          LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L1623
+         BZ    @L1630
          LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         B     @L1624
-@L1623   DS    0H
-         LG    15,@lit_1947_1137
+         B     @L1631
+@L1630   DS    0H
+         LG    15,@lit_1947_1144
          LA    15,896(0,15)
-@L1624   DS    0H
+@L1631   DS    0H
          LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -14362,7 +14423,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LGFR  1,8
          STG   1,928(0,13)
          XC    936(8,13),936(13)
-         LG    1,@lit_1947_1137
+         LG    1,@lit_1947_1144
          LA    8,932(0,1)
          STG   8,944(0,13)
          LA    1,944(0,1)
@@ -14375,30 +14436,30 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LG    1,152(0,4)  ; offset of end in rd_slice_s
          SLG   1,144(0,4)
          STG   1,984(0,13)
-         LG    1,@lit_1947_1143
+         LG    1,@lit_1947_1150
          LA    1,600(0,1)
          STG   1,992(0,13)
-         MVGHI 1000(13),1038
+         MVGHI 1000(13),1044
          STG   2,1008(0,13)
          STG   7,1016(0,13)
          STG   15,1024(0,13)
          LA    15,352(0,13)
          STG   15,1032(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1138 ; rd_kafka_log0
-@@gen_label1561 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1145 ; rd_kafka_log0
 @@gen_label1562 DS    0H 
-@L1614   DS    0H
+         BALR  14,15
+@@gen_label1563 DS    0H 
+@L1621   DS    0H
          MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
          ALGF  12,@lit_region_diff_1947_2_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @_err_parse@1947@5
+         B     @_err_parse@1947@4
          DROP  12
          USING @REGION_1947_2,12
-@L1610   DS    0H
-@L1606   DS    0H
+@L1617   DS    0H
+@L1613   DS    0H
          L     15,184(0,13) ; _v
          ST    15,260(0,13) ; offset of Crc in msgset_v2_hdr
 * ***   
@@ -14411,7 +14472,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          ALGF  12,@lit_region_diff_1947_2_3
          DROP  12
          USING @REGION_1947_3,12
-         B     @L1671
+         B     @L1678
          DROP  12
          USING @REGION_1947_2,12
 * ***                   
@@ -14433,23 +14494,23 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          STG   2,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1202 ; rd_slice_narrow_copy_relative
-@@gen_label1564 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1209 ; rd_slice_narrow_copy_relative
 @@gen_label1565 DS    0H 
+         BALR  14,15
+@@gen_label1566 DS    0H 
          LTR   15,15
          BZ    *+14  Around region break
          ALGF  12,@lit_region_diff_1947_2_3
          DROP  12
          USING @REGION_1947_3,12
-         B     @L1626
+         B     @L1633
          DROP  12
          USING @REGION_1947_2,12
 * ***                           do { size_t __len0 = (size_t)(crc_len)\
 * ; if (((__len0 > ((&(rkbuf)->rkbuf_reader)->end - rd_slice_abs_offse\
 * t(&(rkbuf)->rkbuf_reader))))) { do { if (log_decode_errors > 0) { do\
 *  { if (((!(rkbuf->rkbuf_rkb)))) rd_kafka_crash("C:\\asgkafka\\librdk\
-* afka\\src\\rdkafka_msgset_reader.c",1049, __FUNCTION__, (((void *)0)\
+* afka\\src\\rdkafka_msgset_reader.c",1055, __FUNCTION__, (((void *)0)\
 * ), "assert: " "rkbuf->rkbuf_rkb"); } while (0); char __tmpstr[256]; \
 * snprintf(__tmpstr, sizeof(__tmpstr), ": "); if (__strlen(__tmpstr) =\
 * = 2) __tmpstr[0] = '\0'; do { char _logname[256]; mtx_lock(&(rkbuf->\
@@ -14462,87 +14523,87 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 * maining bytes (%s)%s", rd_kafka_ApiKey2str(rkbuf->rkbuf_reqhdr. ApiK\
 * ey), rkbuf->rkbuf_reqhdr.ApiVersion, rd_slice_offset(&rkbuf->rkbuf_r\
 * eader), ((&rkbuf->rkbuf_reader)->end - (&rkbuf->rkbuf_reader)->start\
-* ), __FUNCTION__, 1049, __len0, ((&rkbuf->rkbuf_reader)->end - rd_sli\
+* ), __FUNCTION__, 1055, __len0, ((&rkbuf->rkbuf_reader)->end - rd_sli\
 * ce_abs_offset(&rkbuf->rkbuf_reader)), rkbuf->rkbuf_uflow_mitigation \
 * ? rkbuf->rkbuf_uflow_mitigation : "incorrect broker.version.fallback\
 * ?", __tmpstr); } while (0); } (rkbuf)->rkbuf_err = RD_KAFKA_RESP_ERR\
 * __UNDERFLOW; goto err_parse; } while (0); } } while (0);
-@L1627   DS    0H
+@L1634   DS    0H
          LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1141 ; rd_slice_abs_offset
-@@gen_label1567 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1148 ; rd_slice_abs_offset
 @@gen_label1568 DS    0H 
+         BALR  14,15
+@@gen_label1569 DS    0H 
          SLGR  7,15
          CLGR  2,7
          BH    *+14  Around region break
          ALGF  12,@lit_region_diff_1947_2_3
          DROP  12
          USING @REGION_1947_3,12
-         B     @L1630
+         B     @L1637
          DROP  12
          USING @REGION_1947_2,12
          ALGF  12,@lit_region_diff_1947_2_3
 @REGION_1947_3 DS 0H
          DROP  12
          USING @REGION_1947_3,12
-@L1631   DS    0H
+@L1638   DS    0H
          LTR   8,8
-         BNH   @L1634
-@L1635   DS    0H
+         BNH   @L1641
+@L1642   DS    0H
          LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1638
-         LG    15,@lit_1947_1204
+         BNZ   @L1645
+         LG    15,@lit_1947_1211
          LA    1,718(0,15)
          STG   1,904(0,13)
-         MVGHI 912(13),1049
-         LG    1,@lit_1947_1205
+         MVGHI 912(13),1055
+         LG    1,@lit_1947_1212
          LA    1,600(0,1)
          STG   1,920(0,13)
          XC    928(8,13),928(13)
          LA    15,866(0,15)
          STG   15,936(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1206 ; rd_kafka_crash
-@@gen_label1572 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1213 ; rd_kafka_crash
 @@gen_label1573 DS    0H 
-@L1638   DS    0H
+         BALR  14,15
+@@gen_label1574 DS    0H 
+@L1645   DS    0H
          LA    15,392(0,13)
          STG   15,904(0,13)
          MVGHI 912(13),256
-         LG    15,@lit_1947_1204
+         LG    15,@lit_1947_1211
          LA    15,892(0,15)
          STG   15,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1208 ; snprintf
-@@gen_label1574 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1215 ; snprintf
 @@gen_label1575 DS    0H 
+         BALR  14,15
+@@gen_label1576 DS    0H 
          LA    15,392(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label1576 DS 0H
+@@gen_label1577 DS 0H
          SRST  0,15
-         BC  1,@@gen_label1576
+         BC  1,@@gen_label1577
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1640
+         BNE   @L1647
          MVI   392(13),0
-@L1639   DS    0H
-@L1640   DS    0H
+@L1646   DS    0H
+@L1647   DS    0H
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  5,5688      ; 5688
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1210 ; mtx_lock
-@@gen_label1578 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1217 ; mtx_lock
 @@gen_label1579 DS    0H 
+         BALR  14,15
+@@gen_label1580 DS    0H 
          LA    15,648(0,13)
          STG   15,904(0,13)
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -14551,71 +14612,71 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          MVGHI 920(13),256
          LA    1,904(0,13)
-         LG    15,@lit_1947_1212 ; rd_strlcpy
-@@gen_label1580 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1219 ; rd_strlcpy
 @@gen_label1581 DS    0H 
+         BALR  14,15
+@@gen_label1582 DS    0H 
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1214 ; mtx_unlock
-@@gen_label1582 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1221 ; mtx_unlock
 @@gen_label1583 DS    0H 
+         BALR  14,15
+@@gen_label1584 DS    0H 
          LGH   15,184(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1215 ; rd_kafka_ApiKey2str
-@@gen_label1584 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1222 ; rd_kafka_ApiKey2str
 @@gen_label1585 DS    0H 
+         BALR  14,15
+@@gen_label1586 DS    0H 
          LGR   5,15
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1216 ; rd_slice_offset
-@@gen_label1586 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1223 ; rd_slice_offset
 @@gen_label1587 DS    0H 
+         BALR  14,15
+@@gen_label1588 DS    0H 
          LGR   6,15
          LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1217 ; rd_slice_abs_offset
-@@gen_label1588 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1224 ; rd_slice_abs_offset
 @@gen_label1589 DS    0H 
+         BALR  14,15
+@@gen_label1590 DS    0H 
          SLGR  7,15
          LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L1643
+         BZ    @L1650
          LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         B     @L1644
+         B     @L1651
          DS    0D
-@lit_1947_1206 DC AD(rd_kafka_crash)
-@lit_1947_1205 DC AD(@DATA)
-@lit_1947_1204 DC AD(@strings@)
-@lit_1947_1208 DC AD(snprintf)
-@lit_1947_1210 DC AD(mtx_lock)
-@lit_1947_1212 DC AD(rd_strlcpy)
-@lit_1947_1214 DC AD(mtx_unlock)
-@lit_1947_1215 DC AD(rd_kafka_$Api$Key2str)
-@lit_1947_1216 DC AD(rd_slice_offset)
-@lit_1947_1217 DC AD(rd_slice_abs_offset)
-@lit_1947_1221 DC AD(rd_kafka_log0)
+@lit_1947_1213 DC AD(rd_kafka_crash)
+@lit_1947_1212 DC AD(@DATA)
+@lit_1947_1211 DC AD(@strings@)
+@lit_1947_1215 DC AD(snprintf)
+@lit_1947_1217 DC AD(mtx_lock)
+@lit_1947_1219 DC AD(rd_strlcpy)
+@lit_1947_1221 DC AD(mtx_unlock)
+@lit_1947_1222 DC AD(rd_kafka_$Api$Key2str)
+@lit_1947_1223 DC AD(rd_slice_offset)
+@lit_1947_1224 DC AD(rd_slice_abs_offset)
+@lit_1947_1228 DC AD(rd_kafka_log0)
 @lit_region_diff_1947_3_7  DC A(@REGION_1947_7-@REGION_1947_3)
-@lit_1947_1222 DC AD(rd_slice_crc32c)
-@lit_1947_1224 DC AD(rd_kafka_consumer_err)
-@lit_1947_1226 DC AD(rd_slice_read)
-@lit_1947_1246 DC AD(rd_atomic64_add)
+@lit_1947_1229 DC AD(rd_slice_crc32c)
+@lit_1947_1231 DC AD(rd_kafka_consumer_err)
+@lit_1947_1233 DC AD(rd_slice_read)
+@lit_1947_1253 DC AD(rd_atomic64_add)
 @lit_region_diff_1947_3_4  DC A(@REGION_1947_4-@REGION_1947_3)
-@L1643   DS    0H
-         LG    15,@lit_1947_1204
+@L1650   DS    0H
+         LG    15,@lit_1947_1211
          LA    15,896(0,15)
-@L1644   DS    0H
+@L1651   DS    0H
          LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -14628,7 +14689,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LGFR  1,8
          STG   1,928(0,13)
          XC    936(8,13),936(13)
-         LG    1,@lit_1947_1204
+         LG    1,@lit_1947_1211
          LA    8,932(0,1)
          STG   8,944(0,13)
          LA    1,944(0,1)
@@ -14641,43 +14702,43 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LG    1,152(0,4)  ; offset of end in rd_slice_s
          SLG   1,144(0,4)
          STG   1,984(0,13)
-         LG    1,@lit_1947_1205
+         LG    1,@lit_1947_1212
          LA    1,600(0,1)
          STG   1,992(0,13)
-         MVGHI 1000(13),1049
+         MVGHI 1000(13),1055
          STG   2,1008(0,13)
          STG   7,1016(0,13)
          STG   15,1024(0,13)
          LA    15,392(0,13)
          STG   15,1032(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1221 ; rd_kafka_log0
-@@gen_label1591 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1228 ; rd_kafka_log0
 @@gen_label1592 DS    0H 
-@L1634   DS    0H
+         BALR  14,15
+@@gen_label1593 DS    0H 
+@L1641   DS    0H
          MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
          ALGF  12,@lit_region_diff_1947_3_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @_err_parse@1947@5
+         B     @_err_parse@1947@4
          DROP  12
          USING @REGION_1947_3,12
-@L1630   DS    0H
+@L1637   DS    0H
 * ***   
 * ***                   calc_crc = rd_slice_crc32c(&crc_slice);
-@L1626   DS    0H
+@L1633   DS    0H
          LA    15,352(0,13)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1222 ; rd_slice_crc32c
-@@gen_label1593 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1229 ; rd_slice_crc32c
 @@gen_label1594 DS    0H 
+         BALR  14,15
+@@gen_label1595 DS    0H 
 * ***   
 * ***                   if ((((uint32_t)hdr.Crc != calc_crc))) {
          CL    15,260(0,13)
-         BE    @L1645
+         BE    @L1652
 * ***                           
 * ***   
 * ***                           rd_kafka_consumer_err(&msetr->msetr_rk\
@@ -14717,8 +14778,8 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 * "x" " != "
 * ***                                                 "calculated 0x%"\
 *  "x" ")",
-         LG    1,@lit_1947_1204
-         LA    1,2014(0,1)
+         LG    1,@lit_1947_1211
+         LA    1,2080(0,1)
          STG   1,960(0,13)
          LG    1,240(0,13)
          STG   1,968(0,13)
@@ -14729,17 +14790,17 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LLGFR 15,15
          STG   15,992(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1224 ; rd_kafka_consumer_err
-@@gen_label1596 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1231 ; rd_kafka_consumer_err
 @@gen_label1597 DS    0H 
+         BALR  14,15
+@@gen_label1598 DS    0H 
 * ***                           do { size_t __len1 = (size_t)(crc_len)\
 *  - rd_slice_offset(&(rkbuf)->rkbuf_reader); if (__len1 && !rd_slice_\
 * read(&(rkbuf)->rkbuf_reader, ((void *)0), __len1)) do { size_t __len\
 * 0 = (size_t)(__len1); if (((__len0 > ((&(rkbuf)->rkbuf_reader)->end \
 * - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader))))) { do { if (log_dec\
 * ode_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_kafka_crash("\
-* C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",1069, __FUNC\
+* C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",1075, __FUNC\
 * TION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); } while (0); \
 * char __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr), ": "); if (\
 * __strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do { char _logname[256]\
@@ -14752,100 +14813,100 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 * es > " "%" "zu" " remaining bytes (%s)%s", rd_kafka_ApiKey2str(rkbuf\
 * ->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion, rd_slice_of\
 * fset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end - (&rkbuf->\
-* rkbuf_reader)->start), __FUNCTION__, 1069, __len0, ((&rkbuf->rkbuf_r\
+* rkbuf_reader)->start), __FUNCTION__, 1075, __len0, ((&rkbuf->rkbuf_r\
 * eader)->end - rd_slice_abs_offset(&rkbuf->rkbuf_reader)), rkbuf->rkb\
 * uf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation : "incorrect bro\
 * ker.version.fallback?", __tmpstr); } while (0); } (rkbuf)->rkbuf_err\
 *  = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while (0); } } wh\
 * ile (0); } while (0);
-@L1646   DS    0H
+@L1653   DS    0H
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1216 ; rd_slice_offset
-@@gen_label1598 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1223 ; rd_slice_offset
 @@gen_label1599 DS    0H 
+         BALR  14,15
+@@gen_label1600 DS    0H 
          SLGR  2,15
          LTGR  15,2
-         BZ    @L1649
+         BZ    @L1656
          LA    15,120(0,4)
          STG   15,904(0,13)
          XC    912(8,13),912(13)
          STG   2,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1226 ; rd_slice_read
-@@gen_label1601 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1233 ; rd_slice_read
 @@gen_label1602 DS    0H 
+         BALR  14,15
+@@gen_label1603 DS    0H 
          LTGR  15,15
-         BNZ   @L1649
-@L1650   DS    0H
+         BNZ   @L1656
+@L1657   DS    0H
          LG    5,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1217 ; rd_slice_abs_offset
-@@gen_label1604 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1224 ; rd_slice_abs_offset
 @@gen_label1605 DS    0H 
+         BALR  14,15
+@@gen_label1606 DS    0H 
          SLGR  5,15
          CLGR  2,5
-         BNH   @L1653
-@L1654   DS    0H
+         BNH   @L1660
+@L1661   DS    0H
          LTR   8,8
-         BNH   @L1657
-@L1658   DS    0H
+         BNH   @L1664
+@L1665   DS    0H
          LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1661
-         LG    15,@lit_1947_1204
+         BNZ   @L1668
+         LG    15,@lit_1947_1211
          LA    1,718(0,15)
          STG   1,904(0,13)
-         MVGHI 912(13),1069
-         LG    1,@lit_1947_1205
+         MVGHI 912(13),1075
+         LG    1,@lit_1947_1212
          LA    1,600(0,1)
          STG   1,920(0,13)
          XC    928(8,13),928(13)
          LA    15,866(0,15)
          STG   15,936(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1206 ; rd_kafka_crash
-@@gen_label1609 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1213 ; rd_kafka_crash
 @@gen_label1610 DS    0H 
-@L1661   DS    0H
+         BALR  14,15
+@@gen_label1611 DS    0H 
+@L1668   DS    0H
          LA    15,392(0,13)
          STG   15,904(0,13)
          MVGHI 912(13),256
-         LG    15,@lit_1947_1204
+         LG    15,@lit_1947_1211
          LA    15,892(0,15)
          STG   15,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1208 ; snprintf
-@@gen_label1611 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1215 ; snprintf
 @@gen_label1612 DS    0H 
+         BALR  14,15
+@@gen_label1613 DS    0H 
          LA    15,392(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label1613 DS 0H
+@@gen_label1614 DS 0H
          SRST  0,15
-         BC  1,@@gen_label1613
+         BC  1,@@gen_label1614
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1663
+         BNE   @L1670
          MVI   392(13),0
-@L1662   DS    0H
-@L1663   DS    0H
+@L1669   DS    0H
+@L1670   DS    0H
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  5,5688      ; 5688
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1210 ; mtx_lock
-@@gen_label1615 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1217 ; mtx_lock
 @@gen_label1616 DS    0H 
+         BALR  14,15
+@@gen_label1617 DS    0H 
          LA    15,648(0,13)
          STG   15,904(0,13)
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -14854,53 +14915,53 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          MVGHI 920(13),256
          LA    1,904(0,13)
-         LG    15,@lit_1947_1212 ; rd_strlcpy
-@@gen_label1617 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1219 ; rd_strlcpy
 @@gen_label1618 DS    0H 
+         BALR  14,15
+@@gen_label1619 DS    0H 
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1214 ; mtx_unlock
-@@gen_label1619 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1221 ; mtx_unlock
 @@gen_label1620 DS    0H 
+         BALR  14,15
+@@gen_label1621 DS    0H 
          LGH   15,184(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1215 ; rd_kafka_ApiKey2str
-@@gen_label1621 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1222 ; rd_kafka_ApiKey2str
 @@gen_label1622 DS    0H 
+         BALR  14,15
+@@gen_label1623 DS    0H 
          LGR   5,15
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1216 ; rd_slice_offset
-@@gen_label1623 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1223 ; rd_slice_offset
 @@gen_label1624 DS    0H 
+         BALR  14,15
+@@gen_label1625 DS    0H 
          LGR   6,15
          LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1217 ; rd_slice_abs_offset
-@@gen_label1625 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1224 ; rd_slice_abs_offset
 @@gen_label1626 DS    0H 
+         BALR  14,15
+@@gen_label1627 DS    0H 
          SLGR  7,15
          LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L1666
+         BZ    @L1673
          LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         B     @L1667
-@L1666   DS    0H
-         LG    15,@lit_1947_1204
+         B     @L1674
+@L1673   DS    0H
+         LG    15,@lit_1947_1211
          LA    15,896(0,15)
-@L1667   DS    0H
+@L1674   DS    0H
          LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -14913,7 +14974,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LGFR  1,8
          STG   1,928(0,13)
          XC    936(8,13),936(13)
-         LG    1,@lit_1947_1204
+         LG    1,@lit_1947_1211
          LA    8,932(0,1)
          STG   8,944(0,13)
          LA    1,944(0,1)
@@ -14926,30 +14987,30 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LG    1,152(0,4)  ; offset of end in rd_slice_s
          SLG   1,144(0,4)
          STG   1,984(0,13)
-         LG    1,@lit_1947_1205
+         LG    1,@lit_1947_1212
          LA    1,600(0,1)
          STG   1,992(0,13)
-         MVGHI 1000(13),1069
+         MVGHI 1000(13),1075
          STG   2,1008(0,13)
          STG   7,1016(0,13)
          STG   15,1024(0,13)
          LA    15,392(0,13)
          STG   15,1032(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1221 ; rd_kafka_log0
-@@gen_label1628 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1228 ; rd_kafka_log0
 @@gen_label1629 DS    0H 
-@L1657   DS    0H
+         BALR  14,15
+@@gen_label1630 DS    0H 
+@L1664   DS    0H
          MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
          ALGF  12,@lit_region_diff_1947_3_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @_err_parse@1947@5
+         B     @_err_parse@1947@4
          DROP  12
          USING @REGION_1947_3,12
-@L1653   DS    0H
-@L1649   DS    0H
+@L1660   DS    0H
+@L1656   DS    0H
 * ***                           rd_atomic64_add(&msetr->msetr_rkb->rkb\
 * _c.rx_err, 1);
          LG    15,72(0,3)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
@@ -14958,10 +15019,10 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,904(0,13)
          MVGHI 912(13),1
          LA    1,904(0,13)
-         LG    15,@lit_1947_1246 ; rd_atomic64_add
-@@gen_label1630 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1253 ; rd_atomic64_add
 @@gen_label1631 DS    0H 
+         BALR  14,15
+@@gen_label1632 DS    0H 
 * ***                           return RD_KAFKA_RESP_ERR_NO_ERROR;
          LGHI  15,0        ; 0
          ALGF  12,@lit_region_diff_1947_3_7
@@ -14971,1152 +15032,10 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          DROP  12
          USING @REGION_1947_3,12
 * ***                   }
-@L1645   DS    0H
+@L1652   DS    0H
 * ***           }
-@L1625   DS    0H
+@L1632   DS    0H
 * ***   
-* ***           do { int16_t _v; do { size_t __len2 = (size_t)(sizeof(\
-* _v)); if (!rd_slice_read(&(rkbuf)->rkbuf_reader, &_v, __len2)) do { \
-* size_t __len0 = (size_t)(__len2); if (((__len0 > ((&(rkbuf)->rkbuf_r\
-* eader)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader))))) { do {\
-*  if (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_k\
-* afka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",\
-* 1075, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); }\
-*  while (0); char __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr),\
-*  ": "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do { char _\
-* logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_st\
-* rlcpy(_logname, rkbuf->rkbuf_rkb->rkb_logname, sizeof(_logname)); mt\
-* x_unlock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_kafka_log0(&(rkb\
-* uf->rkbuf_rkb)->rkb_rk->rk_conf, (rkbuf->rkbuf_rkb)->rkb_rk, _lognam\
-* e, log_decode_errors, 0x0, "PROTOUFLOW", "Protocol read buffer under\
-* flow " "for %s v%hd " "at %" "zu" "/%" "zu" " (%s:%i): " "expected %\
-* " "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_kafka_ApiK\
-* ey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion,\
-*  rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end\
-*  - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1075, __len0, ((&rk\
-* buf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkbuf_reader))\
-* , rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation : "i\
-* ncorrect broker.version.fallback?", __tmpstr); } while (0); } (rkbuf\
-* )->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while\
-*  (0); } } while (0); } while (0); *(&hdr.Attributes) = (int16_t)(_v)\
-* ; } while (0);
-@L1668   DS    0H
-@L1671   DS    0H
-         LGHI  2,2         ; 2
-         LA    15,120(0,4)
-         STG   15,904(0,13)
-         LA    15,188(0,13)
-         STG   15,912(0,13)
-         STG   2,920(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1226 ; rd_slice_read
-@@gen_label1632 DS    0H 
-         BALR  14,15
-@@gen_label1633 DS    0H 
-         LTGR  15,15
-         BNZ   @L1674
-@L1675   DS    0H
-         LG    7,152(0,4)  ; offset of end in rd_slice_s
-         LA    15,120(0,4)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1217 ; rd_slice_abs_offset
-@@gen_label1635 DS    0H 
-         BALR  14,15
-@@gen_label1636 DS    0H 
-         SLGR  7,15
-         CLGR  2,7
-         BNH   @L1678
-@L1679   DS    0H
-         LTR   8,8
-         BNH   @L1682
-@L1683   DS    0H
-         LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1686
-         LG    15,@lit_1947_1204
-         LA    1,718(0,15)
-         STG   1,904(0,13)
-         MVGHI 912(13),1075
-         LG    1,@lit_1947_1205
-         LA    1,600(0,1)
-         STG   1,920(0,13)
-         XC    928(8,13),928(13)
-         LA    15,866(0,15)
-         STG   15,936(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1206 ; rd_kafka_crash
-@@gen_label1640 DS    0H 
-         BALR  14,15
-@@gen_label1641 DS    0H 
-@L1686   DS    0H
-         LA    15,352(0,13)
-         STG   15,904(0,13)
-         MVGHI 912(13),256
-         LG    15,@lit_1947_1204
-         LA    15,892(0,15)
-         STG   15,920(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1208 ; snprintf
-@@gen_label1642 DS    0H 
-         BALR  14,15
-@@gen_label1643 DS    0H 
-         LA    15,352(0,13)
-         LGR   1,15
-         LGHI  0,0
-@@gen_label1644 DS 0H
-         SRST  0,15
-         BC  1,@@gen_label1644
-         SLGR  0,1
-         CGHI  0,2
-         BNE   @L1688
-         MVI   352(13),0
-@L1687   DS    0H
-@L1688   DS    0H
-         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LGHI  5,5688      ; 5688
-         LA    15,0(5,15)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1210 ; mtx_lock
-@@gen_label1646 DS    0H 
-         BALR  14,15
-@@gen_label1647 DS    0H 
-         LA    15,608(0,13)
-         STG   15,904(0,13)
-         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LGHI  1,5680      ; 5680
-         LG    15,0(1,15)
-         STG   15,912(0,13)
-         MVGHI 920(13),256
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1212 ; rd_strlcpy
-@@gen_label1648 DS    0H 
-         BALR  14,15
-@@gen_label1649 DS    0H 
-         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LA    15,0(5,15)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1214 ; mtx_unlock
-@@gen_label1650 DS    0H 
-         BALR  14,15
-@@gen_label1651 DS    0H 
-         LGH   15,184(0,4)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1215 ; rd_kafka_ApiKey2str
-@@gen_label1652 DS    0H 
-         BALR  14,15
-@@gen_label1653 DS    0H 
-         LGR   5,15
-         LA    15,120(0,4)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1216 ; rd_slice_offset
-@@gen_label1654 DS    0H 
-         BALR  14,15
-@@gen_label1655 DS    0H 
-         LGR   6,15
-         LG    7,152(0,4)  ; offset of end in rd_slice_s
-         LA    15,120(0,4)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1217 ; rd_slice_abs_offset
-@@gen_label1656 DS    0H 
-         BALR  14,15
-@@gen_label1657 DS    0H 
-         SLGR  7,15
-         LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
-               ka_buf_s
-         BZ    @L1691
-         LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
-               ka_buf_s
-         B     @L1692
-@L1691   DS    0H
-         LG    15,@lit_1947_1204
-         LA    15,896(0,15)
-@L1692   DS    0H
-         LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
-         LA    1,528(0,1)
-         STG   1,904(0,13)
-         LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LG    1,4048(0,1)
-         STG   1,912(0,13)
-         LA    1,608(0,13)
-         STG   1,920(0,13)
-         LGFR  1,8
-         STG   1,928(0,13)
-         XC    936(8,13),936(13)
-         LG    1,@lit_1947_1204
-         LA    8,932(0,1)
-         STG   8,944(0,13)
-         LA    1,944(0,1)
-         STG   1,952(0,13)
-         STG   5,960(0,13)
-         LH    1,186(0,4)
-         LGFR  1,1
-         STG   1,968(0,13)
-         STG   6,976(0,13)
-         LG    1,152(0,4)  ; offset of end in rd_slice_s
-         SLG   1,144(0,4)
-         STG   1,984(0,13)
-         LG    1,@lit_1947_1205
-         LA    1,600(0,1)
-         STG   1,992(0,13)
-         MVGHI 1000(13),1075
-         STG   2,1008(0,13)
-         STG   7,1016(0,13)
-         STG   15,1024(0,13)
-         LA    15,352(0,13)
-         STG   15,1032(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1221 ; rd_kafka_log0
-@@gen_label1659 DS    0H 
-         BALR  14,15
-@@gen_label1660 DS    0H 
-@L1682   DS    0H
-         MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
-         ALGF  12,@lit_region_diff_1947_3_7
-         DROP  12
-         USING @REGION_1947_7,12
-         B     @_err_parse@1947@5
-         DROP  12
-         USING @REGION_1947_3,12
-@L1678   DS    0H
-@L1674   DS    0H
-         MVC   264(2,13),188(13)
-* ***           do { int32_t _v; do { size_t __len2 = (size_t)(sizeof(\
-* _v)); if (!rd_slice_read(&(rkbuf)->rkbuf_reader, &_v, __len2)) do { \
-* size_t __len0 = (size_t)(__len2); if (((__len0 > ((&(rkbuf)->rkbuf_r\
-* eader)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader))))) { do {\
-*  if (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_k\
-* afka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",\
-* 1076, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); }\
-*  while (0); char __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr),\
-*  ": "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do { char _\
-* logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_st\
-* rlcpy(_logname, rkbuf->rkbuf_rkb->rkb_logname, sizeof(_logname)); mt\
-* x_unlock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_kafka_log0(&(rkb\
-* uf->rkbuf_rkb)->rkb_rk->rk_conf, (rkbuf->rkbuf_rkb)->rkb_rk, _lognam\
-* e, log_decode_errors, 0x0, "PROTOUFLOW", "Protocol read buffer under\
-* flow " "for %s v%hd " "at %" "zu" "/%" "zu" " (%s:%i): " "expected %\
-* " "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_kafka_ApiK\
-* ey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion,\
-*  rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end\
-*  - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1076, __len0, ((&rk\
-* buf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkbuf_reader))\
-* , rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation : "i\
-* ncorrect broker.version.fallback?", __tmpstr); } while (0); } (rkbuf\
-* )->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while\
-*  (0); } } while (0); } while (0); *(&hdr.LastOffsetDelta) = (_v); } \
-* while (0);
-@L1693   DS    0H
-@L1696   DS    0H
-         LGHI  2,4         ; 4
-         LA    15,120(0,4)
-         STG   15,904(0,13)
-         LA    15,192(0,13)
-         STG   15,912(0,13)
-         STG   2,920(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1226 ; rd_slice_read
-@@gen_label1661 DS    0H 
-         BALR  14,15
-@@gen_label1662 DS    0H 
-         LTGR  15,15
-         BZ    *+14  Around region break
-         ALGF  12,@lit_region_diff_1947_3_4
-         DROP  12
-         USING @REGION_1947_4,12
-         B     @L1699
-         DROP  12
-         USING @REGION_1947_3,12
-@L1700   DS    0H
-         LG    7,152(0,4)  ; offset of end in rd_slice_s
-         LA    15,120(0,4)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1217 ; rd_slice_abs_offset
-@@gen_label1664 DS    0H 
-         BALR  14,15
-@@gen_label1665 DS    0H 
-         SLGR  7,15
-         CLGR  2,7
-         BH    *+14  Around region break
-         ALGF  12,@lit_region_diff_1947_3_4
-         DROP  12
-         USING @REGION_1947_4,12
-         B     @L1703
-         DROP  12
-         USING @REGION_1947_3,12
-@L1704   DS    0H
-         LTR   8,8
-         BH    *+14  Around region break
-         ALGF  12,@lit_region_diff_1947_3_4
-         DROP  12
-         USING @REGION_1947_4,12
-         B     @L1707
-         DROP  12
-         USING @REGION_1947_3,12
-@L1708   DS    0H
-         LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BZ    *+14  Around region break
-         ALGF  12,@lit_region_diff_1947_3_4
-         DROP  12
-         USING @REGION_1947_4,12
-         B     @L1711
-         DROP  12
-         USING @REGION_1947_3,12
-         ALGF  12,@lit_region_diff_1947_3_4
-@REGION_1947_4 DS 0H
-         DROP  12
-         USING @REGION_1947_4,12
-         LG    15,@lit_1947_1272
-         LA    1,718(0,15)
-         STG   1,904(0,13)
-         MVGHI 912(13),1076
-         LG    1,@lit_1947_1273
-         LA    1,600(0,1)
-         STG   1,920(0,13)
-         XC    928(8,13),928(13)
-         LA    15,866(0,15)
-         STG   15,936(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1274 ; rd_kafka_crash
-@@gen_label1669 DS    0H 
-         BALR  14,15
-@@gen_label1670 DS    0H 
-@L1711   DS    0H
-         LA    15,352(0,13)
-         STG   15,904(0,13)
-         MVGHI 912(13),256
-         LG    15,@lit_1947_1272
-         LA    15,892(0,15)
-         STG   15,920(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1276 ; snprintf
-@@gen_label1671 DS    0H 
-         BALR  14,15
-@@gen_label1672 DS    0H 
-         LA    15,352(0,13)
-         LGR   1,15
-         LGHI  0,0
-@@gen_label1673 DS 0H
-         SRST  0,15
-         BC  1,@@gen_label1673
-         SLGR  0,1
-         CGHI  0,2
-         BNE   @L1713
-         MVI   352(13),0
-@L1712   DS    0H
-@L1713   DS    0H
-         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LGHI  5,5688      ; 5688
-         LA    15,0(5,15)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1278 ; mtx_lock
-@@gen_label1675 DS    0H 
-         BALR  14,15
-@@gen_label1676 DS    0H 
-         LA    15,608(0,13)
-         STG   15,904(0,13)
-         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LGHI  1,5680      ; 5680
-         LG    15,0(1,15)
-         STG   15,912(0,13)
-         MVGHI 920(13),256
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1280 ; rd_strlcpy
-@@gen_label1677 DS    0H 
-         BALR  14,15
-@@gen_label1678 DS    0H 
-         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LA    15,0(5,15)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1282 ; mtx_unlock
-@@gen_label1679 DS    0H 
-         BALR  14,15
-@@gen_label1680 DS    0H 
-         LGH   15,184(0,4)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1283 ; rd_kafka_ApiKey2str
-@@gen_label1681 DS    0H 
-         BALR  14,15
-@@gen_label1682 DS    0H 
-         LGR   5,15
-         LA    15,120(0,4)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1284 ; rd_slice_offset
-@@gen_label1683 DS    0H 
-         BALR  14,15
-@@gen_label1684 DS    0H 
-         LGR   6,15
-         LG    7,152(0,4)  ; offset of end in rd_slice_s
-         LA    15,120(0,4)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1285 ; rd_slice_abs_offset
-@@gen_label1685 DS    0H 
-         BALR  14,15
-@@gen_label1686 DS    0H 
-         SLGR  7,15
-         LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
-               ka_buf_s
-         BZ    @L1716
-         LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
-               ka_buf_s
-         B     @L1717
-         DS    0D
-@lit_1947_1274 DC AD(rd_kafka_crash)
-@lit_1947_1273 DC AD(@DATA)
-@lit_1947_1272 DC AD(@strings@)
-@lit_1947_1276 DC AD(snprintf)
-@lit_1947_1278 DC AD(mtx_lock)
-@lit_1947_1280 DC AD(rd_strlcpy)
-@lit_1947_1282 DC AD(mtx_unlock)
-@lit_1947_1283 DC AD(rd_kafka_$Api$Key2str)
-@lit_1947_1284 DC AD(rd_slice_offset)
-@lit_1947_1285 DC AD(rd_slice_abs_offset)
-@lit_1947_1289 DC AD(rd_kafka_log0)
-@lit_region_diff_1947_4_7  DC A(@REGION_1947_7-@REGION_1947_4)
-@lit_1947_1291 DC AD(rd_slice_read)
-@lit_region_diff_1947_4_5  DC A(@REGION_1947_5-@REGION_1947_4)
-@L1716   DS    0H
-         LG    15,@lit_1947_1272
-         LA    15,896(0,15)
-@L1717   DS    0H
-         LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
-         LA    1,528(0,1)
-         STG   1,904(0,13)
-         LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LG    1,4048(0,1)
-         STG   1,912(0,13)
-         LA    1,608(0,13)
-         STG   1,920(0,13)
-         LGFR  1,8
-         STG   1,928(0,13)
-         XC    936(8,13),936(13)
-         LG    1,@lit_1947_1272
-         LA    8,932(0,1)
-         STG   8,944(0,13)
-         LA    1,944(0,1)
-         STG   1,952(0,13)
-         STG   5,960(0,13)
-         LH    1,186(0,4)
-         LGFR  1,1
-         STG   1,968(0,13)
-         STG   6,976(0,13)
-         LG    1,152(0,4)  ; offset of end in rd_slice_s
-         SLG   1,144(0,4)
-         STG   1,984(0,13)
-         LG    1,@lit_1947_1273
-         LA    1,600(0,1)
-         STG   1,992(0,13)
-         MVGHI 1000(13),1076
-         STG   2,1008(0,13)
-         STG   7,1016(0,13)
-         STG   15,1024(0,13)
-         LA    15,352(0,13)
-         STG   15,1032(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1289 ; rd_kafka_log0
-@@gen_label1688 DS    0H 
-         BALR  14,15
-@@gen_label1689 DS    0H 
-@L1707   DS    0H
-         MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
-         ALGF  12,@lit_region_diff_1947_4_7
-         DROP  12
-         USING @REGION_1947_7,12
-         B     @_err_parse@1947@5
-         DROP  12
-         USING @REGION_1947_4,12
-@L1703   DS    0H
-@L1699   DS    0H
-         L     15,192(0,13) ; _v
-         ST    15,268(0,13) ; offset of LastOffsetDelta in msgset_v2_hd*
-               r
-* ***           LastOffset = hdr.BaseOffset + hdr.LastOffsetDelta;
-         LG    7,240(0,13)
-         AGF   7,268(0,13)
-* ***           do { int64_t _v; do { size_t __len2 = (size_t)(sizeof(\
-* _v)); if (!rd_slice_read(&(rkbuf)->rkbuf_reader, &_v, __len2)) do { \
-* size_t __len0 = (size_t)(__len2); if (((__len0 > ((&(rkbuf)->rkbuf_r\
-* eader)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader))))) { do {\
-*  if (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_k\
-* afka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",\
-* 1078, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); }\
-*  while (0); char __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr),\
-*  ": "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do { char _\
-* logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_st\
-* rlcpy(_logname, rkbuf->rkbuf_rkb->rkb_logname, sizeof(_logname)); mt\
-* x_unlock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_kafka_log0(&(rkb\
-* uf->rkbuf_rkb)->rkb_rk->rk_conf, (rkbuf->rkbuf_rkb)->rkb_rk, _lognam\
-* e, log_decode_errors, 0x0, "PROTOUFLOW", "Protocol read buffer under\
-* flow " "for %s v%hd " "at %" "zu" "/%" "zu" " (%s:%i): " "expected %\
-* " "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_kafka_ApiK\
-* ey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion,\
-*  rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end\
-*  - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1078, __len0, ((&rk\
-* buf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkbuf_reader))\
-* , rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation : "i\
-* ncorrect broker.version.fallback?", __tmpstr); } while (0); } (rkbuf\
-* )->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while\
-*  (0); } } while (0); } while (0); *(&hdr.BaseTimestamp) = (_v); } wh\
-* ile (0);
-@L1718   DS    0H
-@L1721   DS    0H
-         LGHI  2,8         ; 8
-         LA    15,120(0,4)
-         STG   15,904(0,13)
-         LA    15,200(0,13)
-         STG   15,912(0,13)
-         STG   2,920(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1291 ; rd_slice_read
-@@gen_label1690 DS    0H 
-         BALR  14,15
-@@gen_label1691 DS    0H 
-         LTGR  15,15
-         BNZ   @L1724
-@L1725   DS    0H
-         LG    9,152(0,4)  ; offset of end in rd_slice_s
-         LA    15,120(0,4)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1285 ; rd_slice_abs_offset
-@@gen_label1693 DS    0H 
-         BALR  14,15
-@@gen_label1694 DS    0H 
-         SLGR  9,15
-         CLGR  2,9
-         BNH   @L1728
-@L1729   DS    0H
-         LTR   8,8
-         BNH   @L1732
-@L1733   DS    0H
-         LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1736
-         LG    15,@lit_1947_1272
-         LA    1,718(0,15)
-         STG   1,904(0,13)
-         MVGHI 912(13),1078
-         LG    1,@lit_1947_1273
-         LA    1,600(0,1)
-         STG   1,920(0,13)
-         XC    928(8,13),928(13)
-         LA    15,866(0,15)
-         STG   15,936(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1274 ; rd_kafka_crash
-@@gen_label1698 DS    0H 
-         BALR  14,15
-@@gen_label1699 DS    0H 
-@L1736   DS    0H
-         LA    15,352(0,13)
-         STG   15,904(0,13)
-         MVGHI 912(13),256
-         LG    15,@lit_1947_1272
-         LA    15,892(0,15)
-         STG   15,920(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1276 ; snprintf
-@@gen_label1700 DS    0H 
-         BALR  14,15
-@@gen_label1701 DS    0H 
-         LA    15,352(0,13)
-         LGR   1,15
-         LGHI  0,0
-@@gen_label1702 DS 0H
-         SRST  0,15
-         BC  1,@@gen_label1702
-         SLGR  0,1
-         CGHI  0,2
-         BNE   @L1738
-         MVI   352(13),0
-@L1737   DS    0H
-@L1738   DS    0H
-         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LGHI  5,5688      ; 5688
-         LA    15,0(5,15)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1278 ; mtx_lock
-@@gen_label1704 DS    0H 
-         BALR  14,15
-@@gen_label1705 DS    0H 
-         LA    15,608(0,13)
-         STG   15,904(0,13)
-         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LGHI  1,5680      ; 5680
-         LG    15,0(1,15)
-         STG   15,912(0,13)
-         MVGHI 920(13),256
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1280 ; rd_strlcpy
-@@gen_label1706 DS    0H 
-         BALR  14,15
-@@gen_label1707 DS    0H 
-         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LA    15,0(5,15)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1282 ; mtx_unlock
-@@gen_label1708 DS    0H 
-         BALR  14,15
-@@gen_label1709 DS    0H 
-         LGH   15,184(0,4)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1283 ; rd_kafka_ApiKey2str
-@@gen_label1710 DS    0H 
-         BALR  14,15
-@@gen_label1711 DS    0H 
-         LGR   5,15
-         LA    15,120(0,4)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1284 ; rd_slice_offset
-@@gen_label1712 DS    0H 
-         BALR  14,15
-@@gen_label1713 DS    0H 
-         LGR   6,15
-         LG    7,152(0,4)  ; offset of end in rd_slice_s
-         LA    15,120(0,4)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1285 ; rd_slice_abs_offset
-@@gen_label1714 DS    0H 
-         BALR  14,15
-@@gen_label1715 DS    0H 
-         SLGR  7,15
-         LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
-               ka_buf_s
-         BZ    @L1741
-         LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
-               ka_buf_s
-         B     @L1742
-@L1741   DS    0H
-         LG    15,@lit_1947_1272
-         LA    15,896(0,15)
-@L1742   DS    0H
-         LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
-         LA    1,528(0,1)
-         STG   1,904(0,13)
-         LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LG    1,4048(0,1)
-         STG   1,912(0,13)
-         LA    1,608(0,13)
-         STG   1,920(0,13)
-         LGFR  1,8
-         STG   1,928(0,13)
-         XC    936(8,13),936(13)
-         LG    1,@lit_1947_1272
-         LA    8,932(0,1)
-         STG   8,944(0,13)
-         LA    1,944(0,1)
-         STG   1,952(0,13)
-         STG   5,960(0,13)
-         LH    1,186(0,4)
-         LGFR  1,1
-         STG   1,968(0,13)
-         STG   6,976(0,13)
-         LG    1,152(0,4)  ; offset of end in rd_slice_s
-         SLG   1,144(0,4)
-         STG   1,984(0,13)
-         LG    1,@lit_1947_1273
-         LA    1,600(0,1)
-         STG   1,992(0,13)
-         MVGHI 1000(13),1078
-         STG   2,1008(0,13)
-         STG   7,1016(0,13)
-         STG   15,1024(0,13)
-         LA    15,352(0,13)
-         STG   15,1032(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1289 ; rd_kafka_log0
-@@gen_label1717 DS    0H 
-         BALR  14,15
-@@gen_label1718 DS    0H 
-@L1732   DS    0H
-         MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
-         ALGF  12,@lit_region_diff_1947_4_7
-         DROP  12
-         USING @REGION_1947_7,12
-         B     @_err_parse@1947@5
-         DROP  12
-         USING @REGION_1947_4,12
-@L1728   DS    0H
-@L1724   DS    0H
-         LG    15,200(0,13) ; _v
-         STG   15,272(0,13) ; offset of BaseTimestamp in msgset_v2_hdr
-* ***           do { int64_t _v; do { size_t __len2 = (size_t)(sizeof(\
-* _v)); if (!rd_slice_read(&(rkbuf)->rkbuf_reader, &_v, __len2)) do { \
-* size_t __len0 = (size_t)(__len2); if (((__len0 > ((&(rkbuf)->rkbuf_r\
-* eader)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader))))) { do {\
-*  if (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_k\
-* afka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",\
-* 1079, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); }\
-*  while (0); char __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr),\
-*  ": "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do { char _\
-* logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_st\
-* rlcpy(_logname, rkbuf->rkbuf_rkb->rkb_logname, sizeof(_logname)); mt\
-* x_unlock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_kafka_log0(&(rkb\
-* uf->rkbuf_rkb)->rkb_rk->rk_conf, (rkbuf->rkbuf_rkb)->rkb_rk, _lognam\
-* e, log_decode_errors, 0x0, "PROTOUFLOW", "Protocol read buffer under\
-* flow " "for %s v%hd " "at %" "zu" "/%" "zu" " (%s:%i): " "expected %\
-* " "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_kafka_ApiK\
-* ey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion,\
-*  rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end\
-*  - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1079, __len0, ((&rk\
-* buf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkbuf_reader))\
-* , rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation : "i\
-* ncorrect broker.version.fallback?", __tmpstr); } while (0); } (rkbuf\
-* )->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while\
-*  (0); } } while (0); } while (0); *(&hdr.MaxTimestamp) = (_v); } whi\
-* le (0);
-@L1743   DS    0H
-@L1746   DS    0H
-         LGHI  2,8         ; 8
-         LA    15,120(0,4)
-         STG   15,904(0,13)
-         LA    15,208(0,13)
-         STG   15,912(0,13)
-         STG   2,920(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1291 ; rd_slice_read
-@@gen_label1719 DS    0H 
-         BALR  14,15
-@@gen_label1720 DS    0H 
-         LTGR  15,15
-         BNZ   @L1749
-@L1750   DS    0H
-         LG    9,152(0,4)  ; offset of end in rd_slice_s
-         LA    15,120(0,4)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1285 ; rd_slice_abs_offset
-@@gen_label1722 DS    0H 
-         BALR  14,15
-@@gen_label1723 DS    0H 
-         SLGR  9,15
-         CLGR  2,9
-         BNH   @L1753
-@L1754   DS    0H
-         LTR   8,8
-         BNH   @L1757
-@L1758   DS    0H
-         LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1761
-         LG    15,@lit_1947_1272
-         LA    1,718(0,15)
-         STG   1,904(0,13)
-         MVGHI 912(13),1079
-         LG    1,@lit_1947_1273
-         LA    1,600(0,1)
-         STG   1,920(0,13)
-         XC    928(8,13),928(13)
-         LA    15,866(0,15)
-         STG   15,936(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1274 ; rd_kafka_crash
-@@gen_label1727 DS    0H 
-         BALR  14,15
-@@gen_label1728 DS    0H 
-@L1761   DS    0H
-         LA    15,352(0,13)
-         STG   15,904(0,13)
-         MVGHI 912(13),256
-         LG    15,@lit_1947_1272
-         LA    15,892(0,15)
-         STG   15,920(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1276 ; snprintf
-@@gen_label1729 DS    0H 
-         BALR  14,15
-@@gen_label1730 DS    0H 
-         LA    15,352(0,13)
-         LGR   1,15
-         LGHI  0,0
-@@gen_label1731 DS 0H
-         SRST  0,15
-         BC  1,@@gen_label1731
-         SLGR  0,1
-         CGHI  0,2
-         BNE   @L1763
-         MVI   352(13),0
-@L1762   DS    0H
-@L1763   DS    0H
-         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LGHI  5,5688      ; 5688
-         LA    15,0(5,15)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1278 ; mtx_lock
-@@gen_label1733 DS    0H 
-         BALR  14,15
-@@gen_label1734 DS    0H 
-         LA    15,608(0,13)
-         STG   15,904(0,13)
-         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LGHI  1,5680      ; 5680
-         LG    15,0(1,15)
-         STG   15,912(0,13)
-         MVGHI 920(13),256
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1280 ; rd_strlcpy
-@@gen_label1735 DS    0H 
-         BALR  14,15
-@@gen_label1736 DS    0H 
-         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LA    15,0(5,15)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1282 ; mtx_unlock
-@@gen_label1737 DS    0H 
-         BALR  14,15
-@@gen_label1738 DS    0H 
-         LGH   15,184(0,4)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1283 ; rd_kafka_ApiKey2str
-@@gen_label1739 DS    0H 
-         BALR  14,15
-@@gen_label1740 DS    0H 
-         LGR   5,15
-         LA    15,120(0,4)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1284 ; rd_slice_offset
-@@gen_label1741 DS    0H 
-         BALR  14,15
-@@gen_label1742 DS    0H 
-         LGR   6,15
-         LG    7,152(0,4)  ; offset of end in rd_slice_s
-         LA    15,120(0,4)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1285 ; rd_slice_abs_offset
-@@gen_label1743 DS    0H 
-         BALR  14,15
-@@gen_label1744 DS    0H 
-         SLGR  7,15
-         LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
-               ka_buf_s
-         BZ    @L1766
-         LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
-               ka_buf_s
-         B     @L1767
-@L1766   DS    0H
-         LG    15,@lit_1947_1272
-         LA    15,896(0,15)
-@L1767   DS    0H
-         LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
-         LA    1,528(0,1)
-         STG   1,904(0,13)
-         LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LG    1,4048(0,1)
-         STG   1,912(0,13)
-         LA    1,608(0,13)
-         STG   1,920(0,13)
-         LGFR  1,8
-         STG   1,928(0,13)
-         XC    936(8,13),936(13)
-         LG    1,@lit_1947_1272
-         LA    8,932(0,1)
-         STG   8,944(0,13)
-         LA    1,944(0,1)
-         STG   1,952(0,13)
-         STG   5,960(0,13)
-         LH    1,186(0,4)
-         LGFR  1,1
-         STG   1,968(0,13)
-         STG   6,976(0,13)
-         LG    1,152(0,4)  ; offset of end in rd_slice_s
-         SLG   1,144(0,4)
-         STG   1,984(0,13)
-         LG    1,@lit_1947_1273
-         LA    1,600(0,1)
-         STG   1,992(0,13)
-         MVGHI 1000(13),1079
-         STG   2,1008(0,13)
-         STG   7,1016(0,13)
-         STG   15,1024(0,13)
-         LA    15,352(0,13)
-         STG   15,1032(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1289 ; rd_kafka_log0
-@@gen_label1746 DS    0H 
-         BALR  14,15
-@@gen_label1747 DS    0H 
-@L1757   DS    0H
-         MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
-         ALGF  12,@lit_region_diff_1947_4_7
-         DROP  12
-         USING @REGION_1947_7,12
-         B     @_err_parse@1947@5
-         DROP  12
-         USING @REGION_1947_4,12
-@L1753   DS    0H
-@L1749   DS    0H
-         LG    15,208(0,13) ; _v
-         STG   15,280(0,13) ; offset of MaxTimestamp in msgset_v2_hdr
-* ***           do { int64_t _v; do { size_t __len2 = (size_t)(sizeof(\
-* _v)); if (!rd_slice_read(&(rkbuf)->rkbuf_reader, &_v, __len2)) do { \
-* size_t __len0 = (size_t)(__len2); if (((__len0 > ((&(rkbuf)->rkbuf_r\
-* eader)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader))))) { do {\
-*  if (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_k\
-* afka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",\
-* 1080, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); }\
-*  while (0); char __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr),\
-*  ": "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do { char _\
-* logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_st\
-* rlcpy(_logname, rkbuf->rkbuf_rkb->rkb_logname, sizeof(_logname)); mt\
-* x_unlock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_kafka_log0(&(rkb\
-* uf->rkbuf_rkb)->rkb_rk->rk_conf, (rkbuf->rkbuf_rkb)->rkb_rk, _lognam\
-* e, log_decode_errors, 0x0, "PROTOUFLOW", "Protocol read buffer under\
-* flow " "for %s v%hd " "at %" "zu" "/%" "zu" " (%s:%i): " "expected %\
-* " "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_kafka_ApiK\
-* ey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion,\
-*  rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end\
-*  - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1080, __len0, ((&rk\
-* buf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkbuf_reader))\
-* , rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation : "i\
-* ncorrect broker.version.fallback?", __tmpstr); } while (0); } (rkbuf\
-* )->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while\
-*  (0); } } while (0); } while (0); *(&hdr.PID) = (_v); } while (0);
-@L1768   DS    0H
-@L1771   DS    0H
-         LGHI  2,8         ; 8
-         LA    15,120(0,4)
-         STG   15,904(0,13)
-         LA    15,216(0,13)
-         STG   15,912(0,13)
-         STG   2,920(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1291 ; rd_slice_read
-@@gen_label1748 DS    0H 
-         BALR  14,15
-@@gen_label1749 DS    0H 
-         LTGR  15,15
-         BZ    *+14  Around region break
-         ALGF  12,@lit_region_diff_1947_4_5
-         DROP  12
-         USING @REGION_1947_5,12
-         B     @L1774
-         DROP  12
-         USING @REGION_1947_4,12
-@L1775   DS    0H
-         LG    9,152(0,4)  ; offset of end in rd_slice_s
-         LA    15,120(0,4)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1285 ; rd_slice_abs_offset
-@@gen_label1751 DS    0H 
-         BALR  14,15
-@@gen_label1752 DS    0H 
-         SLGR  9,15
-         CLGR  2,9
-         BH    *+14  Around region break
-         ALGF  12,@lit_region_diff_1947_4_5
-         DROP  12
-         USING @REGION_1947_5,12
-         B     @L1778
-         DROP  12
-         USING @REGION_1947_4,12
-@L1779   DS    0H
-         LTR   8,8
-         BH    *+14  Around region break
-         ALGF  12,@lit_region_diff_1947_4_5
-         DROP  12
-         USING @REGION_1947_5,12
-         B     @L1782
-         DROP  12
-         USING @REGION_1947_4,12
-@L1783   DS    0H
-         LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1786
-         LG    15,@lit_1947_1272
-         LA    1,718(0,15)
-         STG   1,904(0,13)
-         MVGHI 912(13),1080
-         LG    1,@lit_1947_1273
-         LA    1,600(0,1)
-         STG   1,920(0,13)
-         XC    928(8,13),928(13)
-         LA    15,866(0,15)
-         STG   15,936(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1274 ; rd_kafka_crash
-@@gen_label1756 DS    0H 
-         BALR  14,15
-@@gen_label1757 DS    0H 
-@L1786   DS    0H
-         LA    15,352(0,13)
-         STG   15,904(0,13)
-         MVGHI 912(13),256
-         LG    15,@lit_1947_1272
-         LA    15,892(0,15)
-         STG   15,920(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1276 ; snprintf
-@@gen_label1758 DS    0H 
-         BALR  14,15
-@@gen_label1759 DS    0H 
-         LA    15,352(0,13)
-         LGR   1,15
-         LGHI  0,0
-@@gen_label1760 DS 0H
-         SRST  0,15
-         BC  1,@@gen_label1760
-         SLGR  0,1
-         CGHI  0,2
-         BNE   @L1788
-         MVI   352(13),0
-@L1787   DS    0H
-@L1788   DS    0H
-         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LGHI  5,5688      ; 5688
-         LA    15,0(5,15)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1278 ; mtx_lock
-@@gen_label1762 DS    0H 
-         BALR  14,15
-@@gen_label1763 DS    0H 
-         ALGF  12,@lit_region_diff_1947_4_5
-@REGION_1947_5 DS 0H
-         DROP  12
-         USING @REGION_1947_5,12
-         LA    15,608(0,13)
-         STG   15,904(0,13)
-         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LGHI  1,5680      ; 5680
-         LG    15,0(1,15)
-         STG   15,912(0,13)
-         MVGHI 920(13),256
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1343 ; rd_strlcpy
-@@gen_label1764 DS    0H 
-         BALR  14,15
-@@gen_label1765 DS    0H 
-         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LA    15,0(5,15)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1345 ; mtx_unlock
-@@gen_label1766 DS    0H 
-         BALR  14,15
-@@gen_label1767 DS    0H 
-         LGH   15,184(0,4)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1346 ; rd_kafka_ApiKey2str
-@@gen_label1768 DS    0H 
-         BALR  14,15
-@@gen_label1769 DS    0H 
-         LGR   5,15
-         LA    15,120(0,4)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1347 ; rd_slice_offset
-@@gen_label1770 DS    0H 
-         BALR  14,15
-@@gen_label1771 DS    0H 
-         LGR   6,15
-         LG    7,152(0,4)  ; offset of end in rd_slice_s
-         LA    15,120(0,4)
-         STG   15,904(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1348 ; rd_slice_abs_offset
-@@gen_label1772 DS    0H 
-         BALR  14,15
-@@gen_label1773 DS    0H 
-         SLGR  7,15
-         LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
-               ka_buf_s
-         BZ    @L1791
-         LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
-               ka_buf_s
-         B     @L1792
-         DS    0D
-@lit_1947_1343 DC AD(rd_strlcpy)
-@lit_1947_1345 DC AD(mtx_unlock)
-@lit_1947_1346 DC AD(rd_kafka_$Api$Key2str)
-@lit_1947_1347 DC AD(rd_slice_offset)
-@lit_1947_1348 DC AD(rd_slice_abs_offset)
-@lit_1947_1349 DC AD(@strings@)
-@lit_1947_1352 DC AD(rd_kafka_log0)
-@lit_1947_1351 DC AD(@DATA)
-@lit_region_diff_1947_5_7  DC A(@REGION_1947_7-@REGION_1947_5)
-@lit_1947_1354 DC AD(rd_slice_read)
-@lit_1947_1358 DC AD(rd_kafka_crash)
-@lit_1947_1360 DC AD(snprintf)
-@lit_1947_1362 DC AD(mtx_lock)
-@lit_region_diff_1947_5_6  DC A(@REGION_1947_6-@REGION_1947_5)
-@L1791   DS    0H
-         LG    15,@lit_1947_1349
-         LA    15,896(0,15)
-@L1792   DS    0H
-         LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
-         LA    1,528(0,1)
-         STG   1,904(0,13)
-         LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
-         LG    1,4048(0,1)
-         STG   1,912(0,13)
-         LA    1,608(0,13)
-         STG   1,920(0,13)
-         LGFR  1,8
-         STG   1,928(0,13)
-         XC    936(8,13),936(13)
-         LG    1,@lit_1947_1349
-         LA    8,932(0,1)
-         STG   8,944(0,13)
-         LA    1,944(0,1)
-         STG   1,952(0,13)
-         STG   5,960(0,13)
-         LH    1,186(0,4)
-         LGFR  1,1
-         STG   1,968(0,13)
-         STG   6,976(0,13)
-         LG    1,152(0,4)  ; offset of end in rd_slice_s
-         SLG   1,144(0,4)
-         STG   1,984(0,13)
-         LG    1,@lit_1947_1351
-         LA    1,600(0,1)
-         STG   1,992(0,13)
-         MVGHI 1000(13),1080
-         STG   2,1008(0,13)
-         STG   7,1016(0,13)
-         STG   15,1024(0,13)
-         LA    15,352(0,13)
-         STG   15,1032(0,13)
-         LA    1,904(0,13)
-         LG    15,@lit_1947_1352 ; rd_kafka_log0
-@@gen_label1775 DS    0H 
-         BALR  14,15
-@@gen_label1776 DS    0H 
-@L1782   DS    0H
-         MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
-         ALGF  12,@lit_region_diff_1947_5_7
-         DROP  12
-         USING @REGION_1947_7,12
-         B     @_err_parse@1947@5
-         DROP  12
-         USING @REGION_1947_5,12
-@L1778   DS    0H
-@L1774   DS    0H
-         LG    15,216(0,13) ; _v
-         STG   15,288(0,13) ; offset of PID in msgset_v2_hdr
 * ***           do { int16_t _v; do { size_t __len2 = (size_t)(sizeof(\
 * _v)); if (!rd_slice_read(&(rkbuf)->rkbuf_reader, &_v, __len2)) do { \
 * size_t __len0 = (size_t)(__len2); if (((__len0 > ((&(rkbuf)->rkbuf_r\
@@ -16140,89 +15059,89 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 * , rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation : "i\
 * ncorrect broker.version.fallback?", __tmpstr); } while (0); } (rkbuf\
 * )->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while\
-*  (0); } } while (0); } while (0); *(&hdr.ProducerEpoch) = (int16_t)(\
-* _v); } while (0);
-@L1793   DS    0H
-@L1796   DS    0H
+*  (0); } } while (0); } while (0); *(&hdr.Attributes) = (int16_t)(_v)\
+* ; } while (0);
+@L1675   DS    0H
+@L1678   DS    0H
          LGHI  2,2         ; 2
          LA    15,120(0,4)
          STG   15,904(0,13)
-         LA    15,224(0,13)
+         LA    15,188(0,13)
          STG   15,912(0,13)
          STG   2,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1354 ; rd_slice_read
-@@gen_label1777 DS    0H 
+         LG    15,@lit_1947_1233 ; rd_slice_read
+@@gen_label1633 DS    0H 
          BALR  14,15
-@@gen_label1778 DS    0H 
+@@gen_label1634 DS    0H 
          LTGR  15,15
-         BNZ   @L1799
-@L1800   DS    0H
-         LG    9,152(0,4)  ; offset of end in rd_slice_s
+         BNZ   @L1681
+@L1682   DS    0H
+         LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1348 ; rd_slice_abs_offset
-@@gen_label1780 DS    0H 
+         LG    15,@lit_1947_1224 ; rd_slice_abs_offset
+@@gen_label1636 DS    0H 
          BALR  14,15
-@@gen_label1781 DS    0H 
-         SLGR  9,15
-         CLGR  2,9
-         BNH   @L1803
-@L1804   DS    0H
+@@gen_label1637 DS    0H 
+         SLGR  7,15
+         CLGR  2,7
+         BNH   @L1685
+@L1686   DS    0H
          LTR   8,8
-         BNH   @L1807
-@L1808   DS    0H
+         BNH   @L1689
+@L1690   DS    0H
          LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1811
-         LG    15,@lit_1947_1349
+         BNZ   @L1693
+         LG    15,@lit_1947_1211
          LA    1,718(0,15)
          STG   1,904(0,13)
          MVGHI 912(13),1081
-         LG    1,@lit_1947_1351
+         LG    1,@lit_1947_1212
          LA    1,600(0,1)
          STG   1,920(0,13)
          XC    928(8,13),928(13)
          LA    15,866(0,15)
          STG   15,936(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1358 ; rd_kafka_crash
-@@gen_label1785 DS    0H 
+         LG    15,@lit_1947_1213 ; rd_kafka_crash
+@@gen_label1641 DS    0H 
          BALR  14,15
-@@gen_label1786 DS    0H 
-@L1811   DS    0H
+@@gen_label1642 DS    0H 
+@L1693   DS    0H
          LA    15,352(0,13)
          STG   15,904(0,13)
          MVGHI 912(13),256
-         LG    15,@lit_1947_1349
+         LG    15,@lit_1947_1211
          LA    15,892(0,15)
          STG   15,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1360 ; snprintf
-@@gen_label1787 DS    0H 
+         LG    15,@lit_1947_1215 ; snprintf
+@@gen_label1643 DS    0H 
          BALR  14,15
-@@gen_label1788 DS    0H 
+@@gen_label1644 DS    0H 
          LA    15,352(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label1789 DS 0H
+@@gen_label1645 DS 0H
          SRST  0,15
-         BC  1,@@gen_label1789
+         BC  1,@@gen_label1645
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1813
+         BNE   @L1695
          MVI   352(13),0
-@L1812   DS    0H
-@L1813   DS    0H
+@L1694   DS    0H
+@L1695   DS    0H
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  5,5688      ; 5688
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1362 ; mtx_lock
-@@gen_label1791 DS    0H 
+         LG    15,@lit_1947_1217 ; mtx_lock
+@@gen_label1647 DS    0H 
          BALR  14,15
-@@gen_label1792 DS    0H 
+@@gen_label1648 DS    0H 
          LA    15,608(0,13)
          STG   15,904(0,13)
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -16231,53 +15150,53 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          MVGHI 920(13),256
          LA    1,904(0,13)
-         LG    15,@lit_1947_1343 ; rd_strlcpy
-@@gen_label1793 DS    0H 
+         LG    15,@lit_1947_1219 ; rd_strlcpy
+@@gen_label1649 DS    0H 
          BALR  14,15
-@@gen_label1794 DS    0H 
+@@gen_label1650 DS    0H 
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1345 ; mtx_unlock
-@@gen_label1795 DS    0H 
+         LG    15,@lit_1947_1221 ; mtx_unlock
+@@gen_label1651 DS    0H 
          BALR  14,15
-@@gen_label1796 DS    0H 
+@@gen_label1652 DS    0H 
          LGH   15,184(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1346 ; rd_kafka_ApiKey2str
-@@gen_label1797 DS    0H 
+         LG    15,@lit_1947_1222 ; rd_kafka_ApiKey2str
+@@gen_label1653 DS    0H 
          BALR  14,15
-@@gen_label1798 DS    0H 
+@@gen_label1654 DS    0H 
          LGR   5,15
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1347 ; rd_slice_offset
-@@gen_label1799 DS    0H 
+         LG    15,@lit_1947_1223 ; rd_slice_offset
+@@gen_label1655 DS    0H 
          BALR  14,15
-@@gen_label1800 DS    0H 
+@@gen_label1656 DS    0H 
          LGR   6,15
          LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1348 ; rd_slice_abs_offset
-@@gen_label1801 DS    0H 
+         LG    15,@lit_1947_1224 ; rd_slice_abs_offset
+@@gen_label1657 DS    0H 
          BALR  14,15
-@@gen_label1802 DS    0H 
+@@gen_label1658 DS    0H 
          SLGR  7,15
          LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L1816
+         BZ    @L1698
          LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         B     @L1817
-@L1816   DS    0H
-         LG    15,@lit_1947_1349
+         B     @L1699
+@L1698   DS    0H
+         LG    15,@lit_1947_1211
          LA    15,896(0,15)
-@L1817   DS    0H
+@L1699   DS    0H
          LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -16290,7 +15209,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LGFR  1,8
          STG   1,928(0,13)
          XC    936(8,13),936(13)
-         LG    1,@lit_1947_1349
+         LG    1,@lit_1947_1211
          LA    8,932(0,1)
          STG   8,944(0,13)
          LA    1,944(0,1)
@@ -16303,7 +15222,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LG    1,152(0,4)  ; offset of end in rd_slice_s
          SLG   1,144(0,4)
          STG   1,984(0,13)
-         LG    1,@lit_1947_1351
+         LG    1,@lit_1947_1212
          LA    1,600(0,1)
          STG   1,992(0,13)
          MVGHI 1000(13),1081
@@ -16313,21 +15232,21 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LA    15,352(0,13)
          STG   15,1032(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1352 ; rd_kafka_log0
-@@gen_label1804 DS    0H 
+         LG    15,@lit_1947_1228 ; rd_kafka_log0
+@@gen_label1660 DS    0H 
          BALR  14,15
-@@gen_label1805 DS    0H 
-@L1807   DS    0H
+@@gen_label1661 DS    0H 
+@L1689   DS    0H
          MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
-         ALGF  12,@lit_region_diff_1947_5_7
+         ALGF  12,@lit_region_diff_1947_3_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @_err_parse@1947@5
+         B     @_err_parse@1947@4
          DROP  12
-         USING @REGION_1947_5,12
-@L1803   DS    0H
-@L1799   DS    0H
-         MVC   296(2,13),224(13)
+         USING @REGION_1947_3,12
+@L1685   DS    0H
+@L1681   DS    0H
+         MVC   264(2,13),188(13)
 * ***           do { int32_t _v; do { size_t __len2 = (size_t)(sizeof(\
 * _v)); if (!rd_slice_read(&(rkbuf)->rkbuf_reader, &_v, __len2)) do { \
 * size_t __len0 = (size_t)(__len2); if (((__len0 > ((&(rkbuf)->rkbuf_r\
@@ -16351,89 +15270,117 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 * , rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation : "i\
 * ncorrect broker.version.fallback?", __tmpstr); } while (0); } (rkbuf\
 * )->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while\
-*  (0); } } while (0); } while (0); *(&hdr.BaseSequence) = (_v); } whi\
-* le (0);
-@L1818   DS    0H
-@L1821   DS    0H
+*  (0); } } while (0); } while (0); *(&hdr.LastOffsetDelta) = (_v); } \
+* while (0);
+@L1700   DS    0H
+@L1703   DS    0H
          LGHI  2,4         ; 4
          LA    15,120(0,4)
          STG   15,904(0,13)
-         LA    15,228(0,13)
+         LA    15,192(0,13)
          STG   15,912(0,13)
          STG   2,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1354 ; rd_slice_read
-@@gen_label1806 DS    0H 
+         LG    15,@lit_1947_1233 ; rd_slice_read
+@@gen_label1662 DS    0H 
          BALR  14,15
-@@gen_label1807 DS    0H 
+@@gen_label1663 DS    0H 
          LTGR  15,15
-         BNZ   @L1824
-@L1825   DS    0H
-         LG    9,152(0,4)  ; offset of end in rd_slice_s
+         BZ    *+14  Around region break
+         ALGF  12,@lit_region_diff_1947_3_4
+         DROP  12
+         USING @REGION_1947_4,12
+         B     @L1706
+         DROP  12
+         USING @REGION_1947_3,12
+@L1707   DS    0H
+         LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1348 ; rd_slice_abs_offset
-@@gen_label1809 DS    0H 
+         LG    15,@lit_1947_1224 ; rd_slice_abs_offset
+@@gen_label1665 DS    0H 
          BALR  14,15
-@@gen_label1810 DS    0H 
-         SLGR  9,15
-         CLGR  2,9
-         BNH   @L1828
-@L1829   DS    0H
+@@gen_label1666 DS    0H 
+         SLGR  7,15
+         CLGR  2,7
+         BH    *+14  Around region break
+         ALGF  12,@lit_region_diff_1947_3_4
+         DROP  12
+         USING @REGION_1947_4,12
+         B     @L1710
+         DROP  12
+         USING @REGION_1947_3,12
+@L1711   DS    0H
          LTR   8,8
-         BNH   @L1832
-@L1833   DS    0H
+         BH    *+14  Around region break
+         ALGF  12,@lit_region_diff_1947_3_4
+         DROP  12
+         USING @REGION_1947_4,12
+         B     @L1714
+         DROP  12
+         USING @REGION_1947_3,12
+@L1715   DS    0H
          LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1836
-         LG    15,@lit_1947_1349
+         BZ    *+14  Around region break
+         ALGF  12,@lit_region_diff_1947_3_4
+         DROP  12
+         USING @REGION_1947_4,12
+         B     @L1718
+         DROP  12
+         USING @REGION_1947_3,12
+         ALGF  12,@lit_region_diff_1947_3_4
+@REGION_1947_4 DS 0H
+         DROP  12
+         USING @REGION_1947_4,12
+         LG    15,@lit_1947_1279
          LA    1,718(0,15)
          STG   1,904(0,13)
          MVGHI 912(13),1082
-         LG    1,@lit_1947_1351
+         LG    1,@lit_1947_1280
          LA    1,600(0,1)
          STG   1,920(0,13)
          XC    928(8,13),928(13)
          LA    15,866(0,15)
          STG   15,936(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1358 ; rd_kafka_crash
-@@gen_label1814 DS    0H 
+         LG    15,@lit_1947_1281 ; rd_kafka_crash
+@@gen_label1670 DS    0H 
          BALR  14,15
-@@gen_label1815 DS    0H 
-@L1836   DS    0H
+@@gen_label1671 DS    0H 
+@L1718   DS    0H
          LA    15,352(0,13)
          STG   15,904(0,13)
          MVGHI 912(13),256
-         LG    15,@lit_1947_1349
+         LG    15,@lit_1947_1279
          LA    15,892(0,15)
          STG   15,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1360 ; snprintf
-@@gen_label1816 DS    0H 
+         LG    15,@lit_1947_1283 ; snprintf
+@@gen_label1672 DS    0H 
          BALR  14,15
-@@gen_label1817 DS    0H 
+@@gen_label1673 DS    0H 
          LA    15,352(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label1818 DS 0H
+@@gen_label1674 DS 0H
          SRST  0,15
-         BC  1,@@gen_label1818
+         BC  1,@@gen_label1674
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1838
+         BNE   @L1720
          MVI   352(13),0
-@L1837   DS    0H
-@L1838   DS    0H
+@L1719   DS    0H
+@L1720   DS    0H
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  5,5688      ; 5688
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1362 ; mtx_lock
-@@gen_label1820 DS    0H 
+         LG    15,@lit_1947_1285 ; mtx_lock
+@@gen_label1676 DS    0H 
          BALR  14,15
-@@gen_label1821 DS    0H 
+@@gen_label1677 DS    0H 
          LA    15,608(0,13)
          STG   15,904(0,13)
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -16442,53 +15389,68 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          MVGHI 920(13),256
          LA    1,904(0,13)
-         LG    15,@lit_1947_1343 ; rd_strlcpy
-@@gen_label1822 DS    0H 
+         LG    15,@lit_1947_1287 ; rd_strlcpy
+@@gen_label1678 DS    0H 
          BALR  14,15
-@@gen_label1823 DS    0H 
+@@gen_label1679 DS    0H 
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1345 ; mtx_unlock
-@@gen_label1824 DS    0H 
+         LG    15,@lit_1947_1289 ; mtx_unlock
+@@gen_label1680 DS    0H 
          BALR  14,15
-@@gen_label1825 DS    0H 
+@@gen_label1681 DS    0H 
          LGH   15,184(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1346 ; rd_kafka_ApiKey2str
-@@gen_label1826 DS    0H 
+         LG    15,@lit_1947_1290 ; rd_kafka_ApiKey2str
+@@gen_label1682 DS    0H 
          BALR  14,15
-@@gen_label1827 DS    0H 
+@@gen_label1683 DS    0H 
          LGR   5,15
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1347 ; rd_slice_offset
-@@gen_label1828 DS    0H 
+         LG    15,@lit_1947_1291 ; rd_slice_offset
+@@gen_label1684 DS    0H 
          BALR  14,15
-@@gen_label1829 DS    0H 
+@@gen_label1685 DS    0H 
          LGR   6,15
          LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1348 ; rd_slice_abs_offset
-@@gen_label1830 DS    0H 
+         LG    15,@lit_1947_1292 ; rd_slice_abs_offset
+@@gen_label1686 DS    0H 
          BALR  14,15
-@@gen_label1831 DS    0H 
+@@gen_label1687 DS    0H 
          SLGR  7,15
          LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L1841
+         BZ    @L1723
          LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         B     @L1842
-@L1841   DS    0H
-         LG    15,@lit_1947_1349
+         B     @L1724
+         DS    0D
+@lit_1947_1281 DC AD(rd_kafka_crash)
+@lit_1947_1280 DC AD(@DATA)
+@lit_1947_1279 DC AD(@strings@)
+@lit_1947_1283 DC AD(snprintf)
+@lit_1947_1285 DC AD(mtx_lock)
+@lit_1947_1287 DC AD(rd_strlcpy)
+@lit_1947_1289 DC AD(mtx_unlock)
+@lit_1947_1290 DC AD(rd_kafka_$Api$Key2str)
+@lit_1947_1291 DC AD(rd_slice_offset)
+@lit_1947_1292 DC AD(rd_slice_abs_offset)
+@lit_1947_1296 DC AD(rd_kafka_log0)
+@lit_region_diff_1947_4_7  DC A(@REGION_1947_7-@REGION_1947_4)
+@lit_1947_1298 DC AD(rd_slice_read)
+@lit_region_diff_1947_4_5  DC A(@REGION_1947_5-@REGION_1947_4)
+@L1723   DS    0H
+         LG    15,@lit_1947_1279
          LA    15,896(0,15)
-@L1842   DS    0H
+@L1724   DS    0H
          LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -16501,7 +15463,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LGFR  1,8
          STG   1,928(0,13)
          XC    936(8,13),936(13)
-         LG    1,@lit_1947_1349
+         LG    1,@lit_1947_1279
          LA    8,932(0,1)
          STG   8,944(0,13)
          LA    1,944(0,1)
@@ -16514,7 +15476,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LG    1,152(0,4)  ; offset of end in rd_slice_s
          SLG   1,144(0,4)
          STG   1,984(0,13)
-         LG    1,@lit_1947_1351
+         LG    1,@lit_1947_1280
          LA    1,600(0,1)
          STG   1,992(0,13)
          MVGHI 1000(13),1082
@@ -16524,29 +15486,33 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LA    15,352(0,13)
          STG   15,1032(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1352 ; rd_kafka_log0
-@@gen_label1833 DS    0H 
+         LG    15,@lit_1947_1296 ; rd_kafka_log0
+@@gen_label1689 DS    0H 
          BALR  14,15
-@@gen_label1834 DS    0H 
-@L1832   DS    0H
+@@gen_label1690 DS    0H 
+@L1714   DS    0H
          MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
-         ALGF  12,@lit_region_diff_1947_5_7
+         ALGF  12,@lit_region_diff_1947_4_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @_err_parse@1947@5
+         B     @_err_parse@1947@4
          DROP  12
-         USING @REGION_1947_5,12
-@L1828   DS    0H
-@L1824   DS    0H
-         L     15,228(0,13) ; _v
-         ST    15,300(0,13) ; offset of BaseSequence in msgset_v2_hdr
-* ***           do { int32_t _v; do { size_t __len2 = (size_t)(sizeof(\
+         USING @REGION_1947_4,12
+@L1710   DS    0H
+@L1706   DS    0H
+         L     15,192(0,13) ; _v
+         ST    15,268(0,13) ; offset of LastOffsetDelta in msgset_v2_hd*
+               r
+* ***           LastOffset = hdr.BaseOffset + hdr.LastOffsetDelta;
+         LG    7,240(0,13)
+         AGF   7,268(0,13)
+* ***           do { int64_t _v; do { size_t __len2 = (size_t)(sizeof(\
 * _v)); if (!rd_slice_read(&(rkbuf)->rkbuf_reader, &_v, __len2)) do { \
 * size_t __len0 = (size_t)(__len2); if (((__len0 > ((&(rkbuf)->rkbuf_r\
 * eader)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader))))) { do {\
 *  if (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_k\
 * afka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",\
-* 1083, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); }\
+* 1084, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); }\
 *  while (0); char __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr),\
 *  ": "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do { char _\
 * logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_st\
@@ -16558,112 +15524,94 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 * " "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_kafka_ApiK\
 * ey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion,\
 *  rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end\
-*  - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1083, __len0, ((&rk\
+*  - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1084, __len0, ((&rk\
 * buf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkbuf_reader))\
 * , rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation : "i\
 * ncorrect broker.version.fallback?", __tmpstr); } while (0); } (rkbuf\
 * )->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while\
-*  (0); } } while (0); } while (0); *(&hdr.RecordCount) = (_v); } whil\
-* e (0);
-@L1843   DS    0H
-@L1846   DS    0H
-         LGHI  2,4         ; 4
+*  (0); } } while (0); } while (0); *(&hdr.BaseTimestamp) = (_v); } wh\
+* ile (0);
+@L1725   DS    0H
+@L1728   DS    0H
+         LGHI  2,8         ; 8
          LA    15,120(0,4)
          STG   15,904(0,13)
-         LA    15,232(0,13)
+         LA    15,200(0,13)
          STG   15,912(0,13)
          STG   2,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1354 ; rd_slice_read
-@@gen_label1835 DS    0H 
+         LG    15,@lit_1947_1298 ; rd_slice_read
+@@gen_label1691 DS    0H 
          BALR  14,15
-@@gen_label1836 DS    0H 
+@@gen_label1692 DS    0H 
          LTGR  15,15
-         BZ    *+14  Around region break
-         ALGF  12,@lit_region_diff_1947_5_6
-         DROP  12
-         USING @REGION_1947_6,12
-         B     @L1849
-         DROP  12
-         USING @REGION_1947_5,12
-@L1850   DS    0H
+         BNZ   @L1731
+@L1732   DS    0H
          LG    9,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1348 ; rd_slice_abs_offset
-@@gen_label1838 DS    0H 
+         LG    15,@lit_1947_1292 ; rd_slice_abs_offset
+@@gen_label1694 DS    0H 
          BALR  14,15
-@@gen_label1839 DS    0H 
+@@gen_label1695 DS    0H 
          SLGR  9,15
          CLGR  2,9
-         BH    *+14  Around region break
-         ALGF  12,@lit_region_diff_1947_5_6
-         DROP  12
-         USING @REGION_1947_6,12
-         B     @L1853
-         DROP  12
-         USING @REGION_1947_5,12
-@L1854   DS    0H
+         BNH   @L1735
+@L1736   DS    0H
          LTR   8,8
-         BH    *+14  Around region break
-         ALGF  12,@lit_region_diff_1947_5_6
-         DROP  12
-         USING @REGION_1947_6,12
-         B     @L1857
-         DROP  12
-         USING @REGION_1947_5,12
-@L1858   DS    0H
+         BNH   @L1739
+@L1740   DS    0H
          LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1861
-         LG    15,@lit_1947_1349
+         BNZ   @L1743
+         LG    15,@lit_1947_1279
          LA    1,718(0,15)
          STG   1,904(0,13)
-         MVGHI 912(13),1083
-         LG    1,@lit_1947_1351
+         MVGHI 912(13),1084
+         LG    1,@lit_1947_1280
          LA    1,600(0,1)
          STG   1,920(0,13)
          XC    928(8,13),928(13)
          LA    15,866(0,15)
          STG   15,936(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1358 ; rd_kafka_crash
-@@gen_label1843 DS    0H 
+         LG    15,@lit_1947_1281 ; rd_kafka_crash
+@@gen_label1699 DS    0H 
          BALR  14,15
-@@gen_label1844 DS    0H 
-@L1861   DS    0H
+@@gen_label1700 DS    0H 
+@L1743   DS    0H
          LA    15,352(0,13)
          STG   15,904(0,13)
          MVGHI 912(13),256
-         LG    15,@lit_1947_1349
+         LG    15,@lit_1947_1279
          LA    15,892(0,15)
          STG   15,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1360 ; snprintf
-@@gen_label1845 DS    0H 
+         LG    15,@lit_1947_1283 ; snprintf
+@@gen_label1701 DS    0H 
          BALR  14,15
-@@gen_label1846 DS    0H 
+@@gen_label1702 DS    0H 
          LA    15,352(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label1847 DS 0H
+@@gen_label1703 DS 0H
          SRST  0,15
-         BC  1,@@gen_label1847
+         BC  1,@@gen_label1703
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1863
+         BNE   @L1745
          MVI   352(13),0
-@L1862   DS    0H
-@L1863   DS    0H
+@L1744   DS    0H
+@L1745   DS    0H
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  5,5688      ; 5688
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1362 ; mtx_lock
-@@gen_label1849 DS    0H 
+         LG    15,@lit_1947_1285 ; mtx_lock
+@@gen_label1705 DS    0H 
          BALR  14,15
-@@gen_label1850 DS    0H 
+@@gen_label1706 DS    0H 
          LA    15,608(0,13)
          STG   15,904(0,13)
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -16672,62 +15620,53 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          MVGHI 920(13),256
          LA    1,904(0,13)
-         LG    15,@lit_1947_1343 ; rd_strlcpy
-@@gen_label1851 DS    0H 
+         LG    15,@lit_1947_1287 ; rd_strlcpy
+@@gen_label1707 DS    0H 
          BALR  14,15
-@@gen_label1852 DS    0H 
+@@gen_label1708 DS    0H 
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1345 ; mtx_unlock
-@@gen_label1853 DS    0H 
+         LG    15,@lit_1947_1289 ; mtx_unlock
+@@gen_label1709 DS    0H 
          BALR  14,15
-@@gen_label1854 DS    0H 
+@@gen_label1710 DS    0H 
          LGH   15,184(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1346 ; rd_kafka_ApiKey2str
-@@gen_label1855 DS    0H 
+         LG    15,@lit_1947_1290 ; rd_kafka_ApiKey2str
+@@gen_label1711 DS    0H 
          BALR  14,15
-@@gen_label1856 DS    0H 
+@@gen_label1712 DS    0H 
          LGR   5,15
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1347 ; rd_slice_offset
-@@gen_label1857 DS    0H 
+         LG    15,@lit_1947_1291 ; rd_slice_offset
+@@gen_label1713 DS    0H 
          BALR  14,15
-@@gen_label1858 DS    0H 
+@@gen_label1714 DS    0H 
          LGR   6,15
          LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1348 ; rd_slice_abs_offset
-@@gen_label1859 DS    0H 
+         LG    15,@lit_1947_1292 ; rd_slice_abs_offset
+@@gen_label1715 DS    0H 
          BALR  14,15
-@@gen_label1860 DS    0H 
+@@gen_label1716 DS    0H 
          SLGR  7,15
          LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L1866
+         BZ    @L1748
          LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         ALGF  12,@lit_region_diff_1947_5_6
-         DROP  12
-         USING @REGION_1947_6,12
-         B     @L1867
-         DROP  12
-         USING @REGION_1947_5,12
-@L1866   DS    0H
-         LG    15,@lit_1947_1349
+         B     @L1749
+@L1748   DS    0H
+         LG    15,@lit_1947_1279
          LA    15,896(0,15)
-         ALGF  12,@lit_region_diff_1947_5_6
-@REGION_1947_6 DS 0H
-         DROP  12
-         USING @REGION_1947_6,12
-@L1867   DS    0H
+@L1749   DS    0H
          LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -16740,7 +15679,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LGFR  1,8
          STG   1,928(0,13)
          XC    936(8,13),936(13)
-         LG    1,@lit_1947_1413
+         LG    1,@lit_1947_1279
          LA    8,932(0,1)
          STG   8,944(0,13)
          LA    1,944(0,1)
@@ -16753,48 +15692,1170 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LG    1,152(0,4)  ; offset of end in rd_slice_s
          SLG   1,144(0,4)
          STG   1,984(0,13)
-         LG    1,@lit_1947_1414
+         LG    1,@lit_1947_1280
          LA    1,600(0,1)
          STG   1,992(0,13)
-         MVGHI 1000(13),1083
+         MVGHI 1000(13),1084
          STG   2,1008(0,13)
          STG   7,1016(0,13)
          STG   15,1024(0,13)
          LA    15,352(0,13)
          STG   15,1032(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1415 ; rd_kafka_log0
-@@gen_label1862 DS    0H 
+         LG    15,@lit_1947_1296 ; rd_kafka_log0
+@@gen_label1718 DS    0H 
          BALR  14,15
-@@gen_label1863 DS    0H 
+@@gen_label1719 DS    0H 
+@L1739   DS    0H
+         MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
+         ALGF  12,@lit_region_diff_1947_4_7
+         DROP  12
+         USING @REGION_1947_7,12
+         B     @_err_parse@1947@4
+         DROP  12
+         USING @REGION_1947_4,12
+@L1735   DS    0H
+@L1731   DS    0H
+         LG    15,200(0,13) ; _v
+         STG   15,272(0,13) ; offset of BaseTimestamp in msgset_v2_hdr
+* ***           do { int64_t _v; do { size_t __len2 = (size_t)(sizeof(\
+* _v)); if (!rd_slice_read(&(rkbuf)->rkbuf_reader, &_v, __len2)) do { \
+* size_t __len0 = (size_t)(__len2); if (((__len0 > ((&(rkbuf)->rkbuf_r\
+* eader)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader))))) { do {\
+*  if (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_k\
+* afka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",\
+* 1085, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); }\
+*  while (0); char __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr),\
+*  ": "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do { char _\
+* logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_st\
+* rlcpy(_logname, rkbuf->rkbuf_rkb->rkb_logname, sizeof(_logname)); mt\
+* x_unlock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_kafka_log0(&(rkb\
+* uf->rkbuf_rkb)->rkb_rk->rk_conf, (rkbuf->rkbuf_rkb)->rkb_rk, _lognam\
+* e, log_decode_errors, 0x0, "PROTOUFLOW", "Protocol read buffer under\
+* flow " "for %s v%hd " "at %" "zu" "/%" "zu" " (%s:%i): " "expected %\
+* " "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_kafka_ApiK\
+* ey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion,\
+*  rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end\
+*  - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1085, __len0, ((&rk\
+* buf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkbuf_reader))\
+* , rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation : "i\
+* ncorrect broker.version.fallback?", __tmpstr); } while (0); } (rkbuf\
+* )->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while\
+*  (0); } } while (0); } while (0); *(&hdr.MaxTimestamp) = (_v); } whi\
+* le (0);
+@L1750   DS    0H
+@L1753   DS    0H
+         LGHI  2,8         ; 8
+         LA    15,120(0,4)
+         STG   15,904(0,13)
+         LA    15,208(0,13)
+         STG   15,912(0,13)
+         STG   2,920(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1298 ; rd_slice_read
+@@gen_label1720 DS    0H 
+         BALR  14,15
+@@gen_label1721 DS    0H 
+         LTGR  15,15
+         BNZ   @L1756
+@L1757   DS    0H
+         LG    9,152(0,4)  ; offset of end in rd_slice_s
+         LA    15,120(0,4)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1292 ; rd_slice_abs_offset
+@@gen_label1723 DS    0H 
+         BALR  14,15
+@@gen_label1724 DS    0H 
+         SLGR  9,15
+         CLGR  2,9
+         BNH   @L1760
+@L1761   DS    0H
+         LTR   8,8
+         BNH   @L1764
+@L1765   DS    0H
+         LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
+         BNZ   @L1768
+         LG    15,@lit_1947_1279
+         LA    1,718(0,15)
+         STG   1,904(0,13)
+         MVGHI 912(13),1085
+         LG    1,@lit_1947_1280
+         LA    1,600(0,1)
+         STG   1,920(0,13)
+         XC    928(8,13),928(13)
+         LA    15,866(0,15)
+         STG   15,936(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1281 ; rd_kafka_crash
+@@gen_label1728 DS    0H 
+         BALR  14,15
+@@gen_label1729 DS    0H 
+@L1768   DS    0H
+         LA    15,352(0,13)
+         STG   15,904(0,13)
+         MVGHI 912(13),256
+         LG    15,@lit_1947_1279
+         LA    15,892(0,15)
+         STG   15,920(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1283 ; snprintf
+@@gen_label1730 DS    0H 
+         BALR  14,15
+@@gen_label1731 DS    0H 
+         LA    15,352(0,13)
+         LGR   1,15
+         LGHI  0,0
+@@gen_label1732 DS 0H
+         SRST  0,15
+         BC  1,@@gen_label1732
+         SLGR  0,1
+         CGHI  0,2
+         BNE   @L1770
+         MVI   352(13),0
+@L1769   DS    0H
+@L1770   DS    0H
+         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LGHI  5,5688      ; 5688
+         LA    15,0(5,15)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1285 ; mtx_lock
+@@gen_label1734 DS    0H 
+         BALR  14,15
+@@gen_label1735 DS    0H 
+         LA    15,608(0,13)
+         STG   15,904(0,13)
+         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LGHI  1,5680      ; 5680
+         LG    15,0(1,15)
+         STG   15,912(0,13)
+         MVGHI 920(13),256
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1287 ; rd_strlcpy
+@@gen_label1736 DS    0H 
+         BALR  14,15
+@@gen_label1737 DS    0H 
+         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LA    15,0(5,15)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1289 ; mtx_unlock
+@@gen_label1738 DS    0H 
+         BALR  14,15
+@@gen_label1739 DS    0H 
+         LGH   15,184(0,4)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1290 ; rd_kafka_ApiKey2str
+@@gen_label1740 DS    0H 
+         BALR  14,15
+@@gen_label1741 DS    0H 
+         LGR   5,15
+         LA    15,120(0,4)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1291 ; rd_slice_offset
+@@gen_label1742 DS    0H 
+         BALR  14,15
+@@gen_label1743 DS    0H 
+         LGR   6,15
+         LG    7,152(0,4)  ; offset of end in rd_slice_s
+         LA    15,120(0,4)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1292 ; rd_slice_abs_offset
+@@gen_label1744 DS    0H 
+         BALR  14,15
+@@gen_label1745 DS    0H 
+         SLGR  7,15
+         LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
+               ka_buf_s
+         BZ    @L1773
+         LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
+               ka_buf_s
+         B     @L1774
+@L1773   DS    0H
+         LG    15,@lit_1947_1279
+         LA    15,896(0,15)
+@L1774   DS    0H
+         LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
+         LA    1,528(0,1)
+         STG   1,904(0,13)
+         LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LG    1,4048(0,1)
+         STG   1,912(0,13)
+         LA    1,608(0,13)
+         STG   1,920(0,13)
+         LGFR  1,8
+         STG   1,928(0,13)
+         XC    936(8,13),936(13)
+         LG    1,@lit_1947_1279
+         LA    8,932(0,1)
+         STG   8,944(0,13)
+         LA    1,944(0,1)
+         STG   1,952(0,13)
+         STG   5,960(0,13)
+         LH    1,186(0,4)
+         LGFR  1,1
+         STG   1,968(0,13)
+         STG   6,976(0,13)
+         LG    1,152(0,4)  ; offset of end in rd_slice_s
+         SLG   1,144(0,4)
+         STG   1,984(0,13)
+         LG    1,@lit_1947_1280
+         LA    1,600(0,1)
+         STG   1,992(0,13)
+         MVGHI 1000(13),1085
+         STG   2,1008(0,13)
+         STG   7,1016(0,13)
+         STG   15,1024(0,13)
+         LA    15,352(0,13)
+         STG   15,1032(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1296 ; rd_kafka_log0
+@@gen_label1747 DS    0H 
+         BALR  14,15
+@@gen_label1748 DS    0H 
+@L1764   DS    0H
+         MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
+         ALGF  12,@lit_region_diff_1947_4_7
+         DROP  12
+         USING @REGION_1947_7,12
+         B     @_err_parse@1947@4
+         DROP  12
+         USING @REGION_1947_4,12
+@L1760   DS    0H
+@L1756   DS    0H
+         LG    15,208(0,13) ; _v
+         STG   15,280(0,13) ; offset of MaxTimestamp in msgset_v2_hdr
+* ***           do { int64_t _v; do { size_t __len2 = (size_t)(sizeof(\
+* _v)); if (!rd_slice_read(&(rkbuf)->rkbuf_reader, &_v, __len2)) do { \
+* size_t __len0 = (size_t)(__len2); if (((__len0 > ((&(rkbuf)->rkbuf_r\
+* eader)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader))))) { do {\
+*  if (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_k\
+* afka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",\
+* 1086, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); }\
+*  while (0); char __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr),\
+*  ": "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do { char _\
+* logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_st\
+* rlcpy(_logname, rkbuf->rkbuf_rkb->rkb_logname, sizeof(_logname)); mt\
+* x_unlock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_kafka_log0(&(rkb\
+* uf->rkbuf_rkb)->rkb_rk->rk_conf, (rkbuf->rkbuf_rkb)->rkb_rk, _lognam\
+* e, log_decode_errors, 0x0, "PROTOUFLOW", "Protocol read buffer under\
+* flow " "for %s v%hd " "at %" "zu" "/%" "zu" " (%s:%i): " "expected %\
+* " "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_kafka_ApiK\
+* ey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion,\
+*  rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end\
+*  - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1086, __len0, ((&rk\
+* buf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkbuf_reader))\
+* , rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation : "i\
+* ncorrect broker.version.fallback?", __tmpstr); } while (0); } (rkbuf\
+* )->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while\
+*  (0); } } while (0); } while (0); *(&hdr.PID) = (_v); } while (0);
+@L1775   DS    0H
+@L1778   DS    0H
+         LGHI  2,8         ; 8
+         LA    15,120(0,4)
+         STG   15,904(0,13)
+         LA    15,216(0,13)
+         STG   15,912(0,13)
+         STG   2,920(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1298 ; rd_slice_read
+@@gen_label1749 DS    0H 
+         BALR  14,15
+@@gen_label1750 DS    0H 
+         LTGR  15,15
+         BZ    *+14  Around region break
+         ALGF  12,@lit_region_diff_1947_4_5
+         DROP  12
+         USING @REGION_1947_5,12
+         B     @L1781
+         DROP  12
+         USING @REGION_1947_4,12
+@L1782   DS    0H
+         LG    9,152(0,4)  ; offset of end in rd_slice_s
+         LA    15,120(0,4)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1292 ; rd_slice_abs_offset
+@@gen_label1752 DS    0H 
+         BALR  14,15
+@@gen_label1753 DS    0H 
+         SLGR  9,15
+         CLGR  2,9
+         BH    *+14  Around region break
+         ALGF  12,@lit_region_diff_1947_4_5
+         DROP  12
+         USING @REGION_1947_5,12
+         B     @L1785
+         DROP  12
+         USING @REGION_1947_4,12
+@L1786   DS    0H
+         LTR   8,8
+         BH    *+14  Around region break
+         ALGF  12,@lit_region_diff_1947_4_5
+         DROP  12
+         USING @REGION_1947_5,12
+         B     @L1789
+         DROP  12
+         USING @REGION_1947_4,12
+@L1790   DS    0H
+         LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
+         BNZ   @L1793
+         LG    15,@lit_1947_1279
+         LA    1,718(0,15)
+         STG   1,904(0,13)
+         MVGHI 912(13),1086
+         LG    1,@lit_1947_1280
+         LA    1,600(0,1)
+         STG   1,920(0,13)
+         XC    928(8,13),928(13)
+         LA    15,866(0,15)
+         STG   15,936(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1281 ; rd_kafka_crash
+@@gen_label1757 DS    0H 
+         BALR  14,15
+@@gen_label1758 DS    0H 
+@L1793   DS    0H
+         LA    15,352(0,13)
+         STG   15,904(0,13)
+         MVGHI 912(13),256
+         LG    15,@lit_1947_1279
+         LA    15,892(0,15)
+         STG   15,920(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1283 ; snprintf
+@@gen_label1759 DS    0H 
+         BALR  14,15
+@@gen_label1760 DS    0H 
+         LA    15,352(0,13)
+         LGR   1,15
+         LGHI  0,0
+@@gen_label1761 DS 0H
+         SRST  0,15
+         BC  1,@@gen_label1761
+         SLGR  0,1
+         CGHI  0,2
+         BNE   @L1795
+         MVI   352(13),0
+@L1794   DS    0H
+@L1795   DS    0H
+         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LGHI  5,5688      ; 5688
+         LA    15,0(5,15)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1285 ; mtx_lock
+@@gen_label1763 DS    0H 
+         BALR  14,15
+@@gen_label1764 DS    0H 
+         ALGF  12,@lit_region_diff_1947_4_5
+@REGION_1947_5 DS 0H
+         DROP  12
+         USING @REGION_1947_5,12
+         LA    15,608(0,13)
+         STG   15,904(0,13)
+         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LGHI  1,5680      ; 5680
+         LG    15,0(1,15)
+         STG   15,912(0,13)
+         MVGHI 920(13),256
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1350 ; rd_strlcpy
+@@gen_label1765 DS    0H 
+         BALR  14,15
+@@gen_label1766 DS    0H 
+         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LA    15,0(5,15)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1352 ; mtx_unlock
+@@gen_label1767 DS    0H 
+         BALR  14,15
+@@gen_label1768 DS    0H 
+         LGH   15,184(0,4)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1353 ; rd_kafka_ApiKey2str
+@@gen_label1769 DS    0H 
+         BALR  14,15
+@@gen_label1770 DS    0H 
+         LGR   5,15
+         LA    15,120(0,4)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1354 ; rd_slice_offset
+@@gen_label1771 DS    0H 
+         BALR  14,15
+@@gen_label1772 DS    0H 
+         LGR   6,15
+         LG    7,152(0,4)  ; offset of end in rd_slice_s
+         LA    15,120(0,4)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1355 ; rd_slice_abs_offset
+@@gen_label1773 DS    0H 
+         BALR  14,15
+@@gen_label1774 DS    0H 
+         SLGR  7,15
+         LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
+               ka_buf_s
+         BZ    @L1798
+         LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
+               ka_buf_s
+         B     @L1799
+         DS    0D
+@lit_1947_1350 DC AD(rd_strlcpy)
+@lit_1947_1352 DC AD(mtx_unlock)
+@lit_1947_1353 DC AD(rd_kafka_$Api$Key2str)
+@lit_1947_1354 DC AD(rd_slice_offset)
+@lit_1947_1355 DC AD(rd_slice_abs_offset)
+@lit_1947_1356 DC AD(@strings@)
+@lit_1947_1359 DC AD(rd_kafka_log0)
+@lit_1947_1358 DC AD(@DATA)
+@lit_region_diff_1947_5_7  DC A(@REGION_1947_7-@REGION_1947_5)
+@lit_1947_1361 DC AD(rd_slice_read)
+@lit_1947_1365 DC AD(rd_kafka_crash)
+@lit_1947_1367 DC AD(snprintf)
+@lit_1947_1369 DC AD(mtx_lock)
+@lit_region_diff_1947_5_6  DC A(@REGION_1947_6-@REGION_1947_5)
+@L1798   DS    0H
+         LG    15,@lit_1947_1356
+         LA    15,896(0,15)
+@L1799   DS    0H
+         LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
+         LA    1,528(0,1)
+         STG   1,904(0,13)
+         LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LG    1,4048(0,1)
+         STG   1,912(0,13)
+         LA    1,608(0,13)
+         STG   1,920(0,13)
+         LGFR  1,8
+         STG   1,928(0,13)
+         XC    936(8,13),936(13)
+         LG    1,@lit_1947_1356
+         LA    8,932(0,1)
+         STG   8,944(0,13)
+         LA    1,944(0,1)
+         STG   1,952(0,13)
+         STG   5,960(0,13)
+         LH    1,186(0,4)
+         LGFR  1,1
+         STG   1,968(0,13)
+         STG   6,976(0,13)
+         LG    1,152(0,4)  ; offset of end in rd_slice_s
+         SLG   1,144(0,4)
+         STG   1,984(0,13)
+         LG    1,@lit_1947_1358
+         LA    1,600(0,1)
+         STG   1,992(0,13)
+         MVGHI 1000(13),1086
+         STG   2,1008(0,13)
+         STG   7,1016(0,13)
+         STG   15,1024(0,13)
+         LA    15,352(0,13)
+         STG   15,1032(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1359 ; rd_kafka_log0
+@@gen_label1776 DS    0H 
+         BALR  14,15
+@@gen_label1777 DS    0H 
+@L1789   DS    0H
+         MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
+         ALGF  12,@lit_region_diff_1947_5_7
+         DROP  12
+         USING @REGION_1947_7,12
+         B     @_err_parse@1947@4
+         DROP  12
+         USING @REGION_1947_5,12
+@L1785   DS    0H
+@L1781   DS    0H
+         LG    15,216(0,13) ; _v
+         STG   15,288(0,13) ; offset of PID in msgset_v2_hdr
+* ***           do { int16_t _v; do { size_t __len2 = (size_t)(sizeof(\
+* _v)); if (!rd_slice_read(&(rkbuf)->rkbuf_reader, &_v, __len2)) do { \
+* size_t __len0 = (size_t)(__len2); if (((__len0 > ((&(rkbuf)->rkbuf_r\
+* eader)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader))))) { do {\
+*  if (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_k\
+* afka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",\
+* 1087, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); }\
+*  while (0); char __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr),\
+*  ": "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do { char _\
+* logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_st\
+* rlcpy(_logname, rkbuf->rkbuf_rkb->rkb_logname, sizeof(_logname)); mt\
+* x_unlock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_kafka_log0(&(rkb\
+* uf->rkbuf_rkb)->rkb_rk->rk_conf, (rkbuf->rkbuf_rkb)->rkb_rk, _lognam\
+* e, log_decode_errors, 0x0, "PROTOUFLOW", "Protocol read buffer under\
+* flow " "for %s v%hd " "at %" "zu" "/%" "zu" " (%s:%i): " "expected %\
+* " "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_kafka_ApiK\
+* ey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion,\
+*  rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end\
+*  - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1087, __len0, ((&rk\
+* buf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkbuf_reader))\
+* , rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation : "i\
+* ncorrect broker.version.fallback?", __tmpstr); } while (0); } (rkbuf\
+* )->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while\
+*  (0); } } while (0); } while (0); *(&hdr.ProducerEpoch) = (int16_t)(\
+* _v); } while (0);
+@L1800   DS    0H
+@L1803   DS    0H
+         LGHI  2,2         ; 2
+         LA    15,120(0,4)
+         STG   15,904(0,13)
+         LA    15,224(0,13)
+         STG   15,912(0,13)
+         STG   2,920(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1361 ; rd_slice_read
+@@gen_label1778 DS    0H 
+         BALR  14,15
+@@gen_label1779 DS    0H 
+         LTGR  15,15
+         BNZ   @L1806
+@L1807   DS    0H
+         LG    9,152(0,4)  ; offset of end in rd_slice_s
+         LA    15,120(0,4)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1355 ; rd_slice_abs_offset
+@@gen_label1781 DS    0H 
+         BALR  14,15
+@@gen_label1782 DS    0H 
+         SLGR  9,15
+         CLGR  2,9
+         BNH   @L1810
+@L1811   DS    0H
+         LTR   8,8
+         BNH   @L1814
+@L1815   DS    0H
+         LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
+         BNZ   @L1818
+         LG    15,@lit_1947_1356
+         LA    1,718(0,15)
+         STG   1,904(0,13)
+         MVGHI 912(13),1087
+         LG    1,@lit_1947_1358
+         LA    1,600(0,1)
+         STG   1,920(0,13)
+         XC    928(8,13),928(13)
+         LA    15,866(0,15)
+         STG   15,936(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1365 ; rd_kafka_crash
+@@gen_label1786 DS    0H 
+         BALR  14,15
+@@gen_label1787 DS    0H 
+@L1818   DS    0H
+         LA    15,352(0,13)
+         STG   15,904(0,13)
+         MVGHI 912(13),256
+         LG    15,@lit_1947_1356
+         LA    15,892(0,15)
+         STG   15,920(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1367 ; snprintf
+@@gen_label1788 DS    0H 
+         BALR  14,15
+@@gen_label1789 DS    0H 
+         LA    15,352(0,13)
+         LGR   1,15
+         LGHI  0,0
+@@gen_label1790 DS 0H
+         SRST  0,15
+         BC  1,@@gen_label1790
+         SLGR  0,1
+         CGHI  0,2
+         BNE   @L1820
+         MVI   352(13),0
+@L1819   DS    0H
+@L1820   DS    0H
+         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LGHI  5,5688      ; 5688
+         LA    15,0(5,15)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1369 ; mtx_lock
+@@gen_label1792 DS    0H 
+         BALR  14,15
+@@gen_label1793 DS    0H 
+         LA    15,608(0,13)
+         STG   15,904(0,13)
+         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LGHI  1,5680      ; 5680
+         LG    15,0(1,15)
+         STG   15,912(0,13)
+         MVGHI 920(13),256
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1350 ; rd_strlcpy
+@@gen_label1794 DS    0H 
+         BALR  14,15
+@@gen_label1795 DS    0H 
+         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LA    15,0(5,15)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1352 ; mtx_unlock
+@@gen_label1796 DS    0H 
+         BALR  14,15
+@@gen_label1797 DS    0H 
+         LGH   15,184(0,4)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1353 ; rd_kafka_ApiKey2str
+@@gen_label1798 DS    0H 
+         BALR  14,15
+@@gen_label1799 DS    0H 
+         LGR   5,15
+         LA    15,120(0,4)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1354 ; rd_slice_offset
+@@gen_label1800 DS    0H 
+         BALR  14,15
+@@gen_label1801 DS    0H 
+         LGR   6,15
+         LG    7,152(0,4)  ; offset of end in rd_slice_s
+         LA    15,120(0,4)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1355 ; rd_slice_abs_offset
+@@gen_label1802 DS    0H 
+         BALR  14,15
+@@gen_label1803 DS    0H 
+         SLGR  7,15
+         LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
+               ka_buf_s
+         BZ    @L1823
+         LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
+               ka_buf_s
+         B     @L1824
+@L1823   DS    0H
+         LG    15,@lit_1947_1356
+         LA    15,896(0,15)
+@L1824   DS    0H
+         LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
+         LA    1,528(0,1)
+         STG   1,904(0,13)
+         LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LG    1,4048(0,1)
+         STG   1,912(0,13)
+         LA    1,608(0,13)
+         STG   1,920(0,13)
+         LGFR  1,8
+         STG   1,928(0,13)
+         XC    936(8,13),936(13)
+         LG    1,@lit_1947_1356
+         LA    8,932(0,1)
+         STG   8,944(0,13)
+         LA    1,944(0,1)
+         STG   1,952(0,13)
+         STG   5,960(0,13)
+         LH    1,186(0,4)
+         LGFR  1,1
+         STG   1,968(0,13)
+         STG   6,976(0,13)
+         LG    1,152(0,4)  ; offset of end in rd_slice_s
+         SLG   1,144(0,4)
+         STG   1,984(0,13)
+         LG    1,@lit_1947_1358
+         LA    1,600(0,1)
+         STG   1,992(0,13)
+         MVGHI 1000(13),1087
+         STG   2,1008(0,13)
+         STG   7,1016(0,13)
+         STG   15,1024(0,13)
+         LA    15,352(0,13)
+         STG   15,1032(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1359 ; rd_kafka_log0
+@@gen_label1805 DS    0H 
+         BALR  14,15
+@@gen_label1806 DS    0H 
+@L1814   DS    0H
+         MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
+         ALGF  12,@lit_region_diff_1947_5_7
+         DROP  12
+         USING @REGION_1947_7,12
+         B     @_err_parse@1947@4
+         DROP  12
+         USING @REGION_1947_5,12
+@L1810   DS    0H
+@L1806   DS    0H
+         MVC   296(2,13),224(13)
+* ***           do { int32_t _v; do { size_t __len2 = (size_t)(sizeof(\
+* _v)); if (!rd_slice_read(&(rkbuf)->rkbuf_reader, &_v, __len2)) do { \
+* size_t __len0 = (size_t)(__len2); if (((__len0 > ((&(rkbuf)->rkbuf_r\
+* eader)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader))))) { do {\
+*  if (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_k\
+* afka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",\
+* 1088, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); }\
+*  while (0); char __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr),\
+*  ": "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do { char _\
+* logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_st\
+* rlcpy(_logname, rkbuf->rkbuf_rkb->rkb_logname, sizeof(_logname)); mt\
+* x_unlock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_kafka_log0(&(rkb\
+* uf->rkbuf_rkb)->rkb_rk->rk_conf, (rkbuf->rkbuf_rkb)->rkb_rk, _lognam\
+* e, log_decode_errors, 0x0, "PROTOUFLOW", "Protocol read buffer under\
+* flow " "for %s v%hd " "at %" "zu" "/%" "zu" " (%s:%i): " "expected %\
+* " "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_kafka_ApiK\
+* ey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion,\
+*  rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end\
+*  - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1088, __len0, ((&rk\
+* buf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkbuf_reader))\
+* , rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation : "i\
+* ncorrect broker.version.fallback?", __tmpstr); } while (0); } (rkbuf\
+* )->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while\
+*  (0); } } while (0); } while (0); *(&hdr.BaseSequence) = (_v); } whi\
+* le (0);
+@L1825   DS    0H
+@L1828   DS    0H
+         LGHI  2,4         ; 4
+         LA    15,120(0,4)
+         STG   15,904(0,13)
+         LA    15,228(0,13)
+         STG   15,912(0,13)
+         STG   2,920(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1361 ; rd_slice_read
+@@gen_label1807 DS    0H 
+         BALR  14,15
+@@gen_label1808 DS    0H 
+         LTGR  15,15
+         BNZ   @L1831
+@L1832   DS    0H
+         LG    9,152(0,4)  ; offset of end in rd_slice_s
+         LA    15,120(0,4)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1355 ; rd_slice_abs_offset
+@@gen_label1810 DS    0H 
+         BALR  14,15
+@@gen_label1811 DS    0H 
+         SLGR  9,15
+         CLGR  2,9
+         BNH   @L1835
+@L1836   DS    0H
+         LTR   8,8
+         BNH   @L1839
+@L1840   DS    0H
+         LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
+         BNZ   @L1843
+         LG    15,@lit_1947_1356
+         LA    1,718(0,15)
+         STG   1,904(0,13)
+         MVGHI 912(13),1088
+         LG    1,@lit_1947_1358
+         LA    1,600(0,1)
+         STG   1,920(0,13)
+         XC    928(8,13),928(13)
+         LA    15,866(0,15)
+         STG   15,936(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1365 ; rd_kafka_crash
+@@gen_label1815 DS    0H 
+         BALR  14,15
+@@gen_label1816 DS    0H 
+@L1843   DS    0H
+         LA    15,352(0,13)
+         STG   15,904(0,13)
+         MVGHI 912(13),256
+         LG    15,@lit_1947_1356
+         LA    15,892(0,15)
+         STG   15,920(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1367 ; snprintf
+@@gen_label1817 DS    0H 
+         BALR  14,15
+@@gen_label1818 DS    0H 
+         LA    15,352(0,13)
+         LGR   1,15
+         LGHI  0,0
+@@gen_label1819 DS 0H
+         SRST  0,15
+         BC  1,@@gen_label1819
+         SLGR  0,1
+         CGHI  0,2
+         BNE   @L1845
+         MVI   352(13),0
+@L1844   DS    0H
+@L1845   DS    0H
+         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LGHI  5,5688      ; 5688
+         LA    15,0(5,15)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1369 ; mtx_lock
+@@gen_label1821 DS    0H 
+         BALR  14,15
+@@gen_label1822 DS    0H 
+         LA    15,608(0,13)
+         STG   15,904(0,13)
+         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LGHI  1,5680      ; 5680
+         LG    15,0(1,15)
+         STG   15,912(0,13)
+         MVGHI 920(13),256
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1350 ; rd_strlcpy
+@@gen_label1823 DS    0H 
+         BALR  14,15
+@@gen_label1824 DS    0H 
+         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LA    15,0(5,15)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1352 ; mtx_unlock
+@@gen_label1825 DS    0H 
+         BALR  14,15
+@@gen_label1826 DS    0H 
+         LGH   15,184(0,4)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1353 ; rd_kafka_ApiKey2str
+@@gen_label1827 DS    0H 
+         BALR  14,15
+@@gen_label1828 DS    0H 
+         LGR   5,15
+         LA    15,120(0,4)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1354 ; rd_slice_offset
+@@gen_label1829 DS    0H 
+         BALR  14,15
+@@gen_label1830 DS    0H 
+         LGR   6,15
+         LG    7,152(0,4)  ; offset of end in rd_slice_s
+         LA    15,120(0,4)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1355 ; rd_slice_abs_offset
+@@gen_label1831 DS    0H 
+         BALR  14,15
+@@gen_label1832 DS    0H 
+         SLGR  7,15
+         LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
+               ka_buf_s
+         BZ    @L1848
+         LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
+               ka_buf_s
+         B     @L1849
+@L1848   DS    0H
+         LG    15,@lit_1947_1356
+         LA    15,896(0,15)
+@L1849   DS    0H
+         LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
+         LA    1,528(0,1)
+         STG   1,904(0,13)
+         LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LG    1,4048(0,1)
+         STG   1,912(0,13)
+         LA    1,608(0,13)
+         STG   1,920(0,13)
+         LGFR  1,8
+         STG   1,928(0,13)
+         XC    936(8,13),936(13)
+         LG    1,@lit_1947_1356
+         LA    8,932(0,1)
+         STG   8,944(0,13)
+         LA    1,944(0,1)
+         STG   1,952(0,13)
+         STG   5,960(0,13)
+         LH    1,186(0,4)
+         LGFR  1,1
+         STG   1,968(0,13)
+         STG   6,976(0,13)
+         LG    1,152(0,4)  ; offset of end in rd_slice_s
+         SLG   1,144(0,4)
+         STG   1,984(0,13)
+         LG    1,@lit_1947_1358
+         LA    1,600(0,1)
+         STG   1,992(0,13)
+         MVGHI 1000(13),1088
+         STG   2,1008(0,13)
+         STG   7,1016(0,13)
+         STG   15,1024(0,13)
+         LA    15,352(0,13)
+         STG   15,1032(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1359 ; rd_kafka_log0
+@@gen_label1834 DS    0H 
+         BALR  14,15
+@@gen_label1835 DS    0H 
+@L1839   DS    0H
+         MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
+         ALGF  12,@lit_region_diff_1947_5_7
+         DROP  12
+         USING @REGION_1947_7,12
+         B     @_err_parse@1947@4
+         DROP  12
+         USING @REGION_1947_5,12
+@L1835   DS    0H
+@L1831   DS    0H
+         L     15,228(0,13) ; _v
+         ST    15,300(0,13) ; offset of BaseSequence in msgset_v2_hdr
+* ***           do { int32_t _v; do { size_t __len2 = (size_t)(sizeof(\
+* _v)); if (!rd_slice_read(&(rkbuf)->rkbuf_reader, &_v, __len2)) do { \
+* size_t __len0 = (size_t)(__len2); if (((__len0 > ((&(rkbuf)->rkbuf_r\
+* eader)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader))))) { do {\
+*  if (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)))) rd_k\
+* afka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c",\
+* 1089, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb"); }\
+*  while (0); char __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmpstr),\
+*  ": "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do { char _\
+* logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_st\
+* rlcpy(_logname, rkbuf->rkbuf_rkb->rkb_logname, sizeof(_logname)); mt\
+* x_unlock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); rd_kafka_log0(&(rkb\
+* uf->rkbuf_rkb)->rkb_rk->rk_conf, (rkbuf->rkbuf_rkb)->rkb_rk, _lognam\
+* e, log_decode_errors, 0x0, "PROTOUFLOW", "Protocol read buffer under\
+* flow " "for %s v%hd " "at %" "zu" "/%" "zu" " (%s:%i): " "expected %\
+* " "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_kafka_ApiK\
+* ey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion,\
+*  rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end\
+*  - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1089, __len0, ((&rk\
+* buf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkbuf_reader))\
+* , rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation : "i\
+* ncorrect broker.version.fallback?", __tmpstr); } while (0); } (rkbuf\
+* )->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while\
+*  (0); } } while (0); } while (0); *(&hdr.RecordCount) = (_v); } whil\
+* e (0);
+@L1850   DS    0H
+@L1853   DS    0H
+         LGHI  2,4         ; 4
+         LA    15,120(0,4)
+         STG   15,904(0,13)
+         LA    15,232(0,13)
+         STG   15,912(0,13)
+         STG   2,920(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1361 ; rd_slice_read
+@@gen_label1836 DS    0H 
+         BALR  14,15
+@@gen_label1837 DS    0H 
+         LTGR  15,15
+         BZ    *+14  Around region break
+         ALGF  12,@lit_region_diff_1947_5_6
+         DROP  12
+         USING @REGION_1947_6,12
+         B     @L1856
+         DROP  12
+         USING @REGION_1947_5,12
 @L1857   DS    0H
+         LG    9,152(0,4)  ; offset of end in rd_slice_s
+         LA    15,120(0,4)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1355 ; rd_slice_abs_offset
+@@gen_label1839 DS    0H 
+         BALR  14,15
+@@gen_label1840 DS    0H 
+         SLGR  9,15
+         CLGR  2,9
+         BH    *+14  Around region break
+         ALGF  12,@lit_region_diff_1947_5_6
+         DROP  12
+         USING @REGION_1947_6,12
+         B     @L1860
+         DROP  12
+         USING @REGION_1947_5,12
+@L1861   DS    0H
+         LTR   8,8
+         BH    *+14  Around region break
+         ALGF  12,@lit_region_diff_1947_5_6
+         DROP  12
+         USING @REGION_1947_6,12
+         B     @L1864
+         DROP  12
+         USING @REGION_1947_5,12
+@L1865   DS    0H
+         LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
+         BNZ   @L1868
+         LG    15,@lit_1947_1356
+         LA    1,718(0,15)
+         STG   1,904(0,13)
+         MVGHI 912(13),1089
+         LG    1,@lit_1947_1358
+         LA    1,600(0,1)
+         STG   1,920(0,13)
+         XC    928(8,13),928(13)
+         LA    15,866(0,15)
+         STG   15,936(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1365 ; rd_kafka_crash
+@@gen_label1844 DS    0H 
+         BALR  14,15
+@@gen_label1845 DS    0H 
+@L1868   DS    0H
+         LA    15,352(0,13)
+         STG   15,904(0,13)
+         MVGHI 912(13),256
+         LG    15,@lit_1947_1356
+         LA    15,892(0,15)
+         STG   15,920(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1367 ; snprintf
+@@gen_label1846 DS    0H 
+         BALR  14,15
+@@gen_label1847 DS    0H 
+         LA    15,352(0,13)
+         LGR   1,15
+         LGHI  0,0
+@@gen_label1848 DS 0H
+         SRST  0,15
+         BC  1,@@gen_label1848
+         SLGR  0,1
+         CGHI  0,2
+         BNE   @L1870
+         MVI   352(13),0
+@L1869   DS    0H
+@L1870   DS    0H
+         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LGHI  5,5688      ; 5688
+         LA    15,0(5,15)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1369 ; mtx_lock
+@@gen_label1850 DS    0H 
+         BALR  14,15
+@@gen_label1851 DS    0H 
+         LA    15,608(0,13)
+         STG   15,904(0,13)
+         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LGHI  1,5680      ; 5680
+         LG    15,0(1,15)
+         STG   15,912(0,13)
+         MVGHI 920(13),256
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1350 ; rd_strlcpy
+@@gen_label1852 DS    0H 
+         BALR  14,15
+@@gen_label1853 DS    0H 
+         LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LA    15,0(5,15)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1352 ; mtx_unlock
+@@gen_label1854 DS    0H 
+         BALR  14,15
+@@gen_label1855 DS    0H 
+         LGH   15,184(0,4)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1353 ; rd_kafka_ApiKey2str
+@@gen_label1856 DS    0H 
+         BALR  14,15
+@@gen_label1857 DS    0H 
+         LGR   5,15
+         LA    15,120(0,4)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1354 ; rd_slice_offset
+@@gen_label1858 DS    0H 
+         BALR  14,15
+@@gen_label1859 DS    0H 
+         LGR   6,15
+         LG    7,152(0,4)  ; offset of end in rd_slice_s
+         LA    15,120(0,4)
+         STG   15,904(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1355 ; rd_slice_abs_offset
+@@gen_label1860 DS    0H 
+         BALR  14,15
+@@gen_label1861 DS    0H 
+         SLGR  7,15
+         LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
+               ka_buf_s
+         BZ    @L1873
+         LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
+               ka_buf_s
+         ALGF  12,@lit_region_diff_1947_5_6
+         DROP  12
+         USING @REGION_1947_6,12
+         B     @L1874
+         DROP  12
+         USING @REGION_1947_5,12
+@L1873   DS    0H
+         LG    15,@lit_1947_1356
+         LA    15,896(0,15)
+         ALGF  12,@lit_region_diff_1947_5_6
+@REGION_1947_6 DS 0H
+         DROP  12
+         USING @REGION_1947_6,12
+@L1874   DS    0H
+         LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
+         LA    1,528(0,1)
+         STG   1,904(0,13)
+         LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
+         LG    1,4048(0,1)
+         STG   1,912(0,13)
+         LA    1,608(0,13)
+         STG   1,920(0,13)
+         LGFR  1,8
+         STG   1,928(0,13)
+         XC    936(8,13),936(13)
+         LG    1,@lit_1947_1420
+         LA    8,932(0,1)
+         STG   8,944(0,13)
+         LA    1,944(0,1)
+         STG   1,952(0,13)
+         STG   5,960(0,13)
+         LH    1,186(0,4)
+         LGFR  1,1
+         STG   1,968(0,13)
+         STG   6,976(0,13)
+         LG    1,152(0,4)  ; offset of end in rd_slice_s
+         SLG   1,144(0,4)
+         STG   1,984(0,13)
+         LG    1,@lit_1947_1421
+         LA    1,600(0,1)
+         STG   1,992(0,13)
+         MVGHI 1000(13),1089
+         STG   2,1008(0,13)
+         STG   7,1016(0,13)
+         STG   15,1024(0,13)
+         LA    15,352(0,13)
+         STG   15,1032(0,13)
+         LA    1,904(0,13)
+         LG    15,@lit_1947_1422 ; rd_kafka_log0
+@@gen_label1863 DS    0H 
+         BALR  14,15
+@@gen_label1864 DS    0H 
+@L1864   DS    0H
          MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
          ALGF  12,@lit_region_diff_1947_6_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @_err_parse@1947@5
+         B     @_err_parse@1947@4
          DROP  12
          USING @REGION_1947_6,12
          DS    0D
-@lit_1947_1415 DC AD(rd_kafka_log0)
-@lit_1947_1414 DC AD(@DATA)
-@lit_1947_1413 DC AD(@strings@)
+@lit_1947_1422 DC AD(rd_kafka_log0)
+@lit_1947_1421 DC AD(@DATA)
+@lit_1947_1420 DC AD(@strings@)
 @lit_region_diff_1947_6_7  DC A(@REGION_1947_7-@REGION_1947_6)
-@lit_1947_1416 DC AD(rd_slice_offset)
-@lit_1947_1417 DC AD(rd_slice_abs_offset)
-@lit_1947_1420 DC AD(rd_kafka_crash)
-@lit_1947_1422 DC AD(snprintf)
-@lit_1947_1424 DC AD(mtx_lock)
-@lit_1947_1426 DC AD(rd_strlcpy)
-@lit_1947_1428 DC AD(mtx_unlock)
-@lit_1947_1429 DC AD(rd_kafka_$Api$Key2str)
-@lit_1947_1436 DC AD(rd_slice_read)
-@lit_1947_1456 DC AD(rd_slice_ensure_contig)
-@lit_1947_1459 DC AD(__assert)
-@lit_1947_1460 DC AD(rd_kafka_msgset_reader_decompress)
-@lit_1947_1461 DC AD(rd_slice_narrow_relative)
-@L1853   DS    0H
-@L1849   DS    0H
+@lit_1947_1423 DC AD(rd_slice_offset)
+@lit_1947_1424 DC AD(rd_slice_abs_offset)
+@lit_1947_1427 DC AD(rd_kafka_crash)
+@lit_1947_1429 DC AD(snprintf)
+@lit_1947_1431 DC AD(mtx_lock)
+@lit_1947_1433 DC AD(rd_strlcpy)
+@lit_1947_1435 DC AD(mtx_unlock)
+@lit_1947_1436 DC AD(rd_kafka_$Api$Key2str)
+@lit_1947_1443 DC AD(rd_slice_read)
+@lit_1947_1463 DC AD(rd_slice_ensure_contig)
+@lit_1947_1466 DC AD(__assert)
+@lit_1947_1467 DC AD(rd_kafka_msgset_reader_decompress)
+@lit_1947_1468 DC AD(rd_slice_narrow_relative)
+@L1860   DS    0H
+@L1856   DS    0H
          L     15,232(0,13) ; _v
          ST    15,304(0,13) ; offset of RecordCount in msgset_v2_hdr
 * ***   
@@ -16805,10 +16866,10 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1416 ; rd_slice_offset
-@@gen_label1864 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1423 ; rd_slice_offset
 @@gen_label1865 DS    0H 
+         BALR  14,15
+@@gen_label1866 DS    0H 
 * ***                                        len_start);
          SLGR  15,6
          SLGR  2,15
@@ -16820,16 +16881,16 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1417 ; rd_slice_abs_offset
-@@gen_label1866 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1424 ; rd_slice_abs_offset
 @@gen_label1867 DS    0H 
+         BALR  14,15
+@@gen_label1868 DS    0H 
          SLGR  9,15
          CLGR  2,9
-         BNH   @L1868
+         BNH   @L1875
 * ***                   do { if (log_decode_errors > 0) { do { if (((!\
 * (rkbuf->rkbuf_rkb)))) rd_kafka_crash("C:\\asgkafka\\librdkafka\\src\\
-* \rdkafka_msgset_reader.c",1090, __FUNCTION__, (((void *)0)), "assert\
+* \rdkafka_msgset_reader.c",1096, __FUNCTION__, (((void *)0)), "assert\
 * : " "rkbuf->rkbuf_rkb"); } while (0); char __tmpstr[256]; snprintf(_\
 * _tmpstr, sizeof(__tmpstr), ": " "%s [%" "d" "] " "MessageSet at offs\
 * et %" "lld" " payload size %" "zu", rktp->rktp_rkt->rkt_topic->str, \
@@ -16844,38 +16905,38 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 * "zu" " remaining bytes (%s)%s", rd_kafka_ApiKey2str(rkbuf->rkbuf_req\
 * hdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion, rd_slice_offset(&rkbuf\
 * ->rkbuf_reader), ((&rkbuf->rkbuf_reader)->end - (&rkbuf->rkbuf_reade\
-* r)->start), __FUNCTION__, 1090, payload_size, ((&rkbuf->rkbuf_reader\
+* r)->start), __FUNCTION__, 1096, payload_size, ((&rkbuf->rkbuf_reader\
 * )->end - rd_slice_abs_offset(&rkbuf->rkbuf_reader)), rkbuf->rkbuf_uf\
 * low_mitigation ? rkbuf->rkbuf_uflow_mitigation : "incorrect broker.v\
 * ersion.fallback?", __tmpstr); } while (0); } (rkbuf)->rkbuf_err = RD\
 * _KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } while (0);
-@L1869   DS    0H
+@L1876   DS    0H
          LTR   8,8
-         BNH   @L1872
-@L1873   DS    0H
+         BNH   @L1879
+@L1880   DS    0H
          LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1876
-         LG    15,@lit_1947_1413
+         BNZ   @L1883
+         LG    15,@lit_1947_1420
          LA    1,718(0,15)
          STG   1,904(0,13)
-         MVGHI 912(13),1090
-         LG    1,@lit_1947_1414
+         MVGHI 912(13),1096
+         LG    1,@lit_1947_1421
          LA    1,600(0,1)
          STG   1,920(0,13)
          XC    928(8,13),928(13)
          LA    15,866(0,15)
          STG   15,936(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1420 ; rd_kafka_crash
-@@gen_label1871 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1427 ; rd_kafka_crash
 @@gen_label1872 DS    0H 
-@L1876   DS    0H
+         BALR  14,15
+@@gen_label1873 DS    0H 
+@L1883   DS    0H
          LA    15,352(0,13)
          STG   15,904(0,13)
          MVGHI 912(13),256
-         LG    15,@lit_1947_1413
-         LA    15,2106(0,15)
+         LG    15,@lit_1947_1420
+         LA    15,2172(0,15)
          STG   15,920(0,13)
          LG    15,96(0,5)  ; offset of rktp_rkt in rd_kafka_toppar_s
          LG    15,128(0,15) ; offset of rkt_topic in rd_kafka_topic_s
@@ -16887,31 +16948,31 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,944(0,13)
          STG   6,952(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1422 ; snprintf
-@@gen_label1873 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1429 ; snprintf
 @@gen_label1874 DS    0H 
+         BALR  14,15
+@@gen_label1875 DS    0H 
          LA    15,352(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label1875 DS 0H
+@@gen_label1876 DS 0H
          SRST  0,15
-         BC  1,@@gen_label1875
+         BC  1,@@gen_label1876
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1878
+         BNE   @L1885
          MVI   352(13),0
-@L1877   DS    0H
-@L1878   DS    0H
+@L1884   DS    0H
+@L1885   DS    0H
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  2,5688      ; 5688
          LA    15,0(2,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1424 ; mtx_lock
-@@gen_label1877 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1431 ; mtx_lock
 @@gen_label1878 DS    0H 
+         BALR  14,15
+@@gen_label1879 DS    0H 
          LA    15,608(0,13)
          STG   15,904(0,13)
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -16920,53 +16981,53 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          MVGHI 920(13),256
          LA    1,904(0,13)
-         LG    15,@lit_1947_1426 ; rd_strlcpy
-@@gen_label1879 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1433 ; rd_strlcpy
 @@gen_label1880 DS    0H 
+         BALR  14,15
+@@gen_label1881 DS    0H 
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(2,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1428 ; mtx_unlock
-@@gen_label1881 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1435 ; mtx_unlock
 @@gen_label1882 DS    0H 
+         BALR  14,15
+@@gen_label1883 DS    0H 
          LGH   15,184(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1429 ; rd_kafka_ApiKey2str
-@@gen_label1883 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1436 ; rd_kafka_ApiKey2str
 @@gen_label1884 DS    0H 
+         BALR  14,15
+@@gen_label1885 DS    0H 
          LGR   2,15
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1416 ; rd_slice_offset
-@@gen_label1885 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1423 ; rd_slice_offset
 @@gen_label1886 DS    0H 
+         BALR  14,15
+@@gen_label1887 DS    0H 
          LGR   5,15
          LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1417 ; rd_slice_abs_offset
-@@gen_label1887 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1424 ; rd_slice_abs_offset
 @@gen_label1888 DS    0H 
+         BALR  14,15
+@@gen_label1889 DS    0H 
          SLGR  7,15
          LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L1881
+         BZ    @L1888
          LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         B     @L1882
-@L1881   DS    0H
-         LG    15,@lit_1947_1413
+         B     @L1889
+@L1888   DS    0H
+         LG    15,@lit_1947_1420
          LA    15,896(0,15)
-@L1882   DS    0H
+@L1889   DS    0H
          LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -16979,7 +17040,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LGFR  1,8
          STG   1,928(0,13)
          XC    936(8,13),936(13)
-         LG    1,@lit_1947_1413
+         LG    1,@lit_1947_1420
          LA    8,932(0,1)
          STG   8,944(0,13)
          LA    1,944(0,1)
@@ -16991,41 +17052,41 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LG    1,152(0,4)  ; offset of end in rd_slice_s
          SLG   1,144(0,4)
          STG   1,984(0,13)
-         LG    1,@lit_1947_1414
+         LG    1,@lit_1947_1421
          LA    1,600(0,1)
          STG   1,992(0,13)
-         MVGHI 1000(13),1090
+         MVGHI 1000(13),1096
          STMG  6,7,1008(13)
          STG   15,1024(0,13)
          LA    15,352(0,13)
          STG   15,1032(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1415 ; rd_kafka_log0
-@@gen_label1890 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1422 ; rd_kafka_log0
 @@gen_label1891 DS    0H 
-@L1872   DS    0H
+         BALR  14,15
+@@gen_label1892 DS    0H 
+@L1879   DS    0H
          MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
          ALGF  12,@lit_region_diff_1947_6_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @_err_parse@1947@5
+         B     @_err_parse@1947@4
          DROP  12
          USING @REGION_1947_6,12
 * ***   
-* ***   # 1098 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
+* ***   # 1104 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
 * ***           
 * ***           if (LastOffset < rktp->rktp_offsets.fetch_offset) {
-@L1868   DS    0H
+@L1875   DS    0H
          CG    7,568(0,5)
-         BNL   @L1883
+         BNL   @L1890
 * ***                   do { size_t __len1 = (size_t)(payload_size); i\
 * f (__len1 && !rd_slice_read(&(rkbuf)->rkbuf_reader, ((void *)0), __l\
 * en1)) do { size_t __len0 = (size_t)(__len1); if (((__len0 > ((&(rkbu\
 * f)->rkbuf_reader)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader)\
 * )))) { do { if (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf_r\
 * kb)))) rd_kafka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset\
-* _reader.c",1100, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkb\
+* _reader.c",1106, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkb\
 * uf_rkb"); } while (0); char __tmpstr[256]; snprintf(__tmpstr, sizeof\
 * (__tmpstr), ": "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; \
 * do { char _logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_l\
@@ -17037,20 +17098,20 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 * "expected %" "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd\
 * _kafka_ApiKey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.\
 * ApiVersion, rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_r\
-* eader)->end - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1100, __\
+* eader)->end - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1106, __\
 * len0, ((&rkbuf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkb\
 * uf_reader)), rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_miti\
 * gation : "incorrect broker.version.fallback?", __tmpstr); } while (0\
 * ); } (rkbuf)->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_par\
 * se; } while (0); } } while (0); } while (0);
-@L1884   DS    0H
+@L1891   DS    0H
          LGR   2,6         ; __len1
          LTGR  15,6
          BNZ   *+14  Around region break
          ALGF  12,@lit_region_diff_1947_6_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @_done@1947@6
+         B     @_done@1947@5
          DROP  12
          USING @REGION_1947_6,12
          LA    15,120(0,4)
@@ -17058,84 +17119,84 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          XC    912(8,13),912(13)
          STG   2,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1436 ; rd_slice_read
-@@gen_label1894 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1443 ; rd_slice_read
 @@gen_label1895 DS    0H 
+         BALR  14,15
+@@gen_label1896 DS    0H 
          LTGR  15,15
          BZ    *+14  Around region break
          ALGF  12,@lit_region_diff_1947_6_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @_done@1947@6
+         B     @_done@1947@5
          DROP  12
          USING @REGION_1947_6,12
-@L1888   DS    0H
+@L1895   DS    0H
          LG    5,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1417 ; rd_slice_abs_offset
-@@gen_label1897 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1424 ; rd_slice_abs_offset
 @@gen_label1898 DS    0H 
+         BALR  14,15
+@@gen_label1899 DS    0H 
          SLGR  5,15
          CLGR  2,5
-         BNH   @L1891
-@L1892   DS    0H
+         BNH   @L1898
+@L1899   DS    0H
          LTR   8,8
-         BNH   @L1895
-@L1896   DS    0H
+         BNH   @L1902
+@L1903   DS    0H
          LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1899
-         LG    15,@lit_1947_1413
+         BNZ   @L1906
+         LG    15,@lit_1947_1420
          LA    1,718(0,15)
          STG   1,904(0,13)
-         MVGHI 912(13),1100
-         LG    1,@lit_1947_1414
+         MVGHI 912(13),1106
+         LG    1,@lit_1947_1421
          LA    1,600(0,1)
          STG   1,920(0,13)
          XC    928(8,13),928(13)
          LA    15,866(0,15)
          STG   15,936(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1420 ; rd_kafka_crash
-@@gen_label1902 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1427 ; rd_kafka_crash
 @@gen_label1903 DS    0H 
-@L1899   DS    0H
+         BALR  14,15
+@@gen_label1904 DS    0H 
+@L1906   DS    0H
          LA    15,352(0,13)
          STG   15,904(0,13)
          MVGHI 912(13),256
-         LG    15,@lit_1947_1413
+         LG    15,@lit_1947_1420
          LA    15,892(0,15)
          STG   15,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1422 ; snprintf
-@@gen_label1904 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1429 ; snprintf
 @@gen_label1905 DS    0H 
+         BALR  14,15
+@@gen_label1906 DS    0H 
          LA    15,352(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label1906 DS 0H
+@@gen_label1907 DS 0H
          SRST  0,15
-         BC  1,@@gen_label1906
+         BC  1,@@gen_label1907
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1901
+         BNE   @L1908
          MVI   352(13),0
-@L1900   DS    0H
-@L1901   DS    0H
+@L1907   DS    0H
+@L1908   DS    0H
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  5,5688      ; 5688
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1424 ; mtx_lock
-@@gen_label1908 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1431 ; mtx_lock
 @@gen_label1909 DS    0H 
+         BALR  14,15
+@@gen_label1910 DS    0H 
          LA    15,608(0,13)
          STG   15,904(0,13)
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -17144,53 +17205,53 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          MVGHI 920(13),256
          LA    1,904(0,13)
-         LG    15,@lit_1947_1426 ; rd_strlcpy
-@@gen_label1910 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1433 ; rd_strlcpy
 @@gen_label1911 DS    0H 
+         BALR  14,15
+@@gen_label1912 DS    0H 
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1428 ; mtx_unlock
-@@gen_label1912 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1435 ; mtx_unlock
 @@gen_label1913 DS    0H 
+         BALR  14,15
+@@gen_label1914 DS    0H 
          LGH   15,184(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1429 ; rd_kafka_ApiKey2str
-@@gen_label1914 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1436 ; rd_kafka_ApiKey2str
 @@gen_label1915 DS    0H 
+         BALR  14,15
+@@gen_label1916 DS    0H 
          LGR   5,15
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1416 ; rd_slice_offset
-@@gen_label1916 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1423 ; rd_slice_offset
 @@gen_label1917 DS    0H 
+         BALR  14,15
+@@gen_label1918 DS    0H 
          LGR   6,15
          LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1417 ; rd_slice_abs_offset
-@@gen_label1918 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1424 ; rd_slice_abs_offset
 @@gen_label1919 DS    0H 
+         BALR  14,15
+@@gen_label1920 DS    0H 
          SLGR  7,15
          LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L1904
+         BZ    @L1911
          LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         B     @L1905
-@L1904   DS    0H
-         LG    15,@lit_1947_1413
+         B     @L1912
+@L1911   DS    0H
+         LG    15,@lit_1947_1420
          LA    15,896(0,15)
-@L1905   DS    0H
+@L1912   DS    0H
          LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -17203,7 +17264,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LGFR  1,8
          STG   1,928(0,13)
          XC    936(8,13),936(13)
-         LG    1,@lit_1947_1413
+         LG    1,@lit_1947_1420
          LA    8,932(0,1)
          STG   8,944(0,13)
          LA    1,944(0,1)
@@ -17216,49 +17277,49 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LG    1,152(0,4)  ; offset of end in rd_slice_s
          SLG   1,144(0,4)
          STG   1,984(0,13)
-         LG    1,@lit_1947_1414
+         LG    1,@lit_1947_1421
          LA    1,600(0,1)
          STG   1,992(0,13)
-         MVGHI 1000(13),1100
+         MVGHI 1000(13),1106
          STG   2,1008(0,13)
          STG   7,1016(0,13)
          STG   15,1024(0,13)
          LA    15,352(0,13)
          STG   15,1032(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1415 ; rd_kafka_log0
-@@gen_label1921 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1422 ; rd_kafka_log0
 @@gen_label1922 DS    0H 
-@L1895   DS    0H
+         BALR  14,15
+@@gen_label1923 DS    0H 
+@L1902   DS    0H
          MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
          ALGF  12,@lit_region_diff_1947_6_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @_err_parse@1947@5
+         B     @_err_parse@1947@4
          DROP  12
          USING @REGION_1947_6,12
-@L1891   DS    0H
-@L1887   DS    0H
+@L1898   DS    0H
+@L1894   DS    0H
 * ***                   goto done;
          ALGF  12,@lit_region_diff_1947_6_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @_done@1947@6
+         B     @_done@1947@5
          DROP  12
          USING @REGION_1947_6,12
 * ***           }
-@L1883   DS    0H
+@L1890   DS    0H
 * ***   
 * ***           if (hdr.Attributes & (1 << 5))
          LH    15,264(0,13)
          TML   15,32
-         BZ    @L1906
+         BZ    @L1913
 * ***                   msetr->msetr_ctrl_cnt++;
          L     15,296(0,3)
          AHI   15,1
          ST    15,296(0,3)
-@L1906   DS    0H
+@L1913   DS    0H
 * ***   
 * ***           msetr->msetr_v2_hdr = &hdr;
          LA    15,240(0,13)
@@ -17269,7 +17330,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 * ***           if (hdr.Attributes & 0x7) {
          LH    15,264(0,13)
          TML   15,7
-         BZ    @L1907
+         BZ    @L1914
 * ***                   const void *compressed;
 * ***   
 * ***                   compressed = rd_slice_ensure_contig(&rkbuf->rk\
@@ -17280,32 +17341,32 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,904(0,13)
          STG   6,912(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1456 ; rd_slice_ensure_contig
-@@gen_label1925 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1463 ; rd_slice_ensure_contig
 @@gen_label1926 DS    0H 
+         BALR  14,15
+@@gen_label1927 DS    0H 
          LGR   2,15
 * ***                   ((compressed) ? (void)0 : __assert(__func__, "\
-* C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c", 1115, "comp\
+* C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c", 1121, "comp\
 * ressed"));
          LTGR  15,2
-         BNZ   @L1909
-@L1908   DS    0H
-         LG    15,@lit_1947_1414
+         BNZ   @L1916
+@L1915   DS    0H
+         LG    15,@lit_1947_1421
          LA    15,600(0,15)
          STG   15,904(0,13)
-         LG    15,@lit_1947_1413
+         LG    15,@lit_1947_1420
          LA    1,718(0,15)
          STG   1,912(0,13)
-         MVGHI 920(13),1115
-         LA    15,2160(0,15)
+         MVGHI 920(13),1121
+         LA    15,2226(0,15)
          STG   15,928(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1459 ; __assert
-@@gen_label1928 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1466 ; __assert
 @@gen_label1929 DS    0H 
-@L1909   DS    0H
+         BALR  14,15
+@@gen_label1930 DS    0H 
+@L1916   DS    0H
 * ***   
 * ***                   err = rd_kafka_msgset_reader_decompress(
 * ***                           msetr, 2, hdr.Attributes,
@@ -17323,30 +17384,30 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   2,944(0,13)
          STG   6,952(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1460 ; rd_kafka_msgset_reader_decompress
-@@gen_label1930 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1467 ; rd_kafka_msgset_reader_decompress
 @@gen_label1931 DS    0H 
+         BALR  14,15
+@@gen_label1932 DS    0H 
          LTR   2,15        ; err
 * ***                   if (err)
          BNZ   *+14  Around region break
          ALGF  12,@lit_region_diff_1947_6_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @_done@1947@6
+         B     @_done@1947@5
          DROP  12
          USING @REGION_1947_6,12
 * ***                           goto err;
          ALGF  12,@lit_region_diff_1947_6_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @_err@1947@7
+         B     @_err@1947@6
          DROP  12
          USING @REGION_1947_6,12
-@L1910   DS    0H
+@L1917   DS    0H
 * ***   
 * ***           } else {
-@L1907   DS    0H
+@L1914   DS    0H
 * ***                   
 * ***   
 * ***                   
@@ -17362,23 +17423,23 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          STG   6,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1461 ; rd_slice_narrow_relative
-@@gen_label1933 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1468 ; rd_slice_narrow_relative
 @@gen_label1934 DS    0H 
+         BALR  14,15
+@@gen_label1935 DS    0H 
          LTR   15,15
          BZ    *+14  Around region break
          ALGF  12,@lit_region_diff_1947_6_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @L1912
+         B     @L1919
          DROP  12
          USING @REGION_1947_6,12
 * ***                           do { size_t __len0 = (size_t)(payload_\
 * size); if (((__len0 > ((&(rkbuf)->rkbuf_reader)->end - rd_slice_abs_\
 * offset(&(rkbuf)->rkbuf_reader))))) { do { if (log_decode_errors > 0)\
 *  { do { if (((!(rkbuf->rkbuf_rkb)))) rd_kafka_crash("C:\\asgkafka\\l\
-* ibrdkafka\\src\\rdkafka_msgset_reader.c",1132, __FUNCTION__, (((void\
+* ibrdkafka\\src\\rdkafka_msgset_reader.c",1138, __FUNCTION__, (((void\
 *  *)0)), "assert: " "rkbuf->rkbuf_rkb"); } while (0); char __tmpstr[2\
 * 56]; snprintf(__tmpstr, sizeof(__tmpstr), ": "); if (__strlen(__tmps\
 * tr) == 2) __tmpstr[0] = '\0'; do { char _logname[256]; mtx_lock(&(rk\
@@ -17391,90 +17452,90 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 *  " remaining bytes (%s)%s", rd_kafka_ApiKey2str(rkbuf->rkbuf_reqhdr.\
 *  ApiKey), rkbuf->rkbuf_reqhdr.ApiVersion, rd_slice_offset(&rkbuf->rk\
 * buf_reader), ((&rkbuf->rkbuf_reader)->end - (&rkbuf->rkbuf_reader)->\
-* start), __FUNCTION__, 1132, __len0, ((&rkbuf->rkbuf_reader)->end - r\
+* start), __FUNCTION__, 1138, __len0, ((&rkbuf->rkbuf_reader)->end - r\
 * d_slice_abs_offset(&rkbuf->rkbuf_reader)), rkbuf->rkbuf_uflow_mitiga\
 * tion ? rkbuf->rkbuf_uflow_mitigation : "incorrect broker.version.fal\
 * lback?", __tmpstr); } while (0); } (rkbuf)->rkbuf_err = RD_KAFKA_RES\
 * P_ERR__UNDERFLOW; goto err_parse; } while (0); } } while (0);
-@L1913   DS    0H
+@L1920   DS    0H
          LGR   2,6         ; __len0
          LG    5,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1417 ; rd_slice_abs_offset
-@@gen_label1936 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1424 ; rd_slice_abs_offset
 @@gen_label1937 DS    0H 
+         BALR  14,15
+@@gen_label1938 DS    0H 
          SLGR  5,15
          CLGR  6,5
          BH    *+14  Around region break
          ALGF  12,@lit_region_diff_1947_6_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @L1916
+         B     @L1923
          DROP  12
          USING @REGION_1947_6,12
-@L1917   DS    0H
+@L1924   DS    0H
          LTR   8,8
          BH    *+14  Around region break
          ALGF  12,@lit_region_diff_1947_6_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @L1920
+         B     @L1927
          DROP  12
          USING @REGION_1947_6,12
-@L1921   DS    0H
+@L1928   DS    0H
          LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1924
-         LG    15,@lit_1947_1413
+         BNZ   @L1931
+         LG    15,@lit_1947_1420
          LA    1,718(0,15)
          STG   1,904(0,13)
-         MVGHI 912(13),1132
-         LG    1,@lit_1947_1414
+         MVGHI 912(13),1138
+         LG    1,@lit_1947_1421
          LA    1,600(0,1)
          STG   1,920(0,13)
          XC    928(8,13),928(13)
          LA    15,866(0,15)
          STG   15,936(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1420 ; rd_kafka_crash
-@@gen_label1941 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1427 ; rd_kafka_crash
 @@gen_label1942 DS    0H 
-@L1924   DS    0H
+         BALR  14,15
+@@gen_label1943 DS    0H 
+@L1931   DS    0H
          LA    15,352(0,13)
          STG   15,904(0,13)
          MVGHI 912(13),256
-         LG    15,@lit_1947_1413
+         LG    15,@lit_1947_1420
          LA    15,892(0,15)
          STG   15,920(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1422 ; snprintf
-@@gen_label1943 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1429 ; snprintf
 @@gen_label1944 DS    0H 
+         BALR  14,15
+@@gen_label1945 DS    0H 
          LA    15,352(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label1945 DS 0H
+@@gen_label1946 DS 0H
          SRST  0,15
-         BC  1,@@gen_label1945
+         BC  1,@@gen_label1946
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1926
+         BNE   @L1933
          MVI   352(13),0
-@L1925   DS    0H
-@L1926   DS    0H
+@L1932   DS    0H
+@L1933   DS    0H
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  5,5688      ; 5688
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1424 ; mtx_lock
-@@gen_label1947 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1431 ; mtx_lock
 @@gen_label1948 DS    0H 
+         BALR  14,15
+@@gen_label1949 DS    0H 
          LA    15,608(0,13)
          STG   15,904(0,13)
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -17483,42 +17544,42 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          STG   15,912(0,13)
          MVGHI 920(13),256
          LA    1,904(0,13)
-         LG    15,@lit_1947_1426 ; rd_strlcpy
-@@gen_label1949 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1433 ; rd_strlcpy
 @@gen_label1950 DS    0H 
+         BALR  14,15
+@@gen_label1951 DS    0H 
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(5,15)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1428 ; mtx_unlock
-@@gen_label1951 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1435 ; mtx_unlock
 @@gen_label1952 DS    0H 
+         BALR  14,15
+@@gen_label1953 DS    0H 
          LGH   15,184(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1429 ; rd_kafka_ApiKey2str
-@@gen_label1953 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1436 ; rd_kafka_ApiKey2str
 @@gen_label1954 DS    0H 
+         BALR  14,15
+@@gen_label1955 DS    0H 
          LGR   5,15
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1416 ; rd_slice_offset
-@@gen_label1955 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1423 ; rd_slice_offset
 @@gen_label1956 DS    0H 
+         BALR  14,15
+@@gen_label1957 DS    0H 
          LGR   6,15
          LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1417 ; rd_slice_abs_offset
-@@gen_label1957 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1424 ; rd_slice_abs_offset
 @@gen_label1958 DS    0H 
+         BALR  14,15
+@@gen_label1959 DS    0H 
          SLGR  7,15
          LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
@@ -17526,7 +17587,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          ALGF  12,@lit_region_diff_1947_6_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @L1929
+         B     @L1936
          DROP  12
          USING @REGION_1947_6,12
          LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
@@ -17534,16 +17595,16 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          ALGF  12,@lit_region_diff_1947_6_7
          DROP  12
          USING @REGION_1947_7,12
-         B     @L1930
+         B     @L1937
          DROP  12
          USING @REGION_1947_6,12
 @REGION_1947_7 DS 0H
          DROP  12
          USING @REGION_1947_7,12
-@L1929   DS    0H
-         LG    15,@lit_1947_1477
+@L1936   DS    0H
+         LG    15,@lit_1947_1484
          LA    15,896(0,15)
-@L1930   DS    0H
+@L1937   DS    0H
          LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -17556,7 +17617,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LGFR  1,8
          STG   1,928(0,13)
          XC    936(8,13),936(13)
-         LG    1,@lit_1947_1477
+         LG    1,@lit_1947_1484
          LA    8,932(0,1)
          STG   8,944(0,13)
          LA    1,944(0,1)
@@ -17569,41 +17630,41 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LG    1,152(0,4)  ; offset of end in rd_slice_s
          SLG   1,144(0,4)
          STG   1,984(0,13)
-         LG    1,@lit_1947_1479
+         LG    1,@lit_1947_1486
          LA    1,600(0,1)
          STG   1,992(0,13)
-         MVGHI 1000(13),1132
+         MVGHI 1000(13),1138
          STG   2,1008(0,13)
          STG   7,1016(0,13)
          STG   15,1024(0,13)
          LA    15,352(0,13)
          STG   15,1032(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1480 ; rd_kafka_log0
-@@gen_label1960 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1487 ; rd_kafka_log0
 @@gen_label1961 DS    0H 
-@L1920   DS    0H
+         BALR  14,15
+@@gen_label1962 DS    0H 
+@L1927   DS    0H
          MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
-         B     @_err_parse@1947@5
+         B     @_err_parse@1947@4
          DS    0D
-@lit_1947_1477 DC AD(@strings@)
-@lit_1947_1480 DC AD(rd_kafka_log0)
-@lit_1947_1479 DC AD(@DATA)
-@lit_1947_1481 DC AD(rd_kafka_msgset_reader_msgs_v2)
-@lit_1947_1482 DC AD(rd_slice_widen)
-@lit_1947_1485 DC AD(rd_atomic64_add)
-@L1916   DS    0H
+@lit_1947_1484 DC AD(@strings@)
+@lit_1947_1487 DC AD(rd_kafka_log0)
+@lit_1947_1486 DC AD(@DATA)
+@lit_1947_1488 DC AD(rd_kafka_msgset_reader_msgs_v2)
+@lit_1947_1489 DC AD(rd_slice_widen)
+@lit_1947_1492 DC AD(rd_atomic64_add)
+@L1923   DS    0H
 * ***   
 * ***                   
 * ***                   err = rd_kafka_msgset_reader_msgs_v2(msetr);
-@L1912   DS    0H
+@L1919   DS    0H
          STG   3,904(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1481 ; rd_kafka_msgset_reader_msgs_v2
-@@gen_label1962 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1488 ; rd_kafka_msgset_reader_msgs_v2
 @@gen_label1963 DS    0H 
+         BALR  14,15
+@@gen_label1964 DS    0H 
          LR    2,15        ; err
 * ***   
 * ***                   
@@ -17614,16 +17675,16 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
          LA    15,312(0,13)
          STG   15,912(0,13)
          LA    1,904(0,13)
-         LG    15,@lit_1947_1482 ; rd_slice_widen
-@@gen_label1964 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1489 ; rd_slice_widen
 @@gen_label1965 DS    0H 
+         BALR  14,15
+@@gen_label1966 DS    0H 
 * ***   
 * ***                   if (((err)))
          LTR   2,2
-         BZ    @_done@1947@6
+         BZ    @_done@1947@5
 * ***                           goto err;
-         B     @_err@1947@7
+         B     @_err@1947@6
 * ***           }
 * ***   
 * ***   
@@ -17633,7 +17694,7 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 * ***   
 * ***   
 * ***           msetr->msetr_next_offset = LastOffset + 1;
-@_done@1947@6 DS 0H
+@_done@1947@5 DS 0H
          AGHI  7,1
          STG   7,288(0,3)  ; offset of msetr_next_offset in rd_kafka_ms*
                gset_reader_s
@@ -17650,23 +17711,23 @@ rd_kafka_msgset_reader_v2 DCCPRLG CINDEX=1947,BASER=12,FRAME=1040,ENTRY*
 * ***           
 * ***           rd_atomic64_add(&msetr->msetr_rkb->rkb_c.rx_partial, 1\
 * );
-@_err_parse@1947@5 DS 0H
+@_err_parse@1947@4 DS 0H
          LG    15,72(0,3)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LA    15,768(0,15)
          STG   15,904(0,13)
          MVGHI 912(13),1
          LA    1,904(0,13)
-         LG    15,@lit_1947_1485 ; rd_atomic64_add
-@@gen_label1967 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1947_1492 ; rd_atomic64_add
 @@gen_label1968 DS    0H 
+         BALR  14,15
+@@gen_label1969 DS    0H 
 * ***           err = rkbuf->rkbuf_err;
          L     2,392(0,4)  ; offset of rkbuf_err in rd_kafka_buf_s
 * ***           
 * ***    err:
 * ***           msetr->msetr_v2_hdr = ((void *)0);
-@_err@1947@7 DS 0H
+@_err@1947@6 DS 0H
          LGHI  15,0        ; 0
          STG   15,40(0,3)  ; offset of msetr_v2_hdr in rd_kafka_msgset_*
                reader_s
@@ -17895,38 +17956,38 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    15,4048(0,15) ; offset of rkb_rk in rd_kafka_broker_s
          TM    803(15),128
-         BZ    @L1932
+         BZ    @L1939
          LHI   6,7         ; 7
-         B     @L1933
+         B     @L1940
          DS    0D
 @FRAMESIZE_1948 DC F'848'
-@lit_1948_1540 DC AD(rd_slice_offset)
-@lit_1948_1542 DC AD(rd_slice_peek)
-@lit_1948_1543 DC AD(rd_slice_abs_offset)
-@lit_1948_1546 DC AD(rd_kafka_crash)
-@lit_1948_1545 DC AD(@DATA)
-@lit_1948_1544 DC AD(@strings@)
-@lit_1948_1548 DC AD(snprintf)
-@lit_1948_1550 DC AD(mtx_lock)
-@lit_1948_1552 DC AD(rd_strlcpy)
-@lit_1948_1554 DC AD(mtx_unlock)
-@lit_1948_1555 DC AD(rd_kafka_$Api$Key2str)
-@lit_1948_1561 DC AD(rd_kafka_log0)
+@lit_1948_1547 DC AD(rd_slice_offset)
+@lit_1948_1549 DC AD(rd_slice_peek)
+@lit_1948_1550 DC AD(rd_slice_abs_offset)
+@lit_1948_1553 DC AD(rd_kafka_crash)
+@lit_1948_1552 DC AD(@DATA)
+@lit_1948_1551 DC AD(@strings@)
+@lit_1948_1555 DC AD(snprintf)
+@lit_1948_1557 DC AD(mtx_lock)
+@lit_1948_1559 DC AD(rd_strlcpy)
+@lit_1948_1561 DC AD(mtx_unlock)
+@lit_1948_1562 DC AD(rd_kafka_$Api$Key2str)
+@lit_1948_1568 DC AD(rd_kafka_log0)
 @lit_region_diff_1948_1_2  DC A(@REGION_1948_2-@REGION_1948_1)
-@lit_1948_1563 DC AD(rd_slice_read)
-@lit_1948_1592 DC AD(rd_kafka_consumer_err)
-@L1932   DS    0H
+@lit_1948_1570 DC AD(rd_slice_read)
+@lit_1948_1599 DC AD(rd_kafka_consumer_err)
+@L1939   DS    0H
          LHI   6,0         ; 0
-@L1933   DS    0H
+@L1940   DS    0H
 * ***           size_t read_offset = rd_slice_offset(&rkbuf->rkbuf_rea\
 * der);
          LA    15,120(0,4)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1540 ; rd_slice_offset
-@@gen_label1970 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1547 ; rd_slice_offset
 @@gen_label1971 DS    0H 
+         BALR  14,15
+@@gen_label1972 DS    0H 
          LGR   7,15
 * ***   
 * ***           do { size_t __len2 = (size_t)(1); if (!rd_slice_peek(&\
@@ -17935,7 +17996,7 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
 *  > ((&(rkbuf)->rkbuf_reader)->end - rd_slice_abs_offset(&(rkbuf)->rk\
 * buf_reader))))) { do { if (log_decode_errors > 0) { do { if (((!(rkb\
 * uf->rkbuf_rkb)))) rd_kafka_crash("C:\\asgkafka\\librdkafka\\src\\rdk\
-* afka_msgset_reader.c",1185, __FUNCTION__, (((void *)0)), "assert: " \
+* afka_msgset_reader.c",1191, __FUNCTION__, (((void *)0)), "assert: " \
 * "rkbuf->rkbuf_rkb"); } while (0); char __tmpstr[256]; snprintf(__tmp\
 * str, sizeof(__tmpstr), ": "); if (__strlen(__tmpstr) == 2) __tmpstr[\
 * 0] = '\0'; do { char _logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rk\
@@ -17948,12 +18009,12 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
 * (%s)%s", rd_kafka_ApiKey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rk\
 * buf_reqhdr.ApiVersion, rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkb\
 * uf->rkbuf_reader)->end - (&rkbuf->rkbuf_reader)->start), __FUNCTION_\
-* _, 1185, __len0, ((&rkbuf->rkbuf_reader)->end - rd_slice_abs_offset(\
+* _, 1191, __len0, ((&rkbuf->rkbuf_reader)->end - rd_slice_abs_offset(\
 * &rkbuf->rkbuf_reader)), rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf\
 * _uflow_mitigation : "incorrect broker.version.fallback?", __tmpstr);\
 *  } while (0); } (rkbuf)->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; g\
 * oto err_parse; } while (0); } } while (0); } while (0);
-@L1934   DS    0H
+@L1941   DS    0H
          LGHI  8,1         ; 1
          LA    15,120(0,4)
          STG   15,712(0,13)
@@ -17965,13 +18026,13 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          STG   3,728(0,13)
          STG   8,736(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1542 ; rd_slice_peek
-@@gen_label1972 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1549 ; rd_slice_peek
 @@gen_label1973 DS    0H 
+         BALR  14,15
+@@gen_label1974 DS    0H 
          LTGR  15,15
-         BNZ   @L1937
-@L1938   DS    0H
+         BNZ   @L1944
+@L1945   DS    0H
          LGR   15,7
          AGHI  15,8
          AGHI  15,4
@@ -17982,67 +18043,67 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          LA    15,120(0,4)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1543 ; rd_slice_abs_offset
-@@gen_label1975 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1550 ; rd_slice_abs_offset
 @@gen_label1976 DS    0H 
+         BALR  14,15
+@@gen_label1977 DS    0H 
          SLGR  9,15
          CLGR  8,9
-         BNH   @L1941
-@L1942   DS    0H
+         BNH   @L1948
+@L1949   DS    0H
          LTR   6,6
-         BNH   @L1945
-@L1946   DS    0H
+         BNH   @L1952
+@L1953   DS    0H
          LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1949
-         LG    15,@lit_1948_1544
+         BNZ   @L1956
+         LG    15,@lit_1948_1551
          LA    1,718(0,15)
          STG   1,712(0,13)
-         MVGHI 720(13),1185
-         LG    1,@lit_1948_1545
+         MVGHI 720(13),1191
+         LG    1,@lit_1948_1552
          LA    1,626(0,1)
          STG   1,728(0,13)
          XC    736(8,13),736(13)
          LA    15,866(0,15)
          STG   15,744(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1546 ; rd_kafka_crash
-@@gen_label1980 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1553 ; rd_kafka_crash
 @@gen_label1981 DS    0H 
-@L1949   DS    0H
+         BALR  14,15
+@@gen_label1982 DS    0H 
+@L1956   DS    0H
          LA    15,196(0,13)
          STG   15,712(0,13)
          MVGHI 720(13),256
-         LG    15,@lit_1948_1544
+         LG    15,@lit_1948_1551
          LA    15,892(0,15)
          STG   15,728(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1548 ; snprintf
-@@gen_label1982 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1555 ; snprintf
 @@gen_label1983 DS    0H 
+         BALR  14,15
+@@gen_label1984 DS    0H 
          LA    15,196(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label1984 DS 0H
+@@gen_label1985 DS 0H
          SRST  0,15
-         BC  1,@@gen_label1984
+         BC  1,@@gen_label1985
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1951
+         BNE   @L1958
          MVI   196(13),0
-@L1950   DS    0H
-@L1951   DS    0H
+@L1957   DS    0H
+@L1958   DS    0H
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  2,5688      ; 5688
          LA    15,0(2,15)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1550 ; mtx_lock
-@@gen_label1986 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1557 ; mtx_lock
 @@gen_label1987 DS    0H 
+         BALR  14,15
+@@gen_label1988 DS    0H 
          LA    15,452(0,13)
          STG   15,712(0,13)
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -18051,53 +18112,53 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          STG   15,720(0,13)
          MVGHI 728(13),256
          LA    1,712(0,13)
-         LG    15,@lit_1948_1552 ; rd_strlcpy
-@@gen_label1988 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1559 ; rd_strlcpy
 @@gen_label1989 DS    0H 
+         BALR  14,15
+@@gen_label1990 DS    0H 
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(2,15)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1554 ; mtx_unlock
-@@gen_label1990 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1561 ; mtx_unlock
 @@gen_label1991 DS    0H 
+         BALR  14,15
+@@gen_label1992 DS    0H 
          LGH   15,184(0,4)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1555 ; rd_kafka_ApiKey2str
-@@gen_label1992 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1562 ; rd_kafka_ApiKey2str
 @@gen_label1993 DS    0H 
+         BALR  14,15
+@@gen_label1994 DS    0H 
          LGR   2,15
          LA    15,120(0,4)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1540 ; rd_slice_offset
-@@gen_label1994 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1547 ; rd_slice_offset
 @@gen_label1995 DS    0H 
+         BALR  14,15
+@@gen_label1996 DS    0H 
          LGR   3,15
          LG    5,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1543 ; rd_slice_abs_offset
-@@gen_label1996 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1550 ; rd_slice_abs_offset
 @@gen_label1997 DS    0H 
+         BALR  14,15
+@@gen_label1998 DS    0H 
          SLGR  5,15
          LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L1954
+         BZ    @L1961
          LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         B     @L1955
-@L1954   DS    0H
-         LG    15,@lit_1948_1544
+         B     @L1962
+@L1961   DS    0H
+         LG    15,@lit_1948_1551
          LA    15,896(0,15)
-@L1955   DS    0H
+@L1962   DS    0H
          LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -18110,7 +18171,7 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          LGFR  1,6
          STG   1,736(0,13)
          XC    744(8,13),744(13)
-         LG    1,@lit_1948_1544
+         LG    1,@lit_1948_1551
          LA    6,932(0,1)
          STG   6,752(0,13)
          LA    1,944(0,1)
@@ -18122,45 +18183,45 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          LG    1,152(0,4)  ; offset of end in rd_slice_s
          SLG   1,144(0,4)
          STG   1,792(0,13)
-         LG    1,@lit_1948_1545
+         LG    1,@lit_1948_1552
          LA    1,626(0,1)
          STG   1,800(0,13)
-         MVGHI 808(13),1185
+         MVGHI 808(13),1191
          STG   8,816(0,13)
          STG   5,824(0,13)
          STG   15,832(0,13)
          LA    15,196(0,13)
          STG   15,840(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1561 ; rd_kafka_log0
-@@gen_label1999 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1568 ; rd_kafka_log0
 @@gen_label2000 DS    0H 
-@L1945   DS    0H
+         BALR  14,15
+@@gen_label2001 DS    0H 
+@L1952   DS    0H
          MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
          ALGF  12,@lit_region_diff_1948_1_2
          DROP  12
          USING @REGION_1948_2,12
-         B     @_err_parse@1948@8
+         B     @_err_parse@1948@7
          DROP  12
          USING @REGION_1948_1,12
-@L1941   DS    0H
-@L1937   DS    0H
+@L1948   DS    0H
+@L1944   DS    0H
 * ***   
 * ***           if (((*MagicBytep < 0 || *MagicBytep > 2))) {
          LB    15,0(0,3)
          LTR   15,15
-         BL    @L1961
+         BL    @L1968
          LB    15,0(0,3)
          CHI   15,2
          BH    *+14  Around region break
          ALGF  12,@lit_region_diff_1948_1_2
          DROP  12
          USING @REGION_1948_2,12
-         B     @L1956
+         B     @L1963
          DROP  12
          USING @REGION_1948_1,12
-@L1957   DS    0H
+@L1964   DS    0H
 * ***                   int64_t Offset; 
 * ***                   int32_t Length;
 * ***   
@@ -18170,7 +18231,7 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
 * >rkbuf_reader)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader))))\
 * ) { do { if (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)\
 * ))) rd_kafka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_re\
-* ader.c",1191, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_\
+* ader.c",1197, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_\
 * rkb"); } while (0); char __tmpstr[256]; snprintf(__tmpstr, sizeof(__\
 * tmpstr), ": "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do \
 * { char _logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock\
@@ -18182,15 +18243,15 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
 * pected %" "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_ka\
 * fka_ApiKey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.Api\
 * Version, rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_read\
-* er)->end - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1191, __len\
+* er)->end - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1197, __len\
 * 0, ((&rkbuf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkbuf_\
 * reader)), rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigat\
 * ion : "incorrect broker.version.fallback?", __tmpstr); } while (0); \
 * } (rkbuf)->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse;\
 *  } while (0); } } while (0); } while (0); *(&Offset) = (_v); } while\
 *  (0);
-@L1958   DS    0H
-@L1961   DS    0H
+@L1965   DS    0H
+@L1968   DS    0H
          LGHI  8,8         ; 8
          LA    15,120(0,4)
          STG   15,712(0,13)
@@ -18198,78 +18259,78 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          STG   15,720(0,13)
          STG   8,728(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1563 ; rd_slice_read
-@@gen_label2003 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1570 ; rd_slice_read
 @@gen_label2004 DS    0H 
+         BALR  14,15
+@@gen_label2005 DS    0H 
          LTGR  15,15
-         BNZ   @L1964
-@L1965   DS    0H
+         BNZ   @L1971
+@L1972   DS    0H
          LG    9,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1543 ; rd_slice_abs_offset
-@@gen_label2006 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1550 ; rd_slice_abs_offset
 @@gen_label2007 DS    0H 
+         BALR  14,15
+@@gen_label2008 DS    0H 
          SLGR  9,15
          CLGR  8,9
-         BNH   @L1968
-@L1969   DS    0H
+         BNH   @L1975
+@L1976   DS    0H
          LTR   6,6
-         BNH   @L1972
-@L1973   DS    0H
+         BNH   @L1979
+@L1980   DS    0H
          LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L1976
-         LG    15,@lit_1948_1544
+         BNZ   @L1983
+         LG    15,@lit_1948_1551
          LA    1,718(0,15)
          STG   1,712(0,13)
-         MVGHI 720(13),1191
-         LG    1,@lit_1948_1545
+         MVGHI 720(13),1197
+         LG    1,@lit_1948_1552
          LA    1,626(0,1)
          STG   1,728(0,13)
          XC    736(8,13),736(13)
          LA    15,866(0,15)
          STG   15,744(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1546 ; rd_kafka_crash
-@@gen_label2011 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1553 ; rd_kafka_crash
 @@gen_label2012 DS    0H 
-@L1976   DS    0H
+         BALR  14,15
+@@gen_label2013 DS    0H 
+@L1983   DS    0H
          LA    15,196(0,13)
          STG   15,712(0,13)
          MVGHI 720(13),256
-         LG    15,@lit_1948_1544
+         LG    15,@lit_1948_1551
          LA    15,892(0,15)
          STG   15,728(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1548 ; snprintf
-@@gen_label2013 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1555 ; snprintf
 @@gen_label2014 DS    0H 
+         BALR  14,15
+@@gen_label2015 DS    0H 
          LA    15,196(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label2015 DS 0H
+@@gen_label2016 DS 0H
          SRST  0,15
-         BC  1,@@gen_label2015
+         BC  1,@@gen_label2016
          SLGR  0,1
          CGHI  0,2
-         BNE   @L1978
+         BNE   @L1985
          MVI   196(13),0
-@L1977   DS    0H
-@L1978   DS    0H
+@L1984   DS    0H
+@L1985   DS    0H
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  2,5688      ; 5688
          LA    15,0(2,15)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1550 ; mtx_lock
-@@gen_label2017 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1557 ; mtx_lock
 @@gen_label2018 DS    0H 
+         BALR  14,15
+@@gen_label2019 DS    0H 
          LA    15,452(0,13)
          STG   15,712(0,13)
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -18278,53 +18339,53 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          STG   15,720(0,13)
          MVGHI 728(13),256
          LA    1,712(0,13)
-         LG    15,@lit_1948_1552 ; rd_strlcpy
-@@gen_label2019 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1559 ; rd_strlcpy
 @@gen_label2020 DS    0H 
+         BALR  14,15
+@@gen_label2021 DS    0H 
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(2,15)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1554 ; mtx_unlock
-@@gen_label2021 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1561 ; mtx_unlock
 @@gen_label2022 DS    0H 
+         BALR  14,15
+@@gen_label2023 DS    0H 
          LGH   15,184(0,4)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1555 ; rd_kafka_ApiKey2str
-@@gen_label2023 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1562 ; rd_kafka_ApiKey2str
 @@gen_label2024 DS    0H 
+         BALR  14,15
+@@gen_label2025 DS    0H 
          LGR   2,15
          LA    15,120(0,4)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1540 ; rd_slice_offset
-@@gen_label2025 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1547 ; rd_slice_offset
 @@gen_label2026 DS    0H 
+         BALR  14,15
+@@gen_label2027 DS    0H 
          LGR   3,15
          LG    5,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1543 ; rd_slice_abs_offset
-@@gen_label2027 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1550 ; rd_slice_abs_offset
 @@gen_label2028 DS    0H 
+         BALR  14,15
+@@gen_label2029 DS    0H 
          SLGR  5,15
          LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L1981
+         BZ    @L1988
          LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         B     @L1982
-@L1981   DS    0H
-         LG    15,@lit_1948_1544
+         B     @L1989
+@L1988   DS    0H
+         LG    15,@lit_1948_1551
          LA    15,896(0,15)
-@L1982   DS    0H
+@L1989   DS    0H
          LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -18337,7 +18398,7 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          LGFR  1,6
          STG   1,736(0,13)
          XC    744(8,13),744(13)
-         LG    1,@lit_1948_1544
+         LG    1,@lit_1948_1551
          LA    6,932(0,1)
          STG   6,752(0,13)
          LA    1,944(0,1)
@@ -18349,30 +18410,30 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          LG    1,152(0,4)  ; offset of end in rd_slice_s
          SLG   1,144(0,4)
          STG   1,792(0,13)
-         LG    1,@lit_1948_1545
+         LG    1,@lit_1948_1552
          LA    1,626(0,1)
          STG   1,800(0,13)
-         MVGHI 808(13),1191
+         MVGHI 808(13),1197
          STG   8,816(0,13)
          STG   5,824(0,13)
          STG   15,832(0,13)
          LA    15,196(0,13)
          STG   15,840(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1561 ; rd_kafka_log0
-@@gen_label2030 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1568 ; rd_kafka_log0
 @@gen_label2031 DS    0H 
-@L1972   DS    0H
+         BALR  14,15
+@@gen_label2032 DS    0H 
+@L1979   DS    0H
          MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
          ALGF  12,@lit_region_diff_1948_1_2
          DROP  12
          USING @REGION_1948_2,12
-         B     @_err_parse@1948@8
+         B     @_err_parse@1948@7
          DROP  12
          USING @REGION_1948_1,12
-@L1968   DS    0H
-@L1964   DS    0H
+@L1975   DS    0H
+@L1971   DS    0H
          LG    15,184(0,13) ; _v
          STG   15,168(0,13)
 * ***   
@@ -18387,25 +18448,25 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
 * zu" "): skipping", rktp->rktp_rkt->rkt_topic->str, rktp->rktp_partit\
 * ion, (int)*MagicBytep, Offset, read_offset, ((&rkbuf->rkbuf_reader)-\
 * >end - (&rkbuf->rkbuf_reader)->start)); } while (0); } } while (0);
-@L1983   DS    0H
+@L1990   DS    0H
          LG    15,72(0,2)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LG    15,4048(0,15) ; offset of rkb_rk in rd_kafka_broker_s
          L     15,800(0,15)
          NILF  15,X'000004C0'
          LTR   15,15
-         BZ    @L1986
-@L1987   DS    0H
+         BZ    @L1993
+@L1994   DS    0H
          LG    15,72(0,2)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LGHI  8,5688      ; 5688
          LA    15,0(8,15)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1550 ; mtx_lock
-@@gen_label2033 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1557 ; mtx_lock
 @@gen_label2034 DS    0H 
+         BALR  14,15
+@@gen_label2035 DS    0H 
          LA    15,196(0,13)
          STG   15,712(0,13)
          LG    15,72(0,2)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
@@ -18415,19 +18476,19 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          STG   15,720(0,13)
          MVGHI 728(13),256
          LA    1,712(0,13)
-         LG    15,@lit_1948_1552 ; rd_strlcpy
-@@gen_label2035 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1559 ; rd_strlcpy
 @@gen_label2036 DS    0H 
+         BALR  14,15
+@@gen_label2037 DS    0H 
          LG    15,72(0,2)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LA    15,0(8,15)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1554 ; mtx_unlock
-@@gen_label2037 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1561 ; mtx_unlock
 @@gen_label2038 DS    0H 
+         BALR  14,15
+@@gen_label2039 DS    0H 
          LG    15,72(0,2)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LG    15,4048(0,15) ; offset of rkb_rk in rd_kafka_broker_s
@@ -18441,10 +18502,10 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          STG   15,728(0,13)
          MVGHI 736(13),7
          MVGHI 744(13),1216
-         LG    15,@lit_1948_1544
-         LA    1,2172(0,15)
+         LG    15,@lit_1948_1551
+         LA    1,2238(0,15)
          STG   1,752(0,13)
-         LA    15,2182(0,15)
+         LA    15,2248(0,15)
          STG   15,760(0,13)
          LG    15,96(0,5)  ; offset of rktp_rkt in rd_kafka_toppar_s
          LG    15,128(0,15) ; offset of rkt_topic in rd_kafka_topic_s
@@ -18462,20 +18523,20 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          SLG   15,144(0,4)
          STG   15,808(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1561 ; rd_kafka_log0
-@@gen_label2039 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1568 ; rd_kafka_log0
 @@gen_label2040 DS    0H 
-@L1986   DS    0H
+         BALR  14,15
+@@gen_label2041 DS    0H 
+@L1993   DS    0H
 * ***   
-* ***   # 1205 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
+* ***   # 1211 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
 * ***                   if (Offset >= msetr->msetr_rktp->rktp_offsets.\
 * fetch_offset) {
          LG    15,168(0,13) ; Offset
          LG    1,80(0,2)   ; offset of msetr_rktp in rd_kafka_msgset_re*
                ader_s
          CG    15,568(0,1)
-         BL    @L1994
+         BL    @L2001
 * ***                           rd_kafka_consumer_err(
 * ***                                   &msetr->msetr_rkq,
 * ***                                   msetr->msetr_broker_id,
@@ -18499,18 +18560,18 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          STG   5,752(0,13)
          STG   15,760(0,13)
 * ***                                   "at offset %" "lld",
-         LG    1,@lit_1948_1544
-         LA    1,2280(0,1)
+         LG    1,@lit_1948_1551
+         LA    1,2346(0,1)
          STG   1,768(0,13)
          LB    1,0(0,3)
          LGFR  1,1
          STG   1,776(0,13)
          STG   15,784(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1592 ; rd_kafka_consumer_err
-@@gen_label2042 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1599 ; rd_kafka_consumer_err
 @@gen_label2043 DS    0H 
+         BALR  14,15
+@@gen_label2044 DS    0H 
 * ***                           
 * ***                           msetr->msetr_rktp->rktp_offsets.fetch_\
 * offset = Offset+1;
@@ -18521,7 +18582,7 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          STG   1,568(0,15) ; offset of rktp_offsets in rd_kafka_toppar_*
                s
 * ***                   }
-@L1990   DS    0H
+@L1997   DS    0H
 * ***   
 * ***                   
 * ***   
@@ -18532,7 +18593,7 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
 * >rkbuf_reader)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader))))\
 * ) { do { if (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb)\
 * ))) rd_kafka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_re\
-* ader.c",1221, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_\
+* ader.c",1227, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_\
 * rkb"); } while (0); char __tmpstr[256]; snprintf(__tmpstr, sizeof(__\
 * tmpstr), ": "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do \
 * { char _logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock\
@@ -18544,15 +18605,15 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
 * pected %" "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_ka\
 * fka_ApiKey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.Api\
 * Version, rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_read\
-* er)->end - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1221, __len\
+* er)->end - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1227, __len\
 * 0, ((&rkbuf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkbuf_\
 * reader)), rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigat\
 * ion : "incorrect broker.version.fallback?", __tmpstr); } while (0); \
 * } (rkbuf)->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse;\
 *  } while (0); } } while (0); } while (0); *(&Length) = (_v); } while\
 *  (0);
-@L1991   DS    0H
-@L1994   DS    0H
+@L1998   DS    0H
+@L2001   DS    0H
          LGHI  2,4         ; 4
          LA    15,120(0,4)
          STG   15,712(0,13)
@@ -18560,100 +18621,100 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          STG   15,720(0,13)
          STG   2,728(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1563 ; rd_slice_read
-@@gen_label2044 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1570 ; rd_slice_read
 @@gen_label2045 DS    0H 
+         BALR  14,15
+@@gen_label2046 DS    0H 
          LTGR  15,15
          BZ    *+14  Around region break
          ALGF  12,@lit_region_diff_1948_1_2
          DROP  12
          USING @REGION_1948_2,12
-         B     @L1997
+         B     @L2004
          DROP  12
          USING @REGION_1948_1,12
-@L1998   DS    0H
+@L2005   DS    0H
          LG    3,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1543 ; rd_slice_abs_offset
-@@gen_label2047 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1550 ; rd_slice_abs_offset
 @@gen_label2048 DS    0H 
+         BALR  14,15
+@@gen_label2049 DS    0H 
          SLGR  3,15
          CLGR  2,3
          BH    *+14  Around region break
          ALGF  12,@lit_region_diff_1948_1_2
          DROP  12
          USING @REGION_1948_2,12
-         B     @L2001
+         B     @L2008
          DROP  12
          USING @REGION_1948_1,12
-@L2002   DS    0H
+@L2009   DS    0H
          LTR   6,6
          BH    *+14  Around region break
          ALGF  12,@lit_region_diff_1948_1_2
          DROP  12
          USING @REGION_1948_2,12
-         B     @L2005
+         B     @L2012
          DROP  12
          USING @REGION_1948_1,12
          ALGF  12,@lit_region_diff_1948_1_2
 @REGION_1948_2 DS 0H
          DROP  12
          USING @REGION_1948_2,12
-@L2006   DS    0H
+@L2013   DS    0H
          LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L2009
-         LG    15,@lit_1948_1597
+         BNZ   @L2016
+         LG    15,@lit_1948_1604
          LA    1,718(0,15)
          STG   1,712(0,13)
-         MVGHI 720(13),1221
-         LG    1,@lit_1948_1598
+         MVGHI 720(13),1227
+         LG    1,@lit_1948_1605
          LA    1,626(0,1)
          STG   1,728(0,13)
          XC    736(8,13),736(13)
          LA    15,866(0,15)
          STG   15,744(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1599 ; rd_kafka_crash
-@@gen_label2052 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1606 ; rd_kafka_crash
 @@gen_label2053 DS    0H 
-@L2009   DS    0H
+         BALR  14,15
+@@gen_label2054 DS    0H 
+@L2016   DS    0H
          LA    15,196(0,13)
          STG   15,712(0,13)
          MVGHI 720(13),256
-         LG    15,@lit_1948_1597
+         LG    15,@lit_1948_1604
          LA    15,892(0,15)
          STG   15,728(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1601 ; snprintf
-@@gen_label2054 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1608 ; snprintf
 @@gen_label2055 DS    0H 
+         BALR  14,15
+@@gen_label2056 DS    0H 
          LA    15,196(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label2056 DS 0H
+@@gen_label2057 DS 0H
          SRST  0,15
-         BC  1,@@gen_label2056
+         BC  1,@@gen_label2057
          SLGR  0,1
          CGHI  0,2
-         BNE   @L2011
+         BNE   @L2018
          MVI   196(13),0
-@L2010   DS    0H
-@L2011   DS    0H
+@L2017   DS    0H
+@L2018   DS    0H
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  3,5688      ; 5688
          LA    15,0(3,15)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1603 ; mtx_lock
-@@gen_label2058 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1610 ; mtx_lock
 @@gen_label2059 DS    0H 
+         BALR  14,15
+@@gen_label2060 DS    0H 
          LA    15,452(0,13)
          STG   15,712(0,13)
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -18662,66 +18723,66 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          STG   15,720(0,13)
          MVGHI 728(13),256
          LA    1,712(0,13)
-         LG    15,@lit_1948_1605 ; rd_strlcpy
-@@gen_label2060 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1612 ; rd_strlcpy
 @@gen_label2061 DS    0H 
+         BALR  14,15
+@@gen_label2062 DS    0H 
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(3,15)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1607 ; mtx_unlock
-@@gen_label2062 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1614 ; mtx_unlock
 @@gen_label2063 DS    0H 
+         BALR  14,15
+@@gen_label2064 DS    0H 
          LGH   15,184(0,4)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1608 ; rd_kafka_ApiKey2str
-@@gen_label2064 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1615 ; rd_kafka_ApiKey2str
 @@gen_label2065 DS    0H 
+         BALR  14,15
+@@gen_label2066 DS    0H 
          LGR   3,15
          LA    15,120(0,4)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1609 ; rd_slice_offset
-@@gen_label2066 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1616 ; rd_slice_offset
 @@gen_label2067 DS    0H 
+         BALR  14,15
+@@gen_label2068 DS    0H 
          LGR   5,15
          LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1610 ; rd_slice_abs_offset
-@@gen_label2068 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1617 ; rd_slice_abs_offset
 @@gen_label2069 DS    0H 
+         BALR  14,15
+@@gen_label2070 DS    0H 
          SLGR  7,15
          LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L2014
+         BZ    @L2021
          LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         B     @L2015
+         B     @L2022
          DS    0D
-@lit_1948_1599 DC AD(rd_kafka_crash)
-@lit_1948_1598 DC AD(@DATA)
-@lit_1948_1597 DC AD(@strings@)
-@lit_1948_1601 DC AD(snprintf)
-@lit_1948_1603 DC AD(mtx_lock)
-@lit_1948_1605 DC AD(rd_strlcpy)
-@lit_1948_1607 DC AD(mtx_unlock)
-@lit_1948_1608 DC AD(rd_kafka_$Api$Key2str)
-@lit_1948_1609 DC AD(rd_slice_offset)
-@lit_1948_1610 DC AD(rd_slice_abs_offset)
-@lit_1948_1614 DC AD(rd_kafka_log0)
-@lit_1948_1615 DC AD(rd_slice_read)
-@L2014   DS    0H
-         LG    15,@lit_1948_1597
+@lit_1948_1606 DC AD(rd_kafka_crash)
+@lit_1948_1605 DC AD(@DATA)
+@lit_1948_1604 DC AD(@strings@)
+@lit_1948_1608 DC AD(snprintf)
+@lit_1948_1610 DC AD(mtx_lock)
+@lit_1948_1612 DC AD(rd_strlcpy)
+@lit_1948_1614 DC AD(mtx_unlock)
+@lit_1948_1615 DC AD(rd_kafka_$Api$Key2str)
+@lit_1948_1616 DC AD(rd_slice_offset)
+@lit_1948_1617 DC AD(rd_slice_abs_offset)
+@lit_1948_1621 DC AD(rd_kafka_log0)
+@lit_1948_1622 DC AD(rd_slice_read)
+@L2021   DS    0H
+         LG    15,@lit_1948_1604
          LA    15,896(0,15)
-@L2015   DS    0H
+@L2022   DS    0H
          LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -18734,7 +18795,7 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          LGFR  1,6
          STG   1,736(0,13)
          XC    744(8,13),744(13)
-         LG    1,@lit_1948_1597
+         LG    1,@lit_1948_1604
          LA    6,932(0,1)
          STG   6,752(0,13)
          LA    1,944(0,1)
@@ -18747,25 +18808,25 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          LG    1,152(0,4)  ; offset of end in rd_slice_s
          SLG   1,144(0,4)
          STG   1,792(0,13)
-         LG    1,@lit_1948_1598
+         LG    1,@lit_1948_1605
          LA    1,626(0,1)
          STG   1,800(0,13)
-         MVGHI 808(13),1221
+         MVGHI 808(13),1227
          STG   2,816(0,13)
          STG   7,824(0,13)
          STG   15,832(0,13)
          LA    15,196(0,13)
          STG   15,840(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1614 ; rd_kafka_log0
-@@gen_label2071 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1621 ; rd_kafka_log0
 @@gen_label2072 DS    0H 
-@L2005   DS    0H
+         BALR  14,15
+@@gen_label2073 DS    0H 
+@L2012   DS    0H
          MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
-         B     @_err_parse@1948@8
-@L2001   DS    0H
-@L1997   DS    0H
+         B     @_err_parse@1948@7
+@L2008   DS    0H
+@L2004   DS    0H
          L     15,192(0,13) ; _v
          ST    15,176(0,13)
 * ***                   do { size_t __len1 = (size_t)(Length); if (__l\
@@ -18774,7 +18835,7 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
 * buf_reader)->end - rd_slice_abs_offset(&(rkbuf)->rkbuf_reader))))) {\
 *  do { if (log_decode_errors > 0) { do { if (((!(rkbuf->rkbuf_rkb))))\
 *  rd_kafka_crash("C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reade\
-* r.c",1222, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb\
+* r.c",1228, __FUNCTION__, (((void *)0)), "assert: " "rkbuf->rkbuf_rkb\
 * "); } while (0); char __tmpstr[256]; snprintf(__tmpstr, sizeof(__tmp\
 * str), ": "); if (__strlen(__tmpstr) == 2) __tmpstr[0] = '\0'; do { c\
 * har _logname[256]; mtx_lock(&(rkbuf->rkbuf_rkb)->rkb_logname_lock); \
@@ -18786,93 +18847,93 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
 * ted %" "zu" " bytes > " "%" "zu" " remaining bytes (%s)%s", rd_kafka\
 * _ApiKey2str(rkbuf->rkbuf_reqhdr. ApiKey), rkbuf->rkbuf_reqhdr.ApiVer\
 * sion, rd_slice_offset(&rkbuf->rkbuf_reader), ((&rkbuf->rkbuf_reader)\
-* ->end - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1222, __len0, \
+* ->end - (&rkbuf->rkbuf_reader)->start), __FUNCTION__, 1228, __len0, \
 * ((&rkbuf->rkbuf_reader)->end - rd_slice_abs_offset(&rkbuf->rkbuf_rea\
 * der)), rkbuf->rkbuf_uflow_mitigation ? rkbuf->rkbuf_uflow_mitigation\
 *  : "incorrect broker.version.fallback?", __tmpstr); } while (0); } (\
 * rkbuf)->rkbuf_err = RD_KAFKA_RESP_ERR__UNDERFLOW; goto err_parse; } \
 * while (0); } } while (0); } while (0);
-@L2016   DS    0H
+@L2023   DS    0H
          LGF   2,176(0,13) ; Length
          LTGR  15,2
-         BZ    @L2019
+         BZ    @L2026
          LA    15,120(0,4)
          STG   15,712(0,13)
          XC    720(8,13),720(13)
          STG   2,728(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1615 ; rd_slice_read
-@@gen_label2074 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1622 ; rd_slice_read
 @@gen_label2075 DS    0H 
+         BALR  14,15
+@@gen_label2076 DS    0H 
          LTGR  15,15
-         BNZ   @L2019
-@L2020   DS    0H
+         BNZ   @L2026
+@L2027   DS    0H
          LG    3,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1610 ; rd_slice_abs_offset
-@@gen_label2077 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1617 ; rd_slice_abs_offset
 @@gen_label2078 DS    0H 
+         BALR  14,15
+@@gen_label2079 DS    0H 
          SLGR  3,15
          CLGR  2,3
-         BNH   @L2023
-@L2024   DS    0H
+         BNH   @L2030
+@L2031   DS    0H
          LTR   6,6
-         BNH   @L2027
-@L2028   DS    0H
+         BNH   @L2034
+@L2035   DS    0H
          LTG   15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
-         BNZ   @L2031
-         LG    15,@lit_1948_1597
+         BNZ   @L2038
+         LG    15,@lit_1948_1604
          LA    1,718(0,15)
          STG   1,712(0,13)
-         MVGHI 720(13),1222
-         LG    1,@lit_1948_1598
+         MVGHI 720(13),1228
+         LG    1,@lit_1948_1605
          LA    1,626(0,1)
          STG   1,728(0,13)
          XC    736(8,13),736(13)
          LA    15,866(0,15)
          STG   15,744(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1599 ; rd_kafka_crash
-@@gen_label2082 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1606 ; rd_kafka_crash
 @@gen_label2083 DS    0H 
-@L2031   DS    0H
+         BALR  14,15
+@@gen_label2084 DS    0H 
+@L2038   DS    0H
          LA    15,196(0,13)
          STG   15,712(0,13)
          MVGHI 720(13),256
-         LG    15,@lit_1948_1597
+         LG    15,@lit_1948_1604
          LA    15,892(0,15)
          STG   15,728(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1601 ; snprintf
-@@gen_label2084 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1608 ; snprintf
 @@gen_label2085 DS    0H 
+         BALR  14,15
+@@gen_label2086 DS    0H 
          LA    15,196(0,13)
          LGR   1,15
          LGHI  0,0
-@@gen_label2086 DS 0H
+@@gen_label2087 DS 0H
          SRST  0,15
-         BC  1,@@gen_label2086
+         BC  1,@@gen_label2087
          SLGR  0,1
          CGHI  0,2
-         BNE   @L2033
+         BNE   @L2040
          MVI   196(13),0
-@L2032   DS    0H
-@L2033   DS    0H
+@L2039   DS    0H
+@L2040   DS    0H
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LGHI  3,5688      ; 5688
          LA    15,0(3,15)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1603 ; mtx_lock
-@@gen_label2088 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1610 ; mtx_lock
 @@gen_label2089 DS    0H 
+         BALR  14,15
+@@gen_label2090 DS    0H 
          LA    15,452(0,13)
          STG   15,712(0,13)
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
@@ -18881,53 +18942,53 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          STG   15,720(0,13)
          MVGHI 728(13),256
          LA    1,712(0,13)
-         LG    15,@lit_1948_1605 ; rd_strlcpy
-@@gen_label2090 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1612 ; rd_strlcpy
 @@gen_label2091 DS    0H 
+         BALR  14,15
+@@gen_label2092 DS    0H 
          LG    15,256(0,4) ; offset of rkbuf_rkb in rd_kafka_buf_s
          LA    15,0(3,15)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1607 ; mtx_unlock
-@@gen_label2092 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1614 ; mtx_unlock
 @@gen_label2093 DS    0H 
+         BALR  14,15
+@@gen_label2094 DS    0H 
          LGH   15,184(0,4)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1608 ; rd_kafka_ApiKey2str
-@@gen_label2094 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1615 ; rd_kafka_ApiKey2str
 @@gen_label2095 DS    0H 
+         BALR  14,15
+@@gen_label2096 DS    0H 
          LGR   3,15
          LA    15,120(0,4)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1609 ; rd_slice_offset
-@@gen_label2096 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1616 ; rd_slice_offset
 @@gen_label2097 DS    0H 
+         BALR  14,15
+@@gen_label2098 DS    0H 
          LGR   5,15
          LG    7,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,712(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1610 ; rd_slice_abs_offset
-@@gen_label2098 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1617 ; rd_slice_abs_offset
 @@gen_label2099 DS    0H 
+         BALR  14,15
+@@gen_label2100 DS    0H 
          SLGR  7,15
          LTG   15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         BZ    @L2036
+         BZ    @L2043
          LG    15,488(0,4) ; offset of rkbuf_uflow_mitigation in rd_kaf*
                ka_buf_s
-         B     @L2037
-@L2036   DS    0H
-         LG    15,@lit_1948_1597
+         B     @L2044
+@L2043   DS    0H
+         LG    15,@lit_1948_1604
          LA    15,896(0,15)
-@L2037   DS    0H
+@L2044   DS    0H
          LG    1,256(0,4)  ; offset of rkbuf_rkb in rd_kafka_buf_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
          LA    1,528(0,1)
@@ -18940,7 +19001,7 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          LGFR  1,6
          STG   1,736(0,13)
          XC    744(8,13),744(13)
-         LG    1,@lit_1948_1597
+         LG    1,@lit_1948_1604
          LA    6,932(0,1)
          STG   6,752(0,13)
          LA    1,944(0,1)
@@ -18953,31 +19014,31 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
          LG    1,152(0,4)  ; offset of end in rd_slice_s
          SLG   1,144(0,4)
          STG   1,792(0,13)
-         LG    1,@lit_1948_1598
+         LG    1,@lit_1948_1605
          LA    1,626(0,1)
          STG   1,800(0,13)
-         MVGHI 808(13),1222
+         MVGHI 808(13),1228
          STG   2,816(0,13)
          STG   7,824(0,13)
          STG   15,832(0,13)
          LA    15,196(0,13)
          STG   15,840(0,13)
          LA    1,712(0,13)
-         LG    15,@lit_1948_1614 ; rd_kafka_log0
-@@gen_label2101 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1948_1621 ; rd_kafka_log0
 @@gen_label2102 DS    0H 
-@L2027   DS    0H
+         BALR  14,15
+@@gen_label2103 DS    0H 
+@L2034   DS    0H
          MVHI  392(4),-155 ; offset of rkbuf_err in rd_kafka_buf_s
-         B     @_err_parse@1948@8
-@L2023   DS    0H
-@L2019   DS    0H
+         B     @_err_parse@1948@7
+@L2030   DS    0H
+@L2026   DS    0H
 * ***   
 * ***                   return RD_KAFKA_RESP_ERR__NOT_IMPLEMENTED;
          LGHI  15,-170     ; -170
          B     @ret_lab_1948
 * ***           }
-@L1956   DS    0H
+@L1963   DS    0H
 * ***   
 * ***           return RD_KAFKA_RESP_ERR_NO_ERROR;
          LGHI  15,0        ; 0
@@ -18985,7 +19046,7 @@ rd_kafka_msgset_reader_peek_msg_version DCCPRLG CINDEX=1948,BASER=12,FR*
 * ***   
 * ***    err_parse:
 * ***           return RD_KAFKA_RESP_ERR__BAD_MSG;
-@_err_parse@1948@8 DS 0H
+@_err_parse@1948@7 DS 0H
          LGHI  15,-199     ; -199
 * ***   }
 @ret_lab_1948 DS 0H
@@ -19076,20 +19137,20 @@ rd_kafka_msgset_reader DCCPRLG CINDEX=1949,BASER=12,FRAME=216,ENTRY=NO,*
 * ***                   
 * ***   
 * ***                   [0] = rd_kafka_msgset_reader_msg_v0_1,
-         LG    15,@lit_1949_1646 ; rd_kafka_msgset_reader_msg_v0_1
+         LG    15,@lit_1949_1653 ; rd_kafka_msgset_reader_msg_v0_1
          STG   15,176(0,13)
 * ***                   [1] = rd_kafka_msgset_reader_msg_v0_1,
          STG   15,184(0,13)
 * ***                   [2] = rd_kafka_msgset_reader_v2
 * ***           };
-         LG    15,@lit_1949_1648 ; rd_kafka_msgset_reader_v2
+         LG    15,@lit_1949_1655 ; rd_kafka_msgset_reader_v2
          STG   15,192(0,13)
 * ***           rd_kafka_resp_err_t err;
 * ***   
 * ***           
 * ***   
 * ***           do {
-@L2038   DS    0H
+@L2045   DS    0H
 * ***                   int8_t MagicByte;
 * ***   
 * ***                   
@@ -19103,17 +19164,17 @@ rd_kafka_msgset_reader DCCPRLG CINDEX=1949,BASER=12,FRAME=216,ENTRY=NO,*
          LA    15,168(0,13)
          STG   15,208(0,13)
          LA    1,200(0,13)
-         LG    15,@lit_1949_1649 ; rd_kafka_msgset_reader_peek_msg_vers*
+         LG    15,@lit_1949_1656 ; rd_kafka_msgset_reader_peek_msg_vers*
                ion
-@@gen_label2103 DS    0H 
-         BALR  14,15
 @@gen_label2104 DS    0H 
+         BALR  14,15
+@@gen_label2105 DS    0H 
          LTR   2,15        ; err
 * ***                   if (((err))) {
-         BZ    @L2041
+         BZ    @L2048
 * ***                           if (err == RD_KAFKA_RESP_ERR__BAD_MSG)
          CHI   2,-199
-         BNE   @L2040
+         BNE   @L2047
 * ***                                   
 * ***   
 * ***   
@@ -19123,16 +19184,16 @@ rd_kafka_msgset_reader DCCPRLG CINDEX=1949,BASER=12,FRAME=216,ENTRY=NO,*
          B     @ret_lab_1949
          DS    0D
 @FRAMESIZE_1949 DC F'216'
-@lit_1949_1648 DC AD(rd_kafka_msgset_reader_v2)
-@lit_1949_1646 DC AD(rd_kafka_msgset_reader_msg_v0_1)
-@lit_1949_1649 DC AD(rd_kafka_msgset_reader_peek_msg_version)
-@lit_1949_1651 DC AD(rd_slice_abs_offset)
+@lit_1949_1655 DC AD(rd_kafka_msgset_reader_v2)
+@lit_1949_1653 DC AD(rd_kafka_msgset_reader_msg_v0_1)
+@lit_1949_1656 DC AD(rd_kafka_msgset_reader_peek_msg_version)
+@lit_1949_1658 DC AD(rd_slice_abs_offset)
 * ***   
 * ***                           
 * ***   
 * ***                           continue;
 * ***                   }
-@L2041   DS    0H
+@L2048   DS    0H
 * ***   
 * ***                   
 * ***                   err = reader[(int)MagicByte](msetr);
@@ -19142,28 +19203,28 @@ rd_kafka_msgset_reader DCCPRLG CINDEX=1949,BASER=12,FRAME=216,ENTRY=NO,*
          SLLG  15,15,3(0)  ; *0x8
          LG    15,176(15,13)
          LA    1,200(0,13)
-@@gen_label2107 DS    0H 
-         BALR  14,15
 @@gen_label2108 DS    0H 
+         BALR  14,15
+@@gen_label2109 DS    0H 
          LR    2,15        ; err
 * ***   
 * ***           } while (!err && ((&rkbuf->rkbuf_reader)->end - rd_sli\
 * ce_abs_offset(&rkbuf->rkbuf_reader)) > 0);
-@L2040   DS    0H
+@L2047   DS    0H
          LTR   2,2
-         BNZ   @L2043
+         BNZ   @L2050
          LG    5,152(0,4)  ; offset of end in rd_slice_s
          LA    15,120(0,4)
          STG   15,200(0,13)
          LA    1,200(0,13)
-         LG    15,@lit_1949_1651 ; rd_slice_abs_offset
-@@gen_label2110 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1949_1658 ; rd_slice_abs_offset
 @@gen_label2111 DS    0H 
+         BALR  14,15
+@@gen_label2112 DS    0H 
          SLGR  5,15
          CLGFI 5,X'00000000'
-         BH    @L2038
-@L2043   DS    0H
+         BH    @L2045
+@L2050   DS    0H
 * ***   
 * ***           return err;
          LGFR  15,2
@@ -19209,13 +19270,13 @@ rd_kafka_msgset_reader_postproc DCCPRLG CINDEX=1950,BASER=12,FRAME=200,*
          MVGHI 184(13),1
          XC    192(8,13),192(13)
          LA    1,176(0,13)
-         LG    15,@lit_1950_1653 ; rd_kafka_q_last
-@@gen_label2113 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1950_1660 ; rd_kafka_q_last
 @@gen_label2114 DS    0H 
+         BALR  14,15
+@@gen_label2115 DS    0H 
 * ***           if (rko) {
          LTGR  1,15
-         BZ    @L2044
+         BZ    @L2051
 * ***               *last_offsetp = rko->rko_u.fetch.rkm. rkm_rkmessag\
 * e.offset;
          LG    15,176(0,15) ; offset of offset in rd_kafka_message_s
@@ -19224,10 +19285,10 @@ rd_kafka_msgset_reader_postproc DCCPRLG CINDEX=1950,BASER=12,FRAME=200,*
 * ***               if (*last_offsetp != -1 && msetr->msetr_relative_o\
 * ffsets) {
          CGHSI 0(3),-1
-         BE    @L2044
+         BE    @L2051
          LT    15,8(0,2)   ; offset of msetr_relative_offsets in rd_kaf*
                ka_msgset_reader_s
-         BZ    @L2044
+         BZ    @L2051
 * ***                   
 * ***   
 * ***   
@@ -19249,14 +19310,14 @@ rd_kafka_msgset_reader_postproc DCCPRLG CINDEX=1950,BASER=12,FRAME=200,*
          SG    15,0(0,3)
          STG   15,192(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1950_1654 ; rd_kafka_q_fix_offsets
-@@gen_label2118 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1950_1661 ; rd_kafka_q_fix_offsets
 @@gen_label2119 DS    0H 
+         BALR  14,15
+@@gen_label2120 DS    0H 
 * ***               }
-@L2045   DS    0H
+@L2052   DS    0H
 * ***           }
-@L2044   DS    0H
+@L2051   DS    0H
 * ***   }
 @ret_lab_1950 DS 0H
 * * **** Start of Epilogue
@@ -19264,8 +19325,8 @@ rd_kafka_msgset_reader_postproc DCCPRLG CINDEX=1950,BASER=12,FRAME=200,*
 * * **** End of Epilogue
          DS    0D
 @FRAMESIZE_1950 DC F'200'
-@lit_1950_1653 DC AD(rd_kafka_q_last)
-@lit_1950_1654 DC AD(rd_kafka_q_fix_offsets)
+@lit_1950_1660 DC AD(rd_kafka_q_last)
+@lit_1950_1661 DC AD(rd_kafka_q_fix_offsets)
          DROP  12
 *
 *   DSECT for automatic variables in "rd_kafka_msgset_reader_postproc"
@@ -19299,35 +19360,35 @@ rd_kafka_msgset_reader_run DCCPRLG CINDEX=1941,BASER=12,FRAME=576,ENTRY*
 * ***           err = rd_kafka_msgset_reader(msetr);
          STG   3,432(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_1941_1656 ; rd_kafka_msgset_reader
-@@gen_label2120 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1941_1663 ; rd_kafka_msgset_reader
 @@gen_label2121 DS    0H 
+         BALR  14,15
+@@gen_label2122 DS    0H 
          LR    2,15        ; err
 * ***   
 * ***           if (((rd_kafka_q_len(&msetr->msetr_rkq) == 0))) {
          LA    15,104(0,3)
          STG   15,432(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_1941_1657 ; rd_kafka_q_len
-@@gen_label2122 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1941_1664 ; rd_kafka_q_len
 @@gen_label2123 DS    0H 
+         BALR  14,15
+@@gen_label2124 DS    0H 
          LTR   15,15
-         BNE   @L2046
+         BNE   @L2053
 * ***                   
-* ***   # 1342 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
+* ***   # 1348 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
 * ***                   if (msetr->msetr_ctrl_cnt > 0) {
          CHSI  296(3),0
-         BH    @L2061
+         BH    @L2068
 * ***                           
 * ***   
 * ***                   } else  if (rktp->rktp_fetch_msg_max_bytes < (\
 * 1 << 30)) {
-@L2047   DS    0H
+@L2054   DS    0H
          L     15,492(0,4)
          CFI   15,X'40000000'
-         BNL   @L2049
+         BNL   @L2056
 * ***                           rktp->rktp_fetch_msg_max_bytes *= 2;
          L     15,492(0,4)
          AR    15,15       ; *0x2
@@ -19341,23 +19402,23 @@ rd_kafka_msgset_reader_run DCCPRLG CINDEX=1941,BASER=12,FRAME=576,ENTRY*
 * Topic %s [%" "d" "]: Increasing " "max fetch bytes to %" "d", rktp->\
 * rktp_rkt->rkt_topic->str, rktp->rktp_partition, rktp->rktp_fetch_msg\
 * _max_bytes); } while (0); } } while (0);
-@L2050   DS    0H
+@L2057   DS    0H
          LG    15,72(0,3)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LG    15,4048(0,15) ; offset of rkb_rk in rd_kafka_broker_s
          TM    802(15),4
-         BZ    @L2061
-@L2054   DS    0H
+         BZ    @L2068
+@L2061   DS    0H
          LG    15,72(0,3)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LGHI  5,5688      ; 5688
          LA    15,0(5,15)
          STG   15,432(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_1941_1659 ; mtx_lock
-@@gen_label2128 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1941_1666 ; mtx_lock
 @@gen_label2129 DS    0H 
+         BALR  14,15
+@@gen_label2130 DS    0H 
          LA    15,176(0,13)
          STG   15,432(0,13)
          LG    15,72(0,3)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
@@ -19367,19 +19428,19 @@ rd_kafka_msgset_reader_run DCCPRLG CINDEX=1941,BASER=12,FRAME=576,ENTRY*
          STG   15,440(0,13)
          MVGHI 448(13),256
          LA    1,432(0,13)
-         LG    15,@lit_1941_1661 ; rd_strlcpy
-@@gen_label2130 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1941_1668 ; rd_strlcpy
 @@gen_label2131 DS    0H 
+         BALR  14,15
+@@gen_label2132 DS    0H 
          LG    15,72(0,3)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LA    15,0(5,15)
          STG   15,432(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_1941_1663 ; mtx_unlock
-@@gen_label2132 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1941_1670 ; mtx_unlock
 @@gen_label2133 DS    0H 
+         BALR  14,15
+@@gen_label2134 DS    0H 
          LG    15,72(0,3)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LG    15,4048(0,15) ; offset of rkb_rk in rd_kafka_broker_s
@@ -19393,10 +19454,10 @@ rd_kafka_msgset_reader_run DCCPRLG CINDEX=1941,BASER=12,FRAME=576,ENTRY*
          STG   15,448(0,13)
          MVGHI 456(13),7
          MVGHI 464(13),1024
-         LG    15,@lit_1941_1664
-         LA    1,2334(0,15)
+         LG    15,@lit_1941_1671
+         LA    1,2400(0,15)
          STG   1,472(0,13)
-         LA    15,2342(0,15)
+         LA    15,2408(0,15)
          STG   15,480(0,13)
          LG    15,96(0,4)  ; offset of rktp_rkt in rd_kafka_toppar_s
          LG    15,128(0,15) ; offset of rkt_topic in rd_kafka_topic_s
@@ -19407,33 +19468,33 @@ rd_kafka_msgset_reader_run DCCPRLG CINDEX=1941,BASER=12,FRAME=576,ENTRY*
          LGF   15,492(0,4)
          STG   15,504(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_1941_1665 ; rd_kafka_log0
-@@gen_label2134 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1941_1672 ; rd_kafka_log0
 @@gen_label2135 DS    0H 
-@L2053   DS    0H
-* ***   # 1353 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
+         BALR  14,15
+@@gen_label2136 DS    0H 
+@L2060   DS    0H
+* ***   # 1359 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
 * ***                   } else if (!err) {
-         B     @L2061
+         B     @L2068
          DS    0D
 @FRAMESIZE_1941 DC F'576'
-@lit_1941_1656 DC AD(rd_kafka_msgset_reader)
-@lit_1941_1657 DC AD(rd_kafka_q_len)
-@lit_1941_1659 DC AD(mtx_lock)
-@lit_1941_1661 DC AD(rd_strlcpy)
-@lit_1941_1663 DC AD(mtx_unlock)
-@lit_1941_1665 DC AD(rd_kafka_log0)
-@lit_1941_1664 DC AD(@strings@)
-@lit_1941_1667 DC AD(rd_kafka_consumer_err)
-@lit_1941_1668 DC AD(rd_kafka_msgset_reader_postproc)
-@lit_1941_1678 DC AD(rd_kafka_compression2str)
-@lit_1941_1682 DC AD(rd_kafka_q_concat0)
-@lit_1941_1684 DC AD(rd_kafka_q_destroy_owner)
-@lit_1941_1685 DC AD(rd_slice_abs_offset)
-@lit_1941_1686 DC AD(rd_slice_read)
-@L2049   DS    0H
+@lit_1941_1663 DC AD(rd_kafka_msgset_reader)
+@lit_1941_1664 DC AD(rd_kafka_q_len)
+@lit_1941_1666 DC AD(mtx_lock)
+@lit_1941_1668 DC AD(rd_strlcpy)
+@lit_1941_1670 DC AD(mtx_unlock)
+@lit_1941_1672 DC AD(rd_kafka_log0)
+@lit_1941_1671 DC AD(@strings@)
+@lit_1941_1674 DC AD(rd_kafka_consumer_err)
+@lit_1941_1675 DC AD(rd_kafka_msgset_reader_postproc)
+@lit_1941_1685 DC AD(rd_kafka_compression2str)
+@lit_1941_1689 DC AD(rd_kafka_q_concat0)
+@lit_1941_1691 DC AD(rd_kafka_q_destroy_owner)
+@lit_1941_1692 DC AD(rd_slice_abs_offset)
+@lit_1941_1693 DC AD(rd_slice_read)
+@L2056   DS    0H
          LTR   2,2
-         BNZ   @L2061
+         BNZ   @L2068
 * ***                           rd_kafka_consumer_err(
 * ***                                   &msetr->msetr_rkq,
 * ***                                   msetr->msetr_broker_id,
@@ -19463,24 +19524,24 @@ rd_kafka_msgset_reader_run DCCPRLG CINDEX=1941,BASER=12,FRAME=576,ENTRY*
 * ***                                   "might be too large to fetch, \
 * try increasing "
 * ***                                   "receive.message.max.bytes",
-         LG    15,@lit_1941_1664
-         LA    15,2390(0,15)
+         LG    15,@lit_1941_1671
+         LA    15,2456(0,15)
          STG   15,488(0,13)
          LG    15,568(0,4)
          STG   15,496(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_1941_1667 ; rd_kafka_consumer_err
-@@gen_label2137 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1941_1674 ; rd_kafka_consumer_err
 @@gen_label2138 DS    0H 
+         BALR  14,15
+@@gen_label2139 DS    0H 
 * ***                   }
-@L2058   DS    0H
+@L2065   DS    0H
 * ***   
 * ***           } else {
-@L2057   DS    0H
-@L2048   DS    0H
-         B     @L2061
-@L2046   DS    0H
+@L2064   DS    0H
+@L2055   DS    0H
+         B     @L2068
+@L2053   DS    0H
 * ***                   
 * ***                   rd_kafka_msgset_reader_postproc(msetr, &last_o\
 * ffset);
@@ -19488,25 +19549,25 @@ rd_kafka_msgset_reader_run DCCPRLG CINDEX=1941,BASER=12,FRAME=576,ENTRY*
          LA    15,168(0,13)
          STG   15,440(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_1941_1668 ; rd_kafka_msgset_reader_postproc
-@@gen_label2139 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1941_1675 ; rd_kafka_msgset_reader_postproc
 @@gen_label2140 DS    0H 
+         BALR  14,15
+@@gen_label2141 DS    0H 
 * ***   
 * ***                   
 * ***   
 * ***   
 * ***                   if (err == RD_KAFKA_RESP_ERR__UNDERFLOW &&
          CHI   2,-155
-         BNE   @L2061
+         BNE   @L2068
 * ***                       msetr->msetr_msgcnt > 0)
          CHSI  88(3),0
-         BNH   @L2061
+         BNH   @L2068
 * ***                           err = RD_KAFKA_RESP_ERR_NO_ERROR;
          LHI   2,0         ; 0
-@L2060   DS    0H
+@L2067   DS    0H
 * ***           }
-@L2059   DS    0H
+@L2066   DS    0H
 * ***   
 * ***           do { if ((((msetr->msetr_rkb)->rkb_rk->rk_conf.debug &\
 *  (0x40 | 0x400)))) { do { char _logname[256]; mtx_lock(&(msetr->mset\
@@ -19522,25 +19583,25 @@ rd_kafka_msgset_reader_run DCCPRLG CINDEX=1941,BASER=12,FRAME=576,ENTRY*
 * tr->msetr_tver->version, last_offset, msetr->msetr_ctrl_cnt, msetr->\
 * msetr_compression ? rd_kafka_compression2str(msetr->msetr_compressio\
 * n) : "uncompressed"); } while (0); } } while (0);
-@L2061   DS    0H
+@L2068   DS    0H
          LG    15,72(0,3)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LG    15,4048(0,15) ; offset of rkb_rk in rd_kafka_broker_s
          L     15,800(0,15)
          NILF  15,X'00000440'
          LTR   15,15
-         BZ    @L2064
-@L2065   DS    0H
+         BZ    @L2071
+@L2072   DS    0H
          LG    15,72(0,3)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LGHI  5,5688      ; 5688
          LA    15,0(5,15)
          STG   15,432(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_1941_1659 ; mtx_lock
-@@gen_label2144 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1941_1666 ; mtx_lock
 @@gen_label2145 DS    0H 
+         BALR  14,15
+@@gen_label2146 DS    0H 
          LA    15,176(0,13)
          STG   15,432(0,13)
          LG    15,72(0,3)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
@@ -19550,51 +19611,51 @@ rd_kafka_msgset_reader_run DCCPRLG CINDEX=1941,BASER=12,FRAME=576,ENTRY*
          STG   15,440(0,13)
          MVGHI 448(13),256
          LA    1,432(0,13)
-         LG    15,@lit_1941_1661 ; rd_strlcpy
-@@gen_label2146 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1941_1668 ; rd_strlcpy
 @@gen_label2147 DS    0H 
+         BALR  14,15
+@@gen_label2148 DS    0H 
          LG    15,72(0,3)  ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LA    15,0(5,15)
          STG   15,432(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_1941_1663 ; mtx_unlock
-@@gen_label2148 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1941_1670 ; mtx_unlock
 @@gen_label2149 DS    0H 
+         BALR  14,15
+@@gen_label2150 DS    0H 
          LA    15,104(0,3)
          STG   15,432(0,13)
          LA    1,432(0,13)
-         LG    5,@lit_1941_1657 ; rd_kafka_q_len
+         LG    5,@lit_1941_1664 ; rd_kafka_q_len
          LGR   15,5
-@@gen_label2150 DS    0H 
-         BALR  14,15
 @@gen_label2151 DS    0H 
+         BALR  14,15
+@@gen_label2152 DS    0H 
          LR    6,15
          LG    15,280(0,3)
          STG   15,432(0,13)
          LA    1,432(0,13)
          LGR   15,5
-@@gen_label2152 DS    0H 
-         BALR  14,15
 @@gen_label2153 DS    0H 
+         BALR  14,15
+@@gen_label2154 DS    0H 
          LR    5,15
          LT    15,312(0,3) ; offset of msetr_compression in rd_kafka_ms*
                gset_reader_s
-         BZ    @L2068
+         BZ    @L2075
          LGF   15,312(0,3)
          STG   15,432(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_1941_1678 ; rd_kafka_compression2str
-@@gen_label2155 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1941_1685 ; rd_kafka_compression2str
 @@gen_label2156 DS    0H 
-         B     @L2069
-@L2068   DS    0H
-         LG    15,@lit_1941_1664
-         LA    15,2484(0,15)
-@L2069   DS    0H
+         BALR  14,15
+@@gen_label2157 DS    0H 
+         B     @L2076
+@L2075   DS    0H
+         LG    15,@lit_1941_1671
+         LA    15,2550(0,15)
+@L2076   DS    0H
          LG    1,72(0,3)   ; offset of msetr_rkb in rd_kafka_msgset_rea*
                der_s
          LG    1,4048(0,1) ; offset of rkb_rk in rd_kafka_broker_s
@@ -19608,10 +19669,10 @@ rd_kafka_msgset_reader_run DCCPRLG CINDEX=1941,BASER=12,FRAME=576,ENTRY*
          STG   1,448(0,13)
          MVGHI 456(13),7
          MVGHI 464(13),1088
-         LG    1,@lit_1941_1664
-         LA    7,2334(0,1)
+         LG    1,@lit_1941_1671
+         LA    7,2400(0,1)
          STG   7,472(0,13)
-         LA    1,2498(0,1)
+         LA    1,2564(0,1)
          STG   1,480(0,13)
          LGF   1,88(0,3)
          STG   1,488(0,13)
@@ -19639,13 +19700,13 @@ rd_kafka_msgset_reader_run DCCPRLG CINDEX=1941,BASER=12,FRAME=576,ENTRY*
          STG   1,560(0,13)
          STG   15,568(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_1941_1665 ; rd_kafka_log0
-@@gen_label2157 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1941_1672 ; rd_kafka_log0
 @@gen_label2158 DS    0H 
-@L2064   DS    0H
+         BALR  14,15
+@@gen_label2159 DS    0H 
+@L2071   DS    0H
 * ***   
-* ***   # 1395 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
+* ***   # 1401 "C:\asgkafka\librdkafka\src\rdkafka_msgset_reader.c"
 * ***           
 * ***   
 * ***           if (rd_kafka_q_concat0(msetr->msetr_par_rkq,&msetr->ms\
@@ -19656,26 +19717,26 @@ rd_kafka_msgset_reader_run DCCPRLG CINDEX=1941,BASER=12,FRAME=576,ENTRY*
          STG   15,440(0,13)
          MVGHI 448(13),1
          LA    1,432(0,13)
-         LG    15,@lit_1941_1682 ; rd_kafka_q_concat0
-@@gen_label2159 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1941_1689 ; rd_kafka_q_concat0
 @@gen_label2160 DS    0H 
+         BALR  14,15
+@@gen_label2161 DS    0H 
          CHI   15,-1
-         BE    @L2070
+         BE    @L2077
 * ***                   
 * ***   
 * ***                   if (((last_offset != -1)))
          CGHSI 168(13),-1
-         BE    @L2070
+         BE    @L2077
 * ***                           rktp->rktp_offsets.fetch_offset = last\
 * _offset + 1;
          LGHI  15,1        ; 1
          AG    15,168(0,13)
          STG   15,568(0,4) ; offset of rktp_offsets in rd_kafka_toppar_*
                s
-@L2071   DS    0H
+@L2078   DS    0H
 * ***           }
-@L2070   DS    0H
+@L2077   DS    0H
 * ***   
 * ***           
 * ***   
@@ -19684,23 +19745,23 @@ rd_kafka_msgset_reader_run DCCPRLG CINDEX=1941,BASER=12,FRAME=576,ENTRY*
          LG    15,288(0,3) ; offset of msetr_next_offset in rd_kafka_ms*
                gset_reader_s
          CG    15,568(0,4)
-         BNH   @L2072
+         BNH   @L2079
 * ***                   rktp->rktp_offsets.fetch_offset = msetr->msetr\
 * _next_offset;
          LG    15,288(0,3) ; offset of msetr_next_offset in rd_kafka_ms*
                gset_reader_s
          STG   15,568(0,4) ; offset of rktp_offsets in rd_kafka_toppar_*
                s
-@L2072   DS    0H
+@L2079   DS    0H
 * ***   
 * ***           rd_kafka_q_destroy_owner(&msetr->msetr_rkq);
          LA    15,104(0,3)
          STG   15,432(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_1941_1684 ; rd_kafka_q_destroy_owner
-@@gen_label2164 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1941_1691 ; rd_kafka_q_destroy_owner
 @@gen_label2165 DS    0H 
+         BALR  14,15
+@@gen_label2166 DS    0H 
 * ***   
 * ***           
 * ***   
@@ -19714,10 +19775,10 @@ rd_kafka_msgset_reader_run DCCPRLG CINDEX=1941,BASER=12,FRAME=576,ENTRY*
          LA    15,120(0,15)
          STG   15,432(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_1941_1685 ; rd_slice_abs_offset
-@@gen_label2166 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1941_1692 ; rd_slice_abs_offset
 @@gen_label2167 DS    0H 
+         BALR  14,15
+@@gen_label2168 DS    0H 
          SLGR  4,15
          LG    15,0(0,3)   ; msetr
          LA    15,120(0,15)
@@ -19725,10 +19786,10 @@ rd_kafka_msgset_reader_run DCCPRLG CINDEX=1941,BASER=12,FRAME=576,ENTRY*
          XC    440(8,13),440(13)
          STG   4,448(0,13)
          LA    1,432(0,13)
-         LG    15,@lit_1941_1686 ; rd_slice_read
-@@gen_label2168 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1941_1693 ; rd_slice_read
 @@gen_label2169 DS    0H 
+         BALR  14,15
+@@gen_label2170 DS    0H 
 * ***           return err;
          LGFR  15,2
 * ***   }
@@ -19784,20 +19845,20 @@ rd_kafka_msgset_parse DCCPRLG CINDEX=1923,BASER=12,FRAME=536,ENTRY=YES,*
          LG    15,312(0,2)
          STG   15,528(0,13)
          LA    1,488(0,13)
-         LG    15,@lit_1923_1688 ; rd_kafka_msgset_reader_init
-@@gen_label2170 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1923_1695 ; rd_kafka_msgset_reader_init
 @@gen_label2171 DS    0H 
+         BALR  14,15
+@@gen_label2172 DS    0H 
 * ***   
 * ***           
 * ***           err = rd_kafka_msgset_reader_run(&msetr);
          LA    15,168(0,13)
          STG   15,488(0,13)
          LA    1,488(0,13)
-         LG    15,@lit_1923_1689 ; rd_kafka_msgset_reader_run
-@@gen_label2172 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1923_1696 ; rd_kafka_msgset_reader_run
 @@gen_label2173 DS    0H 
+         BALR  14,15
+@@gen_label2174 DS    0H 
          LR    3,15
 * ***   
 * ***           rd_atomic64_add(&rktp->rktp_c.rx_msgs, msetr.msetr_msg\
@@ -19807,11 +19868,11 @@ rd_kafka_msgset_parse DCCPRLG CINDEX=1923,BASER=12,FRAME=536,ENTRY=YES,*
          LGF   15,256(0,13)
          STG   15,496(0,13)
          LA    1,488(0,13)
-         LG    4,@lit_1923_1690 ; rd_atomic64_add
+         LG    4,@lit_1923_1697 ; rd_atomic64_add
          LGR   15,4
-@@gen_label2174 DS    0H 
-         BALR  14,15
 @@gen_label2175 DS    0H 
+         BALR  14,15
+@@gen_label2176 DS    0H 
 * ***           rd_atomic64_add(&rktp->rktp_c.rx_msg_bytes, msetr.mset\
 * r_msg_bytes);
          LA    15,1200(0,2)
@@ -19820,9 +19881,9 @@ rd_kafka_msgset_parse DCCPRLG CINDEX=1923,BASER=12,FRAME=536,ENTRY=YES,*
          STG   15,496(0,13)
          LA    1,488(0,13)
          LGR   15,4
-@@gen_label2176 DS    0H 
-         BALR  14,15
 @@gen_label2177 DS    0H 
+         BALR  14,15
+@@gen_label2178 DS    0H 
 * ***   
 * ***           rd_avg_add(&rktp->rktp_rkt->rkt_avg_batchcnt,
 * ***                      (int64_t)msetr.msetr_msgcnt);
@@ -19832,11 +19893,11 @@ rd_kafka_msgset_parse DCCPRLG CINDEX=1923,BASER=12,FRAME=536,ENTRY=YES,*
          LGF   15,256(0,13)
          STG   15,496(0,13)
          LA    1,488(0,13)
-         LG    4,@lit_1923_1692 ; rd_avg_add
+         LG    4,@lit_1923_1699 ; rd_avg_add
          LGR   15,4
-@@gen_label2178 DS    0H 
-         BALR  14,15
 @@gen_label2179 DS    0H 
+         BALR  14,15
+@@gen_label2180 DS    0H 
 * ***           rd_avg_add(&rktp->rktp_rkt->rkt_avg_batchsize,
 * ***                      (int64_t)msetr.msetr_msg_bytes);
          LG    15,96(0,2)  ; offset of rktp_rkt in rd_kafka_toppar_s
@@ -19846,9 +19907,9 @@ rd_kafka_msgset_parse DCCPRLG CINDEX=1923,BASER=12,FRAME=536,ENTRY=YES,*
          STG   15,496(0,13)
          LA    1,488(0,13)
          LGR   15,4
-@@gen_label2180 DS    0H 
-         BALR  14,15
 @@gen_label2181 DS    0H 
+         BALR  14,15
+@@gen_label2182 DS    0H 
 * ***   
 * ***           return err;
          LGFR  15,3
@@ -19859,10 +19920,10 @@ rd_kafka_msgset_parse DCCPRLG CINDEX=1923,BASER=12,FRAME=536,ENTRY=YES,*
 * * **** End of Epilogue
          DS    0D
 @FRAMESIZE_1923 DC F'536'
-@lit_1923_1688 DC AD(rd_kafka_msgset_reader_init)
-@lit_1923_1689 DC AD(rd_kafka_msgset_reader_run)
-@lit_1923_1690 DC AD(rd_atomic64_add)
-@lit_1923_1692 DC AD(rd_avg_add)
+@lit_1923_1695 DC AD(rd_kafka_msgset_reader_init)
+@lit_1923_1696 DC AD(rd_kafka_msgset_reader_run)
+@lit_1923_1697 DC AD(rd_atomic64_add)
+@lit_1923_1699 DC AD(rd_avg_add)
          DROP  12
 *
 *   DSECT for automatic variables in "rd_kafka_msgset_parse"
@@ -19893,20 +19954,20 @@ rd_kafka_offset_cmp DCCPRLG CINDEX=1951,BASER=12,FRAME=176,SAVEAREA=NO,*
 * ***           return (*a > *b) - (*a < *b);
          LG    2,0(0,15)   ; a
          CG    2,0(0,1)
-         BNH   @@gen_label2182
+         BNH   @@gen_label2183
          LHI   2,1
-         B     @@gen_label2183
-@@gen_label2182 DS 0H
-         LHI   2,0
+         B     @@gen_label2184
 @@gen_label2183 DS 0H
+         LHI   2,0
+@@gen_label2184 DS 0H
          LG    15,0(0,15)  ; a
          CG    15,0(0,1)
-         BNL   @@gen_label2184
+         BNL   @@gen_label2185
          LHI   15,1
-         B     @@gen_label2185
-@@gen_label2184 DS 0H
-         LHI   15,0
+         B     @@gen_label2186
 @@gen_label2185 DS 0H
+         LHI   15,0
+@@gen_label2186 DS 0H
          SR    2,15
          LGFR  15,2
 * ***   }
@@ -19942,21 +20003,21 @@ rd_kafka_aborted_txn_cmp_by_pid DCCPRLG CINDEX=1952,BASER=12,FRAME=176,*
          LG    2,32(0,15)  ; offset of pid in rd_kafka_aborted_txn_star*
                t_offsets_s
          CG    2,32(0,1)
-         BNH   @@gen_label2186
+         BNH   @@gen_label2187
          LHI   2,1
-         B     @@gen_label2187
-@@gen_label2186 DS 0H
-         LHI   2,0
+         B     @@gen_label2188
 @@gen_label2187 DS 0H
+         LHI   2,0
+@@gen_label2188 DS 0H
          LG    15,32(0,15) ; offset of pid in rd_kafka_aborted_txn_star*
                t_offsets_s
          CG    15,32(0,1)
-         BNL   @@gen_label2188
+         BNL   @@gen_label2189
          LHI   15,1
-         B     @@gen_label2189
-@@gen_label2188 DS 0H
-         LHI   15,0
+         B     @@gen_label2190
 @@gen_label2189 DS 0H
+         LHI   15,0
+@@gen_label2190 DS 0H
          SR    2,15
          LGFR  15,2
 * ***   }
@@ -19992,17 +20053,17 @@ rd_kafka_aborted_txn_node_destroy DCCPRLG CINDEX=1953,BASER=12,FRAME=18*
          LA    15,48(0,2)
          STG   15,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1953_1695 ; rd_list_destroy
-@@gen_label2190 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1953_1702 ; rd_list_destroy
 @@gen_label2191 DS    0H 
+         BALR  14,15
+@@gen_label2192 DS    0H 
 * ***           rd_free(node_ptr);
          STG   2,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1953_1696 ; rd_free
-@@gen_label2192 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1953_1703 ; rd_free
 @@gen_label2193 DS    0H 
+         BALR  14,15
+@@gen_label2194 DS    0H 
 * ***   }
 @ret_lab_1953 DS 0H
 * * **** Start of Epilogue
@@ -20010,8 +20071,8 @@ rd_kafka_aborted_txn_node_destroy DCCPRLG CINDEX=1953,BASER=12,FRAME=18*
 * * **** End of Epilogue
          DS    0D
 @FRAMESIZE_1953 DC F'184'
-@lit_1953_1695 DC AD(rd_list_destroy)
-@lit_1953_1696 DC AD(rd_free)
+@lit_1953_1702 DC AD(rd_list_destroy)
+@lit_1953_1703 DC AD(rd_free)
          DROP  12
 *
 *   DSECT for automatic variables in "rd_kafka_aborted_txn_node_destro
@@ -20041,35 +20102,35 @@ rd_kafka_aborted_txns_new DCCPRLG CINDEX=1918,BASER=12,FRAME=200,ENTRY=*
 * ***           aborted_txns = rd_malloc(sizeof(*aborted_txns));
          MVGHI 176(13),128
          LA    1,176(0,13)
-         LG    15,@lit_1918_1698 ; rd_malloc
-@@gen_label2194 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1918_1705 ; rd_malloc
 @@gen_label2195 DS    0H 
+         BALR  14,15
+@@gen_label2196 DS    0H 
          LGR   2,15
 * ***           rd_avl_init(&aborted_txns->avl, rd_kafka_aborted_txn_c\
 * mp_by_pid, 0);
          STG   2,176(0,13)
-         LG    15,@lit_1918_1699 ; rd_kafka_aborted_txn_cmp_by_pid
+         LG    15,@lit_1918_1706 ; rd_kafka_aborted_txn_cmp_by_pid
          STG   15,184(0,13)
          XC    192(8,13),192(13)
          LA    1,176(0,13)
-         LG    15,@lit_1918_1700 ; rd_avl_init
-@@gen_label2196 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1918_1707 ; rd_avl_init
 @@gen_label2197 DS    0H 
+         BALR  14,15
+@@gen_label2198 DS    0H 
 * ***           rd_list_init(&aborted_txns->list, txn_cnt,
 * ***                        rd_kafka_aborted_txn_node_destroy);
          LA    15,80(0,2)
          STG   15,176(0,13)
          LGF   15,4(0,3)   ; txn_cnt
          STG   15,184(0,13)
-         LG    15,@lit_1918_1701 ; rd_kafka_aborted_txn_node_destroy
+         LG    15,@lit_1918_1708 ; rd_kafka_aborted_txn_node_destroy
          STG   15,192(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1918_1702 ; rd_list_init
-@@gen_label2198 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1918_1709 ; rd_list_init
 @@gen_label2199 DS    0H 
+         BALR  14,15
+@@gen_label2200 DS    0H 
 * ***           aborted_txns->cnt = txn_cnt;
          L     15,4(0,3)   ; txn_cnt
          ST    15,120(0,2) ; offset of cnt in rd_kafka_aborted_txns_s
@@ -20081,11 +20142,11 @@ rd_kafka_aborted_txns_new DCCPRLG CINDEX=1918,BASER=12,FRAME=200,ENTRY=*
 * * **** End of Epilogue
          DS    0D
 @FRAMESIZE_1918 DC F'200'
-@lit_1918_1698 DC AD(rd_malloc)
-@lit_1918_1700 DC AD(rd_avl_init)
-@lit_1918_1699 DC AD(rd_kafka_aborted_txn_cmp_by_pid)
-@lit_1918_1702 DC AD(rd_list_init)
-@lit_1918_1701 DC AD(rd_kafka_aborted_txn_node_destroy)
+@lit_1918_1705 DC AD(rd_malloc)
+@lit_1918_1707 DC AD(rd_avl_init)
+@lit_1918_1706 DC AD(rd_kafka_aborted_txn_cmp_by_pid)
+@lit_1918_1709 DC AD(rd_list_init)
+@lit_1918_1708 DC AD(rd_kafka_aborted_txn_node_destroy)
          DROP  12
 *
 *   DSECT for automatic variables in "rd_kafka_aborted_txns_new"
@@ -20114,24 +20175,24 @@ rd_kafka_aborted_txns_destroy DCCPRLG CINDEX=1919,BASER=12,FRAME=176,EN*
          LA    15,80(0,2)
          STG   15,168(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1919_1704 ; rd_list_destroy
-@@gen_label2200 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1919_1711 ; rd_list_destroy
 @@gen_label2201 DS    0H 
+         BALR  14,15
+@@gen_label2202 DS    0H 
 * ***           rd_avl_destroy(&aborted_txns->avl);
          STG   2,168(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1919_1705 ; rd_avl_destroy
-@@gen_label2202 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1919_1712 ; rd_avl_destroy
 @@gen_label2203 DS    0H 
+         BALR  14,15
+@@gen_label2204 DS    0H 
 * ***           rd_free(aborted_txns);
          STG   2,168(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1919_1706 ; rd_free
-@@gen_label2204 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1919_1713 ; rd_free
 @@gen_label2205 DS    0H 
+         BALR  14,15
+@@gen_label2206 DS    0H 
 * ***   }
 @ret_lab_1919 DS 0H
 * * **** Start of Epilogue
@@ -20139,9 +20200,9 @@ rd_kafka_aborted_txns_destroy DCCPRLG CINDEX=1919,BASER=12,FRAME=176,EN*
 * * **** End of Epilogue
          DS    0D
 @FRAMESIZE_1919 DC F'176'
-@lit_1919_1704 DC AD(rd_list_destroy)
-@lit_1919_1705 DC AD(rd_avl_destroy)
-@lit_1919_1706 DC AD(rd_free)
+@lit_1919_1711 DC AD(rd_list_destroy)
+@lit_1919_1712 DC AD(rd_avl_destroy)
+@lit_1919_1713 DC AD(rd_free)
          DROP  12
 *
 *   DSECT for automatic variables in "rd_kafka_aborted_txns_destroy"
@@ -20176,17 +20237,17 @@ rd_kafka_aborted_txns_offsets_for_pid DCCPRLG CINDEX=1954,BASER=12,FRAM*
          STG   15,264(0,13)
          MVGHI 272(13),1
          LA    1,256(0,13)
-         LG    15,@lit_1954_1708 ; rd_avl_find
-@@gen_label2206 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1954_1715 ; rd_avl_find
 @@gen_label2207 DS    0H 
+         BALR  14,15
+@@gen_label2208 DS    0H 
 * ***   }
 * * **** Start of Epilogue
          DCCEPIL 
 * * **** End of Epilogue
          DS    0D
 @FRAMESIZE_1954 DC F'280'
-@lit_1954_1708 DC AD(rd_avl_find)
+@lit_1954_1715 DC AD(rd_avl_find)
          DROP  12
 *
 *   DSECT for automatic variables in "rd_kafka_aborted_txns_offsets_fo
@@ -20221,25 +20282,25 @@ rd_kafka_aborted_txns_next_offset DCCPRLG CINDEX=1955,BASER=12,FRAME=19*
          LG    15,8(0,3)   ; pid
          STG   15,184(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1955_1710 ; rd_kafka_aborted_txns_offsets_for_pi*
+         LG    15,@lit_1955_1717 ; rd_kafka_aborted_txns_offsets_for_pi*
                d
-@@gen_label2208 DS    0H 
-         BALR  14,15
 @@gen_label2209 DS    0H 
+         BALR  14,15
+@@gen_label2210 DS    0H 
          LGR   2,15
 * ***   
 * ***           if (node_ptr == ((void *)0))
          LTGR  15,2
-         BNE   @L2073
+         BNE   @L2080
 * ***                   return -1;
          LGHI  15,-1       ; -1
          B     @ret_lab_1955
          DS    0D
 @FRAMESIZE_1955 DC F'192'
-@lit_1955_1710 DC AD(rd_kafka_aborted_txns_offsets_for_pid)
-@lit_1955_1712 DC AD(rd_list_cnt)
-@lit_1955_1714 DC AD(rd_list_elem)
-@L2073   DS    0H
+@lit_1955_1717 DC AD(rd_kafka_aborted_txns_offsets_for_pid)
+@lit_1955_1719 DC AD(rd_list_cnt)
+@lit_1955_1721 DC AD(rd_list_elem)
+@L2080   DS    0H
 * ***   
 * ***           if (((node_ptr->offsets_idx >= rd_list_cnt(&node_ptr->\
 * offsets))))
@@ -20248,16 +20309,16 @@ rd_kafka_aborted_txns_next_offset DCCPRLG CINDEX=1955,BASER=12,FRAME=19*
          LA    15,48(0,2)
          STG   15,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1955_1712 ; rd_list_cnt
-@@gen_label2211 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1955_1719 ; rd_list_cnt
 @@gen_label2212 DS    0H 
+         BALR  14,15
+@@gen_label2213 DS    0H 
          CR    4,15
-         BL    @L2074
+         BL    @L2081
 * ***                   return -1;
          LGHI  15,-1       ; -1
          B     @ret_lab_1955
-@L2074   DS    0H
+@L2081   DS    0H
 * ***   
 * ***           abort_start_offset =
 * ***                   *((int64_t *)rd_list_elem(&node_ptr->offsets,
@@ -20268,20 +20329,28 @@ rd_kafka_aborted_txns_next_offset DCCPRLG CINDEX=1955,BASER=12,FRAME=19*
          LGF   15,40(0,2)
          STG   15,184(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1955_1714 ; rd_list_elem
-@@gen_label2214 DS    0H 
-         BALR  14,15
+         LG    15,@lit_1955_1721 ; rd_list_elem
 @@gen_label2215 DS    0H 
+         BALR  14,15
+@@gen_label2216 DS    0H 
          LG    15,0(0,15)
+* ***   
+* ***           if (((abort_start_offset > max_offset)))
+         CG    15,24(0,3)
+         BNH   @L2082
+* ***                   return -1;
+         LGHI  15,-1       ; -1
+         B     @ret_lab_1955
+@L2082   DS    0H
 * ***   
 * ***           if (increment_idx)
          CLI   23(3),0
-         BE    @L2075
+         BE    @L2083
 * ***                   node_ptr->offsets_idx++;
          L     1,40(0,2)
          AHI   1,1
          ST    1,40(0,2)
-@L2075   DS    0H
+@L2083   DS    0H
 * ***   
 * ***           return abort_start_offset;
 * ***   }
@@ -20309,29 +20378,32 @@ rd_kafka_aborted_txns_next_offset#abort_start_offset#0 DS 8XL1 ; abort_*
          DC    X'00000020'
          DC    C'rd_kafka_aborted_txns_pop_offset'
          DC    X'00'
-rd_kafka_aborted_txns_pop_offset DCCPRLG CINDEX=1939,BASER=12,FRAME=192*
+rd_kafka_aborted_txns_pop_offset DCCPRLG CINDEX=1939,BASER=12,FRAME=200*
                ,ENTRY=NO,ARCH=ZARCH,LNAMEADDR=@LNAME1939
 * ******* End of Prologue
 * *
 * ***           return rd_kafka_aborted_txns_next_offset(aborted_txns,\
-*  pid, 1);
+*  pid, 1,
+* ***                                                    max_offset);
          LG    15,0(0,1)   ; aborted_txns
          STG   15,168(0,13)
          LG    15,8(0,1)   ; pid
          STG   15,176(0,13)
          MVGHI 184(13),1
+         LG    15,16(0,1)  ; max_offset
+         STG   15,192(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1939_1716 ; rd_kafka_aborted_txns_next_offset
-@@gen_label2217 DS    0H 
+         LG    15,@lit_1939_1724 ; rd_kafka_aborted_txns_next_offset
+@@gen_label2219 DS    0H 
          BALR  14,15
-@@gen_label2218 DS    0H 
+@@gen_label2220 DS    0H 
 * ***   }
 * * **** Start of Epilogue
          DCCEPIL 
 * * **** End of Epilogue
          DS    0D
-@FRAMESIZE_1939 DC F'192'
-@lit_1939_1716 DC AD(rd_kafka_aborted_txns_next_offset)
+@FRAMESIZE_1939 DC F'200'
+@lit_1939_1724 DC AD(rd_kafka_aborted_txns_next_offset)
          DROP  12
 *
 *   DSECT for automatic variables in "rd_kafka_aborted_txns_pop_offset"
@@ -20349,30 +20421,34 @@ rd_kafka_aborted_txns_pop_offset DCCPRLG CINDEX=1939,BASER=12,FRAME=192*
          DC    X'00000020'
          DC    C'rd_kafka_aborted_txns_get_offset'
          DC    X'00'
-rd_kafka_aborted_txns_get_offset DCCPRLG CINDEX=1940,BASER=12,FRAME=192*
+rd_kafka_aborted_txns_get_offset DCCPRLG CINDEX=1940,BASER=12,FRAME=200*
                ,ENTRY=NO,ARCH=ZARCH,LNAMEADDR=@LNAME1940
 * ******* End of Prologue
 * *
 * ***           return rd_kafka_aborted_txns_next_offset(
 * ***                   (rd_kafka_aborted_txns_t *)aborted_txns, pid, \
-* 0);
+* 0,
+* ***                   0x7fffffffffffffffLL);
          LG    15,0(0,1)   ; aborted_txns
          STG   15,168(0,13)
          LG    15,8(0,1)   ; pid
          STG   15,176(0,13)
          XC    184(8,13),184(13)
+         LG    15,@lit_1940_1727 ; 9223372036854775807
+         STG   15,192(0,13)
          LA    1,168(0,13)
-         LG    15,@lit_1940_1718 ; rd_kafka_aborted_txns_next_offset
-@@gen_label2219 DS    0H 
+         LG    15,@lit_1940_1728 ; rd_kafka_aborted_txns_next_offset
+@@gen_label2221 DS    0H 
          BALR  14,15
-@@gen_label2220 DS    0H 
+@@gen_label2222 DS    0H 
 * ***   }
 * * **** Start of Epilogue
          DCCEPIL 
 * * **** End of Epilogue
          DS    0D
-@FRAMESIZE_1940 DC F'192'
-@lit_1940_1718 DC AD(rd_kafka_aborted_txns_next_offset)
+@FRAMESIZE_1940 DC F'200'
+@lit_1940_1728 DC AD(rd_kafka_aborted_txns_next_offset)
+@lit_1940_1727 DC FD'9223372036854775807' 0x7fffffffffffffff
          DROP  12
 *
 *   DSECT for automatic variables in "rd_kafka_aborted_txns_get_offset"
@@ -20406,22 +20482,22 @@ rd_kafka_aborted_txns_add DCCPRLG CINDEX=1921,BASER=12,FRAME=208,ENTRY=*
          LG    15,8(0,4)   ; pid
          STG   15,184(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1921_1720 ; rd_kafka_aborted_txns_offsets_for_pi*
+         LG    15,@lit_1921_1730 ; rd_kafka_aborted_txns_offsets_for_pi*
                d
-@@gen_label2221 DS    0H 
+@@gen_label2223 DS    0H 
          BALR  14,15
-@@gen_label2222 DS    0H 
+@@gen_label2224 DS    0H 
          LTGR  2,15        ; node_ptr
 * ***   
 * ***           if (!node_ptr) {
-         BNZ   @L2076
+         BNZ   @L2084
 * ***                   node_ptr = rd_malloc(sizeof(*node_ptr));
          MVGHI 176(13),88
          LA    1,176(0,13)
-         LG    15,@lit_1921_1721 ; rd_malloc
-@@gen_label2224 DS    0H 
+         LG    15,@lit_1921_1731 ; rd_malloc
+@@gen_label2226 DS    0H 
          BALR  14,15
-@@gen_label2225 DS    0H 
+@@gen_label2227 DS    0H 
          LGR   2,15        ; node_ptr
 * ***                   node_ptr->pid = pid;
          LG    1,8(0,4)    ; pid
@@ -20436,10 +20512,10 @@ rd_kafka_aborted_txns_add DCCPRLG CINDEX=1921,BASER=12,FRAME=208,ENTRY=*
          STG   15,176(0,13)
          XC    184(16,13),184(13)
          LA    1,176(0,13)
-         LG    15,@lit_1921_1722 ; rd_list_init
-@@gen_label2226 DS    0H 
+         LG    15,@lit_1921_1732 ; rd_list_init
+@@gen_label2228 DS    0H 
          BALR  14,15
-@@gen_label2227 DS    0H 
+@@gen_label2229 DS    0H 
 * ***                   
 * ***                   rd_list_prealloc_elems(&node_ptr->offsets,
 * ***                           sizeof(int64_t),
@@ -20451,41 +20527,41 @@ rd_kafka_aborted_txns_add DCCPRLG CINDEX=1921,BASER=12,FRAME=208,ENTRY=*
          STG   15,192(0,13)
          XC    200(8,13),200(13)
          LA    1,176(0,13)
-         LG    15,@lit_1921_1723 ; rd_list_prealloc_elems
-@@gen_label2228 DS    0H 
+         LG    15,@lit_1921_1733 ; rd_list_prealloc_elems
+@@gen_label2230 DS    0H 
          BALR  14,15
-@@gen_label2229 DS    0H 
+@@gen_label2231 DS    0H 
 * ***                   rd_avl_insert(&aborted_txns->avl, node_ptr, &(\
 * node_ptr)->avl_node);
          STG   3,176(0,13)
          STG   2,184(0,13)
          STG   2,192(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1921_1724 ; rd_avl_insert
-@@gen_label2230 DS    0H 
+         LG    15,@lit_1921_1734 ; rd_avl_insert
+@@gen_label2232 DS    0H 
          BALR  14,15
-@@gen_label2231 DS    0H 
+@@gen_label2233 DS    0H 
 * ***                   rd_list_add(&aborted_txns->list, node_ptr);
          LA    15,80(0,3)
          STG   15,176(0,13)
          STG   2,184(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1921_1725 ; rd_list_add
-@@gen_label2232 DS    0H 
+         LG    15,@lit_1921_1735 ; rd_list_add
+@@gen_label2234 DS    0H 
          BALR  14,15
-@@gen_label2233 DS    0H 
+@@gen_label2235 DS    0H 
 * ***           }
-@L2076   DS    0H
+@L2084   DS    0H
 * ***   
 * ***           v = rd_list_add(&node_ptr->offsets, ((void *)0));
          LA    15,48(0,2)
          STG   15,176(0,13)
          XC    184(8,13),184(13)
          LA    1,176(0,13)
-         LG    15,@lit_1921_1725 ; rd_list_add
-@@gen_label2234 DS    0H 
+         LG    15,@lit_1921_1735 ; rd_list_add
+@@gen_label2236 DS    0H 
          BALR  14,15
-@@gen_label2235 DS    0H 
+@@gen_label2237 DS    0H 
 * ***           *v = first_offset;
          LG    1,16(0,4)   ; first_offset
          STG   1,0(0,15)   ; v
@@ -20496,12 +20572,12 @@ rd_kafka_aborted_txns_add DCCPRLG CINDEX=1921,BASER=12,FRAME=208,ENTRY=*
 * * **** End of Epilogue
          DS    0D
 @FRAMESIZE_1921 DC F'208'
-@lit_1921_1720 DC AD(rd_kafka_aborted_txns_offsets_for_pid)
-@lit_1921_1721 DC AD(rd_malloc)
-@lit_1921_1722 DC AD(rd_list_init)
-@lit_1921_1723 DC AD(rd_list_prealloc_elems)
-@lit_1921_1724 DC AD(rd_avl_insert)
-@lit_1921_1725 DC AD(rd_list_add)
+@lit_1921_1730 DC AD(rd_kafka_aborted_txns_offsets_for_pid)
+@lit_1921_1731 DC AD(rd_malloc)
+@lit_1921_1732 DC AD(rd_list_init)
+@lit_1921_1733 DC AD(rd_list_prealloc_elems)
+@lit_1921_1734 DC AD(rd_avl_insert)
+@lit_1921_1735 DC AD(rd_list_add)
          DROP  12
 *
 *   DSECT for automatic variables in "rd_kafka_aborted_txns_add"
@@ -20530,14 +20606,14 @@ rd_kafka_aborted_txns_sort DCCPRLG CINDEX=1920,BASER=12,FRAME=192,ENTRY*
 * ***           for (k = 0; k < rd_list_cnt(&aborted_txns->list); k++)\
 *  {
          LHI   2,0         ; 0
-         B     @L2078
+         B     @L2086
          DS    0D
 @FRAMESIZE_1920 DC F'192'
-@lit_1920_1729 DC AD(rd_list_elem)
-@lit_1920_1731 DC AD(rd_list_sort)
-@lit_1920_1730 DC AD(rd_kafka_offset_cmp)
-@lit_1920_1732 DC AD(rd_list_cnt)
-@L2077   DS    0H
+@lit_1920_1739 DC AD(rd_list_elem)
+@lit_1920_1741 DC AD(rd_list_sort)
+@lit_1920_1740 DC AD(rd_kafka_offset_cmp)
+@lit_1920_1742 DC AD(rd_list_cnt)
+@L2085   DS    0H
 * ***                   rd_kafka_aborted_txn_start_offsets_t *el =
 * ***                           rd_list_elem(&aborted_txns->list, k);
          LG    15,0(0,3)   ; aborted_txns
@@ -20546,34 +20622,34 @@ rd_kafka_aborted_txns_sort DCCPRLG CINDEX=1920,BASER=12,FRAME=192,ENTRY*
          LGFR  15,2
          STG   15,184(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1920_1729 ; rd_list_elem
-@@gen_label2236 DS    0H 
+         LG    15,@lit_1920_1739 ; rd_list_elem
+@@gen_label2238 DS    0H 
          BALR  14,15
-@@gen_label2237 DS    0H 
+@@gen_label2239 DS    0H 
 * ***                   rd_list_sort(&el->offsets, rd_kafka_offset_cmp\
 * );
          LA    15,48(0,15)
          STG   15,176(0,13)
-         LG    15,@lit_1920_1730 ; rd_kafka_offset_cmp
+         LG    15,@lit_1920_1740 ; rd_kafka_offset_cmp
          STG   15,184(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1920_1731 ; rd_list_sort
-@@gen_label2238 DS    0H 
+         LG    15,@lit_1920_1741 ; rd_list_sort
+@@gen_label2240 DS    0H 
          BALR  14,15
-@@gen_label2239 DS    0H 
+@@gen_label2241 DS    0H 
 * ***           }
          AHI   2,1
-@L2078   DS    0H
+@L2086   DS    0H
          LG    15,0(0,3)   ; aborted_txns
          LA    15,80(0,15)
          STG   15,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1920_1732 ; rd_list_cnt
-@@gen_label2240 DS    0H 
+         LG    15,@lit_1920_1742 ; rd_list_cnt
+@@gen_label2242 DS    0H 
          BALR  14,15
-@@gen_label2241 DS    0H 
+@@gen_label2243 DS    0H 
          CR    2,15
-         BL    @L2077
+         BL    @L2085
 * ***   }
 @ret_lab_1920 DS 0H
 * * **** Start of Epilogue
@@ -20610,162 +20686,162 @@ unittest_aborted_txns DCCPRLG CINDEX=1924,BASER=12,FRAME=216,ENTRY=YES,*
 * ***           aborted_txns = rd_kafka_aborted_txns_new(7);
          MVGHI 176(13),7
          LA    1,176(0,13)
-         LG    15,@lit_1924_1735 ; rd_kafka_aborted_txns_new
-@@gen_label2243 DS    0H 
+         LG    15,@lit_1924_1745 ; rd_kafka_aborted_txns_new
+@@gen_label2245 DS    0H 
          BALR  14,15
-@@gen_label2244 DS    0H 
+@@gen_label2246 DS    0H 
          LGR   3,15
 * ***           rd_kafka_aborted_txns_add(aborted_txns, 1, 42);
          STG   3,176(0,13)
          MVGHI 184(13),1
          MVGHI 192(13),42
          LA    1,176(0,13)
-         LG    2,@lit_1924_1736 ; rd_kafka_aborted_txns_add
+         LG    2,@lit_1924_1746 ; rd_kafka_aborted_txns_add
          LGR   15,2
-@@gen_label2245 DS    0H 
+@@gen_label2247 DS    0H 
          BALR  14,15
-@@gen_label2246 DS    0H 
+@@gen_label2248 DS    0H 
 * ***           rd_kafka_aborted_txns_add(aborted_txns, 1, 44);
          STG   3,176(0,13)
          MVGHI 184(13),1
          MVGHI 192(13),44
          LA    1,176(0,13)
          LGR   15,2
-@@gen_label2247 DS    0H 
+@@gen_label2249 DS    0H 
          BALR  14,15
-@@gen_label2248 DS    0H 
+@@gen_label2250 DS    0H 
 * ***           rd_kafka_aborted_txns_add(aborted_txns, 1, 10);
          STG   3,176(0,13)
          MVGHI 184(13),1
          MVGHI 192(13),10
          LA    1,176(0,13)
          LGR   15,2
-@@gen_label2249 DS    0H 
+@@gen_label2251 DS    0H 
          BALR  14,15
-@@gen_label2250 DS    0H 
+@@gen_label2252 DS    0H 
 * ***           rd_kafka_aborted_txns_add(aborted_txns, 1, 100);
          STG   3,176(0,13)
          MVGHI 184(13),1
          MVGHI 192(13),100
          LA    1,176(0,13)
          LGR   15,2
-@@gen_label2251 DS    0H 
+@@gen_label2253 DS    0H 
          BALR  14,15
-@@gen_label2252 DS    0H 
+@@gen_label2254 DS    0H 
 * ***           rd_kafka_aborted_txns_add(aborted_txns, 2, 11);
          STG   3,176(0,13)
          MVGHI 184(13),2
          MVGHI 192(13),11
          LA    1,176(0,13)
          LGR   15,2
-@@gen_label2253 DS    0H 
+@@gen_label2255 DS    0H 
          BALR  14,15
-@@gen_label2254 DS    0H 
+@@gen_label2256 DS    0H 
 * ***           rd_kafka_aborted_txns_add(aborted_txns, 2, 7);
          STG   3,176(0,13)
          MVGHI 184(13),2
          MVGHI 192(13),7
          LA    1,176(0,13)
          LGR   15,2
-@@gen_label2255 DS    0H 
+@@gen_label2257 DS    0H 
          BALR  14,15
-@@gen_label2256 DS    0H 
+@@gen_label2258 DS    0H 
 * ***           rd_kafka_aborted_txns_add(aborted_txns, 1, 3);
          STG   3,176(0,13)
          MVGHI 184(13),1
          MVGHI 192(13),3
          LA    1,176(0,13)
          LGR   15,2
-@@gen_label2257 DS    0H 
-         BALR  14,15
-@@gen_label2258 DS    0H 
-* ***           rd_kafka_aborted_txns_sort(aborted_txns);
-         STG   3,176(0,13)
-         LA    1,176(0,13)
-         LG    15,@lit_1924_1743 ; rd_kafka_aborted_txns_sort
 @@gen_label2259 DS    0H 
          BALR  14,15
 @@gen_label2260 DS    0H 
+* ***           rd_kafka_aborted_txns_sort(aborted_txns);
+         STG   3,176(0,13)
+         LA    1,176(0,13)
+         LG    15,@lit_1924_1753 ; rd_kafka_aborted_txns_sort
+@@gen_label2261 DS    0H 
+         BALR  14,15
+@@gen_label2262 DS    0H 
 * ***   
 * ***           start_offset = rd_kafka_aborted_txns_get_offset(
 * ***                   aborted_txns, 1);
          STG   3,176(0,13)
          MVGHI 184(13),1
          LA    1,176(0,13)
-         LG    15,@lit_1924_1744 ; rd_kafka_aborted_txns_get_offset
-@@gen_label2261 DS    0H 
+         LG    15,@lit_1924_1754 ; rd_kafka_aborted_txns_get_offset
+@@gen_label2263 DS    0H 
          BALR  14,15
-@@gen_label2262 DS    0H 
+@@gen_label2264 DS    0H 
          LGR   2,15        ; start_offset
 * ***           do { if (!(3 == start_offset)) { fprintf(__stderrp, "\\
 * 033[31mRDUT: FAIL: %s:%d: %s: " "assert failed: " "3 == start_offset\
 * " ": ", "C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c", 16\
-* 50, __FUNCTION__); fprintf(__stderrp, "queried start offset was %" "\
+* 75, __FUNCTION__); fprintf(__stderrp, "queried start offset was %" "\
 * lld" ", " "expected 3", start_offset); fprintf(__stderrp, "\033[0m\n\
 * "); if (rd_unittest_assert_on_failure) ((3 == start_offset) ? (void)\
 * 0 : __assert(__func__, "C:\\asgkafka\\librdkafka\\src\\rdkafka_msgse\
-* t_reader.c", 1650, "3 == start_offset")); return 1; } } while (0);
-@L2081   DS    0H
+* t_reader.c", 1675, "3 == start_offset")); return 1; } } while (0);
+@L2089   DS    0H
          CGHI  2,3
-         BE    @L2084
-         LLGF  3,@lit_1924_1745 ; __stderrp
+         BE    @L2092
+         LLGF  3,@lit_1924_1755 ; __stderrp
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LG    5,@lit_1924_1746
-         LA    15,2618(0,5)
+         LG    5,@lit_1924_1756
+         LA    15,2684(0,5)
          STG   15,184(0,13)
          LA    15,718(0,5)
          STG   15,192(0,13)
-         MVGHI 200(13),1650
-         LG    6,@lit_1924_1747
+         MVGHI 200(13),1675
+         LG    6,@lit_1924_1757
          LA    15,666(0,6)
          STG   15,208(0,13)
          LA    1,176(0,13)
-         LG    7,@lit_1924_1748 ; fprintf
-         LGR   15,7
-@@gen_label2264 DS    0H 
-         BALR  14,15
-@@gen_label2265 DS    0H 
-         LG    15,0(3,4)   ; __stderrp
-         STG   15,176(0,13)
-         LA    15,2682(0,5)
-         STG   15,184(0,13)
-         STG   2,192(0,13)
-         LA    1,176(0,13)
+         LG    7,@lit_1924_1758 ; fprintf
          LGR   15,7
 @@gen_label2266 DS    0H 
          BALR  14,15
 @@gen_label2267 DS    0H 
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LA    15,2724(0,5)
+         LA    15,2748(0,5)
          STG   15,184(0,13)
+         STG   2,192(0,13)
          LA    1,176(0,13)
          LGR   15,7
 @@gen_label2268 DS    0H 
          BALR  14,15
 @@gen_label2269 DS    0H 
-         LLGF  15,@lit_1924_1753 ; rd_unittest_assert_on_failure
+         LG    15,0(3,4)   ; __stderrp
+         STG   15,176(0,13)
+         LA    15,2790(0,5)
+         STG   15,184(0,13)
+         LA    1,176(0,13)
+         LGR   15,7
+@@gen_label2270 DS    0H 
+         BALR  14,15
+@@gen_label2271 DS    0H 
+         LLGF  15,@lit_1924_1763 ; rd_unittest_assert_on_failure
          LA    15,0(15,4)
          CLI   0(15),0
-         BE    @L2085
+         BE    @L2093
          CGHI  2,3
-         BE    @L2085
-@L2086   DS    0H
+         BE    @L2093
+@L2094   DS    0H
          LA    15,666(0,6)
          STG   15,176(0,13)
          LA    15,718(0,5)
          STG   15,184(0,13)
-         MVGHI 192(13),1650
-         LA    15,2730(0,5)
+         MVGHI 192(13),1675
+         LA    15,2796(0,5)
          STG   15,200(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1924_1754 ; __assert
-@@gen_label2272 DS    0H 
+         LG    15,@lit_1924_1764 ; __assert
+@@gen_label2274 DS    0H 
          BALR  14,15
-@@gen_label2273 DS    0H 
-@L2087   DS    0H
-@L2085   DS    0H
+@@gen_label2275 DS    0H 
+@L2095   DS    0H
+@L2093   DS    0H
          LGHI  15,1        ; 1
          ALGF  12,@lit_region_diff_1924_1_2
          DROP  12
@@ -20775,19 +20851,20 @@ unittest_aborted_txns DCCPRLG CINDEX=1924,BASER=12,FRAME=216,ENTRY=YES,*
          USING @REGION_1924_1,12
          DS    0D
 @FRAMESIZE_1924 DC F'216'
-@lit_1924_1735 DC AD(rd_kafka_aborted_txns_new)
-@lit_1924_1736 DC AD(rd_kafka_aborted_txns_add)
-@lit_1924_1743 DC AD(rd_kafka_aborted_txns_sort)
-@lit_1924_1744 DC AD(rd_kafka_aborted_txns_get_offset)
-@lit_1924_1748 DC AD(fprintf)
-@lit_1924_1747 DC AD(@DATA)
-@lit_1924_1746 DC AD(@strings@)
-@lit_1924_1745 DC Q(__stderrp)
-@lit_1924_1753 DC Q(rd_unittest_assert_on_failure)
-@lit_1924_1754 DC AD(__assert)
+@lit_1924_1745 DC AD(rd_kafka_aborted_txns_new)
+@lit_1924_1746 DC AD(rd_kafka_aborted_txns_add)
+@lit_1924_1753 DC AD(rd_kafka_aborted_txns_sort)
+@lit_1924_1754 DC AD(rd_kafka_aborted_txns_get_offset)
+@lit_1924_1758 DC AD(fprintf)
+@lit_1924_1757 DC AD(@DATA)
+@lit_1924_1756 DC AD(@strings@)
+@lit_1924_1755 DC Q(__stderrp)
+@lit_1924_1763 DC Q(rd_unittest_assert_on_failure)
+@lit_1924_1764 DC AD(__assert)
 @lit_region_diff_1924_1_2  DC A(@REGION_1924_2-@REGION_1924_1)
-@lit_1924_1768 DC AD(rd_kafka_aborted_txns_pop_offset)
-@L2084   DS    0H
+@lit_1924_1780 DC AD(rd_kafka_aborted_txns_pop_offset)
+@lit_1924_1779 DC FD'9223372036854775807' 0x7fffffffffffffff
+@L2092   DS    0H
 * ***   
 * ***   
 * ***   
@@ -20796,80 +20873,80 @@ unittest_aborted_txns DCCPRLG CINDEX=1924,BASER=12,FRAME=216,ENTRY=YES,*
          STG   3,176(0,13)
          MVGHI 184(13),1
          LA    1,176(0,13)
-         LG    15,@lit_1924_1744 ; rd_kafka_aborted_txns_get_offset
-@@gen_label2274 DS    0H 
+         LG    15,@lit_1924_1754 ; rd_kafka_aborted_txns_get_offset
+@@gen_label2276 DS    0H 
          BALR  14,15
-@@gen_label2275 DS    0H 
+@@gen_label2277 DS    0H 
          LGR   2,15        ; start_offset
 * ***           do { if (!(3 == start_offset)) { fprintf(__stderrp, "\\
 * 033[31mRDUT: FAIL: %s:%d: %s: " "assert failed: " "3 == start_offset\
 * " ": ", "C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c", 16\
-* 56, __FUNCTION__); fprintf(__stderrp, "queried start offset was %" "\
+* 81, __FUNCTION__); fprintf(__stderrp, "queried start offset was %" "\
 * lld" ", " "expected 3", start_offset); fprintf(__stderrp, "\033[0m\n\
 * "); if (rd_unittest_assert_on_failure) ((3 == start_offset) ? (void)\
 * 0 : __assert(__func__, "C:\\asgkafka\\librdkafka\\src\\rdkafka_msgse\
-* t_reader.c", 1656, "3 == start_offset")); return 1; } } while (0);
-@L2088   DS    0H
+* t_reader.c", 1681, "3 == start_offset")); return 1; } } while (0);
+@L2096   DS    0H
          CGHI  2,3
-         BE    @L2091
-         LLGF  3,@lit_1924_1745 ; __stderrp
+         BE    @L2099
+         LLGF  3,@lit_1924_1755 ; __stderrp
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LG    5,@lit_1924_1746
-         LA    15,2618(0,5)
+         LG    5,@lit_1924_1756
+         LA    15,2684(0,5)
          STG   15,184(0,13)
          LA    15,718(0,5)
          STG   15,192(0,13)
-         MVGHI 200(13),1656
-         LG    6,@lit_1924_1747
+         MVGHI 200(13),1681
+         LG    6,@lit_1924_1757
          LA    15,666(0,6)
          STG   15,208(0,13)
          LA    1,176(0,13)
-         LG    7,@lit_1924_1748 ; fprintf
-         LGR   15,7
-@@gen_label2277 DS    0H 
-         BALR  14,15
-@@gen_label2278 DS    0H 
-         LG    15,0(3,4)   ; __stderrp
-         STG   15,176(0,13)
-         LA    15,2682(0,5)
-         STG   15,184(0,13)
-         STG   2,192(0,13)
-         LA    1,176(0,13)
+         LG    7,@lit_1924_1758 ; fprintf
          LGR   15,7
 @@gen_label2279 DS    0H 
          BALR  14,15
 @@gen_label2280 DS    0H 
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LA    15,2724(0,5)
+         LA    15,2748(0,5)
          STG   15,184(0,13)
+         STG   2,192(0,13)
          LA    1,176(0,13)
          LGR   15,7
 @@gen_label2281 DS    0H 
          BALR  14,15
 @@gen_label2282 DS    0H 
-         LLGF  15,@lit_1924_1753 ; rd_unittest_assert_on_failure
+         LG    15,0(3,4)   ; __stderrp
+         STG   15,176(0,13)
+         LA    15,2790(0,5)
+         STG   15,184(0,13)
+         LA    1,176(0,13)
+         LGR   15,7
+@@gen_label2283 DS    0H 
+         BALR  14,15
+@@gen_label2284 DS    0H 
+         LLGF  15,@lit_1924_1763 ; rd_unittest_assert_on_failure
          LA    15,0(15,4)
          CLI   0(15),0
-         BE    @L2092
+         BE    @L2100
          CGHI  2,3
-         BE    @L2092
-@L2093   DS    0H
+         BE    @L2100
+@L2101   DS    0H
          LA    15,666(0,6)
          STG   15,176(0,13)
          LA    15,718(0,5)
          STG   15,184(0,13)
-         MVGHI 192(13),1656
-         LA    15,2730(0,5)
+         MVGHI 192(13),1681
+         LA    15,2796(0,5)
          STG   15,200(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1924_1754 ; __assert
-@@gen_label2285 DS    0H 
+         LG    15,@lit_1924_1764 ; __assert
+@@gen_label2287 DS    0H 
          BALR  14,15
-@@gen_label2286 DS    0H 
-@L2094   DS    0H
-@L2092   DS    0H
+@@gen_label2288 DS    0H 
+@L2102   DS    0H
+@L2100   DS    0H
          LGHI  15,1        ; 1
          ALGF  12,@lit_region_diff_1924_1_2
          DROP  12
@@ -20877,89 +20954,91 @@ unittest_aborted_txns DCCPRLG CINDEX=1924,BASER=12,FRAME=216,ENTRY=YES,*
          B     @ret_lab_1924
          DROP  12
          USING @REGION_1924_1,12
-@L2091   DS    0H
+@L2099   DS    0H
 * ***   
 * ***   
 * ***   
 * ***           start_offset = rd_kafka_aborted_txns_pop_offset(
-* ***                   aborted_txns, 1);
+* ***                   aborted_txns, 1, 0x7fffffffffffffffLL);
          STG   3,176(0,13)
          MVGHI 184(13),1
+         LG    15,@lit_1924_1779 ; 9223372036854775807
+         STG   15,192(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1924_1768 ; rd_kafka_aborted_txns_pop_offset
-@@gen_label2287 DS    0H 
+         LG    15,@lit_1924_1780 ; rd_kafka_aborted_txns_pop_offset
+@@gen_label2289 DS    0H 
          BALR  14,15
-@@gen_label2288 DS    0H 
+@@gen_label2290 DS    0H 
          LGR   2,15        ; start_offset
 * ***           do { if (!(3 == start_offset)) { fprintf(__stderrp, "\\
 * 033[31mRDUT: FAIL: %s:%d: %s: " "assert failed: " "3 == start_offset\
 * " ": ", "C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c", 16\
-* 62, __FUNCTION__); fprintf(__stderrp, "queried start offset was %" "\
+* 87, __FUNCTION__); fprintf(__stderrp, "queried start offset was %" "\
 * lld" ", " "expected 3", start_offset); fprintf(__stderrp, "\033[0m\n\
 * "); if (rd_unittest_assert_on_failure) ((3 == start_offset) ? (void)\
 * 0 : __assert(__func__, "C:\\asgkafka\\librdkafka\\src\\rdkafka_msgse\
-* t_reader.c", 1662, "3 == start_offset")); return 1; } } while (0);
-@L2095   DS    0H
+* t_reader.c", 1687, "3 == start_offset")); return 1; } } while (0);
+@L2103   DS    0H
          CGHI  2,3
-         BE    @L2098
-         LLGF  3,@lit_1924_1745 ; __stderrp
+         BE    @L2106
+         LLGF  3,@lit_1924_1755 ; __stderrp
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LG    5,@lit_1924_1746
-         LA    15,2618(0,5)
+         LG    5,@lit_1924_1756
+         LA    15,2684(0,5)
          STG   15,184(0,13)
          LA    15,718(0,5)
          STG   15,192(0,13)
-         MVGHI 200(13),1662
-         LG    6,@lit_1924_1747
+         MVGHI 200(13),1687
+         LG    6,@lit_1924_1757
          LA    15,666(0,6)
          STG   15,208(0,13)
          LA    1,176(0,13)
-         LG    7,@lit_1924_1748 ; fprintf
-         LGR   15,7
-@@gen_label2290 DS    0H 
-         BALR  14,15
-@@gen_label2291 DS    0H 
-         LG    15,0(3,4)   ; __stderrp
-         STG   15,176(0,13)
-         LA    15,2682(0,5)
-         STG   15,184(0,13)
-         STG   2,192(0,13)
-         LA    1,176(0,13)
+         LG    7,@lit_1924_1758 ; fprintf
          LGR   15,7
 @@gen_label2292 DS    0H 
          BALR  14,15
 @@gen_label2293 DS    0H 
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LA    15,2724(0,5)
+         LA    15,2748(0,5)
          STG   15,184(0,13)
+         STG   2,192(0,13)
          LA    1,176(0,13)
          LGR   15,7
 @@gen_label2294 DS    0H 
          BALR  14,15
 @@gen_label2295 DS    0H 
-         LLGF  15,@lit_1924_1753 ; rd_unittest_assert_on_failure
+         LG    15,0(3,4)   ; __stderrp
+         STG   15,176(0,13)
+         LA    15,2790(0,5)
+         STG   15,184(0,13)
+         LA    1,176(0,13)
+         LGR   15,7
+@@gen_label2296 DS    0H 
+         BALR  14,15
+@@gen_label2297 DS    0H 
+         LLGF  15,@lit_1924_1763 ; rd_unittest_assert_on_failure
          LA    15,0(15,4)
          CLI   0(15),0
-         BE    @L2099
+         BE    @L2107
          CGHI  2,3
-         BE    @L2099
-@L2100   DS    0H
+         BE    @L2107
+@L2108   DS    0H
          LA    15,666(0,6)
          STG   15,176(0,13)
          LA    15,718(0,5)
          STG   15,184(0,13)
-         MVGHI 192(13),1662
-         LA    15,2730(0,5)
+         MVGHI 192(13),1687
+         LA    15,2796(0,5)
          STG   15,200(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1924_1754 ; __assert
-@@gen_label2298 DS    0H 
+         LG    15,@lit_1924_1764 ; __assert
+@@gen_label2300 DS    0H 
          BALR  14,15
-@@gen_label2299 DS    0H 
-@L2101   DS    0H
-@L2099   DS    0H
+@@gen_label2301 DS    0H 
+@L2109   DS    0H
+@L2107   DS    0H
          LGHI  15,1        ; 1
          ALGF  12,@lit_region_diff_1924_1_2
          DROP  12
@@ -20967,7 +21046,7 @@ unittest_aborted_txns DCCPRLG CINDEX=1924,BASER=12,FRAME=216,ENTRY=YES,*
          B     @ret_lab_1924
          DROP  12
          USING @REGION_1924_1,12
-@L2098   DS    0H
+@L2106   DS    0H
 * ***   
 * ***   
 * ***   
@@ -20976,81 +21055,81 @@ unittest_aborted_txns DCCPRLG CINDEX=1924,BASER=12,FRAME=216,ENTRY=YES,*
          STG   3,176(0,13)
          MVGHI 184(13),1
          LA    1,176(0,13)
-         LG    15,@lit_1924_1744 ; rd_kafka_aborted_txns_get_offset
-@@gen_label2300 DS    0H 
+         LG    15,@lit_1924_1754 ; rd_kafka_aborted_txns_get_offset
+@@gen_label2302 DS    0H 
          BALR  14,15
-@@gen_label2301 DS    0H 
+@@gen_label2303 DS    0H 
          LGR   2,15        ; start_offset
 * ***           do { if (!(10 == start_offset)) { fprintf(__stderrp, "\
 * \033[31mRDUT: FAIL: %s:%d: %s: " "assert failed: " "10 == start_offs\
 * et" ": ", "C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c", \
-* 1668, __FUNCTION__); fprintf(__stderrp, "queried start offset was %"\
+* 1693, __FUNCTION__); fprintf(__stderrp, "queried start offset was %"\
 *  "lld" ", " "expected 10", start_offset); fprintf(__stderrp, "\033[0\
 * m\n"); if (rd_unittest_assert_on_failure) ((10 == start_offset) ? (v\
 * oid)0 : __assert(__func__, "C:\\asgkafka\\librdkafka\\src\\rdkafka_m\
-* sgset_reader.c", 1668, "10 == start_offset")); return 1; } } while (\
+* sgset_reader.c", 1693, "10 == start_offset")); return 1; } } while (\
 * 0);
-@L2102   DS    0H
+@L2110   DS    0H
          CGHI  2,10
-         BE    @L2105
-         LLGF  3,@lit_1924_1745 ; __stderrp
+         BE    @L2113
+         LLGF  3,@lit_1924_1755 ; __stderrp
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LG    5,@lit_1924_1746
-         LA    15,2748(0,5)
+         LG    5,@lit_1924_1756
+         LA    15,2814(0,5)
          STG   15,184(0,13)
          LA    15,718(0,5)
          STG   15,192(0,13)
-         MVGHI 200(13),1668
-         LG    6,@lit_1924_1747
+         MVGHI 200(13),1693
+         LG    6,@lit_1924_1757
          LA    15,666(0,6)
          STG   15,208(0,13)
          LA    1,176(0,13)
-         LG    7,@lit_1924_1748 ; fprintf
-         LGR   15,7
-@@gen_label2303 DS    0H 
-         BALR  14,15
-@@gen_label2304 DS    0H 
-         LG    15,0(3,4)   ; __stderrp
-         STG   15,176(0,13)
-         LA    15,2812(0,5)
-         STG   15,184(0,13)
-         STG   2,192(0,13)
-         LA    1,176(0,13)
+         LG    7,@lit_1924_1758 ; fprintf
          LGR   15,7
 @@gen_label2305 DS    0H 
          BALR  14,15
 @@gen_label2306 DS    0H 
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LA    15,2724(0,5)
+         LA    15,2878(0,5)
          STG   15,184(0,13)
+         STG   2,192(0,13)
          LA    1,176(0,13)
          LGR   15,7
 @@gen_label2307 DS    0H 
          BALR  14,15
 @@gen_label2308 DS    0H 
-         LLGF  15,@lit_1924_1753 ; rd_unittest_assert_on_failure
+         LG    15,0(3,4)   ; __stderrp
+         STG   15,176(0,13)
+         LA    15,2790(0,5)
+         STG   15,184(0,13)
+         LA    1,176(0,13)
+         LGR   15,7
+@@gen_label2309 DS    0H 
+         BALR  14,15
+@@gen_label2310 DS    0H 
+         LLGF  15,@lit_1924_1763 ; rd_unittest_assert_on_failure
          LA    15,0(15,4)
          CLI   0(15),0
-         BE    @L2106
+         BE    @L2114
          CGHI  2,10
-         BE    @L2106
-@L2107   DS    0H
+         BE    @L2114
+@L2115   DS    0H
          LA    15,666(0,6)
          STG   15,176(0,13)
          LA    15,718(0,5)
          STG   15,184(0,13)
-         MVGHI 192(13),1668
-         LA    15,2856(0,5)
+         MVGHI 192(13),1693
+         LA    15,2922(0,5)
          STG   15,200(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1924_1754 ; __assert
-@@gen_label2311 DS    0H 
+         LG    15,@lit_1924_1764 ; __assert
+@@gen_label2313 DS    0H 
          BALR  14,15
-@@gen_label2312 DS    0H 
-@L2108   DS    0H
-@L2106   DS    0H
+@@gen_label2314 DS    0H 
+@L2116   DS    0H
+@L2114   DS    0H
          LGHI  15,1        ; 1
          ALGF  12,@lit_region_diff_1924_1_2
          DROP  12
@@ -21058,7 +21137,7 @@ unittest_aborted_txns DCCPRLG CINDEX=1924,BASER=12,FRAME=216,ENTRY=YES,*
          B     @ret_lab_1924
          DROP  12
          USING @REGION_1924_1,12
-@L2105   DS    0H
+@L2113   DS    0H
 * ***   
 * ***   
 * ***   
@@ -21067,80 +21146,80 @@ unittest_aborted_txns DCCPRLG CINDEX=1924,BASER=12,FRAME=216,ENTRY=YES,*
          STG   3,176(0,13)
          MVGHI 184(13),2
          LA    1,176(0,13)
-         LG    15,@lit_1924_1744 ; rd_kafka_aborted_txns_get_offset
-@@gen_label2313 DS    0H 
+         LG    15,@lit_1924_1754 ; rd_kafka_aborted_txns_get_offset
+@@gen_label2315 DS    0H 
          BALR  14,15
-@@gen_label2314 DS    0H 
+@@gen_label2316 DS    0H 
          LGR   2,15        ; start_offset
 * ***           do { if (!(7 == start_offset)) { fprintf(__stderrp, "\\
 * 033[31mRDUT: FAIL: %s:%d: %s: " "assert failed: " "7 == start_offset\
 * " ": ", "C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c", 16\
-* 74, __FUNCTION__); fprintf(__stderrp, "queried start offset was %" "\
+* 99, __FUNCTION__); fprintf(__stderrp, "queried start offset was %" "\
 * lld" ", " "expected 7", start_offset); fprintf(__stderrp, "\033[0m\n\
 * "); if (rd_unittest_assert_on_failure) ((7 == start_offset) ? (void)\
 * 0 : __assert(__func__, "C:\\asgkafka\\librdkafka\\src\\rdkafka_msgse\
-* t_reader.c", 1674, "7 == start_offset")); return 1; } } while (0);
-@L2109   DS    0H
+* t_reader.c", 1699, "7 == start_offset")); return 1; } } while (0);
+@L2117   DS    0H
          CGHI  2,7
-         BE    @L2112
-         LLGF  3,@lit_1924_1745 ; __stderrp
+         BE    @L2120
+         LLGF  3,@lit_1924_1755 ; __stderrp
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LG    5,@lit_1924_1746
-         LA    15,2876(0,5)
+         LG    5,@lit_1924_1756
+         LA    15,2942(0,5)
          STG   15,184(0,13)
          LA    15,718(0,5)
          STG   15,192(0,13)
-         MVGHI 200(13),1674
-         LG    6,@lit_1924_1747
+         MVGHI 200(13),1699
+         LG    6,@lit_1924_1757
          LA    15,666(0,6)
          STG   15,208(0,13)
          LA    1,176(0,13)
-         LG    7,@lit_1924_1748 ; fprintf
-         LGR   15,7
-@@gen_label2316 DS    0H 
-         BALR  14,15
-@@gen_label2317 DS    0H 
-         LG    15,0(3,4)   ; __stderrp
-         STG   15,176(0,13)
-         LA    15,2940(0,5)
-         STG   15,184(0,13)
-         STG   2,192(0,13)
-         LA    1,176(0,13)
+         LG    7,@lit_1924_1758 ; fprintf
          LGR   15,7
 @@gen_label2318 DS    0H 
          BALR  14,15
 @@gen_label2319 DS    0H 
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LA    15,2724(0,5)
+         LA    15,3006(0,5)
          STG   15,184(0,13)
+         STG   2,192(0,13)
          LA    1,176(0,13)
          LGR   15,7
 @@gen_label2320 DS    0H 
          BALR  14,15
 @@gen_label2321 DS    0H 
-         LLGF  15,@lit_1924_1753 ; rd_unittest_assert_on_failure
+         LG    15,0(3,4)   ; __stderrp
+         STG   15,176(0,13)
+         LA    15,2790(0,5)
+         STG   15,184(0,13)
+         LA    1,176(0,13)
+         LGR   15,7
+@@gen_label2322 DS    0H 
+         BALR  14,15
+@@gen_label2323 DS    0H 
+         LLGF  15,@lit_1924_1763 ; rd_unittest_assert_on_failure
          LA    15,0(15,4)
          CLI   0(15),0
-         BE    @L2113
+         BE    @L2121
          CGHI  2,7
-         BE    @L2113
-@L2114   DS    0H
+         BE    @L2121
+@L2122   DS    0H
          LA    15,666(0,6)
          STG   15,176(0,13)
          LA    15,718(0,5)
          STG   15,184(0,13)
-         MVGHI 192(13),1674
-         LA    15,2982(0,5)
+         MVGHI 192(13),1699
+         LA    15,3048(0,5)
          STG   15,200(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1924_1754 ; __assert
-@@gen_label2324 DS    0H 
+         LG    15,@lit_1924_1764 ; __assert
+@@gen_label2326 DS    0H 
          BALR  14,15
-@@gen_label2325 DS    0H 
-@L2115   DS    0H
-@L2113   DS    0H
+@@gen_label2327 DS    0H 
+@L2123   DS    0H
+@L2121   DS    0H
          LGHI  15,1        ; 1
          ALGF  12,@lit_region_diff_1924_1_2
          DROP  12
@@ -21148,99 +21227,102 @@ unittest_aborted_txns DCCPRLG CINDEX=1924,BASER=12,FRAME=216,ENTRY=YES,*
          B     @ret_lab_1924
          DROP  12
          USING @REGION_1924_1,12
-@L2112   DS    0H
+@L2120   DS    0H
 * ***   
 * ***   
 * ***   
-* ***           rd_kafka_aborted_txns_pop_offset(aborted_txns, 1);
+* ***           rd_kafka_aborted_txns_pop_offset(aborted_txns, 1, 0x7f\
+* ffffffffffffffLL);
          STG   3,176(0,13)
          MVGHI 184(13),1
+         LG    15,@lit_1924_1779 ; 9223372036854775807
+         STG   15,192(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1924_1768 ; rd_kafka_aborted_txns_pop_offset
-@@gen_label2326 DS    0H 
+         LG    15,@lit_1924_1780 ; rd_kafka_aborted_txns_pop_offset
+@@gen_label2328 DS    0H 
          BALR  14,15
-@@gen_label2327 DS    0H 
+@@gen_label2329 DS    0H 
 * ***   
 * ***           start_offset = rd_kafka_aborted_txns_get_offset(
 * ***                   aborted_txns, 1);
          STG   3,176(0,13)
          MVGHI 184(13),1
          LA    1,176(0,13)
-         LG    15,@lit_1924_1744 ; rd_kafka_aborted_txns_get_offset
-@@gen_label2328 DS    0H 
+         LG    15,@lit_1924_1754 ; rd_kafka_aborted_txns_get_offset
+@@gen_label2330 DS    0H 
          BALR  14,15
-@@gen_label2329 DS    0H 
+@@gen_label2331 DS    0H 
          LGR   2,15        ; start_offset
 * ***           do { if (!(42 == start_offset)) { fprintf(__stderrp, "\
 * \033[31mRDUT: FAIL: %s:%d: %s: " "assert failed: " "42 == start_offs\
 * et" ": ", "C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c", \
-* 1682, __FUNCTION__); fprintf(__stderrp, "queried start offset was %"\
+* 1707, __FUNCTION__); fprintf(__stderrp, "queried start offset was %"\
 *  "lld" ", " "expected 42", start_offset); fprintf(__stderrp, "\033[0\
 * m\n"); if (rd_unittest_assert_on_failure) ((42 == start_offset) ? (v\
 * oid)0 : __assert(__func__, "C:\\asgkafka\\librdkafka\\src\\rdkafka_m\
-* sgset_reader.c", 1682, "42 == start_offset")); return 1; } } while (\
+* sgset_reader.c", 1707, "42 == start_offset")); return 1; } } while (\
 * 0);
-@L2116   DS    0H
+@L2124   DS    0H
          CGHI  2,42
-         BE    @L2119
-         LLGF  3,@lit_1924_1745 ; __stderrp
+         BE    @L2127
+         LLGF  3,@lit_1924_1755 ; __stderrp
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LG    5,@lit_1924_1746
-         LA    15,3000(0,5)
+         LG    5,@lit_1924_1756
+         LA    15,3066(0,5)
          STG   15,184(0,13)
          LA    15,718(0,5)
          STG   15,192(0,13)
-         MVGHI 200(13),1682
-         LG    6,@lit_1924_1747
+         MVGHI 200(13),1707
+         LG    6,@lit_1924_1757
          LA    15,666(0,6)
          STG   15,208(0,13)
          LA    1,176(0,13)
-         LG    7,@lit_1924_1748 ; fprintf
-         LGR   15,7
-@@gen_label2331 DS    0H 
-         BALR  14,15
-@@gen_label2332 DS    0H 
-         LG    15,0(3,4)   ; __stderrp
-         STG   15,176(0,13)
-         LA    15,3064(0,5)
-         STG   15,184(0,13)
-         STG   2,192(0,13)
-         LA    1,176(0,13)
+         LG    7,@lit_1924_1758 ; fprintf
          LGR   15,7
 @@gen_label2333 DS    0H 
          BALR  14,15
 @@gen_label2334 DS    0H 
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LA    15,2724(0,5)
+         LA    15,3130(0,5)
          STG   15,184(0,13)
+         STG   2,192(0,13)
          LA    1,176(0,13)
          LGR   15,7
 @@gen_label2335 DS    0H 
          BALR  14,15
 @@gen_label2336 DS    0H 
-         LLGF  15,@lit_1924_1753 ; rd_unittest_assert_on_failure
+         LG    15,0(3,4)   ; __stderrp
+         STG   15,176(0,13)
+         LA    15,2790(0,5)
+         STG   15,184(0,13)
+         LA    1,176(0,13)
+         LGR   15,7
+@@gen_label2337 DS    0H 
+         BALR  14,15
+@@gen_label2338 DS    0H 
+         LLGF  15,@lit_1924_1763 ; rd_unittest_assert_on_failure
          LA    15,0(15,4)
          CLI   0(15),0
-         BE    @L2120
+         BE    @L2128
          CGHI  2,42
-         BE    @L2120
-@L2121   DS    0H
+         BE    @L2128
+@L2129   DS    0H
          LA    15,666(0,6)
          STG   15,176(0,13)
          LA    15,718(0,5)
          STG   15,184(0,13)
-         MVGHI 192(13),1682
-         LA    15,3108(0,5)
+         MVGHI 192(13),1707
+         LA    15,3174(0,5)
          STG   15,200(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1924_1754 ; __assert
-@@gen_label2339 DS    0H 
+         LG    15,@lit_1924_1764 ; __assert
+@@gen_label2341 DS    0H 
          BALR  14,15
-@@gen_label2340 DS    0H 
-@L2122   DS    0H
-@L2120   DS    0H
+@@gen_label2342 DS    0H 
+@L2130   DS    0H
+@L2128   DS    0H
          LGHI  15,1        ; 1
          ALGF  12,@lit_region_diff_1924_1_2
          DROP  12
@@ -21248,122 +21330,120 @@ unittest_aborted_txns DCCPRLG CINDEX=1924,BASER=12,FRAME=216,ENTRY=YES,*
          B     @ret_lab_1924
          DROP  12
          USING @REGION_1924_1,12
-@L2119   DS    0H
+@L2127   DS    0H
 * ***   
 * ***   
 * ***   
-* ***           rd_kafka_aborted_txns_pop_offset(aborted_txns, 1);
+* ***           rd_kafka_aborted_txns_pop_offset(aborted_txns, 1, 0x7f\
+* ffffffffffffffLL);
          STG   3,176(0,13)
          MVGHI 184(13),1
+         LG    15,@lit_1924_1779 ; 9223372036854775807
+         STG   15,192(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1924_1768 ; rd_kafka_aborted_txns_pop_offset
-@@gen_label2341 DS    0H 
+         LG    15,@lit_1924_1780 ; rd_kafka_aborted_txns_pop_offset
+@@gen_label2343 DS    0H 
          BALR  14,15
-@@gen_label2342 DS    0H 
+@@gen_label2344 DS    0H 
 * ***   
 * ***           start_offset = rd_kafka_aborted_txns_get_offset(
 * ***                   aborted_txns, 1);
          STG   3,176(0,13)
          MVGHI 184(13),1
          LA    1,176(0,13)
-         LG    15,@lit_1924_1744 ; rd_kafka_aborted_txns_get_offset
-@@gen_label2343 DS    0H 
+         LG    15,@lit_1924_1754 ; rd_kafka_aborted_txns_get_offset
+@@gen_label2345 DS    0H 
          BALR  14,15
-@@gen_label2344 DS    0H 
+@@gen_label2346 DS    0H 
          LGR   2,15        ; start_offset
 * ***           do { if (!(44 == start_offset)) { fprintf(__stderrp, "\
 * \033[31mRDUT: FAIL: %s:%d: %s: " "assert failed: " "44 == start_offs\
 * et" ": ", "C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c", \
-* 1690, __FUNCTION__); fprintf(__stderrp, "queried start offset was %"\
+* 1715, __FUNCTION__); fprintf(__stderrp, "queried start offset was %"\
 *  "lld" ", " "expected 44", start_offset); fprintf(__stderrp, "\033[0\
 * m\n"); if (rd_unittest_assert_on_failure) ((44 == start_offset) ? (v\
 * oid)0 : __assert(__func__, "C:\\asgkafka\\librdkafka\\src\\rdkafka_m\
-* sgset_reader.c", 1690, "44 == start_offset")); return 1; } } while (\
+* sgset_reader.c", 1715, "44 == start_offset")); return 1; } } while (\
 * 0);
-@L2123   DS    0H
-         CGHI  2,44
-         BNE   *+14  Around region break
-         ALGF  12,@lit_region_diff_1924_1_2
-         DROP  12
-         USING @REGION_1924_2,12
-         B     @L2126
-         DROP  12
-         USING @REGION_1924_1,12
          ALGF  12,@lit_region_diff_1924_1_2
 @REGION_1924_2 DS 0H
          DROP  12
          USING @REGION_1924_2,12
-         LLGF  3,@lit_1924_1819 ; __stderrp
+@L2131   DS    0H
+         CGHI  2,44
+         BE    @L2134
+         LLGF  3,@lit_1924_1835 ; __stderrp
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LG    5,@lit_1924_1820
-         LA    15,3128(0,5)
+         LG    5,@lit_1924_1836
+         LA    15,3194(0,5)
          STG   15,184(0,13)
          LA    15,718(0,5)
          STG   15,192(0,13)
-         MVGHI 200(13),1690
-         LG    6,@lit_1924_1821
+         MVGHI 200(13),1715
+         LG    6,@lit_1924_1837
          LA    15,666(0,6)
          STG   15,208(0,13)
          LA    1,176(0,13)
-         LG    7,@lit_1924_1822 ; fprintf
-         LGR   15,7
-@@gen_label2346 DS    0H 
-         BALR  14,15
-@@gen_label2347 DS    0H 
-         LG    15,0(3,4)   ; __stderrp
-         STG   15,176(0,13)
-         LA    15,3192(0,5)
-         STG   15,184(0,13)
-         STG   2,192(0,13)
-         LA    1,176(0,13)
+         LG    7,@lit_1924_1838 ; fprintf
          LGR   15,7
 @@gen_label2348 DS    0H 
          BALR  14,15
 @@gen_label2349 DS    0H 
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LA    15,2724(0,5)
+         LA    15,3258(0,5)
          STG   15,184(0,13)
+         STG   2,192(0,13)
          LA    1,176(0,13)
          LGR   15,7
 @@gen_label2350 DS    0H 
          BALR  14,15
 @@gen_label2351 DS    0H 
-         LLGF  15,@lit_1924_1827 ; rd_unittest_assert_on_failure
+         LG    15,0(3,4)   ; __stderrp
+         STG   15,176(0,13)
+         LA    15,2790(0,5)
+         STG   15,184(0,13)
+         LA    1,176(0,13)
+         LGR   15,7
+@@gen_label2352 DS    0H 
+         BALR  14,15
+@@gen_label2353 DS    0H 
+         LLGF  15,@lit_1924_1843 ; rd_unittest_assert_on_failure
          LA    15,0(15,4)
          CLI   0(15),0
-         BE    @L2127
+         BE    @L2135
          CGHI  2,44
-         BE    @L2127
-@L2128   DS    0H
+         BE    @L2135
+@L2136   DS    0H
          LA    15,666(0,6)
          STG   15,176(0,13)
          LA    15,718(0,5)
          STG   15,184(0,13)
-         MVGHI 192(13),1690
-         LA    15,3236(0,5)
+         MVGHI 192(13),1715
+         LA    15,3302(0,5)
          STG   15,200(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1924_1828 ; __assert
-@@gen_label2354 DS    0H 
+         LG    15,@lit_1924_1844 ; __assert
+@@gen_label2356 DS    0H 
          BALR  14,15
-@@gen_label2355 DS    0H 
-@L2129   DS    0H
-@L2127   DS    0H
+@@gen_label2357 DS    0H 
+@L2137   DS    0H
+@L2135   DS    0H
          LGHI  15,1        ; 1
          B     @ret_lab_1924
          DS    0D
-@lit_1924_1822 DC AD(fprintf)
-@lit_1924_1821 DC AD(@DATA)
-@lit_1924_1820 DC AD(@strings@)
-@lit_1924_1819 DC Q(__stderrp)
-@lit_1924_1827 DC Q(rd_unittest_assert_on_failure)
-@lit_1924_1828 DC AD(__assert)
-@lit_1924_1830 DC AD(rd_kafka_aborted_txns_get_offset)
-@lit_1924_1842 DC AD(rd_kafka_aborted_txns_pop_offset)
-@lit_1924_1894 DC AD(rd_kafka_aborted_txns_destroy)
-@L2126   DS    0H
+@lit_1924_1838 DC AD(fprintf)
+@lit_1924_1837 DC AD(@DATA)
+@lit_1924_1836 DC AD(@strings@)
+@lit_1924_1835 DC Q(__stderrp)
+@lit_1924_1843 DC Q(rd_unittest_assert_on_failure)
+@lit_1924_1844 DC AD(__assert)
+@lit_1924_1846 DC AD(rd_kafka_aborted_txns_get_offset)
+@lit_1924_1860 DC AD(rd_kafka_aborted_txns_pop_offset)
+@lit_1924_1859 DC FD'9223372036854775807' 0x7fffffffffffffff
+@lit_1924_1916 DC AD(rd_kafka_aborted_txns_destroy)
+@L2134   DS    0H
 * ***   
 * ***   
 * ***   
@@ -21372,178 +21452,181 @@ unittest_aborted_txns DCCPRLG CINDEX=1924,BASER=12,FRAME=216,ENTRY=YES,*
          STG   3,176(0,13)
          MVGHI 184(13),2
          LA    1,176(0,13)
-         LG    15,@lit_1924_1830 ; rd_kafka_aborted_txns_get_offset
-@@gen_label2356 DS    0H 
+         LG    15,@lit_1924_1846 ; rd_kafka_aborted_txns_get_offset
+@@gen_label2358 DS    0H 
          BALR  14,15
-@@gen_label2357 DS    0H 
+@@gen_label2359 DS    0H 
          LGR   2,15        ; start_offset
 * ***           do { if (!(7 == start_offset)) { fprintf(__stderrp, "\\
 * 033[31mRDUT: FAIL: %s:%d: %s: " "assert failed: " "7 == start_offset\
-* " ": ", "C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c", 16\
-* 96, __FUNCTION__); fprintf(__stderrp, "queried start offset was %" "\
+* " ": ", "C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c", 17\
+* 21, __FUNCTION__); fprintf(__stderrp, "queried start offset was %" "\
 * lld" ", " "expected 7", start_offset); fprintf(__stderrp, "\033[0m\n\
 * "); if (rd_unittest_assert_on_failure) ((7 == start_offset) ? (void)\
 * 0 : __assert(__func__, "C:\\asgkafka\\librdkafka\\src\\rdkafka_msgse\
-* t_reader.c", 1696, "7 == start_offset")); return 1; } } while (0);
-@L2130   DS    0H
+* t_reader.c", 1721, "7 == start_offset")); return 1; } } while (0);
+@L2138   DS    0H
          CGHI  2,7
-         BE    @L2133
-         LLGF  3,@lit_1924_1819 ; __stderrp
+         BE    @L2141
+         LLGF  3,@lit_1924_1835 ; __stderrp
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LG    5,@lit_1924_1820
-         LA    15,2876(0,5)
+         LG    5,@lit_1924_1836
+         LA    15,2942(0,5)
          STG   15,184(0,13)
          LA    15,718(0,5)
          STG   15,192(0,13)
-         MVGHI 200(13),1696
-         LG    6,@lit_1924_1821
+         MVGHI 200(13),1721
+         LG    6,@lit_1924_1837
          LA    15,666(0,6)
          STG   15,208(0,13)
          LA    1,176(0,13)
-         LG    7,@lit_1924_1822 ; fprintf
-         LGR   15,7
-@@gen_label2359 DS    0H 
-         BALR  14,15
-@@gen_label2360 DS    0H 
-         LG    15,0(3,4)   ; __stderrp
-         STG   15,176(0,13)
-         LA    15,2940(0,5)
-         STG   15,184(0,13)
-         STG   2,192(0,13)
-         LA    1,176(0,13)
+         LG    7,@lit_1924_1838 ; fprintf
          LGR   15,7
 @@gen_label2361 DS    0H 
          BALR  14,15
 @@gen_label2362 DS    0H 
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LA    15,2724(0,5)
+         LA    15,3006(0,5)
          STG   15,184(0,13)
+         STG   2,192(0,13)
          LA    1,176(0,13)
          LGR   15,7
 @@gen_label2363 DS    0H 
          BALR  14,15
 @@gen_label2364 DS    0H 
-         LLGF  15,@lit_1924_1827 ; rd_unittest_assert_on_failure
+         LG    15,0(3,4)   ; __stderrp
+         STG   15,176(0,13)
+         LA    15,2790(0,5)
+         STG   15,184(0,13)
+         LA    1,176(0,13)
+         LGR   15,7
+@@gen_label2365 DS    0H 
+         BALR  14,15
+@@gen_label2366 DS    0H 
+         LLGF  15,@lit_1924_1843 ; rd_unittest_assert_on_failure
          LA    15,0(15,4)
          CLI   0(15),0
-         BE    @L2134
+         BE    @L2142
          CGHI  2,7
-         BE    @L2134
-@L2135   DS    0H
+         BE    @L2142
+@L2143   DS    0H
          LA    15,666(0,6)
          STG   15,176(0,13)
          LA    15,718(0,5)
          STG   15,184(0,13)
-         MVGHI 192(13),1696
-         LA    15,2982(0,5)
+         MVGHI 192(13),1721
+         LA    15,3048(0,5)
          STG   15,200(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1924_1828 ; __assert
-@@gen_label2367 DS    0H 
-         BALR  14,15
-@@gen_label2368 DS    0H 
-@L2136   DS    0H
-@L2134   DS    0H
-         LGHI  15,1        ; 1
-         B     @ret_lab_1924
-@L2133   DS    0H
-* ***   
-* ***   
-* ***   
-* ***           rd_kafka_aborted_txns_pop_offset(aborted_txns, 2);
-         STG   3,176(0,13)
-         MVGHI 184(13),2
-         LA    1,176(0,13)
-         LG    15,@lit_1924_1842 ; rd_kafka_aborted_txns_pop_offset
+         LG    15,@lit_1924_1844 ; __assert
 @@gen_label2369 DS    0H 
          BALR  14,15
 @@gen_label2370 DS    0H 
+@L2144   DS    0H
+@L2142   DS    0H
+         LGHI  15,1        ; 1
+         B     @ret_lab_1924
+@L2141   DS    0H
+* ***   
+* ***   
+* ***   
+* ***           rd_kafka_aborted_txns_pop_offset(aborted_txns, 2, 0x7f\
+* ffffffffffffffLL);
+         STG   3,176(0,13)
+         MVGHI 184(13),2
+         LG    15,@lit_1924_1859 ; 9223372036854775807
+         STG   15,192(0,13)
+         LA    1,176(0,13)
+         LG    15,@lit_1924_1860 ; rd_kafka_aborted_txns_pop_offset
+@@gen_label2371 DS    0H 
+         BALR  14,15
+@@gen_label2372 DS    0H 
 * ***   
 * ***           start_offset = rd_kafka_aborted_txns_get_offset(
 * ***                   aborted_txns, 2);
          STG   3,176(0,13)
          MVGHI 184(13),2
          LA    1,176(0,13)
-         LG    15,@lit_1924_1830 ; rd_kafka_aborted_txns_get_offset
-@@gen_label2371 DS    0H 
+         LG    15,@lit_1924_1846 ; rd_kafka_aborted_txns_get_offset
+@@gen_label2373 DS    0H 
          BALR  14,15
-@@gen_label2372 DS    0H 
+@@gen_label2374 DS    0H 
          LGR   2,15        ; start_offset
 * ***           do { if (!(11 == start_offset)) { fprintf(__stderrp, "\
 * \033[31mRDUT: FAIL: %s:%d: %s: " "assert failed: " "11 == start_offs\
 * et" ": ", "C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c", \
-* 1704, __FUNCTION__); fprintf(__stderrp, "queried start offset was %"\
+* 1729, __FUNCTION__); fprintf(__stderrp, "queried start offset was %"\
 *  "lld" ", " "expected 11", start_offset); fprintf(__stderrp, "\033[0\
 * m\n"); if (rd_unittest_assert_on_failure) ((11 == start_offset) ? (v\
 * oid)0 : __assert(__func__, "C:\\asgkafka\\librdkafka\\src\\rdkafka_m\
-* sgset_reader.c", 1704, "11 == start_offset")); return 1; } } while (\
+* sgset_reader.c", 1729, "11 == start_offset")); return 1; } } while (\
 * 0);
-@L2137   DS    0H
+@L2145   DS    0H
          CGHI  2,11
-         BE    @L2140
-         LLGF  3,@lit_1924_1819 ; __stderrp
+         BE    @L2148
+         LLGF  3,@lit_1924_1835 ; __stderrp
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LG    5,@lit_1924_1820
-         LA    15,3256(0,5)
+         LG    5,@lit_1924_1836
+         LA    15,3322(0,5)
          STG   15,184(0,13)
          LA    15,718(0,5)
          STG   15,192(0,13)
-         MVGHI 200(13),1704
-         LG    6,@lit_1924_1821
+         MVGHI 200(13),1729
+         LG    6,@lit_1924_1837
          LA    15,666(0,6)
          STG   15,208(0,13)
          LA    1,176(0,13)
-         LG    7,@lit_1924_1822 ; fprintf
-         LGR   15,7
-@@gen_label2374 DS    0H 
-         BALR  14,15
-@@gen_label2375 DS    0H 
-         LG    15,0(3,4)   ; __stderrp
-         STG   15,176(0,13)
-         LA    15,3320(0,5)
-         STG   15,184(0,13)
-         STG   2,192(0,13)
-         LA    1,176(0,13)
+         LG    7,@lit_1924_1838 ; fprintf
          LGR   15,7
 @@gen_label2376 DS    0H 
          BALR  14,15
 @@gen_label2377 DS    0H 
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LA    15,2724(0,5)
+         LA    15,3386(0,5)
          STG   15,184(0,13)
+         STG   2,192(0,13)
          LA    1,176(0,13)
          LGR   15,7
 @@gen_label2378 DS    0H 
          BALR  14,15
 @@gen_label2379 DS    0H 
-         LLGF  15,@lit_1924_1827 ; rd_unittest_assert_on_failure
+         LG    15,0(3,4)   ; __stderrp
+         STG   15,176(0,13)
+         LA    15,2790(0,5)
+         STG   15,184(0,13)
+         LA    1,176(0,13)
+         LGR   15,7
+@@gen_label2380 DS    0H 
+         BALR  14,15
+@@gen_label2381 DS    0H 
+         LLGF  15,@lit_1924_1843 ; rd_unittest_assert_on_failure
          LA    15,0(15,4)
          CLI   0(15),0
-         BE    @L2141
+         BE    @L2149
          CGHI  2,11
-         BE    @L2141
-@L2142   DS    0H
+         BE    @L2149
+@L2150   DS    0H
          LA    15,666(0,6)
          STG   15,176(0,13)
          LA    15,718(0,5)
          STG   15,184(0,13)
-         MVGHI 192(13),1704
-         LA    15,3364(0,5)
+         MVGHI 192(13),1729
+         LA    15,3430(0,5)
          STG   15,200(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1924_1828 ; __assert
-@@gen_label2382 DS    0H 
+         LG    15,@lit_1924_1844 ; __assert
+@@gen_label2384 DS    0H 
          BALR  14,15
-@@gen_label2383 DS    0H 
-@L2143   DS    0H
-@L2141   DS    0H
+@@gen_label2385 DS    0H 
+@L2151   DS    0H
+@L2149   DS    0H
          LGHI  15,1        ; 1
          B     @ret_lab_1924
-@L2140   DS    0H
+@L2148   DS    0H
 * ***   
 * ***   
 * ***   
@@ -21553,196 +21636,203 @@ unittest_aborted_txns DCCPRLG CINDEX=1924,BASER=12,FRAME=216,ENTRY=YES,*
          STG   3,176(0,13)
          MVGHI 184(13),3
          LA    1,176(0,13)
-         LG    15,@lit_1924_1830 ; rd_kafka_aborted_txns_get_offset
-@@gen_label2384 DS    0H 
+         LG    15,@lit_1924_1846 ; rd_kafka_aborted_txns_get_offset
+@@gen_label2386 DS    0H 
          BALR  14,15
-@@gen_label2385 DS    0H 
+@@gen_label2387 DS    0H 
          LGR   2,15        ; start_offset
 * ***           do { if (!(-1 == start_offset)) { fprintf(__stderrp, "\
 * \033[31mRDUT: FAIL: %s:%d: %s: " "assert failed: " "-1 == start_offs\
 * et" ": ", "C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c", \
-* 1711, __FUNCTION__); fprintf(__stderrp, "queried start offset was %"\
+* 1736, __FUNCTION__); fprintf(__stderrp, "queried start offset was %"\
 *  "lld" ", " "expected -1", start_offset); fprintf(__stderrp, "\033[0\
 * m\n"); if (rd_unittest_assert_on_failure) ((-1 == start_offset) ? (v\
 * oid)0 : __assert(__func__, "C:\\asgkafka\\librdkafka\\src\\rdkafka_m\
-* sgset_reader.c", 1711, "-1 == start_offset")); return 1; } } while (\
+* sgset_reader.c", 1736, "-1 == start_offset")); return 1; } } while (\
 * 0);
-@L2144   DS    0H
+@L2152   DS    0H
          CGHI  2,-1
-         BE    @L2147
-         LLGF  3,@lit_1924_1819 ; __stderrp
+         BE    @L2155
+         LLGF  3,@lit_1924_1835 ; __stderrp
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LG    5,@lit_1924_1820
-         LA    15,3384(0,5)
+         LG    5,@lit_1924_1836
+         LA    15,3450(0,5)
          STG   15,184(0,13)
          LA    15,718(0,5)
          STG   15,192(0,13)
-         MVGHI 200(13),1711
-         LG    6,@lit_1924_1821
+         MVGHI 200(13),1736
+         LG    6,@lit_1924_1837
          LA    15,666(0,6)
          STG   15,208(0,13)
          LA    1,176(0,13)
-         LG    7,@lit_1924_1822 ; fprintf
-         LGR   15,7
-@@gen_label2387 DS    0H 
-         BALR  14,15
-@@gen_label2388 DS    0H 
-         LG    15,0(3,4)   ; __stderrp
-         STG   15,176(0,13)
-         LA    15,3448(0,5)
-         STG   15,184(0,13)
-         STG   2,192(0,13)
-         LA    1,176(0,13)
+         LG    7,@lit_1924_1838 ; fprintf
          LGR   15,7
 @@gen_label2389 DS    0H 
          BALR  14,15
 @@gen_label2390 DS    0H 
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LA    15,2724(0,5)
+         LA    15,3514(0,5)
          STG   15,184(0,13)
+         STG   2,192(0,13)
          LA    1,176(0,13)
          LGR   15,7
 @@gen_label2391 DS    0H 
          BALR  14,15
 @@gen_label2392 DS    0H 
-         LLGF  15,@lit_1924_1827 ; rd_unittest_assert_on_failure
+         LG    15,0(3,4)   ; __stderrp
+         STG   15,176(0,13)
+         LA    15,2790(0,5)
+         STG   15,184(0,13)
+         LA    1,176(0,13)
+         LGR   15,7
+@@gen_label2393 DS    0H 
+         BALR  14,15
+@@gen_label2394 DS    0H 
+         LLGF  15,@lit_1924_1843 ; rd_unittest_assert_on_failure
          LA    15,0(15,4)
          CLI   0(15),0
-         BE    @L2148
+         BE    @L2156
          CGHI  2,-1
-         BE    @L2148
-@L2149   DS    0H
+         BE    @L2156
+@L2157   DS    0H
          LA    15,666(0,6)
          STG   15,176(0,13)
          LA    15,718(0,5)
          STG   15,184(0,13)
-         MVGHI 192(13),1711
-         LA    15,3492(0,5)
+         MVGHI 192(13),1736
+         LA    15,3558(0,5)
          STG   15,200(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1924_1828 ; __assert
-@@gen_label2395 DS    0H 
-         BALR  14,15
-@@gen_label2396 DS    0H 
-@L2150   DS    0H
-@L2148   DS    0H
-         LGHI  15,1        ; 1
-         B     @ret_lab_1924
-@L2147   DS    0H
-* ***   
-* ***   
-* ***   
-* ***           rd_kafka_aborted_txns_pop_offset(aborted_txns, 1);
-         STG   3,176(0,13)
-         MVGHI 184(13),1
-         LA    1,176(0,13)
-         LG    2,@lit_1924_1842 ; rd_kafka_aborted_txns_pop_offset
-         LGR   15,2
+         LG    15,@lit_1924_1844 ; __assert
 @@gen_label2397 DS    0H 
          BALR  14,15
 @@gen_label2398 DS    0H 
-* ***           rd_kafka_aborted_txns_pop_offset(aborted_txns, 1);
+@L2158   DS    0H
+@L2156   DS    0H
+         LGHI  15,1        ; 1
+         B     @ret_lab_1924
+@L2155   DS    0H
+* ***   
+* ***   
+* ***   
+* ***           rd_kafka_aborted_txns_pop_offset(aborted_txns, 1, 0x7f\
+* ffffffffffffffLL);
          STG   3,176(0,13)
          MVGHI 184(13),1
+         LG    2,@lit_1924_1859 ; 9223372036854775807
+         STG   2,192(0,13)
          LA    1,176(0,13)
-         LGR   15,2
+         LG    5,@lit_1924_1860 ; rd_kafka_aborted_txns_pop_offset
+         LGR   15,5
 @@gen_label2399 DS    0H 
          BALR  14,15
 @@gen_label2400 DS    0H 
-* ***           rd_kafka_aborted_txns_pop_offset(aborted_txns, 2);
+* ***           rd_kafka_aborted_txns_pop_offset(aborted_txns, 1, 0x7f\
+* ffffffffffffffLL);
          STG   3,176(0,13)
-         MVGHI 184(13),2
+         MVGHI 184(13),1
+         STG   2,192(0,13)
          LA    1,176(0,13)
-         LGR   15,2
+         LGR   15,5
 @@gen_label2401 DS    0H 
          BALR  14,15
 @@gen_label2402 DS    0H 
+* ***           rd_kafka_aborted_txns_pop_offset(aborted_txns, 2, 0x7f\
+* ffffffffffffffLL);
+         STG   3,176(0,13)
+         MVGHI 184(13),2
+         STG   2,192(0,13)
+         LA    1,176(0,13)
+         LGR   15,5
+@@gen_label2403 DS    0H 
+         BALR  14,15
+@@gen_label2404 DS    0H 
 * ***   
 * ***           start_offset = rd_kafka_aborted_txns_get_offset(
 * ***                   aborted_txns, 1);
          STG   3,176(0,13)
          MVGHI 184(13),1
          LA    1,176(0,13)
-         LG    15,@lit_1924_1830 ; rd_kafka_aborted_txns_get_offset
-@@gen_label2403 DS    0H 
+         LG    15,@lit_1924_1846 ; rd_kafka_aborted_txns_get_offset
+@@gen_label2405 DS    0H 
          BALR  14,15
-@@gen_label2404 DS    0H 
+@@gen_label2406 DS    0H 
          LGR   2,15        ; start_offset
 * ***           do { if (!(-1 == start_offset)) { fprintf(__stderrp, "\
 * \033[31mRDUT: FAIL: %s:%d: %s: " "assert failed: " "-1 == start_offs\
 * et" ": ", "C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c", \
-* 1721, __FUNCTION__); fprintf(__stderrp, "queried start offset was %"\
+* 1746, __FUNCTION__); fprintf(__stderrp, "queried start offset was %"\
 *  "lld" ", " "expected -1", start_offset); fprintf(__stderrp, "\033[0\
 * m\n"); if (rd_unittest_assert_on_failure) ((-1 == start_offset) ? (v\
 * oid)0 : __assert(__func__, "C:\\asgkafka\\librdkafka\\src\\rdkafka_m\
-* sgset_reader.c", 1721, "-1 == start_offset")); return 1; } } while (\
+* sgset_reader.c", 1746, "-1 == start_offset")); return 1; } } while (\
 * 0);
-@L2151   DS    0H
+@L2159   DS    0H
          CGHI  2,-1
-         BE    @L2154
-         LLGF  3,@lit_1924_1819 ; __stderrp
+         BE    @L2162
+         LLGF  3,@lit_1924_1835 ; __stderrp
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LG    5,@lit_1924_1820
-         LA    15,3384(0,5)
+         LG    5,@lit_1924_1836
+         LA    15,3450(0,5)
          STG   15,184(0,13)
          LA    15,718(0,5)
          STG   15,192(0,13)
-         MVGHI 200(13),1721
-         LG    6,@lit_1924_1821
+         MVGHI 200(13),1746
+         LG    6,@lit_1924_1837
          LA    15,666(0,6)
          STG   15,208(0,13)
          LA    1,176(0,13)
-         LG    7,@lit_1924_1822 ; fprintf
-         LGR   15,7
-@@gen_label2406 DS    0H 
-         BALR  14,15
-@@gen_label2407 DS    0H 
-         LG    15,0(3,4)   ; __stderrp
-         STG   15,176(0,13)
-         LA    15,3448(0,5)
-         STG   15,184(0,13)
-         STG   2,192(0,13)
-         LA    1,176(0,13)
+         LG    7,@lit_1924_1838 ; fprintf
          LGR   15,7
 @@gen_label2408 DS    0H 
          BALR  14,15
 @@gen_label2409 DS    0H 
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LA    15,2724(0,5)
+         LA    15,3514(0,5)
          STG   15,184(0,13)
+         STG   2,192(0,13)
          LA    1,176(0,13)
          LGR   15,7
 @@gen_label2410 DS    0H 
          BALR  14,15
 @@gen_label2411 DS    0H 
-         LLGF  15,@lit_1924_1827 ; rd_unittest_assert_on_failure
+         LG    15,0(3,4)   ; __stderrp
+         STG   15,176(0,13)
+         LA    15,2790(0,5)
+         STG   15,184(0,13)
+         LA    1,176(0,13)
+         LGR   15,7
+@@gen_label2412 DS    0H 
+         BALR  14,15
+@@gen_label2413 DS    0H 
+         LLGF  15,@lit_1924_1843 ; rd_unittest_assert_on_failure
          LA    15,0(15,4)
          CLI   0(15),0
-         BE    @L2155
+         BE    @L2163
          CGHI  2,-1
-         BE    @L2155
-@L2156   DS    0H
+         BE    @L2163
+@L2164   DS    0H
          LA    15,666(0,6)
          STG   15,176(0,13)
          LA    15,718(0,5)
          STG   15,184(0,13)
-         MVGHI 192(13),1721
-         LA    15,3492(0,5)
+         MVGHI 192(13),1746
+         LA    15,3558(0,5)
          STG   15,200(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1924_1828 ; __assert
-@@gen_label2414 DS    0H 
+         LG    15,@lit_1924_1844 ; __assert
+@@gen_label2416 DS    0H 
          BALR  14,15
-@@gen_label2415 DS    0H 
-@L2157   DS    0H
-@L2155   DS    0H
+@@gen_label2417 DS    0H 
+@L2165   DS    0H
+@L2163   DS    0H
          LGHI  15,1        ; 1
          B     @ret_lab_1924
-@L2154   DS    0H
+@L2162   DS    0H
 * ***   
 * ***   
 * ***   
@@ -21751,116 +21841,116 @@ unittest_aborted_txns DCCPRLG CINDEX=1924,BASER=12,FRAME=216,ENTRY=YES,*
          STG   3,176(0,13)
          MVGHI 184(13),2
          LA    1,176(0,13)
-         LG    15,@lit_1924_1830 ; rd_kafka_aborted_txns_get_offset
-@@gen_label2416 DS    0H 
+         LG    15,@lit_1924_1846 ; rd_kafka_aborted_txns_get_offset
+@@gen_label2418 DS    0H 
          BALR  14,15
-@@gen_label2417 DS    0H 
+@@gen_label2419 DS    0H 
          LGR   2,15        ; start_offset
 * ***           do { if (!(-1 == start_offset)) { fprintf(__stderrp, "\
 * \033[31mRDUT: FAIL: %s:%d: %s: " "assert failed: " "-1 == start_offs\
 * et" ": ", "C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c", \
-* 1727, __FUNCTION__); fprintf(__stderrp, "queried start offset was %"\
+* 1752, __FUNCTION__); fprintf(__stderrp, "queried start offset was %"\
 *  "lld" ", " "expected -1", start_offset); fprintf(__stderrp, "\033[0\
 * m\n"); if (rd_unittest_assert_on_failure) ((-1 == start_offset) ? (v\
 * oid)0 : __assert(__func__, "C:\\asgkafka\\librdkafka\\src\\rdkafka_m\
-* sgset_reader.c", 1727, "-1 == start_offset")); return 1; } } while (\
+* sgset_reader.c", 1752, "-1 == start_offset")); return 1; } } while (\
 * 0);
-@L2158   DS    0H
+@L2166   DS    0H
          CGHI  2,-1
-         BE    @L2161
-         LLGF  3,@lit_1924_1819 ; __stderrp
+         BE    @L2169
+         LLGF  3,@lit_1924_1835 ; __stderrp
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LG    5,@lit_1924_1820
-         LA    15,3384(0,5)
+         LG    5,@lit_1924_1836
+         LA    15,3450(0,5)
          STG   15,184(0,13)
          LA    15,718(0,5)
          STG   15,192(0,13)
-         MVGHI 200(13),1727
-         LG    6,@lit_1924_1821
+         MVGHI 200(13),1752
+         LG    6,@lit_1924_1837
          LA    15,666(0,6)
          STG   15,208(0,13)
          LA    1,176(0,13)
-         LG    7,@lit_1924_1822 ; fprintf
-         LGR   15,7
-@@gen_label2419 DS    0H 
-         BALR  14,15
-@@gen_label2420 DS    0H 
-         LG    15,0(3,4)   ; __stderrp
-         STG   15,176(0,13)
-         LA    15,3448(0,5)
-         STG   15,184(0,13)
-         STG   2,192(0,13)
-         LA    1,176(0,13)
+         LG    7,@lit_1924_1838 ; fprintf
          LGR   15,7
 @@gen_label2421 DS    0H 
          BALR  14,15
 @@gen_label2422 DS    0H 
          LG    15,0(3,4)   ; __stderrp
          STG   15,176(0,13)
-         LA    15,2724(0,5)
+         LA    15,3514(0,5)
          STG   15,184(0,13)
+         STG   2,192(0,13)
          LA    1,176(0,13)
          LGR   15,7
 @@gen_label2423 DS    0H 
          BALR  14,15
 @@gen_label2424 DS    0H 
-         LLGF  15,@lit_1924_1827 ; rd_unittest_assert_on_failure
+         LG    15,0(3,4)   ; __stderrp
+         STG   15,176(0,13)
+         LA    15,2790(0,5)
+         STG   15,184(0,13)
+         LA    1,176(0,13)
+         LGR   15,7
+@@gen_label2425 DS    0H 
+         BALR  14,15
+@@gen_label2426 DS    0H 
+         LLGF  15,@lit_1924_1843 ; rd_unittest_assert_on_failure
          LA    15,0(15,4)
          CLI   0(15),0
-         BE    @L2162
+         BE    @L2170
          CGHI  2,-1
-         BE    @L2162
-@L2163   DS    0H
+         BE    @L2170
+@L2171   DS    0H
          LA    15,666(0,6)
          STG   15,176(0,13)
          LA    15,718(0,5)
          STG   15,184(0,13)
-         MVGHI 192(13),1727
-         LA    15,3492(0,5)
+         MVGHI 192(13),1752
+         LA    15,3558(0,5)
          STG   15,200(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1924_1828 ; __assert
-@@gen_label2427 DS    0H 
+         LG    15,@lit_1924_1844 ; __assert
+@@gen_label2429 DS    0H 
          BALR  14,15
-@@gen_label2428 DS    0H 
-@L2164   DS    0H
-@L2162   DS    0H
+@@gen_label2430 DS    0H 
+@L2172   DS    0H
+@L2170   DS    0H
          LGHI  15,1        ; 1
          B     @ret_lab_1924
-@L2161   DS    0H
+@L2169   DS    0H
 * ***   
 * ***   
 * ***   
 * ***           rd_kafka_aborted_txns_destroy(aborted_txns);
          STG   3,176(0,13)
          LA    1,176(0,13)
-         LG    15,@lit_1924_1894 ; rd_kafka_aborted_txns_destroy
-@@gen_label2429 DS    0H 
-         BALR  14,15
-@@gen_label2430 DS    0H 
-* ***   
-* ***           do { fprintf(__stderrp, "\033[32mRDUT: PASS: %s:%d: %s\
-* \033[0m\n", "C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c"\
-* , 1733, __FUNCTION__); return 0; } while (0);
-@L2165   DS    0H
-         LLGF  15,@lit_1924_1819 ; __stderrp
-         LG    15,0(15,4)  ; __stderrp
-         STG   15,176(0,13)
-         LG    15,@lit_1924_1820
-         LA    1,3512(0,15)
-         STG   1,184(0,13)
-         LA    15,718(0,15)
-         STG   15,192(0,13)
-         MVGHI 200(13),1733
-         LG    15,@lit_1924_1821
-         LA    15,666(0,15)
-         STG   15,208(0,13)
-         LA    1,176(0,13)
-         LG    15,@lit_1924_1822 ; fprintf
+         LG    15,@lit_1924_1916 ; rd_kafka_aborted_txns_destroy
 @@gen_label2431 DS    0H 
          BALR  14,15
 @@gen_label2432 DS    0H 
+* ***   
+* ***           do { fprintf(__stderrp, "\033[32mRDUT: PASS: %s:%d: %s\
+* \033[0m\n", "C:\\asgkafka\\librdkafka\\src\\rdkafka_msgset_reader.c"\
+* , 1758, __FUNCTION__); return 0; } while (0);
+@L2173   DS    0H
+         LLGF  15,@lit_1924_1835 ; __stderrp
+         LG    15,0(15,4)  ; __stderrp
+         STG   15,176(0,13)
+         LG    15,@lit_1924_1836
+         LA    1,3578(0,15)
+         STG   1,184(0,13)
+         LA    15,718(0,15)
+         STG   15,192(0,13)
+         MVGHI 200(13),1758
+         LG    15,@lit_1924_1837
+         LA    15,666(0,15)
+         STG   15,208(0,13)
+         LA    1,176(0,13)
+         LG    15,@lit_1924_1838 ; fprintf
+@@gen_label2433 DS    0H 
+         BALR  14,15
+@@gen_label2434 DS    0H 
          LGHI  15,0        ; 0
 * ***   }
 @ret_lab_1924 DS 0H
@@ -21967,7 +22057,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'9985818485996D978585926D94A2876D' reader.peek.msg.
          DC    X'A58599A2899695'                   version
          DC    1X'00'
-@@TC45   DC    X'A49589A3A385A2A36D81829699A38584' unittest.aborted
+@@TC47   DC    X'A49589A3A385A2A36D81829699A38584' unittest.aborted
          DC    X'6DA3A795A2'                       .txns
          DC    1X'00'
 @strings@ DS   0H
@@ -22067,216 +22157,220 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'89A38840A495A2A497979699A3858440' ith.unsupported.
          DC    X'A58599A2899695406C844081A3409686' version..d.at.of
          DC    X'86A285A3406C93938400E3E7D5006CA2' fset..lld.TXN..s
-         DC    X'40AD6C84BD7A40C1829699A340A3A795' ...d...Abort.txn
-         DC    X'4083A399934094A28740828184409699' .ctrl.msg.bad.or
-         DC    X'8485994081A340968686A285A3406C93' der.at.offset..l
-         DC    X'93847A4085A7978583A3858440828586' ld..expected.bef
-         DC    X'9699854096994081A3406C9393847A40' ore.or.at..lld..
-         DC    X'9485A2A2818785A24089954081829699' messages.in.abor
-         DC    X'A3858440A3998195A28183A3899695A2' ted.transactions
-         DC    X'409481A84082854084859389A5859985' .may.be.delivere
-         DC    X'8440A39640A388854081979793898381' d.to.the.applica
-         DC    X'A389969500006CA240AD6C84BD7A40D9' tion...s...d...R
-         DC    X'85838589A585844081829699A340A3A7' eceived.abort.tx
-         DC    X'954083A399934094A2874086969940A4' n.ctrl.msg.for.u
-         DC    X'95929596A69540A3A79540D7C9C4406C' nknown.txn.PID..
-         DC    X'9393844081A340968686A285A3406C93' lld.at.offset..l
-         DC    X'93847A4089879596998995870000E3E7' ld..ignoring..TX
-         DC    X'D56CA240AD6C84BD7A40E495A2A49797' N.s...d...Unsupp
-         DC    X'9699A385844083A39993409485A2A281' orted.ctrl.messa
-         DC    X'878540A3A89785406C844081A3409686' ge.type..d.at.of
-         DC    X'86A285A3406C9393847A408987959699' fset..lld..ignor
-         DC    X'899587006CA240AD6C84BD7A40E29289' ing..s...d...Ski
-         DC    X'9797899587406C84409485A2A2818785' pping..d.message
-         DC    X'4DA25D4089954081829699A3858440A3' .s..in.aborted.t
-         DC    X'998195A28183A38996954081A3409686' ransaction.at.of
-         DC    X'86A285A3406C9393840081A2A28599A3' fset..lld.assert
-         DC    X'7A4094A285A399606E94A285A3996D99' ..msetr..msetr.r
-         DC    X'9282A486606E999282A4866D99928200' kbuf..rkbuf.rkb.
-         DC    X'6CA240AD6C84BD40D485A2A2818785E2' .s...d..MessageS
-         DC    X'85A34081A340968686A285A3406C9393' et.at.offset..ll
-         DC    X'844093859587A388406C84404C408885' d.length..d...he
-         DC    X'8184859940A289A985406C840000D485' ader.size..d..Me
-         DC    X'A2A2818785E285A34081A340968686A2' ssageSet.at.offs
-         DC    X'85A3406C939384404D6C844082A8A385' et..lld...d.byte
-         DC    X'A25D4086818993858440C3D9C3F3F2C3' s..failed.CRC32C
-         DC    X'408388858392404D9699898789958193' .check..original
-         DC    X'40F0A76CA7405A7E4083819383A49381' .0x.x....calcula
-         DC    X'A3858440F0A76CA75D007A406CA240AD' ted.0x.x.....s..
-         DC    X'6C84BD40D485A2A2818785E285A34081' .d..MessageSet.a
-         DC    X'A340968686A285A3406C939384409781' t.offset..lld.pa
-         DC    X'A89396818440A289A985406CA9A40000' yload.size..zu..
-         DC    X'839694979985A2A285840000D4C1C7C9' compressed..MAGI
-         DC    X'C3C2E8E3C5006CA240AD6C84BD7A40E4' CBYTE..s...d...U
-         DC    X'95A2A497979699A3858440D485A2A281' nsupported.Messa
-         DC    X'87854DE285A35D40D481878983C2A8A3' ge.Set..MagicByt
-         DC    X'85406C844081A340968686A285A3406C' e..d.at.offset..
-         DC    X'939384404D82A486868599409796A289' lld..buffer.posi
-         DC    X'A3899695406CA9A4616CA9A45D7A40A2' tion..zu..zu...s
-         DC    X'9289979789958700E495A2A497979699' kipping.Unsuppor
-         DC    X'A3858440D485A2A28187854DE285A35D' ted.Message.Set.
-         DC    X'40D481878983C2A8A385406C844081A3' .MagicByte..d.at
-         DC    X'40968686A285A3406C9393840000C3D6' .offset..lld..CO
-         DC    X'D5E2E4D4C500E396978983406CA240AD' NSUME.Topic..s..
-         DC    X'6C84BD7A40C99583998581A289958740' .d...Increasing.
-         DC    X'9481A7408685A383884082A8A385A240' max.fetch.bytes.
-         DC    X'A396406C8400D485A2A28187854081A3' to..d.Message.at
-         DC    X'40968686A285A3406C93938440948987' .offset..lld.mig
-         DC    X'88A340828540A3969640938199878540' ht.be.too.large.
-         DC    X'A396408685A383886B40A399A8408995' to.fetch..try.in
-         DC    X'83998581A2899587409985838589A585' creasing.receive
-         DC    X'4B9485A2A28187854B9481A74B82A8A3' .message.max.byt
-         DC    X'85A20000A495839694979985A2A28584' es..uncompressed
-         DC    X'0000C59598A485A485406C89406CA294' ..Enqueue..i..sm
-         DC    X'85A2A28187854DA25D404D6C93938440' essage.s....lld.
-         DC    X'82A8A385A26B406C84409697A25D4096' bytes...d.ops..o
-         DC    X'95406CA240AD6C84BD408685A3838840' n..s...d..fetch.
-         DC    X'98A485A485404D98938595406C846B40' queue..qlen..d..
-         DC    X'A56C846B409381A2A36D968686A285A3' v.d..last.offset
-         DC    X'406C9393846B406C844083A399934094' ..lld...d.ctrl.m
-         DC    X'A287A26B406CA25D00001BADF3F194D9' sgs...s.....31mR
-         DC    X'C4E4E37A40C6C1C9D37A406CA27A6C84' DUT..FAIL...s..d
-         DC    X'7A406CA27A4081A2A28599A340868189' ...s..assert.fai
-         DC    X'9385847A40F3407E7E40A2A38199A36D' led..3....start.
-         DC    X'968686A285A37A40000098A485998985' offset....querie
-         DC    X'8440A2A38199A340968686A285A340A6' d.start.offset.w
-         DC    X'81A2406C9393846B4085A7978583A385' as..lld..expecte
-         DC    X'8440F3001BADF0941500F3407E7E40A2' d.3...0m..3....s
-         DC    X'A38199A36D968686A285A3001BADF3F1' tart.offset...31
+         DC    X'40AD6C84BD409985838589A585844081' ...d..received.a
+         DC    X'829699A340A3A7954083A399934094A2' bort.txn.ctrl.ms
+         DC    X'874081A340968686A285A3406C939384' g.at.offset..lld
+         DC    X'4086969940D7C9C4406C9393846B4082' .for.PID..lld..b
+         DC    X'A4A340A3888599854081998540959640' ut.there.are.no.
+         DC    X'929596A6954081829699A3858440A399' known.aborted.tr
+         DC    X'8195A28183A3899695A27A4089879596' ansactions..igno
+         DC    X'9989958700006CA240AD6C84BD409985' ring...s...d..re
+         DC    X'838589A585844081829699A340A3A795' ceived.abort.txn
+         DC    X'4083A399934094A2874081A340968686' .ctrl.msg.at.off
+         DC    X'A285A3406C9393844086969940D7C9C4' set..lld.for.PID
+         DC    X'406C9393846B4082A4A340A38889A240' ..lld..but.this.
+         DC    X'968686A285A34089A2409596A3409389' offset.is.not.li
+         DC    X'A2A385844081A24081954081829699A3' sted.as.an.abort
+         DC    X'858440A3998195A28183A38996957A40' ed.transaction..
+         DC    X'81829699A3858440A3998195A28183A3' aborted.transact
+         DC    X'89969540A681A2409796A2A2898293A8' ion.was.possibly
+         DC    X'40859497A3A87A408987959699899587' .empty..ignoring
+         DC    X'0000E3E7D56CA240AD6C84BD7A40E495' ..TXN.s...d...Un
+         DC    X'A2A497979699A385844083A399934094' supported.ctrl.m
+         DC    X'85A2A281878540A3A89785406C844081' essage.type..d.a
+         DC    X'A340968686A285A3406C9393847A4089' t.offset..lld..i
+         DC    X'87959699899587006CA240AD6C84BD7A' gnoring..s...d..
+         DC    X'40E292899797899587406C84409485A2' .Skipping..d.mes
+         DC    X'A28187854DA25D4089954081829699A3' sage.s..in.abort
+         DC    X'858440A3998195A28183A38996954081' ed.transaction.a
+         DC    X'A340968686A285A3406C939384408696' t.offset..lld.fo
+         DC    X'9940D7C9C4406C939384000081A2A285' r.PID..lld..asse
+         DC    X'99A37A4094A285A399606E94A285A399' rt..msetr..msetr
+         DC    X'6D999282A486606E999282A4866D9992' .rkbuf..rkbuf.rk
+         DC    X'82006CA240AD6C84BD40D485A2A28187' b..s...d..Messag
+         DC    X'85E285A34081A340968686A285A3406C' eSet.at.offset..
+         DC    X'9393844093859587A388406C84404C40' lld.length..d...
+         DC    X'88858184859940A289A985406C840000' header.size..d..
+         DC    X'D485A2A2818785E285A34081A3409686' MessageSet.at.of
+         DC    X'86A285A3406C939384404D6C844082A8' fset..lld...d.by
+         DC    X'A385A25D4086818993858440C3D9C3F3' tes..failed.CRC3
+         DC    X'F2C3408388858392404D969989878995' 2C.check..origin
+         DC    X'819340F0A76CA7405A7E4083819383A4' al.0x.x....calcu
+         DC    X'9381A3858440F0A76CA75D007A406CA2' lated.0x.x.....s
+         DC    X'40AD6C84BD40D485A2A2818785E285A3' ...d..MessageSet
+         DC    X'4081A340968686A285A3406C93938440' .at.offset..lld.
+         DC    X'9781A89396818440A289A985406CA9A4' payload.size..zu
+         DC    X'0000839694979985A2A285840000D4C1' ..compressed..MA
+         DC    X'C7C9C3C2E8E3C5006CA240AD6C84BD7A' GICBYTE..s...d..
+         DC    X'40E495A2A497979699A3858440D485A2' .Unsupported.Mes
+         DC    X'A28187854DE285A35D40D481878983C2' sage.Set..MagicB
+         DC    X'A8A385406C844081A340968686A285A3' yte..d.at.offset
+         DC    X'406C939384404D82A486868599409796' ..lld..buffer.po
+         DC    X'A289A3899695406CA9A4616CA9A45D7A' sition..zu..zu..
+         DC    X'40A29289979789958700E495A2A49797' .skipping.Unsupp
+         DC    X'9699A3858440D485A2A28187854DE285' orted.Message.Se
+         DC    X'A35D40D481878983C2A8A385406C8440' t..MagicByte..d.
+         DC    X'81A340968686A285A3406C9393840000' at.offset..lld..
+         DC    X'C3D6D5E2E4D4C500E396978983406CA2' CONSUME.Topic..s
+         DC    X'40AD6C84BD7A40C99583998581A28995' ...d...Increasin
+         DC    X'87409481A7408685A383884082A8A385' g.max.fetch.byte
+         DC    X'A240A396406C8400D485A2A281878540' s.to..d.Message.
+         DC    X'81A340968686A285A3406C9393844094' at.offset..lld.m
+         DC    X'898788A340828540A396964093819987' ight.be.too.larg
+         DC    X'8540A396408685A383886B40A399A840' e.to.fetch..try.
+         DC    X'899583998581A2899587409985838589' increasing.recei
+         DC    X'A5854B9485A2A28187854B9481A74B82' ve.message.max.b
+         DC    X'A8A385A20000A495839694979985A2A2' ytes..uncompress
+         DC    X'85840000C59598A485A485406C89406C' ed..Enqueue..i..
+         DC    X'A29485A2A28187854DA25D404D6C9393' smessage.s....ll
+         DC    X'844082A8A385A26B406C84409697A25D' d.bytes...d.ops.
+         DC    X'409695406CA240AD6C84BD408685A383' .on..s...d..fetc
+         DC    X'884098A485A485404D98938595406C84' h.queue..qlen..d
+         DC    X'6B40A56C846B409381A2A36D968686A2' ..v.d..last.offs
+         DC    X'85A3406C9393846B406C844083A39993' et..lld...d.ctrl
+         DC    X'4094A287A26B406CA25D00001BADF3F1' .msgs...s.....31
          DC    X'94D9C4E4E37A40C6C1C9D37A406CA27A' mRDUT..FAIL...s.
          DC    X'6C847A406CA27A4081A2A28599A34086' .d...s..assert.f
-         DC    X'81899385847A40F1F0407E7E40A2A381' ailed..10....sta
-         DC    X'99A36D968686A285A37A400098A48599' rt.offset...quer
-         DC    X'89858440A2A38199A340968686A285A3' ied.start.offset
-         DC    X'40A681A2406C9393846B4085A7978583' .was..lld..expec
-         DC    X'A3858440F1F00000F1F0407E7E40A2A3' ted.10..10....st
-         DC    X'8199A36D968686A285A300001BADF3F1' art.offset....31
-         DC    X'94D9C4E4E37A40C6C1C9D37A406CA27A' mRDUT..FAIL...s.
-         DC    X'6C847A406CA27A4081A2A28599A34086' .d...s..assert.f
-         DC    X'81899385847A40F7407E7E40A2A38199' ailed..7....star
+         DC    X'81899385847A40F3407E7E40A2A38199' ailed..3....star
          DC    X'A36D968686A285A37A40000098A48599' t.offset....quer
          DC    X'89858440A2A38199A340968686A285A3' ied.start.offset
          DC    X'40A681A2406C9393846B4085A7978583' .was..lld..expec
-         DC    X'A3858440F700F7407E7E40A2A38199A3' ted.7.7....start
-         DC    X'6D968686A285A3001BADF3F194D9C4E4' .offset...31mRDU
-         DC    X'E37A40C6C1C9D37A406CA27A6C847A40' T..FAIL...s..d..
-         DC    X'6CA27A4081A2A28599A3408681899385' .s..assert.faile
-         DC    X'847A40F4F2407E7E40A2A38199A36D96' d..42....start.o
-         DC    X'8686A285A37A400098A4859989858440' ffset...queried.
-         DC    X'A2A38199A340968686A285A340A681A2' start.offset.was
-         DC    X'406C9393846B4085A7978583A3858440' ..lld..expected.
-         DC    X'F4F20000F4F2407E7E40A2A38199A36D' 42..42....start.
-         DC    X'968686A285A300001BADF3F194D9C4E4' offset....31mRDU
-         DC    X'E37A40C6C1C9D37A406CA27A6C847A40' T..FAIL...s..d..
-         DC    X'6CA27A4081A2A28599A3408681899385' .s..assert.faile
-         DC    X'847A40F4F4407E7E40A2A38199A36D96' d..44....start.o
-         DC    X'8686A285A37A400098A4859989858440' ffset...queried.
-         DC    X'A2A38199A340968686A285A340A681A2' start.offset.was
-         DC    X'406C9393846B4085A7978583A3858440' ..lld..expected.
-         DC    X'F4F40000F4F4407E7E40A2A38199A36D' 44..44....start.
-         DC    X'968686A285A300001BADF3F194D9C4E4' offset....31mRDU
-         DC    X'E37A40C6C1C9D37A406CA27A6C847A40' T..FAIL...s..d..
-         DC    X'6CA27A4081A2A28599A3408681899385' .s..assert.faile
-         DC    X'847A40F1F1407E7E40A2A38199A36D96' d..11....start.o
-         DC    X'8686A285A37A400098A4859989858440' ffset...queried.
-         DC    X'A2A38199A340968686A285A340A681A2' start.offset.was
-         DC    X'406C9393846B4085A7978583A3858440' ..lld..expected.
-         DC    X'F1F10000F1F1407E7E40A2A38199A36D' 11..11....start.
-         DC    X'968686A285A300001BADF3F194D9C4E4' offset....31mRDU
-         DC    X'E37A40C6C1C9D37A406CA27A6C847A40' T..FAIL...s..d..
-         DC    X'6CA27A4081A2A28599A3408681899385' .s..assert.faile
-         DC    X'847A4060F1407E7E40A2A38199A36D96' d...1....start.o
-         DC    X'8686A285A37A400098A4859989858440' ffset...queried.
-         DC    X'A2A38199A340968686A285A340A681A2' start.offset.was
-         DC    X'406C9393846B4085A7978583A3858440' ..lld..expected.
-         DC    X'60F1000060F1407E7E40A2A38199A36D' .1...1....start.
-         DC    X'968686A285A300001BADF3F294D9C4E4' offset....32mRDU
-         DC    X'E37A40D7C1E2E27A406CA27A6C847A40' T..PASS...s..d..
-         DC    X'6CA21BADF0941500D7999684A4838500' .s..0m..Produce.
-         DC    X'C685A3838800D68686A285A30000D485' Fetch.Offset..Me
-         DC    X'A3818481A3810000D38581848599C195' tadata..LeaderAn
-         DC    X'84C9A2990000E2A39697D98597938983' dIsr..StopReplic
-         DC    X'8100E4978481A385D485A3818481A381' a.UpdateMetadata
-         DC    X'0000C39695A3999693938584E288A4A3' ..ControlledShut
-         DC    X'8496A6950000D68686A285A3C3969494' down..OffsetComm
-         DC    X'89A30000D68686A285A3C685A3838800' it..OffsetFetch.
-         DC    X'C6899584C396969984899581A3969900' FindCoordinator.
-         DC    X'D1968995C79996A49700C8858199A382' JoinGroup.Heartb
-         DC    X'8581A300D38581A585C79996A4970000' eat.LeaveGroup..
-         DC    X'E2A89583C79996A49700C485A2839989' SyncGroup.Descri
-         DC    X'8285C79996A497A20000D389A2A3C799' beGroups..ListGr
-         DC    X'96A497A20000E281A293C8819584A288' oups..SaslHandsh
-         DC    X'81928500C19789E58599A28996950000' ake.ApiVersion..
-         DC    X'C3998581A385E396978983A20000C485' CreateTopics..De
-         DC    X'9385A385E396978983A20000C4859385' leteTopics..Dele
-         DC    X'A385D98583969984A200C99589A3D799' teRecords.InitPr
-         DC    X'9684A4838599C9840000D68686A285A3' oducerId..Offset
-         DC    X'C69699D38581848599C5979683880000' ForLeaderEpoch..
-         DC    X'C18484D78199A389A3899695A2E396E3' AddPartitionsToT
-         DC    X'A7950000C18484D68686A285A3A2E396' xn..AddOffsetsTo
-         DC    X'E3A79500C59584E3A7950000E69989A3' Txn.EndTxn..Writ
-         DC    X'85E3A795D48199928599A200E3A795D6' eTxnMarkers.TxnO
-         DC    X'8686A285A3C396949489A300C485A283' ffsetCommit.Desc
-         DC    X'99898285C18393A20000C3998581A385' ribeAcls..Create
-         DC    X'C18393A20000C4859385A385C18393A2' Acls..DeleteAcls
-         DC    X'0000C485A28399898285C39695868987' ..DescribeConfig
-         DC    X'A200C193A38599C39695868987A20000' s.AlterConfigs..
-         DC    X'C193A38599D9859793898381D39687C4' AlterReplicaLogD
-         DC    X'8999A200C485A28399898285D39687C4' irs.DescribeLogD
-         DC    X'8999A200E281A293C1A4A3888595A389' irs.SaslAuthenti
-         DC    X'8381A3850000C3998581A385D78199A3' cate..CreatePart
-         DC    X'89A3899695A20000C3998581A385C485' itions..CreateDe
-         DC    X'93858781A3899695E39692859500D985' legationToken.Re
-         DC    X'9585A6C48593858781A3899695E39692' newDelegationTok
-         DC    X'85950000C5A797899985C48593858781' en..ExpireDelega
-         DC    X'A3899695E39692859500C485A2839989' tionToken.Descri
-         DC    X'8285C48593858781A3899695E3969285' beDelegationToke
-         DC    X'9500C4859385A385C79996A497A20000' n.DeleteGroups..
-         DC    X'C5938583A3D38581848599A2D98598A4' ElectLeadersRequ
-         DC    X'85A2A300C995839985948595A38193C1' est.IncrementalA
-         DC    X'93A38599C39695868987A2D98598A485' lterConfigsReque
-         DC    X'A2A30000C193A38599D78199A389A389' st..AlterPartiti
-         DC    X'9695D98581A2A2898795948595A3A2D9' onReassignmentsR
-         DC    X'8598A485A2A30000D389A2A3D78199A3' equest..ListPart
-         DC    X'89A3899695D98581A2A2898795948595' itionReassignmen
-         DC    X'A3A2D98598A485A2A300D68686A285A3' tsRequest.Offset
-         DC    X'C4859385A385D98598A485A2A300C485' DeleteRequest.De
-         DC    X'A28399898285C393898595A3D8A496A3' scribeClientQuot
-         DC    X'81A2D98598A485A2A300C193A38599C3' asRequest.AlterC
-         DC    X'93898595A3D8A496A381A2D98598A485' lientQuotasReque
-         DC    X'A2A30000C485A28399898285E4A28599' st..DescribeUser
-         DC    X'E283998194C39985848595A3898193A2' ScramCredentials
-         DC    X'D98598A485A2A300C193A38599E4A285' Request.AlterUse
-         DC    X'99E283998194C39985848595A3898193' rScramCredential
-         DC    X'A2D98598A485A2A30000E596A385D985' sRequest..VoteRe
-         DC    X'98A485A2A300C285878995D8A49699A4' quest.BeginQuoru
-         DC    X'94C597968388D98598A485A2A300C595' mEpochRequest.En
-         DC    X'84D8A49699A494C597968388D98598A4' dQuorumEpochRequ
-         DC    X'85A2A300C485A28399898285D8A49699' est.DescribeQuor
-         DC    X'A494D98598A485A2A300C193A38599C9' umRequest.AlterI
-         DC    X'A299D98598A485A2A300E4978481A385' srRequest.Update
-         DC    X'C68581A3A49985A2D98598A485A2A300' FeaturesRequest.
-         DC    X'C595A58593969785D98598A485A2A300' EnvelopeRequest.
-         DC    X'95969585000087A989970000A2958197' none..gzip..snap
-         DC    X'97A8000093A9F400A9A2A38400008995' py..lz4.zstd..in
-         DC    X'88859989A300839695868987A4998584' herit.configured
-         DC    X'000093858199958584008995A3859995' ..learned.intern
-         DC    X'819300009396878983819300C99589A3' al..logical.Init
-         DC    X'0000E3859994899581A38500C681A381' ..Terminate.Fata
-         DC    X'93C5999996990000D98598A485A2A3D7' lError..RequestP
-         DC    X'C9C40000E68189A3E3998195A2979699' ID..WaitTranspor
-         DC    X'A300E68189A3D7C9C400C1A2A2898795' t.WaitPID.Assign
-         DC    X'85840000C499818995D985A285A30000' ed..DrainReset..
-         DC    X'C499818995C2A4949700D9858184A8D5' DrainBump.ReadyN
-         DC    X'96A3C18392858400D9858184A800C995' otAcked.Ready.In
-         DC    X'E3998195A28183A389969500C2858789' Transaction.Begi
-         DC    X'95C396949489A300C396949489A3A389' nCommit.Committi
-         DC    X'9587E3998195A28183A389969500C396' ngTransaction.Co
-         DC    X'949489A3D596A3C1839285840000C182' mmitNotAcked..Ab
-         DC    X'9699A3899587E3998195A28183A38996' ortingTransactio
-         DC    X'9500C1829699A38584D596A3C1839285' n.AbortedNotAcke
-         DC    X'8400C1829699A381829385C599999699' d.AbortableError
-         DC    X'0000'                             ..
+         DC    X'A3858440F3001BADF0941500F3407E7E' ted.3...0m..3...
+         DC    X'40A2A38199A36D968686A285A3001BAD' .start.offset...
+         DC    X'F3F194D9C4E4E37A40C6C1C9D37A406C' 31mRDUT..FAIL...
+         DC    X'A27A6C847A406CA27A4081A2A28599A3' s..d...s..assert
+         DC    X'408681899385847A40F1F0407E7E40A2' .failed..10....s
+         DC    X'A38199A36D968686A285A37A400098A4' tart.offset...qu
+         DC    X'859989858440A2A38199A340968686A2' eried.start.offs
+         DC    X'85A340A681A2406C9393846B4085A797' et.was..lld..exp
+         DC    X'8583A3858440F1F00000F1F0407E7E40' ected.10..10....
+         DC    X'A2A38199A36D968686A285A300001BAD' start.offset....
+         DC    X'F3F194D9C4E4E37A40C6C1C9D37A406C' 31mRDUT..FAIL...
+         DC    X'A27A6C847A406CA27A4081A2A28599A3' s..d...s..assert
+         DC    X'408681899385847A40F7407E7E40A2A3' .failed..7....st
+         DC    X'8199A36D968686A285A37A40000098A4' art.offset....qu
+         DC    X'859989858440A2A38199A340968686A2' eried.start.offs
+         DC    X'85A340A681A2406C9393846B4085A797' et.was..lld..exp
+         DC    X'8583A3858440F700F7407E7E40A2A381' ected.7.7....sta
+         DC    X'99A36D968686A285A3001BADF3F194D9' rt.offset...31mR
+         DC    X'C4E4E37A40C6C1C9D37A406CA27A6C84' DUT..FAIL...s..d
+         DC    X'7A406CA27A4081A2A28599A340868189' ...s..assert.fai
+         DC    X'9385847A40F4F2407E7E40A2A38199A3' led..42....start
+         DC    X'6D968686A285A37A400098A485998985' .offset...querie
+         DC    X'8440A2A38199A340968686A285A340A6' d.start.offset.w
+         DC    X'81A2406C9393846B4085A7978583A385' as..lld..expecte
+         DC    X'8440F4F20000F4F2407E7E40A2A38199' d.42..42....star
+         DC    X'A36D968686A285A300001BADF3F194D9' t.offset....31mR
+         DC    X'C4E4E37A40C6C1C9D37A406CA27A6C84' DUT..FAIL...s..d
+         DC    X'7A406CA27A4081A2A28599A340868189' ...s..assert.fai
+         DC    X'9385847A40F4F4407E7E40A2A38199A3' led..44....start
+         DC    X'6D968686A285A37A400098A485998985' .offset...querie
+         DC    X'8440A2A38199A340968686A285A340A6' d.start.offset.w
+         DC    X'81A2406C9393846B4085A7978583A385' as..lld..expecte
+         DC    X'8440F4F40000F4F4407E7E40A2A38199' d.44..44....star
+         DC    X'A36D968686A285A300001BADF3F194D9' t.offset....31mR
+         DC    X'C4E4E37A40C6C1C9D37A406CA27A6C84' DUT..FAIL...s..d
+         DC    X'7A406CA27A4081A2A28599A340868189' ...s..assert.fai
+         DC    X'9385847A40F1F1407E7E40A2A38199A3' led..11....start
+         DC    X'6D968686A285A37A400098A485998985' .offset...querie
+         DC    X'8440A2A38199A340968686A285A340A6' d.start.offset.w
+         DC    X'81A2406C9393846B4085A7978583A385' as..lld..expecte
+         DC    X'8440F1F10000F1F1407E7E40A2A38199' d.11..11....star
+         DC    X'A36D968686A285A300001BADF3F194D9' t.offset....31mR
+         DC    X'C4E4E37A40C6C1C9D37A406CA27A6C84' DUT..FAIL...s..d
+         DC    X'7A406CA27A4081A2A28599A340868189' ...s..assert.fai
+         DC    X'9385847A4060F1407E7E40A2A38199A3' led...1....start
+         DC    X'6D968686A285A37A400098A485998985' .offset...querie
+         DC    X'8440A2A38199A340968686A285A340A6' d.start.offset.w
+         DC    X'81A2406C9393846B4085A7978583A385' as..lld..expecte
+         DC    X'844060F1000060F1407E7E40A2A38199' d..1...1....star
+         DC    X'A36D968686A285A300001BADF3F294D9' t.offset....32mR
+         DC    X'C4E4E37A40D7C1E2E27A406CA27A6C84' DUT..PASS...s..d
+         DC    X'7A406CA21BADF0941500D7999684A483' ...s..0m..Produc
+         DC    X'8500C685A3838800D68686A285A30000' e.Fetch.Offset..
+         DC    X'D485A3818481A3810000D38581848599' Metadata..Leader
+         DC    X'C19584C9A2990000E2A39697D9859793' AndIsr..StopRepl
+         DC    X'89838100E4978481A385D485A3818481' ica.UpdateMetada
+         DC    X'A3810000C39695A3999693938584E288' ta..ControlledSh
+         DC    X'A4A38496A6950000D68686A285A3C396' utdown..OffsetCo
+         DC    X'949489A30000D68686A285A3C685A383' mmit..OffsetFetc
+         DC    X'8800C6899584C396969984899581A396' h.FindCoordinato
+         DC    X'9900D1968995C79996A49700C8858199' r.JoinGroup.Hear
+         DC    X'A3828581A300D38581A585C79996A497' tbeat.LeaveGroup
+         DC    X'0000E2A89583C79996A49700C485A283' ..SyncGroup.Desc
+         DC    X'99898285C79996A497A20000D389A2A3' ribeGroups..List
+         DC    X'C79996A497A20000E281A293C8819584' Groups..SaslHand
+         DC    X'A28881928500C19789E58599A2899695' shake.ApiVersion
+         DC    X'0000C3998581A385E396978983A20000' ..CreateTopics..
+         DC    X'C4859385A385E396978983A20000C485' DeleteTopics..De
+         DC    X'9385A385D98583969984A200C99589A3' leteRecords.Init
+         DC    X'D7999684A4838599C9840000D68686A2' ProducerId..Offs
+         DC    X'85A3C69699D38581848599C597968388' etForLeaderEpoch
+         DC    X'0000C18484D78199A389A3899695A2E3' ..AddPartitionsT
+         DC    X'96E3A7950000C18484D68686A285A3A2' oTxn..AddOffsets
+         DC    X'E396E3A79500C59584E3A7950000E699' ToTxn.EndTxn..Wr
+         DC    X'89A385E3A795D48199928599A200E3A7' iteTxnMarkers.Tx
+         DC    X'95D68686A285A3C396949489A300C485' nOffsetCommit.De
+         DC    X'A28399898285C18393A20000C3998581' scribeAcls..Crea
+         DC    X'A385C18393A20000C4859385A385C183' teAcls..DeleteAc
+         DC    X'93A20000C485A28399898285C3969586' ls..DescribeConf
+         DC    X'8987A200C193A38599C39695868987A2' igs.AlterConfigs
+         DC    X'0000C193A38599D9859793898381D396' ..AlterReplicaLo
+         DC    X'87C48999A200C485A28399898285D396' gDirs.DescribeLo
+         DC    X'87C48999A200E281A293C1A4A3888595' gDirs.SaslAuthen
+         DC    X'A3898381A3850000C3998581A385D781' ticate..CreatePa
+         DC    X'99A389A3899695A20000C3998581A385' rtitions..Create
+         DC    X'C48593858781A3899695E39692859500' DelegationToken.
+         DC    X'D9859585A6C48593858781A3899695E3' RenewDelegationT
+         DC    X'969285950000C5A797899985C4859385' oken..ExpireDele
+         DC    X'8781A3899695E39692859500C485A283' gationToken.Desc
+         DC    X'99898285C48593858781A3899695E396' ribeDelegationTo
+         DC    X'92859500C4859385A385C79996A497A2' ken.DeleteGroups
+         DC    X'0000C5938583A3D38581848599A2D985' ..ElectLeadersRe
+         DC    X'98A485A2A300C995839985948595A381' quest.Incrementa
+         DC    X'93C193A38599C39695868987A2D98598' lAlterConfigsReq
+         DC    X'A485A2A30000C193A38599D78199A389' uest..AlterParti
+         DC    X'A3899695D98581A2A2898795948595A3' tionReassignment
+         DC    X'A2D98598A485A2A30000D389A2A3D781' sRequest..ListPa
+         DC    X'99A389A3899695D98581A2A289879594' rtitionReassignm
+         DC    X'8595A3A2D98598A485A2A300D68686A2' entsRequest.Offs
+         DC    X'85A3C4859385A385D98598A485A2A300' etDeleteRequest.
+         DC    X'C485A28399898285C393898595A3D8A4' DescribeClientQu
+         DC    X'96A381A2D98598A485A2A300C193A385' otasRequest.Alte
+         DC    X'99C393898595A3D8A496A381A2D98598' rClientQuotasReq
+         DC    X'A485A2A30000C485A28399898285E4A2' uest..DescribeUs
+         DC    X'8599E283998194C39985848595A38981' erScramCredentia
+         DC    X'93A2D98598A485A2A300C193A38599E4' lsRequest.AlterU
+         DC    X'A28599E283998194C39985848595A389' serScramCredenti
+         DC    X'8193A2D98598A485A2A30000E596A385' alsRequest..Vote
+         DC    X'D98598A485A2A300C285878995D8A496' Request.BeginQuo
+         DC    X'99A494C597968388D98598A485A2A300' rumEpochRequest.
+         DC    X'C59584D8A49699A494C597968388D985' EndQuorumEpochRe
+         DC    X'98A485A2A300C485A28399898285D8A4' quest.DescribeQu
+         DC    X'9699A494D98598A485A2A300C193A385' orumRequest.Alte
+         DC    X'99C9A299D98598A485A2A300E4978481' rIsrRequest.Upda
+         DC    X'A385C68581A3A49985A2D98598A485A2' teFeaturesReques
+         DC    X'A300C595A58593969785D98598A485A2' t.EnvelopeReques
+         DC    X'A30095969585000087A989970000A295' t.none..gzip..sn
+         DC    X'819797A8000093A9F400A9A2A3840000' appy..lz4.zstd..
+         DC    X'899588859989A300839695868987A499' inherit.configur
+         DC    X'8584000093858199958584008995A385' ed..learned.inte
+         DC    X'9995819300009396878983819300C995' rnal..logical.In
+         DC    X'89A30000E3859994899581A38500C681' it..Terminate.Fa
+         DC    X'A38193C5999996990000D98598A485A2' talError..Reques
+         DC    X'A3D7C9C40000E68189A3E3998195A297' tPID..WaitTransp
+         DC    X'9699A300E68189A3D7C9C400C1A2A289' ort.WaitPID.Assi
+         DC    X'879585840000C499818995D985A285A3' gned..DrainReset
+         DC    X'0000C499818995C2A4949700D9858184' ..DrainBump.Read
+         DC    X'A8D596A3C18392858400D9858184A800' yNotAcked.Ready.
+         DC    X'C995E3998195A28183A389969500C285' InTransaction.Be
+         DC    X'878995C396949489A300C396949489A3' ginCommit.Commit
+         DC    X'A3899587E3998195A28183A389969500' tingTransaction.
+         DC    X'C396949489A3D596A3C1839285840000' CommitNotAcked..
+         DC    X'C1829699A3899587E3998195A28183A3' AbortingTransact
+         DC    X'89969500C1829699A38584D596A3C183' ion.AbortedNotAc
+         DC    X'92858400C1829699A381829385C59999' ked.AbortableErr
+         DC    X'96990000'                         or..
 @Erd_unittest_assert_on_failure ALIAS X'99846DA49589A3A385A2A36D81A2A28*
                599A36D96956D86818993A49985'
          EXTRN @Erd_unittest_assert_on_failure
@@ -22367,7 +22461,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000220'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001088'
+         DC    X'000010CA'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22378,7 +22472,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000228'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001090'
+         DC    X'000010D2'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22389,7 +22483,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000230'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001096'
+         DC    X'000010D8'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22400,7 +22494,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000238'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000109E'
+         DC    X'000010E0'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22411,7 +22505,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000240'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000010A8'
+         DC    X'000010EA'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22422,7 +22516,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000248'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000010B6'
+         DC    X'000010F8'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22433,7 +22527,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000250'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000010C2'
+         DC    X'00001104'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22444,7 +22538,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000258'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000010D2'
+         DC    X'00001114'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22455,7 +22549,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000260'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000010E6'
+         DC    X'00001128'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22466,7 +22560,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000268'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000010F4'
+         DC    X'00001136'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22477,7 +22571,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000270'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001100'
+         DC    X'00001142'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22488,7 +22582,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000278'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001110'
+         DC    X'00001152'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22499,7 +22593,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000280'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000111A'
+         DC    X'0000115C'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22510,7 +22604,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000288'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001124'
+         DC    X'00001166'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22521,7 +22615,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000290'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001130'
+         DC    X'00001172'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22532,7 +22626,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000298'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000113A'
+         DC    X'0000117C'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22543,7 +22637,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000002A0'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000114A'
+         DC    X'0000118C'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22554,7 +22648,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000002A8'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001156'
+         DC    X'00001198'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22565,7 +22659,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000002B0'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001164'
+         DC    X'000011A6'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22576,7 +22670,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000002B8'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001170'
+         DC    X'000011B2'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22587,7 +22681,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000002C0'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000117E'
+         DC    X'000011C0'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22598,7 +22692,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000002C8'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000118C'
+         DC    X'000011CE'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22609,7 +22703,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000002D0'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000119A'
+         DC    X'000011DC'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22620,7 +22714,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000002D8'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000011AA'
+         DC    X'000011EC'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22631,7 +22725,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000002E0'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000011C0'
+         DC    X'00001202'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22642,7 +22736,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000002E8'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000011D4'
+         DC    X'00001216'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22653,7 +22747,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000002F0'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000011E4'
+         DC    X'00001226'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22664,7 +22758,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000002F8'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000011EC'
+         DC    X'0000122E'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22675,7 +22769,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000300'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000011FC'
+         DC    X'0000123E'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22686,7 +22780,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000308'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000120C'
+         DC    X'0000124E'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22697,7 +22791,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000310'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000121A'
+         DC    X'0000125C'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22708,7 +22802,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000318'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001226'
+         DC    X'00001268'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22719,7 +22813,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000320'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001232'
+         DC    X'00001274'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22730,7 +22824,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000328'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001242'
+         DC    X'00001284'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22741,7 +22835,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000330'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001250'
+         DC    X'00001292'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22752,7 +22846,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000338'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001264'
+         DC    X'000012A6'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22763,7 +22857,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000340'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001274'
+         DC    X'000012B6'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22774,7 +22868,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000348'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001286'
+         DC    X'000012C8'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22785,7 +22879,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000350'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001298'
+         DC    X'000012DA'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22796,7 +22890,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000358'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000012AE'
+         DC    X'000012F0'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22807,7 +22901,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000360'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000012C4'
+         DC    X'00001306'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22818,7 +22912,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000368'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000012DA'
+         DC    X'0000131C'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22829,7 +22923,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000370'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000012F2'
+         DC    X'00001334'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22840,7 +22934,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000378'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001300'
+         DC    X'00001342'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22851,7 +22945,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000380'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001314'
+         DC    X'00001356'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22862,7 +22956,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000388'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001334'
+         DC    X'00001376'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22873,7 +22967,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000390'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001358'
+         DC    X'0000139A'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22884,7 +22978,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000398'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000137A'
+         DC    X'000013BC'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22895,7 +22989,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000003A0'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000138E'
+         DC    X'000013D0'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22906,7 +23000,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000003A8'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000013AA'
+         DC    X'000013EC'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22917,7 +23011,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000003B0'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000013C4'
+         DC    X'00001406'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22928,7 +23022,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000003B8'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000013E8'
+         DC    X'0000142A'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22939,7 +23033,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000003C0'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000140A'
+         DC    X'0000144C'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22950,7 +23044,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000003C8'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001416'
+         DC    X'00001458'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22961,7 +23055,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000003D0'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000142E'
+         DC    X'00001470'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22972,7 +23066,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000003D8'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001444'
+         DC    X'00001486'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22983,7 +23077,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000003E0'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000145A'
+         DC    X'0000149C'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -22994,7 +23088,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000003E8'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000146A'
+         DC    X'000014AC'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23005,7 +23099,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000003F0'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001480'
+         DC    X'000014C2'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23016,7 +23110,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000004C0'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001490'
+         DC    X'000014D2'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23027,7 +23121,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000004C8'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001496'
+         DC    X'000014D8'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23038,7 +23132,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000004D0'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000149C'
+         DC    X'000014DE'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23049,7 +23143,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000004D8'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000014A4'
+         DC    X'000014E6'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23060,7 +23154,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000004E0'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000014A8'
+         DC    X'000014EA'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23071,7 +23165,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000004E8'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000014AE'
+         DC    X'000014F0'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23082,7 +23176,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000510'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000014B6'
+         DC    X'000014F8'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23093,7 +23187,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000518'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000014C2'
+         DC    X'00001504'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23104,7 +23198,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000520'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000014CA'
+         DC    X'0000150C'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23115,7 +23209,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000528'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000014D4'
+         DC    X'00001516'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23126,7 +23220,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000630'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000014DC'
+         DC    X'0000151E'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23137,7 +23231,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000638'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000014E2'
+         DC    X'00001524'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23148,7 +23242,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000640'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000014EC'
+         DC    X'0000152E'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23159,7 +23253,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000648'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000014F8'
+         DC    X'0000153A'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23170,7 +23264,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000650'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001504'
+         DC    X'00001546'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23181,7 +23275,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000658'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001512'
+         DC    X'00001554'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23192,7 +23286,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000660'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000151A'
+         DC    X'0000155C'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23203,7 +23297,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000668'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001524'
+         DC    X'00001566'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23214,7 +23308,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000670'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001530'
+         DC    X'00001572'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23225,7 +23319,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000678'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000014DC'
+         DC    X'0000151E'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23236,7 +23330,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000680'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001512'
+         DC    X'00001554'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23247,7 +23341,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000688'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000153A'
+         DC    X'0000157C'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23258,7 +23352,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000690'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001548'
+         DC    X'0000158A'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23269,7 +23363,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'00000698'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000154E'
+         DC    X'00001590'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23280,7 +23374,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000006A0'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000155C'
+         DC    X'0000159E'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23291,7 +23385,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000006A8'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'00001568'
+         DC    X'000015AA'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23302,7 +23396,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000006B0'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000157E'
+         DC    X'000015C0'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23313,7 +23407,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000006B8'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'0000158E'
+         DC    X'000015D0'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23324,7 +23418,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000006C0'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000015A2'
+         DC    X'000015E4'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23335,7 +23429,7 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000006C8'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000015B2'
+         DC    X'000015F4'
 *
          DC    XL1'D'
          DC    AL3(0)
@@ -23346,6 +23440,6 @@ unittest_aborted_txns#start_offset#0 DS 8XL1 ; start_offset
          DC    X'000006D0'
          DC    ADL8(@DATA)
          DC    X'00000000'
-         DC    X'000014EC'
+         DC    X'0000152E'
 *
          END

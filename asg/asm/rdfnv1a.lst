@@ -1,5 +1,5 @@
                                             Dignus Assembler Option Summary                                                Page    1 
-                                                                                                      DASM V1.95.14 2021/04/29 12:42 
+                                                                                                      DASM V1.95.14 2021/04/30 15:35 
 
 Overriding Parameters- -LC:\DIGNUS\MACLIB\&m -oc:../asg/obj/rdfnv1a.obj ../asg/asm/rdfnv1a.asm
   Process Statements-       DUPALIAS
@@ -54,10 +54,10 @@ Options for this Assembly             Source
 
 Libraries in Search Order:
                                             Dignus Assembler Option Summary                                                Page    2 
-                                                                                                      DASM V1.95.14 2021/04/29 12:42 
+                                                                                                      DASM V1.95.14 2021/04/30 15:35 
        CMDLINE      C:\DIGNUS\MACLIB\&m
                                               External Symbol Dictionary                                                   Page    3 
-Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                                      DASM V1.95.14 2021/04/29 12:42 
+Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                                      DASM V1.95.14 2021/04/30 15:35 
 @@ZARCH#  WX 00000001                              00
 @RDFNV1A  SD 00000002 00000000 000004A6            07  @CODE
 fprintf   ER 00000003                                  FPRINTF
@@ -76,11 +76,11 @@ unittest_fnv1a
           LD          00000110          00000002   00  UNITTEST_FNV1A
                                                                                                                            Page    4 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                                1 *PROCESS DUPALIAS
                                                2 *
                                                3 *  Compiled by DCC Version 2.25.07 Mar  6 2021 08:51:07
-                                               4 *           on Thu Apr 29 12:42:41 2021
+                                               4 *           on Fri Apr 30 15:35:16 2021
                                                5 *
 
                                                7          WXTRN @@ZARCH#
@@ -131,7 +131,7 @@ unittest_fnv1a
                                               50 .getout  anop
                                                                                                                            Page    5 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                               51          mend
 00000010                                      52+$eye0002    ds    0d                                                    02-DCCCA
 00000010 C4C3C3                               53+         dc cl3'DCC'                                                    02-DCCCA
@@ -186,7 +186,7 @@ unittest_fnv1a
 00000090                                     102 @L45     DS    0H
                                                                                                                            Page    6 
   Active Usings: @REGION_760_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000090 E310 4008 0021          00000008    103          CLG   1,8(0,4)
 00000096 4740 C028               00000080    104          BL    @L44
                                              105 * ***
@@ -241,7 +241,7 @@ unittest_fnv1a
                                                                 CH,LNAMEADDR=@LNAME761
                                                                                                                            Page    7 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                              154          macro
                                              155          dccextrn &m
                                              156          gblc    &$dccext(1000)
@@ -296,7 +296,7 @@ unittest_fnv1a
                         00000110             205+         using @REGION_761_1,12                                         01-DCCPR
                                                                                                                            Page    8 
   Active Usings: @REGION_761_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
                                              206          DCCPRV REG=4      ; Get PRV from DVT
 0000014E E340 B008 0004          00000008    207+         LG 4,8(0,11)                                                   01-DCCPR
                                              208 * ******* End of Prologue
@@ -351,7 +351,7 @@ unittest_fnv1a
                                              257 * ***                   0x77a58295,
                                                                                                                            Page    9 
   Active Usings: @REGION_761_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000001D4 C0F9 77A5 8295                      258          IILF  15,X'77A58295' ; 2007335573
 000001DA 50F0 D10C               0000010C    259          ST    15,268(0,13)
                                              260 * ***                   0x23bdd03,
@@ -406,7 +406,7 @@ unittest_fnv1a
 00000280 EBF2 0003 000D          00000003    308          SLLG  15,2,3(0)   ; *0x8
                                                                                                                            Page   10 
   Active Usings: @REGION_761_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000286 E3FF D0A8 0002          000000A8    309          LTG   15,168(15,13)
 0000028C 4780 C1A4               000002B4    310          BZ    @L53
                                              311 * ***                                           __strlen(keysToTest[i]\
@@ -461,7 +461,7 @@ unittest_fnv1a
 00000328 4110 D138               00000138    360          LA    1,312(0,13)
                                                                                                                            Page   11 
   Active Usings: @REGION_761_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 0000032C E380 C150 0004          00000260    361          LG    8,@lit_761_22 ; fprintf
 00000332 B904 00F8                           362          LGR   15,8
 00000336                                     363 @@gen_label7 DS    0H
@@ -516,7 +516,7 @@ unittest_fnv1a
 000003F6                                     412 @L61     DS    0H
                                                                                                                            Page   12 
   Active Usings: @REGION_761_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000003F6                                     413 @L59     DS    0H
 000003F6 A7F9 0001               00000001    414          LGHI  15,1        ; 1
 000003FA 47F0 C34E               0000045E    415          B     @ret_lab_761
@@ -571,7 +571,7 @@ unittest_fnv1a
 0000049C E3F0 F018 0004          00000018    464+         lg  15,24(0,15)         load dvt address                       01-DCCEP
                                                                                                                            Page   13 
   Active Usings: @REGION_761_1,R12  
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 000004A2 47F0 F040               00000040    465+         bc  15,64(0,15)         branch to contraction                  01-DCCEP
                                              466+* End of Epilog
                                              467 * * **** End of Epilogue
@@ -626,7 +626,7 @@ unittest_fnv1a
 0000057E 408796938195876D                    515          DC    X'408796938195876D8881A2888695A56D' .golang.hashfnv.
                                                                                                                            Page   14 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 0000058E 9985A2A493A3A2AD                    516          DC    X'9985A2A493A3A2AD89BD7A400000C37A' results.i.....C.
 0000059E E081A28792818692                    517          DC    X'E081A2879281869281E0938982998492' .asgkafka.librdk
 000005AE 81869281E0A29983                    518          DC    X'81869281E0A29983E099848695A5F181' afka.src.rdfnv1a
@@ -681,7 +681,7 @@ unittest_fnv1a
 00000768 05                                  566          DC    XL1'5'
                                                                                                                            Page   15 
   Active Usings: None
-  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/29 12:42 
+  Loc    Object Code      Addr1    Addr2    Stmt  Source Statement                                    DASM V1.95.14 2021/04/30 15:35 
 00000769 000000                              567          DC    AL3(0)
 0000076C 000001E0                            568          DC    AL4(480)
 00000770 00000000                            569          DC    4X'00'
@@ -725,7 +725,7 @@ unittest_fnv1a
                                              607 *
                                              608          END
                                                  Relocation Dictionary                                                     Page   16 
-  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/29 12:42 
+  Pos.Id   Rel.Id   Address  Type   Action                                                            DASM V1.95.14 2021/04/30 15:35 
  00000002 00000002 00000040   A 4      +
  00000002 00000002 00000048   A 4      +
  00000002 00000002 000000D0   A 4      +
@@ -743,17 +743,17 @@ unittest_fnv1a
  0000000B 00000007 00000834   Q 4      +
  0000000B 00000007 0000085C   Q 4      +
                                                  DSECT Cross Reference                                                     Page   17 
-DSECT     LENGTH    ID   DEFN                                                                         DASM V1.95.14 2021/04/29 12:42 
+DSECT     LENGTH    ID   DEFN                                                                         DASM V1.95.14 2021/04/30 15:35 
 @AUTO#rd_fnv1a
          000000B0  FFFFFFFF  00133
 @AUTO#unittest_fnv1a
          00000138  FFFFFFFE  00473
                                           Macro and Copy Code Source Summary                                               Page   18 
-Source                                                    Members                                     DASM V1.95.14 2021/04/29 12:42 
+Source                                                    Members                                     DASM V1.95.14 2021/04/30 15:35 
 
 C:\DIGNUS\MACLIB                                          DCCCATR  DCCEPIL  DCCPRLG  DCCPRV   dccextrn
                                                       Using Map                                                            Page   19 
-                                                                                                      DASM V1.95.14 2021/04/29 12:42 
+                                                                                                      DASM V1.95.14 2021/04/30 15:35 
   Stmt  -----Location----- Action ----------------Using----------------- Reg Max     Last Label and Using Text
           Count      Id           Type          Value    Range     Id        Disp    Stmt
     76  00000062  00000002 USING  ORDINARY    00000058 00001000 00000002  12 0004A    109 @REGION_760_1,12
@@ -761,7 +761,7 @@ C:\DIGNUS\MACLIB                                          DCCCATR  DCCEPIL  DCCP
    205  0000014E  00000002 USING  ORDINARY    00000110 00001000 00000002  12 0034E    442 @REGION_761_1,12
    468  000004A6  00000002 DROP                                           12              12
                                    Diagnostic Cross Reference and Assembler Summary                                        Page   20 
-                                                                                                      DASM V1.95.14 2021/04/29 12:42 
+                                                                                                      DASM V1.95.14 2021/04/30 15:35 
       No Statements Flagged in this Assembly
 DASM Dignus Systems/ASM, VERSION 1.95.14
 SYSTEM: Windows 6.2                JOBNAME: (NOJOB)     STEPNAME: (NOSTEP)   PROCSTEP: (NOPROC)
@@ -773,5 +773,5 @@ Datasets Used for this Assembly
   L4  DCCEPIL  C:\DIGNUS\MACLIB\dccepil
   L5  DCCPRV   C:\DIGNUS\MACLIB\dccprv
 
-Assembly Start Time: 12.42.41 Stop Time: 12.42.41 Processor Time: 00.00.00.0110
+Assembly Start Time: 15.35.17 Stop Time: 15.35.17 Processor Time: 00.00.00.0090
 Return Code 000
