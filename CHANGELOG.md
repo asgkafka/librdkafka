@@ -27,6 +27,9 @@ librdkafka v1.7.0 is feature release:
    argument that has now been added. This is a breaking change but the original
    function signature is considered a bug.
    This change only affects C++ OAuth developers.
+ * [KIP-735](https://cwiki.apache.org/confluence/display/KAFKA/KIP-735%3A+Increase+default+consumer+session+timeout) The consumer `session.timeout.ms`
+   default was changed from 10 to 45 seconds to make consumer groups more
+   robust and less sensitive to temporary network and cluster issues.
  * Statistics: `consumer_lag` is now using the `committed_offset`,
    while the new `consumer_lag_stored` is using `stored_offset`
    (offset to be committed).
@@ -61,7 +64,15 @@ librdkafka v1.7.0 is feature release:
    main thread.
  * Fix busy-loop (100% CPU on the broker threads) during the handshake phase
    of an SSL connection.
+ * Disconnects during SSL handshake are now propagated as transport errors
+   rather than SSL errors, since these disconnects are at the transport level
+   (e.g., incorrect listener, flaky load balancer, etc) and not due to SSL
+   issues.
  * Increment metadata fast refresh interval backoff exponentially (@ajbarb, #3237).
+ * Unthrottled requests are no longer counted in the `brokers[].throttle`
+   statistics object.
+ * Log CONFWARN warning when global topic configuration properties
+   are overwritten by explicitly setting a `default_topic_conf`.
 
 ### Consumer fixes
 
@@ -96,6 +107,10 @@ librdkafka v1.7.0 is feature release:
    (introduced in v1.6.0).
  * Fix unaligned access and possibly corrupted snappy decompression when
    building with MSVC (@azat)
+ * A consumer configured with the `cooperative-sticky` assignor did
+   not actively Leave the group on unsubscribe(). This delayed the
+   rebalance for the remaining group members by up to `session.timeout.ms`.
+ * The current subscription list was sometimes leaked when unsubscribing.
 
 ### Producer fixes
 

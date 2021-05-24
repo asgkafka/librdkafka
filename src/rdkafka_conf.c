@@ -247,6 +247,21 @@ rd_kafka_anyconf_is_modified (const void *conf,
         return !!(confhdr->modified[bkt] & bit);
 }
 
+/**
+ * @returns true if any property in \p conf has been set/modified.
+ */
+static rd_bool_t
+rd_kafka_anyconf_is_any_modified (const void *conf) {
+        const struct rd_kafka_anyconf_hdr *confhdr = conf;
+        int i;
+
+        for (i = 0 ; i < (int)RD_ARRAYSIZE(confhdr->modified) ; i++)
+                if (confhdr->modified[i])
+                        return rd_true;
+
+        return rd_false;
+}
+
 
 
 /**
@@ -1080,7 +1095,7 @@ static const struct rd_kafka_property rd_kafka_properties[] = {
           "properties `group.min.session.timeout.ms` and "
           "`group.max.session.timeout.ms`. "
           "Also see `max.poll.interval.ms`.",
-          1, 3600*1000, 10*1000 },
+          1, 3600*1000, 45*1000 },
         { _RK_GLOBAL|_RK_CGRP, "heartbeat.interval.ms", _RK_C_INT,
           _RK(group_heartbeat_intvl_ms),
           "Group session keepalive heartbeat interval.",
@@ -1561,8 +1576,7 @@ static const struct rd_kafka_property rd_kafka_properties[] = {
 	  "process restarts to pick up where it left off. "
 	  "If false, the application will have to call "
 	  "`rd_kafka_offset_store()` to store an offset (optional). "
-	  "**NOTE:** There is currently no zookeeper integration, offsets "
-	  "will be written to broker or local file according to "
+          "Offsets will be written to broker or local file according to "
           "offset.store.method.",
 	  0, 1, 1 },
 	{ _RK_TOPIC|_RK_CONSUMER, "enable.auto.commit", _RK_C_ALIAS,
@@ -2865,8 +2879,11 @@ void rd_kafka_conf_set_engine_callback_data (rd_kafka_conf_t *conf,
 
 void rd_kafka_conf_set_default_topic_conf (rd_kafka_conf_t *conf,
                                            rd_kafka_topic_conf_t *tconf) {
-        if (conf->topic_conf)
+        if (conf->topic_conf) {
+                if (rd_kafka_anyconf_is_any_modified(conf->topic_conf))
+                        conf->warn.default_topic_conf_overwritten = rd_true;
                 rd_kafka_topic_conf_destroy(conf->topic_conf);
+        }
 
         rd_kafka_anyconf_set_internal(_RK_GLOBAL, conf, "default_topic_conf",
                                       tconf);
@@ -4019,6 +4036,14 @@ int rd_kafka_conf_warn (rd_kafka_t *rk) {
         if (rk->rk_conf.topic_conf)
                 cnt += rd_kafka_anyconf_warn_deprecated(
                         rk, _RK_TOPIC, rk->rk_conf.topic_conf);
+
+        if (rk->rk_conf.warn.default_topic_conf_overwritten)
+                rd_kafka_log(rk, LOG_WARNING,
+                             "CONFWARN",
+                             "Topic configuration properties set in the "
+                             "global configuration were overwritten by "
+                             "explicitly setting a default_topic_conf: "
+                             "recommend not using set_default_topic_conf");
 
         /* Additional warnings */
         if (rk->rk_type == RD_KAFKA_CONSUMER) {
